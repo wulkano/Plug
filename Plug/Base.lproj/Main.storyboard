@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A283o" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.7"/>
     </dependencies>
     <scenes>
@@ -650,7 +649,7 @@
         <!--Window-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="MainWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -669,10 +668,10 @@
             </objects>
             <point key="canvasLocation" x="-220" y="505"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="I5d-xO-Xxz">
             <objects>
-                <viewController id="ERP-yi-bbR" sceneMemberID="viewController">
+                <viewController id="ERP-yi-bbR" customClass="MainViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="mGG-FI-E6b">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="778"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -732,10 +731,10 @@
             </objects>
             <point key="canvasLocation" x="386" y="505"/>
         </scene>
-        <!--View Controller-->
+        <!--Sidebar View Controller-->
         <scene sceneID="HkI-u9-ali">
             <objects>
-                <viewController id="PDa-TY-X6v" sceneMemberID="viewController">
+                <viewController id="PDa-TY-X6v" customClass="SidebarViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Y0i-8R-Cgd" customClass="DraggableView" customModule="Plug" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -743,48 +742,88 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CIT-JU-akt" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="PeK-mu-fZv" customClass="SolidBackgroundColorView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="68" y="0.0" width="1" height="559"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="1" id="J4m-jw-zKW"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="ufc-4v-Z8I" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="22" y="481" width="24" height="22"/>
+                                        <rect key="frame" x="20" y="476" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="MR5-xL-Z7q"/>
-                                            <constraint firstAttribute="width" constant="24" id="ewc-co-qBH"/>
+                                            <constraint firstAttribute="height" constant="30" id="MR5-xL-Z7q"/>
+                                            <constraint firstAttribute="width" constant="30" id="ewc-co-qBH"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Popular-Off"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Popular-On"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="popularNavButtonClick:" target="PDa-TY-X6v" id="IEe-md-NxU"/>
+                                        </connections>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="CQ0-Dr-M2I" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="22" y="416" width="24" height="22"/>
+                                        <rect key="frame" x="19" y="418" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="FCB-0Z-UKe"/>
-                                            <constraint firstAttribute="width" constant="24" id="e2x-4j-Qki"/>
+                                            <constraint firstAttribute="height" constant="30" id="FCB-0Z-UKe"/>
+                                            <constraint firstAttribute="width" constant="30" id="e2x-4j-Qki"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Favorites-On"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Favorites-Off"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Favorites-On"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="favoritesNavButtonClick:" target="PDa-TY-X6v" id="hQl-oS-vV1"/>
+                                        </connections>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="moD-9u-Y5D" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="19" y="360" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ZNP-Ld-6rc"/>
+                                            <constraint firstAttribute="width" constant="30" id="m8O-AS-dVp"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Latest-Off"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Latest-On"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="latestNavButtonClick:" target="PDa-TY-X6v" id="GZq-jB-3Kd"/>
+                                        </connections>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ENP-kF-nat" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="19" y="302" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Fz9-mm-DfD"/>
+                                            <constraint firstAttribute="width" constant="30" id="Sqb-J5-X4K"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Feed-Off"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Feed-On"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="feedNavButtonClick:" target="PDa-TY-X6v" id="vuV-vZ-hvW"/>
+                                        </connections>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="vYV-TK-lv5" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="244" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="PgL-Q2-Edu"/>
+                                            <constraint firstAttribute="height" constant="30" id="ntO-gj-fB8"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Search-Off"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Search-On"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="Ofe-JU-gha"/>
+                                        </connections>
                                     </customView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="ufc-4v-Z8I" secondAttribute="centerX" id="1Qh-3t-nrd"/>
-                                    <constraint firstItem="CQ0-Dr-M2I" firstAttribute="top" secondItem="ufc-4v-Z8I" secondAttribute="bottom" constant="43" id="FHD-cB-jiQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="PeK-mu-fZv" secondAttribute="trailing" id="Jpq-up-jUy"/>
+                                    <constraint firstItem="moD-9u-Y5D" firstAttribute="top" secondItem="CQ0-Dr-M2I" secondAttribute="bottom" constant="28" id="3HF-d4-OPb"/>
+                                    <constraint firstItem="CQ0-Dr-M2I" firstAttribute="top" secondItem="ufc-4v-Z8I" secondAttribute="bottom" constant="28" id="FHD-cB-jiQ"/>
+                                    <constraint firstItem="vYV-TK-lv5" firstAttribute="top" secondItem="ENP-kF-nat" secondAttribute="bottom" constant="28" id="OOo-aH-jwk"/>
                                     <constraint firstAttribute="centerX" secondItem="CQ0-Dr-M2I" secondAttribute="centerX" id="UcN-wa-N7w"/>
-                                    <constraint firstItem="ufc-4v-Z8I" firstAttribute="top" secondItem="CIT-JU-akt" secondAttribute="top" constant="56" id="hWn-yK-p6F"/>
-                                    <constraint firstAttribute="bottom" secondItem="PeK-mu-fZv" secondAttribute="bottom" id="pKH-3Q-r9e"/>
-                                    <constraint firstItem="PeK-mu-fZv" firstAttribute="top" secondItem="CIT-JU-akt" secondAttribute="top" id="x0q-k3-HxS"/>
+                                    <constraint firstAttribute="centerX" secondItem="vYV-TK-lv5" secondAttribute="centerX" id="ZyZ-FT-Zqa"/>
+                                    <constraint firstAttribute="centerX" secondItem="ENP-kF-nat" secondAttribute="centerX" id="a5H-KZ-gK0"/>
+                                    <constraint firstAttribute="centerX" secondItem="moD-9u-Y5D" secondAttribute="centerX" id="dAG-bp-Ru5"/>
+                                    <constraint firstItem="ENP-kF-nat" firstAttribute="top" secondItem="moD-9u-Y5D" secondAttribute="bottom" constant="28" id="gX5-FC-mB6"/>
+                                    <constraint firstItem="ufc-4v-Z8I" firstAttribute="top" secondItem="CIT-JU-akt" secondAttribute="top" constant="53" id="hWn-yK-p6F"/>
                                 </constraints>
                             </visualEffectView>
                         </subviews>
@@ -795,26 +834,33 @@
                             <constraint firstItem="CIT-JU-akt" firstAttribute="top" secondItem="Y0i-8R-Cgd" secondAttribute="top" id="vWL-Gt-VVQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="favoritesNavButton" destination="CQ0-Dr-M2I" id="wKr-uz-Xhc"/>
+                        <outlet property="feedNavButton" destination="ENP-kF-nat" id="Lru-qQ-CTs"/>
+                        <outlet property="latestNavButton" destination="moD-9u-Y5D" id="5fC-Jm-Vza"/>
+                        <outlet property="popularNavButton" destination="ufc-4v-Z8I" id="A0c-kP-tdw"/>
+                        <outlet property="searchNavButton" destination="vYV-TK-lv5" id="p6J-3D-NAP"/>
+                    </connections>
                 </viewController>
                 <customObject id="REL-JP-yox" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="182.5" y="1404.5"/>
         </scene>
-        <!--Playlist View Controller-->
+        <!--PlaylistViewController-->
         <scene sceneID="Jh8-zl-rwW">
             <objects>
-                <viewController id="pBm-ob-zX3" customClass="PlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="zq4-Qv-NKi">
+                <viewController storyboardIdentifier="PlaylistViewController" id="pBm-ob-zX3" userLabel="PlaylistViewController" customClass="PlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="zq4-Qv-NKi">
                         <rect key="frame" x="0.0" y="0.0" width="344" height="778"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="69" horizontalPageScroll="10" verticalLineScroll="69" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2H-Iz-XnC">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="68" horizontalPageScroll="10" verticalLineScroll="68" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2H-Iz-XnC">
                                 <rect key="frame" x="0.0" y="0.0" width="344" height="778"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="pdQ-aE-QCW">
                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="67" rowSizeStyle="automatic" viewBased="YES" id="lO1-Oc-jUf">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="66" rowSizeStyle="automatic" viewBased="YES" id="lO1-Oc-jUf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -834,11 +880,14 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="cBu-Th-5Co" customClass="PlaylistTableCellView" customModule="Plug" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="341" height="67"/>
+                                                            <rect key="frame" x="1" y="1" width="341" height="66"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-Zp-RwA">
-                                                                    <rect key="frame" x="70" y="39" width="246" height="20"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cZB-Zp-RwA">
+                                                                    <rect key="frame" x="70" y="38" width="246" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="bQa-0Q-3q3"/>
+                                                                    </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Title" id="2xD-oH-z3E">
                                                                         <font key="font" size="14" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -848,8 +897,11 @@
                                                                         <binding destination="cBu-Th-5Co" name="value" keyPath="objectValue.title" id="bLk-uc-pA1"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tuP-sx-fIn">
-                                                                    <rect key="frame" x="70" y="16" width="246" height="20"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tuP-sx-fIn">
+                                                                    <rect key="frame" x="70" y="15" width="246" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="HmJ-V5-sho"/>
+                                                                    </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Artist" id="uX5-aC-mKn">
                                                                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -860,7 +912,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SXw-GA-9Xu">
-                                                                    <rect key="frame" x="0.0" y="21" width="70" height="29"/>
+                                                                    <rect key="frame" x="0.0" y="21" width="70" height="28"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="66" id="P9Z-8F-Ygd"/>
                                                                     </constraints>
@@ -877,9 +929,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="SXw-GA-9Xu" secondAttribute="bottom" constant="21" id="6TB-bY-15k"/>
                                                                 <constraint firstItem="SXw-GA-9Xu" firstAttribute="top" secondItem="cBu-Th-5Co" secondAttribute="top" constant="17" id="6k1-B5-jE6"/>
-                                                                <constraint firstItem="tuP-sx-fIn" firstAttribute="top" secondItem="cZB-Zp-RwA" secondAttribute="bottom" constant="3" id="GWi-f2-hsf"/>
                                                                 <constraint firstAttribute="bottom" secondItem="tuP-sx-fIn" secondAttribute="bottom" constant="15" id="MYg-dX-h4U"/>
-                                                                <constraint firstItem="tuP-sx-fIn" firstAttribute="top" secondItem="cZB-Zp-RwA" secondAttribute="bottom" constant="3" id="Olv-gq-cls"/>
                                                                 <constraint firstAttribute="trailing" secondItem="tuP-sx-fIn" secondAttribute="trailing" constant="27" id="TK4-KI-e4m"/>
                                                                 <constraint firstItem="cZB-Zp-RwA" firstAttribute="top" secondItem="cBu-Th-5Co" secondAttribute="top" constant="8" id="Xub-Rr-aP5"/>
                                                                 <constraint firstAttribute="trailing" secondItem="cZB-Zp-RwA" secondAttribute="trailing" constant="27" id="lT2-YZ-gUV"/>
@@ -895,7 +945,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="pBm-ob-zX3" name="content" keyPath="tracks" id="u6z-bP-dEN"/>
+                                                <binding destination="pBm-ob-zX3" name="content" keyPath="playlist.tracks" id="bBO-LV-aFH"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -977,8 +1027,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Nav-Favorites-Off" width="24" height="22"/>
         <image name="Nav-Favorites-On" width="24" height="22"/>
+        <image name="Nav-Feed-Off" width="22" height="22"/>
+        <image name="Nav-Feed-On" width="22" height="22"/>
+        <image name="Nav-Latest-Off" width="24" height="24"/>
+        <image name="Nav-Latest-On" width="24" height="24"/>
         <image name="Nav-Popular-Off" width="24" height="22"/>
         <image name="Nav-Popular-On" width="24" height="22"/>
+        <image name="Nav-Search-Off" width="24" height="24"/>
+        <image name="Nav-Search-On" width="24" height="24"/>
     </resources>
 </document>

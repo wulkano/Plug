@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class NavigationButton: NSView {
+class NavigationButton: NSButton {
     @IBInspectable var unselectedImage: NSImage?
     @IBInspectable var selectedImage: NSImage?
     var buttonState: NavigationButtonState = NavigationButtonState.Inactive {
@@ -22,17 +22,21 @@ class NavigationButton: NSView {
     let selectedOpacity: Double = 1
 
     override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+        var drawPosition = bounds
+        if unselectedImage {
+            drawPosition.origin.x = (bounds.size.width - unselectedImage!.size.width) / 2
+            drawPosition.origin.y = -(bounds.size.height - unselectedImage!.size.height) / 2
+        }
         
         switch buttonState {
         case .Inactive:
-            unselectedImage?.drawInRect(bounds, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            unselectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
         case .Hover:
-            unselectedImage?.drawInRect(bounds, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            unselectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
         case .Clicked:
-            unselectedImage?.drawInRect(bounds, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            unselectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
         case .Selected:
-            selectedImage?.drawInRect(bounds, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            selectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
         }
     }
     
@@ -41,7 +45,9 @@ class NavigationButton: NSView {
     }
     
     override func mouseDown(theEvent: NSEvent!) {
-        buttonState = NavigationButtonState.Clicked
+        if buttonState != NavigationButtonState.Selected {
+            buttonState = NavigationButtonState.Clicked
+        }
         super.mouseDown(theEvent)
         mouseUp(theEvent)
     }
@@ -52,12 +58,16 @@ class NavigationButton: NSView {
     }
     
     override func mouseEntered(theEvent: NSEvent!) {
-        buttonState = NavigationButtonState.Hover
+        if buttonState != NavigationButtonState.Selected {
+            buttonState = NavigationButtonState.Hover
+        }
         super.mouseEntered(theEvent)
     }
     
     override func mouseExited(theEvent: NSEvent!) {
-        buttonState = NavigationButtonState.Inactive
+        if buttonState != NavigationButtonState.Selected {
+            buttonState = NavigationButtonState.Inactive
+        }
         super.mouseExited(theEvent)
     }
 }
