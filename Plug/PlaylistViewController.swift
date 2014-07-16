@@ -10,9 +10,4 @@ import Cocoa
 
 class PlaylistViewController: NSViewController {
     var playlist: Playlist?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // TODO ScrollView insets
-    }
 }

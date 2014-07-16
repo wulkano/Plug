@@ -32,19 +32,19 @@ class SidebarViewController: NSViewController {
     }
     @IBAction func favoritesNavButtonClick(sender: NavigationButton) {
         toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Popular)
+        delegate?.loadNavigationSection(NavigationSection.Favorites)
     }
     @IBAction func latestNavButtonClick(sender: NavigationButton) {
         toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Popular)
+        delegate?.loadNavigationSection(NavigationSection.Latest)
     }
     @IBAction func feedNavButtonClick(sender: NavigationButton) {
         toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Popular)
+        delegate?.loadNavigationSection(NavigationSection.Feed)
     }
     @IBAction func searchNavButtonClick(sender: NavigationButton) {
         toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Popular)
+        delegate?.loadNavigationSection(NavigationSection.Search)
     }
     
     func allNavButtons() -> [NavigationButton] {
@@ -68,7 +68,7 @@ class SidebarViewController: NSViewController {
     }
 }
 
-enum NavigationSection {
+enum NavigationSection: Int {
     case Popular
     case Favorites
     case Latest

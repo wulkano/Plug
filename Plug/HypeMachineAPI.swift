@@ -18,19 +18,16 @@ struct HypeMachineAPI  {
     }
     
     static func hmToken() -> String {
+//        TODO fix this
 //        let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
 //        return SSKeychain.passwordForService("Plug", account: username!)
         return "d7ee8670b0d5d73f29f0733bdf065819"
     }
     
     struct Tracks {
-        static func popular(mode: PopularMode, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
-            popular(mode, page: 1, count: 20, success: success, failure: failure)
-        }
-        
-        static func popular(mode: PopularMode, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
-            let url = apiBase + "/tracks"
-            let params = ["mode": mode.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+        static func Popular(subType: PopularPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/popular"
+            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
             
             HypeMachineAPI.GET(url, parameters: params, success: {
                 (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
@@ -47,13 +44,9 @@ struct HypeMachineAPI  {
             })
         }
         
-        static func latest(mode: LatestMode, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
-            latest(mode, page: 1, count: 20, success: success, failure: failure)
-        }
-        
-        static func latest(mode: LatestMode, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
-            let url = apiBase + "/tracks"
-            let params = ["mode": mode.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+        static func Favorites(page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/me/favorites"
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
             
             HypeMachineAPI.GET(url, parameters: params, success: {
                 (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
@@ -64,54 +57,52 @@ struct HypeMachineAPI  {
                     tracks.append(Track(JSON: trackDictionary))
                 }
                 success(tracks: tracks)
-                }, failure: {
-                    (operation: AFHTTPRequestOperation!, error: NSError!) in
-                    failure(error: error)
-                })
+            }, failure: {
+                (operation: AFHTTPRequestOperation!, error: NSError!) in
+                failure(error: error)
+            })
         }
         
-        enum PopularMode: String {
-            case Now = "now"
-            case LastWeek = "lastweek"
-            case NoRemix = "noremix"
-            case Remix = "remix"
-        }
-        
-        enum LatestMode: String {
-            case Now = "now"
-            case LastWeek = "lastweek"
-            case NoRemix = "noremix"
-            case Remix = "remix"
+        static func Latest(page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/tracks"
+            let params = ["sort": "latest", "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+            
+            HypeMachineAPI.GET(url, parameters: params, success: {
+                (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                let responseArray = responseObject as NSArray
+                var tracks = [Track]()
+                for trackObject: AnyObject in responseArray {
+                    let trackDictionary = trackObject as NSDictionary
+                    tracks.append(Track(JSON: trackDictionary))
+                }
+                success(tracks: tracks)
+            }, failure: {
+                (operation: AFHTTPRequestOperation!, error: NSError!) in
+                failure(error: error)
+            })
         }
     }
     
     struct Playlists {
-        static func popularNow(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.popular(HypeMachineAPI.Tracks.PopularMode.Now, success: {tracks in
-                let playlist = Playlist(tracks: tracks, type: HMPlaylistType.PopularNow)
+        static func Popular(subType: PopularPlaylistSubType, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.Popular(subType, page: 1, count: 20, success: {tracks in
+                let playlist = PopularPlaylist(tracks: tracks, subType: subType)
                 success(playlist: playlist)
             }, failure: failure)
         }
         
-        static func popularLastWeek(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.popular(HypeMachineAPI.Tracks.PopularMode.LastWeek, success: {tracks in
-                let playlist = Playlist(tracks: tracks, type: HMPlaylistType.PopularLastWeek)
+        static func Favorites(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.Favorites(1, count: 20, success: {tracks in
+                let playlist = FavoritesPlaylist(tracks: tracks)
                 success(playlist: playlist)
-                }, failure: failure)
+            }, failure: failure)
         }
         
-        static func popularNoRemix(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.popular(HypeMachineAPI.Tracks.PopularMode.NoRemix, success: {tracks in
-                let playlist = Playlist(tracks: tracks, type: HMPlaylistType.PopularNoRemix)
+        static func Latest(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.Latest(1, count: 20, success: {tracks in
+                let playlist = LatestPlaylist(tracks: tracks)
                 success(playlist: playlist)
-                }, failure: failure)
-        }
-        
-        static func popularRemix(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.popular(HypeMachineAPI.Tracks.PopularMode.Remix, success: {tracks in
-                let playlist = Playlist(tracks: tracks, type: HMPlaylistType.PopularRemix)
-                success(playlist: playlist)
-                }, failure: failure)
+            }, failure: failure)
         }
     }
 }
