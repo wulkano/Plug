@@ -28,16 +28,19 @@ class NavigationButton: NSButton {
             drawPosition.origin.y = -(bounds.size.height - unselectedImage!.size.height) / 2
         }
         
+        var drawImage: NSImage?
+        
         switch buttonState {
         case .Inactive:
-            unselectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            drawImage = unselectedImage
         case .Hover:
-            unselectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            drawImage = unselectedImage
         case .Clicked:
-            unselectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            drawImage = unselectedImage
         case .Selected:
-            selectedImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+            drawImage = selectedImage
         }
+        drawImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
     }
     
     override func viewDidMoveToWindow() {

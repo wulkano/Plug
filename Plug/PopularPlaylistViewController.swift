@@ -15,6 +15,7 @@ class PopularPlaylistViewController: PlaylistViewController {
         HypeMachineAPI.Playlists.Popular(PopularPlaylistSubType.Now, success: {playlist in
             self.playlist = playlist
         }, failure: {error in
+            // TODO real error            
             println(error)
         })
     }

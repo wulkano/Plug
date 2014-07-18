@@ -13,6 +13,12 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for child in childViewControllers {
+            if child is NSTabViewController {
+                tabViewController = child as? NSTabViewController
+            }
+        }
     }
     
     func loadNavigationSection(section: NavigationSection) {

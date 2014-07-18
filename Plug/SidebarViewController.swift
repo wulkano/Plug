@@ -69,7 +69,7 @@ class SidebarViewController: NSViewController {
 }
 
 enum NavigationSection: Int {
-    case Popular
+    case Popular = 0
     case Favorites
     case Latest
     case Feed

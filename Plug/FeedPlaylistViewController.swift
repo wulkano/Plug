@@ -1,5 +1,5 @@
 //
-//  FavoritesPlaylistViewController.swift
+//  FeedPlaylistViewController.swift
 //  Plug
 //
 //  Created by Alexander Marchant on 7/16/14.
@@ -8,15 +8,15 @@
 
 import Cocoa
 
-class FavoritesPlaylistViewController: PlaylistViewController {
+class FeedPlaylistViewController: PlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        HypeMachineAPI.Playlists.Favorites({playlist in
+        HypeMachineAPI.Playlists.Feed(FeedPlaylistSubType.All, {playlist in
             self.playlist = playlist
         }, failure: {error in
-            // TODO real error            
+            // TODO real error
             println(error)
         })
     }
+    
 }
