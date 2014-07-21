@@ -10,7 +10,7 @@
 		EF4C31347D944409A29D47BF /* libPods-Plug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C87AD95253F47AAA335DADD /* libPods-Plug.a */; };
 		FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */; };
 		FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1CF61976ECF60030C873 /* MainViewController.swift */; };
-		FA0B1D2819770AEB0030C873 /* PopularHeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2719770AEB0030C873 /* PopularHeatMapView.swift */; };
+		FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2719770AEB0030C873 /* HeatMapView.swift */; };
 		FA0B1D2A19770F410030C873 /* PopularPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2919770F410030C873 /* PopularPlaylistViewController.swift */; };
 		FA0B1D2C197710150030C873 /* FavoritesPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2B197710150030C873 /* FavoritesPlaylistViewController.swift */; };
 		FA0B1D2E1977109E0030C873 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2D1977109E0030C873 /* Playlist.swift */; };
@@ -41,6 +41,7 @@
 		FA64C6A719764FE9003933E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Constants.swift */; };
 		FA64C6A919765323003933E3 /* Array+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array+contains.swift */; };
 		FA691BFF197654AF008D5C3E /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA691BFE197654AF008D5C3E /* Track.swift */; };
+		FABF2129197CD5D60003E889 /* PlaylistTableCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF2128197CD5D60003E889 /* PlaylistTableCellViewController.swift */; };
 		FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD4C211197CA3F2004606B5 /* UserDefaults.plist */; };
 		FADC96F21974CA0D009458FA /* PlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */; };
 		FADC96F41974CCFA009458FA /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* MainWindow.swift */; };
@@ -81,7 +82,7 @@
 		8C87AD95253F47AAA335DADD /* libPods-Plug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		FA0B1CF61976ECF60030C873 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		FA0B1D2719770AEB0030C873 /* PopularHeatMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularHeatMapView.swift; sourceTree = "<group>"; };
+		FA0B1D2719770AEB0030C873 /* HeatMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
 		FA0B1D2919770F410030C873 /* PopularPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPlaylistViewController.swift; sourceTree = "<group>"; };
 		FA0B1D2B197710150030C873 /* FavoritesPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPlaylistViewController.swift; sourceTree = "<group>"; };
 		FA0B1D2D1977109E0030C873 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		FA64C6A619764FE9003933E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+contains.swift"; sourceTree = "<group>"; };
 		FA691BFE197654AF008D5C3E /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		FABF2128197CD5D60003E889 /* PlaylistTableCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableCellViewController.swift; sourceTree = "<group>"; };
 		FAD4C211197CA3F2004606B5 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableCellView.swift; sourceTree = "<group>"; };
 		FADC96F31974CCFA009458FA /* MainWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				FA0B1D37197725C10030C873 /* FeedPlaylistViewController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
+				FABF2128197CD5D60003E889 /* PlaylistTableCellViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 				FAF6F0A9197A38F000F2102B /* LovedCountPlaylistTableCellView.swift */,
 				FA2C85FE1977938B007B1622 /* HeatMapPlaylistTableCellView.swift */,
 				FA2C85FB1977870E007B1622 /* PlaylistTableRowView.swift */,
-				FA0B1D2719770AEB0030C873 /* PopularHeatMapView.swift */,
+				FA0B1D2719770AEB0030C873 /* HeatMapView.swift */,
 				FA0B1D3D1977355B0030C873 /* ColorChangingTextView.swift */,
 			);
 			name = Playlist;
@@ -435,6 +438,7 @@
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FA2C85FC1977870E007B1622 /* PlaylistTableRowView.swift in Sources */,
+				FABF2129197CD5D60003E889 /* PlaylistTableCellViewController.swift in Sources */,
 				FA64C6A319764DC9003933E3 /* HypeMachineAPI.swift in Sources */,
 				FA0B1D38197725C10030C873 /* FeedPlaylistViewController.swift in Sources */,
 				FA0B1D321977187E0030C873 /* LatestPlaylist.swift in Sources */,
@@ -444,7 +448,7 @@
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
 				FA51263819762F66004D0776 /* NavigationButton.swift in Sources */,
 				FA51262F197608B1004D0776 /* SolidBackgroundColorView.swift in Sources */,
-				FA0B1D2819770AEB0030C873 /* PopularHeatMapView.swift in Sources */,
+				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FA0B1D2A19770F410030C873 /* PopularPlaylistViewController.swift in Sources */,
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,

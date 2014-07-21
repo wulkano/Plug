@@ -16,4 +16,17 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate {
         super.viewDidLoad()
         tableView.setDelegate(self)
     }
+    
+    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+        var cellView = tableView.makeViewWithIdentifier("PlaylistTableCellView", owner: self) as? NSTableCellView
+        
+        if !cellView {
+            let cellViewController = PlaylistTableCellViewController(playlistType: playlist!.type)
+            cellViewController.loadView()
+            cellView = (cellViewController.view as NSTableCellView)
+            cellView!.identifier = "PlaylistTableCellView"
+        }
+        
+        return cellView
+    }
 }

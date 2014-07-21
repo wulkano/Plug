@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class PopularHeatMapView: NSView {
+class HeatMapView: NSView {
     var dataPoints: (Double, Double)? {
     didSet {
         needsDisplay = true

@@ -36,10 +36,11 @@ class FlatSliderCell: NSSliderCell {
     }
     
     override func drawKnob(knobRect: NSRect) {
-        barFillColor.set()
-        let insetRect = NSInsetRect(knobRect, 1, 1)
-        let circlePath = NSBezierPath(ovalInRect: insetRect)
-        circlePath.fill()
+//        TODO fix this drawing so it's not overlapping on the bar
+//        barFillColor.set()
+//        let insetRect = NSInsetRect(knobRect, 1, 1)
+//        let circlePath = NSBezierPath(ovalInRect: insetRect)
+//        circlePath.fill()
     }
     
     func verticalSlider() -> Bool {
