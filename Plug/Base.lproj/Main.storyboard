@@ -656,6 +656,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="472" height="778"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <value key="minSize" type="size" width="335" height="515"/>
                         <view key="contentView" id="O92-4t-NeX">
                             <rect key="frame" x="0.0" y="0.0" width="472" height="778"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -687,13 +688,13 @@
                                 </connections>
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="vVc-cn-mbw">
-                                <rect key="frame" x="69" y="0.0" width="381" height="778"/>
+                                <rect key="frame" x="69" y="0.0" width="381" height="743"/>
                                 <connections>
                                     <segue destination="I9l-wl-jj6" kind="embed" id="BI6-Xi-Klh"/>
                                 </connections>
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="WhZ-zH-I0i">
-                                <rect key="frame" x="0.0" y="743" width="450" height="35"/>
+                                <rect key="frame" x="69" y="743" width="381" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="1iu-hp-VHc"/>
                                 </constraints>
@@ -718,13 +719,13 @@
                             <constraint firstAttribute="trailing" secondItem="vVc-cn-mbw" secondAttribute="trailing" id="MhJ-62-Lwo"/>
                             <constraint firstItem="vVc-cn-mbw" firstAttribute="leading" secondItem="gDM-wg-3aa" secondAttribute="trailing" id="NTC-vV-wIC"/>
                             <constraint firstItem="WhZ-zH-I0i" firstAttribute="top" secondItem="mGG-FI-E6b" secondAttribute="top" id="S7v-89-slb"/>
-                            <constraint firstItem="vVc-cn-mbw" firstAttribute="top" secondItem="mGG-FI-E6b" secondAttribute="top" id="Sk5-m1-p0e"/>
+                            <constraint firstItem="vVc-cn-mbw" firstAttribute="top" secondItem="mGG-FI-E6b" secondAttribute="top" constant="35" id="Sk5-m1-p0e"/>
                             <constraint firstAttribute="bottom" secondItem="XMn-MG-iTU" secondAttribute="bottom" id="bZU-0z-sVF"/>
                             <constraint firstItem="gDM-wg-3aa" firstAttribute="leading" secondItem="mGG-FI-E6b" secondAttribute="leading" id="cDl-pY-MPm"/>
                             <constraint firstAttribute="bottom" secondItem="gDM-wg-3aa" secondAttribute="bottom" id="kwx-Ud-Hs3"/>
                             <constraint firstAttribute="trailing" secondItem="WhZ-zH-I0i" secondAttribute="trailing" id="mmd-Xm-IwO"/>
                             <constraint firstAttribute="bottom" secondItem="vVc-cn-mbw" secondAttribute="bottom" id="pBg-es-g8K"/>
-                            <constraint firstItem="WhZ-zH-I0i" firstAttribute="leading" secondItem="mGG-FI-E6b" secondAttribute="leading" id="rmZ-BJ-F7b"/>
+                            <constraint firstItem="WhZ-zH-I0i" firstAttribute="leading" secondItem="mGG-FI-E6b" secondAttribute="leading" constant="69" id="rmZ-BJ-F7b"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -743,7 +744,7 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CIT-JU-akt">
                                 <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NpH-p0-wzL" customClass="SolidBackgroundColorView" customModule="Plug" customModuleProvider="target">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NpH-p0-wzL">
                                         <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                         <subviews>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="ufc-4v-Z8I" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
@@ -795,8 +796,8 @@
                                                     <constraint firstAttribute="width" constant="30" id="Sqb-J5-X4K"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Feed-Off"/>
-                                                    <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Feed-On"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Blogs-Off"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Blogs-On"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="feedNavButtonClick:" target="PDa-TY-X6v" id="vuV-vZ-hvW"/>
@@ -809,11 +810,53 @@
                                                     <constraint firstAttribute="height" constant="30" id="ntO-gj-fB8"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Feed-Off"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Feed-On"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="Ofe-JU-gha"/>
+                                                </connections>
+                                            </customView>
+                                            <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="zFf-8o-e4d" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="186" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="cGm-lC-eT8"/>
+                                                    <constraint firstAttribute="height" constant="30" id="pZV-D5-uNq"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Genres-Off"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Genres-On"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="Hqu-H9-73k"/>
+                                                </connections>
+                                            </customView>
+                                            <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-pd-3r9" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="128" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="kPs-lQ-GWZ"/>
+                                                    <constraint firstAttribute="width" constant="30" id="l2k-YA-oG3"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Friends-Off"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Friends-On"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="EkL-qp-k49"/>
+                                                </connections>
+                                            </customView>
+                                            <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-Az-dR7" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                                <rect key="frame" x="19" y="70" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="Kv5-W0-fEC"/>
+                                                    <constraint firstAttribute="height" constant="30" id="xck-NQ-hPh"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Nav-Search-Off"/>
                                                     <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Nav-Search-On"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="Ofe-JU-gha"/>
+                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="5NC-ar-YPO"/>
                                                 </connections>
                                             </customView>
                                         </subviews>
@@ -823,11 +866,17 @@
                                             <constraint firstItem="ENP-kF-nat" firstAttribute="top" secondItem="moD-9u-Y5D" secondAttribute="bottom" constant="28" id="5t7-bU-gy3"/>
                                             <constraint firstAttribute="centerX" secondItem="ufc-4v-Z8I" secondAttribute="centerX" id="6qF-Xd-vCR"/>
                                             <constraint firstItem="CQ0-Dr-M2I" firstAttribute="top" secondItem="ufc-4v-Z8I" secondAttribute="bottom" constant="28" id="K8h-eJ-04S"/>
+                                            <constraint firstAttribute="centerX" secondItem="T5c-pd-3r9" secondAttribute="centerX" id="KGA-sc-wWS"/>
                                             <constraint firstAttribute="centerX" secondItem="moD-9u-Y5D" secondAttribute="centerX" id="KMp-hs-FEu"/>
                                             <constraint firstAttribute="centerX" secondItem="ENP-kF-nat" secondAttribute="centerX" id="O9S-Eu-pkw"/>
+                                            <constraint firstAttribute="centerX" secondItem="bSh-Az-dR7" secondAttribute="centerX" id="PZx-1V-1ac"/>
                                             <constraint firstItem="vYV-TK-lv5" firstAttribute="top" secondItem="ENP-kF-nat" secondAttribute="bottom" constant="28" id="PeS-km-NVT"/>
                                             <constraint firstItem="ufc-4v-Z8I" firstAttribute="top" secondItem="NpH-p0-wzL" secondAttribute="top" constant="53" id="SpL-cS-hrW"/>
+                                            <constraint firstItem="T5c-pd-3r9" firstAttribute="top" secondItem="zFf-8o-e4d" secondAttribute="bottom" constant="28" id="Z1H-vC-j1o"/>
                                             <constraint firstAttribute="centerX" secondItem="vYV-TK-lv5" secondAttribute="centerX" id="acl-fZ-gAY"/>
+                                            <constraint firstItem="zFf-8o-e4d" firstAttribute="top" secondItem="vYV-TK-lv5" secondAttribute="bottom" constant="28" id="f05-j4-NiY"/>
+                                            <constraint firstItem="bSh-Az-dR7" firstAttribute="top" secondItem="T5c-pd-3r9" secondAttribute="bottom" constant="28" id="rDa-EC-Apt"/>
+                                            <constraint firstAttribute="centerX" secondItem="zFf-8o-e4d" secondAttribute="centerX" id="tLl-Ig-YHq"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="color">
@@ -857,6 +906,7 @@
                         <outlet property="latestNavButton" destination="moD-9u-Y5D" id="5fC-Jm-Vza"/>
                         <outlet property="popularNavButton" destination="ufc-4v-Z8I" id="A0c-kP-tdw"/>
                         <outlet property="searchNavButton" destination="vYV-TK-lv5" id="p6J-3D-NAP"/>
+                        <outlet property="sidebarOverlay" destination="NpH-p0-wzL" id="Jbr-Oq-GB7"/>
                     </connections>
                 </viewController>
                 <customObject id="REL-JP-yox" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -895,7 +945,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="LM0-KM-ycg" customClass="PopularPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="LM0-KM-ycg" customClass="HeatMapPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -906,6 +956,26 @@
                                                                         <constraint firstAttribute="height" constant="64" id="ds0-qM-b4m"/>
                                                                     </constraints>
                                                                 </customView>
+                                                                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIx-RP-bP5" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="19" y="15" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="34" id="5d6-Kx-aK9"/>
+                                                                        <constraint firstAttribute="height" constant="34" id="W5s-5x-5lm"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="oMW-LB-wEg">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="Track-Pause-Normal"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="onHoverImage" value="Track-Pause-Hover"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="Track-Play-Normal"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="offHoverImage" value="Track-Play-Hover"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="playPauseButtonClicked:" target="LM0-KM-ycg" id="wJg-nz-vkz"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-ap-NsF">
                                                                     <rect key="frame" x="70" y="35" width="249" height="20"/>
                                                                     <constraints>
@@ -936,9 +1006,11 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="gIx-RP-bP5" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="19" id="7Gp-HI-lfB"/>
                                                                 <constraint firstItem="Lpn-hW-Hd8" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" id="9dN-bf-Df9"/>
                                                                 <constraint firstItem="zwc-io-DXv" firstAttribute="leading" secondItem="Lpn-hW-Hd8" secondAttribute="trailing" id="T8k-P2-m0d"/>
                                                                 <constraint firstAttribute="trailing" secondItem="zwc-io-DXv" secondAttribute="trailing" constant="27" id="TUv-r0-Bkb"/>
+                                                                <constraint firstAttribute="centerY" secondItem="gIx-RP-bP5" secondAttribute="centerY" id="Vak-tj-y7a"/>
                                                                 <constraint firstAttribute="bottom" secondItem="zwc-io-DXv" secondAttribute="bottom" constant="14" id="YFh-gb-B2x"/>
                                                                 <constraint firstAttribute="trailing" secondItem="j3g-ap-NsF" secondAttribute="trailing" constant="27" id="bSC-iY-MOW"/>
                                                                 <constraint firstItem="Lpn-hW-Hd8" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" id="c23-xH-w6n"/>
@@ -947,8 +1019,13 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="heatMap" destination="Lpn-hW-Hd8" id="ric-lS-3vs"/>
+                                                                <outlet property="playPauseButton" destination="gIx-RP-bP5" id="Xaa-VF-1CR"/>
                                                             </connections>
                                                         </tableCellView>
+                                                        <customView identifier="NSTableViewRowViewKey" id="3fR-Fp-njM" customClass="PlaylistTableRowView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="64" width="344" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        </customView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
@@ -1020,10 +1097,27 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="9aC-Bp-unj" customClass="PlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="9aC-Bp-unj" customClass="LovedCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L0H-TE-LAG" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="64"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="64" id="Jlv-Cd-I9z"/>
+                                                                        <constraint firstAttribute="width" constant="72" id="Vxz-Qa-IJK"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Oc4-LX-CcO">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="Track-Pause-Normal"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="onHoverImage" value="Track-Pause-Hover"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="Track-Play-Normal"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="offHoverImage" value="Track-Play-Hover"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </button>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CKE-IT-0d7" customClass="ColorChangingTextField" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="19" width="70" height="28"/>
                                                                     <constraints>
@@ -1069,16 +1163,26 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="CKE-IT-0d7" firstAttribute="leading" secondItem="9aC-Bp-unj" secondAttribute="leading" constant="2" id="2C6-hk-iWo"/>
+                                                                <constraint firstItem="L0H-TE-LAG" firstAttribute="leading" secondItem="9aC-Bp-unj" secondAttribute="leading" id="8cv-si-Cm3"/>
                                                                 <constraint firstItem="CKE-IT-0d7" firstAttribute="top" secondItem="9aC-Bp-unj" secondAttribute="top" constant="17" id="KMv-zD-SNq"/>
                                                                 <constraint firstAttribute="bottom" secondItem="CKE-IT-0d7" secondAttribute="bottom" constant="19" id="O6Q-Aq-RLm"/>
                                                                 <constraint firstAttribute="trailing" secondItem="GrC-kz-Jt5" secondAttribute="trailing" constant="27" id="S8p-ZN-gdV"/>
                                                                 <constraint firstItem="oNs-LW-6L3" firstAttribute="top" secondItem="9aC-Bp-unj" secondAttribute="top" constant="9" id="TqB-Eb-h7l"/>
+                                                                <constraint firstItem="L0H-TE-LAG" firstAttribute="top" secondItem="9aC-Bp-unj" secondAttribute="top" id="Us1-mx-yvO"/>
                                                                 <constraint firstItem="oNs-LW-6L3" firstAttribute="leading" secondItem="CKE-IT-0d7" secondAttribute="trailing" constant="4" id="Wmg-xi-JKc"/>
                                                                 <constraint firstAttribute="bottom" secondItem="GrC-kz-Jt5" secondAttribute="bottom" constant="14" id="mqh-L3-KP7"/>
                                                                 <constraint firstItem="GrC-kz-Jt5" firstAttribute="leading" secondItem="CKE-IT-0d7" secondAttribute="trailing" constant="4" id="tJv-RY-RTu"/>
                                                                 <constraint firstAttribute="trailing" secondItem="oNs-LW-6L3" secondAttribute="trailing" constant="27" id="zeW-t7-Are"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="lovedCountView" destination="CKE-IT-0d7" id="sRb-Ei-LrV"/>
+                                                                <outlet property="playPauseButton" destination="L0H-TE-LAG" id="HPp-Jo-5Gv"/>
+                                                            </connections>
                                                         </tableCellView>
+                                                        <customView identifier="NSTableViewRowViewKey" id="Ulq-xK-C1N" customClass="PlaylistTableRowView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="64" width="344" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        </customView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
@@ -1154,6 +1258,17 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qBc-sG-ekd" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="64"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="72" id="R1m-hx-sVR"/>
+                                                                        <constraint firstAttribute="height" constant="64" id="zFw-6V-qof"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="dzX-bW-KEy">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                </button>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qnX-hx-vZU" customClass="ColorChangingTextField" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="19" width="70" height="28"/>
                                                                     <constraints>
@@ -1204,11 +1319,25 @@
                                                                 <constraint firstAttribute="bottom" secondItem="qnX-hx-vZU" secondAttribute="bottom" constant="19" id="VPW-yx-X6f"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Ouo-gA-vid" secondAttribute="trailing" constant="27" id="Y2x-ne-FGp"/>
                                                                 <constraint firstAttribute="bottom" secondItem="CV0-UT-udu" secondAttribute="bottom" constant="14" id="ZFP-Sz-T4Q"/>
+                                                                <constraint firstItem="qBc-sG-ekd" firstAttribute="leading" secondItem="7na-FN-wDl" secondAttribute="leading" id="ZJL-SE-sdm"/>
                                                                 <constraint firstItem="Ouo-gA-vid" firstAttribute="leading" secondItem="qnX-hx-vZU" secondAttribute="trailing" constant="4" id="ZNf-GP-Kta"/>
                                                                 <constraint firstItem="CV0-UT-udu" firstAttribute="leading" secondItem="qnX-hx-vZU" secondAttribute="trailing" constant="4" id="cYy-in-TNw"/>
+                                                                <constraint firstItem="qBc-sG-ekd" firstAttribute="top" secondItem="7na-FN-wDl" secondAttribute="top" id="eFb-uA-QEJ"/>
                                                                 <constraint firstItem="Ouo-gA-vid" firstAttribute="top" secondItem="7na-FN-wDl" secondAttribute="top" constant="9" id="nRe-4v-Qgu"/>
                                                             </constraints>
                                                         </tableCellView>
+                                                        <button hidden="YES" id="sVt-fY-Q2h" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="64" width="344" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="VWe-pK-m7s">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <customView identifier="NSTableViewRowViewKey" id="9NP-Ub-6fa" customClass="PlaylistTableRowView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="64" width="344" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        </customView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
@@ -1284,6 +1413,17 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uic-pk-v51" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="64"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="72" id="186-97-lGd"/>
+                                                                        <constraint firstAttribute="height" constant="64" id="PhT-lI-3bz"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="OL4-h4-3Qo">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                </button>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KKl-4H-qhp" customClass="ColorChangingTextField" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="19" width="70" height="28"/>
                                                                     <constraints>
@@ -1331,14 +1471,20 @@
                                                                 <constraint firstAttribute="bottom" secondItem="E57-vn-oXT" secondAttribute="bottom" constant="14" id="5Ar-Ia-z7r"/>
                                                                 <constraint firstAttribute="trailing" secondItem="GZU-XN-qeQ" secondAttribute="trailing" constant="27" id="C0S-oG-6KY"/>
                                                                 <constraint firstItem="GZU-XN-qeQ" firstAttribute="top" secondItem="FXe-h0-xhJ" secondAttribute="top" constant="9" id="CXy-x7-xBn"/>
+                                                                <constraint firstItem="uic-pk-v51" firstAttribute="top" secondItem="FXe-h0-xhJ" secondAttribute="top" id="OUK-EX-Pqi"/>
                                                                 <constraint firstItem="KKl-4H-qhp" firstAttribute="top" secondItem="FXe-h0-xhJ" secondAttribute="top" constant="17" id="RVn-os-Y6M"/>
                                                                 <constraint firstAttribute="bottom" secondItem="KKl-4H-qhp" secondAttribute="bottom" constant="19" id="SnJ-BW-oYJ"/>
                                                                 <constraint firstItem="GZU-XN-qeQ" firstAttribute="leading" secondItem="KKl-4H-qhp" secondAttribute="trailing" constant="4" id="TA3-8a-nEa"/>
                                                                 <constraint firstItem="E57-vn-oXT" firstAttribute="leading" secondItem="KKl-4H-qhp" secondAttribute="trailing" constant="4" id="bzy-hd-2BV"/>
                                                                 <constraint firstAttribute="trailing" secondItem="E57-vn-oXT" secondAttribute="trailing" constant="27" id="eEH-7E-g56"/>
                                                                 <constraint firstItem="KKl-4H-qhp" firstAttribute="leading" secondItem="FXe-h0-xhJ" secondAttribute="leading" constant="2" id="nAr-Ek-ffQ"/>
+                                                                <constraint firstItem="uic-pk-v51" firstAttribute="leading" secondItem="FXe-h0-xhJ" secondAttribute="leading" id="yh6-hD-0ps"/>
                                                             </constraints>
                                                         </tableCellView>
+                                                        <customView identifier="NSTableViewRowViewKey" id="WIs-ba-iDd" customClass="PlaylistTableRowView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="64" width="344" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        </customView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
@@ -1383,15 +1529,15 @@
             <objects>
                 <viewController id="Shy-Ze-nnP" sceneMemberID="viewController">
                     <view key="view" id="IdE-m7-REV">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="35"/>
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="35"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView wantsLayer="YES" appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-7V-88j" customClass="TitleBarView" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="69" y="0.0" width="381" height="35"/>
+                            <visualEffectView wantsLayer="YES" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-7V-88j" customClass="TitleBarView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="35"/>
                             </visualEffectView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GKP-7V-88j" firstAttribute="leading" secondItem="IdE-m7-REV" secondAttribute="leading" constant="69" id="M9z-sl-b6l"/>
+                            <constraint firstItem="GKP-7V-88j" firstAttribute="leading" secondItem="IdE-m7-REV" secondAttribute="leading" id="M9z-sl-b6l"/>
                             <constraint firstAttribute="bottom" secondItem="GKP-7V-88j" secondAttribute="bottom" id="WEG-eL-c3z"/>
                             <constraint firstItem="GKP-7V-88j" firstAttribute="top" secondItem="IdE-m7-REV" secondAttribute="top" id="m1r-lv-WAd"/>
                             <constraint firstAttribute="trailing" secondItem="GKP-7V-88j" secondAttribute="trailing" id="me3-lF-0A3"/>
@@ -1400,7 +1546,7 @@
                 </viewController>
                 <customObject id="uH1-oj-I1Z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071" y="181.5"/>
+            <point key="canvasLocation" x="1050.5" y="181.5"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="0z9-q3-ANL">
@@ -1430,16 +1576,85 @@
             </objects>
             <point key="canvasLocation" x="1050.5" y="556.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Footer View Controller-->
         <scene sceneID="TRJ-Wz-yw3">
             <objects>
-                <viewController id="VIy-Aa-JTO" sceneMemberID="viewController">
+                <viewController id="VIy-Aa-JTO" customClass="FooterViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="u5h-1a-tgk">
                         <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView wantsLayer="YES" appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM">
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM">
                                 <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="xRs-nn-93p" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="289" y="0.0" width="42" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="KQh-bf-Tsd"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Forward"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Forward"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="CWG-dY-sv5" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="331" y="0.0" width="42" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="lVX-KK-DrA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Shuffle-Normal"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Shuffle-Active"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yH-fJ-IPO">
+                                        <rect key="frame" x="46" y="15" width="60" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="V3J-qX-TqR"/>
+                                        </constraints>
+                                        <sliderCell key="cell" controlSize="mini" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="ann-iv-Kqm" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target"/>
+                                    </slider>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="BOB-5g-liA" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="247" y="0.0" width="42" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="0Nd-mF-ZMU"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Previous"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Previous"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XlV-S5-kIY" customClass="VolumeIconView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="15" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="NzG-hM-llm"/>
+                                            <constraint firstAttribute="width" constant="16" id="dgG-FN-IJX"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="Footer-Volume-Off"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="oneImage" value="Footer-Volume-1"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="twoImage" value="Footer-Volume-2"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="threeImage" value="Footer-Volume-3"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3yH-fJ-IPO" firstAttribute="leading" secondItem="IFe-ey-9FM" secondAttribute="leading" constant="46" id="800-Us-kiH"/>
+                                    <constraint firstAttribute="bottom" secondItem="BOB-5g-liA" secondAttribute="bottom" id="An5-Tz-hkw"/>
+                                    <constraint firstAttribute="centerY" secondItem="XlV-S5-kIY" secondAttribute="centerY" id="BlP-C5-QwC"/>
+                                    <constraint firstItem="xRs-nn-93p" firstAttribute="leading" secondItem="BOB-5g-liA" secondAttribute="trailing" id="N9r-4h-Q7a"/>
+                                    <constraint firstItem="BOB-5g-liA" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="Pl6-C9-FF3"/>
+                                    <constraint firstAttribute="bottom" secondItem="CWG-dY-sv5" secondAttribute="bottom" id="SXo-qd-sZa"/>
+                                    <constraint firstItem="XlV-S5-kIY" firstAttribute="leading" secondItem="IFe-ey-9FM" secondAttribute="leading" constant="20" id="Vi6-ZR-1XT"/>
+                                    <constraint firstItem="CWG-dY-sv5" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="W26-hZ-8J9"/>
+                                    <constraint firstAttribute="trailing" secondItem="CWG-dY-sv5" secondAttribute="trailing" constant="8" id="XHN-5V-XWM"/>
+                                    <constraint firstAttribute="centerY" secondItem="3yH-fJ-IPO" secondAttribute="centerY" id="XpR-fN-eiM"/>
+                                    <constraint firstItem="xRs-nn-93p" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="gVk-2S-YhO"/>
+                                    <constraint firstAttribute="bottom" secondItem="xRs-nn-93p" secondAttribute="bottom" id="hYw-9n-JfH"/>
+                                    <constraint firstItem="CWG-dY-sv5" firstAttribute="leading" secondItem="xRs-nn-93p" secondAttribute="trailing" id="xwQ-zN-vSw"/>
+                                </constraints>
                             </visualEffectView>
                         </subviews>
                         <constraints>
@@ -1449,22 +1664,44 @@
                             <constraint firstItem="IFe-ey-9FM" firstAttribute="leading" secondItem="u5h-1a-tgk" secondAttribute="leading" id="k2S-If-pGi"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="volumeIcon" destination="XlV-S5-kIY" id="fx2-gS-J6y"/>
+                        <outlet property="volumeSlider" destination="3yH-fJ-IPO" id="nSN-L6-ZH5"/>
+                    </connections>
                 </viewController>
                 <customObject id="vUK-wH-Gnk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="1148.5"/>
+            <point key="canvasLocation" x="587.5" y="1148.5"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Footer-Forward" width="18" height="14"/>
+        <image name="Footer-Previous" width="18" height="14"/>
+        <image name="Footer-Shuffle-Active" width="24" height="18"/>
+        <image name="Footer-Shuffle-Normal" width="24" height="18"/>
+        <image name="Footer-Volume-1" width="16" height="13"/>
+        <image name="Footer-Volume-2" width="16" height="13"/>
+        <image name="Footer-Volume-3" width="16" height="15"/>
+        <image name="Footer-Volume-Off" width="16" height="13"/>
+        <image name="Nav-Blogs-Off" width="22" height="24"/>
+        <image name="Nav-Blogs-On" width="22" height="24"/>
         <image name="Nav-Favorites-Off" width="24" height="22"/>
         <image name="Nav-Favorites-On" width="24" height="22"/>
         <image name="Nav-Feed-Off" width="22" height="22"/>
         <image name="Nav-Feed-On" width="22" height="22"/>
+        <image name="Nav-Friends-Off" width="26" height="24"/>
+        <image name="Nav-Friends-On" width="26" height="24"/>
+        <image name="Nav-Genres-Off" width="24" height="24"/>
+        <image name="Nav-Genres-On" width="24" height="24"/>
         <image name="Nav-Latest-Off" width="24" height="24"/>
         <image name="Nav-Latest-On" width="24" height="24"/>
         <image name="Nav-Popular-Off" width="24" height="22"/>
         <image name="Nav-Popular-On" width="24" height="22"/>
         <image name="Nav-Search-Off" width="24" height="24"/>
         <image name="Nav-Search-On" width="24" height="24"/>
+        <image name="Track-Pause-Hover" width="34" height="34"/>
+        <image name="Track-Pause-Normal" width="34" height="34"/>
+        <image name="Track-Play-Hover" width="34" height="34"/>
+        <image name="Track-Play-Normal" width="34" height="34"/>
     </resources>
 </document>

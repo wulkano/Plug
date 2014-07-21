@@ -11,6 +11,8 @@ import Cocoa
 class NavigationButton: NSButton {
     @IBInspectable var unselectedImage: NSImage?
     @IBInspectable var selectedImage: NSImage?
+    @IBInspectable var selectable: Bool = true
+    
     var buttonState: NavigationButtonState = NavigationButtonState.Inactive {
     didSet {
         needsDisplay = true
@@ -27,7 +29,6 @@ class NavigationButton: NSButton {
             drawPosition.origin.x = (bounds.size.width - unselectedImage!.size.width) / 2
             drawPosition.origin.y = -(bounds.size.height - unselectedImage!.size.height) / 2
         }
-        
         var drawImage: NSImage?
         
         switch buttonState {
@@ -56,7 +57,11 @@ class NavigationButton: NSButton {
     }
     
     override func mouseUp(theEvent: NSEvent!) {
-        buttonState = NavigationButtonState.Selected
+        if selectable {
+            buttonState = NavigationButtonState.Selected
+        } else {
+            buttonState = NavigationButtonState.Hover
+        }
         super.mouseUp(theEvent)
     }
     

@@ -8,21 +8,18 @@
 
 import Cocoa
 
-class PopularPlaylistTableCellView: PlaylistTableCellView {
+class HeatMapPlaylistTableCellView: PlaylistTableCellView {
     @IBOutlet var heatMap: PopularHeatMapView
     
-    override var objectValue: AnyObject! {
-    didSet {
-        let track = objectValue as? Track
-        if track {
-            HypeMachineAPI.TrackGraphFor(track!, success: {graph in
-                self.heatMap.dataPoints = graph.relativeLast24HourData()
-                self.heatMap.heatMapColor = self.heatMapColorForRank(track!.rank!)
-            }, failure: {error in
-                println(error)
-            })
-        }
-    }
+    override func trackChanged() {
+        super.trackChanged()
+        
+        HypeMachineAPI.TrackGraphFor(trackValue, success: {graph in
+            self.heatMap.dataPoints = graph.relativeLast24HourData()
+            self.heatMap.heatMapColor = self.heatMapColorForRank(self.trackValue.rank!)
+        }, failure: {error in
+            println(error)
+        })
     }
     
     func heatMapColorForRank(rank: Int) -> NSColor {
@@ -45,5 +42,30 @@ class PopularPlaylistTableCellView: PlaylistTableCellView {
     
     func gradientLocationForRank(rank: Int) -> Double {
         return Double(rank - 1) / 49
+    }
+    
+    override func mouseEntered(theEvent: NSEvent!) {
+        super.mouseEntered(theEvent)
+        heatMap.hidden = true
+    }
+    
+    override func mouseExited(theEvent: NSEvent!) {
+        super.mouseExited(theEvent)
+        if playState == PlayState.NotPlaying {
+            heatMap.hidden = false
+        }
+    }
+    
+    override func playStateChanged() {
+        super.playStateChanged()
+        
+        switch playState {
+        case .Playing:
+            heatMap.hidden = true
+        case .Paused:
+            heatMap.hidden = true
+        case .NotPlaying:
+            heatMap.hidden = false
+        }
     }
 }

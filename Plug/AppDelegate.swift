@@ -9,15 +9,19 @@
 import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-                            
-
-
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
+        setupUserDefaults()
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
+    }
+    
+    func setupUserDefaults() {
+        let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")
+        let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)
+        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict)
     }
 }
 

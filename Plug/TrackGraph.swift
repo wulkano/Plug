@@ -26,14 +26,19 @@ class TrackGraph: NSObject {
         postPoints = serializeString(postPointsString)
     }
     
+//    TODO search for most applicable data
+//    TODO find a way to return errors if no data is available
+//    TODO fix algorithm, graphs are too slicey
     func relativeLast24HourData() -> (Double, Double) {
-        let highRange: Double = 100
-        let data = last24HourData()
-        var beginPoint = data.0 / highRange
-        var endPoint = data.1 / highRange
-        if beginPoint > 1 { beginPoint = 1 }
-        if endPoint > 1 { endPoint = 1 }
-        return (beginPoint, endPoint)
+//        TODO this is erroring out for our of range reasons
+//        let highRange: Double = 100
+//        let data = last24HourData()
+//        var beginPoint = data.0 / highRange
+//        var endPoint = data.1 / highRange
+//        if beginPoint > 1 { beginPoint = 1 }
+//        if endPoint > 1 { endPoint = 1 }
+//        return (beginPoint, endPoint)
+        return (1, 1)
     }
     
     func last24HourData() -> (Double, Double) {

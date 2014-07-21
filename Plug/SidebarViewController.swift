@@ -14,6 +14,7 @@ class SidebarViewController: NSViewController {
     @IBOutlet var latestNavButton: NavigationButton
     @IBOutlet var feedNavButton: NavigationButton
     @IBOutlet var searchNavButton: NavigationButton
+    @IBOutlet var sidebarOverlay: NSView
     var delegate: SidebarViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -48,13 +49,13 @@ class SidebarViewController: NSViewController {
     }
     
     func allNavButtons() -> [NavigationButton] {
-        return [
-            popularNavButton,
-            favoritesNavButton,
-            latestNavButton,
-            feedNavButton,
-            searchNavButton,
-        ]
+        var navButtons = [NavigationButton]()
+        for subview in sidebarOverlay.subviews {
+            if subview is NavigationButton {
+                navButtons += subview as NavigationButton
+            }
+        }
+        return navButtons
     }
     
     func toggleAllNavButtonsOffExcept(selectedButton: NavigationButton) {
