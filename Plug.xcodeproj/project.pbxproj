@@ -31,7 +31,6 @@
 		FA2C85FC1977870E007B1622 /* PlaylistTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C85FB1977870E007B1622 /* PlaylistTableRowView.swift */; };
 		FA2C85FF1977938B007B1622 /* HeatMapPlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C85FE1977938B007B1622 /* HeatMapPlaylistTableCellView.swift */; };
 		FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C86001977AF2F007B1622 /* TrackGraph.swift */; };
-		FA355F01197A42ED007428E5 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA355F00197A42ED007428E5 /* Notifications.swift */; };
 		FA51262F197608B1004D0776 /* SolidBackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51262E197608B1004D0776 /* SolidBackgroundColorView.swift */; };
 		FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */; };
 		FA51263319760C7C004D0776 /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263219760C7C004D0776 /* TitleBarView.swift */; };
@@ -106,7 +105,6 @@
 		FA2C85FB1977870E007B1622 /* PlaylistTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableRowView.swift; sourceTree = "<group>"; };
 		FA2C85FE1977938B007B1622 /* HeatMapPlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapPlaylistTableCellView.swift; sourceTree = "<group>"; };
 		FA2C86001977AF2F007B1622 /* TrackGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackGraph.swift; sourceTree = "<group>"; };
-		FA355F00197A42ED007428E5 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		FA51262E197608B1004D0776 /* SolidBackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolidBackgroundColorView.swift; sourceTree = "<group>"; };
 		FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableVisualEffectsView.swift; sourceTree = "<group>"; };
 		FA51263219760C7C004D0776 /* TitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */,
 				FA2C86001977AF2F007B1622 /* TrackGraph.swift */,
 				FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */,
-				FA355F00197A42ED007428E5 /* Notifications.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -440,7 +437,6 @@
 				FA0B1D321977187E0030C873 /* LatestPlaylist.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextView.swift in Sources */,
-				FA355F01197A42ED007428E5 /* Notifications.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
 				FA51263819762F66004D0776 /* NavigationButton.swift in Sources */,

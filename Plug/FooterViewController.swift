@@ -17,11 +17,6 @@ class FooterViewController: NSViewController {
         super.viewDidLoad()
         
         volumeSlider.bind("value", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
-//        [theTextField bind:@"value"
-//        toObject:[NSUserDefaultsController sharedUserDefaultsController]
-//        withKeyPath:@"values.userName"
-//        options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
-//        forKey:@"NSContinuouslyUpdatesValue"]];
-
+        volumeIcon.bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
     }
 }

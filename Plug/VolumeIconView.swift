@@ -20,7 +20,6 @@ class VolumeIconView: NSView {
     }
     var volume: Double = 1 {
     didSet {
-        println(volume)
         setStateForVolume(volume)
     }
     }
@@ -42,14 +41,14 @@ class VolumeIconView: NSView {
         
         if volume <= 0 {
             newVolumeState = VolumeState.Off
-        } else if fraction <= (1 / 3) {
+        } else if volume <= (1 / 3) {
             newVolumeState = VolumeState.One
-        } else if fraction <= (2 / 3) {
+        } else if volume <= (2 / 3) {
             newVolumeState = VolumeState.Two
         } else {
             newVolumeState = VolumeState.Three
         }
-        
+
         // Avoid redraws if no change
         if volumeState != newVolumeState {
             volumeState = newVolumeState
