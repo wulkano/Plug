@@ -31,6 +31,7 @@
 		FA2C85FC1977870E007B1622 /* PlaylistTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C85FB1977870E007B1622 /* PlaylistTableRowView.swift */; };
 		FA2C85FF1977938B007B1622 /* HeatMapPlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C85FE1977938B007B1622 /* HeatMapPlaylistTableCellView.swift */; };
 		FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C86001977AF2F007B1622 /* TrackGraph.swift */; };
+		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
 		FA51262F197608B1004D0776 /* SolidBackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51262E197608B1004D0776 /* SolidBackgroundColorView.swift */; };
 		FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */; };
 		FA51263319760C7C004D0776 /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263219760C7C004D0776 /* TitleBarView.swift */; };
@@ -105,6 +106,7 @@
 		FA2C85FB1977870E007B1622 /* PlaylistTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableRowView.swift; sourceTree = "<group>"; };
 		FA2C85FE1977938B007B1622 /* HeatMapPlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapPlaylistTableCellView.swift; sourceTree = "<group>"; };
 		FA2C86001977AF2F007B1622 /* TrackGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackGraph.swift; sourceTree = "<group>"; };
+		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		FA51262E197608B1004D0776 /* SolidBackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolidBackgroundColorView.swift; sourceTree = "<group>"; };
 		FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableVisualEffectsView.swift; sourceTree = "<group>"; };
 		FA51263219760C7C004D0776 /* TitleBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				FA51263219760C7C004D0776 /* TitleBarView.swift */,
 				FAF6F0951979F92900F2102B /* FlatSliderCell.swift */,
 				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
+				FA33002F197CB1EE0063C552 /* TransparentButton.swift */,
 				FA2C85FD19779192007B1622 /* Playlist */,
 			);
 			name = Views;
@@ -450,6 +453,7 @@
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FA691BFF197654AF008D5C3E /* Track.swift in Sources */,
 				FA51263319760C7C004D0776 /* TitleBarView.swift in Sources */,
+				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
 				FA2C85FF1977938B007B1622 /* HeatMapPlaylistTableCellView.swift in Sources */,
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,

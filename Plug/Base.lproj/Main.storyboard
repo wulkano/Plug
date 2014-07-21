@@ -656,7 +656,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="472" height="778"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <value key="minSize" type="size" width="335" height="515"/>
+                        <value key="minSize" type="size" width="370" height="515"/>
                         <view key="contentView" id="O92-4t-NeX">
                             <rect key="frame" x="0.0" y="0.0" width="472" height="778"/>
                             <autoresizingMask key="autoresizingMask"/>
@@ -1587,26 +1587,29 @@
                             <visualEffectView appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM">
                                 <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="xRs-nn-93p" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="289" y="0.0" width="42" height="47"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="xRs-nn-93p" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="247" y="0.0" width="42" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="42" id="KQh-bf-Tsd"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Forward"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Forward"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="CWG-dY-sv5" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="331" y="0.0" width="42" height="47"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="CWG-dY-sv5" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="289" y="0.0" width="42" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="42" id="lVX-KK-DrA"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Shuffle-Normal"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Shuffle-Active"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="shuffleButtonClicked:" target="VIy-Aa-JTO" id="TDe-4h-NdD"/>
+                                        </connections>
                                     </customView>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yH-fJ-IPO">
                                         <rect key="frame" x="46" y="15" width="60" height="15"/>
@@ -1615,17 +1618,6 @@
                                         </constraints>
                                         <sliderCell key="cell" controlSize="mini" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="ann-iv-Kqm" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target"/>
                                     </slider>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="BOB-5g-liA" customClass="NavigationButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="247" y="0.0" width="42" height="47"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="0Nd-mF-ZMU"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Previous"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Previous"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="XlV-S5-kIY" customClass="VolumeIconView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="16" height="16"/>
                                         <constraints>
@@ -1639,21 +1631,48 @@
                                             <userDefinedRuntimeAttribute type="image" keyPath="threeImage" value="Footer-Volume-3"/>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="A7n-pQ-9y0" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="205" y="0.0" width="42" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="9AL-4a-tv7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Previous"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="8f1-rY-2ZZ" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="331" y="0.0" width="42" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="LA7-8O-mf2"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Airplay"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="shuffleButtonClicked:" target="VIy-Aa-JTO" id="G2U-yW-SAL"/>
+                                        </connections>
+                                    </customView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="xRs-nn-93p" firstAttribute="leading" secondItem="A7n-pQ-9y0" secondAttribute="trailing" id="6R4-AB-KyJ"/>
                                     <constraint firstItem="3yH-fJ-IPO" firstAttribute="leading" secondItem="IFe-ey-9FM" secondAttribute="leading" constant="46" id="800-Us-kiH"/>
-                                    <constraint firstAttribute="bottom" secondItem="BOB-5g-liA" secondAttribute="bottom" id="An5-Tz-hkw"/>
+                                    <constraint firstAttribute="bottom" secondItem="8f1-rY-2ZZ" secondAttribute="bottom" id="9ga-yY-E6U"/>
                                     <constraint firstAttribute="centerY" secondItem="XlV-S5-kIY" secondAttribute="centerY" id="BlP-C5-QwC"/>
-                                    <constraint firstItem="xRs-nn-93p" firstAttribute="leading" secondItem="BOB-5g-liA" secondAttribute="trailing" id="N9r-4h-Q7a"/>
-                                    <constraint firstItem="BOB-5g-liA" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="Pl6-C9-FF3"/>
+                                    <constraint firstAttribute="bottom" secondItem="A7n-pQ-9y0" secondAttribute="bottom" id="NpN-p1-c5W"/>
+                                    <constraint firstItem="8f1-rY-2ZZ" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="PuY-vn-TUv"/>
                                     <constraint firstAttribute="bottom" secondItem="CWG-dY-sv5" secondAttribute="bottom" id="SXo-qd-sZa"/>
                                     <constraint firstItem="XlV-S5-kIY" firstAttribute="leading" secondItem="IFe-ey-9FM" secondAttribute="leading" constant="20" id="Vi6-ZR-1XT"/>
                                     <constraint firstItem="CWG-dY-sv5" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="W26-hZ-8J9"/>
-                                    <constraint firstAttribute="trailing" secondItem="CWG-dY-sv5" secondAttribute="trailing" constant="8" id="XHN-5V-XWM"/>
                                     <constraint firstAttribute="centerY" secondItem="3yH-fJ-IPO" secondAttribute="centerY" id="XpR-fN-eiM"/>
+                                    <constraint firstItem="8f1-rY-2ZZ" firstAttribute="leading" secondItem="CWG-dY-sv5" secondAttribute="trailing" id="YXL-4K-aAE"/>
+                                    <constraint firstAttribute="trailing" secondItem="8f1-rY-2ZZ" secondAttribute="trailing" constant="8" id="dgB-C6-gyA"/>
                                     <constraint firstItem="xRs-nn-93p" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="gVk-2S-YhO"/>
                                     <constraint firstAttribute="bottom" secondItem="xRs-nn-93p" secondAttribute="bottom" id="hYw-9n-JfH"/>
+                                    <constraint firstItem="A7n-pQ-9y0" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="qZ3-xW-m2e"/>
                                     <constraint firstItem="CWG-dY-sv5" firstAttribute="leading" secondItem="xRs-nn-93p" secondAttribute="trailing" id="xwQ-zN-vSw"/>
+                                    <constraint firstItem="8f1-rY-2ZZ" firstAttribute="leading" secondItem="CWG-dY-sv5" secondAttribute="trailing" id="zWH-7N-w82"/>
                                 </constraints>
                             </visualEffectView>
                         </subviews>
@@ -1665,6 +1684,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="shuffleButton" destination="CWG-dY-sv5" id="50O-hQ-dip"/>
                         <outlet property="volumeIcon" destination="XlV-S5-kIY" id="fx2-gS-J6y"/>
                         <outlet property="volumeSlider" destination="3yH-fJ-IPO" id="nSN-L6-ZH5"/>
                     </connections>
@@ -1675,6 +1695,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Footer-Airplay" width="22" height="16"/>
         <image name="Footer-Forward" width="18" height="14"/>
         <image name="Footer-Previous" width="18" height="14"/>
         <image name="Footer-Shuffle-Active" width="24" height="18"/>

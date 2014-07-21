@@ -4,5 +4,7 @@
 <dict>
 	<key>volume</key>
 	<integer>1</integer>
+	<key>shuffle</key>
+	<false/>
 </dict>
 </plist>
