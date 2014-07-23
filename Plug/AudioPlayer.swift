@@ -20,6 +20,7 @@ class AudioPlayer: NSObject {
     
     var player: AVPlayer?
     var currentTrack: Track?
+    var playing: Bool = false
     
     func playTrack(track: Track) {
         if currentTrack != track {
@@ -31,11 +32,13 @@ class AudioPlayer: NSObject {
     
     func play() {
         player!.play()
+        playing = true
         sendTrackPlayingNotification()
     }
     
     func pause() {
         player!.pause()
+        playing = false
         sendTrackPausedNotification()
     }
     

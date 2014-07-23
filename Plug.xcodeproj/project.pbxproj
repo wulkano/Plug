@@ -37,7 +37,6 @@
 		FA64C6A919765323003933E3 /* Array+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array+contains.swift */; };
 		FA691BFF197654AF008D5C3E /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA691BFE197654AF008D5C3E /* Track.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
-		FAA51A51198038270057EC34 /* HoverTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A50198038270057EC34 /* HoverTableCellView.swift */; };
 		FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */; };
 		FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD4C211197CA3F2004606B5 /* UserDefaults.plist */; };
 		FADC96F21974CA0D009458FA /* PlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */; };
@@ -109,7 +108,6 @@
 		FA64C6A819765323003933E3 /* Array+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+contains.swift"; sourceTree = "<group>"; };
 		FA691BFE197654AF008D5C3E /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		FAA51A50198038270057EC34 /* HoverTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverTableCellView.swift; sourceTree = "<group>"; };
 		FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableView.swift; sourceTree = "<group>"; };
 		FAD4C211197CA3F2004606B5 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableCellView.swift; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */,
-				FAA51A50198038270057EC34 /* HoverTableCellView.swift */,
 				FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */,
 				FA2C85FB1977870E007B1622 /* PlaylistTableRowView.swift */,
 				FA0B1D2719770AEB0030C873 /* HeatMapView.swift */,
@@ -439,7 +436,6 @@
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
-				FAA51A51198038270057EC34 /* HoverTableCellView.swift in Sources */,
 				FA691BFF197654AF008D5C3E /* Track.swift in Sources */,
 				FA51263319760C7C004D0776 /* TitleBarView.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
@@ -603,6 +599,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plug/Plug-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};

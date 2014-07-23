@@ -15,14 +15,17 @@ class PlaylistTableCellView: NSTableCellView {
         get { return NSBackgroundStyle.Light }
         set {}
     }
+    override var objectValue: AnyObject! {
+        didSet { objectValueChanged() }
+    }
     var mouseInside: Bool = false {
         didSet{ mouseInsideChanged() }
     }
-    var trackValue: Track {
-        return objectValue as Track
-    }
     var playState: PlayState = PlayState.NotPlaying {
         didSet { playStateChanged() }
+    }
+    var trackValue: Track {
+        return objectValue as Track
     }
 
     
@@ -38,6 +41,19 @@ class PlaylistTableCellView: NSTableCellView {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func objectValueChanged() {
+        mouseInside = false
+        if AudioPlayer.sharedInstance.currentTrack === objectValue {
+            if AudioPlayer.sharedInstance.playing {
+                playState = PlayState.Playing
+            } else {
+                playState = PlayState.Paused
+            }
+        } else {
+            playState = PlayState.NotPlaying
+        }
     }
     
     func mouseInsideChanged() {

@@ -9,12 +9,14 @@
 import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+//    TODO: Switch release channel compilation flag back to fast when they fix some bug
+    
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         setupUserDefaults()
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
-        // Insert code here to tear down your application
     }
     
     func setupUserDefaults() {
