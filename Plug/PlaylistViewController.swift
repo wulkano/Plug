@@ -9,20 +9,24 @@
 import Cocoa
 
 class PlaylistViewController: NSViewController, NSTableViewDelegate {
-    @IBOutlet var tableView: NSTableView
     var playlist: Playlist?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.setDelegate(self)
+        
+        HypeMachineAPI.Playlists.Popular(PopularPlaylistSubType.Now,
+            success: {playlist in
+                self.playlist = playlist
+            }, failure: {error in
+                println(error)
+            })
     }
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         var cellView = tableView.makeViewWithIdentifier("PlaylistTableCellView", owner: self) as? NSTableCellView
         
         if !cellView {
-            let cellViewController = PlaylistTableCellViewController(playlistType: playlist!.type)
-            cellViewController.loadView()
+            let cellViewController = storyboard.instantiateControllerWithIdentifier("Popular Playlist Table Cell View") as NSViewController
             cellView = (cellViewController.view as NSTableCellView)
             cellView!.identifier = "PlaylistTableCellView"
         }

@@ -18,7 +18,7 @@ class FlatSliderCell: NSSliderCell {
         if verticalSlider() {
             // TODO
         } else {
-            let inset: Double = knobRect.size.width / 2
+            let inset: CGFloat = knobRect.size.width / 2
             let knobCenterX = knobRect.origin.x + inset
             
             var barFillRect = aRect

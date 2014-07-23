@@ -9,17 +9,17 @@
 import Cocoa
 
 class SidebarViewController: NSViewController {
-    @IBOutlet var popularNavButton: NavigationButton
-    @IBOutlet var favoritesNavButton: NavigationButton
-    @IBOutlet var latestNavButton: NavigationButton
-    @IBOutlet var feedNavButton: NavigationButton
-    @IBOutlet var searchNavButton: NavigationButton
-    @IBOutlet var sidebarOverlay: NSView
+    @IBOutlet var popularNavButton: NavigationButton!
+    @IBOutlet var favoritesNavButton: NavigationButton!
+    @IBOutlet var latestNavButton: NavigationButton!
+    @IBOutlet var feedNavButton: NavigationButton!
+    @IBOutlet var searchNavButton: NavigationButton!
+    @IBOutlet var sidebarOverlay: NSView!
     var delegate: SidebarViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        toggleAllNavButtonsOffExcept(popularNavButton)
+//        toggleAllNavButtonsOffExcept(popularNavButton)
     }
     
     override func viewDidAppear() {

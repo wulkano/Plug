@@ -78,10 +78,10 @@ class TrackGraph: NSObject {
     }
     
     func getSubstringBetween(prefix: String, suffix: String) -> String {
-        let prefixRange = Range(start: html.rangeOfString(prefix).endIndex, end: html.endIndex)
+        let prefixRange = Range(start: html.rangeOfString(prefix)!.endIndex, end: html.endIndex)
         var substring = html.substringWithRange(prefixRange)
         
-        let suffixRange = Range(start: substring.startIndex, end: substring.rangeOfString(suffix).startIndex)
+        let suffixRange = Range(start: substring.startIndex, end: substring.rangeOfString(suffix)!.startIndex)
         substring = substring.substringWithRange(suffixRange)
         return substring
     }

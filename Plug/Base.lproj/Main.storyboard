@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A283o" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A298i" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment defaultVersion="101000" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -690,7 +690,7 @@
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="vVc-cn-mbw">
                                 <rect key="frame" x="69" y="0.0" width="381" height="743"/>
                                 <connections>
-                                    <segue destination="I9l-wl-jj6" kind="embed" id="BI6-Xi-Klh"/>
+                                    <segue destination="JPR-bv-jVQ" kind="embed" id="iJV-QW-CEi"/>
                                 </connections>
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="WhZ-zH-I0i">
@@ -904,7 +904,7 @@
                         <outlet property="favoritesNavButton" destination="CQ0-Dr-M2I" id="wKr-uz-Xhc"/>
                         <outlet property="feedNavButton" destination="ENP-kF-nat" id="Lru-qQ-CTs"/>
                         <outlet property="latestNavButton" destination="moD-9u-Y5D" id="5fC-Jm-Vza"/>
-                        <outlet property="popularNavButton" destination="ufc-4v-Z8I" id="A0c-kP-tdw"/>
+                        <outlet property="popularNavButton" destination="ufc-4v-Z8I" id="HtK-hc-ca3"/>
                         <outlet property="searchNavButton" destination="vYV-TK-lv5" id="p6J-3D-NAP"/>
                         <outlet property="sidebarOverlay" destination="NpH-p0-wzL" id="Jbr-Oq-GB7"/>
                     </connections>
@@ -937,32 +937,10 @@
             </objects>
             <point key="canvasLocation" x="1050.5" y="181.5"/>
         </scene>
-        <!--Tab View Controller-->
-        <scene sceneID="0z9-q3-ANL">
-            <objects>
-                <tabViewController tabStyle="unspecified" id="I9l-wl-jj6" sceneMemberID="viewController">
-                    <tabView key="view" type="noTabsNoBorder" id="oOJ-D6-qzX">
-                        <rect key="frame" x="0.0" y="0.0" width="409" height="469"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <font key="font" metaFont="message"/>
-                        <tabViewItems/>
-                    </tabView>
-                    <tabViewItems>
-                        <tabViewItem id="Y8u-s1-ulC"/>
-                    </tabViewItems>
-                    <viewControllerTransitionOptions key="transitionOptions" crossfade="YES" slideLeft="YES" allowUserInteraction="YES"/>
-                    <connections>
-                        <segue destination="JPR-bv-jVQ" kind="relationship" relationship="tabItem" id="QmO-7K-LZ8"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="Ahf-FW-lSY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1050.5" y="556.5"/>
-        </scene>
-        <!--Popular Playlist View Controller-->
+        <!--Playlist View Controller-->
         <scene sceneID="QNW-YX-591">
             <objects>
-                <viewController id="JPR-bv-jVQ" customClass="PopularPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JPR-bv-jVQ" customClass="PlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="6Pr-HR-xgz">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -992,27 +970,19 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="1mB-o9-NwZ">
+                                                        <tableCellView id="L4P-hZ-QaW">
                                                             <rect key="frame" x="1" y="1" width="397" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ibt-WZ-2fg">
-                                                                    <rect key="frame" x="3" y="47" width="17" height="17"/>
-                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="qfa-tq-BJK"/>
-                                                                </imageView>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ve-BK-RFb">
-                                                                    <rect key="frame" x="25" y="47" width="105" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="3cV-iA-YDG">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qz6-yt-Rwk">
+                                                                    <rect key="frame" x="83" y="44" width="38" height="17"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="RxL-LM-k9F">
                                                                         <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
-                                                            <connections>
-                                                                <outlet property="imageView" destination="Ibt-WZ-2fg" id="gW9-GE-E2W"/>
-                                                                <outlet property="textField" destination="4Ve-BK-RFb" id="nKh-cC-BMD"/>
-                                                            </connections>
                                                         </tableCellView>
                                                         <customView id="oPV-SL-38I" customClass="PlaylistTableRowView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="67" width="400" height="64"/>
@@ -1021,6 +991,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="JPR-bv-jVQ" name="content" keyPath="playlist.tracks" id="fNC-UA-9dU"/>
+                                                <outlet property="delegate" destination="JPR-bv-jVQ" id="lee-qv-O9J"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1042,13 +1016,11 @@
                             <constraint firstItem="BDe-uc-U7T" firstAttribute="leading" secondItem="6Pr-HR-xgz" secondAttribute="leading" id="Uvx-Pf-HxN"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="tableView" destination="tnU-3C-e8x" id="yUJ-xl-BPd"/>
-                    </connections>
                 </viewController>
                 <customObject id="Pzb-HJ-ncq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="TEP-qY-M5f"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="557"/>
+            <point key="canvasLocation" x="1133" y="576"/>
         </scene>
         <!--Footer View Controller-->
         <scene sceneID="TRJ-Wz-yw3">
@@ -1082,7 +1054,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="shuffleButtonClicked:" target="VIy-Aa-JTO" id="TDe-4h-NdD"/>
+                                            <action selector="shuffleButtonClicked:" target="VIy-Aa-JTO" id="0fM-O8-cgn"/>
                                         </connections>
                                     </customView>
                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yH-fJ-IPO">
@@ -1121,12 +1093,10 @@
                                             <constraint firstAttribute="width" constant="42" id="LA7-8O-mf2"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Airplay"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Airplay-Off"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Footer-Airplay-On"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="shuffleButtonClicked:" target="VIy-Aa-JTO" id="G2U-yW-SAL"/>
-                                        </connections>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -1158,9 +1128,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="shuffleButton" destination="CWG-dY-sv5" id="50O-hQ-dip"/>
-                        <outlet property="volumeIcon" destination="XlV-S5-kIY" id="fx2-gS-J6y"/>
-                        <outlet property="volumeSlider" destination="3yH-fJ-IPO" id="nSN-L6-ZH5"/>
+                        <outlet property="shuffleButton" destination="CWG-dY-sv5" id="UbT-za-D7p"/>
+                        <outlet property="volumeIcon" destination="XlV-S5-kIY" id="hlc-tn-sLL"/>
+                        <outlet property="volumeSlider" destination="3yH-fJ-IPO" id="Ro9-8j-cCH"/>
                     </connections>
                 </viewController>
                 <customObject id="vUK-wH-Gnk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1169,7 +1139,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Footer-Airplay" width="22" height="16"/>
+        <image name="Footer-Airplay-Off" width="22" height="16"/>
+        <image name="Footer-Airplay-On" width="22" height="16"/>
         <image name="Footer-Forward" width="18" height="14"/>
         <image name="Footer-Previous" width="18" height="14"/>
         <image name="Footer-Shuffle-Active" width="24" height="18"/>
@@ -1178,7 +1149,6 @@
         <image name="Footer-Volume-2" width="16" height="13"/>
         <image name="Footer-Volume-3" width="16" height="15"/>
         <image name="Footer-Volume-Off" width="16" height="13"/>
-        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="Nav-Blogs-Off" width="22" height="24"/>
         <image name="Nav-Blogs-On" width="22" height="24"/>
         <image name="Nav-Favorites-Off" width="24" height="22"/>

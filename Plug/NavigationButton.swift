@@ -41,7 +41,7 @@ class NavigationButton: NSButton {
         case .Selected:
             drawImage = selectedImage
         }
-        drawImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:buttonState.opacity(), respectFlipped:true, hints:nil)
+        drawImage?.drawInRect(drawPosition, fromRect: dirtyRect, operation: NSCompositingOperation.CompositeDestinationOver, fraction: buttonState.opacity(), respectFlipped: true, hints: nil)
     }
     
     override func viewDidMoveToWindow() {
@@ -86,7 +86,7 @@ enum NavigationButtonState {
     case Clicked
     case Selected
     
-    func opacity() -> Double {
+    func opacity() -> CGFloat {
         switch self {
         case .Inactive:
             return 0.3

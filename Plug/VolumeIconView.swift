@@ -23,7 +23,7 @@ class VolumeIconView: NSView {
         setStateForVolume(volume)
     }
     }
-    var opacity: Double = 0.3
+    var opacity: CGFloat = 0.3
 
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)

@@ -9,7 +9,7 @@
 import Cocoa
 
 class HeatMapView: NSView {
-    var dataPoints: (Double, Double)? {
+    var dataPoints: (CGFloat, CGFloat)? {
     didSet {
         needsDisplay = true
     }
@@ -29,10 +29,10 @@ class HeatMapView: NSView {
     }
     
     func drawHeatMap(dirtyRect: NSRect) {
-        let heatMapSideLength: Double = 32
+        let heatMapSideLength: CGFloat = 32
         
-        let xOffset = (bounds.size.width - heatMapSideLength) / 2
-        let yOffset = (bounds.size.height - heatMapSideLength) / 2
+        let xOffset: CGFloat = (bounds.size.width - heatMapSideLength) / 2
+        let yOffset: CGFloat = (bounds.size.height - heatMapSideLength) / 2
         let heatMapOrigin = NSMakePoint(xOffset, yOffset)
         
         let thePath = NSBezierPath()

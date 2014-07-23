@@ -22,7 +22,7 @@ class PlaylistTableRowView: NSTableRowView {
     }
     
     func drawDividerLine(dirtyRect: NSRect) {
-        let xOffset: Double = 72
+        let xOffset: CGFloat = 72
         let lineRect = NSMakeRect(xOffset, bounds.size.height - 1, bounds.size.width - xOffset, 1)
         let drawingRect = NSIntersectionRect(dirtyRect, lineRect)
         dividerColor.set()
