@@ -9,17 +9,17 @@
 import Cocoa
 
 class SidebarViewController: NSViewController {
-    @IBOutlet var popularNavButton: NavigationButton!
-    @IBOutlet var favoritesNavButton: NavigationButton!
-    @IBOutlet var latestNavButton: NavigationButton!
-    @IBOutlet var feedNavButton: NavigationButton!
-    @IBOutlet var searchNavButton: NavigationButton!
+    @IBOutlet var popularNavButton: TransparentButton!
     @IBOutlet var sidebarOverlay: NSView!
     var delegate: SidebarViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        toggleAllNavButtonsOffExcept(popularNavButton)
+        
+//        TODO: Remove once bug fixed
+        if popularNavButton {
+            toggleAllNavButtonsOffExcept(popularNavButton)
+        }
     }
     
     override func viewDidAppear() {
@@ -27,43 +27,43 @@ class SidebarViewController: NSViewController {
         delegate = parentViewController as MainViewController
     }
     
-    @IBAction func popularNavButtonClick(sender: NavigationButton) {
+    @IBAction func popularNavButtonClick(sender: TransparentButton) {
         toggleAllNavButtonsOffExcept(sender)
         delegate?.loadNavigationSection(NavigationSection.Popular)
     }
-    @IBAction func favoritesNavButtonClick(sender: NavigationButton) {
+    @IBAction func favoritesNavButtonClick(sender: TransparentButton) {
         toggleAllNavButtonsOffExcept(sender)
         delegate?.loadNavigationSection(NavigationSection.Favorites)
     }
-    @IBAction func latestNavButtonClick(sender: NavigationButton) {
+    @IBAction func latestNavButtonClick(sender: TransparentButton) {
         toggleAllNavButtonsOffExcept(sender)
         delegate?.loadNavigationSection(NavigationSection.Latest)
     }
-    @IBAction func feedNavButtonClick(sender: NavigationButton) {
+    @IBAction func feedNavButtonClick(sender: TransparentButton) {
         toggleAllNavButtonsOffExcept(sender)
         delegate?.loadNavigationSection(NavigationSection.Feed)
     }
-    @IBAction func searchNavButtonClick(sender: NavigationButton) {
+    @IBAction func searchNavButtonClick(sender: TransparentButton) {
         toggleAllNavButtonsOffExcept(sender)
         delegate?.loadNavigationSection(NavigationSection.Search)
     }
     
-    func allNavButtons() -> [NavigationButton] {
-        var navButtons = [NavigationButton]()
+    func allNavButtons() -> [TransparentButton] {
+        var navButtons = [TransparentButton]()
         for subview in sidebarOverlay.subviews {
-            if subview is NavigationButton {
-                navButtons += subview as NavigationButton
+            if subview is TransparentButton {
+                navButtons += subview as TransparentButton
             }
         }
         return navButtons
     }
     
-    func toggleAllNavButtonsOffExcept(selectedButton: NavigationButton) {
+    func toggleAllNavButtonsOffExcept(selectedButton: TransparentButton) {
         for navButton in allNavButtons() {
             if navButton === selectedButton {
-                navButton.buttonState = NavigationButtonState.Selected
+                navButton.selected = true
             } else {
-                navButton.buttonState = NavigationButtonState.Inactive
+                navButton.selected = false
             }
         }
     }

@@ -13,25 +13,18 @@ class HoverToggleButton: NSButton {
     @IBInspectable var onHoverImage: NSImage?
     @IBInspectable var offImage: NSImage?
     @IBInspectable var offHoverImage: NSImage?
-    var buttonState: ButtonState = ButtonState.Off {
-    didSet {
-        needsDisplay = true
-    }
-    }
+
     var trackingArea: NSTrackingArea?
+    var mouseInside: Bool = false {
+        didSet { needsDisplay = true }
+    }
+    var selected: Bool = false {
+        didSet { needsDisplay = true }
+    }
     
     override func drawRect(dirtyRect: NSRect) {
-        var drawImage: NSImage?
-        switch buttonState {
-        case .On:
-            drawImage = onImage
-        case .OnHover:
-            drawImage = onHoverImage
-        case .Off:
-            drawImage = offImage
-        case .OffHover:
-            drawImage = offHoverImage
-        }
+        
+        var drawImage = getDrawImage()
         
         var drawPosition = bounds
         if drawImage {
@@ -40,6 +33,18 @@ class HoverToggleButton: NSButton {
         }
         
         drawImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:1, respectFlipped:true, hints:nil)
+    }
+    
+    func getDrawImage() -> NSImage? {
+        if selected && mouseInside {
+            return onHoverImage
+        } else if selected {
+            return onImage
+        } else if mouseInside {
+            return offHoverImage
+        } else {
+            return offImage
+        }
     }
     
     override func updateTrackingAreas() {
@@ -57,11 +62,11 @@ class HoverToggleButton: NSButton {
     }
     
     override func mouseEntered(theEvent: NSEvent!) {
-        buttonState = buttonState.hoverStateForCurrentState()
+        mouseInside = true
     }
     
     override func mouseExited(theEvent: NSEvent!) {
-        buttonState = buttonState.normalStateForCurrentState()
+        mouseInside = false
     }
     
     override func mouseDown(theEvent: NSEvent!) {
@@ -70,53 +75,6 @@ class HoverToggleButton: NSButton {
     }
     
     override func mouseUp(theEvent: NSEvent!) {
-        buttonState = buttonState.hoverStateForOppositeState()
         super.mouseUp(theEvent)
-    }
-    
-    enum ButtonState {
-        case On
-        case OnHover
-        case Off
-        case OffHover
-        
-        func hoverStateForCurrentState() -> ButtonState {
-            switch self {
-            case .On:
-                return .OnHover
-            case .OnHover:
-                return .OnHover
-            case .Off:
-                return .OffHover
-            case .OffHover:
-                return .OffHover
-            }
-        }
-        
-        func normalStateForCurrentState() -> ButtonState {
-            switch self {
-            case .On:
-                return .On
-            case .OnHover:
-                return .On
-            case .Off:
-                return .Off
-            case .OffHover:
-                return .Off
-            }
-        }
-        
-        func hoverStateForOppositeState() -> ButtonState {
-            switch self {
-            case .On:
-                return .OffHover
-            case .OnHover:
-                return .OffHover
-            case .Off:
-                return .OnHover
-            case .OffHover:
-                return .OnHover
-            }
-        }
     }
 }

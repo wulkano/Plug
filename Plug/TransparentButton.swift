@@ -81,7 +81,6 @@ class TransparentButton: NSButton {
     
     override func mouseUp(theEvent: NSEvent!) {
         mouseDown = false
-        toggleSelected()
         super.mouseUp(theEvent)
     }
     
@@ -93,12 +92,5 @@ class TransparentButton: NSButton {
     override func mouseExited(theEvent: NSEvent!) {
         mouseInside = false
         super.mouseExited(theEvent)
-    }
-    
-    enum ButtonState {
-        case Inactive
-        case MouseInside
-        case MouseDown
-        case Selected
     }
 }

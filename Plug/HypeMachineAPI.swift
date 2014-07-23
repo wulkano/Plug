@@ -86,7 +86,7 @@ struct HypeMachineAPI  {
         }
         
         static func Favorites(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Favorites(1, count: 20, success: {tracks in
+            HypeMachineAPI.Tracks.Favorites(1, count: 100, success: {tracks in
                 let playlist = FavoritesPlaylist(tracks: tracks)
                 success(playlist: playlist)
             }, failure: failure)

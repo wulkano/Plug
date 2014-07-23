@@ -8,29 +8,65 @@
 
 import Cocoa
 
-class PlaylistViewController: NSViewController, NSTableViewDelegate {
+class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTableViewViewController {
+    @IBOutlet weak var tableView: PlaylistTableView!
     var playlist: Playlist?
+    var previousMouseOverRow: Int = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HypeMachineAPI.Playlists.Popular(PopularPlaylistSubType.Now,
-            success: {playlist in
-                self.playlist = playlist
-            }, failure: {error in
-                println(error)
-            })
+        if tableView {
+            HypeMachineAPI.Playlists.Favorites(
+                {playlist in
+                    self.playlist = playlist
+                }, failure: {error in
+                    println(error)
+                })
+            tableView.setDelegate(self)
+            tableView.viewController = self
+        }
     }
     
-    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
-        var cellView = tableView.makeViewWithIdentifier("PlaylistTableCellView", owner: self) as? NSTableCellView
-        
-        if !cellView {
-            let cellViewController = storyboard.instantiateControllerWithIdentifier("Popular Playlist Table Cell View") as NSViewController
-            cellView = (cellViewController.view as NSTableCellView)
-            cellView!.identifier = "PlaylistTableCellView"
-        }
-        
-        return cellView
+    func trackForRow(row: Int) -> Track {
+        return playlist!.tracks[row]
     }
+    
+    func cellViewForRow(row: Int) -> PlaylistTableCellView? {
+        if row < 0 {
+            return nil
+        } else {
+            return tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? PlaylistTableCellView
+        }
+    }
+    
+    func mouseOverTableViewRow(row: Int) {
+        if let cellView = cellViewForRow(row) {
+            cellView.mouseInside = true
+        }
+        if let cellView = cellViewForRow(previousMouseOverRow) {
+            cellView.mouseInside = false
+        }
+        previousMouseOverRow = row
+    }
+    
+    func mouseExitedTableView() {
+        if let cellView = cellViewForRow(previousMouseOverRow) {
+            cellView.mouseInside = false
+        }
+        previousMouseOverRow = -1
+    }
+    
+    func mouseDidScrollTableView() {
+        if let cellView = cellViewForRow(previousMouseOverRow) {
+            cellView.mouseInside = false
+        }
+    }
+    
+    // TODO: Hook this back up when fixed
+//    @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
+//        let row = tableView.rowForView(sender)
+//        let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? PlaylistTableCellView
+//        cellView!.currentlyPlaying = true
+//    }
 }

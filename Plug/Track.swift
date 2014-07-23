@@ -51,4 +51,9 @@ class Track: NSObject {
             return String(count)
         }
     }
+    
+    func mediaURL() -> NSURL {
+        var mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(ApiKey)"
+        return NSURL(string: mediaLinkString)
+    }
 }
