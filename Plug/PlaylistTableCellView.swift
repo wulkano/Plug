@@ -33,14 +33,14 @@ class PlaylistTableCellView: NSTableCellView {
         super.init(coder: coder)
         initialSetup()
     }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     func initialSetup() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "trackPlaying:", name: Notifications.TrackPlaying, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "trackPaused:", name: Notifications.TrackPaused, object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func objectValueChanged() {

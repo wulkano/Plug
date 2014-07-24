@@ -1,14 +1,16 @@
 //
-//  MainViewController.swift
+//  TitleBarViewController.swift
 //  Plug
 //
-//  Created by Alexander Marchant on 7/16/14.
+//  Created by Alex Marchant on 7/23/14.
 //  Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
-class MainViewController: NSViewController {
+class TitleBarViewController: NSViewController {
+    @IBOutlet var titleTextField: NSTextField!
+    
     init(coder: NSCoder!) {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
@@ -21,14 +23,14 @@ class MainViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        changeNavigationSection(NavigationSection.Favorites)
-    }
-    func changeNavigationSection(section: NavigationSection) {
-        NavigationSection.postChangeNotification(section, object: self)
+        //        TODO: Fix this if
+        if titleTextField {
+        }
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        if notification.object === self { return }
+        if notification.object is TitleBarViewController { return }
         let section = NavigationSection.fromNotification(notification)
+        titleTextField.stringValue = section.windowTitle()
     }
 }

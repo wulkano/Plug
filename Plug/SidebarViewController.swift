@@ -10,42 +10,43 @@ import Cocoa
 
 class SidebarViewController: NSViewController {
     @IBOutlet var popularNavButton: TransparentButton!
+    @IBOutlet var favoritesNavButton: TransparentButton!
+    @IBOutlet var latestNavButton: TransparentButton!
+    @IBOutlet var blogsNavButton: TransparentButton!
+    @IBOutlet var feedNavButton: TransparentButton!
+    @IBOutlet var genresNavButton: TransparentButton!
+    @IBOutlet var friendsNavButton: TransparentButton!
+    @IBOutlet var searchNavButton: TransparentButton!
     @IBOutlet var sidebarOverlay: NSView!
-    var delegate: SidebarViewControllerDelegate?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        TODO: Remove once bug fixed
-        if popularNavButton {
-            toggleAllNavButtonsOffExcept(popularNavButton)
-        }
+    
+    init(coder: NSCoder!) {
+        super.init(coder: coder)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        delegate = parentViewController as MainViewController
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    @IBAction func popularNavButtonClick(sender: TransparentButton) {
-        toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Popular)
+    @IBAction func navButtonClicked(sender: TransparentButton) {
+        let section = sectionForButton(sender)
+        changeNavigationSection(section)
     }
-    @IBAction func favoritesNavButtonClick(sender: TransparentButton) {
-        toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Favorites)
+    
+    func changeNavigationSection(section: NavigationSection) {
+        NavigationSection.postChangeNotification(section, object: self)
+        updateUIForSection(section)
     }
-    @IBAction func latestNavButtonClick(sender: TransparentButton) {
-        toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Latest)
+    
+    func navigationSectionChanged(notification: NSNotification) {
+        if notification.object === self { return }
+        let section = NavigationSection.fromNotification(notification)
+        updateUIForSection(section)
     }
-    @IBAction func feedNavButtonClick(sender: TransparentButton) {
-        toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Feed)
-    }
-    @IBAction func searchNavButtonClick(sender: TransparentButton) {
-        toggleAllNavButtonsOffExcept(sender)
-        delegate?.loadNavigationSection(NavigationSection.Search)
+    
+    func updateUIForSection(section: NavigationSection) {
+        let button = buttonForSection(section)
+        toggleAllNavButtonsOffExcept(button)
     }
     
     func allNavButtons() -> [TransparentButton] {
@@ -67,16 +68,30 @@ class SidebarViewController: NSViewController {
             }
         }
     }
-}
 
-enum NavigationSection: Int {
-    case Popular = 0
-    case Favorites
-    case Latest
-    case Feed
-    case Search
-}
-
-protocol SidebarViewControllerDelegate {
-    func loadNavigationSection(section: NavigationSection)
+    func buttonForSection(section: NavigationSection) -> TransparentButton {
+        return buttonSectionMap()[section]!
+    }
+    
+    func sectionForButton(button: TransparentButton) -> NavigationSection! {
+        for (section, navButton) in buttonSectionMap() {
+            if navButton === button {
+                return section
+            }
+        }
+        return nil
+    }
+    
+    func buttonSectionMap() -> [NavigationSection: TransparentButton] {
+        return [
+            NavigationSection.Popular: popularNavButton,
+            NavigationSection.Favorites: favoritesNavButton,
+            NavigationSection.Latest: latestNavButton,
+            NavigationSection.Blogs: blogsNavButton,
+            NavigationSection.Feed: feedNavButton,
+            NavigationSection.Genres: genresNavButton,
+            NavigationSection.Friends: friendsNavButton,
+            NavigationSection.Search: searchNavButton,
+        ]
+    }
 }

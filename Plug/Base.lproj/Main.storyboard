@@ -759,7 +759,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="popularNavButtonClick:" target="PDa-TY-X6v" id="IEe-md-NxU"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="MeW-NM-xfI"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="CQ0-Dr-M2I" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -774,7 +774,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="favoritesNavButtonClick:" target="PDa-TY-X6v" id="hQl-oS-vV1"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="kJq-bn-0r8"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="moD-9u-Y5D" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -789,7 +789,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="latestNavButtonClick:" target="PDa-TY-X6v" id="GZq-jB-3Kd"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="jvf-VI-7rr"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="ENP-kF-nat" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -804,7 +804,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="feedNavButtonClick:" target="PDa-TY-X6v" id="vuV-vZ-hvW"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="fzP-tZ-2qd"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="vYV-TK-lv5" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -819,7 +819,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="Ofe-JU-gha"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="3Fc-ol-3yj"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="zFf-8o-e4d" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -834,7 +834,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="Hqu-H9-73k"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="A9R-zk-v1B"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-pd-3r9" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -849,7 +849,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="EkL-qp-k49"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="bEt-Pu-10d"/>
                                                 </connections>
                                             </customView>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="bSh-Az-dR7" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -864,7 +864,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="searchNavButtonClick:" target="PDa-TY-X6v" id="5NC-ar-YPO"/>
+                                                    <action selector="navButtonClicked:" target="PDa-TY-X6v" id="n9V-qh-IRl"/>
                                                 </connections>
                                             </customView>
                                         </subviews>
@@ -909,11 +909,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="favoritesNavButton" destination="CQ0-Dr-M2I" id="wKr-uz-Xhc"/>
-                        <outlet property="feedNavButton" destination="ENP-kF-nat" id="Lru-qQ-CTs"/>
-                        <outlet property="latestNavButton" destination="moD-9u-Y5D" id="5fC-Jm-Vza"/>
-                        <outlet property="popularNavButton" destination="ufc-4v-Z8I" id="A0c-kP-tdw"/>
-                        <outlet property="searchNavButton" destination="vYV-TK-lv5" id="p6J-3D-NAP"/>
+                        <outlet property="blogsNavButton" destination="ENP-kF-nat" id="9Ce-xF-Db3"/>
+                        <outlet property="favoritesNavButton" destination="CQ0-Dr-M2I" id="FKS-81-ydX"/>
+                        <outlet property="feedNavButton" destination="vYV-TK-lv5" id="6t9-vf-lZS"/>
+                        <outlet property="friendsNavButton" destination="T5c-pd-3r9" id="40L-9U-UBJ"/>
+                        <outlet property="genresNavButton" destination="zFf-8o-e4d" id="Jy5-dH-Ua0"/>
+                        <outlet property="latestNavButton" destination="moD-9u-Y5D" id="3vw-ms-j2T"/>
+                        <outlet property="popularNavButton" destination="ufc-4v-Z8I" id="spU-a2-vat"/>
+                        <outlet property="searchNavButton" destination="bSh-Az-dR7" id="J44-EN-byG"/>
                         <outlet property="sidebarOverlay" destination="NpH-p0-wzL" id="Jbr-Oq-GB7"/>
                     </connections>
                 </viewController>
@@ -1221,16 +1224,31 @@
             </objects>
             <point key="canvasLocation" x="1050.5" y="734.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Title Bar View Controller-->
         <scene sceneID="iAc-DC-gzt">
             <objects>
-                <viewController id="Shy-Ze-nnP" sceneMemberID="viewController">
+                <viewController id="Shy-Ze-nnP" customClass="TitleBarViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="IdE-m7-REV">
-                        <rect key="frame" x="0.0" y="0.0" width="409" height="35"/>
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="36"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView wantsLayer="YES" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-7V-88j" customClass="TitleBarView" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="409" height="35"/>
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-7V-88j" customClass="TitleBarView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="36"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BdU-eV-3sT">
+                                        <rect key="frame" x="-2" y="9" width="413" height="21"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Title" id="xN4-T8-AhF">
+                                            <font key="font" size="14" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="BdU-eV-3sT" secondAttribute="centerY" constant="1" id="1N2-zm-opL"/>
+                                    <constraint firstAttribute="trailing" secondItem="BdU-eV-3sT" secondAttribute="trailing" id="EBG-qj-Uzu"/>
+                                    <constraint firstItem="BdU-eV-3sT" firstAttribute="leading" secondItem="GKP-7V-88j" secondAttribute="leading" id="HTu-iY-9NK"/>
+                                </constraints>
                             </visualEffectView>
                         </subviews>
                         <constraints>
@@ -1240,10 +1258,13 @@
                             <constraint firstAttribute="trailing" secondItem="GKP-7V-88j" secondAttribute="trailing" id="me3-lF-0A3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleTextField" destination="BdU-eV-3sT" id="TTa-9Y-Ull"/>
+                    </connections>
                 </viewController>
                 <customObject id="uH1-oj-I1Z" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050.5" y="181.5"/>
+            <point key="canvasLocation" x="1050.5" y="179.5"/>
         </scene>
         <!--Footer View Controller-->
         <scene sceneID="TRJ-Wz-yw3">
