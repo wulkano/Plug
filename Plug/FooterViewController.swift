@@ -25,6 +25,14 @@ class FooterViewController: NSViewController {
 //            shuffleButton.bind("selected", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.shuffle", options: nil)
         }
     }
+    
+    @IBAction func skipForwardButtonClicked(sender: TransparentButton) {
+        AudioPlayer.sharedInstance.skipForward()
+    }
+    
+    @IBAction func skipBackwardButtonClicked(sender: TransparentButton) {
+        AudioPlayer.sharedInstance.skipBackward()
+    }
 
     @IBAction func shuffleButtonClicked(sender: TransparentButton) {
         let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as Bool

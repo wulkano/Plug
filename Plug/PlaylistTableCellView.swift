@@ -102,7 +102,7 @@ class PlaylistTableCellView: NSTableCellView {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
-            AudioPlayer.sharedInstance.playTrack(trackValue)
+            AudioPlayer.sharedInstance.play(trackValue)
         }
     }
     

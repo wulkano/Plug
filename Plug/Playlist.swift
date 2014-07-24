@@ -16,6 +16,39 @@ class Playlist: NSObject {
         self.tracks = tracks
         self.type = type
         super.init()
+        linkTracksToPlaylist()
+    }
+    
+    func trackAfter(track: Track) -> Track? {
+        let currentIndex = indexOfTrack(track)
+        let index = currentIndex + 1
+        return trackAtIndex(index)
+    }
+    
+    func trackBefore(track: Track) -> Track? {
+        let currentIndex = indexOfTrack(track)
+        let index = currentIndex - 1
+        return trackAtIndex(index)
+    }
+    
+    // MARK: Private methods
+    
+    private func linkTracksToPlaylist() {
+        for track in tracks {
+            track.playlist = self
+        }
+    }
+    
+    private func indexOfTrack(track: Track) -> Int {
+        return tracks.bridgeToObjectiveC().indexOfObject(track)
+    }
+    
+    private func trackAtIndex(index: Int) -> Track? {
+        if index >= 0 && index <= tracks.count - 1 {
+            return tracks[index]
+        } else {
+            return nil
+        }
     }
 }
 

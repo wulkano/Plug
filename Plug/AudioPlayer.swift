@@ -18,29 +18,60 @@ class AudioPlayer: NSObject {
         return Singleton.instance
     }
     
-    var player: AVPlayer?
-    var currentTrack: Track?
+    var player: AVPlayer!
+    var currentPlaylist: Playlist!
+    var currentTrack: Track!
+    var currentTrackIndex: Int = 0
     var playing: Bool = false
+    var volume: Float = 1 {
+    didSet {
+        volumeChanged()
+    }
+    }
     
-    func playTrack(track: Track) {
+    init() {
+        super.init()
+        
+        bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
+    }
+    
+    func play(track: Track) {
         if currentTrack != track {
             player = AVPlayer(URL: track.mediaURL())
+            player.volume = volume
+            currentPlaylist = track.playlist
             currentTrack = track
         }
         play()
     }
     
     func play() {
-        player!.play()
+        player.play()
         playing = true
         sendTrackPlayingNotification()
     }
     
     func pause() {
-        player!.pause()
+        player.pause()
         playing = false
         sendTrackPausedNotification()
     }
+    
+    func skipForward() {
+        let nextTrack = currentPlaylist.trackAfter(currentTrack)
+        if nextTrack {
+            play(nextTrack!)
+        }
+    }
+    
+    func skipBackward() {
+        let previousTrack = currentPlaylist.trackBefore(currentTrack)
+        if previousTrack {
+            play(previousTrack!)
+        }
+    }
+    
+    // MARK: Private methods
     
     private func sendTrackPlayingNotification() {
         NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TrackPlaying, object: self, userInfo: ["track": currentTrack!])
@@ -48,5 +79,11 @@ class AudioPlayer: NSObject {
     
     private func sendTrackPausedNotification() {
         NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TrackPaused, object: self, userInfo: ["track": currentTrack!])
+    }
+    
+    private func volumeChanged() {
+        if player {
+            player.volume = volume
+        }
     }
 }

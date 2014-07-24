@@ -977,7 +977,7 @@
                                                                         <userDefinedRuntimeAttribute type="image" keyPath="offHoverImage" value="Track-Play-Hover"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <action selector="playPauseButtonClicked:" target="LM0-KM-ycg" id="fgg-Xr-g1c"/>
+                                                                        <action selector="playPauseButtonClicked:" target="LM0-KM-ycg" id="QCY-6r-fNb"/>
                                                                     </connections>
                                                                 </button>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-ap-NsF">
@@ -1286,6 +1286,9 @@
                                             <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Forward"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="skipForwardButtonClicked:" target="VIy-Aa-JTO" id="Bkr-ZY-dNH"/>
+                                        </connections>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="CWG-dY-sv5" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="289" y="0.0" width="42" height="47"/>
@@ -1330,6 +1333,9 @@
                                             <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Footer-Previous"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="skipBackwardButtonClicked:" target="VIy-Aa-JTO" id="N1k-7W-sOp"/>
+                                        </connections>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="8f1-rY-2ZZ" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="331" y="0.0" width="42" height="47"/>

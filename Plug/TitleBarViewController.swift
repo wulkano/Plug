@@ -25,7 +25,7 @@ class TitleBarViewController: NSViewController {
         
         //        TODO: Fix this if
         if titleTextField {
-        titleTextField.stringValue = ""
+            titleTextField.stringValue = ""
         }
     }
     
