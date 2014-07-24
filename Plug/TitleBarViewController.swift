@@ -25,12 +25,17 @@ class TitleBarViewController: NSViewController {
         
         //        TODO: Fix this if
         if titleTextField {
+        titleTextField.stringValue = ""
         }
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        if notification.object is TitleBarViewController { return }
+        if notification.object === self { return }
         let section = NavigationSection.fromNotification(notification)
+        updateUIForSection(section)
+    }
+    
+    func updateUIForSection(section: NavigationSection) {
         titleTextField.stringValue = section.windowTitle()
     }
 }
