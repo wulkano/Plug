@@ -31,7 +31,6 @@ class AudioPlayer: NSObject {
     
     init() {
         super.init()
-        
         bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
     }
     

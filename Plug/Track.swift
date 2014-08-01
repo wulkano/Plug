@@ -24,21 +24,21 @@ class Track: NSObject {
     init(JSON json: NSDictionary) {
         super.init()
         
-        if json["itemid"] {
+        if json["itemid"] is String {
             id = json["itemid"] as String
         }
-        if json["artist"] {
+        if json["artist"] is String {
             artist = json["artist"] as String
         }
-        if json["title"] {
+        if json["title"] is String {
             title = json["title"] as String
         }
-        if json["loved_count"] {
+        if json["loved_count"] is Int {
             lovedCount = json["loved_count"] as Int
             formattedLovedCount = formatLovedCount(json["loved_count"] as Int)
         }
-        if json["rank"] {
-            rank = json["rank"] as? Int
+        if json["rank"] is Int {
+            rank = (json["rank"] as Int)
         }
     }
     

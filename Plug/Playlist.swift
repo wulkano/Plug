@@ -50,6 +50,18 @@ class Playlist: NSObject {
             return nil
         }
     }
+    
+    class func mockPlaylist(count: Int) -> Playlist {
+        var tracks = [Track]()
+        for i in 1...count {
+            let fakeTrackData = [
+                "artist": "Artist",
+                "title": "Title",
+            ]
+            tracks.append(Track(JSON: fakeTrackData))
+        }
+        return Playlist(tracks: tracks, type: PlaylistType.Popular)
+    }
 }
 
 enum PlaylistType {

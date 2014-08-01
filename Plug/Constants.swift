@@ -11,7 +11,8 @@ import Foundation
 let ApiKey = "***REMOVED***"
 
 struct Notifications {
-    static let TrackPlaying = "TrackPlayingNotification"
-    static let TrackPaused = "TrackPausedNotification"
-    static let NavigationSectionChanged = "NavigationSectionChangedNotification"
+    static let TrackPlaying = "Plug.TrackPlayingNotification"
+    static let TrackPaused = "Plug.TrackPausedNotification"
+    static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
+    static let Error = "Plug.ErrorNotification"
 }

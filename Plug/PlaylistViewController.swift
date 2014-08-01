@@ -17,12 +17,6 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
         super.viewDidLoad()
         
         if tableView {
-            HypeMachineAPI.Playlists.Favorites(
-                {playlist in
-                    self.playlist = playlist
-                }, failure: {error in
-                    println(error)
-                })
             tableView.setDelegate(self)
             tableView.viewController = self
         }
@@ -38,6 +32,10 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
         } else {
             return tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? PlaylistTableCellView
         }
+    }
+    
+    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
+        return tableView.makeViewWithIdentifier("PlaylistRowView", owner: self) as IOSStyleTableRowView
     }
     
     func mouseOverTableViewRow(row: Int) {
