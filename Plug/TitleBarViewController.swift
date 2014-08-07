@@ -11,7 +11,7 @@ import Cocoa
 class TitleBarViewController: NSViewController {
     @IBOutlet var titleTextField: NSTextField!
     
-    init(coder: NSCoder!) {
+    required init(coder: NSCoder!) {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
     }

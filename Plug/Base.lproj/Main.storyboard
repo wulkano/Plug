@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A298i" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="14A314h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment defaultVersion="101000" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6185.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -655,7 +655,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="472" height="778"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <value key="minSize" type="size" width="370" height="515"/>
                         <view key="contentView" id="O92-4t-NeX">
                             <rect key="frame" x="0.0" y="0.0" width="472" height="778"/>
@@ -1037,7 +1037,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="Azb-xg-1yq" name="content" keyPath="playlist.tracks" id="xcK-t3-474"/>
+                                                <binding destination="Azb-xg-1yq" name="content" keyPath="playlist.tracks" id="FnV-Zs-9vd"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -1065,6 +1065,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="scrollView" destination="ZgV-ZE-c2y" id="0sl-25-sqz"/>
                         <outlet property="tableView" destination="kY8-wE-2Y2" id="kVl-hR-aeO"/>
                     </connections>
                 </viewController>
@@ -1560,6 +1561,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="scrollView" destination="aqt-fZ-qx4" id="btZ-pv-Rrk"/>
                         <outlet property="tableView" destination="eiU-iy-OBO" id="26S-qk-fVO"/>
                     </connections>
                 </viewController>
@@ -1818,13 +1820,12 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="6Se-cr-Bvs">
-                                            <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="406" minWidth="40" maxWidth="1000" id="AOP-HY-bGN">
+                                                <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="AOP-HY-bGN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1841,7 +1842,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="406" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crE-do-0TI">
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="crE-do-0TI">
                                                                     <rect key="frame" x="20" y="13" width="385" height="24"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Genre Name" id="2zh-jR-Kh2">
                                                                         <font key="font" size="16" name="HelveticaNeue-Medium"/>
@@ -1860,7 +1861,7 @@
                                                             <rect key="frame" x="0.0" y="96" width="406" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ddy-99-TIE">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ddy-99-TIE">
                                                                     <rect key="frame" x="7" y="7" width="398" height="21"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Section Header" id="82B-vW-Tem">
                                                                         <font key="font" size="14" name="HelveticaNeue-Medium"/>
@@ -1937,7 +1938,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="409" height="36"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-7V-88j" customClass="TitleBarView" customModule="Plug" customModuleProvider="target">
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="GKP-7V-88j" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="409" height="36"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="4zo-HE-bNW" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
@@ -1993,9 +1994,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM">
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                                 <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3B-cN-CQ6" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topBorder" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.88235294117647056" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="xRs-nn-93p" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="247" y="0.0" width="42" height="47"/>
                                         <constraints>
@@ -2076,14 +2089,18 @@
                                     <constraint firstAttribute="bottom" secondItem="A7n-pQ-9y0" secondAttribute="bottom" id="NpN-p1-c5W"/>
                                     <constraint firstItem="8f1-rY-2ZZ" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="PuY-vn-TUv"/>
                                     <constraint firstAttribute="bottom" secondItem="CWG-dY-sv5" secondAttribute="bottom" id="SXo-qd-sZa"/>
+                                    <constraint firstAttribute="trailing" secondItem="M3B-cN-CQ6" secondAttribute="trailing" id="Uwt-Vx-FQc"/>
                                     <constraint firstItem="XlV-S5-kIY" firstAttribute="leading" secondItem="IFe-ey-9FM" secondAttribute="leading" constant="20" id="Vi6-ZR-1XT"/>
                                     <constraint firstItem="CWG-dY-sv5" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="W26-hZ-8J9"/>
                                     <constraint firstAttribute="centerY" secondItem="3yH-fJ-IPO" secondAttribute="centerY" id="XpR-fN-eiM"/>
                                     <constraint firstItem="8f1-rY-2ZZ" firstAttribute="leading" secondItem="CWG-dY-sv5" secondAttribute="trailing" id="YXL-4K-aAE"/>
                                     <constraint firstAttribute="trailing" secondItem="8f1-rY-2ZZ" secondAttribute="trailing" constant="8" id="dgB-C6-gyA"/>
+                                    <constraint firstItem="M3B-cN-CQ6" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="ePg-9G-WVk"/>
                                     <constraint firstItem="xRs-nn-93p" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="gVk-2S-YhO"/>
                                     <constraint firstAttribute="bottom" secondItem="xRs-nn-93p" secondAttribute="bottom" id="hYw-9n-JfH"/>
+                                    <constraint firstAttribute="bottom" secondItem="M3B-cN-CQ6" secondAttribute="bottom" id="lkp-2Y-Nia"/>
                                     <constraint firstItem="A7n-pQ-9y0" firstAttribute="top" secondItem="IFe-ey-9FM" secondAttribute="top" id="qZ3-xW-m2e"/>
+                                    <constraint firstItem="M3B-cN-CQ6" firstAttribute="leading" secondItem="IFe-ey-9FM" secondAttribute="leading" id="t7X-wT-9e2"/>
                                     <constraint firstItem="CWG-dY-sv5" firstAttribute="leading" secondItem="xRs-nn-93p" secondAttribute="trailing" id="xwQ-zN-vSw"/>
                                     <constraint firstItem="8f1-rY-2ZZ" firstAttribute="leading" secondItem="CWG-dY-sv5" secondAttribute="trailing" id="zWH-7N-w82"/>
                                 </constraints>

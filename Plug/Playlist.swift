@@ -40,7 +40,7 @@ class Playlist: NSObject {
     }
     
     private func indexOfTrack(track: Track) -> Int {
-        return tracks.bridgeToObjectiveC().indexOfObject(track)
+        return find(tracks, track)!
     }
     
     private func trackAtIndex(index: Int) -> Track? {

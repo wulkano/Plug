@@ -10,11 +10,15 @@ import Cocoa
 
 class Genre: NSObject {
     var name: String
-    var priority: Bool
+    var priority: Bool = false
     
-    init(name: String, priority: Bool) {
-        self.name = name
-        self.priority = priority
+    init(JSON json: NSDictionary) {
+        name = json["tag_name"] as String
+        
+        if json["priority"] is Bool {
+            priority = json["priority"] as Bool
+        }
+        
         super.init()
     }
 }

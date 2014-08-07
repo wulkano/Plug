@@ -27,7 +27,7 @@ class HoverToggleButton: NSButton {
         var drawImage = getDrawImage()
         
         var drawPosition = bounds
-        if drawImage {
+        if drawImage != nil {
             drawPosition.origin.x = (bounds.size.width - drawImage!.size.width) / 2
             drawPosition.origin.y = -(bounds.size.height - drawImage!.size.height) / 2
         }
@@ -50,13 +50,13 @@ class HoverToggleButton: NSButton {
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         ensureTrackingArea()
-        if !trackingAreas.bridgeToObjectiveC().containsObject(trackingArea) {
-            addTrackingArea(trackingArea)
+        if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+            addTrackingArea(trackingArea!)
         }
     }
     
     func ensureTrackingArea() {
-        if !trackingArea {
+        if trackingArea == nil {
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited, owner: self, userInfo: nil)
         }
     }

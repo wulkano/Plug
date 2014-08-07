@@ -10,16 +10,17 @@ import Cocoa
 
 class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTableViewViewController {
     @IBOutlet weak var tableView: PlaylistTableView!
+    @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
     var previousMouseOverRow: Int = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if tableView {
-            tableView.setDelegate(self)
-            tableView.viewController = self
-        }
+        tableView.setDelegate(self)
+        tableView.viewController = self
+        scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
+        scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
     }
     
     func trackForRow(row: Int) -> Track {

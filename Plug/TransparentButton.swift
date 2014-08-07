@@ -33,7 +33,7 @@ class TransparentButton: NSButton {
         let drawImage = getDrawImage()
         let drawOpacity = getDrawOpacity()
         
-        if drawImage {
+        if drawImage != nil {
             drawPosition.origin.x = (bounds.size.width - drawImage!.size.width) / 2
             drawPosition.origin.y = -(bounds.size.height - drawImage!.size.height) / 2
         }

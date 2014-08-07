@@ -11,8 +11,12 @@ import Cocoa
 class LargeLoadingView: NSView {
     let spinnerImage = NSImage(named: "Loader-Large")
 
-    init(frame: NSRect) {
+    override init(frame: NSRect) {
         super.init(frame: frame)
+    }
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
     override func drawRect(dirtyRect: NSRect) {

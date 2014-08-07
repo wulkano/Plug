@@ -23,7 +23,7 @@ class HeatMapView: NSView {
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
         
-        if dataPoints && heatMapColor {
+        if dataPoints != nil && heatMapColor != nil {
             drawHeatMap(dirtyRect)
         }
     }

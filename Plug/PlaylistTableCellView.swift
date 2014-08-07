@@ -29,7 +29,7 @@ class PlaylistTableCellView: NSTableCellView {
     }
 
     
-    init(coder: NSCoder!) {
+    required init(coder: NSCoder!) {
         super.init(coder: coder)
         initialSetup()
     }

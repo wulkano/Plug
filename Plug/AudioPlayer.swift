@@ -29,7 +29,7 @@ class AudioPlayer: NSObject {
     }
     }
     
-    init() {
+    override init() {
         super.init()
         bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
     }
@@ -58,14 +58,14 @@ class AudioPlayer: NSObject {
     
     func skipForward() {
         let nextTrack = currentPlaylist.trackAfter(currentTrack)
-        if nextTrack {
+        if nextTrack != nil {
             play(nextTrack!)
         }
     }
     
     func skipBackward() {
         let previousTrack = currentPlaylist.trackBefore(currentTrack)
-        if previousTrack {
+        if previousTrack != nil {
             play(previousTrack!)
         }
     }
@@ -81,7 +81,7 @@ class AudioPlayer: NSObject {
     }
     
     private func volumeChanged() {
-        if player {
+        if (player != nil) {
             player.volume = volume
         }
     }

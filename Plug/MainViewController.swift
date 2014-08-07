@@ -21,7 +21,7 @@ class MainViewController: NSViewController {
     var searchViewController: SearchViewController?
     var currentViewController: NSViewController?
     
-    init(coder: NSCoder!) {
+    required init(coder: NSCoder!) {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayError:", name: Notifications.Error, object: nil)
@@ -39,6 +39,10 @@ class MainViewController: NSViewController {
             changeNavigationSection(NavigationSection.Popular)
         }
     }
+    
+    override func viewDidAppear() {
+    }
+    
     func changeNavigationSection(section: NavigationSection) {
         NavigationSection.postChangeNotification(section, object: self)
         updateUIForSection(section)
@@ -71,19 +75,20 @@ class MainViewController: NSViewController {
         switch section {
         case .Popular:
             popularViewController = (ensureViewController(popularViewController, identifier: "PlaylistViewController") as PlaylistViewController)
-            if !popularViewController!.playlist {
-                self.popularViewController!.playlist = Playlist.mockPlaylist(20)
+            if popularViewController!.playlist == nil {
+                setTableContentsForSection(section)
+//                self.popularViewController!.playlist = Playlist.mockPlaylist(20)
             }
             return popularViewController!
         case .Favorites:
             favoritesViewController = (ensureViewController(favoritesViewController, identifier: "PlaylistViewController") as PlaylistViewController)
-            if !favoritesViewController!.playlist {
+            if favoritesViewController!.playlist == nil {
                 self.favoritesViewController!.playlist = Playlist.mockPlaylist(20)
             }
             return favoritesViewController!
         case .Latest:
             latestViewController = (ensureViewController(latestViewController, identifier: "PlaylistViewController") as PlaylistViewController)
-            if !latestViewController!.playlist {
+            if latestViewController!.playlist == nil {
                 self.latestViewController!.playlist = Playlist.mockPlaylist(20)
             }
             return latestViewController!
@@ -112,7 +117,7 @@ class MainViewController: NSViewController {
             return blogDirectoryViewController!
         case .Feed:
             feedViewController = (ensureViewController(feedViewController, identifier: "FeedViewController") as PlaylistViewController)
-            if !feedViewController!.playlist {
+            if feedViewController!.playlist == nil {
                 self.feedViewController!.playlist = Playlist.mockPlaylist(20)
             }
             return feedViewController!
@@ -121,21 +126,21 @@ class MainViewController: NSViewController {
             if self.genresViewController!.tableContents.count == 0 {
                 var genresStuff = [GenresListItem]()
                 genresStuff.append(GenresListItem.SectionHeaderItem(SectionHeader(title: "The Basics")))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
                 genresStuff.append(GenresListItem.SectionHeaderItem(SectionHeader(title: "Everything")))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
-                genresStuff.append(GenresListItem.GenreItem(Genre(name: "Genre Name", priority: false)))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
+                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
                 genresViewController!.tableContents = genresStuff
             }
             return genresViewController!
@@ -160,7 +165,7 @@ class MainViewController: NSViewController {
     }
     
     func ensureViewController(controller: NSViewController?, identifier: String) -> NSViewController {
-        if controller {
+        if controller != nil {
             return controller!
         } else {
              let newController = storyboard.instantiateControllerWithIdentifier(identifier) as NSViewController
@@ -181,7 +186,7 @@ class MainViewController: NSViewController {
     }
     
     func transitionMainContentViewController(controller: NSViewController) {
-        if currentViewController {
+        if currentViewController != nil {
             transitionFromViewController(currentViewController, toViewController: controller, options: NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade, completionHandler:  {
                 for subview in self.mainContentView.subviews {
                     if subview !== controller.view {
@@ -189,6 +194,22 @@ class MainViewController: NSViewController {
                     }
                 }
             })
+        }
+    }
+    
+    func setTableContentsForSection(section: NavigationSection) {
+        switch section {
+        case .Popular:
+            HypeMachineAPI.Playlists.Popular(PopularPlaylistSubType.Now,
+                success: {playlist in
+                    self.popularViewController!.playlist = playlist
+                    println(self.popularViewController!.playlist!.tracks)
+                    self.popularViewController!.tableView.reloadData()
+                }, failure: {error in
+                    AppError.logError(error)
+            })
+        case .Favorites, .Latest, .Blogs, .Feed, .Genres, .Friends, .Search:
+            "asdf"
         }
     }
 }

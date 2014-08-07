@@ -19,7 +19,7 @@ class SidebarViewController: NSViewController {
     @IBOutlet var searchNavButton: TransparentButton!
     @IBOutlet var sidebarOverlay: NSView!
     
-    init(coder: NSCoder!) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
     }
@@ -53,7 +53,7 @@ class SidebarViewController: NSViewController {
         var navButtons = [TransparentButton]()
         for subview in sidebarOverlay.subviews {
             if subview is TransparentButton {
-                navButtons += subview as TransparentButton
+                navButtons.append(subview as TransparentButton)
             }
         }
         return navButtons

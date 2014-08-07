@@ -25,7 +25,7 @@ class NavigationButton: NSButton {
 
     override func drawRect(dirtyRect: NSRect) {
         var drawPosition = bounds
-        if unselectedImage {
+        if unselectedImage != nil {
             drawPosition.origin.x = (bounds.size.width - unselectedImage!.size.width) / 2
             drawPosition.origin.y = -(bounds.size.height - unselectedImage!.size.height) / 2
         }

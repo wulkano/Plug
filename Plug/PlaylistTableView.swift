@@ -14,7 +14,7 @@ class PlaylistTableView: NSTableView {
     var viewController: PlaylistTableViewViewController!
     var count: Int = 0
     
-    init(coder: NSCoder!) {
+    required init(coder: NSCoder!) {
         super.init(coder: coder)
         trackScrolling()
     }
@@ -33,13 +33,13 @@ class PlaylistTableView: NSTableView {
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         ensureTrackingArea()
-        if !trackingAreas.bridgeToObjectiveC().containsObject(trackingArea) {
-            addTrackingArea(trackingArea)
+        if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+            addTrackingArea(trackingArea!)
         }
     }
     
     func ensureTrackingArea() {
-        if !trackingArea {
+        if trackingArea == nil {
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited | NSTrackingAreaOptions.MouseMoved, owner: self, userInfo: nil)
         }
     }
@@ -47,7 +47,7 @@ class PlaylistTableView: NSTableView {
     override func mouseMoved(theEvent: NSEvent!) {
         super.mouseMoved(theEvent)
         
-        let point = convertPoint(theEvent.locationInWindow, fromView: window.contentView as NSView)
+        let point = convertPoint(theEvent.locationInWindow, fromView: window!.contentView as NSView)
         let row = rowAtPoint(point)
         if row != previousMouseOverRow {
             viewController.mouseOverTableViewRow(row)

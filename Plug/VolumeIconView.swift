@@ -30,7 +30,7 @@ class VolumeIconView: NSView {
         
         let drawImage = getDrawImage()
         var drawPoint = NSZeroPoint
-        if drawImage {
+        if drawImage != nil {
             drawPoint.y = (bounds.size.height - drawImage!.size.height) / 2
         }
         drawImage?.drawAtPoint(drawPoint, fromRect: dirtyRect, operation: NSCompositingOperation.CompositeDestinationOver, fraction: opacity)
