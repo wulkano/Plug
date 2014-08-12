@@ -46,6 +46,8 @@
 		FA7749A4198C1EBD0048863F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749A3198C1EBD0048863F /* Friend.swift */; };
 		FA7C4975198ABAF200A38B27 /* BlogTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4974198ABAF200A38B27 /* BlogTableRowView.swift */; };
 		FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4976198ABD3300A38B27 /* GroupRowView.swift */; };
+		FA9EA036199AC08600D9AB8A /* PlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */; };
+		FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
 		FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */; };
 		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
@@ -132,6 +134,8 @@
 		FA7749A3198C1EBD0048863F /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		FA7C4974198ABAF200A38B27 /* BlogTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogTableRowView.swift; sourceTree = "<group>"; };
 		FA7C4976198ABD3300A38B27 /* GroupRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRowView.swift; sourceTree = "<group>"; };
+		FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistDataSource.swift; sourceTree = "<group>"; };
+		FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableView.swift; sourceTree = "<group>"; };
 		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
 				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
+				FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */,
+				FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -487,6 +493,7 @@
 				FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */,
 				FA77499A198C07110048863F /* GenresViewController.swift in Sources */,
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
+				FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
 				FA77499C198C07D10048863F /* Genre.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
@@ -501,6 +508,7 @@
 				FA0B1D3A197725E90030C873 /* FeedPlaylist.swift in Sources */,
 				FA24EDA21974A9A500A781C8 /* main.swift in Sources */,
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
+				FA9EA036199AC08600D9AB8A /* PlaylistDataSource.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
 				FADC96F41974CCFA009458FA /* MainWindow.swift in Sources */,
 				FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */,

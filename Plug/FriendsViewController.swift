@@ -14,11 +14,9 @@ class FriendsViewController: NSViewController, NSTableViewDelegate, NSTableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if tableView {
-            tableView.setDelegate(self)
-            tableView.setDataSource(self)
-        }
+        
+        tableView.setDelegate(self)
+        tableView.setDataSource(self)
     }
     
     func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {

@@ -14,12 +14,8 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, NSTabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        
-        if tableView {
-            tableView.setDelegate(self)
-            tableView.setDataSource(self)
-        }
+        tableView.setDelegate(self)
+        tableView.setDataSource(self)
     }
     
     func itemForRow(row: Int) -> BlogDirectoryItem {
@@ -93,6 +89,15 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, NSTabl
     
     func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
         return tableContents.count
+    }
+    
+    func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
+        switch itemForRow(row) {
+        case .SectionHeaderItem(let sectionHeader):
+            return false
+        case .BlogItem(let blog):
+            return true
+        }
     }
 }
 

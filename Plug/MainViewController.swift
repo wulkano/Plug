@@ -34,13 +34,7 @@ class MainViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: Remove
-        if mainContentView {
-            changeNavigationSection(NavigationSection.Popular)
-        }
-    }
-    
-    override func viewDidAppear() {
+        changeNavigationSection(NavigationSection.Popular)
     }
     
     func changeNavigationSection(section: NavigationSection) {
@@ -199,16 +193,7 @@ class MainViewController: NSViewController {
     
     func setTableContentsForSection(section: NavigationSection) {
         switch section {
-        case .Popular:
-            HypeMachineAPI.Playlists.Popular(PopularPlaylistSubType.Now,
-                success: {playlist in
-                    self.popularViewController!.playlist = playlist
-                    println(self.popularViewController!.playlist!.tracks)
-                    self.popularViewController!.tableView.reloadData()
-                }, failure: {error in
-                    AppError.logError(error)
-            })
-        case .Favorites, .Latest, .Blogs, .Feed, .Genres, .Friends, .Search:
+        case .Popular, .Favorites, .Latest, .Blogs, .Feed, .Genres, .Friends, .Search:
             "asdf"
         }
     }

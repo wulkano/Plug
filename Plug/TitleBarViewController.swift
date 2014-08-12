@@ -23,10 +23,7 @@ class TitleBarViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        TODO: Fix this if
-        if titleTextField {
-            titleTextField.stringValue = ""
-        }
+        titleTextField.stringValue = ""
     }
     
     func navigationSectionChanged(notification: NSNotification) {

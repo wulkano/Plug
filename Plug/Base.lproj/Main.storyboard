@@ -886,11 +886,6 @@
                                             <constraint firstItem="bSh-Az-dR7" firstAttribute="top" secondItem="T5c-pd-3r9" secondAttribute="bottom" constant="28" id="rDa-EC-Apt"/>
                                             <constraint firstAttribute="centerX" secondItem="zFf-8o-e4d" secondAttribute="centerX" id="tLl-Ig-YHq"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                <color key="value" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -1036,9 +1031,6 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
-                                            <connections>
-                                                <binding destination="Azb-xg-1yq" name="content" keyPath="playlist.tracks" id="FnV-Zs-9vd"/>
-                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1994,7 +1986,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
+                            <visualEffectView wantsLayer="YES" appearanceType="vibrantLight" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-ey-9FM" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="M3B-cN-CQ6" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">

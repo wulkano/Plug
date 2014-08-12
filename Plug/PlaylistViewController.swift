@@ -13,12 +13,15 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
     var previousMouseOverRow: Int = -1
+    var dataSource: NSTableViewDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.setDelegate(self)
         tableView.viewController = self
+        dataSource = PopularPlaylistDataSource(playlistSubType: PopularPlaylistSubType.Now, tableView: tableView)
+        tableView.setDataSource(dataSource)
         scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
         scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
     }

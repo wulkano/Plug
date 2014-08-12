@@ -78,9 +78,9 @@ struct HypeMachineAPI  {
     }
     
     struct Playlists {
-        static var trackCount: Int = 200
+        static var trackCount: Int = 20
         
-        static func Popular(subType: PopularPlaylistSubType, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+        static func Popular(subType: PopularPlaylistSubType, success: (playlist: PopularPlaylist)->(), failure: (error: NSError)->()) {
             HypeMachineAPI.Tracks.Popular(subType, page: 1, count: trackCount, success: {tracks in
                 let playlist = PopularPlaylist(tracks: tracks, subType: subType)
                 success(playlist: playlist)

@@ -14,12 +14,9 @@ class GenresViewController: NSViewController, NSTableViewDelegate, NSTableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        
-        if tableView {
-            tableView.setDelegate(self)
-            tableView.setDataSource(self)
-        }
+
+        tableView.setDelegate(self)
+        tableView.setDataSource(self)
     }
     
     func itemForRow(row: Int) -> GenresListItem {
