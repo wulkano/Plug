@@ -9,7 +9,7 @@
 import Cocoa
 
 class SidebarOverlayView: NSView {
-    let overlayColor = NSColor(red256: 48, green256: 53, blue256: 57)
+    let overlayColor = NSColor(red256: 91, green256: 91, blue256: 91)
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
@@ -23,7 +23,6 @@ class SidebarOverlayView: NSView {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSVisualEffectView
     }
     
     func initialSetup() {

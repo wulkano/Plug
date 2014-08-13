@@ -1343,13 +1343,23 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="64"/>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Avatar-Placeholder" id="FmF-VM-QMI"/>
                                                                 </imageView>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lVF-EP-cb3">
+                                                                    <rect key="frame" x="385" y="25" width="9" height="14"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="14" id="KCg-If-Nff"/>
+                                                                        <constraint firstAttribute="width" constant="9" id="pXx-aK-Pc6"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="List-Arrow" id="eSN-yQ-M6N"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="xvd-pS-7So" secondAttribute="trailing" constant="27" id="1Zu-tE-JNw"/>
                                                                 <constraint firstItem="rKX-D5-byy" firstAttribute="leading" secondItem="CO0-wB-bR7" secondAttribute="leading" constant="75" id="5kk-Ed-xWK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="lVF-EP-cb3" secondAttribute="trailing" constant="15" id="BY2-gx-Tdq"/>
                                                                 <constraint firstItem="xvd-pS-7So" firstAttribute="leading" secondItem="CO0-wB-bR7" secondAttribute="leading" constant="75" id="Psn-7J-m7X"/>
                                                                 <constraint firstAttribute="trailing" secondItem="rKX-D5-byy" secondAttribute="trailing" constant="27" id="akh-zC-Y63"/>
                                                                 <constraint firstAttribute="bottom" secondItem="xvd-pS-7So" secondAttribute="bottom" constant="14" id="bJU-wL-Kc8"/>
+                                                                <constraint firstAttribute="centerY" secondItem="lVF-EP-cb3" secondAttribute="centerY" id="n21-IS-1NM"/>
                                                                 <constraint firstItem="rKX-D5-byy" firstAttribute="top" secondItem="CO0-wB-bR7" secondAttribute="top" constant="9" id="teU-Xj-Zcr"/>
                                                             </constraints>
                                                         </tableCellView>
@@ -1686,17 +1696,27 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1N8-4b-BEM">
+                                                                    <rect key="frame" x="385" y="23" width="9" height="14"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="14" id="0Wl-YE-vL1"/>
+                                                                        <constraint firstAttribute="width" constant="9" id="WMT-Lw-iqr"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="List-Arrow" id="wlM-GQ-CT0"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="UAH-dv-bw8" firstAttribute="top" secondItem="1MS-JC-RR4" secondAttribute="top" constant="30" id="3gj-sH-zoZ"/>
                                                                 <constraint firstItem="UAH-dv-bw8" firstAttribute="leading" secondItem="V07-iE-Ftn" secondAttribute="trailing" constant="1" id="8kV-ob-c78"/>
                                                                 <constraint firstItem="UAH-dv-bw8" firstAttribute="leading" secondItem="V07-iE-Ftn" secondAttribute="trailing" constant="1" id="HDz-Fr-Uzu"/>
+                                                                <constraint firstAttribute="centerY" secondItem="1N8-4b-BEM" secondAttribute="centerY" id="NBV-HB-vJF"/>
                                                                 <constraint firstAttribute="trailing" secondItem="aH6-EF-KSn" secondAttribute="trailing" constant="53" id="ZGQ-Up-IgB"/>
                                                                 <constraint firstAttribute="trailing" secondItem="UAH-dv-bw8" secondAttribute="trailing" constant="53" id="fin-q6-VNZ"/>
                                                                 <constraint firstItem="V07-iE-Ftn" firstAttribute="top" secondItem="1MS-JC-RR4" secondAttribute="top" constant="30" id="nqw-cp-LQp"/>
                                                                 <constraint firstItem="V07-iE-Ftn" firstAttribute="leading" secondItem="1MS-JC-RR4" secondAttribute="leading" constant="21" id="pQk-xy-eYI"/>
                                                                 <constraint firstItem="aH6-EF-KSn" firstAttribute="top" secondItem="1MS-JC-RR4" secondAttribute="top" constant="9" id="pbD-bf-eON"/>
                                                                 <constraint firstItem="aH6-EF-KSn" firstAttribute="leading" secondItem="1MS-JC-RR4" secondAttribute="leading" constant="21" id="wH3-Tw-8Ag"/>
+                                                                <constraint firstAttribute="trailing" secondItem="1N8-4b-BEM" secondAttribute="trailing" constant="15" id="yhk-bG-r94"/>
                                                             </constraints>
                                                         </tableCellView>
                                                         <tableCellView identifier="SectionHeader" id="Dpd-Pz-k8J">
@@ -1862,11 +1882,21 @@
                                                                         <binding destination="Uhc-9h-ryt" name="value" keyPath="objectValue.name" id="F68-fs-VhX"/>
                                                                     </connections>
                                                                 </textField>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fye-6B-829">
+                                                                    <rect key="frame" x="385" y="17" width="9" height="14"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="9" id="ly5-TG-WM2"/>
+                                                                        <constraint firstAttribute="height" constant="14" id="qxV-YD-N7j"/>
+                                                                    </constraints>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="List-Arrow" id="3TW-8Y-29v"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="crE-do-0TI" secondAttribute="trailing" constant="3" id="0XY-gm-N5i"/>
+                                                                <constraint firstAttribute="trailing" secondItem="fye-6B-829" secondAttribute="trailing" constant="15" id="2rf-j9-RVR"/>
                                                                 <constraint firstItem="crE-do-0TI" firstAttribute="leading" secondItem="Uhc-9h-ryt" secondAttribute="leading" constant="22" id="CCy-Ky-07H"/>
                                                                 <constraint firstAttribute="centerY" secondItem="crE-do-0TI" secondAttribute="centerY" constant="1" id="PtI-m0-YOW"/>
+                                                                <constraint firstAttribute="centerY" secondItem="fye-6B-829" secondAttribute="centerY" id="ssk-eg-5uY"/>
                                                             </constraints>
                                                         </tableCellView>
                                                         <tableCellView identifier="SectionHeader" id="nrv-TY-PLW">
@@ -2148,6 +2178,7 @@
         <image name="Footer-Volume-2" width="16" height="13"/>
         <image name="Footer-Volume-3" width="16" height="15"/>
         <image name="Footer-Volume-Off" width="16" height="13"/>
+        <image name="List-Arrow" width="9" height="14"/>
         <image name="Nav-Blogs-Off" width="22" height="24"/>
         <image name="Nav-Blogs-On" width="22" height="24"/>
         <image name="Nav-Favorites-Off" width="24" height="21"/>
