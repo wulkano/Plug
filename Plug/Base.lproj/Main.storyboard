@@ -936,7 +936,6 @@
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="kY8-wE-2Y2" customClass="PlaylistTableView" customModule="Plug" customModuleProvider="target">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="h6P-g9-x8F">
@@ -1019,7 +1018,7 @@
                                                                 <outlet property="playPauseButton" destination="gIx-RP-bP5" id="Xaa-VF-1CR"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <customView identifier="PlaylistRowView" id="SzO-1e-42e" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
+                                                        <customView identifier="NSTableViewRowViewKey" id="SzO-1e-42e" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="64" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -1119,7 +1118,6 @@
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="3nT-4O-QfA">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="qu1-4z-7rE">
@@ -1196,7 +1194,7 @@
                                                                 <outlet property="playPauseButton" destination="C6f-jo-ErE" id="hXJ-1I-SUQ"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <customView identifier="PlaylistRowView" id="Upb-SS-iLg" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
+                                                        <customView identifier="NSTableViewRowViewKey" id="Upb-SS-iLg" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="64" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -1294,7 +1292,6 @@
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="8VV-gy-4I5">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="rPw-MW-6Ps">
@@ -1356,7 +1353,7 @@
                                                                 <constraint firstItem="rKX-D5-byy" firstAttribute="top" secondItem="CO0-wB-bR7" secondAttribute="top" constant="9" id="teU-Xj-Zcr"/>
                                                             </constraints>
                                                         </tableCellView>
-                                                        <customView identifier="IOSStyleTableRowView" id="ouh-58-vs8" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
+                                                        <customView identifier="NSTableViewRowViewKey" id="ouh-58-vs8" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="64" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -1421,7 +1418,6 @@
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="84" viewBased="YES" id="eiU-iy-OBO" customClass="PlaylistTableView" customModule="Plug" customModuleProvider="target">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="Yvf-dJ-iOn">
@@ -1535,7 +1531,7 @@
                                                                 <outlet property="playPauseButton" destination="Meg-9s-aqM" id="Kxh-xf-oOn"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <customView identifier="PlaylistRowView" id="xAW-am-Piq" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
+                                                        <customView identifier="NSTableViewRowViewKey" id="xAW-am-Piq" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="84" width="409" height="84"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -1635,7 +1631,6 @@
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="ozp-GG-kE1">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <tableColumns>
                                                 <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="mNC-2M-0gM">
@@ -1837,7 +1832,6 @@
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="6Se-cr-Bvs">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="AOP-HY-bGN">

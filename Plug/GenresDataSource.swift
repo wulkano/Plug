@@ -17,7 +17,7 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
     func loadInitialValues() {
         HypeMachineAPI.Genres.AllGenres(
             {genres in
-                self.tableContents = GenresListItem.WrapGenreObjects(genres)
+                self.generateTableContents(genres)
                 self.tableView?.reloadData()
             }, failure: {error in
                 AppError.logError(error)
@@ -41,6 +41,30 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
         if tableContents == nil { return 0 }
         
         return tableContents!.count
+    }
+    
+    func generateTableContents(genres: [Genre]) {
+        tableContents = [GenresListItem]()
+        
+        appendSectionHeader("The Basics")
+        var priorityGenres = genres.filter { $0.priority == true }
+        priorityGenres = priorityGenres.sorted { $0.name < $1.name }
+        appendGenres(priorityGenres)
+        
+        appendSectionHeader("Everything")
+        var sortedGenres = genres.sorted { $0.name < $1.name }
+        appendGenres(sortedGenres)
+    }
+    
+    func appendSectionHeader(title: String) {
+        let sectionHeader = SectionHeader(title: title)
+        let sectionHeaderItem = GenresListItem.SectionHeaderItem(sectionHeader)
+        tableContents!.append(sectionHeaderItem)
+    }
+    
+    func appendGenres(genres: [Genre]) {
+        let wrappedGenres = GenresListItem.WrapGenreObjects(genres)
+        tableContents! += wrappedGenres
     }
 }
 

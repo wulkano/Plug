@@ -19,16 +19,26 @@ class IOSStyleTableRowView: NSTableRowView {
     
     var separatorWidth: CGFloat = 1
     var nextRowIsGroupRow: Bool = false
-
-    // MARK: Separator
     
-    override func drawSeparatorInRect(dirtyRect: NSRect) {
+    override func drawRect(dirtyRect: NSRect) {
+        super.drawRect(dirtyRect)
         if shouldDrawSeparator() {
             let separatorRect = makeSeparatorRect(dirtyRect)
             customSeparatorColor.set()
             NSRectFill(separatorRect)
         }
     }
+
+    // MARK: Separator
+    // Had to disable default separator behavior, otherwise empty
+    // row views drew the incorrect default separator
+//    override func drawSeparatorInRect(dirtyRect: NSRect) {
+//        if shouldDrawSeparator() {
+//            let separatorRect = makeSeparatorRect(dirtyRect)
+//            customSeparatorColor.set()
+//            NSRectFill(separatorRect)
+//        }
+//    }
     
     func shouldDrawSeparator() -> Bool {
         if nextRowIsGroupRow { return true }

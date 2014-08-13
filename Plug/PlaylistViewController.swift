@@ -47,10 +47,6 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
         }
     }
     
-    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
-        return tableView.makeViewWithIdentifier("PlaylistRowView", owner: self) as IOSStyleTableRowView
-    }
-    
     func mouseOverTableViewRow(row: Int) {
         if let cellView = cellViewForRow(row) {
             cellView.mouseInside = true

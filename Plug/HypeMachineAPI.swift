@@ -124,7 +124,8 @@ struct HypeMachineAPI  {
     struct Blogs {
         static func AllBlogs(success: (blogs: [Blog])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/blogs"
-            HypeMachineAPI.GetJSON(url, parameters: nil,
+            let params = ["hm_token": HypeMachineAPI.hmToken()]
+            HypeMachineAPI.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
                     var blogs = [Blog]()
@@ -143,7 +144,8 @@ struct HypeMachineAPI  {
     struct Genres {
         static func AllGenres(success: (genres: [Genre])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tags"
-            HypeMachineAPI.GetJSON(url, parameters: nil,
+            let params = ["hm_token": HypeMachineAPI.hmToken()]
+            HypeMachineAPI.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
                     var genres = [Genre]()
@@ -162,7 +164,8 @@ struct HypeMachineAPI  {
     struct Friends {
         static func AllFriends(success: (friends: [Friend])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/users/" + HypeMachineAPI.username() + "/friends"
-            HypeMachineAPI.GetJSON(url, parameters: nil,
+            let params = ["hm_token": HypeMachineAPI.hmToken()]
+            HypeMachineAPI.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
                     var friends = [Friend]()

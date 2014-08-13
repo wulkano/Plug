@@ -7,26 +7,51 @@
 //
 
 import Cocoa
+import QuartzCore
 
 class LargeLoadingView: NSView {
     let spinnerImage = NSImage(named: "Loader-Large")
+    var spinnerView: NSImageView!
 
     override init(frame: NSRect) {
         super.init(frame: frame)
+        initialSetup()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
-    }
-
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
-
-        // Drawing code here.
-        var drawPoint = NSMakePoint(bounds.size.width / 2, bounds.size.height / 2)
-        drawPoint.x -= spinnerImage.size.width / 2
-        drawPoint.y -= spinnerImage.size.height / 2
-        spinnerImage.drawAtPoint(drawPoint, fromRect: dirtyRect, operation: NSCompositingOperation.CompositeSourceOver, fraction: 1)
+        initialSetup()
     }
     
+    func initialSetup() {
+        var spinnerFrame = NSZeroRect
+        spinnerFrame.size = spinnerImage.size
+        spinnerView = NSImageView(frame: spinnerFrame)
+        spinnerView.wantsLayer = true
+        spinnerView.image = spinnerImage
+        spinnerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(spinnerView)
+        addConstraintsToSpinnerView()
+    }
+    
+    func addConstraintsToSpinnerView() {
+        addConstraint(NSLayoutConstraint(item: spinnerView, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: spinnerView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: -23)) // -23 makes up for the 47px footer overlap
+        
+        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("[view(\(spinnerImage.size.width))]", options: nil, metrics: nil, views: ["view": spinnerView])
+        spinnerView.addConstraints(constraints)
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(spinnerImage.size.height))]", options: nil, metrics: nil, views: ["view": spinnerView])
+        spinnerView.addConstraints(constraints)
+    }
+    
+    func startAnimation() {
+        // TODO: This shit don't work, rotates around wrong axis
+        // Can't change anchorPoint, why???
+//        let rotation = CABasicAnimation(keyPath: "transform.rotation")
+//        rotation.fromValue = NSNumber(double: 0)
+//        rotation.toValue = NSNumber(double: -2 * M_PI)
+//        rotation.duration = 1.1 // Speed
+//        rotation.repeatCount = 1 // Float.infinity // Repeat forever. Can be a finite number.
+//        spinnerView.layer!.addAnimation(rotation, forKey: "spin")
+    }
 }

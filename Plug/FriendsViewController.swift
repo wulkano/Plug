@@ -21,10 +21,6 @@ class FriendsViewController: NSViewController, NSTableViewDelegate {
         }
     }
     
-    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
-        return tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as IOSStyleTableRowView
-    }
-    
     func setDataSource(dataSource: FriendsDataSource) {
         self.dataSource = dataSource
         self.dataSource!.tableView = tableView
