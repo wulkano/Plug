@@ -13,6 +13,7 @@ class Genre: NSObject {
     var priority: Bool = false
     
     init(JSON json: NSDictionary) {
+    // TODO: Capitalization
         name = json["tag_name"] as String
         
         if json["priority"] is Bool {

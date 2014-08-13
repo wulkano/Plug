@@ -1,5 +1,5 @@
 //
-//  PopularPlaylistDataSource.swift
+//  FavoritesPlaylistDataSource.swift
 //  Plug
 //
 //  Created by Alex Marchant on 8/12/14.
@@ -8,43 +8,35 @@
 
 import Cocoa
 
-class PopularPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSource {
+class FavoritesPlaylistDataSource: NSObject, PlaylistDataSource {
     var tableView: NSTableView?
-    var playlist: PopularPlaylist?
-    var playlistSubType: PopularPlaylistSubType
+    var playlist: Playlist?
     var currentPage: Int = 1
     
-    init(playlistSubType: PopularPlaylistSubType) {
-        self.playlistSubType = playlistSubType
-        super.init()
-    }
-    
     func loadInitialValues() {
-        HypeMachineAPI.Playlists.Popular(playlistSubType,
-            success: {playlist in
+        HypeMachineAPI.Playlists.Favorites(
+            {playlist in
                 self.playlist = playlist
                 self.tableView?.reloadData()
-            }, failure: {error in
-                AppError.logError(error)
-        })
-    }
-    
-    // TODO: find a way to mark the end of a playlist and prevent further calls
-    // here
-    func loadNextPage() {
-        HypeMachineAPI.Tracks.Popular(playlistSubType, page: currentPage + 1, count: 20, success: {tracks in
-                self.playlist!.tracks += tracks
-                self.tableView?.reloadData()
-                self.currentPage++
             }, failure: {error in
                 AppError.logError(error)
             })
     }
     
+    // TODO: find a way to mark the end of a playlist and prevent further calls
+    // here
+    func loadNextPage() {
+        HypeMachineAPI.Tracks.Latest(currentPage + 1, count: 20,
+            success: {tracks in
+                self.playlist!.tracks += tracks
+                self.tableView?.reloadData()
+                self.currentPage++
+            }, failure: {error in
+                AppError.logError(error)
+        })
+    }
+    
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        if playlist == nil { return nil }
-//        if playlist!.tracks.count <= row { return nil }
-        
         return playlist!.tracks[row]
     }
     

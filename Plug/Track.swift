@@ -20,6 +20,7 @@ class Track: NSObject {
     var formattedLovedCount: String = "0"
     var rank: Int?
     var playlist: Playlist?
+    var lovedBy: String?
     
     init(JSON json: NSDictionary) {
         super.init()
@@ -39,6 +40,9 @@ class Track: NSObject {
         }
         if json["rank"] is Int {
             rank = (json["rank"] as Int)
+        }
+        if json["via_user"] is String {
+            lovedBy = (json["via_user"] as String)
         }
     }
     

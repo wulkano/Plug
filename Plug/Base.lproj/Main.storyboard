@@ -1324,6 +1324,9 @@
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="CO0-wB-bR7" name="value" keyPath="objectValue.fullName" id="Spv-gj-oBa"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xvd-pS-7So">
                                                                     <rect key="frame" x="73" y="14" width="311" height="20"/>
@@ -1335,6 +1338,9 @@
                                                                         <color key="textColor" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="CO0-wB-bR7" name="value" keyPath="objectValue.username" id="IaQ-7Q-jpl"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daH-Ku-Kdh">
                                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="64"/>
@@ -1484,9 +1490,9 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IyW-gF-PZN">
-                                                                    <rect key="frame" x="73" y="14" width="67" height="20"/>
+                                                                    <rect key="frame" x="73" y="14" width="56" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="63" id="8VQ-HY-GdV"/>
+                                                                        <constraint firstAttribute="width" constant="52" id="8VQ-HY-GdV"/>
                                                                         <constraint firstAttribute="height" constant="20" id="lsq-zo-VN6"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Loved by" id="dEq-Dy-1IY">
@@ -1495,6 +1501,20 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eES-Kc-LTh">
+                                                                    <rect key="frame" x="128" y="14" width="256" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="maQ-aE-9hY"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="oTX-EA-kou">
+                                                                        <font key="font" size="12" name="HelveticaNeue-Medium"/>
+                                                                        <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.lovedBy" id="0Lu-ib-b6P"/>
+                                                                    </connections>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="0RZ-Qz-QTS"/>
@@ -1502,11 +1522,14 @@
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="2pm-ig-2KO"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="9CZ-ks-OaY"/>
                                                                 <constraint firstAttribute="trailing" secondItem="TAa-Ad-Ah4" secondAttribute="trailing" constant="27" id="Rvg-oE-A6b"/>
+                                                                <constraint firstItem="eES-Kc-LTh" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="SgG-fu-2TH"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Hqe-6A-CaO" secondAttribute="trailing" constant="27" id="XHG-Z8-y3y"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="top" secondItem="TAa-Ad-Ah4" secondAttribute="bottom" constant="1" id="c4Y-u4-fxv"/>
                                                                 <constraint firstItem="Meg-9s-aqM" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="19" id="gpB-Lb-9s4"/>
+                                                                <constraint firstAttribute="trailing" secondItem="eES-Kc-LTh" secondAttribute="trailing" constant="27" id="iMq-hx-gzX"/>
                                                                 <constraint firstItem="TAa-Ad-Ah4" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" constant="9" id="lJT-q3-b3g"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Meg-9s-aqM" secondAttribute="centerY" id="mig-Xb-PJw"/>
+                                                                <constraint firstItem="eES-Kc-LTh" firstAttribute="leading" secondItem="IyW-gF-PZN" secondAttribute="trailing" constant="3" id="vrc-aj-mMg"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="playPauseButton" destination="Meg-9s-aqM" id="Kxh-xf-oOn"/>
@@ -1524,9 +1547,6 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
-                                            <connections>
-                                                <binding destination="gGO-bu-pEf" name="content" keyPath="playlist.tracks" id="DrL-q0-pfT"/>
-                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1645,6 +1665,9 @@
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="1MS-JC-RR4" name="value" keyPath="objectValue.name" id="4lI-my-Hrl"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V07-iE-Ftn">
                                                                     <rect key="frame" x="19" y="10" width="54" height="20"/>
@@ -1841,6 +1864,9 @@
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="Uhc-9h-ryt" name="value" keyPath="objectValue.name" id="F68-fs-VhX"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>

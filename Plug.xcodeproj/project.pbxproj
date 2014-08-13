@@ -48,6 +48,12 @@
 		FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4976198ABD3300A38B27 /* GroupRowView.swift */; };
 		FA9EA036199AC08600D9AB8A /* PlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */; };
 		FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */; };
+		FA9EA03A199AD25800D9AB8A /* LatestPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */; };
+		FA9EA03C199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03B199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift */; };
+		FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */; };
+		FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03F199AFC4100D9AB8A /* FeedPlaylistDataSource.swift */; };
+		FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA041199B08E100D9AB8A /* GenresDataSource.swift */; };
+		FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
 		FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */; };
 		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
@@ -136,6 +142,12 @@
 		FA7C4976198ABD3300A38B27 /* GroupRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRowView.swift; sourceTree = "<group>"; };
 		FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPlaylistDataSource.swift; sourceTree = "<group>"; };
+		FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPlaylistDataSource.swift; sourceTree = "<group>"; };
+		FA9EA03B199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPlaylistDataSource.swift; sourceTree = "<group>"; };
+		FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryDataSource.swift; sourceTree = "<group>"; };
+		FA9EA03F199AFC4100D9AB8A /* FeedPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPlaylistDataSource.swift; sourceTree = "<group>"; };
+		FA9EA041199B08E100D9AB8A /* GenresDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresDataSource.swift; sourceTree = "<group>"; };
+		FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDataSource.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableView.swift; sourceTree = "<group>"; };
 		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
@@ -193,8 +205,6 @@
 				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
 				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
-				FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */,
-				FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +262,7 @@
 				FA64C6A119764DAE003933E3 /* Models */,
 				FA0B1CF31976D8420030C873 /* Views */,
 				FA0B1CF21976D8320030C873 /* Controllers */,
+				FA9EA043199B0D1500D9AB8A /* Data Sources */,
 				FA24EDA91974A9A500A781C8 /* Main.storyboard */,
 				FA24EDA71974A9A500A781C8 /* Images.xcassets */,
 				FA51263419761424004D0776 /* Extensions */,
@@ -327,6 +338,21 @@
 				FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */,
 			);
 			name = Playlists;
+			sourceTree = "<group>";
+		};
+		FA9EA043199B0D1500D9AB8A /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */,
+				FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */,
+				FA9EA03B199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift */,
+				FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */,
+				FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */,
+				FA9EA03F199AFC4100D9AB8A /* FeedPlaylistDataSource.swift */,
+				FA9EA041199B08E100D9AB8A /* GenresDataSource.swift */,
+				FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */,
+			);
+			name = "Data Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,16 +506,21 @@
 				FA7749A4198C1EBD0048863F /* Friend.swift in Sources */,
 				FA0B1D321977187E0030C873 /* LatestPlaylist.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
+				FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */,
 				FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */,
+				FA9EA03C199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift in Sources */,
+				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
 				FA7C4975198ABAF200A38B27 /* BlogTableRowView.swift in Sources */,
 				FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */,
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextView.swift in Sources */,
+				FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
 				FA51263819762F66004D0776 /* NavigationButton.swift in Sources */,
 				FA3199AF19824E030097B081 /* Blog.swift in Sources */,
+				FA9EA03A199AD25800D9AB8A /* LatestPlaylistDataSource.swift in Sources */,
 				FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */,
 				FA77499A198C07110048863F /* GenresViewController.swift in Sources */,
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
@@ -513,6 +544,7 @@
 				FADC96F41974CCFA009458FA /* MainWindow.swift in Sources */,
 				FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */,
 				FA0B1D2E1977109E0030C873 /* Playlist.swift in Sources */,
+				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
 				FAA51A5B1980D4FC0057EC34 /* AppError.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* PlaylistViewController.swift in Sources */,
 				FADC96F21974CA0D009458FA /* PlaylistTableCellView.swift in Sources */,
@@ -648,6 +680,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Plug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plug/Plug-Bridging-Header.h";
@@ -665,6 +698,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Plug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plug/Plug-Bridging-Header.h";

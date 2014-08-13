@@ -9,6 +9,16 @@
 import Cocoa
 
 class Friend: NSObject {
-    var username: String = "username"
-    var fullName: String = "Full Name"
+    var username: String
+    var fullName: String
+    
+    init(JSON json: NSDictionary) {
+        username = json["username"] as String
+        if json["fullname"] is String {
+            fullName = json["fullname"] as String
+        } else {
+            fullName = username
+        }
+        super.init()
+    }
 }

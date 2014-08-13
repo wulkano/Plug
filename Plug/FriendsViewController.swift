@@ -8,26 +8,26 @@
 
 import Cocoa
 
-class FriendsViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class FriendsViewController: NSViewController, NSTableViewDelegate {
     @IBOutlet var tableView: NSTableView!
-    var tableContents = [Friend]()
+    var dataSource: FriendsDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.setDelegate(self)
-        tableView.setDataSource(self)
+        if dataSource != nil {
+            tableView.setDataSource(dataSource)
+            dataSource!.tableView = tableView
+        }
     }
     
     func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
         return tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as IOSStyleTableRowView
     }
     
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        return tableContents[row]
-    }
-    
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        return tableContents.count
+    func setDataSource(dataSource: FriendsDataSource) {
+        self.dataSource = dataSource
+        self.dataSource!.tableView = tableView
+        self.dataSource!.loadInitialValues()
     }
 }

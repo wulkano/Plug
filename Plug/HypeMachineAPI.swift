@@ -21,10 +21,15 @@ struct HypeMachineAPI  {
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
+
+    static func username() -> String {
+//        let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
+        return "alex_marchant"
+    }
     
     static func hmToken() -> String {
 //        TODO fix this
-//        let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
+//        let username = username()
 //        return SSKeychain.passwordForService("Plug", account: username!)
         return "d7ee8670b0d5d73f29f0733bdf065819"
     }
@@ -101,7 +106,7 @@ struct HypeMachineAPI  {
             }, failure: failure)
         }
         
-        static func Feed(subType: FeedPlaylistSubType, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+        static func Feed(subType: FeedPlaylistSubType, success: (playlist: FeedPlaylist)->(), failure: (error: NSError)->()) {
             HypeMachineAPI.Tracks.Feed(subType, page: 1, count: trackCount, success: {tracks in
                 let playlist = FeedPlaylist(tracks: tracks, subType: subType)
                 success(playlist: playlist)
@@ -113,6 +118,63 @@ struct HypeMachineAPI  {
                 let playlist = SearchPlaylist(tracks: tracks, subType: subType, searchKeywords: searchKeywords)
                 success(playlist: playlist)
             }, failure: failure)
+        }
+    }
+    
+    struct Blogs {
+        static func AllBlogs(success: (blogs: [Blog])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/blogs"
+            HypeMachineAPI.GetJSON(url, parameters: nil,
+                success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                    let responseArray = responseObject as NSArray
+                    var blogs = [Blog]()
+                    for blogObject: AnyObject in responseArray {
+                        let blogDictionary = blogObject as NSDictionary
+                        blogs.append(Blog(JSON: blogDictionary))
+                    }
+                    success(blogs: blogs)
+                }, failure: {
+                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
+        }
+    }
+    
+    struct Genres {
+        static func AllGenres(success: (genres: [Genre])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/tags"
+            HypeMachineAPI.GetJSON(url, parameters: nil,
+                success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                    let responseArray = responseObject as NSArray
+                    var genres = [Genre]()
+                    for genreObject: AnyObject in responseArray {
+                        let genreDictionary = genreObject as NSDictionary
+                        genres.append(Genre(JSON: genreDictionary))
+                    }
+                    success(genres: genres)
+                }, failure: {
+                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
+        }
+    }
+
+    struct Friends {
+        static func AllFriends(success: (friends: [Friend])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/users/" + HypeMachineAPI.username() + "/friends"
+            HypeMachineAPI.GetJSON(url, parameters: nil,
+                success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                    let responseArray = responseObject as NSArray
+                    var friends = [Friend]()
+                    for friendObject: AnyObject in responseArray {
+                        let friendDictionary = friendObject as NSDictionary
+                        friends.append(Friend(JSON: friendDictionary))
+                    }
+                    success(friends: friends)
+                }, failure: {
+                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
         }
     }
     

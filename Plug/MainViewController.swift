@@ -69,87 +69,44 @@ class MainViewController: NSViewController {
         switch section {
         case .Popular:
             popularViewController = (ensureViewController(popularViewController, identifier: "PlaylistViewController") as PlaylistViewController)
-            if popularViewController!.playlist == nil {
-                setTableContentsForSection(section)
-//                self.popularViewController!.playlist = Playlist.mockPlaylist(20)
+            if popularViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: popularViewController!)
             }
             return popularViewController!
         case .Favorites:
             favoritesViewController = (ensureViewController(favoritesViewController, identifier: "PlaylistViewController") as PlaylistViewController)
-            if favoritesViewController!.playlist == nil {
-                self.favoritesViewController!.playlist = Playlist.mockPlaylist(20)
+            if favoritesViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: favoritesViewController!)
             }
             return favoritesViewController!
         case .Latest:
             latestViewController = (ensureViewController(latestViewController, identifier: "PlaylistViewController") as PlaylistViewController)
-            if latestViewController!.playlist == nil {
-                self.latestViewController!.playlist = Playlist.mockPlaylist(20)
+            if latestViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: latestViewController!)
             }
             return latestViewController!
         case .Blogs:
             blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as BlogDirectoryViewController)
-            if blogDirectoryViewController!.tableContents.count == 0 {
-                var blogStuff = [BlogDirectoryItem]()
-                blogStuff.append(BlogDirectoryItem.SectionHeaderItem(SectionHeader(title: "Following")))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.SectionHeaderItem(SectionHeader(title: "Featured")))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogStuff.append(BlogDirectoryItem.BlogItem(Blog()))
-                blogDirectoryViewController!.tableContents = blogStuff
+            if blogDirectoryViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: blogDirectoryViewController!)
             }
             return blogDirectoryViewController!
         case .Feed:
             feedViewController = (ensureViewController(feedViewController, identifier: "FeedViewController") as PlaylistViewController)
-            if feedViewController!.playlist == nil {
-                self.feedViewController!.playlist = Playlist.mockPlaylist(20)
+            if feedViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: feedViewController!)
             }
             return feedViewController!
         case .Genres:
             genresViewController = (ensureViewController(genresViewController, identifier: "GenresViewController") as GenresViewController)
-            if self.genresViewController!.tableContents.count == 0 {
-                var genresStuff = [GenresListItem]()
-                genresStuff.append(GenresListItem.SectionHeaderItem(SectionHeader(title: "The Basics")))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.SectionHeaderItem(SectionHeader(title: "Everything")))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresStuff.append(GenresListItem.GenreItem(Genre(JSON: ["tag_name": "Genre Name"])))
-                genresViewController!.tableContents = genresStuff
+            if genresViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: genresViewController!)
             }
             return genresViewController!
         case .Friends:
             friendsViewController = (ensureViewController(friendsViewController, identifier: "FriendsViewController") as FriendsViewController)
-            if self.friendsViewController!.tableContents.count == 0 {
-                var friends = [Friend]()
-                friends.append(Friend())
-                friends.append(Friend())
-                friends.append(Friend())
-                friends.append(Friend())
-                friends.append(Friend())
-                friends.append(Friend())
-                friends.append(Friend())
-                friendsViewController!.tableContents = friends
+            if self.friendsViewController!.dataSource == nil {
+                setDataSourceForSection(section, viewController: friendsViewController!)
             }
             return friendsViewController!
         case .Search:
@@ -191,9 +148,30 @@ class MainViewController: NSViewController {
         }
     }
     
-    func setTableContentsForSection(section: NavigationSection) {
+    func setDataSourceForSection(section: NavigationSection, viewController: NSViewController) {
         switch section {
-        case .Popular, .Favorites, .Latest, .Blogs, .Feed, .Genres, .Friends, .Search:
+        case .Popular:
+            let dataSource = PopularPlaylistDataSource(playlistSubType: .Now)
+            (viewController as PlaylistViewController).setDataSource(dataSource)
+        case .Favorites:
+            let dataSource = FavoritesPlaylistDataSource()
+            (viewController as PlaylistViewController).setDataSource(dataSource)
+        case .Latest:
+            let dataSource = LatestPlaylistDataSource()
+            (viewController as PlaylistViewController).setDataSource(dataSource)
+        case .Blogs:
+            let dataSource = BlogDirectoryDataSource()
+            (viewController as BlogDirectoryViewController).setDataSource(dataSource)
+        case .Feed:
+            let dataSource = FeedPlaylistDataSource(playlistSubType: .All)
+            (viewController as PlaylistViewController).setDataSource(dataSource)
+        case .Genres:
+            let dataSource = GenresDataSource()
+            (viewController as GenresViewController).setDataSource(dataSource)
+        case .Friends:
+            let dataSource = FriendsDataSource()
+            (viewController as FriendsViewController).setDataSource(dataSource)
+        case .Search:
             "asdf"
         }
     }

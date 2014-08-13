@@ -8,23 +8,31 @@
 
 import Cocoa
 
-class GenresViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class GenresViewController: NSViewController, NSTableViewDelegate {
     @IBOutlet var tableView: NSTableView!
-    var tableContents = [GenresListItem]()
+    var dataSource: GenresDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.setDelegate(self)
-        tableView.setDataSource(self)
+        if dataSource != nil {
+            tableView.setDataSource(dataSource)
+            dataSource!.tableView = tableView
+        }
+    }
+    
+    func setDataSource(dataSource: GenresDataSource) {
+        self.dataSource = dataSource
+        self.dataSource!.tableView = tableView
+        self.dataSource!.loadInitialValues()
     }
     
     func itemForRow(row: Int) -> GenresListItem {
-        return tableContents[row]
+        return dataSource!.tableContents![row]
     }
     
     func itemAfterRow(row: Int) -> GenresListItem? {
-        if tableContents.count - 1 > row {
+        if dataSource!.tableContents!.count - 1 > row {
             return itemForRow(row + 1)
         } else {
             return nil
@@ -79,23 +87,12 @@ class GenresViewController: NSViewController, NSTableViewDelegate, NSTableViewDa
         }
     }
 
-    
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
+    func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
         switch itemForRow(row) {
-        case .SectionHeaderItem(let sectionHeader):
-            return sectionHeader
-        case .GenreItem(let genre):
-            return genre
+        case .SectionHeaderItem:
+            return false
+        case .GenreItem:
+            return true
         }
     }
-    
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        return tableContents.count
-    }
-    
-}
-
-enum GenresListItem {
-    case SectionHeaderItem(SectionHeader)
-    case GenreItem(Genre)
 }

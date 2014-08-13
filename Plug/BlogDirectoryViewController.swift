@@ -8,22 +8,31 @@
 
 import Cocoa
 
-class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class BlogDirectoryViewController: NSViewController, NSTableViewDelegate {
     @IBOutlet var tableView: NSTableView!
-    var tableContents = [BlogDirectoryItem]()
+    var dataSource: BlogDirectoryDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.setDelegate(self)
-        tableView.setDataSource(self)
+        if dataSource != nil {
+            tableView.setDataSource(dataSource)
+            dataSource!.tableView = tableView
+        }
+    }
+    
+    func setDataSource(dataSource: BlogDirectoryDataSource) {
+        self.dataSource = dataSource
+        self.dataSource!.tableView = tableView
+        self.dataSource!.loadInitialValues()
     }
     
     func itemForRow(row: Int) -> BlogDirectoryItem {
-        return tableContents[row]
+        return dataSource!.tableContents![row]
     }
     
     func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        if tableContents.count - 1 > row {
+        if dataSource!.tableContents!.count - 1 > row {
             return itemForRow(row + 1)
         } else {
             return nil
@@ -78,30 +87,12 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, NSTabl
         }
     }
     
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        switch itemForRow(row) {
-        case .SectionHeaderItem(let sectionHeader):
-            return sectionHeader
-        case .BlogItem(let blog):
-            return blog
-        }
-    }
-    
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        return tableContents.count
-    }
-    
     func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
         switch itemForRow(row) {
-        case .SectionHeaderItem(let sectionHeader):
+        case .SectionHeaderItem:
             return false
-        case .BlogItem(let blog):
+        case .BlogItem:
             return true
         }
     }
-}
-
-enum BlogDirectoryItem {
-    case SectionHeaderItem(SectionHeader)
-    case BlogItem(Blog)
 }
