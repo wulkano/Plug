@@ -744,7 +744,7 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CIT-JU-akt">
                                 <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NpH-p0-wzL">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NpH-p0-wzL" customClass="SidebarOverlayView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                         <subviews>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="ufc-4v-Z8I" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
