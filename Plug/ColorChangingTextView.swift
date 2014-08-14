@@ -9,6 +9,11 @@
 import Cocoa
 
 class ColorChangingTextField: NSTextField {
+    override var objectValue: AnyObject! {
+        didSet {
+            setColorForStringValue()
+        }
+    }
     
     func setColorForStringValue() {
         let numberValue = numberValueForStringValue()
@@ -34,7 +39,6 @@ class ColorChangingTextField: NSTextField {
             let numberValue = numberFormatter.numberFromString(stringValue).integerValue
             return numberValue * 1000
         } else {
-//            return stringValue.bridgeToObjectiveC().integerValue
             return stringValue.toInt()!
         }
     }
@@ -46,8 +50,5 @@ class ColorChangingTextField: NSTextField {
         let lightBlueColor = NSColor(red256: 158, green256: 236, blue256: 255)
         return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))
     }
-    
-    override func viewDidMoveToWindow()  {
-        setColorForStringValue()
-    }
+
 }

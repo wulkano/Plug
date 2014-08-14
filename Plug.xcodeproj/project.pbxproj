@@ -198,15 +198,15 @@
 		FA0B1CF21976D8320030C873 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
+				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
+				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
+				FA774999198C07110048863F /* GenresViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
+				FA24EDC21974ACAA00A781C8 /* PlaylistViewController.swift */,
+				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
 				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
-				FA24EDC21974ACAA00A781C8 /* PlaylistViewController.swift */,
-				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
-				FA774999198C07110048863F /* GenresViewController.swift */,
-				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
-				FA77499D198C0D180048863F /* SearchViewController.swift */,
-				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

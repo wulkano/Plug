@@ -955,6 +955,21 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bwg-PO-WDa" customClass="ColorChangingTextField" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="-2" y="19" width="76" height="26"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="26" id="bM0-6r-Z4U"/>
+                                                                        <constraint firstAttribute="width" constant="72" id="iay-NI-ski"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="8k" id="NIX-qt-SX3">
+                                                                        <font key="font" size="22" name="HelveticaNeue-Medium"/>
+                                                                        <color key="textColor" red="0.80000000000000004" green="0.38823529411764707" blue="0.67843137254901964" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="LM0-KM-ycg" name="value" keyPath="objectValue.formattedLovedCount" id="d8o-xA-GiZ"/>
+                                                                    </connections>
+                                                                </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIx-RP-bP5" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="19" y="15" width="34" height="34"/>
                                                                     <constraints>
@@ -1011,6 +1026,8 @@
                                                                 <constraint firstAttribute="centerY" secondItem="gIx-RP-bP5" secondAttribute="centerY" id="Vak-tj-y7a"/>
                                                                 <constraint firstAttribute="bottom" secondItem="zwc-io-DXv" secondAttribute="bottom" constant="14" id="YFh-gb-B2x"/>
                                                                 <constraint firstAttribute="trailing" secondItem="j3g-ap-NsF" secondAttribute="trailing" constant="27" id="bSC-iY-MOW"/>
+                                                                <constraint firstItem="Bwg-PO-WDa" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" id="egg-T8-Zs5"/>
+                                                                <constraint firstAttribute="centerY" secondItem="Bwg-PO-WDa" secondAttribute="centerY" id="hWx-gj-X9p"/>
                                                                 <constraint firstItem="j3g-ap-NsF" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" constant="9" id="rMu-23-7cl"/>
                                                                 <constraint firstItem="j3g-ap-NsF" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="75" id="xfS-oC-EPk"/>
                                                             </constraints>

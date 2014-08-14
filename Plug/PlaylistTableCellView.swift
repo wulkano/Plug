@@ -96,7 +96,6 @@ class PlaylistTableCellView: NSTableCellView {
         }
     }
     
-    
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
         switch playState {
         case .Playing:
