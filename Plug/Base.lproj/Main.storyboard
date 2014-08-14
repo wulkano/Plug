@@ -991,7 +991,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-ap-NsF">
-                                                                    <rect key="frame" x="73" y="35" width="250" height="20"/>
+                                                                    <rect key="frame" x="73" y="35" width="230" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="3gL-eE-YWy"/>
                                                                     </constraints>
@@ -1005,7 +1005,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zwc-io-DXv">
-                                                                    <rect key="frame" x="73" y="14" width="250" height="20"/>
+                                                                    <rect key="frame" x="73" y="14" width="230" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="0kz-90-u03"/>
                                                                     </constraints>
@@ -1019,10 +1019,10 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mzN-mr-IZY" userLabel="HoverContainer">
-                                                                    <rect key="frame" x="329" y="0.0" width="80" height="64"/>
+                                                                    <rect key="frame" x="321" y="0.0" width="88" height="64"/>
                                                                     <subviews>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="0JR-9T-ooY" userLabel="Fav" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
-                                                                            <rect key="frame" x="42" y="23" width="18" height="18"/>
+                                                                            <rect key="frame" x="50" y="23" width="18" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="18" id="EGQ-Oy-5E3"/>
                                                                                 <constraint firstAttribute="width" constant="18" id="ije-98-upi"/>
@@ -1034,7 +1034,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </customView>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Cs6-kp-n7R" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
-                                                                            <rect key="frame" x="12" y="23" width="18" height="18"/>
+                                                                            <rect key="frame" x="20" y="23" width="18" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="18" id="DHw-cO-gZe"/>
                                                                                 <constraint firstAttribute="width" constant="18" id="RWy-kP-7zD"/>
@@ -1047,7 +1047,7 @@
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstItem="0JR-9T-ooY" firstAttribute="leading" secondItem="Cs6-kp-n7R" secondAttribute="trailing" constant="12" id="3mK-LU-h0O"/>
-                                                                        <constraint firstAttribute="width" constant="80" id="5Gp-kf-ETf"/>
+                                                                        <constraint firstAttribute="width" constant="88" id="5Gp-kf-ETf"/>
                                                                         <constraint firstAttribute="centerY" secondItem="Cs6-kp-n7R" secondAttribute="centerY" id="RGz-AW-clR"/>
                                                                         <constraint firstAttribute="trailing" secondItem="0JR-9T-ooY" secondAttribute="trailing" constant="20" id="e8C-CS-Fat"/>
                                                                         <constraint firstAttribute="centerY" secondItem="0JR-9T-ooY" secondAttribute="centerY" id="oqi-i5-Yde"/>
@@ -1056,10 +1056,10 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="gIx-RP-bP5" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="19" id="7Gp-HI-lfB"/>
-                                                                <constraint firstItem="mzN-mr-IZY" firstAttribute="leading" secondItem="j3g-ap-NsF" secondAttribute="trailing" constant="8" id="7Jk-it-00z"/>
+                                                                <constraint firstItem="mzN-mr-IZY" firstAttribute="leading" secondItem="j3g-ap-NsF" secondAttribute="trailing" constant="20" id="7Jk-it-00z"/>
                                                                 <constraint firstAttribute="bottom" secondItem="mzN-mr-IZY" secondAttribute="bottom" id="8Oi-Og-65g"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mzN-mr-IZY" secondAttribute="trailing" id="EgW-u3-Ls6"/>
-                                                                <constraint firstItem="mzN-mr-IZY" firstAttribute="leading" secondItem="zwc-io-DXv" secondAttribute="trailing" constant="8" id="Jet-uq-rJz"/>
+                                                                <constraint firstItem="mzN-mr-IZY" firstAttribute="leading" secondItem="zwc-io-DXv" secondAttribute="trailing" constant="20" id="Jet-uq-rJz"/>
                                                                 <constraint firstItem="zwc-io-DXv" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="75" id="Uxn-Cr-4dM"/>
                                                                 <constraint firstAttribute="centerY" secondItem="gIx-RP-bP5" secondAttribute="centerY" id="Vak-tj-y7a"/>
                                                                 <constraint firstAttribute="bottom" secondItem="zwc-io-DXv" secondAttribute="bottom" constant="14" id="YFh-gb-B2x"/>
@@ -1070,8 +1070,10 @@
                                                                 <constraint firstItem="j3g-ap-NsF" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="75" id="xfS-oC-EPk"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="artistTrailingConstraint" destination="Jet-uq-rJz" id="VSq-Fn-BtM"/>
                                                                 <outlet property="hoverSectionWidthConstraint" destination="5Gp-kf-ETf" id="V7u-4E-76Q"/>
                                                                 <outlet property="playPauseButton" destination="gIx-RP-bP5" id="Xaa-VF-1CR"/>
+                                                                <outlet property="trackTrailingConstraint" destination="7Jk-it-00z" id="5Yh-sb-BD7"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="SzO-1e-42e" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
@@ -1539,7 +1541,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TAa-Ad-Ah4">
-                                                                    <rect key="frame" x="73" y="55" width="311" height="20"/>
+                                                                    <rect key="frame" x="73" y="55" width="230" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="AvL-SG-x4Z"/>
                                                                     </constraints>
@@ -1553,7 +1555,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hqe-6A-CaO">
-                                                                    <rect key="frame" x="73" y="34" width="311" height="20"/>
+                                                                    <rect key="frame" x="73" y="34" width="230" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="UQ3-on-ClS"/>
                                                                     </constraints>
@@ -1592,6 +1594,41 @@
                                                                         <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.lovedBy" id="0Lu-ib-b6P"/>
                                                                     </connections>
                                                                 </textField>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="r3j-eX-svu" userLabel="HoverContainer">
+                                                                    <rect key="frame" x="321" y="0.0" width="88" height="84"/>
+                                                                    <subviews>
+                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Jl-fA-e25" userLabel="Fav" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                            <rect key="frame" x="50" y="33" width="18" height="18"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="18" id="0dI-0c-rZH"/>
+                                                                                <constraint firstAttribute="width" constant="18" id="iFI-PH-Me6"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Track-Loved-On"/>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Loved-Off"/>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </customView>
+                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="qbO-ky-dVd" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                            <rect key="frame" x="20" y="33" width="18" height="18"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="18" id="JcH-0o-hrN"/>
+                                                                                <constraint firstAttribute="height" constant="18" id="dXg-Ak-PLj"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Info"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </customView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="centerY" secondItem="qbO-ky-dVd" secondAttribute="centerY" id="90l-jC-aWv"/>
+                                                                        <constraint firstAttribute="width" constant="88" id="AWU-VZ-Q3b"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="0Jl-fA-e25" secondAttribute="trailing" constant="20" id="AxI-d1-uUZ"/>
+                                                                        <constraint firstAttribute="centerY" secondItem="0Jl-fA-e25" secondAttribute="centerY" id="N5B-FV-XtF"/>
+                                                                        <constraint firstItem="0Jl-fA-e25" firstAttribute="leading" secondItem="qbO-ky-dVd" secondAttribute="trailing" constant="12" id="nEf-Rx-aeN"/>
+                                                                    </constraints>
+                                                                </customView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="0RZ-Qz-QTS"/>
@@ -1599,19 +1636,25 @@
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="2pm-ig-2KO"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="9CZ-ks-OaY"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Y1u-Jd-vHb" secondAttribute="centerY" id="9FL-GL-THh"/>
-                                                                <constraint firstAttribute="trailing" secondItem="TAa-Ad-Ah4" secondAttribute="trailing" constant="27" id="Rvg-oE-A6b"/>
+                                                                <constraint firstItem="r3j-eX-svu" firstAttribute="leading" secondItem="Hqe-6A-CaO" secondAttribute="trailing" constant="20" id="BkT-cW-zAx"/>
+                                                                <constraint firstAttribute="bottom" secondItem="r3j-eX-svu" secondAttribute="bottom" id="N1K-EG-LYG"/>
                                                                 <constraint firstItem="Y1u-Jd-vHb" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" id="S2J-rD-MDD"/>
                                                                 <constraint firstItem="eES-Kc-LTh" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="SgG-fu-2TH"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Hqe-6A-CaO" secondAttribute="trailing" constant="27" id="XHG-Z8-y3y"/>
+                                                                <constraint firstItem="r3j-eX-svu" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" id="aVn-NU-Uiv"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="top" secondItem="TAa-Ad-Ah4" secondAttribute="bottom" constant="1" id="c4Y-u4-fxv"/>
                                                                 <constraint firstItem="Meg-9s-aqM" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="19" id="gpB-Lb-9s4"/>
                                                                 <constraint firstAttribute="trailing" secondItem="eES-Kc-LTh" secondAttribute="trailing" constant="27" id="iMq-hx-gzX"/>
+                                                                <constraint firstItem="r3j-eX-svu" firstAttribute="leading" secondItem="TAa-Ad-Ah4" secondAttribute="trailing" constant="20" id="j5H-Vz-FZZ"/>
                                                                 <constraint firstItem="TAa-Ad-Ah4" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" constant="9" id="lJT-q3-b3g"/>
+                                                                <constraint firstAttribute="trailing" secondItem="r3j-eX-svu" secondAttribute="trailing" id="m1r-mj-86W"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Meg-9s-aqM" secondAttribute="centerY" id="mig-Xb-PJw"/>
                                                                 <constraint firstItem="eES-Kc-LTh" firstAttribute="leading" secondItem="IyW-gF-PZN" secondAttribute="trailing" constant="3" id="vrc-aj-mMg"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="artistTrailingConstraint" destination="BkT-cW-zAx" id="EAu-71-yS8"/>
+                                                                <outlet property="hoverSectionWidthConstraint" destination="AWU-VZ-Q3b" id="M4U-p2-kxz"/>
                                                                 <outlet property="playPauseButton" destination="Meg-9s-aqM" id="Kxh-xf-oOn"/>
+                                                                <outlet property="trackTrailingConstraint" destination="j5H-Vz-FZZ" id="Jo4-BE-RkV"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="xAW-am-Piq" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">

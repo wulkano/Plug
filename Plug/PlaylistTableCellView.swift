@@ -10,7 +10,13 @@ import Cocoa
 
 class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var playPauseButton: HoverToggleButton!
+    @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var trackTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var hoverSectionWidthConstraint: NSLayoutConstraint!
+    var mouseOutHoverSectionWidth: CGFloat = 0
+    var mouseInHoverSectionWidth: CGFloat = 88
+    var mouseOutTrackDetailsTrailingSpacing: CGFloat = 32
+    var mouseInTrackDetailsTrailingSpacing: CGFloat = 0
     
     override var backgroundStyle: NSBackgroundStyle {
         get { return NSBackgroundStyle.Light }
@@ -46,7 +52,6 @@ class PlaylistTableCellView: NSTableCellView {
     
     func objectValueChanged() {
         mouseInside = false
-        hoverSectionWidthConstraint.constant = 0
         if AudioPlayer.sharedInstance.currentTrack === objectValue {
             if AudioPlayer.sharedInstance.playing {
                 playState = PlayState.Playing
@@ -61,12 +66,16 @@ class PlaylistTableCellView: NSTableCellView {
     func mouseInsideChanged() {
         if mouseInside {
             playPauseButton.hidden = false
-            hoverSectionWidthConstraint.constant = 80
+            hoverSectionWidthConstraint.constant = mouseInHoverSectionWidth
+            trackTrailingConstraint.constant = mouseInTrackDetailsTrailingSpacing
+            artistTrailingConstraint.constant = mouseInTrackDetailsTrailingSpacing
         } else {
             if playState == PlayState.NotPlaying {
                 playPauseButton.hidden = true
             }
-            hoverSectionWidthConstraint.constant = 0
+            hoverSectionWidthConstraint.constant = mouseOutHoverSectionWidth
+            trackTrailingConstraint.constant = mouseOutTrackDetailsTrailingSpacing
+            artistTrailingConstraint.constant = mouseOutTrackDetailsTrailingSpacing
         }
     }
     
@@ -95,7 +104,7 @@ class PlaylistTableCellView: NSTableCellView {
     
     func trackPaused(notification: NSNotification) {
         let notificationTrack = notification.userInfo["track"] as Track
-        if notificationTrack === objectValue {
+        if notificationTrack === trackValue {
             playState = PlayState.Paused
         }
     }
