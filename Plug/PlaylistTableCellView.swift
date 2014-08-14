@@ -10,6 +10,7 @@ import Cocoa
 
 class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var playPauseButton: HoverToggleButton!
+    @IBOutlet var hoverSectionWidthConstraint: NSLayoutConstraint!
     
     override var backgroundStyle: NSBackgroundStyle {
         get { return NSBackgroundStyle.Light }
@@ -45,6 +46,7 @@ class PlaylistTableCellView: NSTableCellView {
     
     func objectValueChanged() {
         mouseInside = false
+        hoverSectionWidthConstraint.constant = 0
         if AudioPlayer.sharedInstance.currentTrack === objectValue {
             if AudioPlayer.sharedInstance.playing {
                 playState = PlayState.Playing
@@ -59,10 +61,12 @@ class PlaylistTableCellView: NSTableCellView {
     func mouseInsideChanged() {
         if mouseInside {
             playPauseButton.hidden = false
+            hoverSectionWidthConstraint.constant = 80
         } else {
             if playState == PlayState.NotPlaying {
                 playPauseButton.hidden = true
             }
+            hoverSectionWidthConstraint.constant = 0
         }
     }
     
