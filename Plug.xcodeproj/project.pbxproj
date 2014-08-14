@@ -69,6 +69,7 @@
 		FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0371C197B83C800F716CE /* VolumeIconView.swift */; };
 		FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0372E197B8A3500F716CE /* FooterViewController.swift */; };
 		FAF13B28199D22D5009D9F66 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B27199D22D5009D9F66 /* Notifications.swift */; };
+		FAF13B2A199D3D62009D9F66 /* FeedTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */; };
 		FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6F0951979F92900F2102B /* FlatSliderCell.swift */; };
 		FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6F097197A05D300F2102B /* HoverToggleButton.swift */; };
 /* End PBXBuildFile section */
@@ -165,6 +166,7 @@
 		FAF0371C197B83C800F716CE /* VolumeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeIconView.swift; sourceTree = "<group>"; };
 		FAF0372E197B8A3500F716CE /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		FAF13B27199D22D5009D9F66 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableCellView.swift; sourceTree = "<group>"; };
 		FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plug-Bridging-Header.h"; sourceTree = "<group>"; };
 		FAF6F0951979F92900F2102B /* FlatSliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSliderCell.swift; sourceTree = "<group>"; };
 		FAF6F097197A05D300F2102B /* HoverToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverToggleButton.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				FADC96F31974CCFA009458FA /* MainWindow.swift */,
 				FA51263719762F66004D0776 /* NavigationButton.swift */,
 				FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */,
+				FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */,
 				FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */,
 				FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */,
 				FA33002F197CB1EE0063C552 /* TransparentButton.swift */,
@@ -532,6 +535,7 @@
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
 				FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
+				FAF13B2A199D3D62009D9F66 /* FeedTableCellView.swift in Sources */,
 				FA77499C198C07D10048863F /* Genre.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,

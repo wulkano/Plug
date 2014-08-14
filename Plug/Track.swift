@@ -22,6 +22,7 @@ class Track: NSObject {
     var rank: Int?
     var playlist: Playlist?
     var lovedBy: String?
+    var postedBy: String?
     
     init(JSON json: NSDictionary) {
         super.init()
@@ -47,6 +48,9 @@ class Track: NSObject {
         }
         if json["via_user"] is String {
             lovedBy = (json["via_user"] as String)
+        }
+        if json["sitename"] is String {
+            postedBy = (json["sitename"] as String)
         }
     }
     

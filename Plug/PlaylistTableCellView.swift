@@ -69,7 +69,7 @@ class PlaylistTableCellView: NSTableCellView {
     
     func mouseInsideChanged() {
         updatePlayPauseButtonVisibility()
-        updateTitleAndArtistSpacing()
+        updateTextFieldsSpacing()
         updateLoveContainerSpacing()
         updateInfoContainerSpacing()
     }
@@ -84,7 +84,7 @@ class PlaylistTableCellView: NSTableCellView {
         }
     }
     
-    func updateTitleAndArtistSpacing() {
+    func updateTextFieldsSpacing() {
         var mouseOutSpacing: CGFloat = 32
         var mouseInSpacing: CGFloat = 20
         
