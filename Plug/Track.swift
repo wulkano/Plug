@@ -12,6 +12,7 @@ class Track: NSObject {
     var id: String = "0"
     var artist: String = "N/A"
     var title: String = "N/A"
+    var loved: Bool = false
     var lovedCount: Int = 0 {
     didSet {
         formattedLovedCount = formatLovedCount(lovedCount)
@@ -33,6 +34,9 @@ class Track: NSObject {
         }
         if json["title"] is String {
             title = json["title"] as String
+        }
+        if json["ts_loved_me"] is Int {
+            loved = true
         }
         if json["loved_count"] is Int {
             lovedCount = json["loved_count"] as Int

@@ -11,23 +11,30 @@ import Foundation
 var apiBase = "https://api.hypem.com/v2"
 
 struct HypeMachineAPI  {
-    static func GetJSON(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+    private static func GetJSON(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     
-    static func GetHTML(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+    private static func GetHTML(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
+    
+    private static func PostHTML(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        manager.POST(url, parameters: parameters, success: success, failure: failure)
+    }
 
-    static func username() -> String {
+    private static func username() -> String {
+        // TODO
 //        let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
         return "alex_marchant"
     }
     
-    static func hmToken() -> String {
+    private static func hmToken() -> String {
 //        TODO fix this
 //        let username = username()
 //        return SSKeychain.passwordForService("Plug", account: username!)
@@ -63,6 +70,28 @@ struct HypeMachineAPI  {
             let url = apiBase + "/me/feed"
             let params = ["sort": subType.toRaw(), "q": searchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
             _getTracks(url, parameters: params, success: success, failure: failure)
+        }
+        
+        static func ToggleLoved(track: Track, success: (loved: Bool)->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/me/favorites?hm_token=\(HypeMachineAPI.hmToken())"
+            let params = ["type": "item", "val": track.id]
+            HypeMachineAPI.PostHTML(url, parameters: params,
+                success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                    let responseData = responseObject as NSData
+                    var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
+                    if html == "1" {
+                        success(loved: true)
+                    } else if html == "0" {
+                        success(loved: false)
+                    } else {
+                        let error = AppError.UnexpectedApiResponseError()
+                        NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Unexpected api response"])
+                        failure(error: error)
+                    }
+                }, failure: {
+                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
         }
         
         static func _getTracks(url: String, parameters: Dictionary<String, String>?, success: (tracks: [Track])->(), failure: (error: NSError)->()) {

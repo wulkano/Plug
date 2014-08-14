@@ -20,4 +20,12 @@ class AppError: NSObject {
     class func logError(error: NSError) {
         println("AppError: \(error.localizedDescription)")
     }
+    
+    class func UnexpectedApiResponseError() -> NSError {
+        return errorGenerator(1, description: "Unexpected api response.")
+    }
+    
+    private class func errorGenerator(code: Int, description: String) -> NSError {
+        return NSError(domain: PlugErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: description])
+    }
 }

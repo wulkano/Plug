@@ -47,13 +47,13 @@ class AudioPlayer: NSObject {
     func play() {
         player.play()
         playing = true
-        sendTrackPlayingNotification()
+        Notifications.Post.TrackPlaying(currentTrack!, sender: self)
     }
     
     func pause() {
         player.pause()
         playing = false
-        sendTrackPausedNotification()
+        Notifications.Post.TrackPaused(currentTrack!, sender: self)
     }
     
     func skipForward() {
@@ -71,14 +71,6 @@ class AudioPlayer: NSObject {
     }
     
     // MARK: Private methods
-    
-    private func sendTrackPlayingNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TrackPlaying, object: self, userInfo: ["track": currentTrack!])
-    }
-    
-    private func sendTrackPausedNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TrackPaused, object: self, userInfo: ["track": currentTrack!])
-    }
     
     private func volumeChanged() {
         if (player != nil) {
