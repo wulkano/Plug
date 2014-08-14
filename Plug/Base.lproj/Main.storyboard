@@ -1464,13 +1464,28 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="84"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y1u-Jd-vHb" customClass="ColorChangingTextField" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="-2" y="29" width="76" height="26"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="26" id="7KX-ud-3ji"/>
+                                                                        <constraint firstAttribute="width" constant="72" id="QHM-kK-eVc"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="8k" id="ZOj-9i-iw7">
+                                                                        <font key="font" size="22" name="HelveticaNeue-Medium"/>
+                                                                        <color key="textColor" red="0.80000000000000004" green="0.38823529410000002" blue="0.67843137249999996" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.formattedLovedCount" id="9Rc-tF-9Uu"/>
+                                                                    </connections>
+                                                                </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-9s-aqM" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="19" y="25" width="34" height="34"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="34" id="0VS-Hd-9u4"/>
                                                                         <constraint firstAttribute="height" constant="34" id="0sB-BF-0lA"/>
                                                                     </constraints>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="JvC-ui-p8s">
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="JvC-ui-p8s">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
@@ -1544,7 +1559,9 @@
                                                                 <constraint firstItem="TAa-Ad-Ah4" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="2ks-Pq-VSc"/>
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="2pm-ig-2KO"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="9CZ-ks-OaY"/>
+                                                                <constraint firstAttribute="centerY" secondItem="Y1u-Jd-vHb" secondAttribute="centerY" id="9FL-GL-THh"/>
                                                                 <constraint firstAttribute="trailing" secondItem="TAa-Ad-Ah4" secondAttribute="trailing" constant="27" id="Rvg-oE-A6b"/>
+                                                                <constraint firstItem="Y1u-Jd-vHb" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" id="S2J-rD-MDD"/>
                                                                 <constraint firstItem="eES-Kc-LTh" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="SgG-fu-2TH"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Hqe-6A-CaO" secondAttribute="trailing" constant="27" id="XHG-Z8-y3y"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="top" secondItem="TAa-Ad-Ah4" secondAttribute="bottom" constant="1" id="c4Y-u4-fxv"/>
