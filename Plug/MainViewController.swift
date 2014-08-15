@@ -119,7 +119,7 @@ class MainViewController: NSViewController {
         if controller != nil {
             return controller!
         } else {
-             let newController = storyboard.instantiateControllerWithIdentifier(identifier) as NSViewController
+            let newController = storyboard.instantiateControllerWithIdentifier(identifier) as NSViewController
             addChildViewController(newController)
             return newController
         }

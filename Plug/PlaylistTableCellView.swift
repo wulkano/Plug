@@ -15,6 +15,11 @@ class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var titleTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var loveContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet var infoContainerWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var progressSlider: NSSlider!
+    
+    var trackInfoWindowController: NSWindowController?
+    var trackInfoWindow: NSWindow?
+    var trackInfoViewController: TrackInfoViewController?
 
     
     override var backgroundStyle: NSBackgroundStyle {
@@ -22,7 +27,11 @@ class PlaylistTableCellView: NSTableCellView {
         set {}
     }
     override var objectValue: AnyObject! {
-        didSet { objectValueChanged() }
+        didSet {
+            if objectValue != nil {
+                objectValueChanged()
+            }
+        }
     }
     var mouseInside: Bool = false {
         didSet{ mouseInsideChanged() }
@@ -52,8 +61,6 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func objectValueChanged() {
-        if objectValue == nil { return }
-        
         mouseInside = false
         if AudioPlayer.sharedInstance.currentTrack === objectValue {
             if AudioPlayer.sharedInstance.playing {
@@ -65,6 +72,7 @@ class PlaylistTableCellView: NSTableCellView {
             playState = PlayState.NotPlaying
         }
         loveButton.selected = trackValue.loved
+        progressSlider.doubleValue = 0
     }
     
     func mouseInsideChanged() {
@@ -133,13 +141,28 @@ class PlaylistTableCellView: NSTableCellView {
         case .Playing:
             playPauseButton.selected = true
             playPauseButton.hidden = false
+            progressSlider.hidden = false
+            trackProgress()
         case .Paused:
             playPauseButton.selected = false
             playPauseButton.hidden = false
+            progressSlider.hidden = false
+            trackProgress()
         case .NotPlaying:
             playPauseButton.selected = false
             playPauseButton.hidden = true
+            progressSlider.hidden = true
+            progressSlider.doubleValue = 0
+            untrackProgress()
         }
+    }
+    
+    func trackProgress() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "progressUpdated:", name: Notifications.TrackProgressUpdated, object: nil)
+    }
+    
+    func untrackProgress() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Notifications.TrackProgressUpdated, object: nil)
     }
 
     func trackPlaying(notification: NSNotification) {
@@ -184,7 +207,6 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
-        // TODO:
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {
@@ -210,6 +232,12 @@ class PlaylistTableCellView: NSTableCellView {
         } else {
             Notifications.Post.TrackUnLoved(trackValue, sender: self)
         }
+    }
+    
+    func progressUpdated(notification: NSNotification) {
+        let progress = (notification.userInfo["progress"] as NSNumber).doubleValue
+        let duration = (notification.userInfo["duration"] as NSNumber).doubleValue
+        progressSlider.doubleValue = progress / duration
     }
     
     enum PlayState {

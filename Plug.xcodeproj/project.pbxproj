@@ -64,12 +64,14 @@
 		FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DD1981DF5200BC5109 /* Interval.swift */; };
 		FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD4C211197CA3F2004606B5 /* UserDefaults.plist */; };
 		FADC96F21974CA0D009458FA /* PlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */; };
-		FADC96F41974CCFA009458FA /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* MainWindow.swift */; };
+		FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */; };
 		FADC96F61974D10C009458FA /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F51974D10C009458FA /* DraggableView.swift */; };
 		FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0371C197B83C800F716CE /* VolumeIconView.swift */; };
 		FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0372E197B8A3500F716CE /* FooterViewController.swift */; };
 		FAF13B28199D22D5009D9F66 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B27199D22D5009D9F66 /* Notifications.swift */; };
 		FAF13B2A199D3D62009D9F66 /* FeedTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */; };
+		FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */; };
+		FAF13B5B199D605C009D9F66 /* TrackInfoWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B5A199D605C009D9F66 /* TrackInfoWindowController.swift */; };
 		FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6F0951979F92900F2102B /* FlatSliderCell.swift */; };
 		FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6F097197A05D300F2102B /* HoverToggleButton.swift */; };
 /* End PBXBuildFile section */
@@ -161,12 +163,14 @@
 		FAD3B0DD1981DF5200BC5109 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		FAD4C211197CA3F2004606B5 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableCellView.swift; sourceTree = "<group>"; };
-		FADC96F31974CCFA009458FA /* MainWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
+		FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenTitlebarWindow.swift; sourceTree = "<group>"; };
 		FADC96F51974D10C009458FA /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
 		FAF0371C197B83C800F716CE /* VolumeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeIconView.swift; sourceTree = "<group>"; };
 		FAF0372E197B8A3500F716CE /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		FAF13B27199D22D5009D9F66 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableCellView.swift; sourceTree = "<group>"; };
+		FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackInfoViewController.swift; sourceTree = "<group>"; };
+		FAF13B5A199D605C009D9F66 /* TrackInfoWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackInfoWindowController.swift; sourceTree = "<group>"; };
 		FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plug-Bridging-Header.h"; sourceTree = "<group>"; };
 		FAF6F0951979F92900F2102B /* FlatSliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSliderCell.swift; sourceTree = "<group>"; };
 		FAF6F097197A05D300F2102B /* HoverToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverToggleButton.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
 				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
+				FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */,
+				FAF13B5A199D605C009D9F66 /* TrackInfoWindowController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -230,7 +236,7 @@
 				FAF6F097197A05D300F2102B /* HoverToggleButton.swift */,
 				FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */,
 				FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */,
-				FADC96F31974CCFA009458FA /* MainWindow.swift */,
+				FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */,
 				FA51263719762F66004D0776 /* NavigationButton.swift */,
 				FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */,
 				FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */,
@@ -539,6 +545,7 @@
 				FA77499C198C07D10048863F /* Genre.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,
+				FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FA774998198BF8280048863F /* BlogTableCellView.swift in Sources */,
@@ -551,9 +558,10 @@
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA9EA036199AC08600D9AB8A /* PlaylistDataSource.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
-				FADC96F41974CCFA009458FA /* MainWindow.swift in Sources */,
+				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */,
 				FA0B1D2E1977109E0030C873 /* Playlist.swift in Sources */,
+				FAF13B5B199D605C009D9F66 /* TrackInfoWindowController.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
 				FAA51A5B1980D4FC0057EC34 /* AppError.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* PlaylistViewController.swift in Sources */,

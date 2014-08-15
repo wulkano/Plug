@@ -650,7 +650,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="MainWindow" customModule="Plug" customModuleProvider="target">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="472" height="778"/>
@@ -1020,64 +1020,85 @@
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mzN-mr-IZY" userLabel="LoveContainer">
                                                                     <rect key="frame" x="371" y="0.0" width="38" height="64"/>
                                                                     <subviews>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="0JR-9T-ooY" userLabel="Love" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="N5v-gN-8dX" userLabel="Love" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="23" width="18" height="18"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="18" id="EGQ-Oy-5E3"/>
-                                                                                <constraint firstAttribute="width" constant="18" id="ije-98-upi"/>
+                                                                                <constraint firstAttribute="width" constant="18" id="IB3-Ep-Yku"/>
+                                                                                <constraint firstAttribute="height" constant="18" id="jxe-pR-0IO"/>
                                                                             </constraints>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EZT-E8-h0a">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
                                                                             <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Track-Loved-On"/>
                                                                                 <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Loved-Off"/>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
-                                                                                <action selector="loveButtonClicked:" target="LM0-KM-ycg" id="SBW-X9-E5d"/>
+                                                                                <action selector="loveButtonClicked:" target="LM0-KM-ycg" id="IbX-13-wGP"/>
                                                                             </connections>
-                                                                        </customView>
+                                                                        </button>
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="38" id="5Gp-kf-ETf"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="0JR-9T-ooY" secondAttribute="trailing" constant="20" id="e8C-CS-Fat"/>
-                                                                        <constraint firstAttribute="centerY" secondItem="0JR-9T-ooY" secondAttribute="centerY" id="oqi-i5-Yde"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="N5v-gN-8dX" secondAttribute="trailing" constant="20" id="FWD-OM-JEr"/>
+                                                                        <constraint firstAttribute="centerY" secondItem="N5v-gN-8dX" secondAttribute="centerY" id="n4M-kJ-gaQ"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="HIu-P0-05L" userLabel="InfoContainer">
                                                                     <rect key="frame" x="341" y="0.0" width="30" height="64"/>
                                                                     <subviews>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="pzk-CI-FBF" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gTI-Pa-lMA" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="23" width="18" height="18"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="18" id="eb5-jY-WV9"/>
-                                                                                <constraint firstAttribute="width" constant="18" id="mBw-eM-ycB"/>
-                                                                            </constraints>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pDa-DG-BH6">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
                                                                                 <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Info"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
-                                                                                <action selector="infoButtonClicked:" target="LM0-KM-ycg" id="nfd-zI-0wA"/>
+                                                                                <action selector="infoButtonClicked:" target="LM0-KM-ycg" id="add-He-BPj"/>
                                                                             </connections>
-                                                                        </customView>
+                                                                        </button>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="pzk-CI-FBF" secondAttribute="trailing" constant="12" id="6ne-WP-4xQ"/>
                                                                         <constraint firstAttribute="width" constant="30" id="JbE-HA-fBI"/>
-                                                                        <constraint firstAttribute="centerY" secondItem="pzk-CI-FBF" secondAttribute="centerY" id="iAP-Fz-TLe"/>
                                                                     </constraints>
                                                                 </customView>
+                                                                <slider hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wER-BX-Dyv">
+                                                                    <rect key="frame" x="-11" y="-8" width="434" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="17" id="Dj3-GN-KYD"/>
+                                                                    </constraints>
+                                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="9pF-24-oda" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target">
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                                                <color key="value" red="1" green="0.37254901959999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                                                <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </sliderCell>
+                                                                </slider>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="gIx-RP-bP5" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="19" id="7Gp-HI-lfB"/>
                                                                 <constraint firstAttribute="bottom" secondItem="mzN-mr-IZY" secondAttribute="bottom" id="8Oi-Og-65g"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mzN-mr-IZY" secondAttribute="trailing" id="EgW-u3-Ls6"/>
                                                                 <constraint firstItem="HIu-P0-05L" firstAttribute="leading" secondItem="j3g-ap-NsF" secondAttribute="trailing" constant="20" id="Hme-UI-VCb"/>
+                                                                <constraint firstAttribute="trailing" secondItem="wER-BX-Dyv" secondAttribute="trailing" constant="-12" id="Ilg-eo-wNm"/>
+                                                                <constraint firstItem="wER-BX-Dyv" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="-9" id="Rdb-Tr-Qc0"/>
                                                                 <constraint firstItem="zwc-io-DXv" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="75" id="Uxn-Cr-4dM"/>
                                                                 <constraint firstAttribute="centerY" secondItem="gIx-RP-bP5" secondAttribute="centerY" id="Vak-tj-y7a"/>
                                                                 <constraint firstAttribute="bottom" secondItem="zwc-io-DXv" secondAttribute="bottom" constant="14" id="YFh-gb-B2x"/>
                                                                 <constraint firstItem="HIu-P0-05L" firstAttribute="leading" secondItem="zwc-io-DXv" secondAttribute="trailing" constant="20" id="YOk-TP-OSN"/>
                                                                 <constraint firstItem="mzN-mr-IZY" firstAttribute="leading" secondItem="HIu-P0-05L" secondAttribute="trailing" id="deG-Lv-8bD"/>
                                                                 <constraint firstItem="Bwg-PO-WDa" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" id="egg-T8-Zs5"/>
+                                                                <constraint firstAttribute="bottom" secondItem="wER-BX-Dyv" secondAttribute="bottom" constant="-6" id="gJ4-aC-p79"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Bwg-PO-WDa" secondAttribute="centerY" id="hWx-gj-X9p"/>
                                                                 <constraint firstItem="HIu-P0-05L" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" id="l8j-yZ-lKi"/>
                                                                 <constraint firstItem="mzN-mr-IZY" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" id="mEi-25-vfG"/>
@@ -1088,9 +1109,10 @@
                                                             <connections>
                                                                 <outlet property="artistTrailingConstraint" destination="YOk-TP-OSN" id="Ybb-gU-jn2"/>
                                                                 <outlet property="infoContainerWidthConstraint" destination="JbE-HA-fBI" id="Q1h-4t-pcs"/>
-                                                                <outlet property="loveButton" destination="0JR-9T-ooY" id="gNG-PD-57s"/>
+                                                                <outlet property="loveButton" destination="N5v-gN-8dX" id="0On-nM-UTY"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="5Gp-kf-ETf" id="Woh-SW-9gD"/>
                                                                 <outlet property="playPauseButton" destination="gIx-RP-bP5" id="Xaa-VF-1CR"/>
+                                                                <outlet property="progressSlider" destination="wER-BX-Dyv" id="SUY-4o-oVa"/>
                                                                 <outlet property="titleTrailingConstraint" destination="Hme-UI-VCb" id="3fs-aP-bOm"/>
                                                             </connections>
                                                         </tableCellView>
@@ -1140,6 +1162,142 @@
                 <userDefaultsController representsSharedInstance="YES" id="L7n-0t-AG1"/>
             </objects>
             <point key="canvasLocation" x="1050.5" y="474.5"/>
+        </scene>
+        <!--Window-->
+        <scene sceneID="GGq-dl-L0h">
+            <objects>
+                <windowController storyboardIdentifier="TrackInfoWindowController" id="1JY-EI-Yem" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="agv-6R-RuB">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="372" height="380"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <value key="minSize" type="size" width="372" height="380"/>
+                        <value key="maxSize" type="size" width="372" height="380"/>
+                        <view key="contentView" id="Z25-bP-Ehd">
+                            <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                    </window>
+                    <connections>
+                        <segue destination="k4e-YS-7rc" kind="relationship" relationship="window.shadowedContentViewController" id="Qhe-h9-eZm"/>
+                    </connections>
+                </windowController>
+                <customObject id="dqG-go-yP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528" y="583"/>
+        </scene>
+        <!--Track Info View Controller-->
+        <scene sceneID="qr0-67-f07">
+            <objects>
+                <viewController storyboardIdentifier="TrackInfoViewController" id="k4e-YS-7rc" customClass="TrackInfoViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="HWj-GG-7h0">
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="LOE-IB-X2T">
+                                <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
+                                <subviews>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="jbG-Ve-lsf" userLabel="Close Button">
+                                        <rect key="frame" x="26" y="340" width="14" height="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14" id="1Tq-ea-WrR"/>
+                                            <constraint firstAttribute="width" constant="14" id="tzG-QS-GL5"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Info-Close" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="hGa-hy-g2l">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="closeButtonClicked:" target="k4e-YS-7rc" id="QkS-Qt-v6M"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rde-GZ-jAe">
+                                        <rect key="frame" x="24" y="292" width="252" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="sfp-3R-Qqd"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Title" id="BVo-zN-wI6">
+                                            <font key="font" metaFont="system" size="20"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="k4e-YS-7rc" name="value" keyPath="track.title" id="Jhf-TS-pHe"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C4O-VD-FBn">
+                                        <rect key="frame" x="24" y="264" width="252" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="psQ-it-oGC"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Artist" id="LQO-BJ-AFz">
+                                            <font key="font" metaFont="system" size="18"/>
+                                            <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="k4e-YS-7rc" name="value" keyPath="track.artist" id="uSb-Zi-RNQ"/>
+                                        </connections>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="20X-5d-GbD" userLabel="Album Art">
+                                        <rect key="frame" x="294" y="264" width="52" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="3a1-wT-rAa"/>
+                                            <constraint firstAttribute="width" constant="52" id="CjZ-Eu-6dt"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="akf-pV-Axb"/>
+                                    </imageView>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dPO-Y4-Jz4" userLabel="Heart image">
+                                        <rect key="frame" x="328" y="338" width="18" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="Wai-bO-HkG"/>
+                                            <constraint firstAttribute="height" constant="16" id="cTg-xX-aC8"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Track-Loved-Off" id="djM-dy-BWR"/>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8md-aw-lBA">
+                                        <rect key="frame" x="283" y="341" width="38" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="0yE-3D-Wh5"/>
+                                            <constraint firstAttribute="width" constant="34" id="xpr-4F-9D3"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="8K" id="HUO-iF-R9U">
+                                            <font key="font" size="14" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jbG-Ve-lsf" firstAttribute="leading" secondItem="LOE-IB-X2T" secondAttribute="leading" constant="26" id="5i3-B5-fhH"/>
+                                    <constraint firstItem="dPO-Y4-Jz4" firstAttribute="leading" secondItem="8md-aw-lBA" secondAttribute="trailing" constant="9" id="9dJ-gD-00j"/>
+                                    <constraint firstAttribute="trailing" secondItem="20X-5d-GbD" secondAttribute="trailing" constant="26" id="Drc-g1-2ed"/>
+                                    <constraint firstItem="dPO-Y4-Jz4" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="26" id="OTe-oa-YII"/>
+                                    <constraint firstItem="8md-aw-lBA" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="22" id="RR7-Qu-T7W"/>
+                                    <constraint firstItem="20X-5d-GbD" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="64" id="Sxz-0W-dqo"/>
+                                    <constraint firstItem="Rde-GZ-jAe" firstAttribute="top" secondItem="jbG-Ve-lsf" secondAttribute="bottom" constant="24" id="XiT-6A-6tQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dPO-Y4-Jz4" secondAttribute="trailing" constant="26" id="bsz-Ed-zkJ"/>
+                                    <constraint firstItem="20X-5d-GbD" firstAttribute="leading" secondItem="Rde-GZ-jAe" secondAttribute="trailing" constant="20" id="ddm-nV-1pe"/>
+                                    <constraint firstItem="C4O-VD-FBn" firstAttribute="top" secondItem="Rde-GZ-jAe" secondAttribute="bottom" constant="6" id="eFV-II-uTk"/>
+                                    <constraint firstItem="jbG-Ve-lsf" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="26" id="m91-Sy-xsh"/>
+                                    <constraint firstItem="Rde-GZ-jAe" firstAttribute="leading" secondItem="LOE-IB-X2T" secondAttribute="leading" constant="26" id="p1j-Kg-89o"/>
+                                    <constraint firstItem="20X-5d-GbD" firstAttribute="leading" secondItem="C4O-VD-FBn" secondAttribute="trailing" constant="20" id="t9y-uF-HRk"/>
+                                    <constraint firstItem="C4O-VD-FBn" firstAttribute="leading" secondItem="LOE-IB-X2T" secondAttribute="leading" constant="26" id="yLL-96-chu"/>
+                                </constraints>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="LOE-IB-X2T" firstAttribute="top" secondItem="HWj-GG-7h0" secondAttribute="top" id="OtG-S2-XNn"/>
+                            <constraint firstItem="LOE-IB-X2T" firstAttribute="leading" secondItem="HWj-GG-7h0" secondAttribute="leading" id="VGj-Im-eHz"/>
+                            <constraint firstAttribute="trailing" secondItem="LOE-IB-X2T" secondAttribute="trailing" id="mDK-gM-Bxd"/>
+                            <constraint firstAttribute="bottom" secondItem="LOE-IB-X2T" secondAttribute="bottom" id="usc-Jw-lGD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="rHH-Bi-554" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="wpe-Bm-c9W"/>
+            </objects>
+            <point key="canvasLocation" x="2018" y="574"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="uIl-sa-RnQ">
@@ -1612,50 +1770,58 @@
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="3xB-ae-CCl" userLabel="LoveContainer">
                                                                     <rect key="frame" x="371" y="0.0" width="38" height="84"/>
                                                                     <subviews>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="LR9-N3-S7h" userLabel="Love" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="RBh-SV-6XE" userLabel="Love" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="33" width="18" height="18"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="18" id="2Mj-ho-t5a"/>
-                                                                                <constraint firstAttribute="height" constant="18" id="CW8-F7-PWN"/>
+                                                                                <constraint firstAttribute="width" constant="18" id="CW6-Ye-s40"/>
+                                                                                <constraint firstAttribute="height" constant="18" id="KRo-Wf-qRe"/>
                                                                             </constraints>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="my4-JO-nnx">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
                                                                             <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Track-Loved-On"/>
                                                                                 <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Loved-Off"/>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
-                                                                                <action selector="loveButtonClicked:" target="4gR-JS-eJJ" id="BS4-0P-16o"/>
+                                                                                <action selector="loveButtonClicked:" target="4gR-JS-eJJ" id="gf0-1H-a41"/>
                                                                             </connections>
-                                                                        </customView>
+                                                                        </button>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="LR9-N3-S7h" secondAttribute="trailing" constant="20" id="LGC-6Y-pFK"/>
+                                                                        <constraint firstAttribute="centerY" secondItem="RBh-SV-6XE" secondAttribute="centerY" id="0EF-HZ-aho"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="RBh-SV-6XE" secondAttribute="trailing" constant="20" id="KoL-jB-7hM"/>
                                                                         <constraint firstAttribute="width" constant="38" id="ioZ-eS-03d"/>
-                                                                        <constraint firstAttribute="centerY" secondItem="LR9-N3-S7h" secondAttribute="centerY" id="vif-h9-gP2"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="LCj-OK-ttB" userLabel="InfoContainer">
                                                                     <rect key="frame" x="341" y="0.0" width="30" height="84"/>
                                                                     <subviews>
-                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="zhc-iz-PHl" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="kHv-Iy-wYd" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="33" width="18" height="18"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="18" id="d7E-Ua-SMg"/>
-                                                                                <constraint firstAttribute="width" constant="18" id="giV-lh-sSR"/>
+                                                                                <constraint firstAttribute="width" constant="18" id="ftb-Xe-41r"/>
+                                                                                <constraint firstAttribute="height" constant="18" id="lKA-9u-Lvb"/>
                                                                             </constraints>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BIn-So-5rm">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
                                                                                 <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Info"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
-                                                                                <action selector="infoButtonClicked:" target="4gR-JS-eJJ" id="HjW-aN-WRI"/>
+                                                                                <action selector="infoButtonClicked:" target="4gR-JS-eJJ" id="pgZ-1s-6wN"/>
                                                                             </connections>
-                                                                        </customView>
+                                                                        </button>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="centerY" secondItem="zhc-iz-PHl" secondAttribute="centerY" id="LEZ-Yx-Xz7"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="kHv-Iy-wYd" secondAttribute="trailing" constant="12" id="ZSU-FO-qx9"/>
                                                                         <constraint firstAttribute="width" constant="30" id="a85-Al-OXb"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="zhc-iz-PHl" secondAttribute="trailing" constant="12" id="aKy-rF-c85"/>
+                                                                        <constraint firstAttribute="centerY" secondItem="kHv-Iy-wYd" secondAttribute="centerY" id="xY4-e8-eKP"/>
                                                                     </constraints>
                                                                 </customView>
                                                             </subviews>
@@ -1685,7 +1851,7 @@
                                                             <connections>
                                                                 <outlet property="artistTrailingConstraint" destination="Ij3-e0-heI" id="pxc-Sr-b3d"/>
                                                                 <outlet property="infoContainerWidthConstraint" destination="a85-Al-OXb" id="711-ll-O8a"/>
-                                                                <outlet property="loveButton" destination="LR9-N3-S7h" id="r5z-gR-IiT"/>
+                                                                <outlet property="loveButton" destination="RBh-SV-6XE" id="PY5-Qv-M0B"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="ioZ-eS-03d" id="0dh-8O-mvm"/>
                                                                 <outlet property="lovedByOrPostedBy" destination="IyW-gF-PZN" id="bQa-Jn-ZDO"/>
                                                                 <outlet property="lovedByOrPostedByWidthConstraint" destination="8VQ-HY-GdV" id="H9W-b6-CdH"/>
@@ -2332,6 +2498,7 @@
         <image name="Footer-Volume-2" width="16" height="13"/>
         <image name="Footer-Volume-3" width="16" height="15"/>
         <image name="Footer-Volume-Off" width="16" height="13"/>
+        <image name="Info-Close" width="14" height="14"/>
         <image name="List-Arrow" width="9" height="14"/>
         <image name="Nav-Blogs-Off" width="22" height="24"/>
         <image name="Nav-Blogs-On" width="22" height="24"/>

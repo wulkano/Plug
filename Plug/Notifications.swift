@@ -13,6 +13,7 @@ struct Notifications {
     static let TrackPaused = "Plug.TrackPausedNotification"
     static let TrackLoved = "Plug.TrackLovedNotification"
     static let TrackUnLoved = "Plug.TrackUnLovedNotification"
+    static let TrackProgressUpdated = "Plug.TrackProgressUpdatedNotification"
     static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
     static let Error = "Plug.ErrorNotification"
     
@@ -31,6 +32,10 @@ struct Notifications {
         
         static func TrackUnLoved(track: Track, sender: AnyObject?) {
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TrackUnLoved, object: sender, userInfo: ["track": track])
+        }
+        
+        static func TrackProgressUpdated(track: Track, progress: Double, duration: Double, sender: AnyObject?) {
+            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.TrackProgressUpdated, object: sender, userInfo: ["track": track, "progress": progress, "duration": duration])
         }
     }
 }

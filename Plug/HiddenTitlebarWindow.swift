@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainWindow: NSWindow {
+class HiddenTitlebarWindow: NSWindow {
     override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
         appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
