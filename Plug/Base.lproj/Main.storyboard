@@ -1068,7 +1068,7 @@
                                                                         <constraint firstAttribute="width" constant="30" id="JbE-HA-fBI"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <slider hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wER-BX-Dyv">
+                                                                <slider hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wER-BX-Dyv" userLabel="Progress Slider">
                                                                     <rect key="frame" x="-11" y="-8" width="434" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="Dj3-GN-KYD"/>
@@ -1111,6 +1111,7 @@
                                                                 <outlet property="infoContainerWidthConstraint" destination="JbE-HA-fBI" id="Q1h-4t-pcs"/>
                                                                 <outlet property="loveButton" destination="N5v-gN-8dX" id="0On-nM-UTY"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="5Gp-kf-ETf" id="Woh-SW-9gD"/>
+                                                                <outlet property="loveCount" destination="Bwg-PO-WDa" id="6Cm-0E-FdZ"/>
                                                                 <outlet property="playPauseButton" destination="gIx-RP-bP5" id="Xaa-VF-1CR"/>
                                                                 <outlet property="progressSlider" destination="wER-BX-Dyv" id="SUY-4o-oVa"/>
                                                                 <outlet property="titleTrailingConstraint" destination="Hme-UI-VCb" id="3fs-aP-bOm"/>
@@ -1824,6 +1825,22 @@
                                                                         <constraint firstAttribute="centerY" secondItem="kHv-Iy-wYd" secondAttribute="centerY" id="xY4-e8-eKP"/>
                                                                     </constraints>
                                                                 </customView>
+                                                                <slider hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="feB-JE-6lE" userLabel="Progress Slider">
+                                                                    <rect key="frame" x="-11" y="-8" width="434" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="17" id="hMs-T6-Fte"/>
+                                                                    </constraints>
+                                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="3BA-lq-aIe" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target">
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                                                <color key="value" red="1" green="0.37254901959999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                                                <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </sliderCell>
+                                                                </slider>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="0RZ-Qz-QTS"/>
@@ -1840,6 +1857,9 @@
                                                                 <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" secondItem="Hqe-6A-CaO" secondAttribute="trailing" constant="20" id="Ij3-e0-heI"/>
                                                                 <constraint firstItem="Y1u-Jd-vHb" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" id="S2J-rD-MDD"/>
                                                                 <constraint firstItem="eES-Kc-LTh" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="SgG-fu-2TH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="feB-JE-6lE" secondAttribute="trailing" constant="-12" id="TgN-Pv-e6a"/>
+                                                                <constraint firstItem="feB-JE-6lE" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="-9" id="YWW-xZ-BkQ"/>
+                                                                <constraint firstAttribute="bottom" secondItem="feB-JE-6lE" secondAttribute="bottom" constant="-6" id="aHW-XI-3M7"/>
                                                                 <constraint firstItem="Hqe-6A-CaO" firstAttribute="top" secondItem="TAa-Ad-Ah4" secondAttribute="bottom" constant="1" id="c4Y-u4-fxv"/>
                                                                 <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" secondItem="TAa-Ad-Ah4" secondAttribute="trailing" constant="20" id="dFS-3O-Vci"/>
                                                                 <constraint firstItem="Meg-9s-aqM" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="19" id="gpB-Lb-9s4"/>
@@ -1853,9 +1873,11 @@
                                                                 <outlet property="infoContainerWidthConstraint" destination="a85-Al-OXb" id="711-ll-O8a"/>
                                                                 <outlet property="loveButton" destination="RBh-SV-6XE" id="PY5-Qv-M0B"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="ioZ-eS-03d" id="0dh-8O-mvm"/>
+                                                                <outlet property="loveCount" destination="Y1u-Jd-vHb" id="v5r-yp-7av"/>
                                                                 <outlet property="lovedByOrPostedBy" destination="IyW-gF-PZN" id="bQa-Jn-ZDO"/>
                                                                 <outlet property="lovedByOrPostedByWidthConstraint" destination="8VQ-HY-GdV" id="H9W-b6-CdH"/>
                                                                 <outlet property="playPauseButton" destination="Meg-9s-aqM" id="Kxh-xf-oOn"/>
+                                                                <outlet property="progressSlider" destination="feB-JE-6lE" id="Mt6-Ug-mcL"/>
                                                                 <outlet property="titleTrailingConstraint" destination="dFS-3O-Vci" id="IAI-Qk-gYu"/>
                                                                 <outlet property="usernameOrBlogName" destination="eES-Kc-LTh" id="ufb-hs-keF"/>
                                                                 <outlet property="usernameOrBlogNameTrailingConstraint" destination="DbQ-ok-D9a" id="cO9-qK-rMt"/>

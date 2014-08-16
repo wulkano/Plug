@@ -16,6 +16,7 @@ class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var loveContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet var infoContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet var progressSlider: NSSlider!
+    @IBOutlet var loveCount: NSView!
     
     var trackInfoWindowController: NSWindowController?
     var trackInfoWindow: NSWindow?
@@ -83,11 +84,15 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func updatePlayPauseButtonVisibility() {
+        // TODO: Consolidate loveCount hidden with playstate
+        // below
         if mouseInside {
             playPauseButton.hidden = false
+            loveCount.hidden = true
         } else {
             if playState == PlayState.NotPlaying {
                 playPauseButton.hidden = true
+                loveCount.hidden = false
             }
         }
     }
@@ -137,22 +142,26 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func playStateChanged() {
+        // TODO: Maybe consolidate with mouse inside stuff
         switch playState {
         case .Playing:
             playPauseButton.selected = true
             playPauseButton.hidden = false
             progressSlider.hidden = false
+            loveCount.hidden = true
             trackProgress()
         case .Paused:
             playPauseButton.selected = false
             playPauseButton.hidden = false
             progressSlider.hidden = false
+            loveCount.hidden = true
             trackProgress()
         case .NotPlaying:
             playPauseButton.selected = false
             playPauseButton.hidden = true
             progressSlider.hidden = true
             progressSlider.doubleValue = 0
+            loveCount.hidden = false
             untrackProgress()
         }
     }

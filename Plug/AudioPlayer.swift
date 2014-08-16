@@ -45,16 +45,7 @@ class AudioPlayer: NSObject {
     
     func play(track: Track) {
         if currentTrack != track {
-            playerItem = AVPlayerItem(URL: track.mediaURL())
-            if player == nil {
-                player = AVPlayer(playerItem: playerItem)
-                player.volume = volume
-                observeProgressUpdates()
-            } else {
-                player.replaceCurrentItemWithPlayerItem(playerItem)
-            }
-            currentPlaylist = track.playlist
-            currentTrack = track
+            setupForNewTrack(track)
         }
         play()
     }
@@ -85,7 +76,35 @@ class AudioPlayer: NSObject {
         }
     }
     
+    // MARK : Notification listeners
+    
+    func currentTrackFinishedPlaying(notification: NSNotification) {
+        println("currentTrackFinishedPlaying")
+        skipForward()
+    }
+    
     // MARK: Private methods
+    
+    private func setupForNewTrack(track: Track) {
+        if playerItem != nil {
+            unsubscribeFromPlayerItem(playerItem)
+        }
+        playerItem = AVPlayerItem(URL: track.mediaURL())
+        subscribeToPlayerItem(playerItem)
+        ensurePlayerForItem(playerItem)
+        currentPlaylist = track.playlist
+        currentTrack = track
+    }
+    
+    private func ensurePlayerForItem(playerItem: AVPlayerItem) {
+        if player == nil {
+            player = AVPlayer(playerItem: playerItem)
+            player.volume = volume
+            observeProgressUpdates()
+        } else {
+            player.replaceCurrentItemWithPlayerItem(playerItem)
+        }
+    }
     
     private func volumeChanged() {
         if player != nil {
@@ -94,7 +113,6 @@ class AudioPlayer: NSObject {
     }
     
     private func observeProgressUpdates() {
-        println(count++)
         let thirdOfSecond = CMTimeMake(1, 3)
         progressObserver = player.addPeriodicTimeObserverForInterval(thirdOfSecond, queue: nil, usingBlock: progressUpdated)
     }
@@ -103,5 +121,13 @@ class AudioPlayer: NSObject {
         let progress = Double(CMTimeGetSeconds(time))
         let duration = Double(CMTimeGetSeconds(playerItem.duration))
         Notifications.Post.TrackProgressUpdated(currentTrack, progress: progress, duration: duration, sender: self)
+    }
+    
+    private func subscribeToPlayerItem(playerItem: AVPlayerItem) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackFinishedPlaying:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+    }
+    
+    private func unsubscribeFromPlayerItem(playerItem: AVPlayerItem) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
     }
 }
