@@ -19,6 +19,7 @@
 		FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */; };
 		FA0B1D3E1977355B0030C873 /* ColorChangingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3D1977355B0030C873 /* ColorChangingTextView.swift */; };
 		FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */; };
+		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
 		FA24EDA21974A9A500A781C8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA11974A9A500A781C8 /* main.swift */; };
 		FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA51974A9A500A781C8 /* AppDelegate.swift */; };
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
@@ -116,6 +117,7 @@
 		FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylist.swift; sourceTree = "<group>"; };
 		FA0B1D3D1977355B0030C873 /* ColorChangingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChangingTextView.swift; sourceTree = "<group>"; };
 		FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistDataSource.swift; sourceTree = "<group>"; };
+		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		FA24ED9C1974A9A500A781C8 /* Plug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA24EDA01974A9A500A781C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA24EDA11974A9A500A781C8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
+				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FA7749A5198C298E0048863F /* Playlists */,
 			);
 			name = Models;
@@ -363,15 +366,15 @@
 		FA9EA043199B0D1500D9AB8A /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */,
+				FA9EA03B199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift */,
+				FA9EA03F199AFC4100D9AB8A /* FeedPlaylistDataSource.swift */,
+				FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */,
+				FA9EA041199B08E100D9AB8A /* GenresDataSource.swift */,
+				FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */,
 				FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */,
 				FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */,
-				FA9EA03B199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift */,
-				FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */,
 				FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */,
-				FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */,
-				FA9EA03F199AFC4100D9AB8A /* FeedPlaylistDataSource.swift */,
-				FA9EA041199B08E100D9AB8A /* GenresDataSource.swift */,
-				FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
 				FAF13B2A199D3D62009D9F66 /* FeedTableCellView.swift in Sources */,
+				FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */,
 				FA77499C198C07D10048863F /* Genre.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,

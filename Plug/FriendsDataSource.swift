@@ -10,7 +10,9 @@ import Cocoa
 
 class FriendsDataSource: NSObject, NSTableViewDataSource {
     var tableView: NSTableView?
+    var filtering: Bool = false
     var tableContents: [Friend]?
+    var filteredTableContents: [Friend]?
     
     // TODO: Sorting
     // TODO: Grouping
@@ -25,12 +27,33 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
     }
     
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        return tableContents![row]
+        
+        if filtering {
+            return filteredTableContents![row]
+        } else {
+            return tableContents![row]
+        }
     }
     
     func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
         if tableContents == nil { return 0 }
         
-        return tableContents!.count
+        if filtering {
+            return filteredTableContents!.count
+        } else {
+            return tableContents!.count
+        }
+    }
+    
+    func filterByKeywords(keywords: String) {
+        if keywords == "" {
+            filtering = false
+        } else {
+            filtering = true
+            filteredTableContents = tableContents!.filter {
+                ($0.username =~ keywords) || ($0.fullName =~ keywords)
+            }
+        }
+        tableView!.reloadData()
     }
 }

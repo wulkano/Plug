@@ -23,7 +23,16 @@ class FriendsViewController: NSViewController, NSTableViewDelegate {
     
     func setDataSource(dataSource: FriendsDataSource) {
         self.dataSource = dataSource
+        // TODO: this stuff is weird and i don't like it
+        if tableView != nil {
+            tableView.setDataSource(self.dataSource!)
+        }
         self.dataSource!.tableView = tableView
         self.dataSource!.loadInitialValues()
+    }
+    
+    @IBAction func searchFieldSubmit(sender: NSSearchField) {
+        let keywords = sender.stringValue
+        dataSource!.filterByKeywords(keywords)
     }
 }
