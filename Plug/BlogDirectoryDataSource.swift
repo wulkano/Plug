@@ -10,11 +10,15 @@ import Cocoa
 
 class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
     var tableView: NSTableView?
+    var filtering: Bool = false
+    var allBlogs: [Blog]?
     var tableContents: [BlogDirectoryItem]?
+    var filteredTableContents: [BlogDirectoryItem]?
     
     func loadInitialValues() {
         HypeMachineAPI.Blogs.AllBlogs(
             {blogs in
+                self.allBlogs = blogs
                 self.generateTableContents(blogs)
                 self.tableView?.reloadData()
             }, failure: {error in
@@ -23,10 +27,31 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
     }
     
     func itemForRow(row: Int) -> BlogDirectoryItem {
-        return tableContents![row]
+        if filtering {
+            return filteredTableContents![row]
+        } else {
+            return tableContents![row]
+        }
+    }
+    
+    func itemAfterRow(row: Int) -> BlogDirectoryItem? {
+        var list: [BlogDirectoryItem]
+        
+        if filtering {
+            list = filteredTableContents!
+        } else {
+            list = tableContents!
+        }
+        
+        if list.count > row + 1{
+            return itemForRow(row + 1)
+        } else {
+            return nil
+        }
     }
     
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
+        
         switch itemForRow(row) {
         case .SectionHeaderItem(let sectionHeader):
             return sectionHeader
@@ -38,7 +63,11 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
     func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
         if tableContents == nil { return 0 }
         
-        return tableContents!.count
+        if filtering {
+            return filteredTableContents!.count
+        } else {
+            return tableContents!.count
+        }
     }
     
     func generateTableContents(blogs: [Blog]) {
@@ -70,6 +99,20 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
     func appendBlogs(blogs: [Blog]) {
         let wrappedBlogs = BlogDirectoryItem.WrapBlogObjects(blogs)
         tableContents! += wrappedBlogs
+    }
+    
+    func filterByKeywords(keywords: String) {
+        if keywords == "" {
+            filtering = false
+        } else {
+            filtering = true
+            var filteredBlogs = allBlogs!.filter {
+                $0.name =~ keywords
+            }
+            var sortedBlogs = filteredBlogs.sorted { $0.name < $1.name }
+            filteredTableContents = BlogDirectoryItem.WrapBlogObjects(sortedBlogs)
+        }
+        tableView!.reloadData()
     }
 }
 

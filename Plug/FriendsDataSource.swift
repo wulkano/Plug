@@ -19,7 +19,7 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
     func loadInitialValues() {
         HypeMachineAPI.Friends.AllFriends(
             {friends in
-                self.tableContents = friends
+                self.generateTableContents(friends)
                 self.tableView?.reloadData()
             }, failure: {error in
                 AppError.logError(error)
@@ -43,6 +43,10 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
         } else {
             return tableContents!.count
         }
+    }
+    
+    func generateTableContents(friends: [Friend]) {
+        tableContents = friends.sorted { $0.username < $1.username }
     }
     
     func filterByKeywords(keywords: String) {

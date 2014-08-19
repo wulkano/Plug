@@ -23,23 +23,23 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate {
     
     func setDataSource(dataSource: BlogDirectoryDataSource) {
         self.dataSource = dataSource
+        if tableView != nil {
+            tableView.setDataSource(dataSource)
+        }
         self.dataSource!.tableView = tableView
         self.dataSource!.loadInitialValues()
     }
     
     func itemForRow(row: Int) -> BlogDirectoryItem {
-        return dataSource!.tableContents![row]
+        return dataSource!.itemForRow(row)
     }
     
     func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        if dataSource!.tableContents!.count - 1 > row {
-            return itemForRow(row + 1)
-        } else {
-            return nil
-        }
+        return dataSource!.itemAfterRow(row)
     }
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+        
         switch itemForRow(row) {
         case .SectionHeaderItem:
             return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as NSView
@@ -94,5 +94,10 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate {
         case .BlogItem:
             return true
         }
+    }
+    
+    @IBAction func searchFieldSubmit(sender: NSSearchField) {
+        let keywords = sender.stringValue
+        dataSource!.filterByKeywords(keywords)
     }
 }

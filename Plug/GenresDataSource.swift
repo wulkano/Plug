@@ -15,9 +15,6 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
     var tableContents: [GenresListItem]?
     var filteredTableContents: [GenresListItem]?
 
-    
-    // TODO: Sorting
-    // TODO: Grouping
     func loadInitialValues() {
         HypeMachineAPI.Genres.AllGenres(
             {genres in
