@@ -160,19 +160,16 @@ class MainViewController: NSViewController {
             let dataSource = LatestPlaylistDataSource()
             (viewController as PlaylistViewController).setDataSource(dataSource)
         case .Blogs:
-            let dataSource = BlogDirectoryDataSource()
-            (viewController as BlogDirectoryViewController).setDataSource(dataSource)
+            "Controller loads it's own data"
         case .Feed:
             let dataSource = FeedPlaylistDataSource(playlistSubType: .All)
             (viewController as PlaylistViewController).setDataSource(dataSource)
         case .Genres:
-            let dataSource = GenresDataSource()
-            (viewController as GenresViewController).setDataSource(dataSource)
+            "Controller loads it's own data"
         case .Friends:
-            let dataSource = FriendsDataSource()
-            (viewController as FriendsViewController).setDataSource(dataSource)
+            "Controller loads it's own data"
         case .Search:
-            "asdf"
+            "Controller loads it's own data"
         }
     }
 }

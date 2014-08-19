@@ -14,7 +14,7 @@ class AppError: NSObject {
     }
     
     class func fromNotification(notification: NSNotification) -> NSError {
-        return notification.userInfo["error"] as NSError
+        return notification.userInfo!["error"] as NSError
     }
     
     class func logError(error: NSError) {

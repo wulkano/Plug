@@ -40,7 +40,7 @@ enum NavigationSection: Int {
     }
     
     static func fromNotification(notification: NSNotification) -> NavigationSection {
-        let number = notification.userInfo["NavigationSection"] as NSNumber
+        let number = notification.userInfo!["NavigationSection"] as NSNumber
         let raw = number.integerValue
         return NavigationSection.fromRaw(raw)!
     }

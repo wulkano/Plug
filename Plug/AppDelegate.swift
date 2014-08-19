@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func setupUserDefaults() {
-        let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")
+        let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict)
     }

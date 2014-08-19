@@ -14,19 +14,14 @@ class FriendsViewController: NSViewController, NSTableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.setDelegate(self)
-        if dataSource != nil {
-            tableView.setDataSource(dataSource)
-            dataSource!.tableView = tableView
-        }
+        setupDataSource()
     }
     
-    func setDataSource(dataSource: FriendsDataSource) {
-        self.dataSource = dataSource
-        // TODO: this stuff is weird and i don't like it
-        if tableView != nil {
-            tableView.setDataSource(self.dataSource!)
-        }
+    func setupDataSource() {
+        self.dataSource = FriendsDataSource()
+        tableView.setDataSource(dataSource)
         self.dataSource!.tableView = tableView
         self.dataSource!.loadInitialValues()
     }

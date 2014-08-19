@@ -36,7 +36,7 @@ class ColorChangingTextField: NSTextField {
         if stringValue.hasSuffix("k") {
             let numberFormatter = NSNumberFormatter()
             numberFormatter.format = "####k"
-            let numberValue = numberFormatter.numberFromString(stringValue).integerValue
+            let numberValue = numberFormatter.numberFromString(stringValue)!.integerValue
             return numberValue * 1000
         } else {
             return stringValue.toInt()!

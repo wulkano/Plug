@@ -45,7 +45,7 @@ class PlaylistTableCellView: NSTableCellView {
     }
 
     
-    required init(coder: NSCoder!) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
         initialSetup()
     }
@@ -175,7 +175,7 @@ class PlaylistTableCellView: NSTableCellView {
     }
 
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as Track
         if notificationTrack === objectValue {
             playState = PlayState.Playing
         } else {
@@ -184,14 +184,14 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func trackPaused(notification: NSNotification) {
-        let notificationTrack = notification.userInfo["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as Track
         if notificationTrack === objectValue {
             playState = PlayState.Paused
         }
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as Track
         if notificationTrack === objectValue {
             trackValue.loved = true
             loveButton.selected = true
@@ -199,7 +199,7 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as Track
         if notificationTrack === objectValue {
             trackValue.loved = false
             loveButton.selected = false
@@ -249,8 +249,8 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func progressUpdated(notification: NSNotification) {
-        let progress = (notification.userInfo["progress"] as NSNumber).doubleValue
-        let duration = (notification.userInfo["duration"] as NSNumber).doubleValue
+        let progress = (notification.userInfo!["progress"] as NSNumber).doubleValue
+        let duration = (notification.userInfo!["duration"] as NSNumber).doubleValue
         progressSlider.doubleValue = progress / duration
     }
     

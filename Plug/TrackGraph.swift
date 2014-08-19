@@ -70,7 +70,7 @@ class TrackGraph: NSObject {
     
     func serializeString(string: String) -> NSArray {
         var error: NSError?
-        let json: AnyObject! = NSJSONSerialization.JSONObjectWithData(string.dataUsingEncoding(NSUTF8StringEncoding), options: NSJSONReadingOptions.MutableContainers, error: &error)
+        let json: AnyObject! = NSJSONSerialization.JSONObjectWithData(string.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.MutableContainers, error: &error)
         if error != nil {
             println(error)
         }
