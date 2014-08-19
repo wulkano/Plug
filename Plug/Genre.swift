@@ -21,4 +21,8 @@ class Genre: NSObject {
         
         super.init()
     }
+    
+    func description() -> String {
+        return "<Genre - name: \(name), priority: \(priority)>"
+    }
 }

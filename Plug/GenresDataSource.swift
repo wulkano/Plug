@@ -10,13 +10,18 @@ import Cocoa
 
 class GenresDataSource: NSObject, NSTableViewDataSource {
     var tableView: NSTableView?
+    var filtering: Bool = false
+    var allGenres: [Genre]?
     var tableContents: [GenresListItem]?
+    var filteredTableContents: [GenresListItem]?
+
     
     // TODO: Sorting
     // TODO: Grouping
     func loadInitialValues() {
         HypeMachineAPI.Genres.AllGenres(
             {genres in
+                self.allGenres = genres
                 self.generateTableContents(genres)
                 self.tableView?.reloadData()
             }, failure: {error in
@@ -25,10 +30,31 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
     }
     
     func itemForRow(row: Int) -> GenresListItem {
-        return tableContents![row]
+        if filtering {
+            return filteredTableContents![row]
+        } else {
+            return tableContents![row]
+        }
+    }
+    
+    func itemAfterRow(row: Int) -> GenresListItem? {
+        var list: [GenresListItem]
+        
+        if filtering {
+            list = filteredTableContents!
+        } else {
+            list = tableContents!
+        }
+        
+        if list.count > row + 1{
+            return itemForRow(row + 1)
+        } else {
+            return nil
+        }
     }
     
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
+        
         switch itemForRow(row) {
         case .SectionHeaderItem(let sectionHeader):
             return sectionHeader
@@ -40,7 +66,11 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
     func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
         if tableContents == nil { return 0 }
         
-        return tableContents!.count
+        if filtering {
+            return filteredTableContents!.count
+        } else {
+            return tableContents!.count
+        }
     }
     
     func generateTableContents(genres: [Genre]) {
@@ -65,6 +95,20 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
     func appendGenres(genres: [Genre]) {
         let wrappedGenres = GenresListItem.WrapGenreObjects(genres)
         tableContents! += wrappedGenres
+    }
+    
+    func filterByKeywords(keywords: String) {
+        if keywords == "" {
+            filtering = false
+        } else {
+            filtering = true
+            var filteredGenres = allGenres!.filter {
+                $0.name =~ keywords
+            }
+            var sortedGenres = filteredGenres.sorted { $0.name < $1.name }
+            filteredTableContents = GenresListItem.WrapGenreObjects(sortedGenres)
+        }
+        tableView!.reloadData()
     }
 }
 

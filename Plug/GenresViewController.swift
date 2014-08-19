@@ -28,15 +28,11 @@ class GenresViewController: NSViewController, NSTableViewDelegate {
     }
     
     func itemForRow(row: Int) -> GenresListItem {
-        return dataSource!.tableContents![row]
+        return dataSource!.itemForRow(row)
     }
     
     func itemAfterRow(row: Int) -> GenresListItem? {
-        if dataSource!.tableContents!.count - 1 > row {
-            return itemForRow(row + 1)
-        } else {
-            return nil
-        }
+        return dataSource!.itemAfterRow(row)
     }
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
@@ -94,5 +90,10 @@ class GenresViewController: NSViewController, NSTableViewDelegate {
         case .GenreItem:
             return true
         }
+    }
+    
+    @IBAction func searchFieldSubmit(sender: NSSearchField) {
+        let keywords = sender.stringValue
+        dataSource!.filterByKeywords(keywords)
     }
 }

@@ -2065,6 +2065,9 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
+                                        <connections>
+                                            <action selector="searchFieldSubmit:" target="ibg-UP-aYQ" id="CEb-5a-YlN"/>
+                                        </connections>
                                     </searchField>
                                 </subviews>
                                 <constraints>
