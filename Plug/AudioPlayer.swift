@@ -30,7 +30,7 @@ class AudioPlayer: NSObject {
     }
     }
     var progressObserver: AnyObject?
-    var count = 0
+    var seeking = false
     
     override init() {
         super.init()
@@ -76,27 +76,44 @@ class AudioPlayer: NSObject {
         }
     }
     
+    func seekToPercent(percent: Double) {
+        seeking = true
+        let seconds = percent * currentItemDuration()!
+        let time = CMTimeMakeWithSeconds(seconds, 1)
+        player.seekToTime(time, completionHandler: {success in
+            self.seeking = false
+            
+            if !success {
+                // Minor error
+                println("Error seeking")
+            }
+        })
+    }
+    
     // MARK : Notification listeners
     
-    func currentTrackFinishedPlaying(notification: NSNotification) {
-        println("currentTrackFinishedPlaying")
+    func currentTrackFinishedPlayingNotification(notification: NSNotification) {
+        println("currentTrackFinishedPlayingNotification")
         skipForward()
     }
     
     // MARK: Private methods
     
+    private func currentItemDuration() -> Double? {
+        if playerItem == nil { return nil }
+
+        return Double(CMTimeGetSeconds(playerItem.duration))
+    }
+    
     private func setupForNewTrack(track: Track) {
         if playerItem != nil {
             unsubscribeFromPlayerItem(playerItem)
         }
+        
         playerItem = AVPlayerItem(URL: track.mediaURL())
+        
         subscribeToPlayerItem(playerItem)
-        ensurePlayerForItem(playerItem)
-        currentPlaylist = track.playlist
-        currentTrack = track
-    }
-    
-    private func ensurePlayerForItem(playerItem: AVPlayerItem) {
+        
         if player == nil {
             player = AVPlayer(playerItem: playerItem)
             player.volume = volume
@@ -104,6 +121,9 @@ class AudioPlayer: NSObject {
         } else {
             player.replaceCurrentItemWithPlayerItem(playerItem)
         }
+        
+        currentPlaylist = track.playlist
+        currentTrack = track
     }
     
     private func volumeChanged() {
@@ -117,14 +137,16 @@ class AudioPlayer: NSObject {
         progressObserver = player.addPeriodicTimeObserverForInterval(thirdOfSecond, queue: nil, usingBlock: progressUpdated)
     }
     
-    private func progressUpdated(time: CMTime) -> Void {
+    private func progressUpdated(time: CMTime) {
+        if seeking { return }
+        
         let progress = Double(CMTimeGetSeconds(time))
         let duration = Double(CMTimeGetSeconds(playerItem.duration))
         Notifications.Post.TrackProgressUpdated(currentTrack, progress: progress, duration: duration, sender: self)
     }
     
     private func subscribeToPlayerItem(playerItem: AVPlayerItem) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackFinishedPlaying:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackFinishedPlayingNotification:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
     }
     
     private func unsubscribeFromPlayerItem(playerItem: AVPlayerItem) {

@@ -35,10 +35,6 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
         self.dataSource!.loadInitialValues()
     }
     
-    func trackForRow(row: Int) -> Track {
-        return playlist!.tracks[row]
-    }
-    
     func cellViewForRow(row: Int) -> PlaylistTableCellView? {
         if row < 0 {
             return nil
@@ -67,6 +63,17 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
     func mouseDidScrollTableView() {
         if let cellView = cellViewForRow(previousMouseOverRow) {
             cellView.mouseInside = false
+        }
+    }
+    
+    override func keyDown(theEvent: NSEvent!) {
+        switch theEvent.keyCode {
+        case 36: // Enter
+            let row = tableView.selectedRow
+            let track = dataSource!.trackForRow(row)
+            AudioPlayer.sharedInstance.play(track)
+        default:
+            super.keyDown(theEvent)
         }
     }
     

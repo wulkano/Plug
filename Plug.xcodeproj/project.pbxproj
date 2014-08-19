@@ -66,6 +66,7 @@
 		FADC96F21974CA0D009458FA /* PlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */; };
 		FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */; };
 		FADC96F61974D10C009458FA /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F51974D10C009458FA /* DraggableView.swift */; };
+		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0371C197B83C800F716CE /* VolumeIconView.swift */; };
 		FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0372E197B8A3500F716CE /* FooterViewController.swift */; };
 		FAF13B28199D22D5009D9F66 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B27199D22D5009D9F66 /* Notifications.swift */; };
@@ -165,6 +166,7 @@
 		FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableCellView.swift; sourceTree = "<group>"; };
 		FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenTitlebarWindow.swift; sourceTree = "<group>"; };
 		FADC96F51974D10C009458FA /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
+		FAE95B7719A2DED7009F9946 /* FlatSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSlider.swift; sourceTree = "<group>"; };
 		FAF0371C197B83C800F716CE /* VolumeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeIconView.swift; sourceTree = "<group>"; };
 		FAF0372E197B8A3500F716CE /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		FAF13B27199D22D5009D9F66 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				FA0B1D3D1977355B0030C873 /* ColorChangingTextView.swift */,
 				FADC96F51974D10C009458FA /* DraggableView.swift */,
 				FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */,
+				FAE95B7719A2DED7009F9946 /* FlatSlider.swift */,
 				FAF6F0951979F92900F2102B /* FlatSliderCell.swift */,
 				FA7C4976198ABD3300A38B27 /* GroupRowView.swift */,
 				FA0B1D2719770AEB0030C873 /* HeatMapView.swift */,
@@ -546,6 +549,7 @@
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,
 				FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */,
+				FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FA774998198BF8280048863F /* BlogTableCellView.swift in Sources */,

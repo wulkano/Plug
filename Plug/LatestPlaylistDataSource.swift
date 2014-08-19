@@ -45,4 +45,8 @@ class LatestPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSou
         
         return playlist!.tracks.count
     }
+    
+    func trackForRow(row: Int) -> Track {
+        return playlist!.tracks[row]
+    }
 }

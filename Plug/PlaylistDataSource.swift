@@ -12,4 +12,5 @@ protocol PlaylistDataSource: NSTableViewDataSource {
     var tableView: NSTableView? { get set }
     func loadInitialValues()
     func loadNextPage()
+    func trackForRow(row: Int) -> Track
 }

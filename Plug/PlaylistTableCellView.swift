@@ -209,6 +209,7 @@ class PlaylistTableCellView: NSTableCellView {
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
         switch playState {
         case .Playing:
+            // TODO: Go the notifications route
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
             AudioPlayer.sharedInstance.play(trackValue)
@@ -233,6 +234,10 @@ class PlaylistTableCellView: NSTableCellView {
                 AppError.logError(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
         })
+    }
+    
+    @IBAction func progressSliderDragged(sender: NSSlider) {
+        AudioPlayer.sharedInstance.seekToPercent(sender.doubleValue)
     }
     
     func changeTrackLovedValueTo(loved: Bool) {

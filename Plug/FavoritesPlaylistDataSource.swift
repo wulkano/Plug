@@ -45,4 +45,8 @@ class FavoritesPlaylistDataSource: NSObject, PlaylistDataSource {
         
         return playlist!.tracks.count
     }
+    
+    func trackForRow(row: Int) -> Track {
+        return playlist!.tracks[row]
+    }
 }

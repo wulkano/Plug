@@ -53,4 +53,8 @@ class PopularPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSo
         
         return playlist!.tracks.count
     }
+    
+    func trackForRow(row: Int) -> Track {
+        return playlist!.tracks[row]
+    }
 }
