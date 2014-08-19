@@ -31,6 +31,9 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
     
     func setDataSource(dataSource: PlaylistDataSource) {
         self.dataSource = dataSource
+        if tableView != nil {
+            tableView.setDataSource(self.dataSource!)
+        }
         self.dataSource!.tableView = tableView
         self.dataSource!.loadInitialValues()
     }

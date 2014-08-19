@@ -67,7 +67,7 @@ struct HypeMachineAPI  {
         }
         
         static func Search(searchKeywords: String, subType: SearchPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
-            let url = apiBase + "/me/feed"
+            let url = apiBase + "/tracks"
             let params = ["sort": subType.toRaw(), "q": searchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
@@ -142,7 +142,7 @@ struct HypeMachineAPI  {
             }, failure: failure)
         }
         
-        static func Search(searchKeywords: String, subType: SearchPlaylistSubType, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+        static func Search(searchKeywords: String, subType: SearchPlaylistSubType, success: (playlist: SearchPlaylist)->(), failure: (error: NSError)->()) {
             HypeMachineAPI.Tracks.Search(searchKeywords, subType: subType,  page: 1, count: trackCount, success: {tracks in
                 let playlist = SearchPlaylist(tracks: tracks, subType: subType, searchKeywords: searchKeywords)
                 success(playlist: playlist)
