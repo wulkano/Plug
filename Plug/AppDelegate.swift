@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         setupUserDefaults()
         
-        if userSignedIn() {
+        if Authentication.UserSignedIn() {
             openMainWindow()
         } else {
             openLoginWindow()
@@ -53,13 +53,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openMainWindow()
     }
     
+    @IBAction func signOut(sender: AnyObject!) {
+        closeMainWindow()
+        AudioPlayer.sharedInstance.reset()
+        Authentication.DeleteUsernameAndToken()
+        openLoginWindow()
+    }
+    
     private func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict)
-    }
-    
-    private func userSignedIn() -> Bool {
-        return false
     }
 }

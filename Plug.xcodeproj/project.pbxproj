@@ -66,6 +66,7 @@
 		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
 		FAA51A59198084E50057EC34 /* NavigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A58198084E50057EC34 /* NavigationSection.swift */; };
 		FAA51A5B1980D4FC0057EC34 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A5A1980D4FC0057EC34 /* AppError.swift */; };
+		FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1F54819A7C793002322D6 /* Authentication.swift */; };
 		FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */; };
 		FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DD1981DF5200BC5109 /* Interval.swift */; };
 		FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD4C211197CA3F2004606B5 /* UserDefaults.plist */; };
@@ -172,6 +173,7 @@
 		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
 		FAA51A58198084E50057EC34 /* NavigationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSection.swift; sourceTree = "<group>"; };
 		FAA51A5A1980D4FC0057EC34 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		FAD1F54819A7C793002322D6 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeLoadingView.swift; sourceTree = "<group>"; };
 		FAD3B0DD1981DF5200BC5109 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		FAD4C211197CA3F2004606B5 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
+				FAD1F54819A7C793002322D6 /* Authentication.swift */,
 				FA7749A5198C298E0048863F /* Playlists */,
 			);
 			name = Models;
@@ -549,6 +552,7 @@
 				FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */,
 				FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */,
 				FA9EA03C199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift in Sources */,
+				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
 				FA7C4975198ABAF200A38B27 /* BlogTableRowView.swift in Sources */,
 				FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */,

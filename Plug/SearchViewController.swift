@@ -10,7 +10,7 @@ import Cocoa
 
 class SearchViewController: NSViewController {
     @IBOutlet var searchResultsView: NSView!
-    var playlistSubType: SearchPlaylistSubType = .Newest
+    var playlistSubType: SearchPlaylistSubType = SearchPlaylistSubType.MostFavorites
     var playlistViewController: PlaylistViewController!
     var dataSource: SearchPlaylistDataSource?
     

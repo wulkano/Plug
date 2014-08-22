@@ -22,6 +22,7 @@ class LoginViewController: NSViewController {
                 self.signedInSuccessfully()
             }, failure: {error in
                 AppError.logError(error)
+                NSAlert(error: error).runModal()
         })
     }
     

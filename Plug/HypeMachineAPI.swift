@@ -32,19 +32,6 @@ struct HypeMachineAPI  {
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.POST(url, parameters: parameters, success: success, failure: failure)
     }
-
-    private static func username() -> String {
-        // TODO
-//        let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
-        return "alex_marchant"
-    }
-    
-    private static func hmToken() -> String {
-//        TODO fix this
-//        let username = username()
-//        return SSKeychain.passwordForService("Plug", account: username!)
-        return "d7ee8670b0d5d73f29f0733bdf065819"
-    }
  
     private static func deviceId() -> String {
         //        TODO fix this
@@ -56,36 +43,36 @@ struct HypeMachineAPI  {
     struct Tracks {
         static func Popular(subType: PopularPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/popular"
-            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
         static func Favorites(page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/favorites"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
         static func Latest(page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tracks"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
         static func Feed(subType: FeedPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/feed"
-            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
         static func Search(searchKeywords: String, subType: SearchPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tracks"
-            let params = ["sort": subType.toRaw(), "q": searchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": HypeMachineAPI.hmToken()]
+            let params = ["sort": subType.toRaw(), "q": searchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
         static func ToggleLoved(track: Track, success: (loved: Bool)->(), failure: (error: NSError)->()) {
-            let url = apiBase + "/me/favorites?hm_token=\(HypeMachineAPI.hmToken())"
+            let url = apiBase + "/me/favorites?hm_token=\(Authentication.GetToken()!)"
             let params = ["type": "item", "val": track.id]
             HypeMachineAPI.PostHTML(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
@@ -165,7 +152,7 @@ struct HypeMachineAPI  {
     struct Blogs {
         static func AllBlogs(success: (blogs: [Blog])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/blogs"
-            let params = ["hm_token": HypeMachineAPI.hmToken()]
+            let params = ["hm_token": Authentication.GetToken()!]
             HypeMachineAPI.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
@@ -185,7 +172,7 @@ struct HypeMachineAPI  {
     struct Genres {
         static func AllGenres(success: (genres: [Genre])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tags"
-            let params = ["hm_token": HypeMachineAPI.hmToken()]
+            let params = ["hm_token": Authentication.GetToken()!]
             HypeMachineAPI.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
@@ -204,8 +191,8 @@ struct HypeMachineAPI  {
 
     struct Friends {
         static func AllFriends(success: (friends: [Friend])->(), failure: (error: NSError)->()) {
-            let url = apiBase + "/users/" + HypeMachineAPI.username() + "/friends"
-            let params = ["hm_token": HypeMachineAPI.hmToken()]
+            let url = apiBase + "/users/" + Authentication.GetUsername()! + "/friends"
+            let params = ["hm_token": Authentication.GetToken()!]
             HypeMachineAPI.GetJSON(url, parameters: params,
                 success: {operation, responseObject in
                     let responseArray = responseObject as NSArray

@@ -43,6 +43,20 @@ class AudioPlayer: NSObject {
         }
     }
     
+    func reset() {
+        if progressObserver != nil {
+            player.removeTimeObserver(progressObserver)
+        }
+        player = nil
+        playerItem = nil
+        currentPlaylist = nil
+        currentTrack = nil
+        currentTrackIndex = 0
+        playing = false
+        progressObserver = nil
+        seeking = false
+    }
+    
     func play(track: Track) {
         if currentTrack != track {
             setupForNewTrack(track)
