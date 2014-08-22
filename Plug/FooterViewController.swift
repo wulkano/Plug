@@ -18,9 +18,7 @@ class FooterViewController: NSViewController {
 
         volumeSlider.bind("value", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
         volumeIcon.bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
-        shuffleButton.selected = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as Bool
-//            TODO: fix this binding
-//            shuffleButton.bind("selected", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.shuffle", options: nil)
+        shuffleButton.bind("selected", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.shuffle", options: nil)
     }
     
     @IBAction func skipForwardButtonClicked(sender: TransparentButton) {
@@ -32,9 +30,12 @@ class FooterViewController: NSViewController {
     }
 
     @IBAction func shuffleButtonClicked(sender: TransparentButton) {
-        let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as Bool
-        let newShuffle = !shuffle
+        toggleShuffle()
+    }
+    
+    func toggleShuffle() {
+        let oldShuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as Bool
+        let newShuffle = !oldShuffle
         NSUserDefaults.standardUserDefaults().setValue(newShuffle, forKey: "shuffle")
-        shuffleButton.selected = newShuffle
     }
 }

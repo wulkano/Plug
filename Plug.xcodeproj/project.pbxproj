@@ -31,6 +31,10 @@
 		FA3199AF19824E030097B081 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AE19824E030097B081 /* Blog.swift */; };
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
 		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
+		FA410CF419A40C2600E71B20 /* Plug.iconset in Resources */ = {isa = PBXBuildFile; fileRef = FA410CF319A40C2600E71B20 /* Plug.iconset */; };
+		FA4C44F719A6C8BE0052D506 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4C44F619A6C8BE0052D506 /* Login.storyboard */; };
+		FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C44F819A6C9B70052D506 /* LoginViewController.swift */; };
+		FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */; };
 		FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */; };
 		FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263519761436004D0776 /* NSColor+256ColorValues.swift */; };
 		FA51263819762F66004D0776 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263719762F66004D0776 /* NavigationButton.swift */; };
@@ -133,6 +137,10 @@
 		FA3199AE19824E030097B081 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
+		FA410CF319A40C2600E71B20 /* Plug.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Plug.iconset; sourceTree = "<group>"; };
+		FA4C44F619A6C8BE0052D506 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		FA4C44F819A6C9B70052D506 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableVisualEffectsView.swift; sourceTree = "<group>"; };
 		FA51263519761436004D0776 /* NSColor+256ColorValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+256ColorValues.swift"; sourceTree = "<group>"; };
 		FA51263719762F66004D0776 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
 				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
 				FA774999198C07110048863F /* GenresViewController.swift */,
+				FA4C44F819A6C9B70052D506 /* LoginViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
 				FA24EDC21974ACAA00A781C8 /* PlaylistViewController.swift */,
 				FA77499D198C0D180048863F /* SearchViewController.swift */,
@@ -284,10 +293,13 @@
 				FA0B1CF31976D8420030C873 /* Views */,
 				FA0B1CF21976D8320030C873 /* Controllers */,
 				FA9EA043199B0D1500D9AB8A /* Data Sources */,
+				FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */,
 				FA24EDA91974A9A500A781C8 /* Main.storyboard */,
+				FA4C44F619A6C8BE0052D506 /* Login.storyboard */,
 				FA24EDA71974A9A500A781C8 /* Images.xcassets */,
 				FA51263419761424004D0776 /* Extensions */,
 				FA24ED9F1974A9A500A781C8 /* Supporting Files */,
+				FA410CF319A40C2600E71B20 /* Plug.iconset */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
 				FAD4C211197CA3F2004606B5 /* UserDefaults.plist */,
 			);
@@ -466,7 +478,10 @@
 			files = (
 				FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */,
 				FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */,
+				FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */,
 				FA24EDAB1974A9A500A781C8 /* Main.storyboard in Resources */,
+				FA4C44F719A6C8BE0052D506 /* Login.storyboard in Resources */,
+				FA410CF419A40C2600E71B20 /* Plug.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +586,7 @@
 				FA9EA036199AC08600D9AB8A /* PlaylistDataSource.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
+				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */,
 				FA0B1D2E1977109E0030C873 /* Playlist.swift in Sources */,
 				FAF13B5B199D605C009D9F66 /* TrackInfoWindowController.swift in Sources */,
@@ -708,6 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Plug/Info.plist;
@@ -726,6 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Plug/Info.plist;

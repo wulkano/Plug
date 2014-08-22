@@ -25,6 +25,7 @@ class MainViewController: NSViewController {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayError:", name: Notifications.Error, object: nil)
+        startListeningForMediaKeys()
     }
     
     deinit {
@@ -37,13 +38,15 @@ class MainViewController: NSViewController {
         changeNavigationSection(NavigationSection.Popular)
     }
     
+    func startListeningForMediaKeys() {
+        
+    }
+    
     func changeNavigationSection(section: NavigationSection) {
         NavigationSection.postChangeNotification(section, object: self)
-        updateUIForSection(section)
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        if notification.object === self { return }
         let section = NavigationSection.fromNotification(notification)
         updateUIForSection(section)
     }

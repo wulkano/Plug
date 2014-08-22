@@ -22,6 +22,11 @@ struct HypeMachineAPI  {
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     
+    private static func PostJSON(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
+        manager.POST(url, parameters: parameters, success: success, failure: failure)
+    }
+    
     private static func PostHTML(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.responseSerializer = AFHTTPResponseSerializer()
@@ -39,6 +44,13 @@ struct HypeMachineAPI  {
 //        let username = username()
 //        return SSKeychain.passwordForService("Plug", account: username!)
         return "d7ee8670b0d5d73f29f0733bdf065819"
+    }
+ 
+    private static func deviceId() -> String {
+        //        TODO fix this
+        //        let username = username()
+        //        return SSKeychain.passwordForService("Plug", account: username!)
+        return "d7ee8670b0d5d73"
     }
     
     struct Tracks {
@@ -195,7 +207,7 @@ struct HypeMachineAPI  {
             let url = apiBase + "/users/" + HypeMachineAPI.username() + "/friends"
             let params = ["hm_token": HypeMachineAPI.hmToken()]
             HypeMachineAPI.GetJSON(url, parameters: params,
-                success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                success: {operation, responseObject in
                     let responseArray = responseObject as NSArray
                     var friends = [Friend]()
                     for friendObject: AnyObject in responseArray {
@@ -203,11 +215,27 @@ struct HypeMachineAPI  {
                         friends.append(Friend(JSON: friendDictionary))
                     }
                     success(friends: friends)
-                }, failure: {
-                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                }, failure: {operation, error in
                     failure(error: error)
             })
         }
+    }
+    
+    static func GetToken(username: String, password: String, success: (token: String)->(), failure: (error: NSError)->()) {
+        let url = apiBase + "/get_token"
+        let params = ["username": username, "password": password, "device_id": deviceId()]
+        HypeMachineAPI.PostJSON(url, parameters: params,
+            success: {operation, responseObject in
+                let responseDictionary = responseObject as NSDictionary
+                let token = responseDictionary["hm_token"] as String
+                success(token: token)
+            }, failure: {operation, error in
+                println(error)
+                println("")
+                println(operation)
+                println("")
+                failure(error: error)
+        })
     }
     
     static func TrackGraphFor(track: Track, success: (graph: TrackGraph)->(), failure: (error: NSError)->()) {

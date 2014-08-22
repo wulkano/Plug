@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>10</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
@@ -29,7 +29,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2014 Plug. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
+	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

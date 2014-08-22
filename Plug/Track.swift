@@ -66,7 +66,12 @@ class Track: NSObject {
     }
     
     func mediaURL() -> NSURL {
-        var mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(ApiKey)"
+        var mediaLinkString: String
+        if RickRoll {
+            mediaLinkString = "https://hypem.com/serve/public/b7wa?key=\(ApiKey)"
+        } else {
+            mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(ApiKey)"
+        }
         return NSURL(string: mediaLinkString)
     }
 }

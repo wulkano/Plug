@@ -10,3 +10,4 @@ import Foundation
 
 let ApiKey = "***REMOVED***"
 let PlugErrorDomain = "Plug.ErrorDomain"
+let RickRoll = false
