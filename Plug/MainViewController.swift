@@ -19,13 +19,13 @@ class MainViewController: NSViewController {
     var genresViewController: GenresViewController?
     var friendsViewController: FriendsViewController?
     var searchViewController: SearchViewController?
+    
     var currentViewController: NSViewController?
     
     required init(coder: NSCoder!) {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayError:", name: Notifications.Error, object: nil)
-        startListeningForMediaKeys()
     }
     
     deinit {
@@ -36,10 +36,6 @@ class MainViewController: NSViewController {
         super.viewDidLoad()
         
         changeNavigationSection(NavigationSection.Popular)
-    }
-    
-    func startListeningForMediaKeys() {
-        
     }
     
     func changeNavigationSection(section: NavigationSection) {
@@ -140,15 +136,16 @@ class MainViewController: NSViewController {
     }
     
     func transitionMainContentViewController(controller: NSViewController) {
-        if currentViewController != nil {
-            transitionFromViewController(currentViewController, toViewController: controller, options: NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade, completionHandler:  {
-                for subview in self.mainContentView.subviews {
-                    if subview !== controller.view {
-                        (subview as NSView).removeFromSuperview()
-                    }
+        if currentViewController == nil { return }
+        
+        let transitions = NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
+        transitionFromViewController(currentViewController, toViewController: controller, options: transitions, completionHandler:  {
+            for subview in self.mainContentView.subviews {
+                if subview !== controller.view {
+                    (subview as NSView).removeFromSuperview()
                 }
-            })
-        }
+            }
+        })
     }
     
     func setDataSourceForSection(section: NavigationSection, viewController: NSViewController) {

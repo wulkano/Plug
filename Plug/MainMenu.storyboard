@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <scenes>
@@ -16,21 +17,34 @@
                                     <items>
                                         <menuItem title="About Plug" id="CXu-29-PkB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="geA-u8-YPg" id="ky7-oN-Jrl"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rCw-n8-jFb"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="6gh-ly-NSv"/>
-                                        <menuItem isSeparatorItem="YES" id="H7n-ly-K8H"/>
-                                        <menuItem title="Services" id="q41-a3-Qbu">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="LJB-ne-usf"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="6gh-ly-NSv">
+                                            <connections>
+                                                <action selector="preferencesItemClicked:" target="0zE-Eq-Avq" id="PpG-hJ-e59"/>
+                                                <segue destination="Sx4-az-igd" kind="modal" id="26q-vB-azF"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="zuj-Af-21S"/>
-                                        <menuItem title="Hide Plug" keyEquivalent="h" id="LZm-i8-zhe"/>
+                                        <menuItem isSeparatorItem="YES" id="H7n-ly-K8H"/>
+                                        <menuItem title="Hide Plug" keyEquivalent="h" id="LZm-i8-zhe">
+                                            <connections>
+                                                <action selector="hide:" target="geA-u8-YPg" id="JRk-52-8Vc"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="7w2-gU-XPw">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="geA-u8-YPg" id="UpE-VM-A6I"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Show All" id="XYh-GV-Xqd">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="geA-u8-YPg" id="HYm-W4-cwP"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="YaQ-Eg-fQa"/>
                                         <menuItem title="Sign Out" id="Zo0-Xs-iwP">
@@ -40,38 +54,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="fnM-qT-VnK"/>
-                                        <menuItem title="Quit Plug" keyEquivalent="q" id="0f8-Ds-Miy"/>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="File" id="qCX-TS-HU2">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="File" id="fPS-Hk-yTQ">
-                                    <items>
-                                        <menuItem title="New" keyEquivalent="n" id="Nsu-cA-2KT"/>
-                                        <menuItem title="Open…" keyEquivalent="o" id="iAs-io-lev"/>
-                                        <menuItem title="Open Recent" id="UkL-Qu-h9L">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="owL-tk-QH4">
-                                                <items>
-                                                    <menuItem title="Clear Menu" id="uvS-sF-eaE">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
+                                        <menuItem title="Quit Plug" keyEquivalent="q" id="0f8-Ds-Miy">
+                                            <connections>
+                                                <action selector="terminate:" target="geA-u8-YPg" id="UCg-0A-bmZ"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="cRb-4I-7Cm"/>
-                                        <menuItem title="Close" keyEquivalent="w" id="ucY-85-M4j"/>
-                                        <menuItem title="Save…" keyEquivalent="s" id="2Ib-Al-3RX"/>
-                                        <menuItem title="Save As…" keyEquivalent="S" id="yZ7-Tg-GSY"/>
-                                        <menuItem title="Revert to Saved" id="sAK-rM-K0r">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="NeM-25-2Eh"/>
-                                        <menuItem title="Page Setup…" keyEquivalent="P" id="aUv-Xf-DEZ">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Print…" keyEquivalent="p" id="u9k-5m-sMw"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -79,9 +66,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="yaO-YR-bcW">
                                     <items>
-                                        <menuItem title="Undo" keyEquivalent="z" id="Wpe-D8-mpR"/>
-                                        <menuItem title="Redo" keyEquivalent="Z" id="ir0-cS-XVO"/>
-                                        <menuItem isSeparatorItem="YES" id="mmM-VP-1s6"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="d9z-cQ-ltQ">
                                             <connections>
                                                 <action selector="cut:" target="geA-u8-YPg" id="Rd1-mt-R3X"/>
@@ -99,6 +83,9 @@
                                         </menuItem>
                                         <menuItem title="Delete" id="hYX-hm-rJP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="delete:" target="geA-u8-YPg" id="D0T-Rn-BBb"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Select All" keyEquivalent="a" id="G2b-o9-UIe">
                                             <connections>
@@ -108,30 +95,32 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="4RM-bU-NyG">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="View" id="Jpl-9W-DTU">
-                                    <items>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="VSl-va-P9c">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="sqS-4i-xRj">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Window" id="mrY-4H-BnX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="cQs-bY-8hy">
                                     <items>
-                                        <menuItem title="Minimize" keyEquivalent="m" id="z2x-XE-rbU"/>
+                                        <menuItem title="Close" keyEquivalent="w" id="hXu-nh-bTl">
+                                            <connections>
+                                                <action selector="performClose:" target="geA-u8-YPg" id="1ko-5z-Xb0"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="z2x-XE-rbU">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="geA-u8-YPg" id="CQf-Yy-eIL"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Zoom" id="Cga-8J-cgu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="geA-u8-YPg" id="wOp-ba-Ho3"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="buJ-B2-YAn"/>
                                         <menuItem title="Bring All to Front" id="htt-wT-ba5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="geA-u8-YPg" id="0Ps-dY-6yM"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -160,5 +149,74 @@
             </objects>
             <point key="canvasLocation" x="-254.5" y="-64"/>
         </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="X6N-mi-lbB">
+            <objects>
+                <tabViewController tabStyle="toolbar" id="Sx4-az-igd" sceneMemberID="viewController">
+                    <tabView key="view" type="noTabsNoBorder" id="rmE-Nf-4Ma">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <tabViewItems>
+                        <tabViewItem label="General" identifier="" image="Preferences-General-Off" id="i3e-h6-y4w" customClass="UnderlinedTabViewItem" customModule="Plug" customModuleProvider="target"/>
+                        <tabViewItem label="Hotkeys" identifier="" image="Preferences-Hotkeys-Off" id="eXi-w3-KB7" customClass="UnderlinedTabViewItem" customModule="Plug" customModuleProvider="target"/>
+                        <tabViewItem label="Muted" image="Preferences-Muted-Off" id="hGJ-uj-PVu" customClass="UnderlinedTabViewItem" customModule="Plug" customModuleProvider="target"/>
+                    </tabViewItems>
+                    <connections>
+                        <segue destination="TeP-eK-nhS" kind="relationship" relationship="tabItem" id="Hiq-fm-pEz"/>
+                        <segue destination="aR8-Pg-ph0" kind="relationship" relationship="tabItem" id="kZw-kl-1TO"/>
+                        <segue destination="MIC-2b-42p" kind="relationship" relationship="tabItem" id="Uq5-YJ-VK6"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="tFP-fq-or4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="348" y="162"/>
+        </scene>
+        <!--General Preferences View Controller-->
+        <scene sceneID="4lP-lU-Lm7">
+            <objects>
+                <viewController id="TeP-eK-nhS" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="vrn-Zg-zWV">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="TC7-So-fQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="-375"/>
+        </scene>
+        <!--Hotkeys Preferences View Controller-->
+        <scene sceneID="gZH-mY-6rg">
+            <objects>
+                <viewController id="aR8-Pg-ph0" customClass="HotkeysPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5cB-qD-2Pi">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="5iu-NS-LGo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="7"/>
+        </scene>
+        <!--Muted Preferences View Controller-->
+        <scene sceneID="zmU-gO-MJn">
+            <objects>
+                <viewController id="MIC-2b-42p" customClass="MutedPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="OWL-YY-Res">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="0Lc-LA-WKk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="381"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Preferences-General-Off" width="36" height="36"/>
+        <image name="Preferences-Hotkeys-Off" width="40" height="32"/>
+        <image name="Preferences-Muted-Off" width="36" height="36"/>
+    </resources>
 </document>

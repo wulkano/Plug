@@ -23,7 +23,7 @@ class TitleBarViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleTextField.stringValue = ""
+        titleTextField.stringValue = "Popular"
     }
     
     func navigationSectionChanged(notification: NSNotification) {
