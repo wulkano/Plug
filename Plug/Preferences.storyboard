@@ -164,29 +164,171 @@
             <objects>
                 <viewController id="seI-KD-IWG" sceneMemberID="viewController">
                     <view key="view" id="TeD-Sw-Ebk">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G0u-AC-C8v">
-                                <rect key="frame" x="184" y="133" width="82" height="32"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZHm-Ic-EHb">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ax3-fj-PSH" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5xx-hs-CRN">
+                                        <rect key="frame" x="18" y="306" width="296" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="it8-i2-cnt"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show app icon in dock (requires restart)" id="m1j-dR-v9P">
+                                            <font key="font" metaFont="system" size="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Tbz-jg-LhI" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="280" width="380" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="KrY-cI-YOS"/>
+                                            <constraint firstAttribute="width" constant="380" id="QwZ-iM-aJX"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f3n-0a-ixb">
+                                        <rect key="frame" x="18" y="236" width="296" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="4os-r9-aU9"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show notification when changing tracks" id="FEM-w5-vG2">
+                                            <font key="font" metaFont="system" size="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="47I-rf-hcS" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="210" width="380" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="380" id="FYq-9r-A5v"/>
+                                            <constraint firstAttribute="height" constant="1" id="Kp8-Wi-eVW"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JTA-kq-Qh0">
+                                        <rect key="frame" x="18" y="166" width="296" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="8Ll-cl-h1x"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Use media keys for shortcuts" id="Xaz-E1-RHU">
+                                            <font key="font" metaFont="system" size="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Siq-Pg-rAB" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="140" width="380" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="380" id="RTs-i1-3i4"/>
+                                            <constraint firstAttribute="height" constant="1" id="fIX-xN-Qem"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IID-fU-TeE">
+                                        <rect key="frame" x="18" y="96" width="296" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="0EH-dv-rux"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hide tracks that are unavailable" id="RBB-HF-DBE">
+                                            <font key="font" metaFont="system" size="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="7uT-au-QX4" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="70" width="380" height="1"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="380" id="LcA-27-QyQ"/>
+                                            <constraint firstAttribute="height" constant="1" id="Wwq-ku-AY0"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xvX-xL-ViI">
+                                        <rect key="frame" x="18" y="26" width="296" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="YUY-zg-zwR"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Snap to playing track in list" id="OhW-mI-H1R">
+                                            <font key="font" metaFont="system" size="15"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="f3n-0a-ixb" firstAttribute="top" secondItem="5xx-hs-CRN" secondAttribute="bottom" constant="50" id="075-g9-Edz"/>
+                                    <constraint firstItem="7uT-au-QX4" firstAttribute="top" secondItem="IID-fU-TeE" secondAttribute="bottom" constant="25" id="3qV-hL-Pzu"/>
+                                    <constraint firstAttribute="trailing" secondItem="xvX-xL-ViI" secondAttribute="trailing" constant="88" id="5dH-Iv-5aX"/>
+                                    <constraint firstItem="JTA-kq-Qh0" firstAttribute="top" secondItem="f3n-0a-ixb" secondAttribute="bottom" constant="50" id="8zq-4G-sid"/>
+                                    <constraint firstItem="47I-rf-hcS" firstAttribute="top" secondItem="f3n-0a-ixb" secondAttribute="bottom" constant="25" id="96S-wS-FM6"/>
+                                    <constraint firstItem="5xx-hs-CRN" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="BpR-wt-h7P"/>
+                                    <constraint firstItem="Tbz-jg-LhI" firstAttribute="top" secondItem="5xx-hs-CRN" secondAttribute="bottom" constant="25" id="O4o-Ty-vAQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="47I-rf-hcS" secondAttribute="trailing" id="VvR-X8-Ulf"/>
+                                    <constraint firstItem="5xx-hs-CRN" firstAttribute="top" secondItem="ax3-fj-PSH" secondAttribute="top" constant="27" id="W0K-7E-zai"/>
+                                    <constraint firstItem="xvX-xL-ViI" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="YOm-U3-LhI"/>
+                                    <constraint firstItem="xvX-xL-ViI" firstAttribute="top" secondItem="IID-fU-TeE" secondAttribute="bottom" constant="50" id="ZFu-rK-190"/>
+                                    <constraint firstAttribute="trailing" secondItem="IID-fU-TeE" secondAttribute="trailing" constant="88" id="aWJ-i3-JFc"/>
+                                    <constraint firstItem="IID-fU-TeE" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="cSg-YO-RkY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Siq-Pg-rAB" secondAttribute="trailing" id="dpJ-VV-nyY"/>
+                                    <constraint firstAttribute="trailing" secondItem="JTA-kq-Qh0" secondAttribute="trailing" constant="88" id="gse-9I-kuQ"/>
+                                    <constraint firstItem="JTA-kq-Qh0" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="iqI-pv-txK"/>
+                                    <constraint firstAttribute="trailing" secondItem="5xx-hs-CRN" secondAttribute="trailing" constant="88" id="kHd-RW-dLJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="f3n-0a-ixb" secondAttribute="trailing" constant="88" id="lpq-Sd-2vM"/>
+                                    <constraint firstItem="f3n-0a-ixb" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="maS-Ej-TCq"/>
+                                    <constraint firstAttribute="trailing" secondItem="7uT-au-QX4" secondAttribute="trailing" id="mat-Jq-R0S"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tbz-jg-LhI" secondAttribute="trailing" id="nZa-wB-Y10"/>
+                                    <constraint firstItem="Siq-Pg-rAB" firstAttribute="top" secondItem="JTA-kq-Qh0" secondAttribute="bottom" constant="25" id="sNx-UY-rIw"/>
+                                    <constraint firstItem="IID-fU-TeE" firstAttribute="top" secondItem="JTA-kq-Qh0" secondAttribute="bottom" constant="50" id="z4c-t0-eOE"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="ax3-fj-PSH" firstAttribute="top" secondItem="TeD-Sw-Ebk" secondAttribute="top" id="2kd-Ct-krS"/>
+                            <constraint firstItem="ax3-fj-PSH" firstAttribute="leading" secondItem="TeD-Sw-Ebk" secondAttribute="leading" id="Aoi-AJ-myN"/>
+                            <constraint firstAttribute="trailing" secondItem="ax3-fj-PSH" secondAttribute="trailing" id="IOU-9r-7NY"/>
+                            <constraint firstAttribute="bottom" secondItem="ax3-fj-PSH" secondAttribute="bottom" id="v26-Vb-Mur"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="oqK-qV-mZv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="693" y="982"/>
+            <point key="canvasLocation" x="696" y="947.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tns-yc-flh">
             <objects>
                 <viewController id="UXZ-1h-gFf" sceneMemberID="viewController">
                     <view key="view" id="RW6-gX-w1T">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="423"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
@@ -199,7 +341,7 @@
             <objects>
                 <viewController id="9YK-AT-qbV" sceneMemberID="viewController">
                     <view key="view" id="wCs-fy-jdJ">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="423"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
