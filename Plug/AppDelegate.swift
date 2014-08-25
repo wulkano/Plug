@@ -75,6 +75,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openLoginWindow()
     }
     
+    @IBAction func preferencesItemClicked(sender: AnyObject!) {
+        let preferencesWindowController = (NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as NSWindowController)
+        NSApp.runModalForWindow(preferencesWindowController.window)
+    }
+    
     private func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)

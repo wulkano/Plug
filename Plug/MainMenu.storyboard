@@ -24,7 +24,7 @@
                                         <menuItem isSeparatorItem="YES" id="rCw-n8-jFb"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="6gh-ly-NSv">
                                             <connections>
-                                                <segue destination="jdg-ca-dae" kind="modal" id="WRo-c2-7IV"/>
+                                                <action selector="preferencesItemClicked:" target="0zE-Eq-Avq" id="PrD-QN-a7s"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="H7n-ly-K8H"/>
@@ -148,74 +148,5 @@
             </objects>
             <point key="canvasLocation" x="-254.5" y="-64"/>
         </scene>
-        <!--Tab View Controller-->
-        <scene sceneID="23G-N1-LV3">
-            <objects>
-                <tabViewController tabStyle="toolbar" id="jdg-ca-dae" sceneMemberID="viewController">
-                    <tabView key="view" type="noTabsNoBorder" id="ZOg-Mu-2dZ">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
-                        <tabViewItems/>
-                    </tabView>
-                    <tabViewItems>
-                        <tabViewItem label="General" identifier="" image="Preferences-General-Off" id="Ota-36-HG7"/>
-                        <tabViewItem label="Hotkeys" identifier="" image="Preferences-Hotkeys-Off" id="rTZ-jA-spN"/>
-                        <tabViewItem label="Muted" image="Preferences-Muted-Off" id="tqY-mG-oMV"/>
-                    </tabViewItems>
-                    <connections>
-                        <segue destination="5MR-uw-fOi" kind="relationship" relationship="tabItem" id="Iyg-S3-63j"/>
-                        <segue destination="CuZ-NY-p1c" kind="relationship" relationship="tabItem" id="L4g-n4-kd0"/>
-                        <segue destination="C96-MX-wy5" kind="relationship" relationship="tabItem" id="WTq-7p-lfC"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="Vfo-js-weh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="204" y="179"/>
-        </scene>
-        <!--General Preferences View Controller-->
-        <scene sceneID="ak8-09-CxF">
-            <objects>
-                <viewController id="5MR-uw-fOi" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="C0B-Hg-M1d">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="nZF-Gg-q6M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-287" y="824"/>
-        </scene>
-        <!--Hotkeys Preferences View Controller-->
-        <scene sceneID="2v1-Nn-o7d">
-            <objects>
-                <viewController id="CuZ-NY-p1c" customClass="HotkeysPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="4G7-ME-J0f">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="oyc-1r-rwu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="245" y="824"/>
-        </scene>
-        <!--Muted Preferences View Controller-->
-        <scene sceneID="fde-qW-TRX">
-            <objects>
-                <viewController id="C96-MX-wy5" customClass="MutedPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Nf9-76-N4E">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="mRA-4v-634" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="772" y="824"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="Preferences-General-Off" width="36" height="36"/>
-        <image name="Preferences-Hotkeys-Off" width="40" height="32"/>
-        <image name="Preferences-Muted-Off" width="36" height="36"/>
-    </resources>
 </document>

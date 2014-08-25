@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
+    <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+    </dependencies>
+    <scenes>
+        <!--Window-->
+        <scene sceneID="OaO-hp-jyj">
+            <objects>
+                <windowController id="W2t-17-F3D" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="400" height="444"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <view key="contentView" id="rub-ix-Yha">
+                            <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                    </window>
+                    <connections>
+                        <segue destination="5IL-x6-7lA" kind="relationship" relationship="window.shadowedContentViewController" id="x2a-al-c0k"/>
+                    </connections>
+                </windowController>
+                <customObject id="xyg-fZ-Jda" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="416"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="Vnz-Ee-iFP">
+            <objects>
+                <viewController id="5IL-x6-7lA" customClass="PreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="YyQ-Gb-QOF">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nz2-n0-mWO" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="352" width="400" height="92"/>
+                                <subviews>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ba4-BZ-Gks" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="92"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.76078431372549016" green="0.76470588235294112" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="QYj-8M-NyU">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Btw-uV-Fn1"/>
+                                            <constraint firstAttribute="width" constant="60" id="Mgy-a6-gfV"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="General" bezelStyle="shadowlessSquare" image="Preferences-General-Off" imagePosition="above" alignment="center" alternateImage="Preferences-General-On" state="on" borderStyle="border" inset="2" id="IMw-7A-qOm" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" size="11" name="HelveticaNeue"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="generalTabClicked:" target="5IL-x6-7lA" id="Lzo-Pd-mwt"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="GrM-zG-xU0">
+                                        <rect key="frame" x="60" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="HA2-8n-jzy"/>
+                                            <constraint firstAttribute="height" constant="60" id="NkX-Sg-uSd"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="Hotkeys" bezelStyle="shadowlessSquare" image="Preferences-Hotkeys-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Hotkeys-On" borderStyle="border" inset="2" id="q3g-72-SgQ" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" size="11" name="HelveticaNeue"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="hotkeysTabClicked:" target="5IL-x6-7lA" id="ZTO-x8-K3m"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="fFB-I6-T8t">
+                                        <rect key="frame" x="120" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="UMZ-cV-zqN"/>
+                                            <constraint firstAttribute="height" constant="60" id="f0d-ZX-WAe"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="Muted" bezelStyle="shadowlessSquare" image="Preferences-Muted-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Muted-On" borderStyle="border" inset="2" id="kLp-v2-rvI" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
+                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                            <font key="font" size="11" name="HelveticaNeue"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="mutedTabClicked:" target="5IL-x6-7lA" id="a96-Nz-SzN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ba4-BZ-Gks" secondAttribute="trailing" id="5ai-hv-eiL"/>
+                                    <constraint firstAttribute="bottom" secondItem="GrM-zG-xU0" secondAttribute="bottom" id="Dbs-wx-L9i"/>
+                                    <constraint firstItem="GrM-zG-xU0" firstAttribute="leading" secondItem="QYj-8M-NyU" secondAttribute="trailing" id="FnL-kc-9kf"/>
+                                    <constraint firstAttribute="height" constant="92" id="R4i-ji-GGN"/>
+                                    <constraint firstItem="ba4-BZ-Gks" firstAttribute="leading" secondItem="nz2-n0-mWO" secondAttribute="leading" id="VR1-zi-RbL"/>
+                                    <constraint firstAttribute="bottom" secondItem="QYj-8M-NyU" secondAttribute="bottom" id="Wez-Ni-wWn"/>
+                                    <constraint firstAttribute="bottom" secondItem="ba4-BZ-Gks" secondAttribute="bottom" id="dG5-Fj-bZV"/>
+                                    <constraint firstItem="fFB-I6-T8t" firstAttribute="leading" secondItem="GrM-zG-xU0" secondAttribute="trailing" id="gpf-3M-BCS"/>
+                                    <constraint firstItem="ba4-BZ-Gks" firstAttribute="top" secondItem="nz2-n0-mWO" secondAttribute="top" id="m7f-50-eY1"/>
+                                    <constraint firstItem="QYj-8M-NyU" firstAttribute="leading" secondItem="nz2-n0-mWO" secondAttribute="leading" id="ofE-Kh-mOl"/>
+                                    <constraint firstAttribute="bottom" secondItem="fFB-I6-T8t" secondAttribute="bottom" id="zhu-5j-5D4"/>
+                                </constraints>
+                            </visualEffectView>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-IR-ILH">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="352"/>
+                                <connections>
+                                    <segue destination="1Vu-97-aLL" kind="embed" id="Kp8-SP-KNn"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="nz2-n0-mWO" firstAttribute="top" secondItem="YyQ-Gb-QOF" secondAttribute="top" id="8db-FJ-mpQ"/>
+                            <constraint firstAttribute="bottom" secondItem="fjZ-IR-ILH" secondAttribute="bottom" id="8sZ-nc-n2W"/>
+                            <constraint firstItem="nz2-n0-mWO" firstAttribute="leading" secondItem="YyQ-Gb-QOF" secondAttribute="leading" id="Jy4-Qa-7oQ"/>
+                            <constraint firstAttribute="trailing" secondItem="nz2-n0-mWO" secondAttribute="trailing" id="Mdf-ya-5wX"/>
+                            <constraint firstItem="fjZ-IR-ILH" firstAttribute="top" secondItem="nz2-n0-mWO" secondAttribute="bottom" id="Ukh-kl-8NE"/>
+                            <constraint firstAttribute="trailing" secondItem="fjZ-IR-ILH" secondAttribute="trailing" id="deG-yO-Xcc"/>
+                            <constraint firstItem="fjZ-IR-ILH" firstAttribute="leading" secondItem="YyQ-Gb-QOF" secondAttribute="leading" id="lMt-Nv-ddu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="generalTab" destination="QYj-8M-NyU" id="mr6-oe-BHZ"/>
+                        <outlet property="hotkeysTab" destination="GrM-zG-xU0" id="g7n-gw-ro0"/>
+                        <outlet property="mutedTab" destination="fFB-I6-T8t" id="oi9-k5-PHW"/>
+                    </connections>
+                </viewController>
+                <customObject id="0xs-Ss-o3E" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="634" y="416"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="bT4-Fi-q2f">
+            <objects>
+                <tabViewController tabStyle="unspecified" id="1Vu-97-aLL" sceneMemberID="viewController">
+                    <tabView key="view" type="noTabsNoBorder" id="YQn-LH-X2O">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="p6l-uX-BcF"/>
+                        <tabViewItem identifier="" id="6nf-tq-LFX"/>
+                        <tabViewItem id="aam-aj-uXK"/>
+                    </tabViewItems>
+                    <connections>
+                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItem" id="hba-qw-Yk5"/>
+                        <segue destination="UXZ-1h-gFf" kind="relationship" relationship="tabItem" id="cCB-YP-VjL"/>
+                        <segue destination="9YK-AT-qbV" kind="relationship" relationship="tabItem" id="Xdk-Bb-XdZ"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="sNG-BB-J3A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189" y="416"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="GM3-tk-veL">
+            <objects>
+                <viewController id="seI-KD-IWG" sceneMemberID="viewController">
+                    <view key="view" id="TeD-Sw-Ebk">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G0u-AC-C8v">
+                                <rect key="frame" x="184" y="133" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZHm-Ic-EHb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="oqK-qV-mZv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="693" y="982"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tns-yc-flh">
+            <objects>
+                <viewController id="UXZ-1h-gFf" sceneMemberID="viewController">
+                    <view key="view" id="RW6-gX-w1T">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="PQu-kQ-7NH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189" y="982"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="aDl-SU-q6t">
+            <objects>
+                <viewController id="9YK-AT-qbV" sceneMemberID="viewController">
+                    <view key="view" id="wCs-fy-jdJ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="MS1-Va-1VD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="982"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Preferences-General-Off" width="36" height="36"/>
+        <image name="Preferences-General-On" width="36" height="36"/>
+        <image name="Preferences-Hotkeys-Off" width="40" height="32"/>
+        <image name="Preferences-Hotkeys-On" width="40" height="32"/>
+        <image name="Preferences-Muted-Off" width="36" height="36"/>
+        <image name="Preferences-Muted-On" width="36" height="36"/>
+    </resources>
+</document>

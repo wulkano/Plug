@@ -45,7 +45,7 @@
 		FA64C6A719764FE9003933E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Constants.swift */; };
 		FA64C6A919765323003933E3 /* Array+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array+contains.swift */; };
 		FA691BFF197654AF008D5C3E /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA691BFE197654AF008D5C3E /* Track.swift */; };
-		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabViewItem.swift */; };
+		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
 		FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774993198B46770048863F /* BackgroundBorderView.swift */; };
 		FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */; };
@@ -73,6 +73,8 @@
 		FAA51A5B1980D4FC0057EC34 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A5A1980D4FC0057EC34 /* AppError.swift */; };
 		FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */; };
 		FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */; };
+		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
+		FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */; };
 		FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1F54819A7C793002322D6 /* Authentication.swift */; };
 		FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */; };
 		FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DD1981DF5200BC5109 /* Interval.swift */; };
@@ -159,7 +161,7 @@
 		FA64C6A619764FE9003933E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+contains.swift"; sourceTree = "<group>"; };
 		FA691BFE197654AF008D5C3E /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
-		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabViewItem.swift; sourceTree = "<group>"; };
+		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabButtonCell.swift; sourceTree = "<group>"; };
 		FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTitleButton.swift; sourceTree = "<group>"; };
 		FA774993198B46770048863F /* BackgroundBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundBorderView.swift; sourceTree = "<group>"; };
 		FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSStyleTableRowView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,8 @@
 		FAA51A5A1980D4FC0057EC34 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectOutlineButton.swift; sourceTree = "<group>"; };
 		FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonCell.swift; sourceTree = "<group>"; };
+		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FAD1F54819A7C793002322D6 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeLoadingView.swift; sourceTree = "<group>"; };
 		FAD3B0DD1981DF5200BC5109 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
@@ -236,21 +240,9 @@
 		FA0B1CF21976D8320030C873 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
-				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
-				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
-				FA774999198C07110048863F /* GenresViewController.swift */,
-				FA4C44F819A6C9B70052D506 /* LoginViewController.swift */,
-				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
-				FA24EDC21974ACAA00A781C8 /* PlaylistViewController.swift */,
-				FA77499D198C0D180048863F /* SearchViewController.swift */,
-				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
-				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
-				FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */,
-				FAF13B5A199D605C009D9F66 /* TrackInfoWindowController.swift */,
-				FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */,
-				FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */,
-				FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */,
+				FACEEBED19ABC33A0093A81B /* Main */,
+				FACEEBEC19ABC32E0093A81B /* Login */,
+				FACEEBEB19ABC3210093A81B /* Preferences */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -282,7 +274,7 @@
 				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
 				FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */,
 				FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */,
-				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabViewItem.swift */,
+				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -319,6 +311,7 @@
 				FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */,
 				FA24EDA91974A9A500A781C8 /* Main.storyboard */,
 				FA4C44F619A6C8BE0052D506 /* Login.storyboard */,
+				FACEEBE719ABB9440093A81B /* Preferences.storyboard */,
 				FA24EDA71974A9A500A781C8 /* Images.xcassets */,
 				FA51263419761424004D0776 /* Extensions */,
 				FA24ED9F1974A9A500A781C8 /* Supporting Files */,
@@ -415,6 +408,43 @@
 			name = "Data Sources";
 			sourceTree = "<group>";
 		};
+		FACEEBEB19ABC3210093A81B /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */,
+				FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */,
+				FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */,
+				FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		FACEEBEC19ABC32E0093A81B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA4C44F819A6C9B70052D506 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		FACEEBED19ABC33A0093A81B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
+				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
+				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
+				FA774999198C07110048863F /* GenresViewController.swift */,
+				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
+				FA24EDC21974ACAA00A781C8 /* PlaylistViewController.swift */,
+				FA77499D198C0D180048863F /* SearchViewController.swift */,
+				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
+				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
+				FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */,
+				FAF13B5A199D605C009D9F66 /* TrackInfoWindowController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -502,6 +532,7 @@
 			files = (
 				FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */,
 				FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */,
+				FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */,
 				FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */,
 				FA24EDAB1974A9A500A781C8 /* Main.storyboard in Resources */,
 				FA4C44F719A6C8BE0052D506 /* Login.storyboard in Resources */,
@@ -597,7 +628,7 @@
 				FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
 				FAF13B2A199D3D62009D9F66 /* FeedTableCellView.swift in Sources */,
-				FA6E0CF719AB15DE00A077F0 /* UnderlinedTabViewItem.swift in Sources */,
+				FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */,
 				FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */,
 				FA77499C198C07D10048863F /* Genre.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
@@ -606,6 +637,7 @@
 				FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
+				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
 				FA774998198BF8280048863F /* BlogTableCellView.swift in Sources */,
 				FA691BFF197654AF008D5C3E /* Track.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
