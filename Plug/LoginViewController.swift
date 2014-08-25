@@ -35,4 +35,12 @@ class LoginViewController: NSViewController {
         let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
         appDelegate.finishedSigningIn()
     }
+    
+    @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php"))
+    }
+    
+    @IBAction func signUpButtonClicked(sender: AnyObject) {
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1"))
+    }
 }

@@ -39,17 +39,6 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="zq8-oP-Cmk">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-Dp-zTj">
-                                        <rect key="frame" x="18" y="188" width="264" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="beu-6A-9Y2"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="PASSWORD" id="Hsm-0g-Eof">
-                                            <font key="font" size="12" name="DINBold"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKj-sC-9NM">
                                         <rect key="frame" x="18" y="258" width="264" height="20"/>
                                         <constraints>
@@ -61,33 +50,6 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-NN-PR5">
-                                        <rect key="frame" x="110" y="85" width="81" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="loginButtonClicked:" target="kJE-8h-8hu" id="gu4-gD-HPJ"/>
-                                        </connections>
-                                    </button>
-                                    <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Z7-dY-C7d">
-                                        <rect key="frame" x="18" y="160" width="264" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="nVg-gk-V66"/>
-                                        </constraints>
-                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Your password" usesSingleLineMode="YES" id="A73-eU-Rek">
-                                            <font key="font" size="18" name="HelveticaNeue"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <allowedInputSourceLocales>
-                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                            </allowedInputSourceLocales>
-                                        </secureTextFieldCell>
-                                    </secureTextField>
                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-Zi-8EU">
                                         <rect key="frame" x="18" y="230" width="264" height="25"/>
                                         <constraints>
@@ -111,6 +73,31 @@ DQ
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-Dp-zTj">
+                                        <rect key="frame" x="18" y="188" width="264" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="beu-6A-9Y2"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="PASSWORD" id="Hsm-0g-Eof">
+                                            <font key="font" size="12" name="DINBold"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Z7-dY-C7d">
+                                        <rect key="frame" x="18" y="160" width="264" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="nVg-gk-V66"/>
+                                        </constraints>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Your password" usesSingleLineMode="YES" id="A73-eU-Rek">
+                                            <font key="font" size="18" name="HelveticaNeue"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                            </allowedInputSourceLocales>
+                                        </secureTextFieldCell>
+                                    </secureTextField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="F54-Ih-1Vd" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="149" width="280" height="1"/>
                                         <constraints>
@@ -123,15 +110,63 @@ DQ
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-NN-PR5">
+                                        <rect key="frame" x="110" y="85" width="81" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="loginButtonClicked:" target="kJE-8h-8hu" id="gu4-gD-HPJ"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g">
+                                        <rect key="frame" x="64" y="58" width="172" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="72K-nz-FTx"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" title="FORGOTTEN PASSWORD?" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="12" name="DINBold"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="forgotPasswordButtonClicked:" target="kJE-8h-8hu" id="KHa-tm-ULR"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW">
+                                        <rect key="frame" x="20" y="20" width="260" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="KOI-cl-Hk8"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" title="SIGN UP TO HYPE MACHINE" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="ml6-hR-1c7">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="12" name="DINBold"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="signUpButtonClicked:" target="kJE-8h-8hu" id="uDO-6t-HpH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="iqn-dS-QxW" firstAttribute="top" secondItem="qvS-9M-X3g" secondAttribute="bottom" constant="2" id="2yT-YI-NJ2"/>
+                                    <constraint firstItem="iqn-dS-QxW" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="7Wd-Ta-ko4"/>
                                     <constraint firstAttribute="trailing" secondItem="GlT-Dp-zTj" secondAttribute="trailing" constant="20" id="CP2-aW-vmq"/>
                                     <constraint firstItem="KbM-Zi-8EU" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="E8H-D2-lOF"/>
                                     <constraint firstItem="F54-Ih-1Vd" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="GcB-xN-rUc"/>
                                     <constraint firstItem="Q6d-78-yrl" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="HG5-M6-QHa"/>
+                                    <constraint firstAttribute="trailing" secondItem="qvS-9M-X3g" secondAttribute="trailing" constant="64" id="JN8-fG-gb1"/>
                                     <constraint firstItem="8Z7-dY-C7d" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="K6C-KJ-qer"/>
                                     <constraint firstAttribute="trailing" secondItem="Q6d-78-yrl" secondAttribute="trailing" id="LmX-lf-w91"/>
                                     <constraint firstItem="GlT-Dp-zTj" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="Ma4-WH-uej"/>
+                                    <constraint firstItem="qvS-9M-X3g" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="64" id="NlQ-19-Tjd"/>
                                     <constraint firstAttribute="trailing" secondItem="F54-Ih-1Vd" secondAttribute="trailing" id="OlC-qt-w8y"/>
                                     <constraint firstItem="JKj-sC-9NM" firstAttribute="top" secondItem="zq8-oP-Cmk" secondAttribute="top" constant="152" id="SVg-mv-s0a"/>
                                     <constraint firstItem="JKj-sC-9NM" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="WEu-xU-kHv"/>
@@ -141,6 +176,8 @@ DQ
                                     <constraint firstItem="GlT-Dp-zTj" firstAttribute="top" secondItem="zq8-oP-Cmk" secondAttribute="top" constant="222" id="m0X-J1-aE9"/>
                                     <constraint firstAttribute="trailing" secondItem="8Z7-dY-C7d" secondAttribute="trailing" constant="20" id="oWu-Jb-MdO"/>
                                     <constraint firstItem="KbM-Zi-8EU" firstAttribute="top" secondItem="JKj-sC-9NM" secondAttribute="bottom" constant="3" id="sYq-CU-CPe"/>
+                                    <constraint firstAttribute="trailing" secondItem="iqn-dS-QxW" secondAttribute="trailing" constant="20" id="t6Y-6P-Jsa"/>
+                                    <constraint firstAttribute="bottom" secondItem="iqn-dS-QxW" secondAttribute="bottom" constant="20" id="uHF-ln-Xgw"/>
                                     <constraint firstItem="8Z7-dY-C7d" firstAttribute="top" secondItem="GlT-Dp-zTj" secondAttribute="bottom" constant="3" id="wkm-55-8O0"/>
                                     <constraint firstAttribute="trailing" secondItem="JKj-sC-9NM" secondAttribute="trailing" constant="20" id="z0J-pS-xJ0"/>
                                 </constraints>
