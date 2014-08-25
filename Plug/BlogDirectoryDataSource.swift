@@ -76,17 +76,17 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
         var followingBlogs = blogs.filter { $0.following == true }
         if followingBlogs.count > 0 {
             appendSectionHeader("Following")
-            followingBlogs = followingBlogs.sorted { $0.name < $1.name }
+            followingBlogs = followingBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
             appendBlogs(followingBlogs)
         }
         
         appendSectionHeader("Featured")
         var featuredBlogs = blogs.filter { $0.featured == true }
-        featuredBlogs = featuredBlogs.sorted { $0.name < $1.name }
+        featuredBlogs = featuredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
         appendBlogs(featuredBlogs)
         
         appendSectionHeader("All Blogs")
-        var allBlogs = blogs.sorted { $0.name < $1.name }
+        var allBlogs = blogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
         appendBlogs(allBlogs)
     }
     
@@ -109,7 +109,7 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
             var filteredBlogs = allBlogs!.filter {
                 $0.name =~ keywords
             }
-            var sortedBlogs = filteredBlogs.sorted { $0.name < $1.name }
+            var sortedBlogs = filteredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
             filteredTableContents = BlogDirectoryItem.WrapBlogObjects(sortedBlogs)
         }
         tableView!.reloadData()

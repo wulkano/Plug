@@ -24,8 +24,7 @@
                                         <menuItem isSeparatorItem="YES" id="rCw-n8-jFb"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="6gh-ly-NSv">
                                             <connections>
-                                                <action selector="preferencesItemClicked:" target="0zE-Eq-Avq" id="PpG-hJ-e59"/>
-                                                <segue destination="Sx4-az-igd" kind="modal" id="26q-vB-azF"/>
+                                                <segue destination="jdg-ca-dae" kind="modal" id="WRo-c2-7IV"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="H7n-ly-K8H"/>
@@ -150,68 +149,68 @@
             <point key="canvasLocation" x="-254.5" y="-64"/>
         </scene>
         <!--Tab View Controller-->
-        <scene sceneID="X6N-mi-lbB">
+        <scene sceneID="23G-N1-LV3">
             <objects>
-                <tabViewController tabStyle="toolbar" id="Sx4-az-igd" sceneMemberID="viewController">
-                    <tabView key="view" type="noTabsNoBorder" id="rmE-Nf-4Ma">
+                <tabViewController tabStyle="toolbar" id="jdg-ca-dae" sceneMemberID="viewController">
+                    <tabView key="view" type="noTabsNoBorder" id="ZOg-Mu-2dZ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
                     </tabView>
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="" image="Preferences-General-Off" id="i3e-h6-y4w" customClass="UnderlinedTabViewItem" customModule="Plug" customModuleProvider="target"/>
-                        <tabViewItem label="Hotkeys" identifier="" image="Preferences-Hotkeys-Off" id="eXi-w3-KB7" customClass="UnderlinedTabViewItem" customModule="Plug" customModuleProvider="target"/>
-                        <tabViewItem label="Muted" image="Preferences-Muted-Off" id="hGJ-uj-PVu" customClass="UnderlinedTabViewItem" customModule="Plug" customModuleProvider="target"/>
+                        <tabViewItem label="General" identifier="" image="Preferences-General-Off" id="Ota-36-HG7"/>
+                        <tabViewItem label="Hotkeys" identifier="" image="Preferences-Hotkeys-Off" id="rTZ-jA-spN"/>
+                        <tabViewItem label="Muted" image="Preferences-Muted-Off" id="tqY-mG-oMV"/>
                     </tabViewItems>
                     <connections>
-                        <segue destination="TeP-eK-nhS" kind="relationship" relationship="tabItem" id="Hiq-fm-pEz"/>
-                        <segue destination="aR8-Pg-ph0" kind="relationship" relationship="tabItem" id="kZw-kl-1TO"/>
-                        <segue destination="MIC-2b-42p" kind="relationship" relationship="tabItem" id="Uq5-YJ-VK6"/>
+                        <segue destination="5MR-uw-fOi" kind="relationship" relationship="tabItem" id="Iyg-S3-63j"/>
+                        <segue destination="CuZ-NY-p1c" kind="relationship" relationship="tabItem" id="L4g-n4-kd0"/>
+                        <segue destination="C96-MX-wy5" kind="relationship" relationship="tabItem" id="WTq-7p-lfC"/>
                     </connections>
                 </tabViewController>
-                <customObject id="tFP-fq-or4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Vfo-js-weh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="348" y="162"/>
+            <point key="canvasLocation" x="204" y="179"/>
         </scene>
         <!--General Preferences View Controller-->
-        <scene sceneID="4lP-lU-Lm7">
+        <scene sceneID="ak8-09-CxF">
             <objects>
-                <viewController id="TeP-eK-nhS" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="vrn-Zg-zWV">
+                <viewController id="5MR-uw-fOi" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="C0B-Hg-M1d">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="TC7-So-fQ0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="nZF-Gg-q6M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="-375"/>
+            <point key="canvasLocation" x="-287" y="824"/>
         </scene>
         <!--Hotkeys Preferences View Controller-->
-        <scene sceneID="gZH-mY-6rg">
+        <scene sceneID="2v1-Nn-o7d">
             <objects>
-                <viewController id="aR8-Pg-ph0" customClass="HotkeysPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="5cB-qD-2Pi">
+                <viewController id="CuZ-NY-p1c" customClass="HotkeysPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="4G7-ME-J0f">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="5iu-NS-LGo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="oyc-1r-rwu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="7"/>
+            <point key="canvasLocation" x="245" y="824"/>
         </scene>
         <!--Muted Preferences View Controller-->
-        <scene sceneID="zmU-gO-MJn">
+        <scene sceneID="fde-qW-TRX">
             <objects>
-                <viewController id="MIC-2b-42p" customClass="MutedPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="OWL-YY-Res">
+                <viewController id="C96-MX-wy5" customClass="MutedPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Nf9-76-N4E">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="0Lc-LA-WKk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="mRA-4v-634" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="381"/>
+            <point key="canvasLocation" x="772" y="824"/>
         </scene>
     </scenes>
     <resources>

@@ -46,7 +46,7 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
     }
     
     func generateTableContents(friends: [Friend]) {
-        tableContents = friends.sorted { $0.username < $1.username }
+        tableContents = friends.sorted { $0.username.lowercaseString < $1.username.lowercaseString }
     }
     
     func filterByKeywords(keywords: String) {

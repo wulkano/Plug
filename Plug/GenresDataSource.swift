@@ -75,11 +75,11 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
         
         appendSectionHeader("The Basics")
         var priorityGenres = genres.filter { $0.priority == true }
-        priorityGenres = priorityGenres.sorted { $0.name < $1.name }
+        priorityGenres = priorityGenres.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
         appendGenres(priorityGenres)
         
         appendSectionHeader("Everything")
-        var sortedGenres = genres.sorted { $0.name < $1.name }
+        var sortedGenres = genres.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
         appendGenres(sortedGenres)
     }
     
@@ -102,7 +102,7 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
             var filteredGenres = allGenres!.filter {
                 $0.name =~ keywords
             }
-            var sortedGenres = filteredGenres.sorted { $0.name < $1.name }
+            var sortedGenres = filteredGenres.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
             filteredTableContents = GenresListItem.WrapGenreObjects(sortedGenres)
         }
         tableView!.reloadData()
