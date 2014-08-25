@@ -18,17 +18,12 @@ class LoginViewController: NSViewController {
         
         HypeMachineAPI.GetToken(username, password: password,
             success: {token in
-                self.saveUsername(username, token: token)
+                Authentication.SaveUsername(username, withToken: token)
                 self.signedInSuccessfully()
             }, failure: {error in
                 AppError.logError(error)
                 NSAlert(error: error).runModal()
         })
-    }
-    
-    func saveUsername(username: String, token: String) {
-        NSUserDefaults.standardUserDefaults().setValue(username, forKey: "username")
-        SSKeychain.setPassword(token, forService: "Plug", account: username)
     }
     
     func signedInSuccessfully() {

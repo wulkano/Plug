@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <scenes>
-        <!--Window-->
+        <!--Preferences-->
         <scene sceneID="OaO-hp-jyj">
             <objects>
                 <windowController id="W2t-17-F3D" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="400" height="444"/>
@@ -18,6 +18,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="visibleTitleText" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </window>
                     <connections>
                         <segue destination="5IL-x6-7lA" kind="relationship" relationship="window.shadowedContentViewController" id="x2a-al-c0k"/>
@@ -51,9 +54,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </customView>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="QYj-8M-NyU">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="62"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="Btw-uV-Fn1"/>
+                                            <constraint firstAttribute="height" constant="62" id="Btw-uV-Fn1"/>
                                             <constraint firstAttribute="width" constant="60" id="Mgy-a6-gfV"/>
                                         </constraints>
                                         <buttonCell key="cell" type="square" title="General" bezelStyle="shadowlessSquare" image="Preferences-General-Off" imagePosition="above" alignment="center" alternateImage="Preferences-General-On" state="on" borderStyle="border" inset="2" id="IMw-7A-qOm" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
@@ -65,10 +68,10 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="GrM-zG-xU0">
-                                        <rect key="frame" x="60" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="60" y="0.0" width="60" height="62"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="HA2-8n-jzy"/>
-                                            <constraint firstAttribute="height" constant="60" id="NkX-Sg-uSd"/>
+                                            <constraint firstAttribute="height" constant="62" id="NkX-Sg-uSd"/>
                                         </constraints>
                                         <buttonCell key="cell" type="square" title="Hotkeys" bezelStyle="shadowlessSquare" image="Preferences-Hotkeys-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Hotkeys-On" borderStyle="border" inset="2" id="q3g-72-SgQ" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -79,10 +82,10 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="fFB-I6-T8t">
-                                        <rect key="frame" x="120" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="120" y="0.0" width="60" height="62"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="UMZ-cV-zqN"/>
-                                            <constraint firstAttribute="height" constant="60" id="f0d-ZX-WAe"/>
+                                            <constraint firstAttribute="height" constant="62" id="f0d-ZX-WAe"/>
                                         </constraints>
                                         <buttonCell key="cell" type="square" title="Muted" bezelStyle="shadowlessSquare" image="Preferences-Muted-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Muted-On" borderStyle="border" inset="2" id="kLp-v2-rvI" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -159,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="1189" y="416"/>
         </scene>
-        <!--View Controller-->
+        <!--General Preferences View Controller-->
         <scene sceneID="GM3-tk-veL">
             <objects>
-                <viewController id="seI-KD-IWG" sceneMemberID="viewController">
+                <viewController id="seI-KD-IWG" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="TeD-Sw-Ebk">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -29,7 +29,7 @@ struct Authentication {
         return SSKeychain.passwordForService("Plug", account: username!)
     }
     
-    static func SaveUsername(username: String, token: String) {
+    static func SaveUsername(username: String, withToken token: String) {
         NSUserDefaults.standardUserDefaults().setValue(username, forKey: "username")
         SSKeychain.setPassword(token, forService: "Plug", account: username)
     }

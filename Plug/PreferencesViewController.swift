@@ -36,8 +36,11 @@ class PreferencesViewController: NSViewController {
             mutedTab,
         ]
         for tab in allTabs {
-            if tab === sender { continue }
-            tab.state = NSOffState
+            if tab === sender {
+                tab.state = NSOnState
+            } else {
+                tab.state = NSOffState
+            }
         }
     }
     
