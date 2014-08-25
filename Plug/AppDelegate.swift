@@ -11,6 +11,8 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
     var loginWindowController: NSWindowController?
+    @IBOutlet var signOutMenuItem: NSMenuItem!
+    @IBOutlet var signOutMenuSeparator: NSMenuItem!
     
 //    TODO: Switch release channel compilation flag back to fast when they fix some bug
     
@@ -29,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mainWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as? NSWindowController
         }
         mainWindowController!.showWindow(self)
+        showSignOutInMenu()
     }
     
     func openLoginWindow() {
@@ -36,11 +39,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             loginWindowController = NSStoryboard(name: "Login", bundle: nil).instantiateInitialController() as? NSWindowController
         }
         loginWindowController!.showWindow(self)
+        hideSignOutFromMenu()
     }
     
     func closeMainWindow() {
         mainWindowController!.window.close()
         mainWindowController = nil
+        hideSignOutFromMenu()
     }
     
     func closeLoginWindow() {
@@ -51,6 +56,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func finishedSigningIn() {
         closeLoginWindow()
         openMainWindow()
+    }
+    
+    func hideSignOutFromMenu() {
+        signOutMenuItem.hidden = true
+        signOutMenuSeparator.hidden = true
+    }
+    
+    func showSignOutInMenu() {
+        signOutMenuItem.hidden = false
+        signOutMenuSeparator.hidden = false
     }
     
     @IBAction func signOut(sender: AnyObject!) {

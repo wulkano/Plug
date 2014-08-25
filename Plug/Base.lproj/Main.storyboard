@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <scenes>
@@ -101,7 +102,7 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CIT-JU-akt">
                                 <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NpH-p0-wzL" customClass="SidebarOverlayView" customModule="Plug" customModuleProvider="target">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="NpH-p0-wzL">
                                         <rect key="frame" x="0.0" y="0.0" width="69" height="559"/>
                                         <subviews>
                                             <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="ufc-4v-Z8I" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">

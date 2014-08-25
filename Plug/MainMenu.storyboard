@@ -151,7 +151,12 @@
                     </connections>
                 </application>
                 <customObject id="geA-u8-YPg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="0zE-Eq-Avq" customClass="AppDelegate" customModule="Plug" customModuleProvider="target"/>
+                <customObject id="0zE-Eq-Avq" customClass="AppDelegate" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="signOutMenuItem" destination="Zo0-Xs-iwP" id="Tsm-fn-YQ7"/>
+                        <outlet property="signOutMenuSeparator" destination="fnM-qT-VnK" id="Ddk-dg-v0x"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-254.5" y="-64"/>
         </scene>

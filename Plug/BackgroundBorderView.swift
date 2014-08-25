@@ -28,7 +28,7 @@ class BackgroundBorderView: NSView {
     func drawBackground(dirtyRect: NSRect) {
         if background {
             backgroundColor.set()
-            NSRectFill(dirtyRect)
+            NSRectFillUsingOperation(dirtyRect, NSCompositingOperation.CompositeDestinationOver)
         }
     }
     
@@ -39,26 +39,26 @@ class BackgroundBorderView: NSView {
             var topRect = bounds
             topRect.size.height = borderWidth
             topRect.origin.y = bounds.size.height - borderWidth
-            NSRectFill(NSIntersectionRect(topRect, dirtyRect))
+            NSRectFillUsingOperation(NSIntersectionRect(topRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
         }
         
         if rightBorder {
             var rightRect = bounds
             rightRect.size.width = borderWidth
             rightRect.origin.x = bounds.size.width - borderWidth
-            NSRectFill(NSIntersectionRect(rightRect, dirtyRect))
+            NSRectFillUsingOperation(NSIntersectionRect(rightRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
         }
         
         if bottomBorder {
             var bottomRect = bounds
             bottomRect.size.height = borderWidth
-            NSRectFill(NSIntersectionRect(bottomRect, dirtyRect))
+            NSRectFillUsingOperation(NSIntersectionRect(bottomRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
         }
         
         if leftBorder {
             var leftRect = bounds
             leftRect.size.width = borderWidth
-            NSRectFill(NSIntersectionRect(leftRect, dirtyRect))
+            NSRectFillUsingOperation(NSIntersectionRect(leftRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
         }
     }
 }
