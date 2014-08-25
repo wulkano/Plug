@@ -75,6 +75,7 @@
 		FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
 		FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */; };
+		FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */; };
 		FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1F54819A7C793002322D6 /* Authentication.swift */; };
 		FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */; };
 		FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DD1981DF5200BC5109 /* Interval.swift */; };
@@ -191,6 +192,7 @@
 		FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonCell.swift; sourceTree = "<group>"; };
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		FAD1F54819A7C793002322D6 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeLoadingView.swift; sourceTree = "<group>"; };
 		FAD3B0DD1981DF5200BC5109 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		FACEEBEB19ABC3210093A81B /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */,
 				FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */,
 				FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */,
 				FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */,
@@ -593,6 +596,7 @@
 				FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */,
 				FAA51A59198084E50057EC34 /* NavigationSection.swift in Sources */,
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
+				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FA64C6A319764DC9003933E3 /* HypeMachineAPI.swift in Sources */,

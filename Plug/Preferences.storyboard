@@ -8,7 +8,7 @@
         <!--Preferences-->
         <scene sceneID="OaO-hp-jyj">
             <objects>
-                <windowController id="W2t-17-F3D" sceneMemberID="viewController">
+                <windowController id="W2t-17-F3D" customClass="PreferencesWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -18,9 +18,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </view>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="visibleTitleText" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </window>
                     <connections>
                         <segue destination="5IL-x6-7lA" kind="relationship" relationship="window.shadowedContentViewController" id="x2a-al-c0k"/>
@@ -173,22 +170,20 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ax3-fj-PSH" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5xx-hs-CRN">
-                                        <rect key="frame" x="18" y="306" width="296" height="20"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="uCj-xw-Jdg">
+                                        <rect key="frame" x="18" y="305" width="364" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="it8-i2-cnt"/>
+                                            <constraint firstAttribute="height" constant="18" id="bIK-he-j2k"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show app icon in dock (requires restart)" id="m1j-dR-v9P">
+                                        <buttonCell key="cell" type="check" title="Show app icon in dock (requires restart)" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="Ks9-aK-c6f">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" red="0.20000000000000001" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                        </buttonCell>
+                                    </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Tbz-jg-LhI" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="280" width="380" height="1"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="KrY-cI-YOS"/>
-                                            <constraint firstAttribute="width" constant="380" id="QwZ-iM-aJX"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
@@ -197,21 +192,19 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f3n-0a-ixb">
-                                        <rect key="frame" x="18" y="236" width="296" height="20"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="l03-uH-XE7">
+                                        <rect key="frame" x="18" y="235" width="364" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="4os-r9-aU9"/>
+                                            <constraint firstAttribute="height" constant="18" id="c35-Dh-paB"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Show notification when changing tracks" id="FEM-w5-vG2">
+                                        <buttonCell key="cell" type="check" title="Show notification when changing tracks" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="0Mo-UD-Xoy">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                        </buttonCell>
+                                    </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="47I-rf-hcS" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="210" width="380" height="1"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="380" id="FYq-9r-A5v"/>
                                             <constraint firstAttribute="height" constant="1" id="Kp8-Wi-eVW"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -221,21 +214,19 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JTA-kq-Qh0">
-                                        <rect key="frame" x="18" y="166" width="296" height="20"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="7qb-7G-2Lj">
+                                        <rect key="frame" x="18" y="165" width="364" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="8Ll-cl-h1x"/>
+                                            <constraint firstAttribute="height" constant="18" id="LGq-ah-Gld"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Use media keys for shortcuts" id="Xaz-E1-RHU">
+                                        <buttonCell key="cell" type="check" title="Use media keys for shortcuts" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="0F3-Z1-75A">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                        </buttonCell>
+                                    </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Siq-Pg-rAB" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="140" width="380" height="1"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="380" id="RTs-i1-3i4"/>
                                             <constraint firstAttribute="height" constant="1" id="fIX-xN-Qem"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -245,21 +236,19 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IID-fU-TeE">
-                                        <rect key="frame" x="18" y="96" width="296" height="20"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-JX-5gD">
+                                        <rect key="frame" x="18" y="95" width="364" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="0EH-dv-rux"/>
+                                            <constraint firstAttribute="height" constant="18" id="PKa-5z-tmQ"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Hide tracks that are unavailable" id="RBB-HF-DBE">
+                                        <buttonCell key="cell" type="check" title="Hide tracks that are unavailable" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="zi6-Ls-bnG">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                        </buttonCell>
+                                    </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="7uT-au-QX4" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="70" width="380" height="1"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="380" id="LcA-27-QyQ"/>
                                             <constraint firstAttribute="height" constant="1" id="Wwq-ku-AY0"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -269,42 +258,49 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xvX-xL-ViI">
-                                        <rect key="frame" x="18" y="26" width="296" height="20"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="lmd-Dl-oGw">
+                                        <rect key="frame" x="18" y="26" width="364" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="YUY-zg-zwR"/>
+                                            <constraint firstAttribute="height" constant="18" id="EoD-yo-Ibf"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Snap to playing track in list" id="OhW-mI-H1R">
+                                        <buttonCell key="cell" type="check" title="Snap to playing track in list" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="pT8-qL-XcU">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system" size="15"/>
-                                            <color key="textColor" red="0.20000000000000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
+                                        </buttonCell>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="f3n-0a-ixb" firstAttribute="top" secondItem="5xx-hs-CRN" secondAttribute="bottom" constant="50" id="075-g9-Edz"/>
-                                    <constraint firstItem="7uT-au-QX4" firstAttribute="top" secondItem="IID-fU-TeE" secondAttribute="bottom" constant="25" id="3qV-hL-Pzu"/>
-                                    <constraint firstAttribute="trailing" secondItem="xvX-xL-ViI" secondAttribute="trailing" constant="88" id="5dH-Iv-5aX"/>
-                                    <constraint firstItem="JTA-kq-Qh0" firstAttribute="top" secondItem="f3n-0a-ixb" secondAttribute="bottom" constant="50" id="8zq-4G-sid"/>
-                                    <constraint firstItem="47I-rf-hcS" firstAttribute="top" secondItem="f3n-0a-ixb" secondAttribute="bottom" constant="25" id="96S-wS-FM6"/>
-                                    <constraint firstItem="5xx-hs-CRN" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="BpR-wt-h7P"/>
-                                    <constraint firstItem="Tbz-jg-LhI" firstAttribute="top" secondItem="5xx-hs-CRN" secondAttribute="bottom" constant="25" id="O4o-Ty-vAQ"/>
+                                    <constraint firstItem="7qb-7G-2Lj" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="0y8-ck-9gO"/>
+                                    <constraint firstItem="Siq-Pg-rAB" firstAttribute="top" secondItem="7qb-7G-2Lj" secondAttribute="bottom" constant="26" id="5bj-jL-YB7"/>
+                                    <constraint firstItem="Ixs-JX-5gD" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="7Qi-Q0-0yJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ixs-JX-5gD" secondAttribute="trailing" constant="20" id="7za-yJ-bc0"/>
+                                    <constraint firstItem="47I-rf-hcS" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="B0e-8T-fOg"/>
+                                    <constraint firstItem="7qb-7G-2Lj" firstAttribute="top" secondItem="47I-rf-hcS" secondAttribute="bottom" constant="25" id="Foq-1p-Tcw"/>
+                                    <constraint firstItem="Tbz-jg-LhI" firstAttribute="top" secondItem="uCj-xw-Jdg" secondAttribute="bottom" constant="26" id="HUR-lu-0q0"/>
+                                    <constraint firstItem="lmd-Dl-oGw" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="KpH-wn-mDa"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tbz-jg-LhI" secondAttribute="trailing" id="NYi-TU-PiP"/>
+                                    <constraint firstItem="uCj-xw-Jdg" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="TGi-zV-CkD"/>
                                     <constraint firstAttribute="trailing" secondItem="47I-rf-hcS" secondAttribute="trailing" id="VvR-X8-Ulf"/>
-                                    <constraint firstItem="5xx-hs-CRN" firstAttribute="top" secondItem="ax3-fj-PSH" secondAttribute="top" constant="27" id="W0K-7E-zai"/>
-                                    <constraint firstItem="xvX-xL-ViI" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="YOm-U3-LhI"/>
-                                    <constraint firstItem="xvX-xL-ViI" firstAttribute="top" secondItem="IID-fU-TeE" secondAttribute="bottom" constant="50" id="ZFu-rK-190"/>
-                                    <constraint firstAttribute="trailing" secondItem="IID-fU-TeE" secondAttribute="trailing" constant="88" id="aWJ-i3-JFc"/>
-                                    <constraint firstItem="IID-fU-TeE" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="cSg-YO-RkY"/>
+                                    <constraint firstItem="Siq-Pg-rAB" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="YpS-3S-qKP"/>
+                                    <constraint firstItem="7uT-au-QX4" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="adD-qO-lBO"/>
+                                    <constraint firstItem="7uT-au-QX4" firstAttribute="top" secondItem="Ixs-JX-5gD" secondAttribute="bottom" constant="26" id="aq9-OH-UNM"/>
+                                    <constraint firstItem="Ixs-JX-5gD" firstAttribute="top" secondItem="Siq-Pg-rAB" secondAttribute="bottom" constant="25" id="ayf-tD-pqB"/>
+                                    <constraint firstItem="l03-uH-XE7" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="cGZ-su-eLs"/>
+                                    <constraint firstAttribute="trailing" secondItem="7qb-7G-2Lj" secondAttribute="trailing" constant="20" id="cnx-rj-gm3"/>
                                     <constraint firstAttribute="trailing" secondItem="Siq-Pg-rAB" secondAttribute="trailing" id="dpJ-VV-nyY"/>
-                                    <constraint firstAttribute="trailing" secondItem="JTA-kq-Qh0" secondAttribute="trailing" constant="88" id="gse-9I-kuQ"/>
-                                    <constraint firstItem="JTA-kq-Qh0" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="iqI-pv-txK"/>
-                                    <constraint firstAttribute="trailing" secondItem="5xx-hs-CRN" secondAttribute="trailing" constant="88" id="kHd-RW-dLJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="f3n-0a-ixb" secondAttribute="trailing" constant="88" id="lpq-Sd-2vM"/>
-                                    <constraint firstItem="f3n-0a-ixb" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="maS-Ej-TCq"/>
+                                    <constraint firstAttribute="trailing" secondItem="lmd-Dl-oGw" secondAttribute="trailing" constant="20" id="jop-il-n8S"/>
+                                    <constraint firstItem="l03-uH-XE7" firstAttribute="top" secondItem="Tbz-jg-LhI" secondAttribute="bottom" constant="25" id="k2o-Sr-FVg"/>
+                                    <constraint firstItem="47I-rf-hcS" firstAttribute="top" secondItem="l03-uH-XE7" secondAttribute="bottom" constant="26" id="kyt-kt-pg6"/>
                                     <constraint firstAttribute="trailing" secondItem="7uT-au-QX4" secondAttribute="trailing" id="mat-Jq-R0S"/>
                                     <constraint firstAttribute="trailing" secondItem="Tbz-jg-LhI" secondAttribute="trailing" id="nZa-wB-Y10"/>
-                                    <constraint firstItem="Siq-Pg-rAB" firstAttribute="top" secondItem="JTA-kq-Qh0" secondAttribute="bottom" constant="25" id="sNx-UY-rIw"/>
-                                    <constraint firstItem="IID-fU-TeE" firstAttribute="top" secondItem="JTA-kq-Qh0" secondAttribute="bottom" constant="50" id="z4c-t0-eOE"/>
+                                    <constraint firstAttribute="trailing" secondItem="l03-uH-XE7" secondAttribute="trailing" constant="20" id="oK4-9j-6QZ"/>
+                                    <constraint firstItem="Tbz-jg-LhI" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="p7m-eX-Pm8"/>
+                                    <constraint firstAttribute="trailing" secondItem="47I-rf-hcS" secondAttribute="trailing" id="q2f-Eq-Bx4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Siq-Pg-rAB" secondAttribute="trailing" id="rEm-LA-jnT"/>
+                                    <constraint firstAttribute="trailing" secondItem="uCj-xw-Jdg" secondAttribute="trailing" constant="20" id="tFv-3c-Ry3"/>
+                                    <constraint firstAttribute="trailing" secondItem="7uT-au-QX4" secondAttribute="trailing" id="uhY-AU-DXt"/>
+                                    <constraint firstItem="uCj-xw-Jdg" firstAttribute="top" secondItem="ax3-fj-PSH" secondAttribute="top" constant="28" id="x33-oR-SRo"/>
+                                    <constraint firstItem="lmd-Dl-oGw" firstAttribute="top" secondItem="7uT-au-QX4" secondAttribute="bottom" constant="24" id="zTR-ja-cd5"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
@@ -326,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="696" y="947.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Hotkeys Preferences View Controller-->
         <scene sceneID="tns-yc-flh">
             <objects>
-                <viewController id="UXZ-1h-gFf" sceneMemberID="viewController">
+                <viewController id="UXZ-1h-gFf" customClass="HotkeysPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="RW6-gX-w1T">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="423"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -337,12 +333,12 @@
                 </viewController>
                 <customObject id="PQu-kQ-7NH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189" y="982"/>
+            <point key="canvasLocation" x="1189" y="981.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Muted Preferences View Controller-->
         <scene sceneID="aDl-SU-q6t">
             <objects>
-                <viewController id="9YK-AT-qbV" sceneMemberID="viewController">
+                <viewController id="9YK-AT-qbV" customClass="MutedPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="wCs-fy-jdJ">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="423"/>
                         <autoresizingMask key="autoresizingMask"/>

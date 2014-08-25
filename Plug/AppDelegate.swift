@@ -11,6 +11,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
     var loginWindowController: NSWindowController?
+    var preferencesWindowController: NSWindowController?
     @IBOutlet var signOutMenuItem: NSMenuItem!
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
     
@@ -76,8 +77,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func preferencesItemClicked(sender: AnyObject!) {
-        let preferencesWindowController = (NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as NSWindowController)
-        NSApp.runModalForWindow(preferencesWindowController.window)
+        if preferencesWindowController == nil {
+            preferencesWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as? NSWindowController
+        }
+        preferencesWindowController!.showWindow(self)
     }
     
     private func setupUserDefaults() {
