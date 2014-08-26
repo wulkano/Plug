@@ -28,7 +28,7 @@ class BackgroundBorderView: NSView {
     func drawBackground(dirtyRect: NSRect) {
         if background {
             backgroundColor.set()
-            NSRectFillUsingOperation(dirtyRect, NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(dirtyRect, NSCompositingOperation.CompositeSourceOver)
         }
     }
     
@@ -39,26 +39,26 @@ class BackgroundBorderView: NSView {
             var topRect = bounds
             topRect.size.height = borderWidth
             topRect.origin.y = bounds.size.height - borderWidth
-            NSRectFillUsingOperation(NSIntersectionRect(topRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(NSIntersectionRect(topRect, dirtyRect), NSCompositingOperation.CompositeSourceOver)
         }
         
         if rightBorder {
             var rightRect = bounds
             rightRect.size.width = borderWidth
             rightRect.origin.x = bounds.size.width - borderWidth
-            NSRectFillUsingOperation(NSIntersectionRect(rightRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(NSIntersectionRect(rightRect, dirtyRect), NSCompositingOperation.CompositeSourceOver)
         }
         
         if bottomBorder {
             var bottomRect = bounds
             bottomRect.size.height = borderWidth
-            NSRectFillUsingOperation(NSIntersectionRect(bottomRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(NSIntersectionRect(bottomRect, dirtyRect), NSCompositingOperation.CompositeSourceOver)
         }
         
         if leftBorder {
             var leftRect = bounds
             leftRect.size.width = borderWidth
-            NSRectFillUsingOperation(NSIntersectionRect(leftRect, dirtyRect), NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(NSIntersectionRect(leftRect, dirtyRect), NSCompositingOperation.CompositeSourceOver)
         }
     }
 }
