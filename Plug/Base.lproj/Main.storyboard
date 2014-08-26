@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <scenes>
@@ -347,34 +348,44 @@
                                                                         <action selector="playPauseButtonClicked:" target="LM0-KM-ycg" id="QCY-6r-fNb"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-ap-NsF">
-                                                                    <rect key="frame" x="73" y="35" width="250" height="20"/>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="8N4-uF-eID" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="73" y="35" width="32" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="3gL-eE-YWy"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="OyS-Fj-eVY"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Title" id="hIX-7M-ED3">
+                                                                    <buttonCell key="cell" type="bevel" title="Title" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="Wiu-Kw-e51">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" size="14" name="HelveticaNeue-Medium"/>
-                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <binding destination="LM0-KM-ycg" name="value" keyPath="objectValue.title" id="Ix5-E4-NSA"/>
+                                                                        <action selector="titleButtonClicked:" target="LM0-KM-ycg" id="srK-eU-Y0V"/>
+                                                                        <binding destination="LM0-KM-ycg" name="title" keyPath="objectValue.title" id="bxF-KF-2NZ"/>
                                                                     </connections>
-                                                                </textField>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zwc-io-DXv">
-                                                                    <rect key="frame" x="73" y="14" width="250" height="20"/>
+                                                                </button>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="7DA-Bm-Ftz" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="73" y="14" width="36" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="0kz-90-u03"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="YuI-9r-Lqq"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Artist" id="iuo-ZK-eog">
+                                                                    <buttonCell key="cell" type="bevel" title="Artist" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="e8E-pc-uya">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
-                                                                        <color key="textColor" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <binding destination="LM0-KM-ycg" name="value" keyPath="objectValue.artist" id="v31-tz-SS0"/>
+                                                                        <action selector="artistButtonClicked:" target="LM0-KM-ycg" id="Xfx-Z6-gDc"/>
+                                                                        <binding destination="LM0-KM-ycg" name="title" keyPath="objectValue.artist" id="K0M-mo-Gj2"/>
                                                                     </connections>
-                                                                </textField>
+                                                                </button>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mzN-mr-IZY" userLabel="LoveContainer">
                                                                     <rect key="frame" x="371" y="0.0" width="38" height="64"/>
                                                                     <subviews>
@@ -447,35 +458,35 @@
                                                                 </slider>
                                                             </subviews>
                                                             <constraints>
+                                                                <constraint firstItem="HIu-P0-05L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7DA-Bm-Ftz" secondAttribute="trailing" constant="20" id="0Be-XX-xyb"/>
+                                                                <constraint firstItem="8N4-uF-eID" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" constant="9" id="6Yx-iD-0Jj"/>
                                                                 <constraint firstItem="gIx-RP-bP5" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="19" id="7Gp-HI-lfB"/>
+                                                                <constraint firstItem="7DA-Bm-Ftz" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="73" id="7Wn-To-bVY"/>
                                                                 <constraint firstAttribute="bottom" secondItem="mzN-mr-IZY" secondAttribute="bottom" id="8Oi-Og-65g"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mzN-mr-IZY" secondAttribute="trailing" id="EgW-u3-Ls6"/>
-                                                                <constraint firstItem="HIu-P0-05L" firstAttribute="leading" secondItem="j3g-ap-NsF" secondAttribute="trailing" constant="20" id="Hme-UI-VCb"/>
                                                                 <constraint firstAttribute="trailing" secondItem="wER-BX-Dyv" secondAttribute="trailing" constant="-12" id="Ilg-eo-wNm"/>
+                                                                <constraint firstItem="HIu-P0-05L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8N4-uF-eID" secondAttribute="trailing" constant="20" id="Mbh-Q1-ztB"/>
                                                                 <constraint firstItem="wER-BX-Dyv" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="-9" id="Rdb-Tr-Qc0"/>
-                                                                <constraint firstItem="zwc-io-DXv" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="75" id="Uxn-Cr-4dM"/>
                                                                 <constraint firstAttribute="centerY" secondItem="gIx-RP-bP5" secondAttribute="centerY" id="Vak-tj-y7a"/>
-                                                                <constraint firstAttribute="bottom" secondItem="zwc-io-DXv" secondAttribute="bottom" constant="14" id="YFh-gb-B2x"/>
-                                                                <constraint firstItem="HIu-P0-05L" firstAttribute="leading" secondItem="zwc-io-DXv" secondAttribute="trailing" constant="20" id="YOk-TP-OSN"/>
+                                                                <constraint firstAttribute="bottom" secondItem="7DA-Bm-Ftz" secondAttribute="bottom" constant="14" id="b3i-Mx-2ul"/>
                                                                 <constraint firstItem="mzN-mr-IZY" firstAttribute="leading" secondItem="HIu-P0-05L" secondAttribute="trailing" id="deG-Lv-8bD"/>
                                                                 <constraint firstItem="Bwg-PO-WDa" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" id="egg-T8-Zs5"/>
                                                                 <constraint firstAttribute="bottom" secondItem="wER-BX-Dyv" secondAttribute="bottom" constant="-6" id="gJ4-aC-p79"/>
+                                                                <constraint firstItem="8N4-uF-eID" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="73" id="gf0-Ir-1Sa"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Bwg-PO-WDa" secondAttribute="centerY" id="hWx-gj-X9p"/>
                                                                 <constraint firstItem="HIu-P0-05L" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" id="l8j-yZ-lKi"/>
                                                                 <constraint firstItem="mzN-mr-IZY" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" id="mEi-25-vfG"/>
-                                                                <constraint firstItem="j3g-ap-NsF" firstAttribute="top" secondItem="LM0-KM-ycg" secondAttribute="top" constant="9" id="rMu-23-7cl"/>
                                                                 <constraint firstAttribute="bottom" secondItem="HIu-P0-05L" secondAttribute="bottom" id="tUv-es-d4z"/>
-                                                                <constraint firstItem="j3g-ap-NsF" firstAttribute="leading" secondItem="LM0-KM-ycg" secondAttribute="leading" constant="75" id="xfS-oC-EPk"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="artistTrailingConstraint" destination="YOk-TP-OSN" id="Ybb-gU-jn2"/>
+                                                                <outlet property="artistTrailingConstraint" destination="0Be-XX-xyb" id="SuU-Tp-cF2"/>
                                                                 <outlet property="infoContainerWidthConstraint" destination="JbE-HA-fBI" id="Q1h-4t-pcs"/>
                                                                 <outlet property="loveButton" destination="N5v-gN-8dX" id="0On-nM-UTY"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="5Gp-kf-ETf" id="Woh-SW-9gD"/>
                                                                 <outlet property="loveCount" destination="Bwg-PO-WDa" id="6Cm-0E-FdZ"/>
                                                                 <outlet property="playPauseButton" destination="gIx-RP-bP5" id="Xaa-VF-1CR"/>
                                                                 <outlet property="progressSlider" destination="wER-BX-Dyv" id="SUY-4o-oVa"/>
-                                                                <outlet property="titleTrailingConstraint" destination="Hme-UI-VCb" id="3fs-aP-bOm"/>
+                                                                <outlet property="titleTrailingConstraint" destination="Mbh-Q1-ztB" id="dXI-mF-ee2"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="SzO-1e-42e" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
@@ -977,34 +988,44 @@
                                                                         <action selector="playPauseButtonClicked:" target="4gR-JS-eJJ" id="KC7-iy-vAL"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TAa-Ad-Ah4">
-                                                                    <rect key="frame" x="73" y="55" width="250" height="20"/>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="jbj-gZ-Vbn" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="73" y="55" width="32" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="AvL-SG-x4Z"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="Lo8-wb-Gew"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Title" id="MpG-Wm-fHh">
+                                                                    <buttonCell key="cell" type="bevel" title="Title" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="Pxm-Bf-Sq4">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" size="14" name="HelveticaNeue-Medium"/>
-                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.title" id="KWZ-hV-qex"/>
+                                                                        <action selector="titleButtonClicked:" target="4gR-JS-eJJ" id="M1x-Je-HTI"/>
+                                                                        <binding destination="4gR-JS-eJJ" name="title" keyPath="objectValue.title" id="Hqt-by-vS5"/>
                                                                     </connections>
-                                                                </textField>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hqe-6A-CaO">
-                                                                    <rect key="frame" x="73" y="34" width="250" height="20"/>
+                                                                </button>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="JIi-JO-BKO" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="73" y="34" width="36" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="UQ3-on-ClS"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="eP1-la-I5M"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Artist" id="oqn-T8-ML0">
+                                                                    <buttonCell key="cell" type="bevel" title="Artist" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="LUM-oe-SdO">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
-                                                                        <color key="textColor" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
-                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.artist" id="SXk-iH-Yci"/>
+                                                                        <action selector="artistButtonClicked:" target="4gR-JS-eJJ" id="mSu-t1-Sao"/>
+                                                                        <binding destination="4gR-JS-eJJ" name="title" keyPath="objectValue.artist" id="WNw-Co-XeJ"/>
                                                                     </connections>
-                                                                </textField>
+                                                                </button>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IyW-gF-PZN">
                                                                     <rect key="frame" x="73" y="14" width="56" height="20"/>
                                                                     <constraints>
@@ -1017,17 +1038,24 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eES-Kc-LTh">
-                                                                    <rect key="frame" x="128" y="14" width="195" height="20"/>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="tay-QN-93z" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="128" y="14" width="61" height="20"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="20" id="maQ-aE-9hY"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="rrl-vL-q2W"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Username" id="oTX-EA-kou">
+                                                                    <buttonCell key="cell" type="bevel" title="Username" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="yiz-yB-Vtz">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" size="12" name="HelveticaNeue-Medium"/>
-                                                                        <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                                <color key="value" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="usernameOrBlogNameClicked:" target="4gR-JS-eJJ" id="37V-ia-UCl"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="3xB-ae-CCl" userLabel="LoveContainer">
                                                                     <rect key="frame" x="371" y="0.0" width="38" height="84"/>
                                                                     <subviews>
@@ -1107,32 +1135,32 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="IyW-gF-PZN" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="0RZ-Qz-QTS"/>
-                                                                <constraint firstItem="TAa-Ad-Ah4" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="2ks-Pq-VSc"/>
-                                                                <constraint firstItem="IyW-gF-PZN" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="2pm-ig-2KO"/>
                                                                 <constraint firstItem="3xB-ae-CCl" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" id="3Qq-BD-PzI"/>
-                                                                <constraint firstItem="Hqe-6A-CaO" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="75" id="9CZ-ks-OaY"/>
+                                                                <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JIi-JO-BKO" secondAttribute="trailing" constant="20" id="3ZD-SQ-tfW"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Y1u-Jd-vHb" secondAttribute="centerY" id="9FL-GL-THh"/>
+                                                                <constraint firstItem="JIi-JO-BKO" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="73" id="9uk-bW-AcV"/>
+                                                                <constraint firstItem="jbj-gZ-Vbn" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="73" id="Cg7-vH-Ky4"/>
+                                                                <constraint firstItem="tay-QN-93z" firstAttribute="leading" secondItem="IyW-gF-PZN" secondAttribute="trailing" constant="1" id="D9I-BU-a17"/>
                                                                 <constraint firstItem="LCj-OK-ttB" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" id="DTY-mh-fC9"/>
                                                                 <constraint firstItem="3xB-ae-CCl" firstAttribute="leading" secondItem="LCj-OK-ttB" secondAttribute="trailing" id="DUY-SC-Hsv"/>
-                                                                <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" secondItem="eES-Kc-LTh" secondAttribute="trailing" constant="20" id="DbQ-ok-D9a"/>
                                                                 <constraint firstAttribute="bottom" secondItem="3xB-ae-CCl" secondAttribute="bottom" id="EH1-VV-9Xm"/>
+                                                                <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tay-QN-93z" secondAttribute="trailing" constant="20" id="FCM-6R-JHk"/>
                                                                 <constraint firstAttribute="bottom" secondItem="LCj-OK-ttB" secondAttribute="bottom" id="FNi-WU-Otq"/>
-                                                                <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" secondItem="Hqe-6A-CaO" secondAttribute="trailing" constant="20" id="Ij3-e0-heI"/>
                                                                 <constraint firstItem="Y1u-Jd-vHb" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" id="S2J-rD-MDD"/>
-                                                                <constraint firstItem="eES-Kc-LTh" firstAttribute="top" secondItem="Hqe-6A-CaO" secondAttribute="bottom" id="SgG-fu-2TH"/>
+                                                                <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jbj-gZ-Vbn" secondAttribute="trailing" constant="20" id="Sdn-Wa-pgG"/>
                                                                 <constraint firstAttribute="trailing" secondItem="feB-JE-6lE" secondAttribute="trailing" constant="-12" id="TgN-Pv-e6a"/>
                                                                 <constraint firstItem="feB-JE-6lE" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="-9" id="YWW-xZ-BkQ"/>
+                                                                <constraint firstItem="jbj-gZ-Vbn" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" constant="9" id="ZOC-tR-Hxu"/>
                                                                 <constraint firstAttribute="bottom" secondItem="feB-JE-6lE" secondAttribute="bottom" constant="-6" id="aHW-XI-3M7"/>
-                                                                <constraint firstItem="Hqe-6A-CaO" firstAttribute="top" secondItem="TAa-Ad-Ah4" secondAttribute="bottom" constant="1" id="c4Y-u4-fxv"/>
-                                                                <constraint firstItem="LCj-OK-ttB" firstAttribute="leading" secondItem="TAa-Ad-Ah4" secondAttribute="trailing" constant="20" id="dFS-3O-Vci"/>
                                                                 <constraint firstItem="Meg-9s-aqM" firstAttribute="leading" secondItem="4gR-JS-eJJ" secondAttribute="leading" constant="19" id="gpB-Lb-9s4"/>
-                                                                <constraint firstItem="TAa-Ad-Ah4" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" constant="9" id="lJT-q3-b3g"/>
                                                                 <constraint firstAttribute="centerY" secondItem="Meg-9s-aqM" secondAttribute="centerY" id="mig-Xb-PJw"/>
+                                                                <constraint firstItem="tay-QN-93z" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" constant="50" id="n1A-aV-da2"/>
                                                                 <constraint firstAttribute="trailing" secondItem="3xB-ae-CCl" secondAttribute="trailing" id="tIK-Xf-fTs"/>
-                                                                <constraint firstItem="eES-Kc-LTh" firstAttribute="leading" secondItem="IyW-gF-PZN" secondAttribute="trailing" constant="3" id="vrc-aj-mMg"/>
+                                                                <constraint firstItem="JIi-JO-BKO" firstAttribute="top" secondItem="jbj-gZ-Vbn" secondAttribute="bottom" constant="1" id="vSB-v8-jcB"/>
+                                                                <constraint firstItem="IyW-gF-PZN" firstAttribute="top" secondItem="4gR-JS-eJJ" secondAttribute="top" constant="50" id="veq-Vb-Oym"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="artistTrailingConstraint" destination="Ij3-e0-heI" id="pxc-Sr-b3d"/>
+                                                                <outlet property="artistTrailingConstraint" destination="3ZD-SQ-tfW" id="4Sc-Nm-be4"/>
                                                                 <outlet property="infoContainerWidthConstraint" destination="a85-Al-OXb" id="711-ll-O8a"/>
                                                                 <outlet property="loveButton" destination="RBh-SV-6XE" id="PY5-Qv-M0B"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="ioZ-eS-03d" id="0dh-8O-mvm"/>
@@ -1141,9 +1169,9 @@
                                                                 <outlet property="lovedByOrPostedByWidthConstraint" destination="8VQ-HY-GdV" id="H9W-b6-CdH"/>
                                                                 <outlet property="playPauseButton" destination="Meg-9s-aqM" id="Kxh-xf-oOn"/>
                                                                 <outlet property="progressSlider" destination="feB-JE-6lE" id="Mt6-Ug-mcL"/>
-                                                                <outlet property="titleTrailingConstraint" destination="dFS-3O-Vci" id="IAI-Qk-gYu"/>
-                                                                <outlet property="usernameOrBlogName" destination="eES-Kc-LTh" id="ufb-hs-keF"/>
-                                                                <outlet property="usernameOrBlogNameTrailingConstraint" destination="DbQ-ok-D9a" id="cO9-qK-rMt"/>
+                                                                <outlet property="titleTrailingConstraint" destination="Sdn-Wa-pgG" id="kkI-gs-gLt"/>
+                                                                <outlet property="usernameOrBlogNameButton" destination="tay-QN-93z" id="RKc-dq-v5B"/>
+                                                                <outlet property="usernameOrBlogNameTrailingConstraint" destination="FCM-6R-JHk" id="OA6-j4-kah"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="xAW-am-Piq" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">

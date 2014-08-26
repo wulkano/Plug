@@ -58,6 +58,7 @@
 		FA7B3CB9199B626B008E8B01 /* SidebarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */; };
 		FA7C4975198ABAF200A38B27 /* BlogTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4974198ABAF200A38B27 /* BlogTableRowView.swift */; };
 		FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4976198ABD3300A38B27 /* GroupRowView.swift */; };
+		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
 		FA9EA036199AC08600D9AB8A /* PlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */; };
 		FA9EA038199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */; };
 		FA9EA03A199AD25800D9AB8A /* LatestPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */; };
@@ -181,6 +182,7 @@
 		FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarOverlayView.swift; sourceTree = "<group>"; };
 		FA7C4974198ABAF200A38B27 /* BlogTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogTableRowView.swift; sourceTree = "<group>"; };
 		FA7C4976198ABD3300A38B27 /* GroupRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRowView.swift; sourceTree = "<group>"; };
+		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
 		FA9EA035199AC08600D9AB8A /* PlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPlaylistDataSource.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */,
 				FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */,
 				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
+				FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
 				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
 				FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */,
+				FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */,
 				FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextView.swift in Sources */,
 				FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */,

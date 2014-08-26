@@ -12,7 +12,7 @@ class FeedTableCellView: PlaylistTableCellView {
     @IBOutlet var usernameOrBlogNameTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedByWidthConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedBy: NSTextField!
-    @IBOutlet var usernameOrBlogName: NSTextField!
+    @IBOutlet var usernameOrBlogNameButton: NSButton!
     
     override func objectValueChanged() {
         super.objectValueChanged()
@@ -28,11 +28,11 @@ class FeedTableCellView: PlaylistTableCellView {
         if trackValue.lovedBy != nil {
             lovedByOrPostedByWidthConstraint.constant = lovedByWidth
             lovedByOrPostedBy.stringValue = "Loved by"
-            usernameOrBlogName.stringValue = trackValue.lovedBy
+            usernameOrBlogNameButton.title = trackValue.lovedBy
         } else {
             lovedByOrPostedByWidthConstraint.constant = postedByWidth
             lovedByOrPostedBy.stringValue = "Posted by"
-            usernameOrBlogName.stringValue = trackValue.postedBy
+            usernameOrBlogNameButton.title = trackValue.postedBy
         }
     }
     
@@ -46,6 +46,16 @@ class FeedTableCellView: PlaylistTableCellView {
             usernameOrBlogNameTrailingConstraint.constant = mouseInSpacing
         } else {
             usernameOrBlogNameTrailingConstraint.constant = mouseOutSpacing
+        }
+    }
+    
+    @IBAction func usernameOrBlogNameClicked(sender: NSButton) {
+        if trackValue.lovedBy != nil {
+            var url = "http://hypem.com/\(trackValue.lovedBy!)"
+            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+        } else {
+            var url = "http://hypem.com/blog/\(trackValue.postedById!)"
+            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
         }
     }
 }

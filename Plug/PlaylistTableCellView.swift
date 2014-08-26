@@ -267,6 +267,17 @@ class PlaylistTableCellView: NSTableCellView {
         AudioPlayer.sharedInstance.seekToPercent(sender.doubleValue)
     }
     
+    @IBAction func artistButtonClicked(sender: NSButton) {
+        var artistName = trackValue.artist.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())
+        var url = "http://hypem.com/artist/\(artistName!)"
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+    }
+    
+    @IBAction func titleButtonClicked(sender: NSButton) {
+        var url = "http://hypem.com/track/\(trackValue.id)"
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+    }
+    
     func changeTrackLovedValueTo(loved: Bool) {
         if loved {
             Notifications.Post.TrackLoved(trackValue, sender: self)
