@@ -47,33 +47,39 @@ struct Notifications {
     }
     
     struct Subscribe {
-        static func TrackPlaying(subscriber: AnyObject, selector: Selector, object: AnyObject? = nil) {
-            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPlaying, object: object)
+        static func TrackPlaying(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPlaying, object: nil)
         }
         
-        static func TrackPaused(subscriber: AnyObject, selector: Selector, object: AnyObject? = nil) {
-            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPlaying, object: object)
+        static func TrackPaused(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPaused, object: nil)
         }
         
-        static func TrackLoved(subscriber: AnyObject, selector: Selector, object: AnyObject? = nil) {
-            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPlaying, object: object)
+        static func TrackLoved(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackLoved, object: nil)
         }
         
-        static func TrackUnLoved(subscriber: AnyObject, selector: Selector, object: AnyObject? = nil) {
-            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPlaying, object: object)
+        static func TrackUnLoved(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackUnLoved, object: nil)
         }
         
-        static func TrackProgressUpdated(subscriber: AnyObject, selector: Selector, object: AnyObject? = nil) {
-            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackPlaying, object: object)
+        static func TrackProgressUpdated(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.TrackProgressUpdated, object: nil)
         }
         
-        static func DisplayError(subscriber: AnyObject, selector: Selector, object: AnyObject? = nil) {
-            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.DisplayError, object: object)
+        static func DisplayError(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.DisplayError, object: nil)
         }
     }
     
-    static func UnsubscribeAll(subscriber: AnyObject) {
-        NSNotificationCenter.defaultCenter().removeObserver(subscriber)
+    struct Unsubscribe {
+        static func All(subscriber: AnyObject) {
+            NSNotificationCenter.defaultCenter().removeObserver(subscriber)
+        }
+        
+        static func TrackProgressUpdated(subscriber: AnyObject) {
+            NSNotificationCenter.defaultCenter().removeObserver(subscriber, name: Notifications.TrackProgressUpdated, object: nil)
+        }
     }
     
     struct Read {

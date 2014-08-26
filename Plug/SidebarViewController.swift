@@ -25,7 +25,7 @@ class SidebarViewController: NSViewController {
     }
     
     deinit {
-        Notifications.UnsubscribeAll(self)
+        Notifications.Unsubscribe.All(self)
     }
     
     @IBAction func navButtonClicked(sender: TransparentButton) {

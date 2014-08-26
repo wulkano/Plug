@@ -96,6 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func signOut(sender: AnyObject!) {
         closeMainWindow()
+        closePreferencesWindow()
         AudioPlayer.sharedInstance.reset()
         Authentication.DeleteUsernameAndToken()
         openLoginWindow()

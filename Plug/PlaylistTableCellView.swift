@@ -18,20 +18,13 @@ class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var progressSlider: NSSlider!
     @IBOutlet var loveCount: NSView!
     
-    var trackInfoWindowController: NSWindowController?
-    var trackInfoWindow: NSWindow?
-    var trackInfoViewController: TrackInfoViewController?
-
-    
     override var backgroundStyle: NSBackgroundStyle {
         get { return NSBackgroundStyle.Light }
         set {}
     }
     override var objectValue: AnyObject! {
         didSet {
-            if objectValue != nil {
-                objectValueChanged()
-            }
+            objectValueChanged()
         }
     }
     var mouseInside: Bool = false {
@@ -43,7 +36,8 @@ class PlaylistTableCellView: NSTableCellView {
     var trackValue: Track {
         return objectValue as Track
     }
-
+    var trackingProgress: Bool = false
+    
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
@@ -51,7 +45,7 @@ class PlaylistTableCellView: NSTableCellView {
     }
 
     deinit {
-        Notifications.UnsubscribeAll(self)
+        Notifications.Unsubscribe.All(self)
     }
     
     func initialSetup() {
@@ -62,38 +56,92 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func objectValueChanged() {
+        if objectValue == nil { return }
+        
         mouseInside = false
-        if AudioPlayer.sharedInstance.currentTrack === objectValue {
-            if AudioPlayer.sharedInstance.playing {
-                playState = PlayState.Playing
-            } else {
-                playState = PlayState.Paused
-            }
-        } else {
-            playState = PlayState.NotPlaying
-        }
         loveButton.selected = trackValue.loved
         progressSlider.doubleValue = 0
+        playState = currentPlayState()
+    }
+    
+    func currentPlayState() -> PlayState {
+        if AudioPlayer.sharedInstance.currentTrack === objectValue {
+            if AudioPlayer.sharedInstance.playing {
+                return PlayState.Playing
+            } else {
+                return PlayState.Paused
+            }
+        } else {
+            return PlayState.NotPlaying
+        }
     }
     
     func mouseInsideChanged() {
         updatePlayPauseButtonVisibility()
+        updateLoveCountVisibility()
         updateTextFieldsSpacing()
         updateLoveContainerSpacing()
         updateInfoContainerSpacing()
     }
     
+    func playStateChanged() {
+        updatePlayPauseButtonVisibility()
+        updatePlayPauseButtonSelected()
+        updateProgressSliderVisibility()
+        updateLoveCountVisibility()
+        trackOrUntrackProgress()
+    }
+    
     func updatePlayPauseButtonVisibility() {
-        // TODO: Consolidate loveCount hidden with playstate
-        // below
         if mouseInside {
             playPauseButton.hidden = false
+        } else {
+            switch playState {
+            case .Playing, .Paused:
+                playPauseButton.hidden = false
+            case .NotPlaying:
+                playPauseButton.hidden = true
+            }
+        }
+    }
+    
+    func updatePlayPauseButtonSelected() {
+        switch playState {
+        case .Playing:
+            playPauseButton.selected = true
+        case .Paused, .NotPlaying:
+            playPauseButton.selected = false
+        }
+    }
+    
+    func updateProgressSliderVisibility() {
+        switch playState {
+        case .Playing, .Paused:
+            progressSlider.hidden = false
+        case .NotPlaying:
+            progressSlider.hidden = true
+        }
+    }
+    
+    func updateLoveCountVisibility() {
+        if mouseInside {
             loveCount.hidden = true
         } else {
-            if playState == PlayState.NotPlaying {
-                playPauseButton.hidden = true
+            switch playState {
+            case .Playing, .Paused:
+                loveCount.hidden = true
+            case .NotPlaying:
                 loveCount.hidden = false
             }
+        }
+    }
+    
+    func trackOrUntrackProgress() {
+        switch playState {
+        case .Playing, .Paused:
+            trackProgress()
+        case .NotPlaying:
+            untrackProgress()
         }
     }
     
@@ -141,42 +189,21 @@ class PlaylistTableCellView: NSTableCellView {
         }
     }
     
-    func playStateChanged() {
-        // TODO: Maybe consolidate with mouse inside stuff
-        switch playState {
-        case .Playing:
-            playPauseButton.selected = true
-            playPauseButton.hidden = false
-            progressSlider.hidden = false
-            loveCount.hidden = true
-            trackProgress()
-        case .Paused:
-            playPauseButton.selected = false
-            playPauseButton.hidden = false
-            progressSlider.hidden = false
-            loveCount.hidden = true
-            trackProgress()
-        case .NotPlaying:
-            playPauseButton.selected = false
-            playPauseButton.hidden = true
-            progressSlider.hidden = true
-            progressSlider.doubleValue = 0
-            loveCount.hidden = false
-            untrackProgress()
-        }
-    }
-    
     func trackProgress() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "progressUpdated:", name: Notifications.TrackProgressUpdated, object: nil)
+        if trackingProgress == false {
+            Notifications.Subscribe.TrackProgressUpdated(self, selector: "progressUpdated:")
+        }
+        trackingProgress = true
     }
     
     func untrackProgress() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Notifications.TrackProgressUpdated, object: nil)
+        Notifications.Unsubscribe.TrackProgressUpdated(self)
+        trackingProgress = false
     }
 
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
-        if notificationTrack === objectValue {
+        let track = Notifications.Read.TrackNotification(notification)
+        if track === objectValue {
             playState = PlayState.Playing
         } else {
             playState = PlayState.NotPlaying
@@ -184,23 +211,23 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func trackPaused(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
-        if notificationTrack === objectValue {
+        let track = Notifications.Read.TrackNotification(notification)
+        if track === objectValue {
             playState = PlayState.Paused
         }
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
-        if notificationTrack === objectValue {
+        let track = Notifications.Read.TrackNotification(notification)
+        if track === objectValue {
             trackValue.loved = true
             loveButton.selected = true
         }
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
-        if notificationTrack === objectValue {
+        let track = Notifications.Read.TrackNotification(notification)
+        if track === objectValue {
             trackValue.loved = false
             loveButton.selected = false
         }
@@ -209,7 +236,6 @@ class PlaylistTableCellView: NSTableCellView {
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
         switch playState {
         case .Playing:
-            // TODO: Go the notifications route
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
             AudioPlayer.sharedInstance.play(trackValue)
@@ -242,7 +268,7 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func changeTrackLovedValueTo(loved: Bool) {
-        if loved == true {
+        if loved {
             Notifications.Post.TrackLoved(trackValue, sender: self)
         } else {
             Notifications.Post.TrackUnLoved(trackValue, sender: self)
@@ -250,9 +276,8 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     func progressUpdated(notification: NSNotification) {
-        let progress = (notification.userInfo!["progress"] as NSNumber).doubleValue
-        let duration = (notification.userInfo!["duration"] as NSNumber).doubleValue
-        progressSlider.doubleValue = progress / duration
+        let update = Notifications.Read.TrackProgressNotification(notification)
+        progressSlider.doubleValue = update.progress / update.duration
     }
     
     enum PlayState {

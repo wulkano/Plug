@@ -29,7 +29,7 @@ class MainViewController: NSViewController {
     }
     
     deinit {
-        Notifications.UnsubscribeAll(self)
+        Notifications.Unsubscribe.All(self)
     }
     
     override func viewDidLoad() {
