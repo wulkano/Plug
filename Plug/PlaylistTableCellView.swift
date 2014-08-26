@@ -18,6 +18,8 @@ class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var progressSlider: NSSlider!
     @IBOutlet var loveCount: NSView!
     
+    var trackInfoWindowController: NSWindowController?
+    
     override var backgroundStyle: NSBackgroundStyle {
         get { return NSBackgroundStyle.Light }
         set {}
@@ -243,6 +245,10 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
+        trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil).instantiateInitialController() as? NSWindowController
+        trackInfoWindowController!.showWindow(self)
+        var trackInfoViewController = trackInfoWindowController!.window!.contentViewController
+        trackInfoViewController.representedObject = objectValue
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {

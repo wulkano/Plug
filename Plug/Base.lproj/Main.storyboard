@@ -535,142 +535,6 @@
             </objects>
             <point key="canvasLocation" x="1050.5" y="474.5"/>
         </scene>
-        <!--Window-->
-        <scene sceneID="GGq-dl-L0h">
-            <objects>
-                <windowController storyboardIdentifier="TrackInfoWindowController" id="1JY-EI-Yem" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="agv-6R-RuB">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="372" height="380"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <value key="minSize" type="size" width="372" height="380"/>
-                        <value key="maxSize" type="size" width="372" height="380"/>
-                        <view key="contentView" id="Z25-bP-Ehd">
-                            <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </view>
-                    </window>
-                    <connections>
-                        <segue destination="k4e-YS-7rc" kind="relationship" relationship="window.shadowedContentViewController" id="Qhe-h9-eZm"/>
-                    </connections>
-                </windowController>
-                <customObject id="dqG-go-yP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1528" y="583"/>
-        </scene>
-        <!--Track Info View Controller-->
-        <scene sceneID="qr0-67-f07">
-            <objects>
-                <viewController storyboardIdentifier="TrackInfoViewController" id="k4e-YS-7rc" customClass="TrackInfoViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="HWj-GG-7h0">
-                        <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="LOE-IB-X2T">
-                                <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
-                                <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="jbG-Ve-lsf" userLabel="Close Button">
-                                        <rect key="frame" x="26" y="340" width="14" height="14"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="14" id="1Tq-ea-WrR"/>
-                                            <constraint firstAttribute="width" constant="14" id="tzG-QS-GL5"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Info-Close" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="hGa-hy-g2l">
-                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="closeButtonClicked:" target="k4e-YS-7rc" id="QkS-Qt-v6M"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rde-GZ-jAe">
-                                        <rect key="frame" x="24" y="292" width="252" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="sfp-3R-Qqd"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Title" id="BVo-zN-wI6">
-                                            <font key="font" metaFont="system" size="20"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <binding destination="k4e-YS-7rc" name="value" keyPath="track.title" id="Jhf-TS-pHe"/>
-                                        </connections>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C4O-VD-FBn">
-                                        <rect key="frame" x="24" y="264" width="252" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="psQ-it-oGC"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="Artist" id="LQO-BJ-AFz">
-                                            <font key="font" metaFont="system" size="18"/>
-                                            <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <binding destination="k4e-YS-7rc" name="value" keyPath="track.artist" id="uSb-Zi-RNQ"/>
-                                        </connections>
-                                    </textField>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="20X-5d-GbD" userLabel="Album Art">
-                                        <rect key="frame" x="294" y="264" width="52" height="52"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="3a1-wT-rAa"/>
-                                            <constraint firstAttribute="width" constant="52" id="CjZ-Eu-6dt"/>
-                                        </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="akf-pV-Axb"/>
-                                    </imageView>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dPO-Y4-Jz4" userLabel="Heart image">
-                                        <rect key="frame" x="328" y="338" width="18" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="18" id="Wai-bO-HkG"/>
-                                            <constraint firstAttribute="height" constant="16" id="cTg-xX-aC8"/>
-                                        </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Track-Loved-Off" id="djM-dy-BWR"/>
-                                    </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8md-aw-lBA">
-                                        <rect key="frame" x="283" y="338" width="38" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="0yE-3D-Wh5"/>
-                                            <constraint firstAttribute="width" constant="34" id="xpr-4F-9D3"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="8K" id="HUO-iF-R9U">
-                                            <font key="font" size="14" name="HelveticaNeue-Medium"/>
-                                            <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="jbG-Ve-lsf" firstAttribute="leading" secondItem="LOE-IB-X2T" secondAttribute="leading" constant="26" id="5i3-B5-fhH"/>
-                                    <constraint firstItem="dPO-Y4-Jz4" firstAttribute="leading" secondItem="8md-aw-lBA" secondAttribute="trailing" constant="9" id="9dJ-gD-00j"/>
-                                    <constraint firstAttribute="trailing" secondItem="20X-5d-GbD" secondAttribute="trailing" constant="26" id="Drc-g1-2ed"/>
-                                    <constraint firstItem="dPO-Y4-Jz4" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="26" id="OTe-oa-YII"/>
-                                    <constraint firstItem="8md-aw-lBA" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="22" id="RR7-Qu-T7W"/>
-                                    <constraint firstItem="20X-5d-GbD" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="64" id="Sxz-0W-dqo"/>
-                                    <constraint firstItem="Rde-GZ-jAe" firstAttribute="top" secondItem="jbG-Ve-lsf" secondAttribute="bottom" constant="24" id="XiT-6A-6tQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="dPO-Y4-Jz4" secondAttribute="trailing" constant="26" id="bsz-Ed-zkJ"/>
-                                    <constraint firstItem="20X-5d-GbD" firstAttribute="leading" secondItem="Rde-GZ-jAe" secondAttribute="trailing" constant="20" id="ddm-nV-1pe"/>
-                                    <constraint firstItem="C4O-VD-FBn" firstAttribute="top" secondItem="Rde-GZ-jAe" secondAttribute="bottom" constant="6" id="eFV-II-uTk"/>
-                                    <constraint firstItem="jbG-Ve-lsf" firstAttribute="top" secondItem="LOE-IB-X2T" secondAttribute="top" constant="26" id="m91-Sy-xsh"/>
-                                    <constraint firstItem="Rde-GZ-jAe" firstAttribute="leading" secondItem="LOE-IB-X2T" secondAttribute="leading" constant="26" id="p1j-Kg-89o"/>
-                                    <constraint firstItem="20X-5d-GbD" firstAttribute="leading" secondItem="C4O-VD-FBn" secondAttribute="trailing" constant="20" id="t9y-uF-HRk"/>
-                                    <constraint firstItem="C4O-VD-FBn" firstAttribute="leading" secondItem="LOE-IB-X2T" secondAttribute="leading" constant="26" id="yLL-96-chu"/>
-                                </constraints>
-                            </visualEffectView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="LOE-IB-X2T" firstAttribute="top" secondItem="HWj-GG-7h0" secondAttribute="top" id="OtG-S2-XNn"/>
-                            <constraint firstItem="LOE-IB-X2T" firstAttribute="leading" secondItem="HWj-GG-7h0" secondAttribute="leading" id="VGj-Im-eHz"/>
-                            <constraint firstAttribute="trailing" secondItem="LOE-IB-X2T" secondAttribute="trailing" id="mDK-gM-Bxd"/>
-                            <constraint firstAttribute="bottom" secondItem="LOE-IB-X2T" secondAttribute="bottom" id="usc-Jw-lGD"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="rHH-Bi-554" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="wpe-Bm-c9W"/>
-            </objects>
-            <point key="canvasLocation" x="2018" y="574"/>
-        </scene>
         <!--Search View Controller-->
         <scene sceneID="uIl-sa-RnQ">
             <objects>
@@ -1045,12 +909,12 @@
                                                                     <buttonCell key="cell" type="bevel" title="Username" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="yiz-yB-Vtz">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" size="12" name="HelveticaNeue-Medium"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                                                <color key="value" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
                                                                     </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="usernameOrBlogNameClicked:" target="4gR-JS-eJJ" id="37V-ia-UCl"/>
                                                                     </connections>
@@ -1816,7 +1680,6 @@
         <image name="Footer-Volume-2" width="16" height="13"/>
         <image name="Footer-Volume-3" width="16" height="15"/>
         <image name="Footer-Volume-Off" width="16" height="13"/>
-        <image name="Info-Close" width="14" height="14"/>
         <image name="List-Arrow" width="9" height="14"/>
         <image name="Nav-Blogs-Off" width="22" height="24"/>
         <image name="Nav-Blogs-On" width="22" height="24"/>

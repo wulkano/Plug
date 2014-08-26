@@ -9,28 +9,27 @@
 import Cocoa
 
 class Track: NSObject {
-    var id: String = "0"
+    var id: String!
     var artist: String = "N/A"
     var title: String = "N/A"
     var loved: Bool = false
-    var lovedCount: Int = 0 {
-    didSet {
-        formattedLovedCount = formatLovedCount(lovedCount)
-    }
-    }
-    var formattedLovedCount: String = "0"
+    var lovedCount: Int!
+    var formattedLovedCount: String!
+    var thumbURLSmall: NSURL?
+    var thumbURLMedium: NSURL?
+    var thumbURLLarge: NSURL?
     var rank: Int?
     var playlist: Playlist?
     var lovedBy: String?
     var postedBy: String?
     var postedById: Int?
+    var postedCount: Int!
     
     init(JSON json: NSDictionary) {
         super.init()
         
-        if json["itemid"] is String {
-            id = json["itemid"] as String
-        }
+        id = json["itemid"] as String
+        
         if json["artist"] is String {
             artist = json["artist"] as String
         }
@@ -40,9 +39,18 @@ class Track: NSObject {
         if json["ts_loved_me"] is Int {
             loved = true
         }
-        if json["loved_count"] is Int {
-            lovedCount = json["loved_count"] as Int
-            formattedLovedCount = formatLovedCount(json["loved_count"] as Int)
+        
+        lovedCount = json["loved_count"] as Int
+        formattedLovedCount = formatLovedCount(lovedCount)
+        
+        if json["thumb_url"] is String {
+            thumbURLSmall = NSURL(string: json["thumb_url"] as String)
+        }
+        if json["thumb_url_medium"] is String {
+            thumbURLMedium = NSURL(string: json["thumb_url_medium"] as String)
+        }
+        if json["thumb_url_large"] is String {
+            thumbURLLarge = NSURL(string: json["thumb_url_large"] as String)
         }
         if json["rank"] is Int {
             rank = (json["rank"] as Int)
@@ -55,6 +63,9 @@ class Track: NSObject {
         }
         if json["siteid"] is Int {
             postedById = json["siteid"] as? Int
+        }
+        if json["posted_count"] is Int {
+            postedCount = json["posted_count"] as Int
         }
     }
     
@@ -77,5 +88,40 @@ class Track: NSObject {
             mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(ApiKey)"
         }
         return NSURL(string: mediaLinkString)
+    }
+    
+    func thumbURLWithPreferedSize(size: Track.ImageSize) -> NSURL {
+        switch size {
+        case .Large:
+            if thumbURLLarge != nil {
+                return thumbURLLarge!
+            } else if thumbURLMedium != nil {
+                return thumbURLMedium!
+            } else {
+                return thumbURLSmall!
+            }
+        case .Medium:
+            if thumbURLMedium != nil {
+                return thumbURLMedium!
+            } else if thumbURLLarge != nil {
+                return thumbURLLarge!
+            } else {
+                return thumbURLSmall!
+            }
+        case .Small:
+            if thumbURLSmall != nil {
+                return thumbURLSmall!
+            } else if thumbURLMedium != nil {
+                return thumbURLMedium!
+            } else {
+                return thumbURLLarge!
+            }
+        }
+    }
+    
+    enum ImageSize {
+        case Small
+        case Medium
+        case Large
     }
 }

@@ -11,23 +11,29 @@ import Foundation
 var apiBase = "https://api.hypem.com/v2"
 
 struct HypeMachineAPI  {
-    private static func GetJSON(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+    private static func GetJSON(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     
-    private static func GetHTML(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+    private static func GetHTML(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     
-    private static func PostJSON(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+    private static func GetImage(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
+        manager.responseSerializer = AFImageResponseSerializer()
+        manager.GET(url, parameters: parameters, success: success, failure: failure)
+    }
+    
+    private static func PostJSON(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.POST(url, parameters: parameters, success: success, failure: failure)
     }
     
-    private static func PostHTML(url: String, parameters: Dictionary<String, String>?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
+    private static func PostHTML(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.POST(url, parameters: parameters, success: success, failure: failure)
@@ -227,13 +233,25 @@ struct HypeMachineAPI  {
     static func TrackGraphFor(track: Track, success: (graph: TrackGraph)->(), failure: (error: NSError)->()) {
         let url = "http://hypem.com/inc/serve_track_graph.php"
         let params = ["id": track.id]
-        HypeMachineAPI.GetHTML(url, parameters: params, success: {operation, responseObject in
-            let responseData = responseObject as NSData
-            var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
-            let graph = TrackGraph(html: html, trackId: track.id)
+        HypeMachineAPI.GetHTML(url, parameters: params,
+            success: {operation, responseObject in
+                let responseData = responseObject as NSData
+                var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
+                let graph = TrackGraph(html: html, trackId: track.id)
             success(graph: graph)
-        }, failure: {operation, error in
-            failure(error: error)
+            }, failure: {operation, error in
+                failure(error: error)
+        })
+    }
+    
+    static func TrackThumbFor(track: Track, preferedSize: Track.ImageSize, success: (image: NSImage)->(), failure: (error: NSError)->()) {
+        var url = track.thumbURLWithPreferedSize(preferedSize).absoluteString!
+        HypeMachineAPI.GetImage(url, parameters: nil,
+            success: {operation, responseObject in
+                let image = responseObject as NSImage
+                success(image: image)
+            }, failure: {operation, error in
+                failure(error: error)
         })
     }
 }
