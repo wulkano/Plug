@@ -8,9 +8,45 @@
 
 import Cocoa
 
-class LoginViewController: NSViewController {
+class LoginViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var usernameTextField: NSTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
+    @IBOutlet weak var loginButton: NSButton!
+    
+    required init(coder: NSCoder!) {
+        super.init(coder: coder)
+        
+        Notifications.Subscribe.DisplayError(self, selector: "displayError:")
+    }
+    
+    deinit {
+        Notifications.UnsubscribeAll(self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        view.window!.initialFirstResponder = usernameTextField
+        usernameTextField.nextKeyView = passwordTextField
+        passwordTextField.nextKeyView = usernameTextField
+    }
+    
+    func displayError(notification: NSNotification) {
+        let error = Notifications.Read.ErrorNotification(notification)
+        NSAlert(error: error).runModal()
+    }
+    
+    func signedInSuccessfully() {
+        let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.finishedSigningIn()
+    }
     
     @IBAction func loginButtonClicked(sender: AnyObject) {
         let username = usernameTextField.stringValue
@@ -21,14 +57,9 @@ class LoginViewController: NSViewController {
                 Authentication.SaveUsername(username, withToken: token)
                 self.signedInSuccessfully()
             }, failure: {error in
-                AppError.logError(error)
-                NSAlert(error: error).runModal()
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
         })
-    }
-    
-    func signedInSuccessfully() {
-        let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
-        appDelegate.finishedSigningIn()
     }
     
     @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
@@ -37,5 +68,27 @@ class LoginViewController: NSViewController {
     
     @IBAction func signUpButtonClicked(sender: AnyObject) {
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1"))
+    }
+    
+    override func controlTextDidChange(notification: NSNotification!) {
+        formFieldsChanged()
+    }
+    
+    func formFieldsChanged() {
+        if formFieldsValid() {
+            loginButton.enabled = true
+        } else {
+            loginButton.enabled = false
+        }
+    }
+    
+    func formFieldsValid() -> Bool {
+        if formFieldsEmpty() { return false }
+        
+        return true
+    }
+    
+    func formFieldsEmpty() -> Bool {
+        return  usernameTextField.stringValue == "" || passwordTextField.stringValue == ""
     }
 }

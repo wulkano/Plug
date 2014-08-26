@@ -141,6 +141,8 @@
                 <customObject id="geA-u8-YPg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="0zE-Eq-Avq" customClass="AppDelegate" customModule="Plug" customModuleProvider="target">
                     <connections>
+                        <outlet property="preferencesMenuItem" destination="6gh-ly-NSv" id="NwP-xC-Riv"/>
+                        <outlet property="preferencesMenuSeparator" destination="H7n-ly-K8H" id="H6J-f2-4vU"/>
                         <outlet property="signOutMenuItem" destination="Zo0-Xs-iwP" id="Tsm-fn-YQ7"/>
                         <outlet property="signOutMenuSeparator" destination="fnM-qT-VnK" id="Ddk-dg-v0x"/>
                     </connections>

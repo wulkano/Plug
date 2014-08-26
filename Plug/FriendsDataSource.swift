@@ -22,7 +22,8 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
                 self.generateTableContents(friends)
                 self.tableView?.reloadData()
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
         })
     }
     

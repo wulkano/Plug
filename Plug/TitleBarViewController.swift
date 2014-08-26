@@ -17,7 +17,7 @@ class TitleBarViewController: NSViewController {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Notifications.UnsubscribeAll(self)
     }
     
     override func viewDidLoad() {

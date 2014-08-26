@@ -83,8 +83,7 @@ struct HypeMachineAPI  {
                     } else if html == "0" {
                         success(loved: false)
                     } else {
-                        let error = AppError.UnexpectedApiResponseError()
-                        NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Unexpected api response"])
+                        let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Unexpected api response"])
                         failure(error: error)
                     }
                 }, failure: {

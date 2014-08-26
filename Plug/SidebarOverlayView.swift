@@ -22,7 +22,7 @@ class SidebarOverlayView: NSView {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Notifications.UnsubscribeAll(self)
     }
     
     func initialSetup() {

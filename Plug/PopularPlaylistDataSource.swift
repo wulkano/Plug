@@ -25,7 +25,8 @@ class PopularPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSo
                 self.playlist = playlist
                 self.tableView?.reloadData()
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
         })
     }
     
@@ -37,7 +38,8 @@ class PopularPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSo
                 self.tableView?.reloadData()
                 self.currentPage++
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
             })
     }
     

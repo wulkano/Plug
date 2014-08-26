@@ -25,7 +25,8 @@ class FeedPlaylistDataSource: NSObject, PlaylistDataSource {
                 self.playlist = playlist
                 self.tableView?.reloadData()
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
         })
     }
     
@@ -38,7 +39,8 @@ class FeedPlaylistDataSource: NSObject, PlaylistDataSource {
                 self.tableView?.reloadData()
                 self.currentPage++
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
         })
     }
     

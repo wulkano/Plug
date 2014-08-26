@@ -12,6 +12,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
     var loginWindowController: NSWindowController?
     var preferencesWindowController: NSWindowController?
+    @IBOutlet weak var preferencesMenuItem: NSMenuItem!
+    @IBOutlet weak var preferencesMenuSeparator: NSMenuItem!
     @IBOutlet var signOutMenuItem: NSMenuItem!
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
     
@@ -33,6 +35,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         mainWindowController!.showWindow(self)
         showSignOutInMenu()
+        showPreferencesInMenu()
+    }
+    
+    func closeMainWindow() {
+        mainWindowController!.window.close()
+        mainWindowController = nil
     }
     
     func openLoginWindow() {
@@ -41,12 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         loginWindowController!.showWindow(self)
         hideSignOutFromMenu()
-    }
-    
-    func closeMainWindow() {
-        mainWindowController!.window.close()
-        mainWindowController = nil
-        hideSignOutFromMenu()
+        hidePreferencesFromMenu()
     }
     
     func closeLoginWindow() {
@@ -54,19 +57,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         loginWindowController = nil
     }
     
+    func openPreferencesWindow() {
+        if preferencesWindowController == nil {
+            preferencesWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as? NSWindowController
+        }
+        preferencesWindowController!.showWindow(self)
+    }
+    
+    func closePreferencesWindow() {
+        preferencesWindowController!.window.close()
+        preferencesWindowController = nil
+    }
+    
     func finishedSigningIn() {
         closeLoginWindow()
         openMainWindow()
     }
     
-    func hideSignOutFromMenu() {
-        signOutMenuItem.hidden = true
-        signOutMenuSeparator.hidden = true
+    func showPreferencesInMenu() {
+        preferencesMenuItem.hidden = false
+        preferencesMenuSeparator.hidden = false
+    }
+    
+    func hidePreferencesFromMenu() {
+        preferencesMenuItem.hidden = true
+        preferencesMenuSeparator.hidden = true
     }
     
     func showSignOutInMenu() {
         signOutMenuItem.hidden = false
         signOutMenuSeparator.hidden = false
+    }
+    
+    func hideSignOutFromMenu() {
+        signOutMenuItem.hidden = true
+        signOutMenuSeparator.hidden = true
     }
     
     @IBAction func signOut(sender: AnyObject!) {
@@ -77,10 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func preferencesItemClicked(sender: AnyObject!) {
-        if preferencesWindowController == nil {
-            preferencesWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as? NSWindowController
-        }
-        preferencesWindowController!.showWindow(self)
+        openPreferencesWindow()
     }
     
     private func setupUserDefaults() {

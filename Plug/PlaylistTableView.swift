@@ -20,7 +20,7 @@ class PlaylistTableView: NSTableView {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Notifications.UnsubscribeAll(self)
     }
     
     func trackScrolling() {

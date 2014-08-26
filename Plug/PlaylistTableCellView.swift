@@ -51,14 +51,14 @@ class PlaylistTableCellView: NSTableCellView {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Notifications.UnsubscribeAll(self)
     }
     
     func initialSetup() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "trackPlaying:", name: Notifications.TrackPlaying, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "trackPaused:", name: Notifications.TrackPaused, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
+        Notifications.Subscribe.TrackPlaying(self, selector: "trackPlaying:")
+        Notifications.Subscribe.TrackPaused(self, selector: "trackPaused:")
+        Notifications.Subscribe.TrackLoved(self, selector: "trackLoved:")
+        Notifications.Subscribe.TrackUnLoved(self, selector: "trackUnLoved:")
     }
     
     func objectValueChanged() {
@@ -231,7 +231,8 @@ class PlaylistTableCellView: NSTableCellView {
                     self.changeTrackLovedValueTo(loved)
                 }
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
         })
     }

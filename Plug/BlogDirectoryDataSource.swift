@@ -22,7 +22,8 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
                 self.generateTableContents(blogs)
                 self.tableView?.reloadData()
             }, failure: {error in
-                AppError.logError(error)
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
         })
     }
     

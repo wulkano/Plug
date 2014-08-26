@@ -25,11 +25,11 @@ class MainViewController: NSViewController {
     required init(coder: NSCoder!) {
         super.init(coder: coder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "displayError:", name: Notifications.Error, object: nil)
+        Notifications.Subscribe.DisplayError(self, selector: "displayError:")
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Notifications.UnsubscribeAll(self)
     }
     
     override func viewDidLoad() {
@@ -48,9 +48,8 @@ class MainViewController: NSViewController {
     }
     
     func displayError(notification: NSNotification) {
-//        TODO: Fancy error display
-        let error = AppError.fromNotification(notification)
-        AppError.logError(error)
+        let error = Notifications.Read.ErrorNotification(notification)
+        NSAlert(error: error).runModal()
     }
     
     func updateUIForSection(section: NavigationSection) {

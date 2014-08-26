@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <scenes>
@@ -9,7 +10,7 @@
             <objects>
                 <windowController id="bfm-3S-Tok" sceneMemberID="viewController">
                     <window key="window" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="raM-qK-t3e" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="300" height="430"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <value key="minSize" type="size" width="300" height="430"/>
@@ -38,18 +39,18 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="zq8-oP-Cmk">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKj-sC-9NM">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKj-sC-9NM" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="258" width="264" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="MDf-tD-rCR"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="EMAIL/USERNAME" id="hzk-fT-A6w">
                                             <font key="font" size="12" name="DINBold"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-Zi-8EU">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-Zi-8EU" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="230" width="264" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="GNB-gN-V0h"/>
@@ -72,23 +73,23 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-Dp-zTj">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-Dp-zTj" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="188" width="264" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="beu-6A-9Y2"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="PASSWORD" id="Hsm-0g-Eof">
                                             <font key="font" size="12" name="DINBold"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Z7-dY-C7d">
+                                    <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Z7-dY-C7d" customClass="VibrantSecureTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="160" width="264" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="nVg-gk-V66"/>
                                         </constraints>
-                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Your password" usesSingleLineMode="YES" id="A73-eU-Rek">
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Your password" id="A73-eU-Rek">
                                             <font key="font" size="18" name="HelveticaNeue"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -109,12 +110,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g">
-                                        <rect key="frame" x="64" y="68" width="172" height="18"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g" customClass="VibrantButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="64" y="68" width="172" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="72K-nz-FTx"/>
+                                            <constraint firstAttribute="height" constant="20" id="72K-nz-FTx"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="FORGOTTEN PASSWORD?" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9">
+                                        <buttonCell key="cell" type="bevel" title="FORGOTTEN PASSWORD?" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9" customClass="ForgotPasswordButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name="DINBold"/>
                                         </buttonCell>
@@ -122,36 +123,25 @@
                                             <action selector="forgotPasswordButtonClicked:" target="kJE-8h-8hu" id="KHa-tm-ULR"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW" customClass="RoundedRectOutlineButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="260" height="36"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW" customClass="VibrantButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="18" y="17" width="264" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="KOI-cl-Hk8"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="SIGN UP TO HYPE MACHINE" bezelStyle="regularSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="ml6-hR-1c7">
+                                        <buttonCell key="cell" type="bevel" title="SIGN UP TO HYPE MACHINE" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ml6-hR-1c7" customClass="SignUpButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name="DINBold"/>
                                         </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
-                                                <color key="value" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signUpButtonClicked:" target="kJE-8h-8hu" id="uDO-6t-HpH"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-NN-PR5">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-NN-PR5" customClass="VibrantButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="109" width="260" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="vdm-0c-XW1"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="LOG IN" bezelStyle="rounded" image="Login-Next" imagePosition="right" alignment="left" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn">
+                                        <buttonCell key="cell" type="bevel" title="LOG IN" bezelStyle="rounded" image="Login-Next" imagePosition="right" alignment="left" enabled="NO" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn" customClass="LoginButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="DINBold"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -202,6 +192,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="IMQ-NN-PR5" id="y5a-3d-3A1"/>
                         <outlet property="passwordTextField" destination="8Z7-dY-C7d" id="kiQ-bm-XQc"/>
                         <outlet property="usernameTextField" destination="KbM-Zi-8EU" id="OqI-pG-P9V"/>
                     </connections>

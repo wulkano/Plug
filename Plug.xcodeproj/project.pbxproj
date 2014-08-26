@@ -70,7 +70,13 @@
 		FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */; };
 		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
 		FAA51A59198084E50057EC34 /* NavigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A58198084E50057EC34 /* NavigationSection.swift */; };
-		FAA51A5B1980D4FC0057EC34 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A5A1980D4FC0057EC34 /* AppError.swift */; };
+		FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A5A1980D4FC0057EC34 /* Error.swift */; };
+		FAACE4BE19ABEA4600F8E9E8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4BD19ABEA4600F8E9E8 /* Logger.swift */; };
+		FAACE4C019AC08C600F8E9E8 /* VibrantButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4BF19AC08C600F8E9E8 /* VibrantButton.swift */; };
+		FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */; };
+		FAACE4C419AC2ADD00F8E9E8 /* SignUpButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C319AC2ADD00F8E9E8 /* SignUpButtonCell.swift */; };
+		FAACE4C619AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C519AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift */; };
+		FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */; };
 		FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */; };
 		FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
@@ -187,7 +193,13 @@
 		FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableView.swift; sourceTree = "<group>"; };
 		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
 		FAA51A58198084E50057EC34 /* NavigationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSection.swift; sourceTree = "<group>"; };
-		FAA51A5A1980D4FC0057EC34 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		FAA51A5A1980D4FC0057EC34 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		FAACE4BD19ABEA4600F8E9E8 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		FAACE4BF19AC08C600F8E9E8 /* VibrantButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantButton.swift; sourceTree = "<group>"; };
+		FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantTextField.swift; sourceTree = "<group>"; };
+		FAACE4C319AC2ADD00F8E9E8 /* SignUpButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpButtonCell.swift; sourceTree = "<group>"; };
+		FAACE4C519AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordButtonCell.swift; sourceTree = "<group>"; };
+		FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantSecureTextField.swift; sourceTree = "<group>"; };
 		FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectOutlineButton.swift; sourceTree = "<group>"; };
 		FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonCell.swift; sourceTree = "<group>"; };
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
@@ -259,24 +271,29 @@
 				FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */,
 				FADC96F51974D10C009458FA /* DraggableView.swift */,
 				FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */,
+				FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */,
 				FAE95B7719A2DED7009F9946 /* FlatSlider.swift */,
 				FAF6F0951979F92900F2102B /* FlatSliderCell.swift */,
 				FA7C4976198ABD3300A38B27 /* GroupRowView.swift */,
 				FA0B1D2719770AEB0030C873 /* HeatMapView.swift */,
+				FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */,
 				FAF6F097197A05D300F2102B /* HoverToggleButton.swift */,
 				FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */,
 				FAD3B0DB1981DB2600BC5109 /* LargeLoadingView.swift */,
-				FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */,
+				FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */,
 				FA51263719762F66004D0776 /* NavigationButton.swift */,
 				FADC96F11974CA0D009458FA /* PlaylistTableCellView.swift */,
-				FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */,
 				FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */,
+				FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */,
+				FAACE4C319AC2ADD00F8E9E8 /* SignUpButtonCell.swift */,
+				FAACE4C519AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift */,
 				FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */,
 				FA33002F197CB1EE0063C552 /* TransparentButton.swift */,
-				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
-				FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */,
-				FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */,
 				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */,
+				FAACE4BF19AC08C600F8E9E8 /* VibrantButton.swift */,
+				FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */,
+				FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */,
+				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -371,7 +388,8 @@
 				FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */,
 				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
 				FAA51A58198084E50057EC34 /* NavigationSection.swift */,
-				FAA51A5A1980D4FC0057EC34 /* AppError.swift */,
+				FAA51A5A1980D4FC0057EC34 /* Error.swift */,
+				FAACE4BD19ABEA4600F8E9E8 /* Logger.swift */,
 				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
@@ -599,11 +617,13 @@
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
+				FAACE4BE19ABEA4600F8E9E8 /* Logger.swift in Sources */,
 				FA64C6A319764DC9003933E3 /* HypeMachineAPI.swift in Sources */,
 				FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */,
 				FA7749A4198C1EBD0048863F /* Friend.swift in Sources */,
 				FA0B1D321977187E0030C873 /* LatestPlaylist.swift in Sources */,
 				FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */,
+				FAACE4C619AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
 				FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */,
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
@@ -614,8 +634,10 @@
 				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
 				FA7C4975198ABAF200A38B27 /* BlogTableRowView.swift in Sources */,
+				FAACE4C019AC08C600F8E9E8 /* VibrantButton.swift in Sources */,
 				FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */,
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
+				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
 				FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */,
 				FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextView.swift in Sources */,
@@ -639,11 +661,13 @@
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,
 				FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */,
 				FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */,
+				FAACE4C419AC2ADD00F8E9E8 /* SignUpButtonCell.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* TrackGraph.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
 				FA774998198BF8280048863F /* BlogTableCellView.swift in Sources */,
 				FA691BFF197654AF008D5C3E /* Track.swift in Sources */,
+				FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,
@@ -659,7 +683,7 @@
 				FAF13B5B199D605C009D9F66 /* TrackInfoWindowController.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
-				FAA51A5B1980D4FC0057EC34 /* AppError.swift in Sources */,
+				FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* PlaylistViewController.swift in Sources */,
 				FADC96F21974CA0D009458FA /* PlaylistTableCellView.swift in Sources */,
 				FA0B1D30197712920030C873 /* PopularPlaylist.swift in Sources */,

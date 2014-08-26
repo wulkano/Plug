@@ -25,7 +25,7 @@ class SidebarViewController: NSViewController {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Notifications.UnsubscribeAll(self)
     }
     
     @IBAction func navButtonClicked(sender: TransparentButton) {
