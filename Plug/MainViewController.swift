@@ -24,7 +24,7 @@ class MainViewController: NSViewController {
     
     required init(coder: NSCoder!) {
         super.init(coder: coder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
+        Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
         Notifications.Subscribe.DisplayError(self, selector: "displayError:")
     }
     
@@ -32,18 +32,20 @@ class MainViewController: NSViewController {
         Notifications.Unsubscribe.All(self)
     }
     
-    override func viewDidLoad() {
+    override func viewDidAppear() {
         super.viewDidLoad()
         
-        changeNavigationSection(NavigationSection.Popular)
+        if currentViewController == nil {
+            changeNavigationSection(NavigationSection.Popular)
+        }
     }
     
     func changeNavigationSection(section: NavigationSection) {
-        NavigationSection.postChangeNotification(section, object: self)
+        Notifications.Post.NavigationSectionChanged(section, sender: self)
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        let section = NavigationSection.fromNotification(notification)
+        let section = Notifications.Read.NavigationSectionNotification(notification)
         updateUIForSection(section)
     }
     

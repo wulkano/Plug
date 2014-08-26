@@ -44,6 +44,10 @@ struct Notifications {
         static func DisplayError(error: NSError, sender: AnyObject?) {
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.DisplayError, object: sender, userInfo: ["error": error])
         }
+        
+        static func NavigationSectionChanged(section: NavigationSection, sender: AnyObject?) {
+            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.NavigationSectionChanged, object: sender, userInfo: ["navigationSection": section.toRaw()])
+        }
     }
     
     struct Subscribe {
@@ -69,6 +73,10 @@ struct Notifications {
         
         static func DisplayError(subscriber: AnyObject, selector: Selector) {
             NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.DisplayError, object: nil)
+        }
+        
+        static func NavigationSectionChanged(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.NavigationSectionChanged, object: nil)
         }
     }
     
@@ -96,6 +104,12 @@ struct Notifications {
         
         static func ErrorNotification(notification: NSNotification) -> NSError {
             return notification.userInfo!["error"] as NSError
+        }
+
+        static func NavigationSectionNotification(notification: NSNotification) -> NavigationSection {
+            let number = notification.userInfo!["navigationSection"] as NSNumber
+            let raw = number.integerValue
+            return NavigationSection.fromRaw(raw)!
         }
     }
 }

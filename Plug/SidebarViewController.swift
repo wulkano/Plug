@@ -21,7 +21,7 @@ class SidebarViewController: NSViewController {
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
+        Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
     }
     
     deinit {
@@ -34,13 +34,11 @@ class SidebarViewController: NSViewController {
     }
     
     func changeNavigationSection(section: NavigationSection) {
-        NavigationSection.postChangeNotification(section, object: self)
-        updateUIForSection(section)
+        Notifications.Post.NavigationSectionChanged(section, sender: self)
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        if notification.object === self { return }
-        let section = NavigationSection.fromNotification(notification)
+        let section = Notifications.Read.NavigationSectionNotification(notification)
         updateUIForSection(section)
     }
     

@@ -13,22 +13,15 @@ class TitleBarViewController: NSViewController {
     
     required init(coder: NSCoder!) {
         super.init(coder: coder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
+        Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
     }
     
     deinit {
         Notifications.Unsubscribe.All(self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        titleTextField.stringValue = "Popular"
-    }
-    
     func navigationSectionChanged(notification: NSNotification) {
-        if notification.object === self { return }
-        let section = NavigationSection.fromNotification(notification)
+        let section = Notifications.Read.NavigationSectionNotification(notification)
         updateUIForSection(section)
     }
     

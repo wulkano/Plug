@@ -38,14 +38,4 @@ enum NavigationSection: Int {
             return "Search"
         }
     }
-    
-    static func fromNotification(notification: NSNotification) -> NavigationSection {
-        let number = notification.userInfo!["NavigationSection"] as NSNumber
-        let raw = number.integerValue
-        return NavigationSection.fromRaw(raw)!
-    }
-    
-    static func postChangeNotification(newSection: NavigationSection, object: AnyObject?) {
-        NSNotificationCenter.defaultCenter().postNotificationName(Notifications.NavigationSectionChanged, object: object, userInfo: ["NavigationSection": newSection.toRaw()])
-    }
 }

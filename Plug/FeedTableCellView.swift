@@ -16,6 +16,7 @@ class FeedTableCellView: PlaylistTableCellView {
     
     override func objectValueChanged() {
         super.objectValueChanged()
+        if objectValue == nil { return }
         
         updateLovedByOrPostedBy()
     }
