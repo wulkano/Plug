@@ -245,10 +245,12 @@ class PlaylistTableCellView: NSTableCellView {
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
-        trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil).instantiateInitialController() as? NSWindowController
+        if trackInfoWindowController == nil {
+            trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil).instantiateInitialController() as? NSWindowController
+            var trackInfoViewController = trackInfoWindowController!.window!.contentViewController
+            trackInfoViewController.representedObject = objectValue
+        }
         trackInfoWindowController!.showWindow(self)
-        var trackInfoViewController = trackInfoWindowController!.window!.contentViewController
-        trackInfoViewController.representedObject = objectValue
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {

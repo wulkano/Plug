@@ -21,9 +21,10 @@ class Track: NSObject {
     var rank: Int?
     var playlist: Playlist?
     var lovedBy: String?
-    var postedBy: String?
-    var postedById: Int?
+    var postedBy: String!
+    var postedById: Int!
     var postedCount: Int!
+    var postedByDescription: String!
     
     init(JSON json: NSDictionary) {
         super.init()
@@ -58,15 +59,10 @@ class Track: NSObject {
         if json["via_user"] is String {
             lovedBy = json["via_user"] as? String
         }
-        if json["sitename"] is String {
-            postedBy = json["sitename"] as? String
-        }
-        if json["siteid"] is Int {
-            postedById = json["siteid"] as? Int
-        }
-        if json["posted_count"] is Int {
-            postedCount = json["posted_count"] as Int
-        }
+        postedBy = json["sitename"] as String
+        postedById = json["siteid"] as Int
+        postedCount = json["posted_count"] as Int
+        postedByDescription = (json["description"] as String) + "..."
     }
     
     func formatLovedCount(count: Int) -> String {

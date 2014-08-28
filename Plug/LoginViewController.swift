@@ -11,7 +11,7 @@ import Cocoa
 class LoginViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var usernameTextField: NSTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
-    @IBOutlet weak var loginButton: NSButton!
+    @IBOutlet var loginButton: LoginButton!
     
     required init(coder: NSCoder!) {
         super.init(coder: coder)
@@ -28,14 +28,14 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        usernameTextField.nextKeyView = passwordTextField
+        passwordTextField.nextKeyView = usernameTextField
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         view.window!.initialFirstResponder = usernameTextField
-        usernameTextField.nextKeyView = passwordTextField
-        passwordTextField.nextKeyView = usernameTextField
     }
     
     func displayError(notification: NSNotification) {
@@ -52,13 +52,26 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         let username = usernameTextField.stringValue
         let password = passwordTextField.stringValue
         
+        loginButton.buttonState = .Sending
+        loginWithUsername(username, andPassword: password)
+    }
+    
+    func loginWithUsername(username: String, andPassword password: String) {
         HypeMachineAPI.GetToken(username, password: password,
             success: {token in
                 Authentication.SaveUsername(username, withToken: token)
                 self.signedInSuccessfully()
             }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
+                // TODO: Better appwide passwords
+                var errorMessage: String
+                if error.localizedDescription == "Wrong password" {
+                    errorMessage = "Incorrect username/password"
+                } else {
+                    errorMessage = "Network Error"
+                    Notifications.Post.DisplayError(error, sender: self)
+                    Logger.LogError(error)
+                }
+                self.loginButton.buttonState = .Error(errorMessage)
         })
     }
     
@@ -76,9 +89,9 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     
     func formFieldsChanged() {
         if formFieldsValid() {
-            loginButton.enabled = true
+            loginButton.buttonState = .Enabled
         } else {
-            loginButton.enabled = false
+            loginButton.buttonState = .Disabled
         }
     }
     

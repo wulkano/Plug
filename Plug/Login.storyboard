@@ -109,20 +109,24 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g" customClass="VibrantButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="64" y="68" width="172" height="20"/>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="62" y="65" width="176" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="72K-nz-FTx"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="FORGOTTEN PASSWORD?" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9" customClass="ForgotPasswordButtonCell" customModule="Plug" customModuleProvider="target">
+                                        <buttonCell key="cell" type="bevel" title="FORGOTTEN PASSWORD?" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9" customClass="ForgotPasswordButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name="DINBold"/>
                                         </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="vibrant" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="forgotPasswordButtonClicked:" target="kJE-8h-8hu" id="KHa-tm-ULR"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW" customClass="VibrantButton" customModule="Plug" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="17" width="264" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="KOI-cl-Hk8"/>
@@ -131,37 +135,47 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="12" name="DINBold"/>
                                         </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="vibrant" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signUpButtonClicked:" target="kJE-8h-8hu" id="uDO-6t-HpH"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-NN-PR5" customClass="VibrantButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="109" width="260" height="32"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-NN-PR5" userLabel="Login Button" customClass="LoginButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="109" width="264" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="vdm-0c-XW1"/>
+                                            <constraint firstAttribute="height" constant="32" id="95w-id-mBH"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="LOG IN" bezelStyle="rounded" image="Login-Next" imagePosition="right" alignment="left" enabled="NO" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn" customClass="LoginButtonCell" customModule="Plug" customModuleProvider="target">
+                                        <buttonCell key="cell" type="bevel" title="LOG IN" bezelStyle="rounded" image="Login-Next" imagePosition="right" alignment="left" lineBreakMode="truncatingTail" enabled="NO" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn" customClass="LoginButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="DINBold"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
                                         </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="vibrant" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loginButtonClicked:" target="kJE-8h-8hu" id="gu4-gD-HPJ"/>
+                                            <action selector="loginButtonClicked:" target="kJE-8h-8hu" id="mkc-Hp-7Cc"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="IMQ-NN-PR5" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="1nx-KF-mWD"/>
+                                    <constraint firstAttribute="height" constant="430" id="06u-qj-R4O"/>
+                                    <constraint firstItem="IMQ-NN-PR5" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="181-wo-J2P"/>
                                     <constraint firstItem="iqn-dS-QxW" firstAttribute="top" secondItem="qvS-9M-X3g" secondAttribute="bottom" constant="12" id="2yT-YI-NJ2"/>
+                                    <constraint firstAttribute="width" constant="300" id="5wL-NQ-grR"/>
                                     <constraint firstItem="iqn-dS-QxW" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="7Wd-Ta-ko4"/>
-                                    <constraint firstAttribute="trailing" secondItem="IMQ-NN-PR5" secondAttribute="trailing" constant="20" id="BpI-cK-7Q1"/>
                                     <constraint firstAttribute="trailing" secondItem="GlT-Dp-zTj" secondAttribute="trailing" constant="20" id="CP2-aW-vmq"/>
                                     <constraint firstItem="KbM-Zi-8EU" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="E8H-D2-lOF"/>
                                     <constraint firstItem="F54-Ih-1Vd" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="GcB-xN-rUc"/>
                                     <constraint firstItem="Q6d-78-yrl" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="HG5-M6-QHa"/>
                                     <constraint firstAttribute="trailing" secondItem="qvS-9M-X3g" secondAttribute="trailing" constant="64" id="JN8-fG-gb1"/>
+                                    <constraint firstItem="IMQ-NN-PR5" firstAttribute="top" secondItem="F54-Ih-1Vd" secondAttribute="bottom" constant="8" id="JTv-5b-5Jn"/>
                                     <constraint firstItem="8Z7-dY-C7d" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="K6C-KJ-qer"/>
                                     <constraint firstAttribute="trailing" secondItem="Q6d-78-yrl" secondAttribute="trailing" id="LmX-lf-w91"/>
                                     <constraint firstItem="GlT-Dp-zTj" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="Ma4-WH-uej"/>
@@ -176,8 +190,8 @@ DQ
                                     <constraint firstAttribute="trailing" secondItem="8Z7-dY-C7d" secondAttribute="trailing" constant="20" id="oWu-Jb-MdO"/>
                                     <constraint firstItem="KbM-Zi-8EU" firstAttribute="top" secondItem="JKj-sC-9NM" secondAttribute="bottom" constant="3" id="sYq-CU-CPe"/>
                                     <constraint firstAttribute="trailing" secondItem="iqn-dS-QxW" secondAttribute="trailing" constant="20" id="t6Y-6P-Jsa"/>
-                                    <constraint firstItem="IMQ-NN-PR5" firstAttribute="top" secondItem="F54-Ih-1Vd" secondAttribute="bottom" constant="8" id="uFd-Ki-ZRZ"/>
                                     <constraint firstAttribute="bottom" secondItem="iqn-dS-QxW" secondAttribute="bottom" constant="20" id="uHF-ln-Xgw"/>
+                                    <constraint firstAttribute="trailing" secondItem="IMQ-NN-PR5" secondAttribute="trailing" constant="16" id="wcx-JO-D6o"/>
                                     <constraint firstItem="8Z7-dY-C7d" firstAttribute="top" secondItem="GlT-Dp-zTj" secondAttribute="bottom" constant="3" id="wkm-55-8O0"/>
                                     <constraint firstAttribute="trailing" secondItem="JKj-sC-9NM" secondAttribute="trailing" constant="20" id="z0J-pS-xJ0"/>
                                 </constraints>
@@ -191,7 +205,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loginButton" destination="IMQ-NN-PR5" id="y5a-3d-3A1"/>
+                        <outlet property="loginButton" destination="IMQ-NN-PR5" id="LQe-04-cTH"/>
                         <outlet property="passwordTextField" destination="8Z7-dY-C7d" id="kiQ-bm-XQc"/>
                         <outlet property="usernameTextField" destination="KbM-Zi-8EU" id="OqI-pG-P9V"/>
                     </connections>

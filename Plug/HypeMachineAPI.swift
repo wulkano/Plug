@@ -13,6 +13,7 @@ var apiBase = "https://api.hypem.com/v2"
 struct HypeMachineAPI  {
     private static func GetJSON(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
+        manager.responseSerializer = PlugJSONResponseSerializer()
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     
@@ -30,6 +31,7 @@ struct HypeMachineAPI  {
     
     private static func PostJSON(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
+        manager.responseSerializer = PlugJSONResponseSerializer()
         manager.POST(url, parameters: parameters, success: success, failure: failure)
     }
     
@@ -222,11 +224,11 @@ struct HypeMachineAPI  {
                 let token = responseDictionary["hm_token"] as String
                 success(token: token)
             }, failure: {operation, error in
-                println(error)
-                println("")
-                println(operation)
-                println("")
-                failure(error: error)
+                if let errorMessage = self._tryToParseHypeMachineErrorMessage(error) {
+                    failure(error: NSError(domain: PlugErrorDomain, code: 2, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
+                } else {
+                    failure(error: error)
+                }
         })
     }
     
@@ -253,5 +255,22 @@ struct HypeMachineAPI  {
             }, failure: {operation, error in
                 failure(error: error)
         })
+    }
+    
+    private static func _tryToParseHypeMachineErrorMessage(error: NSError) -> String? {
+        var errorResponse = error.userInfo![JSONResponseSerializerWithDataKey] as? NSString
+        if errorResponse == nil { return nil }
+        
+        var data = errorResponse!.dataUsingEncoding(NSUTF8StringEncoding)
+        if data == nil { return nil }
+        if data!.length <= 0 { return nil }
+        
+        var serializationError: NSError?
+        var responseObject = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &serializationError) as? NSDictionary
+        if serializationError != nil { return nil }
+        if responseObject == nil { return nil }
+        if responseObject!["status"] as? NSString != "error" { return nil }
+        
+        return responseObject!["error_msg"] as? NSString
     }
 }
