@@ -50,7 +50,6 @@ struct Animations {
         rotate.beginTime = 0
         rotate.cumulative = true
         rotate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        println(view.layer!.frame)
         
         var center = CGPointMake(CGRectGetMidX(view.frame), CGRectGetMidY(view.frame));
         view.layer!.position = center

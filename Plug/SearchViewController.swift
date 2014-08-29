@@ -29,7 +29,7 @@ class SearchViewController: NSViewController {
     }
     
     func addPlaylistViewController() {
-        playlistViewController = (storyboard.instantiateControllerWithIdentifier("PlaylistViewController") as PlaylistViewController)
+        playlistViewController = (storyboard.instantiateControllerWithIdentifier("LoveCountPlaylistViewController") as PlaylistViewController)
         
         addChildViewController(playlistViewController)
         

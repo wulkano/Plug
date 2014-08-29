@@ -38,11 +38,11 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
         self.dataSource!.loadInitialValues()
     }
     
-    func cellViewForRow(row: Int) -> PlaylistTableCellView? {
+    func cellViewForRow(row: Int) -> BasePlaylistTableCellView? {
         if row < 0 {
             return nil
         } else {
-            return tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? PlaylistTableCellView
+            return tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? BasePlaylistTableCellView
         }
     }
     

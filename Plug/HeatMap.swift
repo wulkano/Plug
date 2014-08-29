@@ -8,15 +8,16 @@
 
 import Cocoa
 
-class TrackGraph: NSObject {
-    var trackId: String
+class HeatMap: NSObject {
+    var track: Track
     var html: String
     var bigPoints: NSArray?
     var postPoints: NSArray?
     
-    init(html: String, trackId: String) {
-        self.trackId = trackId
+    init(track: Track, html: String, error: NSErrorPointer) {
+        self.track = track
         self.html = html
+
         super.init()
         
         let bigPointsString = parseBigPoints()
@@ -29,43 +30,44 @@ class TrackGraph: NSObject {
 //    TODO search for most applicable data
 //    TODO find a way to return errors if no data is available
 //    TODO fix algorithm, graphs are too slicey
-    func relativeLast24HourData() -> (Double, Double) {
-//        TODO this is erroring out for our of range reasons
-//        let highRange: Double = 100
-//        let data = last24HourData()
-//        var beginPoint = data.0 / highRange
-//        var endPoint = data.1 / highRange
-//        if beginPoint > 1 { beginPoint = 1 }
-//        if endPoint > 1 { endPoint = 1 }
-//        return (beginPoint, endPoint)
-        return (1, 1)
+    func relativeLast24HourData() -> (start: Double, end: Double) {
+//        TODO: this is erroring out for our of range reasons
+        let highRange: Double = 30
+        let data = last24HourData()
+        var startPoint = data.start / highRange
+        var endPoint = data.end / highRange
+        if startPoint > 1 { startPoint = 1 }
+        if startPoint < 0.3 { startPoint = 0.3 } // TODO: Find some kind of log scale instead of this crap
+        if endPoint > 1 { endPoint = 1 }
+        return (startPoint, endPoint)
     }
     
-    func last24HourData() -> (Double, Double) {
-        var beginPointIndex: Int
+    func last24HourData() -> (start: Double, end: Double) {
+        // TODO: cleanup this is ugly
+        var startPointIndex: Int
         if bigPoints!.count < 26 {
-            beginPointIndex = 1
+            startPointIndex = 1
         } else {
-            beginPointIndex = bigPoints!.count - 26
+            startPointIndex = bigPoints!.count - 26
         }
-        let beginPointDict = bigPoints!.objectAtIndex(beginPointIndex) as NSDictionary
-        var beginPointVal: Double = 0
-        if beginPointDict["1"] is Int {
-            beginPointVal = Double(beginPointDict["1"] as Int)
-        } else if beginPointDict["1"] is Double {
-            beginPointVal = beginPointDict["1"] as Double
+        let startPointDict = bigPoints!.objectAtIndex(startPointIndex) as NSDictionary
+        var startPointVal: Double = 0
+        if startPointDict["1"] is Int {
+            startPointVal = Double(startPointDict["1"] as Int)
+        } else if startPointDict["1"] is Double {
+            startPointVal = startPointDict["1"] as Double
         }
         let endPointDict = bigPoints!.objectAtIndex(bigPoints!.count - 2) as NSDictionary
         let endPointVal = endPointDict["1"] as Double
-        return (beginPointVal, endPointVal)
+        return (startPointVal, endPointVal)
     }
     
     func parseBigPoints() -> String {
-        return getSubstringBetween("big_points_\(trackId) = ", suffix: ";")
+        return getSubstringBetweenPrefix("big_points_\(track.id) = ", andSuffix: ";")
     }
     
     func parsePostPoints() -> String {
-        return getSubstringBetween("post_points_\(trackId) = ", suffix: ";")
+        return getSubstringBetweenPrefix("post_points_\(track.id) = ", andSuffix: ";")
     }
     
     func serializeString(string: String) -> NSArray {
@@ -77,7 +79,7 @@ class TrackGraph: NSObject {
         return json as NSArray
     }
     
-    func getSubstringBetween(prefix: String, suffix: String) -> String {
+    func getSubstringBetweenPrefix(prefix: String, andSuffix suffix: String) -> String {
         let prefixRange = Range(start: html.rangeOfString(prefix)!.endIndex, end: html.endIndex)
         var substring = html.substringWithRange(prefixRange)
         

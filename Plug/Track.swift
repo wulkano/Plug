@@ -10,8 +10,8 @@ import Cocoa
 
 class Track: NSObject {
     var id: String!
-    var artist: String = "N/A"
-    var title: String = "N/A"
+    var artist: String!
+    var title: String!
     var loved: Bool = false
     var lovedCount: Int!
     var formattedLovedCount: String!
@@ -30,20 +30,21 @@ class Track: NSObject {
         super.init()
         
         id = json["itemid"] as String
-        
-        if json["artist"] is String {
-            artist = json["artist"] as String
+        artist = json["artist"] as String
+        if artist == "" {
+            artist = "Unknown artist"
         }
-        if json["title"] is String {
-            title = json["title"] as String
+        title = json["title"] as String
+        if title == "" {
+            title = "Unknown track"
         }
         if json["ts_loved_me"] is Int {
             loved = true
+        } else {
+            loved = false
         }
-        
         lovedCount = json["loved_count"] as Int
         formattedLovedCount = formatLovedCount(lovedCount)
-        
         if json["thumb_url"] is String {
             thumbURLSmall = NSURL(string: json["thumb_url"] as String)
         }

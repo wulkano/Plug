@@ -91,9 +91,7 @@ class LoginButton: SwissArmyButton {
         
         func image() -> NSImage? {
             switch self {
-            case .Disabled:
-                return nil
-            case .Enabled:
+            case .Disabled, .Enabled:
                 return NSImage(named: "Login-Next")
             case .Sending:
                 return NSImage(named: "Loader-Login")

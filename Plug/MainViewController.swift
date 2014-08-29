@@ -68,19 +68,19 @@ class MainViewController: NSViewController {
         
         switch section {
         case .Popular:
-            popularViewController = (ensureViewController(popularViewController, identifier: "PlaylistViewController") as PlaylistViewController)
+            popularViewController = (ensureViewController(popularViewController, identifier: "HeatMapPlaylistViewController") as PlaylistViewController)
             if popularViewController!.dataSource == nil {
                 setDataSourceForSection(section, viewController: popularViewController!)
             }
             return popularViewController!
         case .Favorites:
-            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "PlaylistViewController") as PlaylistViewController)
+            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "LoveCountPlaylistViewController") as PlaylistViewController)
             if favoritesViewController!.dataSource == nil {
                 setDataSourceForSection(section, viewController: favoritesViewController!)
             }
             return favoritesViewController!
         case .Latest:
-            latestViewController = (ensureViewController(latestViewController, identifier: "PlaylistViewController") as PlaylistViewController)
+            latestViewController = (ensureViewController(latestViewController, identifier: "LoveCountPlaylistViewController") as PlaylistViewController)
             if latestViewController!.dataSource == nil {
                 setDataSourceForSection(section, viewController: latestViewController!)
             }

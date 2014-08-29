@@ -45,24 +45,24 @@ class LoginButtonCell: SwissArmyButtonCell {
     
     func getAlpha() -> CGFloat {
         switch loginButton.buttonState {
-        case .Enabled:
+        case .Enabled, .Error:
             if mouseDown {
-                return 0.5
+                return 0.3
             } else if mouseInside {
-                return 0.7
+                return 0.6
             } else {
                 return 1
             }
         case .Disabled:
             return 0.5
-        case .Error, .Sending:
+        case .Sending:
             return 1
         }
     }
     
     func getImageAlpha() -> CGFloat {
         switch loginButton.buttonState {
-        case .Sending:
+        case .Sending, .Disabled:
             return 0
         default:
             return getAlpha()

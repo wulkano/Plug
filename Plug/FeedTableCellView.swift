@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class FeedTableCellView: PlaylistTableCellView {
+class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     @IBOutlet var usernameOrBlogNameTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedByWidthConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedBy: NSTextField!

@@ -1,14 +1,14 @@
 //
-//  PlaylistTableCellView.swift
+//  BasePlaylistTableCellView.swift
 //  Plug
 //
-//  Created by Alexander Marchant on 7/14/14.
+//  Created by Alex Marchant on 8/28/14.
 //  Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
-class PlaylistTableCellView: NSTableCellView {
+class BasePlaylistTableCellView: NSTableCellView {
     @IBOutlet var playPauseButton: HoverToggleButton!
     @IBOutlet var loveButton: TransparentButton!
     @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
@@ -16,7 +16,6 @@ class PlaylistTableCellView: NSTableCellView {
     @IBOutlet var loveContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet var infoContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet var progressSlider: NSSlider!
-    @IBOutlet var loveCount: NSView!
     
     var trackInfoWindowController: NSWindowController?
     
@@ -45,7 +44,7 @@ class PlaylistTableCellView: NSTableCellView {
         super.init(coder: coder)
         initialSetup()
     }
-
+    
     deinit {
         Notifications.Unsubscribe.All(self)
     }
@@ -80,7 +79,6 @@ class PlaylistTableCellView: NSTableCellView {
     
     func mouseInsideChanged() {
         updatePlayPauseButtonVisibility()
-        updateLoveCountVisibility()
         updateTextFieldsSpacing()
         updateLoveContainerSpacing()
         updateInfoContainerSpacing()
@@ -90,7 +88,6 @@ class PlaylistTableCellView: NSTableCellView {
         updatePlayPauseButtonVisibility()
         updatePlayPauseButtonSelected()
         updateProgressSliderVisibility()
-        updateLoveCountVisibility()
         trackOrUntrackProgress()
     }
     
@@ -122,19 +119,6 @@ class PlaylistTableCellView: NSTableCellView {
             progressSlider.hidden = false
         case .NotPlaying:
             progressSlider.hidden = true
-        }
-    }
-    
-    func updateLoveCountVisibility() {
-        if mouseInside {
-            loveCount.hidden = true
-        } else {
-            switch playState {
-            case .Playing, .Paused:
-                loveCount.hidden = true
-            case .NotPlaying:
-                loveCount.hidden = false
-            }
         }
     }
     
@@ -202,7 +186,7 @@ class PlaylistTableCellView: NSTableCellView {
         Notifications.Unsubscribe.TrackProgressUpdated(self)
         trackingProgress = false
     }
-
+    
     func trackPlaying(notification: NSNotification) {
         let track = Notifications.Read.TrackNotification(notification)
         if track === objectValue {

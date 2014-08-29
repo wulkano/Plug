@@ -232,15 +232,20 @@ struct HypeMachineAPI  {
         })
     }
     
-    static func TrackGraphFor(track: Track, success: (graph: TrackGraph)->(), failure: (error: NSError)->()) {
+    static func HeatMapFor(track: Track, success: (heatMap: HeatMap)->(), failure: (error: NSError)->()) {
         let url = "http://hypem.com/inc/serve_track_graph.php"
         let params = ["id": track.id]
         HypeMachineAPI.GetHTML(url, parameters: params,
             success: {operation, responseObject in
                 let responseData = responseObject as NSData
                 var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
-                let graph = TrackGraph(html: html, trackId: track.id)
-            success(graph: graph)
+                var error: NSError?
+                let heatMap = HeatMap(track: track, html: html, error: &error)
+                if error != nil {
+                    failure(error: error!)
+                } else {
+                    success(heatMap: heatMap)
+                }
             }, failure: {operation, error in
                 failure(error: error)
         })

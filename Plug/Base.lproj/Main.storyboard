@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <scenes>
@@ -9,7 +10,7 @@
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Main Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
+                    <window key="window" identifier="MainWindow" title="Main Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="472" height="778"/>
@@ -279,7 +280,7 @@
         <!--Playlist View Controller-->
         <scene sceneID="kN2-xY-ctg">
             <objects>
-                <viewController storyboardIdentifier="PlaylistViewController" id="Azb-xg-1yq" customClass="PlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoveCountPlaylistViewController" id="Azb-xg-1yq" customClass="PlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="KgC-Ty-CTV">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -308,7 +309,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="LM0-KM-ycg" customClass="PlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="LM0-KM-ycg" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -534,6 +535,258 @@
                 <userDefaultsController representsSharedInstance="YES" id="L7n-0t-AG1"/>
             </objects>
             <point key="canvasLocation" x="1050.5" y="474.5"/>
+        </scene>
+        <!--Playlist View Controller-->
+        <scene sceneID="DIj-Vb-cfL">
+            <objects>
+                <viewController storyboardIdentifier="HeatMapPlaylistViewController" id="ksC-Xt-iaG" customClass="PlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="ntW-KG-MHd">
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="64" horizontalPageScroll="10" verticalLineScroll="64" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyc-FO-vNr">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
+                                <clipView key="contentView" copiesOnScroll="NO" id="94n-P7-ibL">
+                                    <rect key="frame" x="1" y="17" width="238" height="117"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="KzI-j4-OAQ" customClass="PlaylistTableView" customModule="Plug" customModuleProvider="target">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="AutomaticTableColumnIdentifier.0" width="409" minWidth="40" maxWidth="1000" id="xnZ-bh-iZi">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Wpj-J9-zCF">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="zMt-8W-wXo" customClass="HeatMapPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lsv-Ww-4eo" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="19" y="15" width="34" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="NLf-Wt-epg"/>
+                                                                        <constraint firstAttribute="width" constant="34" id="v02-pf-jce"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="wik-rr-lRq">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="onImage" value="Track-Pause-Normal"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="onHoverImage" value="Track-Pause-Hover"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="offImage" value="Track-Play-Normal"/>
+                                                                        <userDefinedRuntimeAttribute type="image" keyPath="offHoverImage" value="Track-Play-Hover"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="playPauseButtonClicked:" target="zMt-8W-wXo" id="KfY-e1-3wu"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="J5d-SO-2Xt" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="73" y="35" width="32" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="nNE-K6-7FK"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="bevel" title="Title" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="eCl-ad-V5b">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" size="14" name="HelveticaNeue-Medium"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="titleButtonClicked:" target="zMt-8W-wXo" id="LUV-2A-RnY"/>
+                                                                        <binding destination="zMt-8W-wXo" name="title" keyPath="objectValue.title" id="zcl-kQ-K06"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="M0v-G9-xv9" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="73" y="14" width="36" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20" id="yXD-LG-5SJ"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="bevel" title="Artist" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="3Lm-qd-SFH">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                                                    </buttonCell>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                            <color key="value" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="artistButtonClicked:" target="zMt-8W-wXo" id="8cr-vU-niV"/>
+                                                                        <binding destination="zMt-8W-wXo" name="title" keyPath="objectValue.artist" id="dVH-Ju-5tT"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="QTI-kB-mdU" userLabel="LoveContainer">
+                                                                    <rect key="frame" x="371" y="0.0" width="38" height="64"/>
+                                                                    <subviews>
+                                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="SUL-nr-U5V" userLabel="Love" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="23" width="18" height="18"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="18" id="OU8-0z-IaJ"/>
+                                                                                <constraint firstAttribute="width" constant="18" id="bsL-jC-7WV"/>
+                                                                            </constraints>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fbi-kh-pK0">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Track-Loved-On"/>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Loved-Off"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="loveButtonClicked:" target="zMt-8W-wXo" id="tj8-z7-dA0"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="centerY" secondItem="SUL-nr-U5V" secondAttribute="centerY" id="4Zy-qj-5Hb"/>
+                                                                        <constraint firstAttribute="width" constant="38" id="TUc-XB-cWD"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="SUL-nr-U5V" secondAttribute="trailing" constant="20" id="YEp-Vn-96W"/>
+                                                                    </constraints>
+                                                                </customView>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="NOx-t2-qW9" userLabel="InfoContainer">
+                                                                    <rect key="frame" x="341" y="0.0" width="30" height="64"/>
+                                                                    <subviews>
+                                                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bd6-FE-v19" userLabel="Info" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="23" width="18" height="18"/>
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xo2-T6-kWS">
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                <font key="font" metaFont="system"/>
+                                                                            </buttonCell>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                                                                <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Track-Info"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="infoButtonClicked:" target="zMt-8W-wXo" id="jeV-vg-kJ5"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="30" id="gAQ-21-oN9"/>
+                                                                    </constraints>
+                                                                </customView>
+                                                                <slider hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-c6-6cd" userLabel="Progress Slider" customClass="FlatSlider" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="-11" y="-8" width="434" height="21"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="17" id="Yzn-V0-0CA"/>
+                                                                    </constraints>
+                                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="21T-dj-Hfh" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target">
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                                                <color key="value" red="1" green="0.37254901959999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                                                <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </sliderCell>
+                                                                    <connections>
+                                                                        <action selector="progressSliderDragged:" target="zMt-8W-wXo" id="Hnj-W3-e3y"/>
+                                                                    </connections>
+                                                                </slider>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="he5-Oa-2Fc" customClass="HeatMapView" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="20" y="16" width="32" height="32"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="32" id="6xk-3Q-6JG"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="sDT-yd-vlk"/>
+                                                                    </constraints>
+                                                                </customView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="M0v-G9-xv9" firstAttribute="leading" secondItem="zMt-8W-wXo" secondAttribute="leading" constant="73" id="0Bz-zo-sUs"/>
+                                                                <constraint firstAttribute="bottom" secondItem="QTI-kB-mdU" secondAttribute="bottom" id="0Qj-Ex-yZB"/>
+                                                                <constraint firstAttribute="bottom" secondItem="M0v-G9-xv9" secondAttribute="bottom" constant="14" id="Caf-3f-obs"/>
+                                                                <constraint firstItem="NOx-t2-qW9" firstAttribute="top" secondItem="zMt-8W-wXo" secondAttribute="top" id="Dg2-Kv-JdW"/>
+                                                                <constraint firstItem="Lsv-Ww-4eo" firstAttribute="leading" secondItem="zMt-8W-wXo" secondAttribute="leading" constant="19" id="F6H-iz-HzJ"/>
+                                                                <constraint firstItem="he5-Oa-2Fc" firstAttribute="leading" secondItem="zMt-8W-wXo" secondAttribute="leading" constant="20" id="MQT-eI-0LZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="QTI-kB-mdU" secondAttribute="trailing" id="O3d-vu-FxB"/>
+                                                                <constraint firstAttribute="centerY" secondItem="he5-Oa-2Fc" secondAttribute="centerY" id="OuH-gr-lqv"/>
+                                                                <constraint firstItem="NOx-t2-qW9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J5d-SO-2Xt" secondAttribute="trailing" constant="20" id="PBG-rt-IPf"/>
+                                                                <constraint firstItem="he5-Oa-2Fc" firstAttribute="top" secondItem="zMt-8W-wXo" secondAttribute="top" constant="16" id="RNg-PJ-fof"/>
+                                                                <constraint firstItem="J5d-SO-2Xt" firstAttribute="leading" secondItem="zMt-8W-wXo" secondAttribute="leading" constant="73" id="TNc-fL-E5Y"/>
+                                                                <constraint firstAttribute="bottom" secondItem="NOx-t2-qW9" secondAttribute="bottom" id="YUB-D4-oQy"/>
+                                                                <constraint firstItem="QTI-kB-mdU" firstAttribute="leading" secondItem="NOx-t2-qW9" secondAttribute="trailing" id="Zo4-nf-HtC"/>
+                                                                <constraint firstItem="NOx-t2-qW9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="M0v-G9-xv9" secondAttribute="trailing" constant="20" id="fpw-hD-4Z9"/>
+                                                                <constraint firstAttribute="centerY" secondItem="Lsv-Ww-4eo" secondAttribute="centerY" id="mTf-ve-Ujc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="RWd-c6-6cd" secondAttribute="bottom" constant="-6" id="ng5-1d-JvG"/>
+                                                                <constraint firstAttribute="trailing" secondItem="RWd-c6-6cd" secondAttribute="trailing" constant="-12" id="pra-xy-SxU"/>
+                                                                <constraint firstItem="RWd-c6-6cd" firstAttribute="leading" secondItem="zMt-8W-wXo" secondAttribute="leading" constant="-9" id="rX3-kp-DhK"/>
+                                                                <constraint firstItem="J5d-SO-2Xt" firstAttribute="top" secondItem="zMt-8W-wXo" secondAttribute="top" constant="9" id="uCA-Ig-vgT"/>
+                                                                <constraint firstItem="QTI-kB-mdU" firstAttribute="top" secondItem="zMt-8W-wXo" secondAttribute="top" id="zt8-2R-Xng"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="artistTrailingConstraint" destination="fpw-hD-4Z9" id="SBj-Gp-g4X"/>
+                                                                <outlet property="heatMapView" destination="he5-Oa-2Fc" id="KF4-tA-8zn"/>
+                                                                <outlet property="infoContainerWidthConstraint" destination="gAQ-21-oN9" id="Y5v-iJ-dPf"/>
+                                                                <outlet property="loveButton" destination="SUL-nr-U5V" id="nns-6h-hOf"/>
+                                                                <outlet property="loveContainerWidthConstraint" destination="TUc-XB-cWD" id="biG-5Q-gxr"/>
+                                                                <outlet property="playPauseButton" destination="Lsv-Ww-4eo" id="RNB-JL-QoZ"/>
+                                                                <outlet property="progressSlider" destination="RWd-c6-6cd" id="ia1-c5-Hpa"/>
+                                                                <outlet property="titleTrailingConstraint" destination="PBG-rt-IPf" id="dn6-XK-1dm"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                        <customView identifier="NSTableViewRowViewKey" id="Mup-Lm-TWO" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="64" width="409" height="64"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="separatorSpacing">
+                                                                    <real key="value" value="74"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </customView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                        </tableView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="yVa-0G-35h">
+                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="7Qb-2j-5Fe">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="eyc-FO-vNr" secondAttribute="bottom" id="5ce-AR-9mu"/>
+                            <constraint firstItem="eyc-FO-vNr" firstAttribute="top" secondItem="ntW-KG-MHd" secondAttribute="top" id="I1v-KD-uxu"/>
+                            <constraint firstItem="eyc-FO-vNr" firstAttribute="leading" secondItem="ntW-KG-MHd" secondAttribute="leading" id="XH5-7W-2Eq"/>
+                            <constraint firstAttribute="trailing" secondItem="eyc-FO-vNr" secondAttribute="trailing" id="ZhA-au-eNy"/>
+                            <constraint firstAttribute="trailing" secondItem="eyc-FO-vNr" secondAttribute="trailing" id="gVC-6R-K1g"/>
+                            <constraint firstItem="eyc-FO-vNr" firstAttribute="leading" secondItem="ntW-KG-MHd" secondAttribute="leading" id="iyE-YL-31K"/>
+                            <constraint firstAttribute="bottom" secondItem="eyc-FO-vNr" secondAttribute="bottom" id="u4D-Cq-ox7"/>
+                            <constraint firstItem="eyc-FO-vNr" firstAttribute="top" secondItem="ntW-KG-MHd" secondAttribute="top" id="u9A-ho-D8x"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="eyc-FO-vNr" id="CXF-3T-kH1"/>
+                        <outlet property="tableView" destination="KzI-j4-OAQ" id="bW3-Vt-6QL"/>
+                    </connections>
+                </viewController>
+                <customObject id="1sU-F0-EzU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="8Il-7A-zXp"/>
+            </objects>
+            <point key="canvasLocation" x="1498.5" y="474.5"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="uIl-sa-RnQ">
@@ -812,7 +1065,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="4gR-JS-eJJ" customClass="FeedTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="4gR-JS-eJJ" customClass="FeedPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="84"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
