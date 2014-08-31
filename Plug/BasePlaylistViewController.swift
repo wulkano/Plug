@@ -28,7 +28,7 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Playlis
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
         
         tableView.setDelegate(self)
         tableView.viewController = self

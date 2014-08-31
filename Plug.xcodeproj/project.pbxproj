@@ -82,6 +82,7 @@
 		FAA34A8F19B2E3C00038868A /* FeedPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A8E19B2E3C00038868A /* FeedPlaylistViewController.swift */; };
 		FAA34A9119B2E3EC0038868A /* LatestPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9019B2E3EC0038868A /* LatestPlaylistViewController.swift */; };
 		FAA34A9319B2E4090038868A /* FavoritesPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9219B2E4090038868A /* FavoritesPlaylistViewController.swift */; };
+		FAA34A9519B2F0450038868A /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9419B2F0450038868A /* Async.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
 		FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */; };
 		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
@@ -221,6 +222,7 @@
 		FAA34A8E19B2E3C00038868A /* FeedPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPlaylistViewController.swift; sourceTree = "<group>"; };
 		FAA34A9019B2E3EC0038868A /* LatestPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPlaylistViewController.swift; sourceTree = "<group>"; };
 		FAA34A9219B2E4090038868A /* FavoritesPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPlaylistViewController.swift; sourceTree = "<group>"; };
+		FAA34A9419B2F0450038868A /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableView.swift; sourceTree = "<group>"; };
 		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				FAD1F54819A7C793002322D6 /* Authentication.swift */,
 				FA5394F919AFA065006A95A5 /* Animations.swift */,
 				FA53950119AFC50D006A95A5 /* PlugJSONResponseSerializer.swift */,
+				FAA34A9419B2F0450038868A /* Async.swift */,
 				FA7749A5198C298E0048863F /* Playlists */,
 			);
 			name = Models;
@@ -502,10 +505,10 @@
 			isa = PBXGroup;
 			children = (
 				FA24EDC21974ACAA00A781C8 /* BasePlaylistViewController.swift */,
-				FAA34A8C19B2E27F0038868A /* PopularPlaylistViewController.swift */,
+				FAA34A9219B2E4090038868A /* FavoritesPlaylistViewController.swift */,
 				FAA34A8E19B2E3C00038868A /* FeedPlaylistViewController.swift */,
 				FAA34A9019B2E3EC0038868A /* LatestPlaylistViewController.swift */,
-				FAA34A9219B2E4090038868A /* FavoritesPlaylistViewController.swift */,
+				FAA34A8C19B2E27F0038868A /* PopularPlaylistViewController.swift */,
 			);
 			name = PlaylistViewControllers;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */,
 				FA5394FE19AFB24C006A95A5 /* LoginButton.swift in Sources */,
 				FA5394F419AF7339006A95A5 /* SwissArmyButtonCell.swift in Sources */,
+				FAA34A9519B2F0450038868A /* Async.swift in Sources */,
 				FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */,
 				FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */,
 				FAA34A9119B2E3EC0038868A /* LatestPlaylistViewController.swift in Sources */,

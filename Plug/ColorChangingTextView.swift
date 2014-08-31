@@ -16,11 +16,16 @@ class ColorChangingTextField: NSTextField {
     }
     
     func setColorForStringValue() {
-        let numberValue = numberValueForStringValue()
-        let gradientLocation = gradientLocationForNumberValue(numberValue)
-        let gradient = makeGradient()
-        let newColor = gradient.interpolatedColorAtLocation(gradientLocation)
-        textColor = newColor
+        Async.DefaultPriority {
+            var numberValue = self.numberValueForStringValue()
+            var gradientLocation = self.gradientLocationForNumberValue(numberValue)
+            var gradient = self.makeGradient()
+            var newColor = gradient.interpolatedColorAtLocation(gradientLocation)
+            
+            Async.MainQueue {
+                self.textColor = newColor
+            }
+        }
     }
     
     func gradientLocationForNumberValue(numberValue: Int) -> CGFloat {

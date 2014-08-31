@@ -10,7 +10,7 @@ import Cocoa
 
 class SearchViewController: NSViewController {
     @IBOutlet var searchResultsView: NSView!
-    var playlistSubType: SearchPlaylistSubType = SearchPlaylistSubType.MostFavorites
+    var playlistSubType: SearchPlaylistSubType = .MostFavorites
     var playlistViewController: BasePlaylistViewController!
     var dataSource: SearchPlaylistDataSource?
     
@@ -28,7 +28,7 @@ class SearchViewController: NSViewController {
     }
     
     func addPlaylistViewController() {
-        playlistViewController = (storyboard.instantiateControllerWithIdentifier("LoveCountPlaylistViewController") as BasePlaylistViewController)
+        playlistViewController = (storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController)
         
         addChildViewController(playlistViewController)
         
