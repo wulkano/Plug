@@ -138,6 +138,8 @@ class AudioPlayer: NSObject {
         
         currentPlaylist = track.playlist
         currentTrack = track
+        println(currentPlaylist)
+        println(currentTrack)
     }
     
     private func volumeChanged() {

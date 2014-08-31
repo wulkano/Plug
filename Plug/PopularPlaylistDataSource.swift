@@ -8,55 +8,26 @@
 
 import Cocoa
 
-class PopularPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSource {
-    var tableView: NSTableView?
-    var playlist: PopularPlaylist?
+class PopularPlaylistDataSource: BasePlaylistDataSource {
     var playlistSubType: PopularPlaylistSubType
-    var currentPage: Int = 1
     
-    init(playlistSubType: PopularPlaylistSubType) {
+    init(playlistSubType: PopularPlaylistSubType, tableView: NSTableView) {
         self.playlistSubType = playlistSubType
-        super.init()
+        
+        super.init(tableView: tableView)
     }
     
-    func loadInitialValues() {
+    override func requestInitialValues() {
         HypeMachineAPI.Playlists.Popular(playlistSubType,
-            success: {playlist in
-                self.playlist = playlist
-                self.tableView?.reloadData()
-            }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
-        })
+            success: requestInitialValuesSuccess,
+            failure: requestInitialValuesFailure)
     }
     
-    // TODO: find a way to mark the end of a playlist and prevent further calls
-    // here
-    func loadNextPage() {
-        HypeMachineAPI.Tracks.Popular(playlistSubType, page: currentPage + 1, count: 20, success: {tracks in
-                self.playlist!.tracks += tracks
-                self.tableView?.reloadData()
-                self.currentPage++
-            }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
-            })
-    }
-    
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        if playlist == nil { return nil }
-//        if playlist!.tracks.count <= row { return nil }
-        
-        return playlist!.tracks[row]
-    }
-    
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        if playlist == nil { return 0 }
-        
-        return playlist!.tracks.count
-    }
-    
-    func trackForRow(row: Int) -> Track {
-        return playlist!.tracks[row]
+    override func requestNextPage() {
+        HypeMachineAPI.Tracks.Popular(playlistSubType,
+            page: currentPage + 1,
+            count: 20,
+            success: requestNextPageSuccess,
+            failure: requestNextPageFailure)
     }
 }

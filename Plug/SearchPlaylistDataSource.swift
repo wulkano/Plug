@@ -8,58 +8,30 @@
 
 import Cocoa
 
-class SearchPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSource {
-    var tableView: NSTableView?
-    var playlist: SearchPlaylist?
-    var playlistSubType: SearchPlaylistSubType
-    var currentPage: Int = 1
+class SearchPlaylistDataSource: BasePlaylistDataSource {
     var searchKeywords: String
+    var playlistSubType: SearchPlaylistSubType
     
-    init(searchKeywords: String, playlistSubType: SearchPlaylistSubType) {
+    init(searchKeywords: String, playlistSubType: SearchPlaylistSubType, tableView: NSTableView) {
         self.searchKeywords = searchKeywords
         self.playlistSubType = playlistSubType
-        super.init()
-    }
-    
-    func loadInitialValues() {
-        HypeMachineAPI.Playlists.Search(searchKeywords, subType: playlistSubType,
-            success: {playlist in
-                self.playlist = playlist
-                self.tableView!.reloadData()
-            }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
-        })
-    }
-    
-    // TODO: find a way to mark the end of a playlist and prevent further calls
-    // here
-    func loadNextPage() {
-        HypeMachineAPI.Tracks.Search(searchKeywords, subType: playlistSubType, page: currentPage + 1, count: 20,
-            success: {tracks in
-                self.playlist!.tracks += tracks
-                self.tableView!.reloadData()
-                self.currentPage++
-            }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
-        })
-    }
-    
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        if playlist == nil { return nil }
-        //        if playlist!.tracks.count <= row { return nil }
         
-        return playlist!.tracks[row]
+        super.init(tableView: tableView)
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        if playlist == nil { return 0 }
-        
-        return playlist!.tracks.count
+    override func requestInitialValues() {
+        HypeMachineAPI.Playlists.Search(searchKeywords,
+            subType: playlistSubType,
+            success: requestInitialValuesSuccess,
+            failure: requestInitialValuesFailure)
     }
     
-    func trackForRow(row: Int) -> Track {
-        return playlist!.tracks[row]
+    override func requestNextPage() {
+        HypeMachineAPI.Tracks.Search(searchKeywords,
+            subType: playlistSubType,
+            page: currentPage + 1,
+            count: 20,
+            success: requestNextPageSuccess,
+            failure: requestNextPageFailure)
     }
 }

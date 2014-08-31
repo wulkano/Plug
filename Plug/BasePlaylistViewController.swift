@@ -8,15 +8,27 @@
 
 import Cocoa
 
-class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTableViewViewController {
+class BasePlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTableViewViewController {
     @IBOutlet weak var tableView: PlaylistTableView!
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
     var previousMouseOverRow: Int = -1
-    var dataSource: PlaylistDataSource?
+    var dataSource: BasePlaylistDataSource? {
+        didSet {
+            dataSourceChanged()
+        }
+    }
+    
+    let infiniteScrollTriggerHeight: CGFloat = 40
+    
+    deinit {
+        Notifications.Unsubscribe.All(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
         
         tableView.setDelegate(self)
         tableView.viewController = self
@@ -29,11 +41,20 @@ class PlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTab
         }
     }
     
-    func setDataSource(dataSource: PlaylistDataSource) {
-        self.dataSource = dataSource
-        if tableView != nil {
-            tableView.setDataSource(self.dataSource!)
+    func scrollViewDidScroll(notification: NSNotification) {
+        if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
+            dataSource!.loadNextPage()
         }
+    }
+    
+    func distanceFromBottomOfScrollView() -> CGFloat {
+        var documentViewHeight = scrollView.documentView.frame.height
+        var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
+        return documentViewHeight - bottomPositionOfDocumentVisibleRect
+    }
+    
+    func dataSourceChanged() {
+        tableView.setDataSource(self.dataSource!)
         self.dataSource!.tableView = tableView
         self.dataSource!.loadInitialValues()
     }

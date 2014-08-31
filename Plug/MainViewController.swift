@@ -11,11 +11,11 @@ import Cocoa
 class MainViewController: NSViewController {
     @IBOutlet weak var mainContentView: NSView!
     
-    var popularViewController: PlaylistViewController?
-    var favoritesViewController: PlaylistViewController?
-    var latestViewController: PlaylistViewController?
+    var popularViewController: PopularPlaylistViewController?
+    var favoritesViewController: FavoritesPlaylistViewController?
+    var latestViewController: LatestPlaylistViewController?
     var blogDirectoryViewController: BlogDirectoryViewController?
-    var feedViewController: PlaylistViewController?
+    var feedViewController: FeedPlaylistViewController?
     var genresViewController: GenresViewController?
     var friendsViewController: FriendsViewController?
     var searchViewController: SearchViewController?
@@ -68,46 +68,25 @@ class MainViewController: NSViewController {
         
         switch section {
         case .Popular:
-            popularViewController = (ensureViewController(popularViewController, identifier: "HeatMapPlaylistViewController") as PlaylistViewController)
-            if popularViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: popularViewController!)
-            }
+            popularViewController = (ensureViewController(popularViewController, identifier: "PopularPlaylistViewController") as PopularPlaylistViewController)
             return popularViewController!
         case .Favorites:
-            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "LoveCountPlaylistViewController") as PlaylistViewController)
-            if favoritesViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: favoritesViewController!)
-            }
+            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoritesPlaylistViewController") as FavoritesPlaylistViewController)
             return favoritesViewController!
         case .Latest:
-            latestViewController = (ensureViewController(latestViewController, identifier: "LoveCountPlaylistViewController") as PlaylistViewController)
-            if latestViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: latestViewController!)
-            }
+            latestViewController = (ensureViewController(latestViewController, identifier: "LatestPlaylistViewController") as LatestPlaylistViewController)
             return latestViewController!
         case .Blogs:
             blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as BlogDirectoryViewController)
-            if blogDirectoryViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: blogDirectoryViewController!)
-            }
             return blogDirectoryViewController!
         case .Feed:
-            feedViewController = (ensureViewController(feedViewController, identifier: "FeedViewController") as PlaylistViewController)
-            if feedViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: feedViewController!)
-            }
+            feedViewController = (ensureViewController(feedViewController, identifier: "FeedPlaylistViewController") as FeedPlaylistViewController)
             return feedViewController!
         case .Genres:
             genresViewController = (ensureViewController(genresViewController, identifier: "GenresViewController") as GenresViewController)
-            if genresViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: genresViewController!)
-            }
             return genresViewController!
         case .Friends:
             friendsViewController = (ensureViewController(friendsViewController, identifier: "FriendsViewController") as FriendsViewController)
-            if self.friendsViewController!.dataSource == nil {
-                setDataSourceForSection(section, viewController: friendsViewController!)
-            }
             return friendsViewController!
         case .Search:
             searchViewController = (ensureViewController(searchViewController, identifier: "SearchViewController") as SearchViewController)
@@ -147,30 +126,5 @@ class MainViewController: NSViewController {
                 }
             }
         })
-    }
-    
-    func setDataSourceForSection(section: NavigationSection, viewController: NSViewController) {
-        switch section {
-        case .Popular:
-            let dataSource = PopularPlaylistDataSource(playlistSubType: .Now)
-            (viewController as PlaylistViewController).setDataSource(dataSource)
-        case .Favorites:
-            let dataSource = FavoritesPlaylistDataSource()
-            (viewController as PlaylistViewController).setDataSource(dataSource)
-        case .Latest:
-            let dataSource = LatestPlaylistDataSource()
-            (viewController as PlaylistViewController).setDataSource(dataSource)
-        case .Blogs:
-            "Controller loads it's own data"
-        case .Feed:
-            let dataSource = FeedPlaylistDataSource(playlistSubType: .All)
-            (viewController as PlaylistViewController).setDataSource(dataSource)
-        case .Genres:
-            "Controller loads it's own data"
-        case .Friends:
-            "Controller loads it's own data"
-        case .Search:
-            "Controller loads it's own data"
-        }
     }
 }

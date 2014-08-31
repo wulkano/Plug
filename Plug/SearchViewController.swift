@@ -11,7 +11,7 @@ import Cocoa
 class SearchViewController: NSViewController {
     @IBOutlet var searchResultsView: NSView!
     var playlistSubType: SearchPlaylistSubType = SearchPlaylistSubType.MostFavorites
-    var playlistViewController: PlaylistViewController!
+    var playlistViewController: BasePlaylistViewController!
     var dataSource: SearchPlaylistDataSource?
     
     override func viewDidLoad() {
@@ -24,12 +24,11 @@ class SearchViewController: NSViewController {
         let keywords = sender.stringValue
         if keywords == "" { return }
 
-        dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType)
-        playlistViewController!.setDataSource(dataSource!)
+        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, tableView: playlistViewController.tableView!)
     }
     
     func addPlaylistViewController() {
-        playlistViewController = (storyboard.instantiateControllerWithIdentifier("LoveCountPlaylistViewController") as PlaylistViewController)
+        playlistViewController = (storyboard.instantiateControllerWithIdentifier("LoveCountPlaylistViewController") as BasePlaylistViewController)
         
         addChildViewController(playlistViewController)
         

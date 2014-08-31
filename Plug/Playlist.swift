@@ -19,6 +19,13 @@ class Playlist: NSObject {
         linkTracksToPlaylist()
     }
     
+    func addTracks(newTracks: [Track]) {
+        for track in newTracks {
+            track.playlist = self
+            tracks.append(track)
+        }
+    }
+    
     func trackAfter(track: Track) -> Track? {
         let currentIndex = indexOfTrack(track)
         let index = currentIndex + 1

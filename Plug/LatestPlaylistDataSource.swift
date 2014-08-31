@@ -8,47 +8,21 @@
 
 import Cocoa
 
-class LatestPlaylistDataSource: NSObject, PlaylistDataSource, NSTableViewDataSource {
-    var tableView: NSTableView?
-    var playlist: Playlist?
-    var currentPage: Int = 1
+class LatestPlaylistDataSource: BasePlaylistDataSource {
     
-    func loadInitialValues() {
-        HypeMachineAPI.Playlists.Latest(
-            {playlist in
-                self.playlist = playlist
-                self.tableView?.reloadData()
-            }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
-        })
+    override init(tableView: NSTableView) {
+        super.init(tableView: tableView)
     }
     
-    // TODO: find a way to mark the end of a playlist and prevent further calls
-    // here
-    func loadNextPage() {
-        HypeMachineAPI.Tracks.Latest(currentPage + 1, count: 20,
-            success: {tracks in
-                self.playlist!.tracks += tracks
-                self.tableView?.reloadData()
-                self.currentPage++
-            }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
-                Logger.LogError(error)
-            })
+    override func requestInitialValues() {
+        HypeMachineAPI.Playlists.Latest(requestInitialValuesSuccess,
+            failure: requestInitialValuesFailure)
     }
     
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        return playlist!.tracks[row]
-    }
-    
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        if playlist == nil { return 0 }
-        
-        return playlist!.tracks.count
-    }
-    
-    func trackForRow(row: Int) -> Track {
-        return playlist!.tracks[row]
+    override func requestNextPage() {
+        HypeMachineAPI.Tracks.Latest(currentPage + 1,
+            count: 20,
+            success: requestNextPageSuccess,
+            failure: requestNextPageFailure)
     }
 }
