@@ -46,7 +46,7 @@ class PlaylistTableView: NSTableView {
     
     override func mouseMoved(theEvent: NSEvent!) {
         super.mouseMoved(theEvent)
-        
+
         let point = convertPoint(theEvent.locationInWindow, fromView: (window!.contentView as NSView))
         let row = rowAtPoint(point)
         if row != previousMouseOverRow {

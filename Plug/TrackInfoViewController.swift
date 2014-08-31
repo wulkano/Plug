@@ -48,40 +48,7 @@ class TrackInfoViewController: NSViewController {
     }
     
     func updatePostInfo() {
-        var postInfoAttributedString = NSMutableAttributedString()
-        postInfoAttributedString.appendAttributedString(postInfoBlogName())
-        postInfoAttributedString.appendAttributedString(postInfoDescription())
-        postInfoAttributedString.appendAttributedString(postInfoDate())
+        var postInfoAttributedString = PostInfoFormatter().attributedStringForPostInfo(representedTrack.postedBy, description: representedTrack.postedByDescription, datePosted: representedTrack.datePosted)
         postInfoTextField.attributedStringValue = postInfoAttributedString
-    }
-    
-    func postInfoBlogName() -> NSAttributedString {
-        var string = representedTrack.postedBy
-        var attributes = [NSObject: AnyObject]()
-        var color = NSColor.whiteColor()
-        var font = NSFont(name: "HelveticaNeue-Medium", size: 13)
-        attributes[NSForegroundColorAttributeName] = color
-        attributes[NSFontAttributeName] = font
-        return NSAttributedString(string: string, attributes: attributes)
-    }
-    
-    func postInfoDescription() -> NSAttributedString {
-        var string = " “\(representedTrack.postedByDescription)” "
-        var attributes = [NSObject: AnyObject]()
-        var color = NSColor.whiteColor().colorWithAlphaComponent(0.5)
-        var font = NSFont(name: "HelveticaNeue", size: 13)
-        attributes[NSForegroundColorAttributeName] = color
-        attributes[NSFontAttributeName] = font
-        return NSAttributedString(string: string, attributes: attributes)
-    }
-    
-    func postInfoDate() -> NSAttributedString {
-        var string = "Jun 28th →"
-        var attributes = [NSObject: AnyObject]()
-        var color = NSColor.whiteColor()
-        var font = NSFont(name: "HelveticaNeue-Medium", size: 13)
-        attributes[NSForegroundColorAttributeName] = color
-        attributes[NSFontAttributeName] = font
-        return NSAttributedString(string: string, attributes: attributes)
     }
 }

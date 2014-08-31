@@ -45,7 +45,7 @@ class HeatMap: NSObject {
     func last24HourData() -> (start: Double, end: Double) {
         // TODO: cleanup this is ugly
         var startPointIndex: Int
-        if bigPoints!.count < 26 {
+        if bigPoints!.count < 27 {
             startPointIndex = 1
         } else {
             startPointIndex = bigPoints!.count - 26

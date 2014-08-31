@@ -319,13 +319,14 @@
                                                                         <constraint firstAttribute="height" constant="26" id="bM0-6r-Z4U"/>
                                                                         <constraint firstAttribute="width" constant="72" id="iay-NI-ski"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="8k" id="NIX-qt-SX3">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="NIX-qt-SX3">
+                                                                        <customFormatter key="formatter" id="Gkt-5N-ovF" customClass="LovedCountFormatter" customModule="Plug" customModuleProvider="target"/>
                                                                         <font key="font" size="22" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" red="0.80000000000000004" green="0.38823529411764707" blue="0.67843137254901964" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="LM0-KM-ycg" name="value" keyPath="objectValue.formattedLovedCount" id="d8o-xA-GiZ"/>
+                                                                        <binding destination="LM0-KM-ycg" name="value" keyPath="objectValue.lovedCountNum" id="5F4-C5-wLy"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIx-RP-bP5" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
@@ -449,6 +450,12 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="barColor">
                                                                                 <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="knobFillColor">
+                                                                                <color key="value" red="1" green="0.37254901959999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="knobSize">
+                                                                                <real key="value" value="12"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </sliderCell>
@@ -693,6 +700,12 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="barColor">
                                                                                 <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="knobFillColor">
+                                                                                <color key="value" red="1" green="0.37254901959999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="knobSize">
+                                                                                <real key="value" value="12"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </sliderCell>
@@ -1075,13 +1088,14 @@
                                                                         <constraint firstAttribute="height" constant="26" id="7KX-ud-3ji"/>
                                                                         <constraint firstAttribute="width" constant="72" id="QHM-kK-eVc"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="8k" id="ZOj-9i-iw7">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="ZOj-9i-iw7">
+                                                                        <customFormatter key="formatter" id="KZ2-Lp-KL8" customClass="LovedCountFormatter" customModule="Plug" customModuleProvider="target"/>
                                                                         <font key="font" size="22" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" red="0.80000000000000004" green="0.38823529410000002" blue="0.67843137249999996" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.formattedLovedCount" id="9Rc-tF-9Uu"/>
+                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.lovedCountNum" id="Wi6-Wt-Nlf"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-9s-aqM" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
@@ -1241,6 +1255,12 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="barColor">
                                                                                 <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="knobFillColor">
+                                                                                <color key="value" red="1" green="0.37254901959999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="knobSize">
+                                                                                <real key="value" value="12"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </sliderCell>
@@ -1838,7 +1858,22 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="V3J-qX-TqR"/>
                                         </constraints>
-                                        <sliderCell key="cell" controlSize="mini" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="ann-iv-Kqm" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target"/>
+                                        <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="ann-iv-Kqm" customClass="FlatSliderCell" customModule="Plug" customModuleProvider="target">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="barFillColor">
+                                                    <color key="value" red="0.68627450980392157" green="0.68627450980392157" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="knobFillColor">
+                                                    <color key="value" red="0.68627450980392157" green="0.68627450980392157" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="barColor">
+                                                    <color key="value" red="0.8901960784313725" green="0.8901960784313725" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="knobSize">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </sliderCell>
                                     </slider>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="XlV-S5-kIY" customClass="VolumeIconView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="16" height="16"/>

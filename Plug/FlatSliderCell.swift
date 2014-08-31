@@ -11,6 +11,11 @@ import Cocoa
 class FlatSliderCell: NSSliderCell {
     @IBInspectable var barColor: NSColor = NSColor(red256: 0, green256: 0, blue256: 0, alpha: 0.1)
     @IBInspectable var barFillColor: NSColor = NSColor(red256: 0, green256: 0, blue256: 0, alpha: 0.3)
+    @IBInspectable var knobSize: CGFloat = 12
+    @IBInspectable var knobFillColor: NSColor = NSColor(red256: 0, green256: 0, blue256: 0, alpha: 0.3)
+    
+    var mouseDown: Bool = false
+    var mouseInside: Bool = false
     
     override func drawBarInside(aRect: NSRect, flipped: Bool) {
         let knobRect = knobRectFlipped(flipped)
@@ -25,22 +30,26 @@ class FlatSliderCell: NSSliderCell {
             barFillRect.size.width = knobCenterX - inset + 0.5
             barFillRect.origin.x = inset - 0.5
             barFillColor.set()
-            NSRectFillUsingOperation(barFillRect, NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(barFillRect, NSCompositingOperation.CompositeSourceOver)
             
             var barRect = aRect
             barRect.origin.x = knobCenterX
             barRect.size.width = barRect.size.width - knobCenterX - inset + 2.5
             barColor.set()
-            NSRectFillUsingOperation(barRect, NSCompositingOperation.CompositeDestinationOver)
+            NSRectFillUsingOperation(barRect, NSCompositingOperation.CompositeSourceOver)
         }
     }
     
     override func drawKnob(knobRect: NSRect) {
 //        TODO fix this drawing so it's not overlapping on the bar
-//        barFillColor.set()
-//        let insetRect = NSInsetRect(knobRect, 1, 1)
-//        let circlePath = NSBezierPath(ovalInRect: insetRect)
-//        circlePath.fill()
+        if mouseInside {
+            var vInset = (knobRect.size.height - knobSize) / 2
+            var hInset = (knobRect.size.width - knobSize) / 2
+            knobFillColor.set()
+            let insetRect = NSInsetRect(knobRect, hInset, vInset)
+            let circlePath = NSBezierPath(ovalInRect: insetRect)
+            circlePath.fill()
+        }
     }
     
     func verticalSlider() -> Bool {

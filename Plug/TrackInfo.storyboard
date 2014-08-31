@@ -109,13 +109,18 @@
                                             <constraint firstAttribute="height" constant="20" id="nxf-JM-ppk"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="y3f-xP-bZl"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="8K" id="YgV-66-jKR">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="YgV-66-jKR">
+                                            <customFormatter key="formatter" id="RA6-UJ-kM2" customClass="LovedCountFormatter" customModule="Plug" customModuleProvider="target">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="capitalize" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </customFormatter>
                                             <font key="font" size="14" name="HelveticaNeue-Medium"/>
                                             <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="Vxx-At-YHR" name="value" keyPath="representedObject.formattedLovedCount" id="Du6-dJ-Znc"/>
+                                            <binding destination="Vxx-At-YHR" name="value" keyPath="representedObject.lovedCountNum" id="XjY-Pt-8C4"/>
                                         </connections>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ept-mv-Wd9" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">

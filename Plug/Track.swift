@@ -14,7 +14,7 @@ class Track: NSObject {
     var title: String!
     var loved: Bool = false
     var lovedCount: Int!
-    var formattedLovedCount: String!
+    var lovedCountNum: NSNumber!
     var thumbURLSmall: NSURL?
     var thumbURLMedium: NSURL?
     var thumbURLLarge: NSURL?
@@ -25,6 +25,7 @@ class Track: NSObject {
     var postedById: Int!
     var postedCount: Int!
     var postedByDescription: String!
+    var datePosted: NSDate!
     
     init(JSON json: NSDictionary) {
         super.init()
@@ -44,7 +45,7 @@ class Track: NSObject {
             loved = false
         }
         lovedCount = json["loved_count"] as Int
-        formattedLovedCount = formatLovedCount(lovedCount)
+        lovedCountNum = NSNumber(integer: lovedCount)
         if json["thumb_url"] is String {
             thumbURLSmall = NSURL(string: json["thumb_url"] as String)
         }
@@ -63,18 +64,8 @@ class Track: NSObject {
         postedBy = json["sitename"] as String
         postedById = json["siteid"] as Int
         postedCount = json["posted_count"] as Int
-        postedByDescription = (json["description"] as String) + "..."
-    }
-    
-    func formatLovedCount(count: Int) -> String {
-        if count >= 1000 {
-            let numberFormatter = NSNumberFormatter()
-            numberFormatter.format = "####k"
-            let abbrLovedCount = Double(count) / 1000
-            return numberFormatter.stringFromNumber(abbrLovedCount)
-        } else {
-            return String(count)
-        }
+        postedByDescription = json["description"] as String
+        datePosted = NSDate(timeIntervalSince1970: json["dateposted"] as NSTimeInterval)
     }
     
     func mediaURL() -> NSURL {
