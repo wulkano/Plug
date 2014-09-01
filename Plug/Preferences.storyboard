@@ -163,163 +163,124 @@
             <objects>
                 <viewController id="seI-KD-IWG" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="TeD-Sw-Ebk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ax3-fj-PSH" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
-                                <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="uCj-xw-Jdg">
-                                        <rect key="frame" x="18" y="305" width="364" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="bIK-he-j2k"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="check" title="Show app icon in dock (requires restart)" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="Ks9-aK-c6f">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system" size="15"/>
-                                        </buttonCell>
-                                    </button>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Tbz-jg-LhI" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="280" width="380" height="1"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="KrY-cI-YOS"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="l03-uH-XE7">
-                                        <rect key="frame" x="18" y="235" width="364" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="c35-Dh-paB"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="check" title="Show notification when changing tracks" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="0Mo-UD-Xoy">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system" size="15"/>
-                                        </buttonCell>
-                                    </button>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="47I-rf-hcS" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="210" width="380" height="1"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="Kp8-Wi-eVW"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="7qb-7G-2Lj">
-                                        <rect key="frame" x="18" y="165" width="364" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="LGq-ah-Gld"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="check" title="Use media keys for shortcuts" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="0F3-Z1-75A">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system" size="15"/>
-                                        </buttonCell>
-                                    </button>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Siq-Pg-rAB" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="140" width="380" height="1"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="fIX-xN-Qem"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Ixs-JX-5gD">
-                                        <rect key="frame" x="18" y="95" width="364" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="PKa-5z-tmQ"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="check" title="Hide tracks that are unavailable" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="zi6-Ls-bnG">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system" size="15"/>
-                                        </buttonCell>
-                                    </button>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="7uT-au-QX4" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="70" width="380" height="1"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="Wwq-ku-AY0"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                                <color key="value" red="0.88235294117647056" green="0.90196078431372551" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="lmd-Dl-oGw">
-                                        <rect key="frame" x="18" y="26" width="364" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="EoD-yo-Ibf"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="check" title="Snap to playing track in list" bezelStyle="regularSquare" imagePosition="right" state="on" inset="2" id="pT8-qL-XcU">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system" size="15"/>
-                                        </buttonCell>
-                                    </button>
-                                </subviews>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="hR5-44-L2h">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
+                                <clipView key="contentView" id="Lfl-6Y-N7f">
+                                    <rect key="frame" x="1" y="17" width="238" height="117"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" id="eJY-Z3-ivM">
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="397" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="YS1-dZ-str">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="sSJ-Ca-gwb" customClass="GeneralPreferencesTableCellView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="397" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
+                                                                    <rect key="frame" x="18" y="27" width="289" height="17"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="17" id="WgU-NV-bLE"/>
+                                                                    </constraints>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Preference title" id="rlv-qc-0D1">
+                                                                        <font key="font" metaFont="system" size="15"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="sSJ-Ca-gwb" name="value" keyPath="objectValue.title" id="sWe-5C-BPK"/>
+                                                                    </connections>
+                                                                </textField>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="aip-oN-OkS" customClass="ITSwitch">
+                                                                    <rect key="frame" x="325" y="19" width="52" height="32"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="Yss-ke-dQB"/>
+                                                                        <constraint firstAttribute="height" constant="32" id="f1K-vT-hFC"/>
+                                                                    </constraints>
+                                                                    <connections>
+                                                                        <action selector="switchButtonClicked:" target="sSJ-Ca-gwb" id="RBF-UU-eIF"/>
+                                                                    </connections>
+                                                                </customView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="aip-oN-OkS" secondAttribute="trailing" constant="20" id="Nbl-Wo-LO4"/>
+                                                                <constraint firstItem="pmI-yL-LF8" firstAttribute="leading" secondItem="sSJ-Ca-gwb" secondAttribute="leading" constant="20" id="PHU-vw-ASk"/>
+                                                                <constraint firstItem="aip-oN-OkS" firstAttribute="leading" secondItem="pmI-yL-LF8" secondAttribute="trailing" constant="20" id="mjD-5F-yye"/>
+                                                                <constraint firstAttribute="centerY" secondItem="aip-oN-OkS" secondAttribute="centerY" id="ngA-8e-mJU"/>
+                                                                <constraint firstAttribute="centerY" secondItem="pmI-yL-LF8" secondAttribute="centerY" id="tTV-pX-2qt"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="switchButton" destination="aip-oN-OkS" id="6of-MB-ABW"/>
+                                                                <outlet property="textField" destination="pmI-yL-LF8" id="QKc-DQ-f6Y"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                        <customView identifier="NSTableViewRowViewKey" id="40S-sW-9gn" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="73" width="397" height="70"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="separatorSpacing">
+                                                                    <real key="value" value="20"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </customView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <binding destination="seI-KD-IWG" name="content" keyPath="preferences" id="nfT-NC-4Uq"/>
+                                                <outlet property="delegate" destination="seI-KD-IWG" id="yfv-3F-Lt0"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
                                 <constraints>
-                                    <constraint firstItem="7qb-7G-2Lj" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="0y8-ck-9gO"/>
-                                    <constraint firstItem="Siq-Pg-rAB" firstAttribute="top" secondItem="7qb-7G-2Lj" secondAttribute="bottom" constant="26" id="5bj-jL-YB7"/>
-                                    <constraint firstItem="Ixs-JX-5gD" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="7Qi-Q0-0yJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ixs-JX-5gD" secondAttribute="trailing" constant="20" id="7za-yJ-bc0"/>
-                                    <constraint firstItem="47I-rf-hcS" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="B0e-8T-fOg"/>
-                                    <constraint firstItem="7qb-7G-2Lj" firstAttribute="top" secondItem="47I-rf-hcS" secondAttribute="bottom" constant="25" id="Foq-1p-Tcw"/>
-                                    <constraint firstItem="Tbz-jg-LhI" firstAttribute="top" secondItem="uCj-xw-Jdg" secondAttribute="bottom" constant="26" id="HUR-lu-0q0"/>
-                                    <constraint firstItem="lmd-Dl-oGw" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="KpH-wn-mDa"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tbz-jg-LhI" secondAttribute="trailing" id="NYi-TU-PiP"/>
-                                    <constraint firstItem="uCj-xw-Jdg" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="TGi-zV-CkD"/>
-                                    <constraint firstAttribute="trailing" secondItem="47I-rf-hcS" secondAttribute="trailing" id="VvR-X8-Ulf"/>
-                                    <constraint firstItem="Siq-Pg-rAB" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="YpS-3S-qKP"/>
-                                    <constraint firstItem="7uT-au-QX4" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="adD-qO-lBO"/>
-                                    <constraint firstItem="7uT-au-QX4" firstAttribute="top" secondItem="Ixs-JX-5gD" secondAttribute="bottom" constant="26" id="aq9-OH-UNM"/>
-                                    <constraint firstItem="Ixs-JX-5gD" firstAttribute="top" secondItem="Siq-Pg-rAB" secondAttribute="bottom" constant="25" id="ayf-tD-pqB"/>
-                                    <constraint firstItem="l03-uH-XE7" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="cGZ-su-eLs"/>
-                                    <constraint firstAttribute="trailing" secondItem="7qb-7G-2Lj" secondAttribute="trailing" constant="20" id="cnx-rj-gm3"/>
-                                    <constraint firstAttribute="trailing" secondItem="Siq-Pg-rAB" secondAttribute="trailing" id="dpJ-VV-nyY"/>
-                                    <constraint firstAttribute="trailing" secondItem="lmd-Dl-oGw" secondAttribute="trailing" constant="20" id="jop-il-n8S"/>
-                                    <constraint firstItem="l03-uH-XE7" firstAttribute="top" secondItem="Tbz-jg-LhI" secondAttribute="bottom" constant="25" id="k2o-Sr-FVg"/>
-                                    <constraint firstItem="47I-rf-hcS" firstAttribute="top" secondItem="l03-uH-XE7" secondAttribute="bottom" constant="26" id="kyt-kt-pg6"/>
-                                    <constraint firstAttribute="trailing" secondItem="7uT-au-QX4" secondAttribute="trailing" id="mat-Jq-R0S"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tbz-jg-LhI" secondAttribute="trailing" id="nZa-wB-Y10"/>
-                                    <constraint firstAttribute="trailing" secondItem="l03-uH-XE7" secondAttribute="trailing" constant="20" id="oK4-9j-6QZ"/>
-                                    <constraint firstItem="Tbz-jg-LhI" firstAttribute="leading" secondItem="ax3-fj-PSH" secondAttribute="leading" constant="20" id="p7m-eX-Pm8"/>
-                                    <constraint firstAttribute="trailing" secondItem="47I-rf-hcS" secondAttribute="trailing" id="q2f-Eq-Bx4"/>
-                                    <constraint firstAttribute="trailing" secondItem="Siq-Pg-rAB" secondAttribute="trailing" id="rEm-LA-jnT"/>
-                                    <constraint firstAttribute="trailing" secondItem="uCj-xw-Jdg" secondAttribute="trailing" constant="20" id="tFv-3c-Ry3"/>
-                                    <constraint firstAttribute="trailing" secondItem="7uT-au-QX4" secondAttribute="trailing" id="uhY-AU-DXt"/>
-                                    <constraint firstItem="uCj-xw-Jdg" firstAttribute="top" secondItem="ax3-fj-PSH" secondAttribute="top" constant="28" id="x33-oR-SRo"/>
-                                    <constraint firstItem="lmd-Dl-oGw" firstAttribute="top" secondItem="7uT-au-QX4" secondAttribute="bottom" constant="24" id="zTR-ja-cd5"/>
+                                    <constraint firstAttribute="width" constant="400" id="8AI-hZ-DtJ"/>
+                                    <constraint firstAttribute="height" constant="225" id="zBT-9D-E7s"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </customView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="LxI-aR-Fje">
+                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="rvh-eb-yN5">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ax3-fj-PSH" firstAttribute="top" secondItem="TeD-Sw-Ebk" secondAttribute="top" id="2kd-Ct-krS"/>
-                            <constraint firstItem="ax3-fj-PSH" firstAttribute="leading" secondItem="TeD-Sw-Ebk" secondAttribute="leading" id="Aoi-AJ-myN"/>
-                            <constraint firstAttribute="trailing" secondItem="ax3-fj-PSH" secondAttribute="trailing" id="IOU-9r-7NY"/>
-                            <constraint firstAttribute="bottom" secondItem="ax3-fj-PSH" secondAttribute="bottom" id="v26-Vb-Mur"/>
+                            <constraint firstItem="hR5-44-L2h" firstAttribute="top" secondItem="TeD-Sw-Ebk" secondAttribute="top" id="EkT-jw-03a"/>
+                            <constraint firstItem="hR5-44-L2h" firstAttribute="leading" secondItem="TeD-Sw-Ebk" secondAttribute="leading" id="Gbk-tt-Oto"/>
+                            <constraint firstAttribute="trailing" secondItem="hR5-44-L2h" secondAttribute="trailing" id="LJx-eJ-eUB"/>
+                            <constraint firstAttribute="bottom" secondItem="hR5-44-L2h" secondAttribute="bottom" id="wKa-Wi-IK8"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollViewHeightContraint" destination="zBT-9D-E7s" id="q1T-63-2lt"/>
+                        <outlet property="tableView" destination="eJY-Z3-ivM" id="wWr-fd-p1I"/>
+                    </connections>
                 </viewController>
                 <customObject id="oqK-qV-mZv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="696" y="947.5"/>
+            <point key="canvasLocation" x="696" y="914.5"/>
         </scene>
         <!--Hotkeys Preferences View Controller-->
         <scene sceneID="tns-yc-flh">

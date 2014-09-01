@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     var mainWindowController: NSWindowController?
     var loginWindowController: NSWindowController?
     var preferencesWindowController: NSWindowController?
@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         setupUserDefaults()
+        setupUserNotifications()
         
         if Authentication.UserSignedIn() {
             openMainWindow()
@@ -112,5 +113,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict)
+    }
+    
+    private func setupUserNotifications() {
+        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification!) -> Bool {
+        return true
     }
 }

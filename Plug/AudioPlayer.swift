@@ -60,6 +60,7 @@ class AudioPlayer: NSObject {
     func play(track: Track) {
         if currentTrack != track {
             setupForNewTrack(track)
+            UserNotifications.Deliver.NewTrackPlaying(track)
         }
         play()
     }
@@ -138,8 +139,6 @@ class AudioPlayer: NSObject {
         
         currentPlaylist = track.playlist
         currentTrack = track
-        println(currentPlaylist)
-        println(currentTrack)
     }
     
     private func volumeChanged() {

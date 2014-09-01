@@ -55,6 +55,9 @@
 		FA64C6A319764DC9003933E3 /* HypeMachineAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */; };
 		FA64C6A719764FE9003933E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Constants.swift */; };
 		FA64C6A919765323003933E3 /* Array+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array+contains.swift */; };
+		FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */; };
+		FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */; };
+		FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */; };
 		FA691BFF197654AF008D5C3E /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA691BFE197654AF008D5C3E /* Track.swift */; };
 		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
@@ -195,6 +198,10 @@
 		FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HypeMachineAPI.swift; sourceTree = "<group>"; };
 		FA64C6A619764FE9003933E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+contains.swift"; sourceTree = "<group>"; };
+		FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
+		FA666D5B19B3950D00AA0AA1 /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
+		FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesTableCellView.swift; sourceTree = "<group>"; };
+		FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		FA691BFE197654AF008D5C3E /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabButtonCell.swift; sourceTree = "<group>"; };
 		FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTitleButton.swift; sourceTree = "<group>"; };
@@ -333,6 +340,7 @@
 				FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */,
 				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
 				FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */,
+				FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */,
 				FA53950519AFFE67006A95A5 /* TrackTableCellViews */,
 			);
 			name = Views;
@@ -374,6 +382,7 @@
 				FACEEBE719ABB9440093A81B /* Preferences.storyboard */,
 				FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */,
 				FA51263419761424004D0776 /* Extensions */,
+				FA666D5919B3948E00AA0AA1 /* Plugins */,
 				FA24EDA71974A9A500A781C8 /* Images.xcassets */,
 				FA24ED9F1974A9A500A781C8 /* Supporting Files */,
 				FA410CF319A40C2600E71B20 /* Plug.iconset */,
@@ -455,6 +464,7 @@
 				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
+				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FAD1F54819A7C793002322D6 /* Authentication.swift */,
 				FA5394F919AFA065006A95A5 /* Animations.swift */,
@@ -463,6 +473,15 @@
 				FA7749A5198C298E0048863F /* Playlists */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		FA666D5919B3948E00AA0AA1 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				FA666D5B19B3950D00AA0AA1 /* ITSwitch.h */,
+				FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */,
+			);
+			name = Plugins;
 			sourceTree = "<group>";
 		};
 		FA7749A5198C298E0048863F /* Playlists */ = {
@@ -708,6 +727,7 @@
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
+				FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FAA34A8F19B2E3C00038868A /* FeedPlaylistViewController.swift in Sources */,
 				FAACE4BE19ABEA4600F8E9E8 /* Logger.swift in Sources */,
@@ -731,6 +751,7 @@
 				FA5394FA19AFA065006A95A5 /* Animations.swift in Sources */,
 				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
+				FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */,
 				FA7C4975198ABAF200A38B27 /* BlogTableRowView.swift in Sources */,
 				FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */,
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
@@ -784,6 +805,7 @@
 				FA53950719AFFF01006A95A5 /* BasePlaylistTableCellView.swift in Sources */,
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
+				FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */,
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FAD3B0DC1981DB2600BC5109 /* LargeLoadingView.swift in Sources */,
