@@ -118,7 +118,7 @@ class MainViewController: NSViewController {
     func transitionMainContentViewController(controller: NSViewController) {
         if currentViewController == nil { return }
         
-        let transitions = NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
+        let transitions = NSViewControllerTransitionOptions.Crossfade | NSViewControllerTransitionOptions.SlideLeft
         transitionFromViewController(currentViewController, toViewController: controller, options: transitions, completionHandler:  {
             for subview in self.mainContentView.subviews {
                 if subview !== controller.view {

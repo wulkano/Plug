@@ -26,6 +26,7 @@ class Track: NSObject {
     var postedCount: Int!
     var postedByDescription: String!
     var datePosted: NSDate!
+    var audioUnavailable: Bool = false
     
     init(JSON json: NSDictionary) {
         super.init()
@@ -66,6 +67,9 @@ class Track: NSObject {
         postedCount = json["posted_count"] as Int
         postedByDescription = json["description"] as String
         datePosted = NSDate(timeIntervalSince1970: json["dateposted"] as NSTimeInterval)
+        if json["pub_audio_unavail"] is Bool {
+            audioUnavailable = true
+        }
     }
     
     func mediaURL() -> NSURL {

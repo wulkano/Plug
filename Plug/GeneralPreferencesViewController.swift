@@ -10,6 +10,7 @@ import Cocoa
 
 let ShowTrackChangeNotificationsKey = "ShowTrackChangeNotifications"
 let EnableMediaKeysKey = "EnableMediaKeysKey"
+let HideUnavailableTracks = "HideUnavailableTracks"
 
 class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate {
     @IBOutlet weak var scrollViewHeightContraint: NSLayoutConstraint!
@@ -17,7 +18,7 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate {
     
     var preferences: [GeneralPreference] = [
         GeneralPreference(title: "Show notification when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
-        GeneralPreference(title: "Use media keys for shortcuts", settingsKey: EnableMediaKeysKey),
+        GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
     ]
 
     override func viewDidLoad() {

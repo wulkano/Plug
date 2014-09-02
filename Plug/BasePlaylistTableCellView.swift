@@ -59,6 +59,7 @@ class BasePlaylistTableCellView: NSTableCellView {
     func objectValueChanged() {
         if objectValue == nil { return }
         
+        updateTrackAvailability()
         mouseInside = false
         loveButton.selected = trackValue.loved
         progressSlider.doubleValue = 0
@@ -89,6 +90,14 @@ class BasePlaylistTableCellView: NSTableCellView {
         updatePlayPauseButtonSelected()
         updateProgressSliderVisibility()
         trackOrUntrackProgress()
+    }
+    
+    func updateTrackAvailability() {
+        if trackValue.audioUnavailable {
+            
+        } else {
+            
+        }
     }
     
     func updatePlayPauseButtonVisibility() {
