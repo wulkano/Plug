@@ -32,12 +32,16 @@ class Track: NSObject {
         super.init()
         
         id = json["itemid"] as String
-        artist = json["artist"] as String
-        if artist == "" {
+        if json["artist"] is String {
+            artist = json["artist"] as String
+            if artist == "" { artist = "Unknown artist" }
+        } else {
             artist = "Unknown artist"
         }
-        title = json["title"] as String
-        if title == "" {
+        if json["title"] is String {
+            title = json["title"] as String
+            if title == "" { title = "Unknown track" }
+        } else {
             title = "Unknown track"
         }
         if json["ts_loved_me"] is Int {
