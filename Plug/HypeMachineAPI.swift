@@ -75,7 +75,15 @@ struct HypeMachineAPI  {
         
         static func Search(searchKeywords: String, subType: SearchPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tracks"
-            let params = ["sort": subType.toRaw(), "q": searchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
+            let escapedSearchKeywords = searchKeywords.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            let params = ["sort": subType.toRaw(), "q": escapedSearchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
+            _getTracks(url, parameters: params, success: success, failure: failure)
+        }
+        
+        static func Artist(artistName: String, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let escapedArtistName = artistName.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+            let url = apiBase + "/artists/\(escapedArtistName)/tracks"
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
@@ -100,7 +108,7 @@ struct HypeMachineAPI  {
             })
         }
         
-        static func _getTracks(url: String, parameters: Dictionary<String, String>?, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func _getTracks(url: String, parameters: [NSObject: AnyObject]?, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             HypeMachineAPI.GetJSON(url, parameters: parameters, success: {
                 (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                 let responseArray = responseObject as NSArray
@@ -121,38 +129,77 @@ struct HypeMachineAPI  {
         static var trackCount: Int = 20
         
         static func Popular(subType: PopularPlaylistSubType, success: (playlist: PopularPlaylist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Popular(subType, page: 1, count: trackCount, success: {tracks in
-                let playlist = PopularPlaylist(tracks: tracks, subType: subType)
-                success(playlist: playlist)
-            }, failure: failure)
+            HypeMachineAPI.Tracks.Popular(subType,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = PopularPlaylist(tracks: tracks, subType: subType)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
         }
         
         static func Favorites(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Favorites(1, count: trackCount, success: {tracks in
-                let playlist = FavoritesPlaylist(tracks: tracks)
-                success(playlist: playlist)
-            }, failure: failure)
+            HypeMachineAPI.Tracks.Favorites(1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = FavoritesPlaylist(tracks: tracks)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
         }
         
         static func Latest(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Latest(1, count: trackCount, success: {tracks in
-                let playlist = LatestPlaylist(tracks: tracks)
-                success(playlist: playlist)
-            }, failure: failure)
+            HypeMachineAPI.Tracks.Latest(1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = LatestPlaylist(tracks: tracks)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
         }
         
         static func Feed(subType: FeedPlaylistSubType, success: (playlist: FeedPlaylist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Feed(subType, page: 1, count: trackCount, success: {tracks in
-                let playlist = FeedPlaylist(tracks: tracks, subType: subType)
-                success(playlist: playlist)
-            }, failure: failure)
+            HypeMachineAPI.Tracks.Feed(subType,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = FeedPlaylist(tracks: tracks, subType: subType)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
         }
         
         static func Search(searchKeywords: String, subType: SearchPlaylistSubType, success: (playlist: SearchPlaylist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Search(searchKeywords, subType: subType,  page: 1, count: trackCount, success: {tracks in
-                let playlist = SearchPlaylist(tracks: tracks, subType: subType, searchKeywords: searchKeywords)
-                success(playlist: playlist)
-            }, failure: failure)
+            HypeMachineAPI.Tracks.Search(searchKeywords,
+                subType: subType,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = SearchPlaylist(tracks: tracks,
+                        subType: subType,
+                        searchKeywords: searchKeywords
+                    )
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
+        }
+        
+        static func Artist(artistName: String, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.Artist(artistName,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = Playlist(tracks: tracks, type: .Artist)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
         }
     }
     

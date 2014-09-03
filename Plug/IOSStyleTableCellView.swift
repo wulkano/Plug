@@ -1,14 +1,14 @@
 //
-//  BlogTableCellView.swift
+//  IOSStyleTableCellView.swift
 //  Plug
 //
-//  Created by Alex Marchant on 8/1/14.
+//  Created by Alex Marchant on 9/2/14.
 //  Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
-class BlogTableCellView: NSTableCellView {
+class IOSStyleTableCellView: NSTableCellView {
     override var backgroundStyle: NSBackgroundStyle {
         get { return NSBackgroundStyle.Light }
         set {}

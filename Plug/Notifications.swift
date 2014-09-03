@@ -18,6 +18,8 @@ struct Notifications {
     static let DisplayError = "Plug.DisplayErrorNotification"
     
     static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
+    
+    static let PushViewController = "Plug.PushViewController"
 
     
     struct Post {
@@ -48,6 +50,10 @@ struct Notifications {
         static func NavigationSectionChanged(section: NavigationSection, sender: AnyObject?) {
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.NavigationSectionChanged, object: sender, userInfo: ["navigationSection": section.toRaw()])
         }
+        
+        static func PushViewController(viewController: NSViewController, sender: AnyObject?) {
+            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.PushViewController, object: sender, userInfo: ["viewController": viewController])
+        }
     }
     
     struct Subscribe {
@@ -77,6 +83,10 @@ struct Notifications {
         
         static func NavigationSectionChanged(subscriber: AnyObject, selector: Selector) {
             NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.NavigationSectionChanged, object: nil)
+        }
+        
+        static func PushViewController(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.PushViewController, object: nil)
         }
     }
     
@@ -110,6 +120,10 @@ struct Notifications {
             let number = notification.userInfo!["navigationSection"] as NSNumber
             let raw = number.integerValue
             return NavigationSection.fromRaw(raw)!
+        }
+        
+        static func PushViewControllerNotification(notification: NSNotification) -> NSViewController {
+            return notification.userInfo!["viewController"] as NSViewController
         }
     }
 }

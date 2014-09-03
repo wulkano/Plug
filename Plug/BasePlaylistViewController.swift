@@ -100,11 +100,4 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Playlis
             super.keyDown(theEvent)
         }
     }
-    
-    // TODO: Hook this back up when fixed
-//    @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
-//        let row = tableView.rowForView(sender)
-//        let cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? PlaylistTableCellView
-//        cellView!.currentlyPlaying = true
-//    }
 }

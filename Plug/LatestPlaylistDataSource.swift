@@ -10,10 +10,6 @@ import Cocoa
 
 class LatestPlaylistDataSource: BasePlaylistDataSource {
     
-    override init(tableView: NSTableView) {
-        super.init(tableView: tableView)
-    }
-    
     override func requestInitialValues() {
         HypeMachineAPI.Playlists.Latest(requestInitialValuesSuccess,
             failure: requestInitialValuesFailure)

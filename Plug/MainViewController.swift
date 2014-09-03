@@ -11,6 +11,8 @@ import Cocoa
 class MainViewController: NSViewController {
     @IBOutlet weak var mainContentView: NSView!
     
+    var navigationController: NavigationController!
+    
     var popularViewController: PopularPlaylistViewController?
     var favoritesViewController: FavoritesPlaylistViewController?
     var latestViewController: LatestPlaylistViewController?
@@ -30,6 +32,14 @@ class MainViewController: NSViewController {
     
     deinit {
         Notifications.Unsubscribe.All(self)
+    }
+    
+    override func viewDidLoad() {
+        for controller in childViewControllers {
+            if controller is NavigationController {
+                navigationController = controller as NavigationController
+            }
+        }
     }
     
     override func viewDidAppear() {
@@ -56,9 +66,10 @@ class MainViewController: NSViewController {
     
     func updateUIForSection(section: NavigationSection) {
         var newViewController = viewControllerForSection(section)
-        setMainContentSubview(newViewController.view)
-        transitionMainContentViewController(newViewController)
-        currentViewController = newViewController
+        navigationController.setNewRootViewController(newViewController, animated: true)
+//        setMainContentSubview(newViewController.view)
+//        transitionMainContentViewController(newViewController)
+//        currentViewController = newViewController
     }
     
     func viewControllerForSection(section: NavigationSection) -> NSViewController {

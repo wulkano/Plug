@@ -10,11 +10,7 @@ import Cocoa
 
 class NavigationBar: NSView {
     @IBOutlet var titleTextField: NSTextField!
-    var title: String? {
-        didSet {
-            titleTextField.stringValue = title
-        }
-    }
+    @IBOutlet var backButton: NSButton!
 
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
@@ -22,4 +18,17 @@ class NavigationBar: NSView {
         // Drawing code here.
     }
     
+    func currentViewControllerUpdated(viewController: NSViewController) {
+        titleTextField.stringValue = "\(viewController.title)"
+    }
+    
+    func previousViewControllerUpdated(viewController: NSViewController?) {
+        if viewController == nil {
+            backButton.hidden = true
+            backButton.title = ""
+        } else {
+            backButton.hidden = false
+            backButton.title = "\(viewController!.title)"
+        }
+    }
 }

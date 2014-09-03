@@ -9,9 +9,6 @@
 import Cocoa
 
 class FavoritesPlaylistDataSource: BasePlaylistDataSource {
-    override init(tableView: NSTableView) {
-        super.init(tableView: tableView)
-    }
     
     override func requestInitialValues() {
         HypeMachineAPI.Playlists.Favorites(requestInitialValuesSuccess,

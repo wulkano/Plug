@@ -42,7 +42,7 @@ class NavigationController: NSViewController {
     func setNewRootViewController(viewController: NSViewController, animated: Bool) {
         addChildViewController(viewController)
         if viewControllers.count > 1 {
-            transitionFromViewController(nextTopViewController, toViewController: viewController, animated: animated)
+            transitionFromViewController(nextTopViewController, toViewController: viewController, animated: animated, reversed: false)
             for controller in viewControllers {
                 if controller !== viewController {
                     controller.removeFromParentViewController()
@@ -51,31 +51,41 @@ class NavigationController: NSViewController {
         } else {
             setupView(viewController.view)
         }
+        
+        updateNavigationBar()
     }
     
     func pushViewController(viewController: NSViewController, animated: Bool) {
         addChildViewController(viewController)
-        transitionFromViewController(nextTopViewController, toViewController: topViewController, animated: true)
+        transitionFromViewController(nextTopViewController, toViewController: topViewController, animated: animated, reversed: false)
+        
+        updateNavigationBar()
     }
     
     func popViewControllerAnimated(animated: Bool) -> NSViewController? {
         if viewControllers.count == 1 { return nil }
         
-        transitionFromViewController(visibleViewController, toViewController: viewControllers[viewControllers.count - 2], animated: true)
+        transitionFromViewController(visibleViewController, toViewController: viewControllers[viewControllers.count - 2], animated: true, reversed: true)
         
         var poppedController = topViewController
         poppedController.removeFromParentViewController()
+        
+        updateNavigationBar()
+        
         return poppedController
     }
     
     func popToRootViewControllerAnimated(animated: Bool) -> [NSViewController] {
-        transitionFromViewController(visibleViewController, toViewController: rootViewController, animated: true)
+        transitionFromViewController(visibleViewController, toViewController: rootViewController, animated: animated, reversed: true)
         var poppedControllers = [NSViewController]()
         while viewControllers.count > 1 {
             var controller = topViewController
             controller.removeFromParentViewController()
             poppedControllers.append(controller)
         }
+        
+        updateNavigationBar()
+        
         return poppedControllers
     }
     
@@ -85,7 +95,7 @@ class NavigationController: NSViewController {
             fatalError("Tried to pop to view controller that is not in stack")
         }
         
-        transitionFromViewController(visibleViewController, toViewController: viewControllers[index!], animated: true)
+        transitionFromViewController(visibleViewController, toViewController: viewControllers[index!], animated: animated, reversed: true)
         
         var poppedControllers = [NSViewController]()
         while topViewController !== viewController {
@@ -93,23 +103,30 @@ class NavigationController: NSViewController {
             controller.removeFromParentViewController()
             poppedControllers.append(controller)
         }
-
+        
+        updateNavigationBar()
+        
         return poppedControllers
+    }
+    
+    @IBAction func backButtonClicked(sender: AnyObject) {
+        popViewControllerAnimated(true)
     }
     
     // MARK: Private methods
     
-    func transitionFromViewController(fromViewController: NSViewController!, toViewController: NSViewController!, animated: Bool) {
-        var transitions = transitionOptions(animated)
+    private func transitionFromViewController(fromViewController: NSViewController!, toViewController: NSViewController!, animated: Bool, reversed: Bool) {
+        var transitions = transitionOptions(animated, reversed: reversed)
         setupView(toViewController.view)
         transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
         
         let index = find(viewControllers, toViewController)
-        navigationBar.title = "\(toViewController.title) - \(index! + 1)"
     }
     
-    private func transitionOptions(animated: Bool) -> NSViewControllerTransitionOptions {
-        if animated {
+    private func transitionOptions(animated: Bool, reversed: Bool) -> NSViewControllerTransitionOptions {
+        if animated && reversed {
+            return NSViewControllerTransitionOptions.SlideRight | NSViewControllerTransitionOptions.Crossfade
+        } else if animated {
             return NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
         } else {
             return NSViewControllerTransitionOptions.None
@@ -126,5 +143,10 @@ class NavigationController: NSViewController {
         contentView.addConstraints(constraints)
         constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: ["view": view])
         contentView.addConstraints(constraints)
+    }
+    
+    private func updateNavigationBar() {
+        navigationBar.previousViewControllerUpdated(nextTopViewController)
+        navigationBar.currentViewControllerUpdated(topViewController)
     }
 }

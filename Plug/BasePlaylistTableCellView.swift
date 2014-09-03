@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class BasePlaylistTableCellView: NSTableCellView {
+class BasePlaylistTableCellView: IOSStyleTableCellView {
     @IBOutlet var playPauseButton: HoverToggleButton!
     @IBOutlet var loveButton: TransparentButton!
     @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
@@ -19,10 +19,6 @@ class BasePlaylistTableCellView: NSTableCellView {
     
     var trackInfoWindowController: NSWindowController?
     
-    override var backgroundStyle: NSBackgroundStyle {
-        get { return NSBackgroundStyle.Light }
-        set {}
-    }
     override var objectValue: AnyObject! {
         didSet {
             objectValueChanged()
@@ -40,7 +36,7 @@ class BasePlaylistTableCellView: NSTableCellView {
     var trackingProgress: Bool = false
     
     
-    required init(coder: NSCoder) {
+    required override init(coder: NSCoder) {
         super.init(coder: coder)
         initialSetup()
     }
@@ -177,10 +173,10 @@ class BasePlaylistTableCellView: NSTableCellView {
     
     func showLoveButton() -> Bool {
         switch trackValue.playlist!.type {
-        case .Popular, .Latest, .Feed, .Search:
-            return true
         case .Favorites:
             return false
+        default:
+            return true
         }
     }
     
@@ -269,14 +265,14 @@ class BasePlaylistTableCellView: NSTableCellView {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var artistName = trackValue.artist.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())
-        var url = "http://hypem.com/artist/\(artistName!)"
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        viewController.title = trackValue.artist
+        Notifications.Post.PushViewController(viewController, sender: self)
+        viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, tableView: viewController.tableView)
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {
-        var url = "http://hypem.com/track/\(trackValue.id)"
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+        println("Track title clicked: \(trackValue.title)")
     }
     
     func changeTrackLovedValueTo(loved: Bool) {
