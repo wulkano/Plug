@@ -34,6 +34,17 @@ class GenresViewController: NSViewController, NSTableViewDelegate {
         return dataSource!.itemAfterRow(row)
     }
     
+    func selectedGenre() -> Genre? {
+        let row = tableView.selectedRow
+        let item = itemForRow(row)
+        switch itemForRow(row) {
+        case .GenreItem(let genre):
+            return genre
+        default:
+            return nil
+        }
+    }
+    
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         switch itemForRow(row) {
         case .SectionHeaderItem:
@@ -94,5 +105,39 @@ class GenresViewController: NSViewController, NSTableViewDelegate {
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue
         dataSource!.filterByKeywords(keywords)
+    }
+    
+    override func keyDown(theEvent: NSEvent!) {
+        switch theEvent.keyCode {
+        case 36:
+            enterKeyPressed(theEvent)
+        case 124:
+            rightArrowKeyPressed(theEvent)
+        default:
+            super.keyDown(theEvent)
+        }
+    }
+    
+    func enterKeyPressed(theEvent: NSEvent!) {
+        if let genre = selectedGenre() {
+            loadSingleGenreView(genre)
+        } else {
+            super.keyDown(theEvent)
+        }
+    }
+    
+    func rightArrowKeyPressed(theEvent: NSEvent!) {
+        if let genre = selectedGenre() {
+            loadSingleGenreView(genre)
+        } else {
+            super.keyDown(theEvent)
+        }
+    }
+    
+    func loadSingleGenreView(genre: Genre) {
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        viewController.title = genre.name
+        Notifications.Post.PushViewController(viewController, sender: self)
+        viewController.dataSource = GenrePlaylistDataSource(genre: genre, tableView: viewController.tableView)
     }
 }

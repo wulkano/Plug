@@ -87,6 +87,13 @@ struct HypeMachineAPI  {
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
+        static func GenreTracks(genre: Genre, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let escapedGenreName = genre.name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+            let url = apiBase + "/tags/\(escapedGenreName)/tracks"
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
+            _getTracks(url, parameters: params, success: success, failure: failure)
+        }
+        
         static func ToggleLoved(track: Track, success: (loved: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/favorites?hm_token=\(Authentication.GetToken()!)"
             let params = ["type": "item", "val": track.id]
@@ -196,6 +203,18 @@ struct HypeMachineAPI  {
                 count: trackCount,
                 success: { tracks in
                     let playlist = Playlist(tracks: tracks, type: .Artist)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
+        }
+        
+        static func GenrePlaylist(genre: Genre, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.GenreTracks(genre,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = Playlist(tracks: tracks, type: .Genre)
                     success(playlist: playlist)
                 },
                 failure: failure

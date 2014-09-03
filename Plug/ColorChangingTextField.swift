@@ -11,7 +11,6 @@ import Cocoa
 class ColorChangingTextField: NSTextField {
     override var objectValue: AnyObject! {
         didSet {
-            if objectValue as? NSString == oldValue as? NSString { return }
             setColorForStringValue()
         }
     }
