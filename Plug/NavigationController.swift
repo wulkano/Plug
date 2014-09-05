@@ -11,6 +11,10 @@ import Cocoa
 class NavigationController: NSViewController {
     @IBOutlet var navigationBar: NavigationBar!
     @IBOutlet var contentView: NSView!
+    
+    override var acceptsFirstResponder: Bool {
+        return true
+    }
 
     var viewControllers: [NSViewController] {
         return childViewControllers as [NSViewController]
@@ -148,5 +152,22 @@ class NavigationController: NSViewController {
     private func updateNavigationBar() {
         navigationBar.previousViewControllerUpdated(nextTopViewController)
         navigationBar.currentViewControllerUpdated(topViewController)
+    }
+    
+    override func keyDown(theEvent: NSEvent!) {
+        switch theEvent.keyCode {
+        case 123:
+            leftArrowKeyPressed(theEvent)
+        default:
+            super.keyDown(theEvent)
+        }
+    }
+    
+    func leftArrowKeyPressed(theEvent: NSEvent!) {
+        if nextTopViewController != nil {
+            popViewControllerAnimated(true)
+        } else {
+            super.keyDown(theEvent)
+        }
     }
 }

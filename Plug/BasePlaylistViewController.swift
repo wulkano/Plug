@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class BasePlaylistViewController: NSViewController, NSTableViewDelegate, PlaylistTableViewViewController {
-    @IBOutlet weak var tableView: PlaylistTableView!
+class BasePlaylistViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+    @IBOutlet weak var tableView: ExtendedTableView!
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
-    var previousMouseOverRow: Int = -1
+    var previousMouseInsideRow: Int = -1
     var dataSource: BasePlaylistDataSource? {
         didSet {
             dataSourceChanged()
@@ -31,7 +31,7 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Playlis
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
         
         tableView.setDelegate(self)
-        tableView.viewController = self
+        tableView.extendedDelegate = self
         scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
         scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
         
@@ -67,25 +67,17 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Playlis
         }
     }
     
-    func mouseOverTableViewRow(row: Int) {
-        if let cellView = cellViewForRow(row) {
-            cellView.mouseInside = true
-        }
-        if let cellView = cellViewForRow(previousMouseOverRow) {
-            cellView.mouseInside = false
-        }
-        previousMouseOverRow = row
+    func tableView(tableView: NSTableView, mouseEnteredRow row: Int) {
+        cellViewForRow(row)!.mouseInside = true
+        previousMouseInsideRow = row
     }
     
-    func mouseExitedTableView() {
-        if let cellView = cellViewForRow(previousMouseOverRow) {
-            cellView.mouseInside = false
-        }
-        previousMouseOverRow = -1
+    func tableView(tableView: NSTableView, mouseExitedRow row: Int) {
+        cellViewForRow(row)!.mouseInside = false
     }
     
     func mouseDidScrollTableView() {
-        if let cellView = cellViewForRow(previousMouseOverRow) {
+        if let cellView = cellViewForRow(previousMouseInsideRow) {
             cellView.mouseInside = false
         }
     }

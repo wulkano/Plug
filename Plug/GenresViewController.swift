@@ -8,14 +8,15 @@
 
 import Cocoa
 
-class GenresViewController: NSViewController, NSTableViewDelegate {
-    @IBOutlet var tableView: NSTableView!
+class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+    @IBOutlet var tableView: ExtendedTableView!
     var dataSource: GenresDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.setDelegate(self)
+        tableView.extendedDelegate = self
         setupDataSource()
     }
     
@@ -139,5 +140,14 @@ class GenresViewController: NSViewController, NSTableViewDelegate {
         viewController.title = genre.name
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, tableView: viewController.tableView)
+    }
+    
+    func tableView(tableView: NSTableView, didClickRow row: Int) {
+        switch itemForRow(row) {
+        case .GenreItem(let genre):
+            loadSingleGenreView(genre)
+        case .SectionHeaderItem:
+            return
+        }
     }
 }

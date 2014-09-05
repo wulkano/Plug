@@ -92,7 +92,6 @@
 		FAA34A9319B2E4090038868A /* FavoritesPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9219B2E4090038868A /* FavoritesPlaylistViewController.swift */; };
 		FAA34A9519B2F0450038868A /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9419B2F0450038868A /* Async.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
-		FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */; };
 		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
 		FAA51A59198084E50057EC34 /* NavigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A58198084E50057EC34 /* NavigationSection.swift */; };
 		FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A5A1980D4FC0057EC34 /* Error.swift */; };
@@ -116,6 +115,7 @@
 		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */; };
 		FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */; };
+		FAEE914619BA3A3300D4274C /* ExtendedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE914519BA3A3300D4274C /* ExtendedTableView.swift */; };
 		FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0371C197B83C800F716CE /* VolumeIconView.swift */; };
 		FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0372E197B8A3500F716CE /* FooterViewController.swift */; };
 		FAF13B28199D22D5009D9F66 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B27199D22D5009D9F66 /* Notifications.swift */; };
@@ -241,7 +241,6 @@
 		FAA34A9219B2E4090038868A /* FavoritesPlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPlaylistViewController.swift; sourceTree = "<group>"; };
 		FAA34A9419B2F0450038868A /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableView.swift; sourceTree = "<group>"; };
 		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
 		FAA51A58198084E50057EC34 /* NavigationSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSection.swift; sourceTree = "<group>"; };
 		FAA51A5A1980D4FC0057EC34 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -265,6 +264,7 @@
 		FAE95B7719A2DED7009F9946 /* FlatSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSlider.swift; sourceTree = "<group>"; };
 		FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrackInfo.storyboard; sourceTree = "<group>"; };
 		FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantImageView.swift; sourceTree = "<group>"; };
+		FAEE914519BA3A3300D4274C /* ExtendedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTableView.swift; sourceTree = "<group>"; };
 		FAF0371C197B83C800F716CE /* VolumeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeIconView.swift; sourceTree = "<group>"; };
 		FAF0372E197B8A3500F716CE /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
 		FAF13B27199D22D5009D9F66 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -570,7 +570,7 @@
 		FA9A2F4319B68AFE0057080C /* NSTableView */ = {
 			isa = PBXGroup;
 			children = (
-				FAA51A52198043EB0057EC34 /* PlaylistTableView.swift */,
+				FAEE914519BA3A3300D4274C /* ExtendedTableView.swift */,
 			);
 			name = NSTableView;
 			sourceTree = "<group>";
@@ -837,6 +837,7 @@
 				FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */,
 				FA5394FC19AFA903006A95A5 /* LoginButtonImageView.swift in Sources */,
 				FAACE4C619AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift in Sources */,
+				FAEE914619BA3A3300D4274C /* ExtendedTableView.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
 				FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */,
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
@@ -850,7 +851,6 @@
 				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
 				FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */,
-				FAA51A53198043EB0057EC34 /* PlaylistTableView.swift in Sources */,
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
 				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
 				FA9A2F3319B66C760057080C /* NavigationBar.swift in Sources */,
