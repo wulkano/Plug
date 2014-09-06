@@ -112,6 +112,8 @@
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
 		FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */; };
 		FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */; };
+		FACFAAE719BAB815006BD52B /* FriendTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFAAE619BAB815006BD52B /* FriendTableCellView.swift */; };
+		FACFAAE919BBB5DF006BD52B /* FriendPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACFAAE819BBB5DF006BD52B /* FriendPlaylistDataSource.swift */; };
 		FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1F54819A7C793002322D6 /* Authentication.swift */; };
 		FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DD1981DF5200BC5109 /* Interval.swift */; };
 		FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD4C211197CA3F2004606B5 /* UserDefaults.plist */; };
@@ -269,6 +271,8 @@
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		FACFAAE619BAB815006BD52B /* FriendTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableCellView.swift; sourceTree = "<group>"; };
+		FACFAAE819BBB5DF006BD52B /* FriendPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FAD1F54819A7C793002322D6 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		FAD3B0DD1981DF5200BC5109 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		FAD4C211197CA3F2004606B5 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 		FA9A2F3819B6891C0057080C /* NSTableCellViews */ = {
 			isa = PBXGroup;
 			children = (
+				FACFAAE619BAB815006BD52B /* FriendTableCellView.swift */,
 				FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */,
 				FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */,
 				FA53950519AFFE67006A95A5 /* TrackTableCellViews */,
@@ -625,6 +630,7 @@
 				FA6ADCF819BA886C00CCD371 /* BlogPlaylistDataSource.swift */,
 				FA9EA03B199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift */,
 				FA9EA03F199AFC4100D9AB8A /* FeedPlaylistDataSource.swift */,
+				FACFAAE819BBB5DF006BD52B /* FriendPlaylistDataSource.swift */,
 				FA9A2F4B19B794570057080C /* GenrePlaylistDataSource.swift */,
 				FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */,
 				FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */,
@@ -927,6 +933,7 @@
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,
+				FACFAAE919BBB5DF006BD52B /* FriendPlaylistDataSource.swift in Sources */,
 				FA0B1D3A197725E90030C873 /* FeedPlaylist.swift in Sources */,
 				FA5394F019AF6B0F006A95A5 /* SwissArmyButton.swift in Sources */,
 				FA24EDA21974A9A500A781C8 /* main.swift in Sources */,
@@ -944,6 +951,7 @@
 				FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* BasePlaylistViewController.swift in Sources */,
 				FADC96F21974CA0D009458FA /* LoveCountPlaylistTableCellView.swift in Sources */,
+				FACFAAE719BAB815006BD52B /* FriendTableCellView.swift in Sources */,
 				FA0B1D30197712920030C873 /* PopularPlaylist.swift in Sources */,
 				FA7B3CB9199B626B008E8B01 /* SidebarOverlayView.swift in Sources */,
 				FA6ADCFB19BA8B9600CCD371 /* SingleBlogViewFormatter.swift in Sources */,

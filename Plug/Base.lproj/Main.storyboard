@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A343f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.9"/>
     </dependencies>
     <scenes>
@@ -1406,10 +1407,10 @@
             </objects>
             <point key="canvasLocation" x="2404.5" y="-116"/>
         </scene>
-        <!--Blog-->
+        <!--Single Blog View Controller-->
         <scene sceneID="9gF-XE-BZY">
             <objects>
-                <viewController title="Blog" storyboardIdentifier="SingleBlogViewController" id="i6x-ML-9HZ" customClass="SingleBlogViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Blog" storyboardIdentifier="SingleBlogViewController" id="i6x-ML-9HZ" userLabel="Single Blog View Controller" customClass="SingleBlogViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="gms-eJ-6C5">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1505,37 +1506,107 @@
                     </connections>
                 </viewController>
                 <customObject id="VU1-Hf-VJl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="4Kb-qS-m1d"/>
             </objects>
             <point key="canvasLocation" x="2844.5" y="-116"/>
         </scene>
-        <!--User-->
+        <!--Single Friend View Controller-->
         <scene sceneID="E0K-CQ-nOH">
             <objects>
-                <viewController title="User" storyboardIdentifier="SingleFriendViewController" id="z2f-JR-RpO" customClass="SingleFriendViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="User" storyboardIdentifier="SingleFriendViewController" id="z2f-JR-RpO" userLabel="Single Friend View Controller" customClass="SingleFriendViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="geV-qg-bAh">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SR-OP-NdY" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1SR-OP-NdY" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="186" width="409" height="86"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eJC-Zm-LDf">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eJC-Zm-LDf">
                                         <rect key="frame" x="73" y="45" width="318" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="dIP-0K-ncB"/>
                                         </constraints>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="bradfrost" id="Aej-VD-BrD">
                                             <font key="font" metaFont="system" size="20"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="z2f-JR-RpO" name="value" keyPath="representedObject.username" id="FoQ-i5-Fnv"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jV4-fD-OoP">
+                                        <rect key="frame" x="73" y="17" width="26" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="jjG-z0-Qeo"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="546" id="vtE-Zi-KMr">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="z2f-JR-RpO" name="value" keyPath="representedObject.favoritesCountNum" id="ekP-7k-OsE"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8V4-nf-b46">
+                                        <rect key="frame" x="98" y="17" width="63" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="bC7-H1-5X5"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Favorites" id="Vdf-5R-Mcz">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-RU-UKf">
+                                        <rect key="frame" x="172" y="17" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="2au-vc-YgU"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="36" id="hko-yW-N0q">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <binding destination="z2f-JR-RpO" name="value" keyPath="representedObject.followersCountNum" id="QIz-21-gCa"/>
+                                        </connections>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Cl-Ij-Pci">
+                                        <rect key="frame" x="190" y="17" width="49" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="4b7-6q-Dxr"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Friends" id="hBQ-zQ-ViH">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-by-H46">
+                                        <rect key="frame" x="17" y="25" width="36" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="36" id="BG8-Hg-zii"/>
+                                            <constraint firstAttribute="height" constant="36" id="ieV-wQ-aSG"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Avatar-Placeholder" id="UoH-wh-Jv1"/>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Q4p-RU-UKf" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="0AB-Ky-wBi"/>
+                                    <constraint firstItem="g5U-by-H46" firstAttribute="leading" secondItem="1SR-OP-NdY" secondAttribute="leading" constant="17" id="8sW-8q-aGs"/>
+                                    <constraint firstItem="3Cl-Ij-Pci" firstAttribute="leading" secondItem="Q4p-RU-UKf" secondAttribute="trailing" constant="3" id="Amn-sS-53b"/>
                                     <constraint firstItem="eJC-Zm-LDf" firstAttribute="top" secondItem="1SR-OP-NdY" secondAttribute="top" constant="17" id="JFe-Q9-yBT"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="86" id="MMu-Nl-03y"/>
+                                    <constraint firstItem="8V4-nf-b46" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="L0k-jI-TMq"/>
+                                    <constraint firstItem="jV4-fD-OoP" firstAttribute="leading" secondItem="1SR-OP-NdY" secondAttribute="leading" constant="75" id="LtU-3J-f0Z"/>
+                                    <constraint firstAttribute="height" constant="86" id="MMu-Nl-03y"/>
                                     <constraint firstAttribute="trailing" secondItem="eJC-Zm-LDf" secondAttribute="trailing" constant="20" id="N7q-Fq-U1M"/>
+                                    <constraint firstItem="3Cl-Ij-Pci" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="URQ-8T-Erv"/>
+                                    <constraint firstItem="g5U-by-H46" firstAttribute="top" secondItem="1SR-OP-NdY" secondAttribute="top" constant="25" id="bsg-Fz-tFE"/>
+                                    <constraint firstItem="jV4-fD-OoP" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="rU5-3V-TAY"/>
+                                    <constraint firstItem="8V4-nf-b46" firstAttribute="leading" secondItem="jV4-fD-OoP" secondAttribute="trailing" constant="3" id="vUY-EM-d1V"/>
+                                    <constraint firstItem="Q4p-RU-UKf" firstAttribute="leading" secondItem="8V4-nf-b46" secondAttribute="trailing" constant="15" id="wvm-G1-RSF"/>
                                     <constraint firstItem="eJC-Zm-LDf" firstAttribute="leading" secondItem="1SR-OP-NdY" secondAttribute="leading" constant="75" id="zli-vE-yGx"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1555,7 +1626,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-pC-ILY" userLabel="Playlist Container">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-pC-ILY" userLabel="Playlist Container">
                                 <rect key="frame" x="0.0" y="0.0" width="409" height="186"/>
                             </customView>
                         </subviews>
@@ -1570,12 +1641,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="1SR-OP-NdY" id="9jw-XO-ZuC"/>
-                        <outlet property="playlistContainer" destination="1ZP-pC-ILY" id="C5h-Vd-1p4"/>
+                        <outlet property="avatarView" destination="g5U-by-H46" id="1hY-mU-vlV"/>
+                        <outlet property="favoritesCountTextField" destination="jV4-fD-OoP" id="bIs-9Z-LtH"/>
+                        <outlet property="friendsCountTextField" destination="Q4p-RU-UKf" id="bge-hb-voo"/>
+                        <outlet property="playlistContainer" destination="1ZP-pC-ILY" id="VBS-mu-qMg"/>
+                        <outlet property="usernameTextField" destination="eJC-Zm-LDf" id="F2e-gM-DgM"/>
                     </connections>
                 </viewController>
                 <customObject id="kfi-Q2-lJm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="BIb-om-0qo"/>
             </objects>
             <point key="canvasLocation" x="3296.5" y="-116"/>
         </scene>
@@ -1718,7 +1791,7 @@
                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="8VV-gy-4I5">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="8VV-gy-4I5" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -1736,7 +1809,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="CO0-wB-bR7" customClass="IOSStyleTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="CO0-wB-bR7" customClass="FriendTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1791,6 +1864,9 @@
                                                                 <constraint firstAttribute="centerY" secondItem="lVF-EP-cb3" secondAttribute="centerY" id="n21-IS-1NM"/>
                                                                 <constraint firstItem="rKX-D5-byy" firstAttribute="top" secondItem="CO0-wB-bR7" secondAttribute="top" constant="9" id="teU-Xj-Zcr"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="avatarView" destination="daH-Ku-Kdh" id="RLU-z2-NtF"/>
+                                                            </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="ouh-58-vs8" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="64" width="409" height="64"/>

@@ -51,11 +51,35 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     
     @IBAction func usernameOrBlogNameClicked(sender: NSButton) {
         if trackValue.lovedBy != nil {
-            var url = "http://hypem.com/\(trackValue.lovedBy!)"
-            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+            loadSingleFriendPage()
         } else {
-            var url = "http://hypem.com/blog/\(trackValue.postedById!)"
-            NSWorkspace.sharedWorkspace().openURL(NSURL(string: url))
+            loadSingleBlogPage()
         }
     }
+    
+    func loadSingleFriendPage() {
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
+        Notifications.Post.PushViewController(viewController, sender: self)
+        HypeMachineAPI.Friends.SingleFriend(trackValue.lovedBy!,
+            success: { friend in
+                viewController.representedObject = friend
+            }, failure: { error in
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
+        })
+    }
+    
+    func loadSingleBlogPage() {
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
+        Notifications.Post.PushViewController(viewController, sender: self)
+        HypeMachineAPI.Blogs.SingleBlog(trackValue.postedById,
+            success: { blog in
+                viewController.representedObject = blog
+            }, failure: { error in
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
+        })
+
+    }
+
 }

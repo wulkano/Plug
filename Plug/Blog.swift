@@ -9,20 +9,19 @@
 import Cocoa
 
 class Blog: NSObject {
-    var id: String!
-    var name: String!
-    var url: NSURL!
-    var followerCount: Int!
-    var followerCountNum: NSNumber!
-    var trackCount: Int!
-    var trackCountNum: NSNumber!
-    var imageURL: NSURL!
-    var imageURLSmall: NSURL!
+    var id: String
+    var name: String
+    var url: NSURL
+    var followerCount: Int
+    var followerCountNum: NSNumber
+    var trackCount: Int
+    var trackCountNum: NSNumber
+    var imageURL: NSURL
+    var imageURLSmall: NSURL
     var featured: Bool = false
     var following: Bool = false
     
     init(JSON json: NSDictionary) {
-        super.init()
         
         id = String(json["siteid"] as Int)
         name = json["sitename"] as String
@@ -39,6 +38,8 @@ class Blog: NSObject {
         if json["ts_loved_me"] is Int {
             following = true
         }
+        
+        super.init()
     }
     
     func imageURLForSize(size: ImageSize) -> NSURL {

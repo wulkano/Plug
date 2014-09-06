@@ -8,14 +8,15 @@
 
 import Cocoa
 
-class FriendsViewController: NSViewController, NSTableViewDelegate {
-    @IBOutlet var tableView: NSTableView!
+class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+    @IBOutlet var tableView: ExtendedTableView!
     var dataSource: FriendsDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.setDelegate(self)
+        tableView.extendedDelegate = self
         setupDataSource()
     }
     
@@ -33,5 +34,12 @@ class FriendsViewController: NSViewController, NSTableViewDelegate {
     
     func tableView(tableView: NSTableView, didClickRow row: Int) {
         let friend = dataSource!.itemForRow(row)
+        loadSingleFriendView(friend)
+    }
+    
+    func loadSingleFriendView(friend: Friend) {
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
+        Notifications.Post.PushViewController(viewController, sender: self)
+        viewController.representedObject = friend
     }
 }

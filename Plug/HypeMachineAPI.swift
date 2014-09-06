@@ -100,6 +100,13 @@ struct HypeMachineAPI  {
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
+        static func FriendTracks(friend: Friend, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let escapedUsername = friend.username.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+            let url = apiBase + "/users/\(escapedUsername)/favorites"
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
+            _getTracks(url, parameters: params, success: success, failure: failure)
+        }
+        
         static func ToggleLoved(track: Track, success: (loved: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/favorites?hm_token=\(Authentication.GetToken()!)"
             let params = ["type": "item", "val": track.id]
@@ -249,6 +256,18 @@ struct HypeMachineAPI  {
                 failure: failure
             )
         }
+        
+        static func FriendPlaylist(friend: Friend, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.FriendTracks(friend,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = Playlist(tracks: tracks, type: .Friend)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
+        }
     }
     
     struct Blogs {
@@ -264,6 +283,20 @@ struct HypeMachineAPI  {
                         blogs.append(Blog(JSON: blogDictionary))
                     }
                     success(blogs: blogs)
+                }, failure: {
+                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
+        }
+        
+        static func SingleBlog(blogID: Int, success: (blog: Blog)->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/blogs/\(blogID)"
+            let params = ["hm_token": Authentication.GetToken()!]
+            HypeMachineAPI.GetJSON(url, parameters: params,
+                success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                    let blogDictionary = responseObject as NSDictionary
+                    let blog = Blog(JSON: blogDictionary)
+                    success(blog: blog)
                 }, failure: {
                     (operation: AFHTTPRequestOperation!, error: NSError!) in
                     failure(error: error)
@@ -315,6 +348,31 @@ struct HypeMachineAPI  {
                         friends.append(Friend(JSON: friendDictionary))
                     }
                     success(friends: friends)
+                }, failure: {operation, error in
+                    failure(error: error)
+            })
+        }
+        
+        static func SingleFriend(username: String, success: (friend: Friend)->(), failure: (error: NSError)->()) {
+            let escapedUsername = username.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+            let url = apiBase + "/users/\(escapedUsername)"
+            let params = ["hm_token": Authentication.GetToken()!]
+            HypeMachineAPI.GetJSON(url, parameters: params,
+                success: {operation, responseObject in
+                    let friendDictionary = responseObject as NSDictionary
+                    let friend = Friend(JSON: friendDictionary)
+                    success(friend: friend)
+                }, failure: {operation, error in
+                    failure(error: error)
+            })
+        }
+        
+        static func Avatar(friend: Friend, success: (image: NSImage)->(), failure: (error: NSError)->()) {
+            var url = friend.avatarURL!.absoluteString!
+            HypeMachineAPI.GetImage(url, parameters: nil,
+                success: {operation, responseObject in
+                    let image = responseObject as NSImage
+                    success(image: image)
                 }, failure: {operation, error in
                     failure(error: error)
             })

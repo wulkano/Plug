@@ -80,4 +80,5 @@ enum PlaylistType {
     case Artist
     case Genre
     case Blog
+    case Friend
 }

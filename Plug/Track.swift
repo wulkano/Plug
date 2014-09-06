@@ -9,27 +9,26 @@
 import Cocoa
 
 class Track: NSObject {
-    var id: String!
-    var artist: String!
-    var title: String!
+    var id: String
+    var artist: String
+    var title: String
     var loved: Bool = false
-    var lovedCount: Int!
-    var lovedCountNum: NSNumber!
+    var lovedCount: Int
+    var lovedCountNum: NSNumber
     var thumbURLSmall: NSURL?
     var thumbURLMedium: NSURL?
     var thumbURLLarge: NSURL?
     var rank: Int?
     var playlist: Playlist?
     var lovedBy: String?
-    var postedBy: String!
-    var postedById: Int!
-    var postedCount: Int!
-    var postedByDescription: String!
-    var datePosted: NSDate!
+    var postedBy: String
+    var postedById: Int
+    var postedCount: Int
+    var postedByDescription: String
+    var datePosted: NSDate
     var audioUnavailable: Bool = false
     
     init(JSON json: NSDictionary) {
-        super.init()
         
         id = json["itemid"] as String
         if json["artist"] is String {
@@ -74,6 +73,8 @@ class Track: NSObject {
         if json["pub_audio_unavail"] is Bool {
             audioUnavailable = true
         }
+        
+        super.init()
     }
     
     func mediaURL() -> NSURL {

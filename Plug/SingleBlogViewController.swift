@@ -37,7 +37,7 @@ class SingleBlogViewController: NSViewController {
         updateTitle()
         updateDetails()
         updateImage()
-        updatePlaylist()
+        loadPlaylist()
     }
     
     func updateTitle() {
@@ -81,7 +81,7 @@ class SingleBlogViewController: NSViewController {
         NSWorkspace.sharedWorkspace().openURL(representedBlog.url)
     }
     
-    func updatePlaylist() {
+    func loadPlaylist() {
         playlistViewController = storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         
         addChildViewController(playlistViewController)
