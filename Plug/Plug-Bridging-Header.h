@@ -6,3 +6,4 @@
 #import <AFNetworking.h>
 #import <SSKeychain.h>
 #import "ITSwitch.h"
+#import "SLColorArt.h"

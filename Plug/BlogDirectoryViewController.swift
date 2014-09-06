@@ -8,14 +8,15 @@
 
 import Cocoa
 
-class BlogDirectoryViewController: NSViewController, NSTableViewDelegate {
-    @IBOutlet var tableView: NSTableView!
+class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+    @IBOutlet var tableView: ExtendedTableView!
     var dataSource: BlogDirectoryDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.setDelegate(self)
+        tableView.extendedDelegate = self
         setupDataSource()
     }
     
@@ -95,5 +96,20 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate {
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue
         dataSource!.filterByKeywords(keywords)
+    }
+    
+    func tableView(tableView: NSTableView, didClickRow row: Int) {
+        switch itemForRow(row) {
+        case .BlogItem(let blog):
+            loadSingleBlogView(blog)
+        case .SectionHeaderItem:
+            return
+        }
+    }
+    
+    func loadSingleBlogView(blog: Blog) {
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
+        Notifications.Post.PushViewController(viewController, sender: self)
+        viewController.representedObject = blog
     }
 }

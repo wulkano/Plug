@@ -32,12 +32,6 @@ class SearchViewController: NSViewController {
         
         addChildViewController(playlistViewController)
         
-        playlistViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        searchResultsView.addSubview(playlistViewController.view)
-        
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: ["view": playlistViewController.view])
-        searchResultsView.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: ["view": playlistViewController.view])
-        searchResultsView.addConstraints(constraints)
+        ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: searchResultsView)
     }
 }

@@ -33,11 +33,11 @@ class TrackInfoViewController: NSViewController {
     }
     
     func updateAlbumArt() {
-        HypeMachineAPI.TrackThumbFor(representedTrack, preferedSize: .Medium,
-            success: {image in
+        HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
+            success: { image in
                 self.albumArt.image = image
             },
-            failure: {error in
+            failure: { error in
                 Notifications.Post.DisplayError(error, sender: self)
                 Logger.LogError(error)
         })

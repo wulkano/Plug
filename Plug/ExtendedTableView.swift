@@ -64,7 +64,9 @@ class ExtendedTableView: NSTableView {
         let newMouseInsideRow = rowAtPoint(localLocation)
         
         if newMouseInsideRow != mouseInsideRow {
-            extendedDelegate?.tableView?(self, mouseEnteredRow: newMouseInsideRow)
+            if newMouseInsideRow != -1 {
+                extendedDelegate?.tableView?(self, mouseEnteredRow: newMouseInsideRow)
+            }
             if mouseInsideRow != -1 {
                 extendedDelegate?.tableView?(self, mouseExitedRow: mouseInsideRow)
             }

@@ -87,6 +87,12 @@ struct HypeMachineAPI  {
             _getTracks(url, parameters: params, success: success, failure: failure)
         }
         
+        static func BlogTracks(blog: Blog, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+            let url = apiBase + "/blogs/\(blog.id)/tracks"
+            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
+            _getTracks(url, parameters: params, success: success, failure: failure)
+        }
+        
         static func GenreTracks(genre: Genre, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
             let escapedGenreName = genre.name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
             let url = apiBase + "/tags/\(escapedGenreName)/tracks"
@@ -111,6 +117,17 @@ struct HypeMachineAPI  {
                     }
                 }, failure: {
                     (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
+        }
+        
+        static func Thumb(track: Track, preferedSize: Track.ImageSize, success: (image: NSImage)->(), failure: (error: NSError)->()) {
+            var url = track.thumbURLWithPreferedSize(preferedSize).absoluteString!
+            HypeMachineAPI.GetImage(url, parameters: nil,
+                success: {operation, responseObject in
+                    let image = responseObject as NSImage
+                    success(image: image)
+                }, failure: {operation, error in
                     failure(error: error)
             })
         }
@@ -209,6 +226,18 @@ struct HypeMachineAPI  {
             )
         }
         
+        static func BlogPlaylist(blog: Blog, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
+            HypeMachineAPI.Tracks.BlogTracks(blog,
+                page: 1,
+                count: trackCount,
+                success: { tracks in
+                    let playlist = Playlist(tracks: tracks, type: .Blog)
+                    success(playlist: playlist)
+                },
+                failure: failure
+            )
+        }
+        
         static func GenrePlaylist(genre: Genre, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
             HypeMachineAPI.Tracks.GenreTracks(genre,
                 page: 1,
@@ -237,6 +266,17 @@ struct HypeMachineAPI  {
                     success(blogs: blogs)
                 }, failure: {
                     (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    failure(error: error)
+            })
+        }
+        
+        static func Image(blog: Blog, size: Blog.ImageSize, success: (image: NSImage)->(), failure: (error: NSError)->()) {
+            var url = blog.imageURLForSize(size).absoluteString!
+            HypeMachineAPI.GetImage(url, parameters: nil,
+                success: {operation, responseObject in
+                    let image = responseObject as NSImage
+                    success(image: image)
+                }, failure: {operation, error in
                     failure(error: error)
             })
         }
@@ -312,17 +352,6 @@ struct HypeMachineAPI  {
                 } else {
                     success(heatMap: heatMap)
                 }
-            }, failure: {operation, error in
-                failure(error: error)
-        })
-    }
-    
-    static func TrackThumbFor(track: Track, preferedSize: Track.ImageSize, success: (image: NSImage)->(), failure: (error: NSError)->()) {
-        var url = track.thumbURLWithPreferedSize(preferedSize).absoluteString!
-        HypeMachineAPI.GetImage(url, parameters: nil,
-            success: {operation, responseObject in
-                let image = responseObject as NSImage
-                success(image: image)
             }, failure: {operation, error in
                 failure(error: error)
         })

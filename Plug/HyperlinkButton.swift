@@ -14,17 +14,19 @@ class HyperlinkButton: NSButton {
             applyAttributes()
         }
     }
+    @IBInspectable var hoverUnderline: Bool = false
+    
     override var title: String! {
         didSet {
             applyAttributes()
         }
     }
-//    var trackingArea: NSTrackingArea?
-//    var mouseInside: Bool = false {
-//        didSet {
-//            mouseInsideChanged()
-//        }
-//    }
+    var trackingArea: NSTrackingArea?
+    var mouseInside: Bool = false {
+        didSet {
+            mouseInsideChanged()
+        }
+    }
     
     func applyAttributes() {
         var attributes = [NSObject: AnyObject]()
@@ -37,47 +39,50 @@ class HyperlinkButton: NSButton {
         attributedTitle = coloredString
     }
     
-//    override func updateTrackingAreas() {
-//        super.updateTrackingAreas()
-//        ensureTrackingArea()
-//        if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
-//            addTrackingArea(trackingArea!)
-//        }
-//    }
-//    
-//    func ensureTrackingArea() {
-//        if trackingArea == nil {
-//            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited, owner: self, userInfo: nil)
-//        }
-//    }
-//
-//    override func mouseEntered(theEvent: NSEvent!) {
-//        mouseInside = true
-//    }
-//    
-//    override func mouseExited(theEvent: NSEvent!) {
-//        mouseInside = false
-//    }
-//    
-//    func mouseInsideChanged() {
-//        if mouseInside {
-//            addUnderlineToText()
-//        } else {
-//            removeUnderlineFromText()
-//        }
-//    }
-//    
-//    func addUnderlineToText() {
-//        let range = NSMakeRange(0, attributedTitle.length)
-//        var newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-//        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSSingleUnderlineStyle, range: range)
-//        attributedTitle = newAttributedTitle
-//    }
-//    
-//    func removeUnderlineFromText() {
-//        let range = NSMakeRange(0, attributedTitle.length)
-//        var newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-//        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSNoUnderlineStyle, range: range)
-//        attributedTitle = newAttributedTitle
-//    }
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        
+        if hoverUnderline {
+            ensureTrackingArea()
+            if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+                addTrackingArea(trackingArea!)
+            }
+        }
+    }
+    
+    func ensureTrackingArea() {
+        if trackingArea == nil {
+            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited, owner: self, userInfo: nil)
+        }
+    }
+
+    override func mouseEntered(theEvent: NSEvent!) {
+        mouseInside = true
+    }
+    
+    override func mouseExited(theEvent: NSEvent!) {
+        mouseInside = false
+    }
+    
+    func mouseInsideChanged() {
+        if mouseInside {
+            addUnderlineToText()
+        } else {
+            removeUnderlineFromText()
+        }
+    }
+    
+    func addUnderlineToText() {
+        let range = NSMakeRange(0, attributedTitle.length)
+        var newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
+        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSSingleUnderlineStyle, range: range)
+        attributedTitle = newAttributedTitle
+    }
+    
+    func removeUnderlineFromText() {
+        let range = NSMakeRange(0, attributedTitle.length)
+        var newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
+        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSNoUnderlineStyle, range: range)
+        attributedTitle = newAttributedTitle
+    }
 }

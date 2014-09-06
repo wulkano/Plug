@@ -135,13 +135,6 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
         }
     }
     
-    func loadSingleGenreView(genre: Genre) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
-        viewController.title = genre.name
-        Notifications.Post.PushViewController(viewController, sender: self)
-        viewController.dataSource = GenrePlaylistDataSource(genre: genre, tableView: viewController.tableView)
-    }
-    
     func tableView(tableView: NSTableView, didClickRow row: Int) {
         switch itemForRow(row) {
         case .GenreItem(let genre):
@@ -149,5 +142,12 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
         case .SectionHeaderItem:
             return
         }
+    }
+    
+    func loadSingleGenreView(genre: Genre) {
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        viewController.title = genre.name
+        Notifications.Post.PushViewController(viewController, sender: self)
+        viewController.dataSource = GenrePlaylistDataSource(genre: genre, tableView: viewController.tableView)
     }
 }

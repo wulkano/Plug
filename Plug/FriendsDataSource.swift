@@ -27,6 +27,14 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
         })
     }
     
+    func itemForRow(row: Int) -> Friend {
+        if filtering {
+            return filteredTableContents![row]
+        } else {
+            return tableContents![row]
+        }
+    }
+    
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
         
         if filtering {

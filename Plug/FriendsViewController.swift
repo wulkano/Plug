@@ -30,4 +30,8 @@ class FriendsViewController: NSViewController, NSTableViewDelegate {
         let keywords = sender.stringValue
         dataSource!.filterByKeywords(keywords)
     }
+    
+    func tableView(tableView: NSTableView, didClickRow row: Int) {
+        let friend = dataSource!.itemForRow(row)
+    }
 }

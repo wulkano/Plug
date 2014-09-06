@@ -79,4 +79,5 @@ enum PlaylistType {
     case Search
     case Artist
     case Genre
+    case Blog
 }

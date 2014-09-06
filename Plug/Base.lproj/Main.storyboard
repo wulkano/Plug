@@ -1406,6 +1406,265 @@
             </objects>
             <point key="canvasLocation" x="2404.5" y="-116"/>
         </scene>
+        <!--Blog-->
+        <scene sceneID="9gF-XE-BZY">
+            <objects>
+                <viewController title="Blog" storyboardIdentifier="SingleBlogViewController" id="i6x-ML-9HZ" customClass="SingleBlogViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="gms-eJ-6C5">
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="272"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ajQ-K1-Hhs" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="186" width="409" height="86"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZP2-yQ-pdE" customClass="SingleBlogImageView" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="297" y="1" width="112" height="85"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="112" id="tfA-bU-8k7"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" id="d5a-YW-j0r"/>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FcN-sE-7Km">
+                                        <rect key="frame" x="19" y="17" width="270" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="gNh-5a-PNx"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="9.3k Followers   2.1k Tracks" id="WH7-ZZ-vmX">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Dt0-FY-WNS" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="19" y="45" width="102" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="ieC-oG-X1z"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" title="The 405 →" bezelStyle="regularSquare" alignment="left" imageScaling="proportionallyDown" inset="2" id="Cdb-Fd-tKK">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="20"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hoverUnderline" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="titleButtonClicked:" target="i6x-ML-9HZ" id="c5x-5c-bFt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Dt0-FY-WNS" firstAttribute="leading" secondItem="ajQ-K1-Hhs" secondAttribute="leading" constant="19" id="0CL-J6-Kg2"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="86" id="2EO-iN-R46"/>
+                                    <constraint firstItem="ZP2-yQ-pdE" firstAttribute="top" secondItem="ajQ-K1-Hhs" secondAttribute="top" id="C2a-zI-27l"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZP2-yQ-pdE" secondAttribute="bottom" constant="1" id="E7w-ZD-5tT"/>
+                                    <constraint firstAttribute="bottom" secondItem="FcN-sE-7Km" secondAttribute="bottom" constant="17" id="GOX-AV-blz"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZP2-yQ-pdE" secondAttribute="trailing" id="QPq-m6-lCz"/>
+                                    <constraint firstItem="ZP2-yQ-pdE" firstAttribute="leading" secondItem="FcN-sE-7Km" secondAttribute="trailing" constant="10" id="Sb5-Xk-54J"/>
+                                    <constraint firstItem="FcN-sE-7Km" firstAttribute="leading" secondItem="ajQ-K1-Hhs" secondAttribute="leading" constant="21" id="VH4-WW-w8u"/>
+                                    <constraint firstItem="FcN-sE-7Km" firstAttribute="top" secondItem="Dt0-FY-WNS" secondAttribute="bottom" constant="8" id="Wp9-W3-UhN"/>
+                                    <constraint firstItem="ZP2-yQ-pdE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Dt0-FY-WNS" secondAttribute="trailing" constant="10" id="c7c-hs-g0s"/>
+                                    <constraint firstItem="Dt0-FY-WNS" firstAttribute="top" secondItem="ajQ-K1-Hhs" secondAttribute="top" constant="17" id="p5H-qq-l92"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="topBorder" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rightBorder" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="leftBorder" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="iVa-1R-PzO" userLabel="Playlist Container">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="186"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ajQ-K1-Hhs" firstAttribute="top" secondItem="gms-eJ-6C5" secondAttribute="top" id="2n6-iD-L6F"/>
+                            <constraint firstItem="iVa-1R-PzO" firstAttribute="leading" secondItem="gms-eJ-6C5" secondAttribute="leading" id="E0t-Gb-iDh"/>
+                            <constraint firstAttribute="trailing" secondItem="ajQ-K1-Hhs" secondAttribute="trailing" id="LrB-fe-7HM"/>
+                            <constraint firstItem="ajQ-K1-Hhs" firstAttribute="leading" secondItem="gms-eJ-6C5" secondAttribute="leading" id="UwR-9d-rMk"/>
+                            <constraint firstAttribute="trailing" secondItem="iVa-1R-PzO" secondAttribute="trailing" id="akE-Dt-R1O"/>
+                            <constraint firstAttribute="bottom" secondItem="iVa-1R-PzO" secondAttribute="bottom" id="hEZ-YE-hEA"/>
+                            <constraint firstItem="iVa-1R-PzO" firstAttribute="top" secondItem="ajQ-K1-Hhs" secondAttribute="bottom" id="pXC-MW-LbZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="ajQ-K1-Hhs" id="MVB-0t-QCe"/>
+                        <outlet property="detailsTextField" destination="FcN-sE-7Km" id="EYt-zm-0Ri"/>
+                        <outlet property="imageView" destination="ZP2-yQ-pdE" id="9Ow-74-BoX"/>
+                        <outlet property="playlistContainer" destination="iVa-1R-PzO" id="Wic-6E-bJr"/>
+                        <outlet property="titleButton" destination="Dt0-FY-WNS" id="WRg-Hm-GnJ"/>
+                    </connections>
+                </viewController>
+                <customObject id="VU1-Hf-VJl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="4Kb-qS-m1d"/>
+            </objects>
+            <point key="canvasLocation" x="2844.5" y="-116"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="E0K-CQ-nOH">
+            <objects>
+                <viewController title="User" storyboardIdentifier="SingleFriendViewController" id="z2f-JR-RpO" customClass="SingleFriendViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="geV-qg-bAh">
+                        <rect key="frame" x="0.0" y="0.0" width="409" height="272"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1SR-OP-NdY" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="186" width="409" height="86"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eJC-Zm-LDf">
+                                        <rect key="frame" x="73" y="45" width="318" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="dIP-0K-ncB"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="bradfrost" id="Aej-VD-BrD">
+                                            <font key="font" metaFont="system" size="20"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="eJC-Zm-LDf" firstAttribute="top" secondItem="1SR-OP-NdY" secondAttribute="top" constant="17" id="JFe-Q9-yBT"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="86" id="MMu-Nl-03y"/>
+                                    <constraint firstAttribute="trailing" secondItem="eJC-Zm-LDf" secondAttribute="trailing" constant="20" id="N7q-Fq-U1M"/>
+                                    <constraint firstItem="eJC-Zm-LDf" firstAttribute="leading" secondItem="1SR-OP-NdY" secondAttribute="leading" constant="75" id="zli-vE-yGx"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="topBorder" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rightBorder" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="leftBorder" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.88235294119999996" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-pC-ILY" userLabel="Playlist Container">
+                                <rect key="frame" x="0.0" y="0.0" width="409" height="186"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1SR-OP-NdY" firstAttribute="leading" secondItem="geV-qg-bAh" secondAttribute="leading" id="FVz-yv-X1E"/>
+                            <constraint firstAttribute="bottom" secondItem="1ZP-pC-ILY" secondAttribute="bottom" id="Quk-Qt-uvK"/>
+                            <constraint firstItem="1SR-OP-NdY" firstAttribute="top" secondItem="geV-qg-bAh" secondAttribute="top" id="S6b-Ml-7gT"/>
+                            <constraint firstAttribute="trailing" secondItem="1ZP-pC-ILY" secondAttribute="trailing" id="W1u-WI-Vhd"/>
+                            <constraint firstItem="1ZP-pC-ILY" firstAttribute="leading" secondItem="geV-qg-bAh" secondAttribute="leading" id="ahz-0l-hY8"/>
+                            <constraint firstAttribute="trailing" secondItem="1SR-OP-NdY" secondAttribute="trailing" id="ros-N0-BDP"/>
+                            <constraint firstItem="1ZP-pC-ILY" firstAttribute="top" secondItem="1SR-OP-NdY" secondAttribute="bottom" id="vJv-6O-Jhd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="1SR-OP-NdY" id="9jw-XO-ZuC"/>
+                        <outlet property="playlistContainer" destination="1ZP-pC-ILY" id="C5h-Vd-1p4"/>
+                    </connections>
+                </viewController>
+                <customObject id="kfi-Q2-lJm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="BIb-om-0qo"/>
+            </objects>
+            <point key="canvasLocation" x="3296.5" y="-116"/>
+        </scene>
+        <!--Small Loader-->
+        <scene sceneID="Xe0-aa-Hao">
+            <objects>
+                <viewController storyboardIdentifier="SmallLoaderViewController" id="jiB-94-3JR" userLabel="Small Loader" customClass="LoaderViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="JyS-OH-RB2">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="155"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yxP-R9-ly6" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="220" height="155"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uBL-Gi-2Tb">
+                                <rect key="frame" x="94" y="62" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="O14-Es-xXc"/>
+                                    <constraint firstAttribute="width" constant="32" id="Zl4-k2-AE9"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" image="Loader-Small" id="D4N-rw-ThN"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yxP-R9-ly6" firstAttribute="leading" secondItem="JyS-OH-RB2" secondAttribute="leading" id="NSn-E5-6Yi"/>
+                            <constraint firstAttribute="bottom" secondItem="yxP-R9-ly6" secondAttribute="bottom" id="R4C-jH-2lY"/>
+                            <constraint firstAttribute="centerY" secondItem="uBL-Gi-2Tb" secondAttribute="centerY" id="UPJ-c8-9wF"/>
+                            <constraint firstAttribute="centerX" secondItem="uBL-Gi-2Tb" secondAttribute="centerX" id="b7a-Fz-uiH"/>
+                            <constraint firstItem="yxP-R9-ly6" firstAttribute="top" secondItem="JyS-OH-RB2" secondAttribute="top" id="jSo-nQ-Eeb"/>
+                            <constraint firstAttribute="trailing" secondItem="yxP-R9-ly6" secondAttribute="trailing" id="roR-f0-gzt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loaderView" destination="uBL-Gi-2Tb" id="9Du-l5-lhT"/>
+                    </connections>
+                </viewController>
+                <customObject id="nRu-iN-fr6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="877" y="771.5"/>
+        </scene>
+        <!--Large Loader-->
+        <scene sceneID="VHC-KU-dPn">
+            <objects>
+                <viewController storyboardIdentifier="LargeLoaderViewController" id="iWO-g4-3TF" userLabel="Large Loader" customClass="LoaderViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="u8Z-ap-ox5">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="214"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="76c-zq-uc7" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="214"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IaY-eW-wWt">
+                                <rect key="frame" x="95" y="67" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="SjI-Ie-6UN"/>
+                                    <constraint firstAttribute="height" constant="80" id="u3F-qB-Ir4"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Loader-Large" id="sMZ-lw-oIw"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="IaY-eW-wWt" secondAttribute="centerX" id="Ch8-Ma-shS"/>
+                            <constraint firstAttribute="centerY" secondItem="IaY-eW-wWt" secondAttribute="centerY" id="MTC-qv-TO0"/>
+                            <constraint firstAttribute="trailing" secondItem="76c-zq-uc7" secondAttribute="trailing" id="PCt-GE-eGE"/>
+                            <constraint firstItem="76c-zq-uc7" firstAttribute="top" secondItem="u8Z-ap-ox5" secondAttribute="top" id="QJi-5G-GpI"/>
+                            <constraint firstAttribute="bottom" secondItem="76c-zq-uc7" secondAttribute="bottom" id="ZNy-GU-ALO"/>
+                            <constraint firstItem="76c-zq-uc7" firstAttribute="leading" secondItem="u8Z-ap-ox5" secondAttribute="leading" id="czA-gG-oEG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loaderView" destination="IaY-eW-wWt" id="RYQ-FO-hkt"/>
+                    </connections>
+                </viewController>
+                <customObject id="19z-pm-w2K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1152" y="801"/>
+        </scene>
         <!--Friends-->
         <scene sceneID="bIa-98-xxa">
             <objects>
@@ -1949,7 +2208,7 @@
                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="ozp-GG-kE1">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="ozp-GG-kE1" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2550,6 +2809,8 @@
         <image name="Footer-Volume-3" width="16" height="15"/>
         <image name="Footer-Volume-Off" width="16" height="13"/>
         <image name="List-Arrow" width="9" height="14"/>
+        <image name="Loader-Large" width="80" height="80"/>
+        <image name="Loader-Small" width="32" height="32"/>
         <image name="Nav-Blogs-Off" width="22" height="24"/>
         <image name="Nav-Blogs-On" width="22" height="24"/>
         <image name="Nav-Favorites-Off" width="24" height="21"/>

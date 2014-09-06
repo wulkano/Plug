@@ -67,9 +67,6 @@ class MainViewController: NSViewController {
     func updateUIForSection(section: NavigationSection) {
         var newViewController = viewControllerForSection(section)
         navigationController.setNewRootViewController(newViewController, animated: true)
-//        setMainContentSubview(newViewController.view)
-//        transitionMainContentViewController(newViewController)
-//        currentViewController = newViewController
     }
     
     func viewControllerForSection(section: NavigationSection) -> NSViewController {
@@ -113,17 +110,6 @@ class MainViewController: NSViewController {
             addChildViewController(newController)
             return newController
         }
-    }
-    
-    func setMainContentSubview(view: NSView) {
-        view.frame = mainContentView.bounds
-        view.translatesAutoresizingMaskIntoConstraints = false
-        mainContentView.addSubview(view)
-        
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: nil, metrics: nil, views: ["view": view])
-        mainContentView.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: ["view": view])
-        mainContentView.addConstraints(constraints)
     }
     
     func transitionMainContentViewController(controller: NSViewController) {
