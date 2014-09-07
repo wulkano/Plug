@@ -9,14 +9,14 @@
 import Cocoa
 
 class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
-    var tableView: NSTableView
     var playlist: Playlist?
     var currentPage: Int = 1
     var loadingData: Bool = false
     var allTracksLoaded: Bool = false
+    var viewController: BasePlaylistViewController
     
-    init(tableView: NSTableView) {
-        self.tableView = tableView
+    init(viewController: BasePlaylistViewController) {
+        self.viewController = viewController
         super.init()
     }
     
@@ -31,8 +31,9 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func requestInitialValuesSuccess(newPlaylist: Playlist) {
         playlist = newPlaylist
-        tableView.reloadData()
+        viewController.tableView.reloadData()
         loadingData = false
+        viewController.initialValuesLoaded()
     }
     
     func requestInitialValuesFailure(error: NSError) {
@@ -53,7 +54,7 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func requestNextPageSuccess(tracks: [Track]) {
         playlist!.addTracks(tracks)
-        tableView.reloadData()
+        viewController.tableView.reloadData()
         currentPage++
         loadingData = false
     }

@@ -13,6 +13,6 @@ class FeedPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = FeedPlaylistDataSource(playlistSubType: .All, tableView: tableView)
+        dataSource = FeedPlaylistDataSource(playlistSubType: .All, viewController: self)
     }
 }

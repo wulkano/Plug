@@ -13,6 +13,6 @@ class LatestPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = LatestPlaylistDataSource(tableView: tableView)
+        dataSource = LatestPlaylistDataSource(viewController: self)
     }
 }

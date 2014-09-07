@@ -11,10 +11,10 @@ import Cocoa
 class BlogPlaylistDataSource: BasePlaylistDataSource {
     var blog: Blog
     
-    init(blog: Blog, tableView: NSTableView) {
+    init(blog: Blog, viewController: BasePlaylistViewController) {
         self.blog = blog
         
-        super.init(tableView: tableView)
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

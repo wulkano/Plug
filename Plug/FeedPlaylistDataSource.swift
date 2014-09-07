@@ -11,10 +11,10 @@ import Cocoa
 class FeedPlaylistDataSource: BasePlaylistDataSource {
     var playlistSubType: FeedPlaylistSubType
     
-    init(playlistSubType: FeedPlaylistSubType, tableView: NSTableView) {
+    init(playlistSubType: FeedPlaylistSubType, viewController: BasePlaylistViewController) {
         self.playlistSubType = playlistSubType
         
-        super.init(tableView: tableView)
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

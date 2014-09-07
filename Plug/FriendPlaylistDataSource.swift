@@ -11,10 +11,10 @@ import Cocoa
 class FriendPlaylistDataSource: BasePlaylistDataSource {
     var friend: Friend
     
-    init(friend: Friend, tableView: NSTableView) {
+    init(friend: Friend, viewController: BasePlaylistViewController) {
         self.friend = friend
         
-        super.init(tableView: tableView)
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

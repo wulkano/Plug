@@ -268,7 +268,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
         var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = trackValue.artist
         Notifications.Post.PushViewController(viewController, sender: self)
-        viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, tableView: viewController.tableView)
+        viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, viewController: viewController)
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {

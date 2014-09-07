@@ -88,7 +88,7 @@ class SingleBlogViewController: NSViewController {
         
         ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
 
-        playlistViewController.dataSource = BlogPlaylistDataSource(blog: representedBlog, tableView: playlistViewController.tableView)
+        playlistViewController.dataSource = BlogPlaylistDataSource(blog: representedBlog, viewController: playlistViewController)
     }
     
     func addLoadingView() {

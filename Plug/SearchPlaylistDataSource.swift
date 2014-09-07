@@ -12,11 +12,11 @@ class SearchPlaylistDataSource: BasePlaylistDataSource {
     var searchKeywords: String
     var playlistSubType: SearchPlaylistSubType
     
-    init(searchKeywords: String, playlistSubType: SearchPlaylistSubType, tableView: NSTableView) {
+    init(searchKeywords: String, playlistSubType: SearchPlaylistSubType, viewController: BasePlaylistViewController) {
         self.searchKeywords = searchKeywords
         self.playlistSubType = playlistSubType
         
-        super.init(tableView: tableView)
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

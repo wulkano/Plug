@@ -148,6 +148,6 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
         var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = genre.name
         Notifications.Post.PushViewController(viewController, sender: self)
-        viewController.dataSource = GenrePlaylistDataSource(genre: genre, tableView: viewController.tableView)
+        viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
     }
 }

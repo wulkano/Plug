@@ -13,6 +13,6 @@ class PopularPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataSource = PopularPlaylistDataSource(playlistSubType: .Now, tableView: tableView)
+        dataSource = PopularPlaylistDataSource(playlistSubType: .Now, viewController: self)
     }
 }

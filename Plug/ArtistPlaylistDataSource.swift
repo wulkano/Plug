@@ -11,10 +11,10 @@ import Cocoa
 class ArtistPlaylistDataSource: BasePlaylistDataSource {
     var artistName: String
     
-    init(artistName: String, tableView: NSTableView) {
+    init(artistName: String, viewController: BasePlaylistViewController) {
         self.artistName = artistName
         
-        super.init(tableView: tableView)
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

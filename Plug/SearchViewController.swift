@@ -24,14 +24,12 @@ class SearchViewController: NSViewController {
         let keywords = sender.stringValue
         if keywords == "" { return }
 
-        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, tableView: playlistViewController.tableView!)
+        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, viewController: playlistViewController)
     }
     
     func addPlaylistViewController() {
         playlistViewController = (storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController)
-        
         addChildViewController(playlistViewController)
-        
         ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: searchResultsView)
     }
 }

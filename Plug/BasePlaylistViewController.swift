@@ -18,6 +18,7 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
             dataSourceChanged()
         }
     }
+    var loaderViewController: LoaderViewController?
     
     let infiniteScrollTriggerHeight: CGFloat = 40
     
@@ -34,11 +35,6 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
         tableView.extendedDelegate = self
         scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
         scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
-        
-        if dataSource != nil {
-            dataSource!.tableView = tableView
-            tableView.setDataSource(dataSource!)
-        }
     }
     
     func scrollViewDidScroll(notification: NSNotification) {
@@ -54,9 +50,13 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
     }
     
     func dataSourceChanged() {
-        tableView.setDataSource(self.dataSource!)
-        self.dataSource!.tableView = tableView
-        self.dataSource!.loadInitialValues()
+        tableView.setDataSource(dataSource!)
+        dataSource!.loadInitialValues()
+        addLoaderView()
+    }
+    
+    func initialValuesLoaded() {
+        removeLoaderView()
     }
     
     func cellViewForRow(row: Int) -> BasePlaylistTableCellView? {
@@ -91,5 +91,16 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
         default:
             super.keyDown(theEvent)
         }
+    }
+    
+    func addLoaderView() {
+        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
+        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
+        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
+    }
+    
+    func removeLoaderView() {
+        loaderViewController!.view.removeFromSuperview()
+        loaderViewController = nil
     }
 }

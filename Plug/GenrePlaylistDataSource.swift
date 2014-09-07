@@ -11,10 +11,10 @@ import Cocoa
 class GenrePlaylistDataSource: BasePlaylistDataSource {
     var genre: Genre
     
-    init(genre: Genre, tableView: NSTableView) {
+    init(genre: Genre, viewController: BasePlaylistViewController) {
         self.genre = genre
         
-        super.init(tableView: tableView)
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

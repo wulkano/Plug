@@ -13,6 +13,6 @@ class FavoritesPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = FavoritesPlaylistDataSource(tableView: tableView)
+        dataSource = FavoritesPlaylistDataSource(viewController: self)
     }
 }

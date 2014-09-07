@@ -67,11 +67,8 @@ class SingleFriendViewController: NSViewController {
     
     func loadPlaylist() {
         playlistViewController = storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
-        
         addChildViewController(playlistViewController)
-        
         ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
-        
-        playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, tableView: playlistViewController.tableView)
+        playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, viewController: playlistViewController)
     }
 }
