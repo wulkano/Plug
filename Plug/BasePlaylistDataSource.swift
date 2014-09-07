@@ -33,11 +33,12 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
         playlist = newPlaylist
         viewController.tableView.reloadData()
         loadingData = false
-        viewController.initialValuesLoaded()
+        viewController.requestInitialValuesFinished()
     }
     
     func requestInitialValuesFailure(error: NSError) {
         loadingError(error)
+        viewController.requestInitialValuesFinished()
     }
     
     // TODO: find a way to mark the end of a playlist and prevent further calls
@@ -54,6 +55,8 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func requestNextPageSuccess(tracks: [Track]) {
         playlist!.addTracks(tracks)
+        // TODO: Don't reload all data causes tablecellviews to flash
+        // find way to tell table view to append data
         viewController.tableView.reloadData()
         currentPage++
         loadingData = false

@@ -34,7 +34,8 @@ class SingleFriendViewController: NSViewController {
     
     func representedObjectChanged() {
         if representedObject == nil { return }
-//        updateImage()
+        
+        updateImage()
         updateUsername()
         updateFavoritesCount()
         updateFriendsCount()

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A343f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.9"/>
     </dependencies>
     <scenes>
@@ -497,7 +498,6 @@
                                             </tableColumns>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseEnterExit" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseDidScroll" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </tableView>
                                     </subviews>
@@ -767,7 +767,6 @@
                                             </tableColumns>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseEnterExit" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseDidScroll" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </tableView>
                                     </subviews>
@@ -1037,7 +1036,6 @@
                                             </tableColumns>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseEnterExit" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseDidScroll" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </tableView>
                                     </subviews>
@@ -1299,7 +1297,6 @@
                                             </tableColumns>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseEnterExit" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseDidScroll" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </tableView>
                                     </subviews>
@@ -1583,7 +1580,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-by-H46">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-by-H46" customClass="CircleMaskImageView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="17" y="25" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="BG8-Hg-zii"/>
@@ -1599,10 +1596,10 @@
                                     <constraint firstItem="eJC-Zm-LDf" firstAttribute="top" secondItem="1SR-OP-NdY" secondAttribute="top" constant="17" id="JFe-Q9-yBT"/>
                                     <constraint firstItem="8V4-nf-b46" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="L0k-jI-TMq"/>
                                     <constraint firstItem="jV4-fD-OoP" firstAttribute="leading" secondItem="1SR-OP-NdY" secondAttribute="leading" constant="75" id="LtU-3J-f0Z"/>
+                                    <constraint firstAttribute="centerY" secondItem="g5U-by-H46" secondAttribute="centerY" id="M8j-he-9Dl"/>
                                     <constraint firstAttribute="height" constant="86" id="MMu-Nl-03y"/>
                                     <constraint firstAttribute="trailing" secondItem="eJC-Zm-LDf" secondAttribute="trailing" constant="20" id="N7q-Fq-U1M"/>
                                     <constraint firstItem="3Cl-Ij-Pci" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="URQ-8T-Erv"/>
-                                    <constraint firstItem="g5U-by-H46" firstAttribute="top" secondItem="1SR-OP-NdY" secondAttribute="top" constant="25" id="bsg-Fz-tFE"/>
                                     <constraint firstItem="jV4-fD-OoP" firstAttribute="top" secondItem="eJC-Zm-LDf" secondAttribute="bottom" constant="8" id="rU5-3V-TAY"/>
                                     <constraint firstItem="8V4-nf-b46" firstAttribute="leading" secondItem="jV4-fD-OoP" secondAttribute="trailing" constant="3" id="vUY-EM-d1V"/>
                                     <constraint firstItem="Q4p-RU-UKf" firstAttribute="leading" secondItem="8V4-nf-b46" secondAttribute="trailing" constant="15" id="wvm-G1-RSF"/>
@@ -1840,8 +1837,12 @@
                                                                         <binding destination="CO0-wB-bR7" name="value" keyPath="objectValue.username" id="IaQ-7Q-jpl"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daH-Ku-Kdh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="64"/>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="daH-Ku-Kdh" customClass="CircleMaskImageView" customModule="Plug" customModuleProvider="target">
+                                                                    <rect key="frame" x="17" y="14" width="36" height="36"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="36" id="0U6-57-tal"/>
+                                                                        <constraint firstAttribute="height" constant="36" id="Hhv-bL-qd7"/>
+                                                                    </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Avatar-Placeholder" id="FmF-VM-QMI"/>
                                                                 </imageView>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lVF-EP-cb3">
@@ -1856,12 +1857,14 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="xvd-pS-7So" secondAttribute="trailing" constant="27" id="1Zu-tE-JNw"/>
                                                                 <constraint firstItem="rKX-D5-byy" firstAttribute="leading" secondItem="CO0-wB-bR7" secondAttribute="leading" constant="75" id="5kk-Ed-xWK"/>
+                                                                <constraint firstAttribute="centerY" secondItem="daH-Ku-Kdh" secondAttribute="centerY" id="7Ln-dL-Mgo"/>
                                                                 <constraint firstAttribute="trailing" secondItem="lVF-EP-cb3" secondAttribute="trailing" constant="15" id="BY2-gx-Tdq"/>
                                                                 <constraint firstItem="xvd-pS-7So" firstAttribute="leading" secondItem="CO0-wB-bR7" secondAttribute="leading" constant="75" id="Psn-7J-m7X"/>
                                                                 <constraint firstAttribute="trailing" secondItem="rKX-D5-byy" secondAttribute="trailing" constant="27" id="akh-zC-Y63"/>
                                                                 <constraint firstAttribute="bottom" secondItem="xvd-pS-7So" secondAttribute="bottom" constant="14" id="bJU-wL-Kc8"/>
                                                                 <constraint firstAttribute="centerY" secondItem="lVF-EP-cb3" secondAttribute="centerY" id="n21-IS-1NM"/>
                                                                 <constraint firstItem="rKX-D5-byy" firstAttribute="top" secondItem="CO0-wB-bR7" secondAttribute="top" constant="9" id="teU-Xj-Zcr"/>
+                                                                <constraint firstItem="daH-Ku-Kdh" firstAttribute="leading" secondItem="CO0-wB-bR7" secondAttribute="leading" constant="17" id="xtG-ry-z7j"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="avatarView" destination="daH-Ku-Kdh" id="RLU-z2-NtF"/>
@@ -2193,7 +2196,6 @@
                                             </tableColumns>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseEnterExit" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="tracksMouseDidScroll" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </tableView>
                                     </subviews>

@@ -9,21 +9,28 @@
 import Cocoa
 
 class GenresDataSource: NSObject, NSTableViewDataSource {
-    var tableView: NSTableView?
+    var viewController: GenresViewController
     var filtering: Bool = false
     var allGenres: [Genre]?
     var tableContents: [GenresListItem]?
     var filteredTableContents: [GenresListItem]?
+    
+    init(viewController: GenresViewController) {
+        self.viewController = viewController
+        super.init()
+    }
 
     func loadInitialValues() {
         HypeMachineAPI.Genres.AllGenres(
             {genres in
                 self.allGenres = genres
                 self.generateTableContents(genres)
-                self.tableView?.reloadData()
+                self.viewController.tableView.reloadData()
+                self.viewController.requestInitialValuesFinished()
             }, failure: {error in
                 Notifications.Post.DisplayError(error, sender: self)
                 Logger.LogError(error)
+                self.viewController.requestInitialValuesFinished()
         })
     }
     
@@ -106,7 +113,7 @@ class GenresDataSource: NSObject, NSTableViewDataSource {
             var sortedGenres = filteredGenres.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
             filteredTableContents = GenresListItem.WrapGenreObjects(sortedGenres)
         }
-        tableView!.reloadData()
+        viewController.tableView.reloadData()
     }
 }
 

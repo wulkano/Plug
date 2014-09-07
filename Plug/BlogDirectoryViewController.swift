@@ -10,29 +10,27 @@ import Cocoa
 
 class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
-    var dataSource: BlogDirectoryDataSource?
+    var dataSource: BlogDirectoryDataSource!
+    var loaderViewController: LoaderViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
-        setupDataSource()
-    }
-    
-    func setupDataSource() {
-        self.dataSource = BlogDirectoryDataSource()
+        
+        dataSource = BlogDirectoryDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        self.dataSource!.tableView = tableView
-        self.dataSource!.loadInitialValues()
+        addLoaderView()
+        dataSource.loadInitialValues()
     }
     
     func itemForRow(row: Int) -> BlogDirectoryItem {
-        return dataSource!.itemForRow(row)
+        return dataSource.itemForRow(row)
     }
     
     func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        return dataSource!.itemAfterRow(row)
+        return dataSource.itemAfterRow(row)
     }
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
@@ -95,7 +93,7 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, Extend
     
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue
-        dataSource!.filterByKeywords(keywords)
+        dataSource.filterByKeywords(keywords)
     }
     
     func tableView(tableView: NSTableView, didClickRow row: Int) {
@@ -111,5 +109,20 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, Extend
         var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.representedObject = blog
+    }
+    
+    func requestInitialValuesFinished() {
+        removeLoaderView()
+    }
+    
+    func addLoaderView() {
+        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
+        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
+        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
+    }
+    
+    func removeLoaderView() {
+        loaderViewController!.view.removeFromSuperview()
+        loaderViewController = nil
     }
 }

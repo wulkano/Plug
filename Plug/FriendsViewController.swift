@@ -10,30 +10,28 @@ import Cocoa
 
 class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
-    var dataSource: FriendsDataSource?
+    var dataSource: FriendsDataSource!
+    var loaderViewController: LoaderViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
-        setupDataSource()
-    }
-    
-    func setupDataSource() {
-        self.dataSource = FriendsDataSource()
+
+        dataSource = FriendsDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        self.dataSource!.tableView = tableView
-        self.dataSource!.loadInitialValues()
+        addLoaderView()
+        dataSource.loadInitialValues()
     }
     
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue
-        dataSource!.filterByKeywords(keywords)
+        dataSource.filterByKeywords(keywords)
     }
     
     func tableView(tableView: NSTableView, didClickRow row: Int) {
-        let friend = dataSource!.itemForRow(row)
+        let friend = dataSource.itemForRow(row)
         loadSingleFriendView(friend)
     }
     
@@ -41,5 +39,20 @@ class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTabl
         var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.representedObject = friend
+    }
+    
+    func requestInitialValuesFinished() {
+        removeLoaderView()
+    }
+    
+    func addLoaderView() {
+        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
+        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
+        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
+    }
+    
+    func removeLoaderView() {
+        loaderViewController!.view.removeFromSuperview()
+        loaderViewController = nil
     }
 }

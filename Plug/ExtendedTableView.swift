@@ -10,11 +10,17 @@ import Cocoa
 
 class ExtendedTableView: NSTableView {
     @IBInspectable var tracksMouseEnterExit: Bool = false
-    @IBInspectable var tracksMouseDidScroll: Bool = false
     
     var trackingArea: NSTrackingArea?
     var extendedDelegate: ExtendedTableViewDelegate?
     var mouseInsideRow: Int = -1
+    
+    var clipView: NSClipView {
+        return superview as NSClipView
+    }
+    var scrollView: NSScrollView {
+        return clipView.superview as NSScrollView
+    }
     
     deinit {
         Notifications.Unsubscribe.All(self)
@@ -37,11 +43,13 @@ class ExtendedTableView: NSTableView {
     }
     
     override func viewDidMoveToWindow() {
-        if tracksMouseDidScroll {
-            let clipView = superview as NSClipView
-            clipView.postsBoundsChangedNotifications = true
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "mouseDidScroll", name: NSViewBoundsDidChangeNotification, object: clipView)
-        }
+//        if tracksMouseDidScroll {
+//            clipView.postsBoundsChangedNotifications = true
+//            NSNotificationCenter.defaultCenter().addObserver(self, selector: "mouseDidScroll", name: NSViewBoundsDidChangeNotification, object: clipView)
+//        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
     }
 
     override func mouseDown(theEvent: NSEvent!) {
@@ -83,8 +91,12 @@ class ExtendedTableView: NSTableView {
         mouseInsideRow = -1
     }
     
-    func mouseDidScroll() {
-        extendedDelegate?.mouseDidScrollTableView?(self)
+    func scrollViewDidStartScrolling(notification: NSNotification) {
+        mouseExited(nil)
+    }
+    
+    func scrollViewDidEndScrolling(notification: NSNotification) {
+        extendedDelegate?.didEndScrollingTableView?(self)
     }
 }
 
@@ -92,5 +104,5 @@ class ExtendedTableView: NSTableView {
     optional func tableView(tableView: NSTableView, didClickRow row: Int)
     optional func tableView(tableView: NSTableView, mouseEnteredRow row: Int)
     optional func tableView(tableView: NSTableView, mouseExitedRow row: Int)
-    optional func mouseDidScrollTableView(tableView: NSTableView)
+    optional func didEndScrollingTableView(tableView: NSTableView)
 }

@@ -29,24 +29,10 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
-        
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
         scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
         scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
-    }
-    
-    func scrollViewDidScroll(notification: NSNotification) {
-        if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
-            dataSource!.loadNextPage()
-        }
-    }
-    
-    func distanceFromBottomOfScrollView() -> CGFloat {
-        var documentViewHeight = scrollView.documentView.frame.height
-        var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
-        return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }
     
     func dataSourceChanged() {
@@ -55,7 +41,7 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
         addLoaderView()
     }
     
-    func initialValuesLoaded() {
+    func requestInitialValuesFinished() {
         removeLoaderView()
     }
     
@@ -76,10 +62,16 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
         cellViewForRow(row)!.mouseInside = false
     }
     
-    func mouseDidScrollTableView() {
-        if let cellView = cellViewForRow(previousMouseInsideRow) {
-            cellView.mouseInside = false
+    func didEndScrollingTableView(tableView: NSTableView) {
+        if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
+            dataSource!.loadNextPage()
         }
+    }
+    
+    func distanceFromBottomOfScrollView() -> CGFloat {
+        var documentViewHeight = scrollView.documentView.frame.height
+        var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
+        return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }
     
     override func keyDown(theEvent: NSEvent!) {

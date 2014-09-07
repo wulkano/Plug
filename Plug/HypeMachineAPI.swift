@@ -26,6 +26,9 @@ struct HypeMachineAPI  {
     private static func GetImage(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.responseSerializer = AFImageResponseSerializer()
+        // Need this to load images from S3
+        let contentTypesSet = manager.responseSerializer.acceptableContentTypes;
+        manager.responseSerializer.acceptableContentTypes = contentTypesSet.setByAddingObject("application/octet-stream")
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     

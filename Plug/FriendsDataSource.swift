@@ -9,21 +9,26 @@
 import Cocoa
 
 class FriendsDataSource: NSObject, NSTableViewDataSource {
-    var tableView: NSTableView?
+    var viewController: FriendsViewController
     var filtering: Bool = false
     var tableContents: [Friend]?
     var filteredTableContents: [Friend]?
     
-    // TODO: Sorting
-    // TODO: Grouping
+    init(viewController: FriendsViewController) {
+        self.viewController = viewController
+        super.init()
+    }
+    
     func loadInitialValues() {
         HypeMachineAPI.Friends.AllFriends(
             {friends in
                 self.generateTableContents(friends)
-                self.tableView?.reloadData()
+                self.viewController.tableView.reloadData()
+                self.viewController.requestInitialValuesFinished()
             }, failure: {error in
                 Notifications.Post.DisplayError(error, sender: self)
                 Logger.LogError(error)
+                self.viewController.requestInitialValuesFinished()
         })
     }
     
@@ -67,6 +72,6 @@ class FriendsDataSource: NSObject, NSTableViewDataSource {
                 ($0.username =~ keywords) || ($0.fullName =~ keywords)
             }
         }
-        tableView!.reloadData()
+        viewController.tableView.reloadData()
     }
 }

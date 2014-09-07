@@ -9,21 +9,28 @@
 import Cocoa
 
 class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
-    var tableView: NSTableView?
+    var viewController: BlogDirectoryViewController
     var filtering: Bool = false
     var allBlogs: [Blog]?
     var tableContents: [BlogDirectoryItem]?
     var filteredTableContents: [BlogDirectoryItem]?
+    
+    init(viewController: BlogDirectoryViewController) {
+        self.viewController = viewController
+        super.init()
+    }
     
     func loadInitialValues() {
         HypeMachineAPI.Blogs.AllBlogs(
             {blogs in
                 self.allBlogs = blogs
                 self.generateTableContents(blogs)
-                self.tableView?.reloadData()
+                self.viewController.tableView!.reloadData()
+                self.viewController.requestInitialValuesFinished()
             }, failure: {error in
                 Notifications.Post.DisplayError(error, sender: self)
                 Logger.LogError(error)
+                self.viewController.requestInitialValuesFinished()
         })
     }
     
@@ -113,7 +120,7 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
             var sortedBlogs = filteredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
             filteredTableContents = BlogDirectoryItem.WrapBlogObjects(sortedBlogs)
         }
-        tableView!.reloadData()
+        viewController.tableView!.reloadData()
     }
 }
 

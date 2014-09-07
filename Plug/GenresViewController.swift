@@ -10,21 +10,19 @@ import Cocoa
 
 class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
-    var dataSource: GenresDataSource?
+    var dataSource: GenresDataSource!
+    var loaderViewController: LoaderViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
-        setupDataSource()
-    }
-    
-    func setupDataSource() {
-        self.dataSource = GenresDataSource()
+
+        self.dataSource = GenresDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        self.dataSource!.tableView = tableView
-        self.dataSource!.loadInitialValues()
+        addLoaderView()
+        self.dataSource.loadInitialValues()
     }
     
     func itemForRow(row: Int) -> GenresListItem {
@@ -149,5 +147,20 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
         viewController.title = genre.name
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
+    }
+    
+    func requestInitialValuesFinished() {
+        removeLoaderView()
+    }
+    
+    func addLoaderView() {
+        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
+        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
+        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
+    }
+    
+    func removeLoaderView() {
+        loaderViewController!.view.removeFromSuperview()
+        loaderViewController = nil
     }
 }
