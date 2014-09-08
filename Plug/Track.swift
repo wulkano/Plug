@@ -31,18 +31,10 @@ class Track: NSObject {
     init(JSON json: NSDictionary) {
         
         id = json["itemid"] as String
-        if json["artist"] is String {
-            artist = json["artist"] as String
-            if artist == "" { artist = "Unknown artist" }
-        } else {
-            artist = "Unknown artist"
-        }
-        if json["title"] is String {
-            title = json["title"] as String
-            if title == "" { title = "Unknown track" }
-        } else {
-            title = "Unknown track"
-        }
+        artist = json["artist"] as? String ?? "Unknown artist"
+        if artist == "" { artist = "Unknown artist" }
+        title = json["title"] as? String ?? "Unknown track"
+        if title == "" { title = "Unknown track" }
         if json["ts_loved_me"] is Int {
             loved = true
         } else {
@@ -68,7 +60,7 @@ class Track: NSObject {
         postedBy = json["sitename"] as String
         postedById = json["siteid"] as Int
         postedCount = json["posted_count"] as Int
-        postedByDescription = json["description"] as String
+        postedByDescription = json["description"] as? String ?? "No description available"
         datePosted = NSDate(timeIntervalSince1970: json["dateposted"] as NSTimeInterval)
         if json["pub_audio_unavail"] is Bool {
             audioUnavailable = true
@@ -114,6 +106,10 @@ class Track: NSObject {
                 return thumbURLLarge!
             }
         }
+    }
+    
+    func hypeMachineURL() -> NSURL {
+        return NSURL(string: "http://hypem.com/track/\(id)")
     }
     
     enum ImageSize {

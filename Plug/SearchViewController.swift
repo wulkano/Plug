@@ -8,28 +8,27 @@
 
 import Cocoa
 
-class SearchViewController: NSViewController {
+class SearchViewController: BaseContentViewController {
     @IBOutlet var searchResultsView: NSView!
     var playlistSubType: SearchPlaylistSubType = .MostFavorites
-    var playlistViewController: BasePlaylistViewController!
+    var playlistViewController: BasePlaylistViewController?
     var dataSource: SearchPlaylistDataSource?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        addPlaylistViewController()
-    }
     
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue
         if keywords == "" { return }
 
-        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, viewController: playlistViewController)
+        ensurePlaylistViewController()
+        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, viewController: playlistViewController!)
     }
     
-    func addPlaylistViewController() {
-        playlistViewController = (storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController)
-        addChildViewController(playlistViewController)
-        ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: searchResultsView)
+    func ensurePlaylistViewController() {
+        if playlistViewController == nil {
+            playlistViewController = (storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController)
+            addChildViewController(playlistViewController!)
+            ViewPlacementHelper.AddFullSizeSubview(playlistViewController!.view, toSuperView: searchResultsView)
+        }
     }
+    
+    override func addLoaderView() {}
 }

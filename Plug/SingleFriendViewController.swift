@@ -8,8 +8,9 @@
 
 import Cocoa
 
-class SingleFriendViewController: NSViewController {
+class SingleFriendViewController: BaseContentViewController {
     @IBOutlet var avatarView: NSImageView!
+    @IBOutlet weak var backgroundView: BackgroundBorderView!
     @IBOutlet weak var usernameTextField: NSTextField!
     @IBOutlet weak var favoritesCountTextField: NSTextField!
     @IBOutlet weak var friendsCountTextField: NSTextField!
@@ -26,12 +27,6 @@ class SingleFriendViewController: NSViewController {
         return representedObject as Friend
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-        
-    }
-    
     func representedObjectChanged() {
         if representedObject == nil { return }
         
@@ -40,6 +35,7 @@ class SingleFriendViewController: NSViewController {
         updateFavoritesCount()
         updateFriendsCount()
         loadPlaylist()
+        removeLoaderView()
     }
     
     func updateImage() {
@@ -71,5 +67,11 @@ class SingleFriendViewController: NSViewController {
         addChildViewController(playlistViewController)
         ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
         playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, viewController: playlistViewController)
+    }
+    
+    override func addLoaderView() {
+        loaderViewController = storyboard.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
+        let insets = NSEdgeInsetsMake(0, 0, 1, 0)
+        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
     }
 }

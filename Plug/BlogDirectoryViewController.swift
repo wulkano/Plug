@@ -8,10 +8,9 @@
 
 import Cocoa
 
-class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     var dataSource: BlogDirectoryDataSource!
-    var loaderViewController: LoaderViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,6 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, Extend
         
         dataSource = BlogDirectoryDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        addLoaderView()
         dataSource.loadInitialValues()
     }
     
@@ -96,7 +94,7 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, Extend
         dataSource.filterByKeywords(keywords)
     }
     
-    func tableView(tableView: NSTableView, didClickRow row: Int) {
+    func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row) {
         case .BlogItem(let blog):
             loadSingleBlogView(blog)
@@ -113,16 +111,5 @@ class BlogDirectoryViewController: NSViewController, NSTableViewDelegate, Extend
     
     func requestInitialValuesFinished() {
         removeLoaderView()
-    }
-    
-    func addLoaderView() {
-        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
-        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
-        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
-    }
-    
-    func removeLoaderView() {
-        loaderViewController!.view.removeFromSuperview()
-        loaderViewController = nil
     }
 }

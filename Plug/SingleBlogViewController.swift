@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SingleBlogViewController: NSViewController {
+class SingleBlogViewController: BaseContentViewController {
     @IBOutlet weak var backgroundView: BackgroundBorderView!
     @IBOutlet weak var titleButton: HyperlinkButton!
     @IBOutlet weak var detailsTextField: NSTextField!
@@ -16,7 +16,6 @@ class SingleBlogViewController: NSViewController {
     @IBOutlet weak var playlistContainer: NSView!
     
     var playlistViewController: BasePlaylistViewController!
-    var loaderViewController: LoaderViewController?
     
     override var representedObject: AnyObject! {
         didSet {
@@ -25,12 +24,6 @@ class SingleBlogViewController: NSViewController {
     }
     var representedBlog: Blog {
         return representedObject as Blog
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        addLoadingView()
     }
     
     func representedObjectChanged() {
@@ -72,7 +65,7 @@ class SingleBlogViewController: NSViewController {
                 self.backgroundView.backgroundColor = colorArt.backgroundColor
                 self.titleButton.textColor = colorArt.primaryColor
                 self.detailsTextField.attributedStringValue = attributedBlogDetails
-                self.removeLoadingView()
+                self.removeLoaderView()
             })
         })
     }
@@ -91,14 +84,9 @@ class SingleBlogViewController: NSViewController {
         playlistViewController.dataSource = BlogPlaylistDataSource(blog: representedBlog, viewController: playlistViewController)
     }
     
-    func addLoadingView() {
+    override func addLoaderView() {
         loaderViewController = storyboard.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
-    }
-    
-    func removeLoadingView() {
-        loaderViewController!.view.removeFromSuperview()
-        loaderViewController = nil
     }
 }

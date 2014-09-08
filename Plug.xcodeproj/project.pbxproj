@@ -21,6 +21,9 @@
 		FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
+		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
+		FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */; };
+		FA222A8B19BCEFE0005A631F /* TrackContextMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA222A8919BCEFE0005A631F /* TrackContextMenuController.xib */; };
 		FA24EDA21974A9A500A781C8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA11974A9A500A781C8 /* main.swift */; };
 		FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA51974A9A500A781C8 /* AppDelegate.swift */; };
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
@@ -175,6 +178,9 @@
 		FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
+		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
+		FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackContextMenuController.swift; sourceTree = "<group>"; };
+		FA222A8919BCEFE0005A631F /* TrackContextMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackContextMenuController.xib; sourceTree = "<group>"; };
 		FA24ED9C1974A9A500A781C8 /* Plug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA24EDA01974A9A500A781C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA24EDA11974A9A500A781C8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -348,6 +354,21 @@
 				FA9A2F4219B68AF60057080C /* NSWindows */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FA222A8719BCCA68005A631F /* ContentViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA222A8519BCC947005A631F /* BaseContentViewController.swift */,
+				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
+				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
+				FA774999198C07110048863F /* GenresViewController.swift */,
+				FAA34A8B19B2E1FA0038868A /* PlaylistViewControllers */,
+				FA77499D198C0D180048863F /* SearchViewController.swift */,
+				FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */,
+				FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */,
+			);
+			name = ContentViewControllers;
 			sourceTree = "<group>";
 		};
 		FA24ED931974A9A500A781C8 = {
@@ -605,6 +626,7 @@
 		FA9A2F4419B6A5470057080C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FA222A8919BCEFE0005A631F /* TrackContextMenuController.xib */,
 				FA4C44F619A6C8BE0052D506 /* Login.storyboard */,
 				FA24EDA91974A9A500A781C8 /* Main.storyboard */,
 				FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */,
@@ -677,20 +699,15 @@
 		FACEEBED19ABC33A0093A81B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
+				FA222A8719BCCA68005A631F /* ContentViewControllers */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
-				FA77499F198C1CAA0048863F /* FriendsViewController.swift */,
-				FA774999198C07110048863F /* GenresViewController.swift */,
 				FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
 				FA9A2F3019B66C6F0057080C /* NavigationController.swift */,
-				FAA34A8B19B2E1FA0038868A /* PlaylistViewControllers */,
 				FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */,
-				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
-				FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */,
-				FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */,
 				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
+				FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -795,6 +812,7 @@
 				FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */,
 				FA24EDAB1974A9A500A781C8 /* Main.storyboard in Resources */,
 				FA4C44F719A6C8BE0052D506 /* Login.storyboard in Resources */,
+				FA222A8B19BCEFE0005A631F /* TrackContextMenuController.xib in Resources */,
 				FA410CF419A40C2600E71B20 /* Plug.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -904,6 +922,7 @@
 				FA6ADCF419BA69C300CCD371 /* SingleBlogImageView.swift in Sources */,
 				FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
+				FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */,
 				FA51263819762F66004D0776 /* NavigationButton.swift in Sources */,
 				FA3199AF19824E030097B081 /* Blog.swift in Sources */,
 				FA9EA03A199AD25800D9AB8A /* LatestPlaylistDataSource.swift in Sources */,
@@ -919,6 +938,7 @@
 				FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */,
 				FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */,
 				FA77499C198C07D10048863F /* Genre.swift in Sources */,
+				FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,
 				FA6ADCF919BA886C00CCD371 /* BlogPlaylistDataSource.swift in Sources */,

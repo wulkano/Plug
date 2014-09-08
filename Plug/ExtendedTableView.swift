@@ -59,9 +59,21 @@ class ExtendedTableView: NSTableView {
         
         super.mouseDown(theEvent)
         
-        if clickedRow != -1 {
-            extendedDelegate?.tableView?(self, didClickRow: clickedRow)
-        }
+        if clickedRow == -1 { return }
+
+        extendedDelegate?.tableView?(self, wasClicked: theEvent, atRow: clickedRow)
+    }
+    
+    override func rightMouseDown(theEvent: NSEvent!) {
+        let globalLocation = theEvent.locationInWindow
+        let localLocation = convertPoint(globalLocation, fromView: nil)
+        let clickedRow = rowAtPoint(localLocation)
+        
+        super.rightMouseDown(theEvent)
+        
+        if clickedRow == -1 { return }
+        
+        extendedDelegate?.tableView?(self, wasRightClicked: theEvent, atRow: clickedRow)
     }
     
     override func mouseMoved(theEvent: NSEvent!) {
@@ -101,7 +113,9 @@ class ExtendedTableView: NSTableView {
 }
 
 @objc protocol ExtendedTableViewDelegate {
-    optional func tableView(tableView: NSTableView, didClickRow row: Int)
+    
+    optional func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int)
+    optional func tableView(tableView: NSTableView, wasRightClicked theEvent: NSEvent, atRow row: Int)
     optional func tableView(tableView: NSTableView, mouseEnteredRow row: Int)
     optional func tableView(tableView: NSTableView, mouseExitedRow row: Int)
     optional func didEndScrollingTableView(tableView: NSTableView)

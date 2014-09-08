@@ -8,10 +8,9 @@
 
 import Cocoa
 
-class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+class GenresViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     var dataSource: GenresDataSource!
-    var loaderViewController: LoaderViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,6 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
 
         self.dataSource = GenresDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        addLoaderView()
         self.dataSource.loadInitialValues()
     }
     
@@ -133,7 +131,7 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
         }
     }
     
-    func tableView(tableView: NSTableView, didClickRow row: Int) {
+    func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row) {
         case .GenreItem(let genre):
             loadSingleGenreView(genre)
@@ -151,16 +149,5 @@ class GenresViewController: NSViewController, NSTableViewDelegate, ExtendedTable
     
     func requestInitialValuesFinished() {
         removeLoaderView()
-    }
-    
-    func addLoaderView() {
-        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
-        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
-        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
-    }
-    
-    func removeLoaderView() {
-        loaderViewController!.view.removeFromSuperview()
-        loaderViewController = nil
     }
 }

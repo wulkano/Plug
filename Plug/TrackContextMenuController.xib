@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A343f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="101000" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.9"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TrackContextMenuController" customModule="Plug" customModuleProvider="target">
+            <connections>
+                <outlet property="contextMenu" destination="hfR-Pa-fhh" id="V7T-gn-JRd"/>
+                <outlet property="view" destination="g58-zg-ECN" id="b2d-hz-o2J"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <menu id="hfR-Pa-fhh">
+            <items>
+                <menuItem title="Copy Hype Machine Link" id="dOg-cE-gI0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="copyHypeMachineLinkClicked:" target="-2" id="smL-Ec-dwV"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Open in Browser" id="b4v-4q-H1h">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openInBrowserClicked:" target="-2" id="i6i-W3-LbP"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="LOA-0Q-Egy"/>
+                <menuItem title="Find Track on Soundcloud" id="Z72-IW-GNB">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="findTrackOnSoundcloudClicked:" target="-2" id="XgF-pv-esE"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Find Artist on Soundcloud" id="Qvw-7q-Wjd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="findArtistOnSoundcloudClicked:" target="-2" id="Tra-SS-Ig0"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="rcG-Nz-NID"/>
+                <menuItem title="Share to Facebook" id="dd3-ZN-76N">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="shareToFacebookClicked:" target="-2" id="kKD-O4-Iv5"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Share to Twitter" id="SBb-vQ-l8F">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="shareToTwitterClicked:" target="-2" id="yxi-Bb-x98"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Share to Messages" id="NWs-3G-KDD">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="shareToMessagesClicked:" target="-2" id="qTG-yy-3Jg"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="87" y="518.5"/>
+        </menu>
+        <customView id="g58-zg-ECN" userLabel="Junk Placeholder">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <point key="canvasLocation" x="89.5" y="335"/>
+        </customView>
+    </objects>
+</document>

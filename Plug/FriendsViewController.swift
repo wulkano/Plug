@@ -8,10 +8,9 @@
 
 import Cocoa
 
-class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+class FriendsViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     var dataSource: FriendsDataSource!
-    var loaderViewController: LoaderViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +20,6 @@ class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTabl
 
         dataSource = FriendsDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        addLoaderView()
         dataSource.loadInitialValues()
     }
     
@@ -30,7 +28,7 @@ class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTabl
         dataSource.filterByKeywords(keywords)
     }
     
-    func tableView(tableView: NSTableView, didClickRow row: Int) {
+    func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         let friend = dataSource.itemForRow(row)
         loadSingleFriendView(friend)
     }
@@ -43,16 +41,5 @@ class FriendsViewController: NSViewController, NSTableViewDelegate, ExtendedTabl
     
     func requestInitialValuesFinished() {
         removeLoaderView()
-    }
-    
-    func addLoaderView() {
-        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
-        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
-        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
-    }
-    
-    func removeLoaderView() {
-        loaderViewController!.view.removeFromSuperview()
-        loaderViewController = nil
     }
 }

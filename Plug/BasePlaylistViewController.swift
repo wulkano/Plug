@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class BasePlaylistViewController: NSViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet weak var tableView: ExtendedTableView!
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
@@ -18,7 +18,6 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
             dataSourceChanged()
         }
     }
-    var loaderViewController: LoaderViewController?
     
     let infiniteScrollTriggerHeight: CGFloat = 40
     
@@ -85,14 +84,10 @@ class BasePlaylistViewController: NSViewController, NSTableViewDelegate, Extende
         }
     }
     
-    func addLoaderView() {
-        loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
-        let insets = NSEdgeInsetsMake(0, 0, 47, 0)
-        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
-    }
-    
-    func removeLoaderView() {
-        loaderViewController!.view.removeFromSuperview()
-        loaderViewController = nil
+    func tableView(tableView: NSTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
+        let menuController = TrackContextMenuController(nibName: "TrackContextMenuController", bundle: nil)
+        menuController.loadView()
+        menuController.representedObject = dataSource!.trackForRow(row)
+        NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
     }
 }

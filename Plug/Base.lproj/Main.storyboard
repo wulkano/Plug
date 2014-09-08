@@ -1437,7 +1437,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="ieC-oG-X1z"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="The 405 →" bezelStyle="regularSquare" alignment="left" imageScaling="proportionallyDown" inset="2" id="Cdb-Fd-tKK">
+                                        <buttonCell key="cell" type="bevel" title="The 405 →" bezelStyle="regularSquare" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="Cdb-Fd-tKK">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system" size="20"/>
                                         </buttonCell>
@@ -1638,6 +1638,7 @@
                     </view>
                     <connections>
                         <outlet property="avatarView" destination="g5U-by-H46" id="1hY-mU-vlV"/>
+                        <outlet property="backgroundView" destination="1SR-OP-NdY" id="BpQ-zA-M24"/>
                         <outlet property="favoritesCountTextField" destination="jV4-fD-OoP" id="bIs-9Z-LtH"/>
                         <outlet property="friendsCountTextField" destination="Q4p-RU-UKf" id="bge-hb-voo"/>
                         <outlet property="playlistContainer" destination="1ZP-pC-ILY" id="VBS-mu-qMg"/>
@@ -2849,7 +2850,7 @@
                                     <outlet property="titleTextField" destination="e2q-R0-tw3" id="jsZ-Ow-ULO"/>
                                 </connections>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="xdh-6R-51e">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="xdh-6R-51e" userLabel="Main Content">
                                 <rect key="frame" x="0.0" y="0.0" width="381" height="464"/>
                             </customView>
                         </subviews>

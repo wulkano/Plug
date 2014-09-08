@@ -52,62 +52,90 @@ struct HypeMachineAPI  {
     }
     
     struct Tracks {
-        static func Popular(subType: PopularPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        private static func getTracks(url: String, page: Int, count: Int, parameters: [NSObject: AnyObject]?, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
+            var fullParameters = parameters ?? [NSObject: AnyObject]()
+            fullParameters["page"] = "\(page)"
+            fullParameters["count"] = "\(count)"
+            fullParameters["hm_token"] = Authentication.GetToken()!
+            HypeMachineAPI.GetJSON(url,
+                parameters: fullParameters,
+                success: { operation, responseObject in
+                    let tracks = self.parseTracksFromResponse(responseObject)
+                    success(tracks: tracks, lastPage: false)
+                }, failure: { operation, error in
+                    if self.pageNotFound(operation) {
+                        success(tracks: [], lastPage: true)
+                    } else {
+                        failure(error: error)
+                    }
+            })
+        }
+        
+        private static func parseTracksFromResponse(responseObject: AnyObject) -> [Track] {
+            let responseArray = responseObject as NSArray
+            var tracks = [Track]()
+            for trackObject: AnyObject in responseArray {
+                let trackDictionary = trackObject as NSDictionary
+                let track = Track(JSON: trackDictionary)
+                tracks.append(track)
+            }
+            return tracks
+        }
+        
+        private static func pageNotFound(operation: AFHTTPRequestOperation) -> Bool {
+            return operation.response.statusCode == 404
+        }
+        
+        static func Popular(subType: PopularPlaylistSubType, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/popular"
-            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            let params = ["mode": subType.toRaw()]
+            getTracks(url, page: page, count: count, parameters: params, success: success, failure: failure)
         }
         
-        static func Favorites(page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func Favorites(page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/favorites"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            getTracks(url, page: page, count: count, parameters: nil, success: success, failure: failure)
         }
         
-        static func Latest(page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func Latest(page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tracks"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            getTracks(url, page: page, count: count, parameters: nil, success: success, failure: failure)
         }
         
-        static func Feed(subType: FeedPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func Feed(subType: FeedPlaylistSubType, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/feed"
-            let params = ["mode": subType.toRaw(), "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            let params = ["mode": subType.toRaw()]
+            getTracks(url, page: page, count: count, parameters: params, success: success, failure: failure)
         }
         
-        static func Search(searchKeywords: String, subType: SearchPlaylistSubType, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func Search(searchKeywords: String, subType: SearchPlaylistSubType, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tracks"
             let escapedSearchKeywords = searchKeywords.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            let params = ["sort": subType.toRaw(), "q": escapedSearchKeywords, "page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            let params = ["sort": subType.toRaw(), "q": escapedSearchKeywords]
+            getTracks(url, page: page, count: count, parameters: params, success: success, failure: failure)
         }
         
-        static func Artist(artistName: String, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func Artist(artistName: String, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let escapedArtistName = artistName.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
             let url = apiBase + "/artists/\(escapedArtistName)/tracks"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            getTracks(url, page: page, count: count, parameters: nil, success: success, failure: failure)
         }
         
-        static func BlogTracks(blog: Blog, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func BlogTracks(blog: Blog, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/blogs/\(blog.id)/tracks"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            getTracks(url, page: page, count: count, parameters: nil, success: success, failure: failure)
         }
         
-        static func GenreTracks(genre: Genre, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func GenreTracks(genre: Genre, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let escapedGenreName = genre.name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
             let url = apiBase + "/tags/\(escapedGenreName)/tracks"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            getTracks(url, page: page, count: count, parameters: nil, success: success, failure: failure)
         }
         
-        static func FriendTracks(friend: Friend, page: Int, count: Int, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
+        static func FriendTracks(friend: Friend, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let escapedUsername = friend.username.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
             let url = apiBase + "/users/\(escapedUsername)/favorites"
-            let params = ["page": "\(page)", "count": "\(count)", "hm_token": Authentication.GetToken()!]
-            _getTracks(url, parameters: params, success: success, failure: failure)
+            getTracks(url, page: page, count: count, parameters: nil, success: success, failure: failure)
         }
         
         static func ToggleLoved(track: Track, success: (loved: Bool)->(), failure: (error: NSError)->()) {
@@ -141,22 +169,6 @@ struct HypeMachineAPI  {
                     failure(error: error)
             })
         }
-        
-        static func _getTracks(url: String, parameters: [NSObject: AnyObject]?, success: (tracks: [Track])->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.GetJSON(url, parameters: parameters, success: {
-                (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                let responseArray = responseObject as NSArray
-                var tracks = [Track]()
-                for trackObject: AnyObject in responseArray {
-                    let trackDictionary = trackObject as NSDictionary
-                    tracks.append(Track(JSON: trackDictionary))
-                }
-                success(tracks: tracks)
-            }, failure: {
-                (operation: AFHTTPRequestOperation!, error: NSError!) in
-                failure(error: error)
-            })
-        }
     }
     
     struct Playlists {
@@ -166,7 +178,7 @@ struct HypeMachineAPI  {
             HypeMachineAPI.Tracks.Popular(subType,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = PopularPlaylist(tracks: tracks, subType: subType)
                     success(playlist: playlist)
                 },
@@ -177,7 +189,7 @@ struct HypeMachineAPI  {
         static func Favorites(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
             HypeMachineAPI.Tracks.Favorites(1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = FavoritesPlaylist(tracks: tracks)
                     success(playlist: playlist)
                 },
@@ -188,7 +200,7 @@ struct HypeMachineAPI  {
         static func Latest(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
             HypeMachineAPI.Tracks.Latest(1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = LatestPlaylist(tracks: tracks)
                     success(playlist: playlist)
                 },
@@ -200,7 +212,7 @@ struct HypeMachineAPI  {
             HypeMachineAPI.Tracks.Feed(subType,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = FeedPlaylist(tracks: tracks, subType: subType)
                     success(playlist: playlist)
                 },
@@ -213,7 +225,7 @@ struct HypeMachineAPI  {
                 subType: subType,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = SearchPlaylist(tracks: tracks,
                         subType: subType,
                         searchKeywords: searchKeywords
@@ -228,7 +240,7 @@ struct HypeMachineAPI  {
             HypeMachineAPI.Tracks.Artist(artistName,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = Playlist(tracks: tracks, type: .Artist)
                     success(playlist: playlist)
                 },
@@ -240,7 +252,7 @@ struct HypeMachineAPI  {
             HypeMachineAPI.Tracks.BlogTracks(blog,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = Playlist(tracks: tracks, type: .Blog)
                     success(playlist: playlist)
                 },
@@ -252,7 +264,7 @@ struct HypeMachineAPI  {
             HypeMachineAPI.Tracks.GenreTracks(genre,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = Playlist(tracks: tracks, type: .Genre)
                     success(playlist: playlist)
                 },
@@ -264,7 +276,7 @@ struct HypeMachineAPI  {
             HypeMachineAPI.Tracks.FriendTracks(friend,
                 page: 1,
                 count: trackCount,
-                success: { tracks in
+                success: { tracks, lastPage in
                     let playlist = Playlist(tracks: tracks, type: .Friend)
                     success(playlist: playlist)
                 },

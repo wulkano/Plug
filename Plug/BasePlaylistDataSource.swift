@@ -53,13 +53,14 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func requestNextPage() {}
     
-    func requestNextPageSuccess(tracks: [Track]) {
+    func requestNextPageSuccess(tracks: [Track], lastPage: Bool) {
         playlist!.addTracks(tracks)
         // TODO: Don't reload all data causes tablecellviews to flash
         // find way to tell table view to append data
         viewController.tableView.reloadData()
         currentPage++
         loadingData = false
+        allTracksLoaded = lastPage
     }
     
     func requestNextPageFailure(error: NSError) {
