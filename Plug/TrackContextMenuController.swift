@@ -91,6 +91,7 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {
+        println(request.URL.host!)
         
         if request.URL.host! == "api.soundcloud.com" {
             
@@ -108,8 +109,9 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        
         connection.cancel()
+        let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])
+        failure(error: error)
     }
     
     func parseTrackIDFromURL(url: NSURL) -> String? {
