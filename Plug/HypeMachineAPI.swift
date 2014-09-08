@@ -11,38 +11,6 @@ import Foundation
 var apiBase = "https://api.hypem.com/v2"
 
 struct HypeMachineAPI  {
-    private static func GetJSON(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
-        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
-        manager.responseSerializer = PlugJSONResponseSerializer()
-        manager.GET(url, parameters: parameters, success: success, failure: failure)
-    }
-    
-    private static func GetHTML(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
-        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
-        manager.responseSerializer = AFHTTPResponseSerializer()
-        manager.GET(url, parameters: parameters, success: success, failure: failure)
-    }
-    
-    private static func GetImage(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
-        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
-        manager.responseSerializer = AFImageResponseSerializer()
-        // Need this to load images from S3
-        let contentTypesSet = manager.responseSerializer.acceptableContentTypes;
-        manager.responseSerializer.acceptableContentTypes = contentTypesSet.setByAddingObject("application/octet-stream")
-        manager.GET(url, parameters: parameters, success: success, failure: failure)
-    }
-    
-    private static func PostJSON(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
-        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
-        manager.responseSerializer = PlugJSONResponseSerializer()
-        manager.POST(url, parameters: parameters, success: success, failure: failure)
-    }
-    
-    private static func PostHTML(url: String, parameters: [NSObject: AnyObject]?, success: ((operation: AFHTTPRequestOperation!, responseObject: AnyObject!)->())?, failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())?) {
-        var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
-        manager.responseSerializer = AFHTTPResponseSerializer()
-        manager.POST(url, parameters: parameters, success: success, failure: failure)
-    }
  
     private static func deviceId() -> String {
         //        TODO fix this
@@ -57,7 +25,7 @@ struct HypeMachineAPI  {
             fullParameters["page"] = "\(page)"
             fullParameters["count"] = "\(count)"
             fullParameters["hm_token"] = Authentication.GetToken()!
-            HypeMachineAPI.GetJSON(url,
+            HTTP.GetJSON(url,
                 parameters: fullParameters,
                 success: { operation, responseObject in
                     let tracks = self.parseTracksFromResponse(responseObject)
@@ -141,7 +109,7 @@ struct HypeMachineAPI  {
         static func ToggleLoved(track: Track, success: (loved: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/favorites?hm_token=\(Authentication.GetToken()!)"
             let params = ["type": "item", "val": track.id]
-            HypeMachineAPI.PostHTML(url, parameters: params,
+            HTTP.PostHTML(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseData = responseObject as NSData
                     var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
@@ -161,7 +129,7 @@ struct HypeMachineAPI  {
         
         static func Thumb(track: Track, preferedSize: Track.ImageSize, success: (image: NSImage)->(), failure: (error: NSError)->()) {
             var url = track.thumbURLWithPreferedSize(preferedSize).absoluteString!
-            HypeMachineAPI.GetImage(url, parameters: nil,
+            HTTP.GetImage(url, parameters: nil,
                 success: {operation, responseObject in
                     let image = responseObject as NSImage
                     success(image: image)
@@ -289,7 +257,7 @@ struct HypeMachineAPI  {
         static func AllBlogs(success: (blogs: [Blog])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/blogs"
             let params = ["hm_token": Authentication.GetToken()!]
-            HypeMachineAPI.GetJSON(url, parameters: params,
+            HTTP.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
                     var blogs = [Blog]()
@@ -307,7 +275,7 @@ struct HypeMachineAPI  {
         static func SingleBlog(blogID: Int, success: (blog: Blog)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/blogs/\(blogID)"
             let params = ["hm_token": Authentication.GetToken()!]
-            HypeMachineAPI.GetJSON(url, parameters: params,
+            HTTP.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let blogDictionary = responseObject as NSDictionary
                     let blog = Blog(JSON: blogDictionary)
@@ -320,7 +288,7 @@ struct HypeMachineAPI  {
         
         static func Image(blog: Blog, size: Blog.ImageSize, success: (image: NSImage)->(), failure: (error: NSError)->()) {
             var url = blog.imageURLForSize(size).absoluteString!
-            HypeMachineAPI.GetImage(url, parameters: nil,
+            HTTP.GetImage(url, parameters: nil,
                 success: {operation, responseObject in
                     let image = responseObject as NSImage
                     success(image: image)
@@ -334,7 +302,7 @@ struct HypeMachineAPI  {
         static func AllGenres(success: (genres: [Genre])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tags"
             let params = ["hm_token": Authentication.GetToken()!]
-            HypeMachineAPI.GetJSON(url, parameters: params,
+            HTTP.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     let responseArray = responseObject as NSArray
                     var genres = [Genre]()
@@ -354,7 +322,7 @@ struct HypeMachineAPI  {
         static func AllFriends(success: (friends: [Friend])->(), failure: (error: NSError)->()) {
             let url = apiBase + "/users/" + Authentication.GetUsername()! + "/friends"
             let params = ["hm_token": Authentication.GetToken()!]
-            HypeMachineAPI.GetJSON(url, parameters: params,
+            HTTP.GetJSON(url, parameters: params,
                 success: {operation, responseObject in
                     let responseArray = responseObject as NSArray
                     var friends = [Friend]()
@@ -372,7 +340,7 @@ struct HypeMachineAPI  {
             let escapedUsername = username.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
             let url = apiBase + "/users/\(escapedUsername)"
             let params = ["hm_token": Authentication.GetToken()!]
-            HypeMachineAPI.GetJSON(url, parameters: params,
+            HTTP.GetJSON(url, parameters: params,
                 success: {operation, responseObject in
                     let friendDictionary = responseObject as NSDictionary
                     let friend = Friend(JSON: friendDictionary)
@@ -384,7 +352,7 @@ struct HypeMachineAPI  {
         
         static func Avatar(friend: Friend, success: (image: NSImage)->(), failure: (error: NSError)->()) {
             var url = friend.avatarURL!.absoluteString!
-            HypeMachineAPI.GetImage(url, parameters: nil,
+            HTTP.GetImage(url, parameters: nil,
                 success: {operation, responseObject in
                     let image = responseObject as NSImage
                     success(image: image)
@@ -397,7 +365,7 @@ struct HypeMachineAPI  {
     static func GetToken(username: String, password: String, success: (token: String)->(), failure: (error: NSError)->()) {
         let url = apiBase + "/get_token"
         let params = ["username": username, "password": password, "device_id": deviceId()]
-        HypeMachineAPI.PostJSON(url, parameters: params,
+        HTTP.PostJSON(url, parameters: params,
             success: {operation, responseObject in
                 let responseDictionary = responseObject as NSDictionary
                 let token = responseDictionary["hm_token"] as String
@@ -414,7 +382,7 @@ struct HypeMachineAPI  {
     static func HeatMapFor(track: Track, success: (heatMap: HeatMap)->(), failure: (error: NSError)->()) {
         let url = "http://hypem.com/inc/serve_track_graph.php"
         let params = ["id": track.id]
-        HypeMachineAPI.GetHTML(url, parameters: params,
+        HTTP.GetHTML(url, parameters: params,
             success: {operation, responseObject in
                 let responseData = responseObject as NSData
                 var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)

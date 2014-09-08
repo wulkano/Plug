@@ -43,11 +43,6 @@ class ExtendedTableView: NSTableView {
     }
     
     override func viewDidMoveToWindow() {
-//        if tracksMouseDidScroll {
-//            clipView.postsBoundsChangedNotifications = true
-//            NSNotificationCenter.defaultCenter().addObserver(self, selector: "mouseDidScroll", name: NSViewBoundsDidChangeNotification, object: clipView)
-//        }
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
     }
@@ -99,8 +94,8 @@ class ExtendedTableView: NSTableView {
         
         if mouseInsideRow != -1 {
             extendedDelegate?.tableView?(self, mouseExitedRow: mouseInsideRow)
+            mouseInsideRow = -1
         }
-        mouseInsideRow = -1
     }
     
     func scrollViewDidStartScrolling(notification: NSNotification) {

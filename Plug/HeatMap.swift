@@ -63,11 +63,11 @@ class HeatMap: NSObject {
     }
     
     func parseBigPoints() -> String {
-        return getSubstringBetweenPrefix("big_points_\(track.id) = ", andSuffix: ";")
+        return html.getSubstringBetweenPrefix("big_points_\(track.id) = ", andSuffix: ";")!
     }
     
     func parsePostPoints() -> String {
-        return getSubstringBetweenPrefix("post_points_\(track.id) = ", andSuffix: ";")
+        return html.getSubstringBetweenPrefix("post_points_\(track.id) = ", andSuffix: ";")!
     }
     
     func serializeString(string: String) -> NSArray {
@@ -78,13 +78,13 @@ class HeatMap: NSObject {
         }
         return json as NSArray
     }
-    
-    func getSubstringBetweenPrefix(prefix: String, andSuffix suffix: String) -> String {
-        let prefixRange = Range(start: html.rangeOfString(prefix)!.endIndex, end: html.endIndex)
-        var substring = html.substringWithRange(prefixRange)
-        
-        let suffixRange = Range(start: substring.startIndex, end: substring.rangeOfString(suffix)!.startIndex)
-        substring = substring.substringWithRange(suffixRange)
-        return substring
-    }
+//    
+//    func getSubstringBetweenPrefix(prefix: String, andSuffix suffix: String) -> String {
+//        let prefixRange = Range(start: html.rangeOfString(prefix)!.endIndex, end: html.endIndex)
+//        var substring = html.substringWithRange(prefixRange)
+//        
+//        let suffixRange = Range(start: substring.startIndex, end: substring.rangeOfString(suffix)!.startIndex)
+//        substring = substring.substringWithRange(suffixRange)
+//        return substring
+//    }
 }

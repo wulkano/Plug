@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A343f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="101000" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.9"/>
     </dependencies>
     <objects>
@@ -21,23 +20,23 @@
                         <action selector="copyHypeMachineLinkClicked:" target="-2" id="smL-Ec-dwV"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Open in Browser" id="b4v-4q-H1h">
+                <menuItem title="Open Hype Machine Link in Browser" id="b4v-4q-H1h">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="openInBrowserClicked:" target="-2" id="i6i-W3-LbP"/>
+                        <action selector="openHypeMachineLinkInBrowserClicked:" target="-2" id="AdW-ZI-Zmi"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="LOA-0Q-Egy"/>
-                <menuItem title="Find Track on Soundcloud" id="Z72-IW-GNB">
+                <menuItem title="Copy SoundCloud Link" id="Z72-IW-GNB">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="findTrackOnSoundcloudClicked:" target="-2" id="XgF-pv-esE"/>
+                        <action selector="copySoundCloudLinkClicked:" target="-2" id="Y6T-qj-lQO"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Find Artist on Soundcloud" id="Qvw-7q-Wjd">
+                <menuItem title="Open SoundCloud Link in Browser" id="Qvw-7q-Wjd">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="findArtistOnSoundcloudClicked:" target="-2" id="Tra-SS-Ig0"/>
+                        <action selector="openSoundCloudLinkInBrowser:" target="-2" id="PeA-2u-Vvc"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="rcG-Nz-NID"/>

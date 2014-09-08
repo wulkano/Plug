@@ -21,21 +21,34 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         NSPasteboard.generalPasteboard().setString(hypeMachineURL, forType: NSStringPboardType)
     }
     
-    @IBAction func openInBrowserClicked(sender: AnyObject) {
+    @IBAction func openHypeMachineLinkInBrowserClicked(sender: AnyObject) {
         NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
     }
     
-    @IBAction func findTrackOnSoundcloudClicked(sender: AnyObject) {
-        let artistAndTitle = "\(representedTrack.artist), \(representedTrack.title)"
-        let escapedArtistAndTitle = artistAndTitle.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        let url = NSURL(string: "https://soundcloud.com/search/sounds?q=\(escapedArtistAndTitle)")
-        NSWorkspace.sharedWorkspace().openURL(url)
+    @IBAction func copySoundCloudLinkClicked(sender: AnyObject) {
+        let url = representedTrack.mediaURL()
+        
+        SoundCloudPermalinkFinder(mediaURL: url,
+            success: { (trackURL: NSURL) in
+                NSPasteboard.generalPasteboard().clearContents()
+                NSPasteboard.generalPasteboard().setString(trackURL.absoluteString!, forType: NSStringPboardType)
+            }, failure: { error in
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
+        })
     }
     
-    @IBAction func findArtistOnSoundcloudClicked(sender: AnyObject) {
-        let escapedArtist = representedTrack.artist.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        let url = NSURL(string: "https://soundcloud.com/search/people?q=\(escapedArtist)")
-        NSWorkspace.sharedWorkspace().openURL(url)
+    @IBAction func openSoundCloudLinkInBrowser(sender: AnyObject) {
+        let url = representedTrack.mediaURL()
+        
+        SoundCloudPermalinkFinder(mediaURL: url,
+            success: { (trackURL: NSURL) in
+                NSWorkspace.sharedWorkspace().openURL(trackURL)
+                return
+            }, failure: { error in
+                Notifications.Post.DisplayError(error, sender: self)
+                Logger.LogError(error)
+        })
     }
     
     @IBAction func shareToFacebookClicked(sender: AnyObject) {
@@ -59,5 +72,53 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     
     private func shareMessage() -> String {
         return "\(representedTrack.title) - \(representedTrack.artist) \(representedTrack.hypeMachineURL())\nvia @plugformac"
+    }
+    
+
+}
+
+class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
+    var success: (trackURL: NSURL)->()
+    var failure: (error: NSError)->()
+    
+    init(mediaURL: NSURL, success: (trackURL: NSURL)->(), failure: (error: NSError)->()) {
+        self.success = success
+        self.failure = failure
+        super.init()
+        
+        let request = NSURLRequest(URL: mediaURL)
+        NSURLConnection(request: request, delegate: self)
+    }
+    
+    func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {
+        
+        if request.URL.host! == "api.soundcloud.com" {
+            
+            connection.cancel()
+            
+            if let trackID = parseTrackIDFromURL(request.URL) {
+                requestPermalinkForTrackID(trackID)
+            } else {
+                let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])
+                failure(error: error)
+            }
+        }
+        
+        return request
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        
+        connection.cancel()
+    }
+    
+    func parseTrackIDFromURL(url: NSURL) -> String? {
+        let prefix = "http://api.soundcloud.com/tracks/"
+        let suffix = "/stream"
+        return url.absoluteString!.getSubstringBetweenPrefix(prefix, andSuffix: suffix)
+    }
+    
+    func requestPermalinkForTrackID(trackID: String) {
+        SoundCloudAPI.Tracks.Permalink(trackID, success: success, failure: failure)
     }
 }

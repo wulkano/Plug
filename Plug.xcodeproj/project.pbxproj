@@ -81,6 +81,9 @@
 		FA7749A4198C1EBD0048863F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749A3198C1EBD0048863F /* Friend.swift */; };
 		FA7B3CB9199B626B008E8B01 /* SidebarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */; };
 		FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4976198ABD3300A38B27 /* GroupRowView.swift */; };
+		FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */; };
+		FA7C5CCF19BD4F2D002239AB /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCE19BD4F2D002239AB /* HTTP.swift */; };
+		FA7C5CD119BD5724002239AB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String.swift */; };
 		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
 		FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3019B66C6F0057080C /* NavigationController.swift */; };
 		FA9A2F3319B66C760057080C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3219B66C760057080C /* NavigationBar.swift */; };
@@ -244,6 +247,9 @@
 		FA7749A3198C1EBD0048863F /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarOverlayView.swift; sourceTree = "<group>"; };
 		FA7C4976198ABD3300A38B27 /* GroupRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRowView.swift; sourceTree = "<group>"; };
+		FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundCloudAPI.swift; sourceTree = "<group>"; };
+		FA7C5CCE19BD4F2D002239AB /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		FA7C5CD019BD5724002239AB /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
 		FA9A2F3019B66C6F0057080C /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		FA9A2F3219B66C760057080C /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
@@ -444,6 +450,7 @@
 			children = (
 				FA51263519761436004D0776 /* NSColor+256ColorValues.swift */,
 				FA64C6A819765323003933E3 /* Array+contains.swift */,
+				FA7C5CD019BD5724002239AB /* String.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -479,6 +486,8 @@
 				FA7749A3198C1EBD0048863F /* Friend.swift */,
 				FA2C86001977AF2F007B1622 /* HeatMap.swift */,
 				FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */,
+				FA7C5CCE19BD4F2D002239AB /* HTTP.swift */,
+				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
 				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
 				FAA51A58198084E50057EC34 /* NavigationSection.swift */,
 				FAA51A5A1980D4FC0057EC34 /* Error.swift */,
@@ -900,6 +909,7 @@
 				FA9EA03C199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift in Sources */,
 				FA5394FA19AFA065006A95A5 /* Animations.swift in Sources */,
 				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
+				FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
 				FA6ADCFD19BA935C00CCD371 /* ViewPlacementHelper.swift in Sources */,
 				FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */,
@@ -919,6 +929,7 @@
 				FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
+				FA7C5CD119BD5724002239AB /* String.swift in Sources */,
 				FA6ADCF419BA69C300CCD371 /* SingleBlogImageView.swift in Sources */,
 				FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
@@ -948,6 +959,7 @@
 				FAACE4C419AC2ADD00F8E9E8 /* SignUpButtonCell.swift in Sources */,
 				FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* HeatMap.swift in Sources */,
+				FA7C5CCF19BD4F2D002239AB /* HTTP.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FA53950219AFC50D006A95A5 /* PlugJSONResponseSerializer.swift in Sources */,
 				FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */,
