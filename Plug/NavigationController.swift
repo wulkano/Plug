@@ -43,110 +43,110 @@ class NavigationController: NSViewController {
         contentView.wantsLayer = true
     }
     
-    func setNewRootViewController(viewController: NSViewController, animated: Bool) {
-        addChildViewController(viewController)
-        if viewControllers.count > 1 {
-            transitionFromViewController(nextTopViewController, toViewController: viewController, animated: animated, reversed: false)
-            for controller in viewControllers {
-                if controller !== viewController {
-                    controller.removeFromParentViewController()
-                }
-            }
+    func setNewRootViewController(viewController: NSViewController) {
+        
+        if rootViewController == nil {
+            addChildViewController(viewController)
+            ViewPlacementHelper.AddFullSizeSubview(viewController.view, toSuperView: contentView)
         } else {
-            setupView(viewController.view)
+            addChildViewController(viewController)
+            transitionFromViewController(nextTopViewController, toViewController: viewController, reversed: false)
+            removeAllViewControllersExcept(viewController)
         }
         
         updateNavigationBar()
     }
     
-    func pushViewController(viewController: NSViewController, animated: Bool) {
+    func pushViewController(viewController: NSViewController) {
         addChildViewController(viewController)
-        transitionFromViewController(nextTopViewController, toViewController: topViewController, animated: animated, reversed: false)
-        
+        transitionFromViewController(nextTopViewController, toViewController: topViewController, reversed: false)
         updateNavigationBar()
     }
     
-    func popViewControllerAnimated(animated: Bool) -> NSViewController? {
-        if viewControllers.count == 1 { return nil }
+    func popViewController() -> NSViewController? {
+        if !canPopViewController() { return nil }
         
-        transitionFromViewController(visibleViewController, toViewController: viewControllers[viewControllers.count - 2], animated: true, reversed: true)
-        
-        var poppedController = topViewController
-        poppedController.removeFromParentViewController()
-        
+        transitionFromViewController(visibleViewController, toViewController: nextTopViewController!, reversed: true)
+        var poppedController = removeTopViewController()
         updateNavigationBar()
         
         return poppedController
     }
     
-    func popToRootViewControllerAnimated(animated: Bool) -> [NSViewController] {
-        transitionFromViewController(visibleViewController, toViewController: rootViewController, animated: animated, reversed: true)
-        var poppedControllers = [NSViewController]()
-        while viewControllers.count > 1 {
-            var controller = topViewController
-            controller.removeFromParentViewController()
-            poppedControllers.append(controller)
-        }
-        
-        updateNavigationBar()
-        
-        return poppedControllers
+    func popToRootViewController() -> [NSViewController] {
+        return popToViewController(rootViewController)
     }
     
-    func popToViewController(viewController: NSViewController, animated: Bool) -> [NSViewController] {
-        let index = find(viewControllers, viewController)
-        if index == nil {
-            fatalError("Tried to pop to view controller that is not in stack")
-        }
+    func popToViewController(viewController: NSViewController) -> [NSViewController] {
+        if !canPopViewController() { return [] }
+        if !canPopToViewController(viewController) { return [] }
         
-        transitionFromViewController(visibleViewController, toViewController: viewControllers[index!], animated: animated, reversed: true)
-        
-        var poppedControllers = [NSViewController]()
-        while topViewController !== viewController {
-            var controller = topViewController
-            controller.removeFromParentViewController()
-            poppedControllers.append(controller)
-        }
-        
+        transitionFromViewController(visibleViewController, toViewController: viewController,  reversed: true)
+        var poppedControllers = removeViewControllersAbove(viewController)
         updateNavigationBar()
         
         return poppedControllers
     }
     
     @IBAction func backButtonClicked(sender: AnyObject) {
-        popViewControllerAnimated(true)
+        popViewController()
     }
     
     // MARK: Private methods
     
-    private func transitionFromViewController(fromViewController: NSViewController!, toViewController: NSViewController!, animated: Bool, reversed: Bool) {
-        var transitions = transitionOptions(animated, reversed: reversed)
-        setupView(toViewController.view)
+    private func removeViewControllersAbove(viewController: NSViewController) -> [NSViewController] {
+        var removedControllers = [NSViewController]()
+        while topViewController !== viewController {
+            var controller = topViewController
+            controller.removeFromParentViewController()
+            removedControllers.append(controller)
+        }
+        return removedControllers
+    }
+    
+    private func removeAllViewControllersExcept(viewController: NSViewController) -> [NSViewController] {
+        var removedControllers = [NSViewController]()
+        for controller in viewControllers {
+            if controller !== viewController {
+                controller.removeFromParentViewController()
+                removedControllers.append(controller)
+            }
+        }
+        return removedControllers
+    }
+    
+    private func removeTopViewController() -> NSViewController {
+        var poppedController = topViewController
+        poppedController.removeFromParentViewController()
+        return poppedController
+    }
+    
+    private func canPopViewController() -> Bool {
+        return viewControllers.count > 1
+    }
+    
+    private func canPopToViewController(viewController: NSViewController) -> Bool {
+        return hasChildViewController(viewController)
+    }
+    
+    private func hasChildViewController(viewController: NSViewController) -> Bool {
+        return viewController.parentViewController === self
+    }
+    
+    private func transitionFromViewController(fromViewController: NSViewController!, toViewController: NSViewController!, reversed: Bool) {
+        var transitions = transitionOptions(reversed)
+        ViewPlacementHelper.AddFullSizeSubview(toViewController.view, toSuperView: contentView)
         transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
         
         let index = find(viewControllers, toViewController)
     }
     
-    private func transitionOptions(animated: Bool, reversed: Bool) -> NSViewControllerTransitionOptions {
-        if animated && reversed {
+    private func transitionOptions(reversed: Bool) -> NSViewControllerTransitionOptions {
+        if reversed {
             return NSViewControllerTransitionOptions.SlideRight | NSViewControllerTransitionOptions.Crossfade
-        } else if animated {
-            return NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
         } else {
-            return NSViewControllerTransitionOptions.None
+            return NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
         }
-    }
-    
-    private func setupView(view: NSView) {
-        view.frame = contentView.bounds
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.addSubview(view)
-        
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: nil, metrics: nil, views: ["view": view])
-        contentView.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: ["view": view])
-        contentView.addConstraints(constraints)
     }
     
     private func updateNavigationBar() {
@@ -165,7 +165,7 @@ class NavigationController: NSViewController {
     
     func leftArrowKeyPressed(theEvent: NSEvent!) {
         if nextTopViewController != nil {
-            popViewControllerAnimated(true)
+            popViewController()
         } else {
             super.keyDown(theEvent)
         }

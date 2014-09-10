@@ -42,6 +42,7 @@
 		FA4C44F719A6C8BE0052D506 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4C44F619A6C8BE0052D506 /* Login.storyboard */; };
 		FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C44F819A6C9B70052D506 /* LoginViewController.swift */; };
 		FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */; };
+		FA50280319C02EE800E3C84E /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50280219C02EE800E3C84E /* Analytics.swift */; };
 		FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */; };
 		FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263519761436004D0776 /* NSColor+256ColorValues.swift */; };
 		FA51263819762F66004D0776 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263719762F66004D0776 /* NavigationButton.swift */; };
@@ -206,6 +207,7 @@
 		FA4C44F619A6C8BE0052D506 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		FA4C44F819A6C9B70052D506 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
+		FA50280219C02EE800E3C84E /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableVisualEffectsView.swift; sourceTree = "<group>"; };
 		FA51263519761436004D0776 /* NSColor+256ColorValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+256ColorValues.swift"; sourceTree = "<group>"; };
 		FA51263719762F66004D0776 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
@@ -479,30 +481,31 @@
 		FA64C6A119764DAE003933E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA691BFE197654AF008D5C3E /* Track.swift */,
-				FA0B1D2D1977109E0030C873 /* Playlist.swift */,
-				FA3199AE19824E030097B081 /* Blog.swift */,
-				FA77499B198C07D10048863F /* Genre.swift */,
-				FA7749A3198C1EBD0048863F /* Friend.swift */,
-				FA2C86001977AF2F007B1622 /* HeatMap.swift */,
-				FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */,
-				FA7C5CCE19BD4F2D002239AB /* HTTP.swift */,
-				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
-				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
-				FAA51A58198084E50057EC34 /* NavigationSection.swift */,
-				FAA51A5A1980D4FC0057EC34 /* Error.swift */,
-				FAACE4BD19ABEA4600F8E9E8 /* Logger.swift */,
-				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
-				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
-				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
-				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
-				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
-				FAD1F54819A7C793002322D6 /* Authentication.swift */,
+				FA50280219C02EE800E3C84E /* Analytics.swift */,
 				FA5394F919AFA065006A95A5 /* Animations.swift */,
-				FA53950119AFC50D006A95A5 /* PlugJSONResponseSerializer.swift */,
 				FAA34A9419B2F0450038868A /* Async.swift */,
-				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
+				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
+				FAD1F54819A7C793002322D6 /* Authentication.swift */,
+				FA3199AE19824E030097B081 /* Blog.swift */,
+				FAA51A5A1980D4FC0057EC34 /* Error.swift */,
+				FA7749A3198C1EBD0048863F /* Friend.swift */,
+				FA77499B198C07D10048863F /* Genre.swift */,
+				FA2C86001977AF2F007B1622 /* HeatMap.swift */,
+				FA7C5CCE19BD4F2D002239AB /* HTTP.swift */,
+				FA64C6A219764DC9003933E3 /* HypeMachineAPI.swift */,
+				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
+				FAACE4BD19ABEA4600F8E9E8 /* Logger.swift */,
+				FAA51A58198084E50057EC34 /* NavigationSection.swift */,
+				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
+				FA0B1D2D1977109E0030C873 /* Playlist.swift */,
 				FA7749A5198C298E0048863F /* Playlists */,
+				FA53950119AFC50D006A95A5 /* PlugJSONResponseSerializer.swift */,
+				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
+				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
+				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
+				FA691BFE197654AF008D5C3E /* Track.swift */,
+				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
+				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,
 				FACFAAE919BBB5DF006BD52B /* FriendPlaylistDataSource.swift in Sources */,
 				FA0B1D3A197725E90030C873 /* FeedPlaylist.swift in Sources */,
+				FA50280319C02EE800E3C84E /* Analytics.swift in Sources */,
 				FA5394F019AF6B0F006A95A5 /* SwissArmyButton.swift in Sources */,
 				FA24EDA21974A9A500A781C8 /* main.swift in Sources */,
 				FA53950719AFFF01006A95A5 /* BasePlaylistTableCellView.swift in Sources */,
