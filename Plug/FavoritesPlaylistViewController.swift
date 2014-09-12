@@ -9,6 +9,9 @@
 import Cocoa
 
 class FavoritesPlaylistViewController: BasePlaylistViewController {
+    override var analyticsViewName: String {
+        return "MainWindow/Favorites"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,6 +8,8 @@
 
 import Foundation
 
+let UsernameHashKey = "WGmV6YEF9VFZBjcx"
+
 struct Authentication {
     
     static func UserSignedIn() -> Bool {
@@ -38,5 +40,13 @@ struct Authentication {
         let username = GetUsername()
         SSKeychain.deletePasswordForService("Plug", account: username!)
         NSUserDefaults.standardUserDefaults().removeObjectForKey("username")
+    }
+    
+    static func GetUsernameHash() -> String? {
+        if let username = GetUsername() {
+            return username.digest(.SHA1, key: UsernameHashKey)
+        } else {
+            return nil
+        }
     }
 }

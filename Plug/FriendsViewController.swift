@@ -11,6 +11,9 @@ import Cocoa
 class FriendsViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     var dataSource: FriendsDataSource!
+    override var analyticsViewName: String {
+        return "MainWindow/Friends"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

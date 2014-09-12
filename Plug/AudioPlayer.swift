@@ -77,7 +77,19 @@ class AudioPlayer: NSObject {
         Notifications.Post.TrackPaused(currentTrack!, sender: self)
     }
     
+    func playPauseToggle() {
+        if currentTrack == nil { return }
+        
+        if playing {
+            pause()
+        } else {
+            play()
+        }
+    }
+    
     func skipForward() {
+        if currentPlaylist == nil { return }
+        
         let nextTrack = currentPlaylist.trackAfter(currentTrack)
         if nextTrack != nil {
             play(nextTrack!)
@@ -85,6 +97,8 @@ class AudioPlayer: NSObject {
     }
     
     func skipBackward() {
+        if currentPlaylist == nil { return }
+        
         let previousTrack = currentPlaylist.trackBefore(currentTrack)
         if previousTrack != nil {
             play(previousTrack!)
@@ -121,6 +135,8 @@ class AudioPlayer: NSObject {
     }
     
     private func setupForNewTrack(track: Track) {
+        Analytics.sharedInstance.trackAudioPlaybackEvent("Play New Track")
+        
         if playerItem != nil {
             unsubscribeFromPlayerItem(playerItem)
         }

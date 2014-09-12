@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         setupUserDefaults()
         setupUserNotifications()
+        setupMediaKeys()
         
         if Authentication.UserSignedIn() {
             openMainWindow()
@@ -45,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     func openLoginWindow() {
+        Analytics.sharedInstance.trackView("LoginWindow")
         if loginWindowController == nil {
             loginWindowController = NSStoryboard(name: "Login", bundle: nil).instantiateInitialController() as? NSWindowController
         }
@@ -96,6 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func signOut(sender: AnyObject!) {
+        Analytics.sharedInstance.trackButtonClick("Sign Out")
         closeMainWindow()
         if preferencesWindowController != nil {
             closePreferencesWindow()
@@ -121,5 +124,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification!) -> Bool {
         return true
+    }
+    
+    private func setupMediaKeys() {
+        MediaKeyHandler.sharedInstance
     }
 }

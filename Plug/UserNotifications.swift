@@ -14,7 +14,11 @@ struct UserNotifications {
             deliverNotification(track.title, informativeText: track.artist)
         }
         
-        private static func deliverNotification(title: String, informativeText: String) {
+        static func SimpleText(text: String) {
+            deliverNotification(text, informativeText: nil)
+        }
+        
+        private static func deliverNotification(title: String, informativeText: String?) {
             if NSUserDefaults.standardUserDefaults().valueForKey(ShowTrackChangeNotificationsKey) as Bool {
                 var notification = NSUserNotification()
                 notification.title = title

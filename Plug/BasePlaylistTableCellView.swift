@@ -225,6 +225,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
+        Analytics.sharedInstance.trackButtonClick("Playlist Play/Pause")
         switch playState {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
@@ -234,6 +235,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
+        Analytics.sharedInstance.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
             trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil).instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController
@@ -243,6 +245,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {
+        Analytics.sharedInstance.trackButtonClick("Playlist Heart")
         let oldLovedValue = trackValue.loved
         let newLovedValue = !oldLovedValue
         
@@ -267,6 +270,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     @IBAction func artistButtonClicked(sender: NSButton) {
         var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = trackValue.artist
+        viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, viewController: viewController)
     }

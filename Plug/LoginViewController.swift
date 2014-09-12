@@ -9,7 +9,7 @@
 import Cocoa
 
 class LoginViewController: NSViewController, NSTextFieldDelegate {
-    @IBOutlet weak var usernameTextField: NSTextField!
+    @IBOutlet weak var usernameOrEmailTextField: NSTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
     @IBOutlet var loginButton: LoginButton!
     
@@ -26,16 +26,16 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameTextField.delegate = self
+        usernameOrEmailTextField.delegate = self
         passwordTextField.delegate = self
-        usernameTextField.nextKeyView = passwordTextField
-        passwordTextField.nextKeyView = usernameTextField
+        usernameOrEmailTextField.nextKeyView = passwordTextField
+        passwordTextField.nextKeyView = usernameOrEmailTextField
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        view.window!.initialFirstResponder = usernameTextField
+        view.window!.initialFirstResponder = usernameOrEmailTextField
     }
     
     func displayError(notification: NSNotification) {
@@ -49,20 +49,21 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func loginButtonClicked(sender: AnyObject) {
-        let username = usernameTextField.stringValue
+        Analytics.sharedInstance.trackButtonClick("Log In")
+        let usernameOrEmail = usernameOrEmailTextField.stringValue
         let password = passwordTextField.stringValue
         
         loginButton.buttonState = .Sending
-        loginWithUsername(username, andPassword: password)
+        loginWithUsernameOrEmail(usernameOrEmail, andPassword: password)
     }
     
-    func loginWithUsername(username: String, andPassword password: String) {
-        HypeMachineAPI.GetToken(username, password: password,
-            success: {token in
+    func loginWithUsernameOrEmail(usernameOrEmail: String, andPassword password: String) {
+        HypeMachineAPI.GetToken(usernameOrEmail, password: password,
+            success: { username, token in
                 Authentication.SaveUsername(username, withToken: token)
                 self.signedInSuccessfully()
-            }, failure: {error in
-                // TODO: Better appwide passwords
+            }, failure: { error in
+                // TODO: Better appwide errors
                 var errorMessage: String
                 if error.localizedDescription == "Wrong password" {
                     errorMessage = "Incorrect username/password"
@@ -76,10 +77,12 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
+        Analytics.sharedInstance.trackButtonClick("Forgot Password")
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php"))
     }
     
     @IBAction func signUpButtonClicked(sender: AnyObject) {
+        Analytics.sharedInstance.trackButtonClick("Sign Up")
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1"))
     }
     
@@ -102,6 +105,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func formFieldsEmpty() -> Bool {
-        return  usernameTextField.stringValue == "" || passwordTextField.stringValue == ""
+        return  usernameOrEmailTextField.stringValue == "" || passwordTextField.stringValue == ""
     }
+    
 }

@@ -13,18 +13,27 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var hotkeysTab: NSButton!
     @IBOutlet weak var mutedTab: NSButton!
     var tabViewController: NSTabViewController!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Analytics.sharedInstance.trackView("PreferencesWindow/General")
+    }
 
     @IBAction func generalTabClicked(sender: NSButton) {
+        Analytics.sharedInstance.trackView("PreferencesWindow/General")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(0)
     }
     
     @IBAction func hotkeysTabClicked(sender: NSButton) {
+        Analytics.sharedInstance.trackView("PreferencesWindow/HotKeys")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(1)
     }
 
     @IBAction func mutedTabClicked(sender: NSButton) {
+        Analytics.sharedInstance.trackView("PreferencesWindow/Muted")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(2)
     }

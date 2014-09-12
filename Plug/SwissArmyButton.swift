@@ -15,6 +15,9 @@ class SwissArmyButton: NSButton {
     override var allowsVibrancy: Bool {
         return vibrant
     }
+    override var state: Int {
+        didSet { needsDisplay = true }
+    }
     var trackingArea: NSTrackingArea?
     var swissArmyButtonCell: SwissArmyButtonCell {
         return cell() as SwissArmyButtonCell
@@ -26,6 +29,10 @@ class SwissArmyButton: NSButton {
     var mouseDown: Bool {
         get { return swissArmyButtonCell.mouseDown }
         set { swissArmyButtonCell.mouseDown = newValue }
+    }
+    
+    required init(coder: NSCoder!) {
+        super.init(coder: coder)
     }
     
     override func updateTrackingAreas() {

@@ -15,6 +15,9 @@ class SingleFriendViewController: BaseContentViewController {
     @IBOutlet weak var favoritesCountTextField: NSTextField!
     @IBOutlet weak var friendsCountTextField: NSTextField!
     @IBOutlet var playlistContainer: NSView!
+    override var analyticsViewName: String {
+        return "MainWindow/SingleFriend"
+    }
     
     var playlistViewController: BasePlaylistViewController!
 

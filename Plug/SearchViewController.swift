@@ -13,6 +13,9 @@ class SearchViewController: BaseContentViewController {
     var playlistSubType: SearchPlaylistSubType = .MostFavorites
     var playlistViewController: BasePlaylistViewController?
     var dataSource: SearchPlaylistDataSource?
+    override var analyticsViewName: String {
+        return "MainWindow/Search"
+    }
     
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue

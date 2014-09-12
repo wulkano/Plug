@@ -54,13 +54,16 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     func requestNextPage() {}
     
     func requestNextPageSuccess(tracks: [Track], lastPage: Bool) {
-        playlist!.addTracks(tracks)
-        // TODO: Don't reload all data causes tablecellviews to flash
-        // find way to tell table view to append data
-        viewController.tableView.reloadData()
         currentPage++
-        loadingData = false
         allTracksLoaded = lastPage
+        
+        if tracks.count > 0 {
+            let rowIndexes = rowIndexesForNewTracks(tracks)
+            playlist!.addTracks(tracks)
+            viewController.tableView.insertRowsAtIndexes(rowIndexes, withAnimation: .EffectNone)
+        }
+        
+        loadingData = false
     }
     
     func requestNextPageFailure(error: NSError) {
@@ -83,8 +86,12 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
         return playlist!.tracks.count
     }
     
-    
     func trackForRow(row: Int) -> Track {
         return playlist!.tracks[row]
+    }
+    
+    private func rowIndexesForNewTracks(tracks: [Track]) -> NSIndexSet {
+        let rowRange: NSRange = NSMakeRange(playlist!.tracks.count, tracks.count)
+        return NSIndexSet(indexesInRange: rowRange)
     }
 }

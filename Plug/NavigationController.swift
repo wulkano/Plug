@@ -11,18 +11,14 @@ import Cocoa
 class NavigationController: NSViewController {
     @IBOutlet var navigationBar: NavigationBar!
     @IBOutlet var contentView: NSView!
-    
-    override var acceptsFirstResponder: Bool {
-        return true
-    }
 
-    var viewControllers: [NSViewController] {
-        return childViewControllers as [NSViewController]
+    var viewControllers: [BaseContentViewController] {
+        return childViewControllers as [BaseContentViewController]
     }
-    var topViewController: NSViewController! {
+    var topViewController: BaseContentViewController! {
         return viewControllers.last
     }
-    var nextTopViewController: NSViewController? {
+    var nextTopViewController: BaseContentViewController? {
         if viewControllers.count > 1 {
             return viewControllers[viewControllers.count - 2]
         } else {
@@ -30,10 +26,10 @@ class NavigationController: NSViewController {
         }
 
     }
-    var rootViewController: NSViewController! {
+    var rootViewController: BaseContentViewController! {
         return viewControllers.first
     }
-    var visibleViewController: NSViewController! {
+    var visibleViewController: BaseContentViewController! {
         return topViewController
     }
     
@@ -43,7 +39,7 @@ class NavigationController: NSViewController {
         contentView.wantsLayer = true
     }
     
-    func setNewRootViewController(viewController: NSViewController) {
+    func setNewRootViewController(viewController: BaseContentViewController) {
         
         if rootViewController == nil {
             addChildViewController(viewController)
@@ -54,12 +50,15 @@ class NavigationController: NSViewController {
             removeAllViewControllersExcept(viewController)
         }
         
+        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
     }
     
-    func pushViewController(viewController: NSViewController) {
+    func pushViewController(viewController: BaseContentViewController) {
         addChildViewController(viewController)
         transitionFromViewController(nextTopViewController, toViewController: topViewController, reversed: false)
+        
+        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
     }
     
@@ -68,6 +67,8 @@ class NavigationController: NSViewController {
         
         transitionFromViewController(visibleViewController, toViewController: nextTopViewController!, reversed: true)
         var poppedController = removeTopViewController()
+        
+        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
         
         return poppedController
@@ -83,6 +84,8 @@ class NavigationController: NSViewController {
         
         transitionFromViewController(visibleViewController, toViewController: viewController,  reversed: true)
         var poppedControllers = removeViewControllersAbove(viewController)
+        
+        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
         
         return poppedControllers
@@ -138,7 +141,7 @@ class NavigationController: NSViewController {
         ViewPlacementHelper.AddFullSizeSubview(toViewController.view, toSuperView: contentView)
         transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
         
-        let index = find(viewControllers, toViewController)
+//        let index = find(viewControllers, toViewController)
     }
     
     private func transitionOptions(reversed: Bool) -> NSViewControllerTransitionOptions {

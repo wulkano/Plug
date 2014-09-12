@@ -22,6 +22,12 @@ class TrackInfoViewController: NSViewController {
         return (representedObject as Track)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Analytics.sharedInstance.trackView("TrackInfoWindow")
+    }
+    
     @IBAction func closeButtonClicked(sender: NSButton) {
         view.window!.close()
     }

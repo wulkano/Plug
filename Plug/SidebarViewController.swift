@@ -9,87 +9,63 @@
 import Cocoa
 
 class SidebarViewController: NSViewController {
-    @IBOutlet var popularNavButton: TransparentButton!
-    @IBOutlet var favoritesNavButton: TransparentButton!
-    @IBOutlet var latestNavButton: TransparentButton!
-    @IBOutlet var blogsNavButton: TransparentButton!
-    @IBOutlet var feedNavButton: TransparentButton!
-    @IBOutlet var genresNavButton: TransparentButton!
-    @IBOutlet var friendsNavButton: TransparentButton!
-    @IBOutlet var searchNavButton: TransparentButton!
-    @IBOutlet var sidebarOverlay: NSView!
     
-    required init(coder: NSCoder) {
-        super.init(coder: coder)
-        Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
+    var mainViewController: MainViewController {
+        return parentViewController as MainViewController
     }
     
-    deinit {
-        Notifications.Unsubscribe.All(self)
+    @IBAction func popularButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Popular)
+        toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func navButtonClicked(sender: TransparentButton) {
-        let section = sectionForButton(sender)
-        changeNavigationSection(section)
+    @IBAction func favoritesButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Favorites)
+        toggleAllButtonsOffExcept(sender)
     }
     
-    func changeNavigationSection(section: NavigationSection) {
-        Notifications.Post.NavigationSectionChanged(section, sender: self)
+    @IBAction func latestButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Latest)
+        toggleAllButtonsOffExcept(sender)
     }
     
-    func navigationSectionChanged(notification: NSNotification) {
-        let section = Notifications.Read.NavigationSectionNotification(notification)
-        updateUIForSection(section)
+    @IBAction func blogsButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Blogs)
+        toggleAllButtonsOffExcept(sender)
     }
     
-    func updateUIForSection(section: NavigationSection) {
-        let button = buttonForSection(section)
-        toggleAllNavButtonsOffExcept(button)
+    @IBAction func feedButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Feed)
+        toggleAllButtonsOffExcept(sender)
     }
     
-    func allNavButtons() -> [TransparentButton] {
-        var navButtons = [TransparentButton]()
-        for subview in sidebarOverlay.subviews {
-            if subview is TransparentButton {
-                navButtons.append(subview as TransparentButton)
-            }
-        }
-        return navButtons
+    @IBAction func genresButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Genres)
+        toggleAllButtonsOffExcept(sender)
     }
     
-    func toggleAllNavButtonsOffExcept(selectedButton: TransparentButton) {
-        for navButton in allNavButtons() {
-            if navButton === selectedButton {
-                navButton.selected = true
+    @IBAction func friendsButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Friends)
+        toggleAllButtonsOffExcept(sender)
+    }
+    
+    @IBAction func searchButtonClicked(sender: AnyObject) {
+        mainViewController.changeNavigationSection(.Search)
+        toggleAllButtonsOffExcept(sender)
+    }
+    
+    func toggleAllButtonsOffExcept(sender: AnyObject) {
+        for button in allButtons() {
+            if button === sender {
+                button.state = NSOnState
             } else {
-                navButton.selected = false
+                button.state = NSOffState
             }
         }
     }
-
-    func buttonForSection(section: NavigationSection) -> TransparentButton {
-        return buttonSectionMap()[section]!
-    }
     
-    func sectionForButton(button: TransparentButton) -> NavigationSection! {
-        for (section, navButton) in buttonSectionMap() {
-            if navButton === button {
-                return section
-            }
-        }
-        return nil
-    }
-    
-    func buttonSectionMap() -> [NavigationSection: TransparentButton] {
-        return [
-            NavigationSection.Popular: popularNavButton,
-            NavigationSection.Favorites: favoritesNavButton,
-            NavigationSection.Latest: latestNavButton,
-            NavigationSection.Blogs: blogsNavButton,
-            NavigationSection.Feed: feedNavButton,
-            NavigationSection.Genres: genresNavButton,
-            NavigationSection.Friends: friendsNavButton,
-            NavigationSection.Search: searchNavButton,
-        ]
+    func allButtons() -> [NSButton] {
+        let visualEffectsView = view.subviews[0] as NSView
+        return visualEffectsView.subviews as [NSButton]
     }
 }

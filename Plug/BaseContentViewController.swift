@@ -12,7 +12,10 @@ class BaseContentViewController: NSViewController {
     var loaderViewController: LoaderViewController?
     var actionButton: NSButton?
     var actionButtonSelector: Selector?
-    var analyticsViewName: String?
+    var analyticsViewName: String {
+        return defaultAnalyticsViewName
+    }
+    var defaultAnalyticsViewName: String = "Oops, this should be overridden"
     
     override func viewDidLoad() {
         super.viewDidLoad()

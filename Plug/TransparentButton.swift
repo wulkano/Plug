@@ -22,7 +22,7 @@ class TransparentButton: NSButton {
     var selected: Bool = false {
         didSet { needsDisplay = true }
     }
-    
+
     let selectedOpacity: CGFloat = 1
     let mouseDownOpacity: CGFloat = 1
     let mouseInsideOpacity: CGFloat = 0.7
@@ -64,7 +64,7 @@ class TransparentButton: NSButton {
             return inactiveOpacity
         }
     }
-    
+
     func toggleSelected() {
         if selected {
             selected = false

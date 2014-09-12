@@ -5,5 +5,8 @@
 #import <INAppStoreWindow.h>
 #import <AFNetworking.h>
 #import <SSKeychain.h>
+#import <CommonCrypto/CommonCrypto.h>
 #import "ITSwitch.h"
 #import "SLColorArt.h"
+#import "NSObject+SPInvocationGrabbing.h"
+#import "SPMediaKeyTap.h"

@@ -9,6 +9,9 @@
 import Cocoa
 
 class FeedPlaylistViewController: BasePlaylistViewController {
+    override var analyticsViewName: String {
+        return "MainWindow/Feed"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

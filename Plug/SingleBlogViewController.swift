@@ -14,6 +14,9 @@ class SingleBlogViewController: BaseContentViewController {
     @IBOutlet weak var detailsTextField: NSTextField!
     @IBOutlet weak var imageView: NSImageView!
     @IBOutlet weak var playlistContainer: NSView!
+    override var analyticsViewName: String {
+        return "MainWindow/SingleBlog"
+    }
     
     var playlistViewController: BasePlaylistViewController!
     

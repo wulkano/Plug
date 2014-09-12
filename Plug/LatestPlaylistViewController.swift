@@ -9,6 +9,10 @@
 import Cocoa
 
 class LatestPlaylistViewController: BasePlaylistViewController {
+    override var analyticsViewName: String {
+        return "MainWindow/Latest"
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

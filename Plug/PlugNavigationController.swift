@@ -22,7 +22,7 @@ class PlugNavigationController: NavigationController {
     
     func pushViewControllerNotification(notification: NSNotification) {
         let viewController = Notifications.Read.PushViewControllerNotification(notification)
-        pushViewController(viewController, animated: true)
+        pushViewController(viewController)
     }
     
 }

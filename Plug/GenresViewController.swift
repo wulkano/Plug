@@ -11,6 +11,9 @@ import Cocoa
 class GenresViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     var dataSource: GenresDataSource!
+    override var analyticsViewName: String {
+        return "MainWindow/Genres"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

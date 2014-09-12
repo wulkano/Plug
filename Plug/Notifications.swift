@@ -51,7 +51,7 @@ struct Notifications {
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.NavigationSectionChanged, object: sender, userInfo: ["navigationSection": section.toRaw()])
         }
         
-        static func PushViewController(viewController: NSViewController, sender: AnyObject?) {
+        static func PushViewController(viewController: BaseContentViewController, sender: AnyObject?) {
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.PushViewController, object: sender, userInfo: ["viewController": viewController])
         }
     }
@@ -122,8 +122,8 @@ struct Notifications {
             return NavigationSection.fromRaw(raw)!
         }
         
-        static func PushViewControllerNotification(notification: NSNotification) -> NSViewController {
-            return notification.userInfo!["viewController"] as NSViewController
+        static func PushViewControllerNotification(notification: NSNotification) -> BaseContentViewController {
+            return notification.userInfo!["viewController"] as BaseContentViewController
         }
     }
 }

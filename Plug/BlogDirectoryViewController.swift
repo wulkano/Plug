@@ -11,6 +11,9 @@ import Cocoa
 class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     var dataSource: BlogDirectoryDataSource!
+    override var analyticsViewName: String {
+        return "MainWindow/BlogDirectory"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

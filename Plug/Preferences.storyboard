@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A343f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
     </dependencies>
     <scenes>
-        <!--Preferences-->
+        <!--Window Controller-->
         <scene sceneID="OaO-hp-jyj">
             <objects>
                 <windowController id="W2t-17-F3D" customClass="PreferencesWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
@@ -149,9 +149,9 @@
                         <tabViewItem id="aam-aj-uXK"/>
                     </tabViewItems>
                     <connections>
-                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItem" id="hba-qw-Yk5"/>
-                        <segue destination="UXZ-1h-gFf" kind="relationship" relationship="tabItem" id="cCB-YP-VjL"/>
-                        <segue destination="9YK-AT-qbV" kind="relationship" relationship="tabItem" id="Xdk-Bb-XdZ"/>
+                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItems" id="uy7-yz-DcF"/>
+                        <segue destination="UXZ-1h-gFf" kind="relationship" relationship="tabItems" id="Jcq-FH-wwn"/>
+                        <segue destination="9YK-AT-qbV" kind="relationship" relationship="tabItems" id="yhh-lX-cXs"/>
                     </connections>
                 </tabViewController>
                 <customObject id="sNG-BB-J3A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -172,13 +172,12 @@
                                     <rect key="frame" x="1" y="17" width="238" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" rowSizeStyle="automatic" viewBased="YES" id="eJY-Z3-ivM">
-                                            <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" viewBased="YES" id="eJY-Z3-ivM">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="397" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
+                                                <tableColumn width="400" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -195,7 +194,7 @@
                                                             <rect key="frame" x="1" y="1" width="397" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
                                                                     <rect key="frame" x="18" y="27" width="289" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="WgU-NV-bLE"/>
@@ -209,7 +208,7 @@
                                                                         <binding destination="sSJ-Ca-gwb" name="value" keyPath="objectValue.title" id="sWe-5C-BPK"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="aip-oN-OkS" customClass="ITSwitch">
+                                                                <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aip-oN-OkS" customClass="ITSwitch">
                                                                     <rect key="frame" x="325" y="19" width="52" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="52" id="Yss-ke-dQB"/>

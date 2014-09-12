@@ -66,10 +66,10 @@ class MainViewController: NSViewController {
     
     func updateUIForSection(section: NavigationSection) {
         var newViewController = viewControllerForSection(section)
-        navigationController.setNewRootViewController(newViewController, animated: true)
+        navigationController.setNewRootViewController(newViewController)
     }
     
-    func viewControllerForSection(section: NavigationSection) -> NSViewController {
+    func viewControllerForSection(section: NavigationSection) -> BaseContentViewController {
         
 //        TODO: This sucks I hate it
         var newViewController: NSViewController
