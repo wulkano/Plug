@@ -14,6 +14,16 @@ class HyperlinkButton: NSButton {
             applyAttributes()
         }
     }
+    @IBInspectable var selectedTextColor: NSColor = NSColor(red256: 255, green256: 95, blue256: 82) {
+        didSet {
+            applyAttributes()
+        }
+    }
+    @IBInspectable var selected: Bool = false {
+        didSet {
+            applyAttributes()
+        }
+    }
     @IBInspectable var hoverUnderline: Bool = false
     
     override var title: String! {
@@ -30,7 +40,11 @@ class HyperlinkButton: NSButton {
     
     func applyAttributes() {
         var attributes = [NSObject: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = textColor
+        if selected {
+            attributes[NSForegroundColorAttributeName] = selectedTextColor
+        } else {
+            attributes[NSForegroundColorAttributeName] = textColor
+        }
         attributes[NSFontAttributeName] = (cell() as NSButtonCell).font
         var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = (cell() as NSButtonCell).lineBreakMode

@@ -22,11 +22,12 @@ class MediaKeyHandler: NSObject {
         super.init()
         
         initialSetup()
-
     }
     
     func initialSetup() {
         keyTap = SPMediaKeyTap(delegate: self)
+        
+        registerWhitelist()
         
         if SPMediaKeyTap.usesGlobalMediaKeyTap() {
             keyTap.startWatchingMediaKeys()
@@ -65,5 +66,12 @@ class MediaKeyHandler: NSObject {
             
             println(debugString)
         }
+    }
+    
+    func registerWhitelist() {
+        let dictionary: [NSObject: AnyObject] = [
+            kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers(),
+        ]
+        NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)
     }
 }

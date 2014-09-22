@@ -13,6 +13,8 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
     var previousMouseInsideRow: Int = -1
+    var anchoredRow: Int?
+    var anchoredCellViewViewController: BasePlaylistViewController?
     var dataSource: BasePlaylistDataSource? {
         didSet {
             dataSourceChanged()
@@ -53,15 +55,33 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
     }
     
     func tableView(tableView: NSTableView, mouseEnteredRow row: Int) {
-        cellViewForRow(row)!.mouseInside = true
+        if let cellView = cellViewForRow(row) {
+            cellView.mouseInside = true
+        }
         previousMouseInsideRow = row
     }
     
     func tableView(tableView: NSTableView, mouseExitedRow row: Int) {
-        cellViewForRow(row)!.mouseInside = false
+        if let cellView = cellViewForRow(row) {
+            cellView.mouseInside = false
+        }
     }
     
-    func didEndScrollingTableView(tableView: NSTableView) {
+    func tableView(tableView: ExtendedTableView, rowDidShow row: Int) {
+        let track = dataSource!.trackForRow(row)
+        if track === AudioPlayer.sharedInstance.currentTrack {
+            Notifications.Post.CurrentTrackDidShow(self)
+        }
+    }
+    
+    func tableView(tableView: ExtendedTableView, rowDidHide row: Int) {
+        let track = dataSource!.trackForRow(row)
+        if track === AudioPlayer.sharedInstance.currentTrack {
+            Notifications.Post.CurrentTrackDidHide(self)
+        }
+    }
+    
+    func didEndScrollingTableView(tableView: ExtendedTableView) {
         if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
             dataSource!.loadNextPage()
         }
@@ -84,7 +104,7 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
         }
     }
     
-    func tableView(tableView: NSTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
+    func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
         let menuController = TrackContextMenuController(nibName: "TrackContextMenuController", bundle: nil)
         menuController.loadView()
         menuController.representedObject = dataSource!.trackForRow(row)

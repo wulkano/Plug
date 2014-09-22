@@ -22,7 +22,7 @@ struct ScreenviewHit: Hit {
         return "<ScreenviewHit viewName: \(viewName)>"
     }
     
-    func params() -> [String : String] {
+    func params() -> [String: String] {
         return [
             "t": "screenview",
             "cd": contentDescription,

@@ -24,10 +24,14 @@ class MainViewController: NSViewController {
     
     var currentViewController: NSViewController?
     
+    var currentTrackViewController: NSViewController?
+    
     required init(coder: NSCoder!) {
         super.init(coder: coder)
         Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
         Notifications.Subscribe.DisplayError(self, selector: "displayError:")
+        Notifications.Subscribe.CurrentTrackDidShow(self, selector: "currentTrackDidShow:")
+        Notifications.Subscribe.CurrentTrackDidHide(self, selector: "currentTrackDidHide:")
     }
     
     deinit {
@@ -48,6 +52,8 @@ class MainViewController: NSViewController {
         if currentViewController == nil {
             changeNavigationSection(NavigationSection.Popular)
         }
+        
+        addCurrentTrackViewController()
     }
     
     func changeNavigationSection(section: NavigationSection) {
@@ -67,6 +73,21 @@ class MainViewController: NSViewController {
     func updateUIForSection(section: NavigationSection) {
         var newViewController = viewControllerForSection(section)
         navigationController.setNewRootViewController(newViewController)
+    }
+    
+    func currentTrackDidShow(notification: NSNotification) {
+        currentTrackViewController!.view.hidden = true
+    }
+
+    func currentTrackDidHide(notification: NSNotification) {
+        currentTrackViewController!.view.hidden = false
+    }
+    
+    func addCurrentTrackViewController() {
+        currentTrackViewController = storyboard.instantiateControllerWithIdentifier("CurrentlyPlaylingTrackViewController") as CurrentlyPlaylingTrackViewController
+        let insets = NSEdgeInsetsMake(0, 69, 47, 0)
+        ViewPlacementHelper.AddBottomAnchoredSubview(currentTrackViewController!.view, toSuperView: view, withFixedHeight: 70, andInsets: insets)
+        currentTrackViewController!.view.hidden = true
     }
     
     func viewControllerForSection(section: NavigationSection) -> BaseContentViewController {

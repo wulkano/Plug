@@ -25,7 +25,7 @@ struct EventHit: Hit {
         return "<EventHit category: \(category), action: \(action), label: \(label), value: \(value)>"
     }
     
-    func params() -> [String : String] {
+    func params() -> [String: String] {
         var params = [String: String]()
         params["t"] = "event"
         params["ec"] = category

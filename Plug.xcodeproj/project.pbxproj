@@ -18,9 +18,6 @@
 		FA0B1D3A197725E90030C873 /* FeedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D39197725E90030C873 /* FeedPlaylist.swift */; };
 		FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */; };
 		FA0B1D3E1977355B0030C873 /* ColorChangingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */; };
-		FA0C4E9A19C22CA500A1B83C /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C4E9319C22CA500A1B83C /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FA0C4E9B19C22CA500A1B83C /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C4E9519C22CA500A1B83C /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FA15319619C2377E004DB074 /* PlugApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = FA15319519C2377E004DB074 /* PlugApplication.m */; };
 		FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */; };
 		FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
@@ -90,7 +87,10 @@
 		FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */; };
 		FA7C5CCF19BD4F2D002239AB /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCE19BD4F2D002239AB /* HTTP.swift */; };
 		FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */; };
+		FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */; };
 		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
+		FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FA99EED219D0210F008C9C4A /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3019B66C6F0057080C /* NavigationController.swift */; };
 		FA9A2F3319B66C760057080C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3219B66C760057080C /* NavigationBar.swift */; };
 		FA9A2F3619B66D7D0057080C /* PlugNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */; };
@@ -122,6 +122,8 @@
 		FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */; };
 		FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */; };
 		FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */; };
+		FABA62A819C4BC6C00E217D9 /* SingleTrackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A719C4BC6C00E217D9 /* SingleTrackDataSource.swift */; };
+		FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
 		FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */; };
@@ -188,12 +190,6 @@
 		FA0B1D39197725E90030C873 /* FeedPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPlaylist.swift; sourceTree = "<group>"; };
 		FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylist.swift; sourceTree = "<group>"; };
 		FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChangingTextField.swift; sourceTree = "<group>"; };
-		FA0C4E9219C22CA500A1B83C /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
-		FA0C4E9319C22CA500A1B83C /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
-		FA0C4E9419C22CA500A1B83C /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = ../../../../Desktop/SPMediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
-		FA0C4E9519C22CA500A1B83C /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = ../../../../Desktop/SPMediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
-		FA15319419C2377E004DB074 /* PlugApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugApplication.h; sourceTree = "<group>"; };
-		FA15319519C2377E004DB074 /* PlugApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugApplication.m; sourceTree = "<group>"; };
 		FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyHandler.swift; sourceTree = "<group>"; };
 		FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
@@ -270,7 +266,12 @@
 		FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundCloudAPI.swift; sourceTree = "<group>"; };
 		FA7C5CCE19BD4F2D002239AB /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+getSubstringBetweenPrefix.swift"; sourceTree = "<group>"; };
+		FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+contains.swift"; sourceTree = "<group>"; };
 		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
+		FA99EECA19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		FA99EECC19D0210F008C9C4A /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		FA9A2F3019B66C6F0057080C /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		FA9A2F3219B66C760057080C /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlugNavigationController.swift; sourceTree = "<group>"; };
@@ -302,6 +303,8 @@
 		FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantSecureTextField.swift; sourceTree = "<group>"; };
 		FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectOutlineButton.swift; sourceTree = "<group>"; };
 		FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonCell.swift; sourceTree = "<group>"; };
+		FABA62A719C4BC6C00E217D9 /* SingleTrackDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTrackDataSource.swift; sourceTree = "<group>"; };
+		FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentlyPlaylingTrackViewController.swift; sourceTree = "<group>"; };
 		FABB112E19C10DD8000DB1BC /* String+digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+digest.swift"; sourceTree = "<group>"; };
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
@@ -387,22 +390,12 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		FA0C4E8E19C22CA500A1B83C /* SPInvocationGrabbing */ = {
-			isa = PBXGroup;
-			children = (
-				FA0C4E9219C22CA500A1B83C /* NSObject+SPInvocationGrabbing.h */,
-				FA0C4E9319C22CA500A1B83C /* NSObject+SPInvocationGrabbing.m */,
-			);
-			name = SPInvocationGrabbing;
-			path = ../../../../Desktop/SPMediaKeyTap/SPInvocationGrabbing;
-			sourceTree = "<group>";
-		};
 		FA0C4E9D19C22CAA00A1B83C /* SPMediaKeyTap */ = {
 			isa = PBXGroup;
 			children = (
-				FA0C4E8E19C22CA500A1B83C /* SPInvocationGrabbing */,
-				FA0C4E9419C22CA500A1B83C /* SPMediaKeyTap.h */,
-				FA0C4E9519C22CA500A1B83C /* SPMediaKeyTap.m */,
+				FA99EEC619D0210F008C9C4A /* SPInvocationGrabbing */,
+				FA99EECC19D0210F008C9C4A /* SPMediaKeyTap.h */,
+				FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */,
 			);
 			name = SPMediaKeyTap;
 			sourceTree = "<group>";
@@ -445,8 +438,6 @@
 		FA24ED9E1974A9A500A781C8 /* Plug */ = {
 			isa = PBXGroup;
 			children = (
-				FA15319419C2377E004DB074 /* PlugApplication.h */,
-				FA15319519C2377E004DB074 /* PlugApplication.m */,
 				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
 				FA64C6A619764FE9003933E3 /* Constants.swift */,
@@ -501,6 +492,7 @@
 				FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */,
 				FABB112E19C10DD8000DB1BC /* String+digest.swift */,
 				FA72C14E19C0524000FFB002 /* Dictionary+merge.swift */,
+				FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -581,6 +573,15 @@
 				FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */,
 			);
 			name = Playlists;
+			sourceTree = "<group>";
+		};
+		FA99EEC619D0210F008C9C4A /* SPInvocationGrabbing */ = {
+			isa = PBXGroup;
+			children = (
+				FA99EECA19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.h */,
+				FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */,
+			);
+			path = SPInvocationGrabbing;
 			sourceTree = "<group>";
 		};
 		FA9A2F3819B6891C0057080C /* NSTableCellViews */ = {
@@ -722,6 +723,7 @@
 				FA9EA039199AD25800D9AB8A /* LatestPlaylistDataSource.swift */,
 				FA9EA037199ACAAA00D9AB8A /* PopularPlaylistDataSource.swift */,
 				FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */,
+				FABA62A719C4BC6C00E217D9 /* SingleTrackDataSource.swift */,
 			);
 			name = PlaylistDataSources;
 			sourceTree = "<group>";
@@ -770,6 +772,7 @@
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
 				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
 				FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */,
+				FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -945,11 +948,13 @@
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
+				FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */,
 				FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FAA34A8F19B2E3C00038868A /* FeedPlaylistViewController.swift in Sources */,
 				FAACE4BE19ABEA4600F8E9E8 /* Logger.swift in Sources */,
 				FA9A2F4619B6ACA70057080C /* ArtistPlaylistDataSource.swift in Sources */,
+				FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */,
 				FA64C6A319764DC9003933E3 /* HypeMachineAPI.swift in Sources */,
 				FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */,
 				FA53951219B0583D006A95A5 /* PostInfoFormatter.swift in Sources */,
@@ -966,7 +971,6 @@
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
 				FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */,
 				FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */,
-				FA0C4E9B19C22CA500A1B83C /* SPMediaKeyTap.m in Sources */,
 				FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */,
 				FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */,
 				FAA34A9319B2E4090038868A /* FavoritesPlaylistViewController.swift in Sources */,
@@ -976,6 +980,7 @@
 				FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* GenresDataSource.swift in Sources */,
 				FA6ADCFD19BA935C00CCD371 /* ViewPlacementHelper.swift in Sources */,
+				FA99EED219D0210F008C9C4A /* SPMediaKeyTap.m in Sources */,
 				FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */,
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
 				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
@@ -1002,7 +1007,6 @@
 				FAF21D9019C128E700615D2F /* TransparentButtonCell.swift in Sources */,
 				FA9EA03A199AD25800D9AB8A /* LatestPlaylistDataSource.swift in Sources */,
 				FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */,
-				FA0C4E9A19C22CA500A1B83C /* NSObject+SPInvocationGrabbing.m in Sources */,
 				FA77499A198C07110048863F /* GenresViewController.swift in Sources */,
 				FAA34A8919B2CF620038868A /* BasePlaylistDataSource.swift in Sources */,
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
@@ -1022,7 +1026,6 @@
 				FA0B1D34197719230030C873 /* FavoritesPlaylist.swift in Sources */,
 				FA6ADCF919BA886C00CCD371 /* BlogPlaylistDataSource.swift in Sources */,
 				FAA34A8D19B2E27F0038868A /* PopularPlaylistViewController.swift in Sources */,
-				FA15319619C2377E004DB074 /* PlugApplication.m in Sources */,
 				FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */,
 				FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */,
 				FAACE4C419AC2ADD00F8E9E8 /* SignUpButtonCell.swift in Sources */,
@@ -1036,6 +1039,7 @@
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
 				FA691BFF197654AF008D5C3E /* Track.swift in Sources */,
 				FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */,
+				FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */,
 				FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
@@ -1057,6 +1061,7 @@
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
+				FABA62A819C4BC6C00E217D9 /* SingleTrackDataSource.swift in Sources */,
 				FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* BasePlaylistViewController.swift in Sources */,
 				FADC96F21974CA0D009458FA /* LoveCountPlaylistTableCellView.swift in Sources */,

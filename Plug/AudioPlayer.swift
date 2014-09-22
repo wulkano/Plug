@@ -69,6 +69,7 @@ class AudioPlayer: NSObject {
         player.play()
         playing = true
         Notifications.Post.TrackPlaying(currentTrack!, sender: self)
+//        MediaKeyHandler.sharedInstance.keyTap.startWatchingMediaKeys()
     }
     
     func pause() {

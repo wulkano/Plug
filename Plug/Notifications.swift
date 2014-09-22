@@ -20,6 +20,9 @@ struct Notifications {
     static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
     
     static let PushViewController = "Plug.PushViewController"
+    
+    static let CurrentTrackDidShow = "Plug.CurrentTrackDidShow"
+    static let CurrentTrackDidHide = "Plug.CurrentTrackDidHide"
 
     
     struct Post {
@@ -54,6 +57,14 @@ struct Notifications {
         static func PushViewController(viewController: BaseContentViewController, sender: AnyObject?) {
             NSNotificationCenter.defaultCenter().postNotificationName(Notifications.PushViewController, object: sender, userInfo: ["viewController": viewController])
         }
+        
+        static func CurrentTrackDidShow(sender: AnyObject?) {
+            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.CurrentTrackDidShow, object: sender)
+        }
+        
+        static func CurrentTrackDidHide(sender: AnyObject?) {
+            NSNotificationCenter.defaultCenter().postNotificationName(Notifications.CurrentTrackDidHide, object: sender)
+        }
     }
     
     struct Subscribe {
@@ -87,6 +98,14 @@ struct Notifications {
         
         static func PushViewController(subscriber: AnyObject, selector: Selector) {
             NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.PushViewController, object: nil)
+        }
+        
+        static func CurrentTrackDidShow(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.CurrentTrackDidShow, object: nil)
+        }
+        
+        static func CurrentTrackDidHide(subscriber: AnyObject, selector: Selector) {
+            NSNotificationCenter.defaultCenter().addObserver(subscriber, selector: selector, name: Notifications.CurrentTrackDidHide, object: nil)
         }
     }
     

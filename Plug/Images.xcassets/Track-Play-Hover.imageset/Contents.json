@@ -12,6 +12,10 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "Track-Play-Hover@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

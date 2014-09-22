@@ -1,14 +1,14 @@
 //
-//  BasePlaylistTableCellView.swift
+//  CurrentlyPlaylingTrackViewController.swift
 //  Plug
 //
-//  Created by Alex Marchant on 8/28/14.
+//  Created by Alex Marchant on 9/13/14.
 //  Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
-class BasePlaylistTableCellView: IOSStyleTableCellView {
+class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBOutlet var playPauseButton: HoverToggleButton!
     @IBOutlet var loveButton: TransparentButton!
     @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
@@ -21,9 +21,9 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     
     var trackInfoWindowController: NSWindowController?
     
-    override var objectValue: AnyObject! {
+    var track: Track! {
         didSet {
-            objectValueChanged()
+            trackChanged()
         }
     }
     var mouseInside: Bool = false {
@@ -32,13 +32,12 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     var playState: PlayState = PlayState.NotPlaying {
         didSet { playStateChanged() }
     }
-    var trackValue: Track {
-        return objectValue as Track
-    }
     var trackingProgress: Bool = false
+    var trackValue: Track {
+        return track
+    }
     
-    
-    required override init(coder: NSCoder) {
+    required init(coder: NSCoder) {
         super.init(coder: coder)
         initialSetup()
     }
@@ -54,9 +53,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
         Notifications.Subscribe.TrackUnLoved(self, selector: "trackUnLoved:")
     }
     
-    func objectValueChanged() {
-        if objectValue == nil { return }
-
+    func trackChanged() {
         playState = currentPlayState()
         updateTrackAvailability()
         updateTrackTitle()
@@ -67,7 +64,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func currentPlayState() -> PlayState {
-        if AudioPlayer.sharedInstance.currentTrack === objectValue {
+        if AudioPlayer.sharedInstance.currentTrack === trackValue {
             if AudioPlayer.sharedInstance.playing {
                 return PlayState.Playing
             } else {
@@ -219,24 +216,21 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackPlaying(notification: NSNotification) {
-        let track = Notifications.Read.TrackNotification(notification)
-        if track === objectValue {
+        let newTrack = Notifications.Read.TrackNotification(notification)
+        if track !== newTrack {
+            track = newTrack
             playState = PlayState.Playing
-        } else {
-            playState = PlayState.NotPlaying
+            view.hidden = true
         }
     }
     
     func trackPaused(notification: NSNotification) {
-        let track = Notifications.Read.TrackNotification(notification)
-        if track === objectValue {
-            playState = PlayState.Paused
-        }
+        playState = PlayState.Paused
     }
     
     func trackLoved(notification: NSNotification) {
         let track = Notifications.Read.TrackNotification(notification)
-        if track === objectValue {
+        if track === track {
             trackValue.loved = true
             loveButton.selected = true
         }
@@ -244,7 +238,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     
     func trackUnLoved(notification: NSNotification) {
         let track = Notifications.Read.TrackNotification(notification)
-        if track === objectValue {
+        if track === track {
             trackValue.loved = false
             loveButton.selected = false
         }
@@ -265,7 +259,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
         if trackInfoWindowController == nil {
             trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil).instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController
-            trackInfoViewController.representedObject = objectValue
+            trackInfoViewController.representedObject = track
         }
         trackInfoWindowController!.showWindow(self)
     }
