@@ -28,8 +28,14 @@ struct HypeMachineAPI  {
             HTTP.GetJSON(url,
                 parameters: fullParameters,
                 success: { operation, responseObject in
-                    let tracks = self.parseTracksFromResponse(responseObject)
-                    success(tracks: tracks, lastPage: false)
+                    if responseObject == nil {
+                        let errorMessage = "Network Error"
+                        failure(error: NSError(domain: PlugErrorDomain, code: 2, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
+                        return
+                    } else {
+                        let tracks = self.parseTracksFromResponse(responseObject)
+                        success(tracks: tracks, lastPage: false)
+                    }
                 }, failure: { operation, error in
                     if self.pageNotFound(operation) {
                         success(tracks: [], lastPage: true)
@@ -367,10 +373,16 @@ struct HypeMachineAPI  {
         let params = ["username": username, "password": password, "device_id": deviceId()]
         HTTP.PostJSON(url, parameters: params,
             success: {operation, responseObject in
-                let responseDictionary = responseObject as NSDictionary
-                let username = responseDictionary["username"] as String
-                let token = responseDictionary["hm_token"] as String
-                success(username: username, token: token)
+                if responseObject == nil {
+                    let errorMessage = "Network error"
+                    failure(error: NSError(domain: PlugErrorDomain, code: 2, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
+                    return
+                } else {
+                    let responseDictionary = responseObject as NSDictionary
+                    let username = responseDictionary["username"] as String
+                    let token = responseDictionary["hm_token"] as String
+                    success(username: username, token: token)
+                }
             }, failure: {operation, error in
                 if let errorMessage = self._tryToParseHypeMachineErrorMessage(error) {
                     failure(error: NSError(domain: PlugErrorDomain, code: 2, userInfo: [NSLocalizedDescriptionKey: errorMessage]))

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
     var loginWindowController: NSWindowController?
     var preferencesWindowController: NSWindowController?
@@ -16,6 +16,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var preferencesMenuSeparator: NSMenuItem!
     @IBOutlet var signOutMenuItem: NSMenuItem!
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
+    
+    // An attempt to fix bug: https://github.com/alexmarchant/Plug2Issues/issues/8
+    convenience init(coder: NSCoder) {
+        self.init()
+    }
+    
+    override init() {
+        super.init()
+    }
     
 //    TODO: Switch release channel compilation flag back to fast when they fix some bug
     
@@ -119,11 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     private func setupUserNotifications() {
-        NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
-    }
-    
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification!) -> Bool {
-        return true
+        UserNotificationHandler.sharedInstance
     }
     
     private func setupMediaKeys() {

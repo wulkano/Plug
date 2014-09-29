@@ -51,9 +51,7 @@ class GoogleAnalytics: NSObject {
         let params = defaultParams().merge(hitParams)
         requestManager.POST(apiBase,
             parameters: params,
-            success: { operation, responseObject in
-                println("Hit sent: \(hit.description())")
-            },
+            success: nil,
             failure: { opperation, error in
                 println(error)
         })

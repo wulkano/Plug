@@ -8,9 +8,8 @@
 
 import Foundation
 
-let UsernameHashKey = "WGmV6YEF9VFZBjcx"
-
 struct Authentication {
+    private static let UsernameHashKey = "WGmV6YEF9VFZBjcx"
     
     static func UserSignedIn() -> Bool {
         if GetUsername() == nil || GetToken() == nil {
@@ -28,17 +27,17 @@ struct Authentication {
         let username = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
         if username == nil { return nil }
         
-        return SSKeychain.passwordForService("Plug", account: username!)
+        return SSKeychain.passwordForService(TokenServiceName(), account: username!)
     }
     
     static func SaveUsername(username: String, withToken token: String) {
         NSUserDefaults.standardUserDefaults().setValue(username, forKey: "username")
-        SSKeychain.setPassword(token, forService: "Plug", account: username)
+        SSKeychain.setPassword(token, forService: TokenServiceName(), account: username)
     }
     
     static func DeleteUsernameAndToken() {
         let username = GetUsername()
-        SSKeychain.deletePasswordForService("Plug", account: username!)
+        SSKeychain.deletePasswordForService(TokenServiceName(), account: username!)
         NSUserDefaults.standardUserDefaults().removeObjectForKey("username")
     }
     
@@ -48,5 +47,10 @@ struct Authentication {
         } else {
             return nil
         }
+    }
+    
+    private static func TokenServiceName() -> String {
+        var bundleID = NSBundle.mainBundle().bundleIdentifier!
+        return "\(bundleID).AccountToken"
     }
 }

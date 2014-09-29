@@ -36,6 +36,7 @@
 		FA3199AF19824E030097B081 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AE19824E030097B081 /* Blog.swift */; };
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
 		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
+		FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */; };
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
 		FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */; };
@@ -212,6 +213,7 @@
 		FA3199AE19824E030097B081 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
+		FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationHandler.swift; sourceTree = "<group>"; };
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutedPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -438,8 +440,9 @@
 		FA24ED9E1974A9A500A781C8 /* Plug */ = {
 			isa = PBXGroup;
 			children = (
-				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
+				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
+				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
 				FA64C6A619764FE9003933E3 /* Constants.swift */,
 				FA64C6A119764DAE003933E3 /* Models */,
 				FA53950E19B03440006A95A5 /* Formatters */,
@@ -1055,6 +1058,7 @@
 				FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */,
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
+				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA0B1D2E1977109E0030C873 /* Playlist.swift in Sources */,
 				FA72C14F19C0524000FFB002 /* Dictionary+merge.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
