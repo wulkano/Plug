@@ -76,6 +76,7 @@
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
 		FA72C14B19C03FD400FFB002 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72C14A19C03FD400FFB002 /* GoogleAnalytics.swift */; };
 		FA72C14F19C0524000FFB002 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72C14E19C0524000FFB002 /* Dictionary+merge.swift */; };
+		FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */; };
 		FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774993198B46770048863F /* BackgroundBorderView.swift */; };
 		FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */; };
 		FA77499A198C07110048863F /* GenresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774999198C07110048863F /* GenresViewController.swift */; };
@@ -256,6 +257,7 @@
 		FA72C14A19C03FD400FFB002 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
 		FA72C14E19C0524000FFB002 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
 		FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
+		FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableTextField.swift; sourceTree = "<group>"; };
 		FA774993198B46770048863F /* BackgroundBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundBorderView.swift; sourceTree = "<group>"; };
 		FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSStyleTableRowView.swift; sourceTree = "<group>"; };
 		FA774999198C07110048863F /* GenresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresViewController.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */,
 				FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */,
 				FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */,
+				FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */,
 			);
 			name = NSTextFields;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				FAEE914819BA5AF600D4274C /* SingleBlogViewController.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
 				FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */,
+				FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */,
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
 				FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */,
 				FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */,

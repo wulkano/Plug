@@ -11,14 +11,22 @@ import Cocoa
 class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     @IBOutlet var usernameOrBlogNameTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedByWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var lovedByOrPostedBy: NSTextField!
-    @IBOutlet var usernameOrBlogNameButton: NSButton!
+    @IBOutlet var lovedByOrPostedBy: SelectableTextField!
+    @IBOutlet var usernameOrBlogNameButton: HyperlinkButton!
     
     override func objectValueChanged() {
         super.objectValueChanged()
         if objectValue == nil { return }
         
         updateLovedByOrPostedBy()
+        updateUsernameOrBlogName()
+    }
+    
+    override func playStateChanged() {
+        super.playStateChanged()
+        
+        updateLovedByOrPostedBy()
+        updateUsernameOrBlogName()
     }
     
     func updateLovedByOrPostedBy() {
@@ -34,8 +42,24 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
             lovedByOrPostedBy.stringValue = "Posted by"
             usernameOrBlogNameButton.title = trackValue.postedBy
         }
+        
+        switch playState {
+        case .Playing, .Paused:
+            lovedByOrPostedBy.selected = true
+        case .NotPlaying:
+            lovedByOrPostedBy.selected = false
+        }
     }
     
+    func updateUsernameOrBlogName() {
+        switch playState {
+        case .Playing, .Paused:
+            usernameOrBlogNameButton.selected = true
+        case .NotPlaying:
+            usernameOrBlogNameButton.selected = false
+        }
+    }
+
     override func updateTextFieldsSpacing() {
         super.updateTextFieldsSpacing()
         

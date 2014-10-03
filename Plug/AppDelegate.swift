@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
     
     // An attempt to fix bug: https://github.com/alexmarchant/Plug2Issues/issues/8
+    // TODO: remove this after public release
     convenience init(coder: NSCoder) {
         self.init()
     }
