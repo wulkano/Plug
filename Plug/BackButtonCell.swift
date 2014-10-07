@@ -17,7 +17,7 @@ class BackButtonCell: SwissArmyButtonCell {
     var mouseDownMiddleImage = NSImage(named: "Header-Back-Tap-Middle")
     var mouseDownRightImage = NSImage(named: "Header-Back-Tap-Right")
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView!) {
+    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
         if mouseDown {
             NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.CompositeSourceOver, 1, true)
         } else {
@@ -25,7 +25,7 @@ class BackButtonCell: SwissArmyButtonCell {
         }
     }
     
-    override func drawTitle(title: NSAttributedString!, withFrame frame: NSRect, inView controlView: NSView!) -> NSRect {
+    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         var newFrame = frame
         newFrame.origin.y -= 2
         newFrame.origin.x += 3

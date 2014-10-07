@@ -31,7 +31,7 @@ class SwissArmyButton: NSButton {
         set { swissArmyButtonCell.mouseDown = newValue }
     }
     
-    required init(coder: NSCoder!) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
@@ -51,24 +51,24 @@ class SwissArmyButton: NSButton {
         }
     }
     
-    override func mouseEntered(theEvent: NSEvent!) {
+    override func mouseEntered(theEvent: NSEvent) {
         mouseInside = true
         needsDisplay = true
     }
     
-    override func mouseExited(theEvent: NSEvent!) {
+    override func mouseExited(theEvent: NSEvent) {
         mouseInside = false
         needsDisplay = true
     }
     
-    override func mouseDown(theEvent: NSEvent!) {
+    override func mouseDown(theEvent: NSEvent) {
         mouseDown = true
         needsDisplay = true
         super.mouseDown(theEvent)
         mouseUp(theEvent)
     }
     
-    override func mouseUp(theEvent: NSEvent!) {
+    override func mouseUp(theEvent: NSEvent) {
         mouseDown = false
         needsDisplay = true
         super.mouseUp(theEvent)

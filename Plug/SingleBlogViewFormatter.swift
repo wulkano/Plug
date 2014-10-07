@@ -78,6 +78,6 @@ class SingleBlogViewFormatter: NSFormatter {
     }
     
     func getFont() -> NSFont {
-        return NSFont(name: "HelveticaNeue-Medium", size: 13)
+        return NSFont(name: "HelveticaNeue-Medium", size: 13)!
     }
 }

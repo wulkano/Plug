@@ -49,7 +49,7 @@ class ExtendedTableView: NSTableView {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
     }
 
-    override func mouseDown(theEvent: NSEvent!) {
+    override func mouseDown(theEvent: NSEvent) {
         let globalLocation = theEvent.locationInWindow
         let localLocation = convertPoint(globalLocation, fromView: nil)
         let clickedRow = rowAtPoint(localLocation)
@@ -61,7 +61,7 @@ class ExtendedTableView: NSTableView {
         extendedDelegate?.tableView?(self, wasClicked: theEvent, atRow: clickedRow)
     }
     
-    override func rightMouseDown(theEvent: NSEvent!) {
+    override func rightMouseDown(theEvent: NSEvent) {
         let globalLocation = theEvent.locationInWindow
         let localLocation = convertPoint(globalLocation, fromView: nil)
         let clickedRow = rowAtPoint(localLocation)
@@ -73,7 +73,7 @@ class ExtendedTableView: NSTableView {
         extendedDelegate?.tableView?(self, wasRightClicked: theEvent, atRow: clickedRow)
     }
     
-    override func mouseMoved(theEvent: NSEvent!) {
+    override func mouseMoved(theEvent: NSEvent) {
         super.mouseMoved(theEvent)
         
         let globalLocation = theEvent.locationInWindow
@@ -91,7 +91,7 @@ class ExtendedTableView: NSTableView {
         }
     }
     
-    override func mouseExited(theEvent: NSEvent!) {
+    override func mouseExited(theEvent: NSEvent) {
         super.mouseExited(theEvent)
         
         if mouseInsideRow != -1 {

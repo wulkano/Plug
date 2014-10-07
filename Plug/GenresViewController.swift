@@ -107,7 +107,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
         dataSource!.filterByKeywords(keywords)
     }
     
-    override func keyDown(theEvent: NSEvent!) {
+    override func keyDown(theEvent: NSEvent) {
         switch theEvent.keyCode {
         case 36:
             enterKeyPressed(theEvent)
@@ -118,7 +118,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
         }
     }
     
-    func enterKeyPressed(theEvent: NSEvent!) {
+    func enterKeyPressed(theEvent: NSEvent) {
         if let genre = selectedGenre() {
             loadSingleGenreView(genre)
         } else {
@@ -126,7 +126,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
         }
     }
     
-    func rightArrowKeyPressed(theEvent: NSEvent!) {
+    func rightArrowKeyPressed(theEvent: NSEvent) {
         if let genre = selectedGenre() {
             loadSingleGenreView(genre)
         } else {
@@ -144,7 +144,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     }
     
     func loadSingleGenreView(genre: Genre) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = genre.name
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)

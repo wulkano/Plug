@@ -14,7 +14,7 @@ class TransparentButtonCell: SwissArmyButtonCell {
     let mouseInsideOpacity: CGFloat = 0.7
     let inactiveOpacity: CGFloat = 0.3
     
-    override func drawImage(image: NSImage!, withFrame frame: NSRect, inView controlView: NSView!) {
+    override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
         
         var alpha = getImageAlpha()
         if let drawImage = getDrawImage() {

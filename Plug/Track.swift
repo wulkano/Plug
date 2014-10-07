@@ -76,7 +76,7 @@ class Track: NSObject {
         } else {
             mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(ApiKey)"
         }
-        return NSURL(string: mediaLinkString)
+        return NSURL(string: mediaLinkString)!
     }
     
     func thumbURLWithPreferedSize(size: Track.ImageSize) -> NSURL {
@@ -109,7 +109,7 @@ class Track: NSObject {
     }
     
     func hypeMachineURL() -> NSURL {
-        return NSURL(string: "http://hypem.com/track/\(id)")
+        return NSURL(string: "http://hypem.com/track/\(id)")!
     }
     
     enum ImageSize {

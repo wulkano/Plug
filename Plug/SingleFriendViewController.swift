@@ -66,14 +66,14 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         addChildViewController(playlistViewController)
         ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
         playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, viewController: playlistViewController)
     }
     
     override func addLoaderView() {
-        loaderViewController = storyboard.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
+        loaderViewController = storyboard!.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
     }

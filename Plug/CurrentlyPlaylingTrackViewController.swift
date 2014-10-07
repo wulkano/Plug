@@ -37,7 +37,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         return track
     }
     
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         initialSetup()
     }
@@ -257,8 +257,8 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBAction func infoButtonClicked(sender: TransparentButton) {
         Analytics.sharedInstance.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
-            trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil).instantiateInitialController() as? NSWindowController
-            var trackInfoViewController = trackInfoWindowController!.window!.contentViewController
+            trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil)!.instantiateInitialController() as? NSWindowController
+            var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
             trackInfoViewController.representedObject = track
         }
         trackInfoWindowController!.showWindow(self)
@@ -288,7 +288,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.Post.PushViewController(viewController, sender: self)

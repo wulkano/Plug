@@ -25,7 +25,7 @@ class BaseContentViewController: NSViewController {
 
     func addLoaderView() {
         if loaderViewController == nil {
-            loaderViewController = storyboard.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
+            loaderViewController = storyboard!.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
             let insets = NSEdgeInsetsMake(0, 0, 47, 0)
             ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
         }

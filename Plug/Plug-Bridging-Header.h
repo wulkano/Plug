@@ -10,3 +10,7 @@
 #import "SLColorArt.h"
 #import "NSObject+SPInvocationGrabbing.h"
 #import "SPMediaKeyTap.h"
+
+@interface AFImageResponseSerializer (CustomInit)
++ (instancetype)sharedSerializer;
+@end

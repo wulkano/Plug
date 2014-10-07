@@ -19,7 +19,7 @@ class UnderlinedTabButtonCell: NSButtonCell {
         highlightsBy = NSCellStyleMask.ContentsCellMask
     }
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView!) {
+    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
         if state == NSOnState {
             var highlightRect = NSMakeRect(0, frame.size.height - hightlightWidth, frame.size.width, hightlightWidth)
             highlightColor.set()
@@ -27,13 +27,13 @@ class UnderlinedTabButtonCell: NSButtonCell {
         }
     }
     
-    override func drawTitle(title: NSAttributedString!, withFrame frame: NSRect, inView controlView: NSView!) -> NSRect {
+    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         
         // Consistent vertical placement
         return super.drawTitle(title, withFrame: fixedTextFrame, inView: controlView)
     }
     
-    override func drawImage(image: NSImage!, withFrame frame: NSRect, inView controlView: NSView!) {
+    override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
         
         // Center image vertically
         var newFrame = frame

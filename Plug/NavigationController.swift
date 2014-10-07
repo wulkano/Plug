@@ -157,7 +157,7 @@ class NavigationController: NSViewController {
         navigationBar.currentViewControllerUpdated(topViewController)
     }
     
-    override func keyDown(theEvent: NSEvent!) {
+    override func keyDown(theEvent: NSEvent) {
         switch theEvent.keyCode {
         case 123:
             leftArrowKeyPressed(theEvent)

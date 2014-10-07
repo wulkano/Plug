@@ -38,7 +38,7 @@ class MediaKeyHandler: NSObject {
     
     override func mediaKeyTap(keyTap: SPMediaKeyTap!, receivedMediaKeyEvent event: NSEvent!) {
         
-        assert((event.type == NSEventType.SystemDefined && event.subtype.toRaw() == Int16(SPSystemDefinedEventMediaKeys)), "Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:")
+        assert((event.type == NSEventType.SystemDefined && event.subtype.rawValue == Int16(SPSystemDefinedEventMediaKeys)), "Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:")
 
         // here be dragons...
         

@@ -27,7 +27,7 @@ class GoogleAnalytics: NSObject {
     }
     
     func userAgent() -> String {
-        let osInfo = NSDictionary(contentsOfFile: "/System/Library/CoreServices/SystemVersion.plist")
+        let osInfo = NSDictionary(contentsOfFile: "/System/Library/CoreServices/SystemVersion.plist")!
         let currentLocale = NSLocale.autoupdatingCurrentLocale()
         let productName = osInfo["ProductName"] as String
         let productVersion = (osInfo["ProductVersion"] as String).stringByReplacingOccurrencesOfString(".", withString: "_")
@@ -112,14 +112,14 @@ class GoogleAnalytics: NSObject {
     }
     
     private func screenResolution() -> String {
-        let size = NSScreen.mainScreen().deviceDescription[NSDeviceSize]!.sizeValue
+        let size = NSScreen.mainScreen()!.deviceDescription[NSDeviceSize]!.sizeValue
         let width = Int(size.width)
         let height = Int(size.height)
         return "\(width)x\(height)"
     }
     
     private func screenColors() -> String {
-        let bits = NSBitsPerPixelFromDepth(NSScreen.mainScreen().depth)
+        let bits = NSBitsPerPixelFromDepth(NSScreen.mainScreen()!.depth)
         return "\(bits)-bit"
     }
     

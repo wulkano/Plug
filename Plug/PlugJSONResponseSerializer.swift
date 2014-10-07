@@ -9,6 +9,7 @@
 import Cocoa
 
 class PlugJSONResponseSerializer: AFJSONResponseSerializer {
+    
     override func responseObjectForResponse(response: NSURLResponse!, data: NSData!, error: NSErrorPointer) -> AnyObject! {
         
         if !validateResponse(response as NSHTTPURLResponse, data: data, error: error) {

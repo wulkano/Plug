@@ -107,7 +107,7 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     }
     
     func loadSingleBlogView(blog: Blog) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.representedObject = blog
     }

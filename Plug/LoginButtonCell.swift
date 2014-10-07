@@ -13,7 +13,7 @@ class LoginButtonCell: SwissArmyButtonCell {
         return controlView as LoginButton
     }
     
-    override func drawTitle(title: NSAttributedString!, withFrame frame: NSRect, inView controlView: NSView!) -> NSRect {
+    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         
         var mutableTitle = NSMutableAttributedString(attributedString: title)
         var range = NSMakeRange(0, mutableTitle.length)
@@ -24,7 +24,7 @@ class LoginButtonCell: SwissArmyButtonCell {
         return super.drawTitle(mutableTitle, withFrame: frame, inView: controlView)
     }
     
-    override func drawImage(image: NSImage!, withFrame frame: NSRect, inView controlView: NSView!) {
+    override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
         
         var alpha = getImageAlpha()
         

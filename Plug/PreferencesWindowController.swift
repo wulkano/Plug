@@ -13,7 +13,7 @@ class PreferencesWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     
-        window.titleVisibility = NSWindowTitleVisibility.Visible
+        window!.titleVisibility = NSWindowTitleVisibility.Visible
     }
 
 }

@@ -13,7 +13,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var passwordTextField: NSSecureTextField!
     @IBOutlet var loginButton: LoginButton!
     
-    required init(coder: NSCoder!) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         Notifications.Subscribe.DisplayError(self, selector: "displayError:")
@@ -77,15 +77,15 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
         Analytics.sharedInstance.trackButtonClick("Forgot Password")
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php"))
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php")!)
     }
     
     @IBAction func signUpButtonClicked(sender: AnyObject) {
         Analytics.sharedInstance.trackButtonClick("Sign Up")
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1"))
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1")!)
     }
     
-    override func controlTextDidChange(notification: NSNotification!) {
+    override func controlTextDidChange(notification: NSNotification) {
         formFieldsChanged()
     }
     

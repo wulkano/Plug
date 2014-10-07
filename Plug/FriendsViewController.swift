@@ -37,7 +37,7 @@ class FriendsViewController: BaseContentViewController, NSTableViewDelegate, Ext
     }
     
     func loadSingleFriendView(friend: Friend) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
         Notifications.Post.PushViewController(viewController, sender: self)
         viewController.representedObject = friend
     }

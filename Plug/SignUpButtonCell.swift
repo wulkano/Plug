@@ -10,7 +10,7 @@ import Cocoa
 
 class SignUpButtonCell: SwissArmyButtonCell {
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView!) {
+    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
         
         var alpha: CGFloat
         
@@ -33,7 +33,7 @@ class SignUpButtonCell: SwissArmyButtonCell {
         roundedRect.stroke()
     }
     
-    override func drawTitle(title: NSAttributedString!, withFrame frame: NSRect, inView controlView: NSView!) -> NSRect {
+    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         
         var alpha: CGFloat
         

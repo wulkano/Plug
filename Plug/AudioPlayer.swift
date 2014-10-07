@@ -25,9 +25,9 @@ class AudioPlayer: NSObject {
     var currentTrackIndex: Int = 0
     var playing: Bool = false
     var volume: Float = 1 {
-    didSet {
-        volumeChanged()
-    }
+        didSet {
+            volumeChanged()
+        }
     }
     var progressObserver: AnyObject?
     var seeking = false
@@ -69,7 +69,6 @@ class AudioPlayer: NSObject {
         player.play()
         playing = true
         Notifications.Post.TrackPlaying(currentTrack!, sender: self)
-//        MediaKeyHandler.sharedInstance.keyTap.startWatchingMediaKeys()
     }
     
     func pause() {

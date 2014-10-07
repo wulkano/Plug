@@ -26,7 +26,7 @@ class HyperlinkButton: NSButton {
     }
     @IBInspectable var hoverUnderline: Bool = false
     
-    override var title: String! {
+    override var title: String {
         didSet {
             applyAttributes()
         }
@@ -70,11 +70,11 @@ class HyperlinkButton: NSButton {
         }
     }
 
-    override func mouseEntered(theEvent: NSEvent!) {
+    override func mouseEntered(theEvent: NSEvent) {
         mouseInside = true
     }
     
-    override func mouseExited(theEvent: NSEvent!) {
+    override func mouseExited(theEvent: NSEvent) {
         mouseInside = false
     }
     

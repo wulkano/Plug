@@ -9,10 +9,10 @@
 import Cocoa
 
 class ForgotPasswordButtonCell: SwissArmyButtonCell {
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView!) {
+    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
     }
     
-    override func drawTitle(title: NSAttributedString!, withFrame frame: NSRect, inView controlView: NSView!) -> NSRect {
+    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         
         var alpha: CGFloat
         

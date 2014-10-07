@@ -73,22 +73,22 @@ class TransparentButton: NSButton {
         }
     }
     
-    override func mouseDown(theEvent: NSEvent!) {
+    override func mouseDown(theEvent: NSEvent) {
         mouseDown = true
         super.mouseDown(theEvent)
         mouseUp(theEvent)
     }
     
-    override func mouseUp(theEvent: NSEvent!) {
+    override func mouseUp(theEvent: NSEvent) {
         mouseDown = false
         super.mouseUp(theEvent)
     }
     
-    override func mouseEntered(theEvent: NSEvent!) {
+    override func mouseEntered(theEvent: NSEvent) {
         mouseInside = true
     }
     
-    override func mouseExited(theEvent: NSEvent!) {
+    override func mouseExited(theEvent: NSEvent) {
         mouseInside = false
     }
 }

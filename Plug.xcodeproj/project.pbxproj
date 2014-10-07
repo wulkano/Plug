@@ -127,6 +127,7 @@
 		FABA62A819C4BC6C00E217D9 /* SingleTrackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A719C4BC6C00E217D9 /* SingleTrackDataSource.swift */; };
 		FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
+		FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
 		FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */; };
 		FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */; };
@@ -180,7 +181,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		24264347031C4B3887850063 /* Pods-Plug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.xcconfig"; path = "Pods/Pods-Plug.xcconfig"; sourceTree = "<group>"; };
+		02B59474A966D82A786DAE14 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
+		2327ABFB9604D97F56576A64 /* Pods-Plug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.release.xcconfig"; sourceTree = "<group>"; };
 		8C87AD95253F47AAA335DADD /* libPods-Plug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		FA0B1CF61976ECF60030C873 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		FABA62A719C4BC6C00E217D9 /* SingleTrackDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTrackDataSource.swift; sourceTree = "<group>"; };
 		FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentlyPlaylingTrackViewController.swift; sourceTree = "<group>"; };
 		FABB112E19C10DD8000DB1BC /* String+digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+digest.swift"; sourceTree = "<group>"; };
+		FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plug-Bridging-Header.m"; sourceTree = "<group>"; };
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -358,6 +361,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67128E1BDB9E0902124860AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				02B59474A966D82A786DAE14 /* Pods-Plug.debug.xcconfig */,
+				2327ABFB9604D97F56576A64 /* Pods-Plug.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,8 +437,8 @@
 				FA24ED9E1974A9A500A781C8 /* Plug */,
 				FA24EDB31974A9A500A781C8 /* PlugTests */,
 				FA24ED9D1974A9A500A781C8 /* Products */,
-				24264347031C4B3887850063 /* Pods-Plug.xcconfig */,
 				8649AE136FF74B02AB61EE0C /* Frameworks */,
+				67128E1BDB9E0902124860AD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -458,6 +470,7 @@
 				FA24ED9F1974A9A500A781C8 /* Supporting Files */,
 				FA410CF319A40C2600E71B20 /* Plug.iconset */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
+				FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */,
 				FAD4C211197CA3F2004606B5 /* UserDefaults.plist */,
 			);
 			path = Plug;
@@ -935,7 +948,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Plug-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Plug/Pods-Plug-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1059,6 +1072,7 @@
 				FA53950719AFFF01006A95A5 /* BasePlaylistTableCellView.swift in Sources */,
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
+				FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */,
 				FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */,
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
@@ -1202,7 +1216,7 @@
 		};
 		FA24EDBB1974A9A500A781C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24264347031C4B3887850063 /* Pods-Plug.xcconfig */;
+			baseConfigurationReference = 02B59474A966D82A786DAE14 /* Pods-Plug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1225,7 +1239,7 @@
 		};
 		FA24EDBC1974A9A500A781C8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24264347031C4B3887850063 /* Pods-Plug.xcconfig */;
+			baseConfigurationReference = 2327ABFB9604D97F56576A64 /* Pods-Plug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

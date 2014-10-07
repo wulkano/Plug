@@ -16,6 +16,8 @@ class LoginButtonImageView: NSImageView {
     var alpha: CGFloat = 1
 
     override func drawRect(dirtyRect: NSRect) {
-        image.drawInRect(dirtyRect, fromRect: NSZeroRect, operation: NSCompositingOperation.CompositeSourceOver, fraction: alpha)
+        if image != nil {
+            image!.drawInRect(dirtyRect, fromRect: NSZeroRect, operation: NSCompositingOperation.CompositeSourceOver, fraction: alpha)
+        }
     }
 }

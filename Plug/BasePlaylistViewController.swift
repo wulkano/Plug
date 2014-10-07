@@ -88,12 +88,12 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
     }
     
     func distanceFromBottomOfScrollView() -> CGFloat {
-        var documentViewHeight = scrollView.documentView.frame.height
+        var documentViewHeight = (scrollView.documentView as NSView).frame.height
         var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
         return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }
     
-    override func keyDown(theEvent: NSEvent!) {
+    override func keyDown(theEvent: NSEvent) {
         switch theEvent.keyCode {
         case 36: // Enter
             let row = tableView.selectedRow
@@ -105,7 +105,7 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
     }
     
     func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
-        let menuController = TrackContextMenuController(nibName: "TrackContextMenuController", bundle: nil)
+        let menuController = TrackContextMenuController(nibName: "TrackContextMenuController", bundle: nil)!
         menuController.loadView()
         menuController.representedObject = dataSource!.trackForRow(row)
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)

@@ -11,7 +11,7 @@ import Cocoa
 class TitleBarViewController: NSViewController {
     @IBOutlet var titleTextField: NSTextField!
     
-    required init(coder: NSCoder!) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
     }
@@ -26,6 +26,7 @@ class TitleBarViewController: NSViewController {
     }
     
     func updateUIForSection(section: NavigationSection) {
+        println("\(section.windowTitle())")
         titleTextField.stringValue = section.windowTitle()
     }
 }

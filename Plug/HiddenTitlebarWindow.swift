@@ -19,7 +19,7 @@ class HiddenTitlebarWindow: NSWindow {
         movableByWindowBackground = true
     }
     
-    required init(coder: NSCoder!) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 }

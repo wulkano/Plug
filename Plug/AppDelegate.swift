@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openMainWindow() {
         if mainWindowController == nil {
-            mainWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as? NSWindowController
+            mainWindowController = NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as? NSWindowController
         }
         mainWindowController!.showWindow(self)
         showSignOutInMenu()
@@ -51,14 +51,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func closeMainWindow() {
-        mainWindowController!.window.close()
+        mainWindowController!.window!.close()
         mainWindowController = nil
     }
     
     func openLoginWindow() {
         Analytics.sharedInstance.trackView("LoginWindow")
         if loginWindowController == nil {
-            loginWindowController = NSStoryboard(name: "Login", bundle: nil).instantiateInitialController() as? NSWindowController
+            loginWindowController = NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as? NSWindowController
         }
         loginWindowController!.showWindow(self)
         hideSignOutFromMenu()
@@ -66,19 +66,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func closeLoginWindow() {
-        loginWindowController!.window.close()
+        loginWindowController!.window!.close()
         loginWindowController = nil
     }
     
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
-            preferencesWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as? NSWindowController
+            preferencesWindowController = NSStoryboard(name: "Preferences", bundle: nil)!.instantiateInitialController() as? NSWindowController
         }
         preferencesWindowController!.showWindow(self)
     }
     
     func closePreferencesWindow() {
-        preferencesWindowController!.window.close()
+        preferencesWindowController!.window!.close()
         preferencesWindowController = nil
     }
     
@@ -107,7 +107,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         signOutMenuSeparator.hidden = true
     }
     
-    @IBAction func signOut(sender: AnyObject!) {
+    @IBAction func signOut(sender: AnyObject) {
         Analytics.sharedInstance.trackButtonClick("Sign Out")
         closeMainWindow()
         if preferencesWindowController != nil {
@@ -118,13 +118,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openLoginWindow()
     }
     
-    @IBAction func preferencesItemClicked(sender: AnyObject!) {
+    @IBAction func preferencesItemClicked(sender: AnyObject) {
         openPreferencesWindow()
     }
     
     private func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
-        let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)
+        let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
         NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict)
     }
     

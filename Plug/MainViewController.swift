@@ -26,7 +26,7 @@ class MainViewController: NSViewController {
     
     var currentTrackViewController: NSViewController?
     
-    required init(coder: NSCoder!) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
         Notifications.Subscribe.DisplayError(self, selector: "displayError:")
@@ -84,7 +84,7 @@ class MainViewController: NSViewController {
     }
     
     func addCurrentTrackViewController() {
-        currentTrackViewController = storyboard.instantiateControllerWithIdentifier("CurrentlyPlaylingTrackViewController") as CurrentlyPlaylingTrackViewController
+        currentTrackViewController = storyboard!.instantiateControllerWithIdentifier("CurrentlyPlaylingTrackViewController") as CurrentlyPlaylingTrackViewController
         let insets = NSEdgeInsetsMake(0, 69, 47, 0)
         ViewPlacementHelper.AddBottomAnchoredSubview(currentTrackViewController!.view, toSuperView: view, withFixedHeight: 70, andInsets: insets)
         currentTrackViewController!.view.hidden = true
@@ -127,7 +127,7 @@ class MainViewController: NSViewController {
         if controller != nil {
             return controller!
         } else {
-            let newController = storyboard.instantiateControllerWithIdentifier(identifier) as NSViewController
+            let newController = storyboard!.instantiateControllerWithIdentifier(identifier) as NSViewController
             addChildViewController(newController)
             return newController
         }
@@ -137,7 +137,7 @@ class MainViewController: NSViewController {
         if currentViewController == nil { return }
         
         let transitions = NSViewControllerTransitionOptions.Crossfade | NSViewControllerTransitionOptions.SlideLeft
-        transitionFromViewController(currentViewController, toViewController: controller, options: transitions, completionHandler:  {
+        transitionFromViewController(currentViewController!, toViewController: controller, options: transitions, completionHandler:  {
             for subview in self.mainContentView.subviews {
                 if subview !== controller.view {
                     (subview as NSView).removeFromSuperview()

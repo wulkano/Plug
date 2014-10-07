@@ -14,7 +14,7 @@ class ColoredTitleButton: NSButton {
             applyTextColor()
         }
     }
-    override var attributedTitle: NSAttributedString! {
+    override var attributedTitle: NSAttributedString {
         didSet {
             applyTextColor()
         }

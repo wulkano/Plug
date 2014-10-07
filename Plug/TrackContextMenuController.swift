@@ -65,7 +65,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     
     private func shareTrackWithServiceNamed(name: String) {
         let shareContents = [shareMessage()]
-        let sharingService = NSSharingService(named: name)
+        let sharingService = NSSharingService(named: name)!
         sharingService.delegate = self
         sharingService.performWithItems(shareContents)
     }

@@ -16,7 +16,7 @@ class CircleMaskImageView: NSImageView {
 
             let path = NSBezierPath(roundedRect: bounds, xRadius: bounds.size.width / 2, yRadius: bounds.size.height / 2)
             path.addClip()
-            image.drawInRect(bounds, fromRect: NSZeroRect, operation: .CompositeSourceOver, fraction: 1)
+            image!.drawInRect(bounds, fromRect: NSZeroRect, operation: .CompositeSourceOver, fraction: 1)
 
             NSGraphicsContext.restoreGraphicsState()
         }

@@ -36,7 +36,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
         if trackValue.lovedBy != nil {
             lovedByOrPostedByWidthConstraint.constant = lovedByWidth
             lovedByOrPostedBy.stringValue = "Loved by"
-            usernameOrBlogNameButton.title = trackValue.lovedBy
+            usernameOrBlogNameButton.title = trackValue.lovedBy!
         } else {
             lovedByOrPostedByWidthConstraint.constant = postedByWidth
             lovedByOrPostedBy.stringValue = "Posted by"
@@ -82,7 +82,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     }
     
     func loadSingleFriendPage() {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
         Notifications.Post.PushViewController(viewController, sender: self)
         HypeMachineAPI.Friends.SingleFriend(trackValue.lovedBy!,
             success: { friend in
@@ -94,7 +94,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     }
     
     func loadSingleBlogPage() {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
         Notifications.Post.PushViewController(viewController, sender: self)
         HypeMachineAPI.Blogs.SingleBlog(trackValue.postedById,
             success: { blog in

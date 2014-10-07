@@ -57,12 +57,16 @@ struct HypeMachineAPI  {
         }
         
         private static func pageNotFound(operation: AFHTTPRequestOperation) -> Bool {
-            return operation.response.statusCode == 404
+            if operation.response != nil && operation.response.statusCode == 404 {
+                return true
+            } else {
+                return false
+            }
         }
         
         static func Popular(subType: PopularPlaylistSubType, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/popular"
-            let params = ["mode": subType.toRaw()]
+            let params = ["mode": subType.rawValue]
             getTracks(url, page: page, count: count, parameters: params, success: success, failure: failure)
         }
         
@@ -78,14 +82,14 @@ struct HypeMachineAPI  {
         
         static func Feed(subType: FeedPlaylistSubType, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/me/feed"
-            let params = ["mode": subType.toRaw()]
+            let params = ["mode": subType.rawValue]
             getTracks(url, page: page, count: count, parameters: params, success: success, failure: failure)
         }
         
         static func Search(searchKeywords: String, subType: SearchPlaylistSubType, page: Int, count: Int, success: (tracks: [Track], lastPage: Bool)->(), failure: (error: NSError)->()) {
             let url = apiBase + "/tracks"
             let escapedSearchKeywords = searchKeywords.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            let params = ["sort": subType.toRaw(), "q": escapedSearchKeywords]
+            let params = ["sort": subType.rawValue, "q": escapedSearchKeywords]
             getTracks(url, page: page, count: count, parameters: params, success: success, failure: failure)
         }
         
@@ -398,7 +402,7 @@ struct HypeMachineAPI  {
         HTTP.GetHTML(url, parameters: params,
             success: {operation, responseObject in
                 let responseData = responseObject as NSData
-                var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
+                var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)!
                 var error: NSError?
                 let heatMap = HeatMap(track: track, html: html, error: &error)
                 if error != nil {

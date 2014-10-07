@@ -17,7 +17,7 @@ class Friend: NSObject {
     var followersCount: Int
     var followersCountNum: NSNumber
     var followingCount: Int
-    var followingCountNum: Int
+    var followingCountNum: NSNumber
     
     init(JSON json: NSDictionary) {
         

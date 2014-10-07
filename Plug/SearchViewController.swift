@@ -27,7 +27,7 @@ class SearchViewController: BaseContentViewController {
     
     func ensurePlaylistViewController() {
         if playlistViewController == nil {
-            playlistViewController = (storyboard.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController)
+            playlistViewController = (storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController)
             addChildViewController(playlistViewController!)
             ViewPlacementHelper.AddFullSizeSubview(playlistViewController!.view, toSuperView: searchResultsView)
         }
