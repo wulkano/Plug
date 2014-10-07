@@ -21,7 +21,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     
     var trackInfoWindowController: NSWindowController?
     
-    var track: Track! {
+    var track: Track? {
         didSet {
             trackChanged()
         }
@@ -34,7 +34,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     var trackingProgress: Bool = false
     var trackValue: Track {
-        return track
+        return track!
     }
     
     required init?(coder: NSCoder) {
@@ -229,16 +229,16 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackLoved(notification: NSNotification) {
-        let track = Notifications.Read.TrackNotification(notification)
-        if track === track {
+        let notifcationTrack = Notifications.Read.TrackNotification(notification)
+        if track != nil && track! === notifcationTrack {
             trackValue.loved = true
             loveButton.selected = true
         }
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let track = Notifications.Read.TrackNotification(notification)
-        if track === track {
+        let notifcationTrack = Notifications.Read.TrackNotification(notification)
+        if track != nil && track === notifcationTrack {
             trackValue.loved = false
             loveButton.selected = false
         }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <scenes>
-        <!--Track Info-->
+        <!--Window Controller-->
         <scene sceneID="Q9t-Mx-PrY">
             <objects>
                 <windowController storyboardIdentifier="TrackInfoWindowController" id="kHT-B1-mN4" sceneMemberID="viewController">
@@ -38,16 +38,29 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CG1-Wl-IKB">
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="378"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="B1q-P6-SHo" userLabel="Close Button">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="B1q-P6-SHo" userLabel="Close Button" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="26" y="338" width="14" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14" id="6cH-eU-TcA"/>
                                             <constraint firstAttribute="width" constant="14" id="of1-5C-KPx"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Info-Close" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="QxL-bp-WT3">
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="QxL-bp-WT3" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="mouseDownOpacity">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="mouseInsideOpacity">
+                                                <real key="value" value="0.69999999999999996"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="inactiveOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Info-Close"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="closeButtonClicked:" target="Vxx-At-YHR" id="zNk-PW-Vto"/>
                                         </connections>
@@ -88,22 +101,39 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="SKL-5G-qxI"/>
                                     </imageView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="FRo-Wa-gmQ" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="FRo-Wa-gmQ" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="334" y="334" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="Ri8-Lf-OEr"/>
                                             <constraint firstAttribute="width" constant="18" id="xtR-ls-aPa"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Info-Loved" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="N42-Fa-mQv" customClass="SwissArmyButtonCell" customModule="Plug" customModuleProvider="target">
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Info-Loved" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="N42-Fa-mQv" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="vibrant" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Track-Loved-On"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="unselectedImage" value="Info-Loved"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="inactiveOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="mouseInsideOpacity">
+                                                <real key="value" value="0.69999999999999996"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="mouseDownOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedOpacity">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="selectable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loveButtonClicked:" target="Vxx-At-YHR" id="NLh-hl-oWP"/>
+                                        </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CPv-VB-7wB" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="289" y="336" width="38" height="20"/>
+                                        <rect key="frame" x="289" y="335" width="38" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="nxf-JM-ppk"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="y3f-xP-bZl"/>
@@ -139,8 +169,22 @@
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="b8U-k7-XJI" userLabel="Tag Container">
                                         <rect key="frame" x="26" y="222" width="326" height="24"/>
+                                        <subviews>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="36x-YV-2J1" customClass="TagButton" customModule="Plug" customModuleProvider="target">
+                                                <rect key="frame" x="-2" y="-3" width="95" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="KYV-cE-Sp1"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="bevel" title="ELECTRONIC" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pvF-Cl-zUR" customClass="TagButtonCell">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" size="12" name="DINBold"/>
+                                                </buttonCell>
+                                            </button>
+                                        </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="KTI-fn-VgR"/>
+                                            <constraint firstItem="36x-YV-2J1" firstAttribute="leading" secondItem="b8U-k7-XJI" secondAttribute="leading" id="aYS-aC-YIG"/>
+                                            <constraint firstItem="36x-YV-2J1" firstAttribute="top" secondItem="b8U-k7-XJI" secondAttribute="top" id="xvE-Pq-26a"/>
                                         </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="30g-H7-OMr" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
@@ -201,7 +245,7 @@
                                     <constraint firstItem="Nmb-6S-LHb" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="Ahy-KQ-JKk"/>
                                     <constraint firstItem="iSf-OI-jrN" firstAttribute="top" secondItem="Ept-mv-Wd9" secondAttribute="bottom" constant="19" id="FM5-P0-nOM"/>
                                     <constraint firstItem="fyf-Nu-8Ss" firstAttribute="top" secondItem="c50-ra-W0O" secondAttribute="bottom" constant="12" id="Gqi-wV-ZjC"/>
-                                    <constraint firstItem="CPv-VB-7wB" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="22" id="HxO-uH-Nrv"/>
+                                    <constraint firstItem="CPv-VB-7wB" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="23" id="HxO-uH-Nrv"/>
                                     <constraint firstAttribute="width" constant="378" id="L6r-wW-f40"/>
                                     <constraint firstItem="b8U-k7-XJI" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="N9V-Cq-DMM"/>
                                     <constraint firstAttribute="trailing" secondItem="FRo-Wa-gmQ" secondAttribute="trailing" constant="26" id="NP5-xx-oSe"/>
@@ -235,8 +279,10 @@
                     </view>
                     <connections>
                         <outlet property="albumArt" destination="yJz-dw-ivo" id="ThC-gJ-3Q2"/>
+                        <outlet property="loveButton" destination="FRo-Wa-gmQ" id="WL8-Ly-kz7"/>
                         <outlet property="postInfoTextField" destination="c50-ra-W0O" id="EFY-OS-BtA"/>
                         <outlet property="postedCountTextField" destination="iSf-OI-jrN" id="ehG-Gz-XiX"/>
+                        <outlet property="tagContainer" destination="b8U-k7-XJI" id="AE3-IN-D5x"/>
                     </connections>
                 </viewController>
                 <customObject id="62W-k5-YkX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -248,5 +294,6 @@
     <resources>
         <image name="Info-Close" width="14" height="14"/>
         <image name="Info-Loved" width="18" height="16"/>
+        <image name="Track-Loved-On" width="18" height="16"/>
     </resources>
 </document>

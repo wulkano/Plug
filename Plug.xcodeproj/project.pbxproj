@@ -64,6 +64,8 @@
 		FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */; };
 		FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */; };
 		FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */; };
+		FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67371719E44C0D009BF6D2 /* TagButton.swift */; };
+		FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */; };
 		FA691BFF197654AF008D5C3E /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA691BFE197654AF008D5C3E /* Track.swift */; };
 		FA6ADCF419BA69C300CCD371 /* SingleBlogImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADCF319BA69C300CCD371 /* SingleBlogImageView.swift */; };
 		FA6ADCF719BA705300CCD371 /* SLColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADCF519BA705300CCD371 /* SLColorArt.m */; };
@@ -245,6 +247,8 @@
 		FA666D5B19B3950D00AA0AA1 /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
 		FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesTableCellView.swift; sourceTree = "<group>"; };
 		FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		FA67371719E44C0D009BF6D2 /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButtonCell.swift; sourceTree = "<group>"; };
 		FA691BFE197654AF008D5C3E /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		FA6ADCF319BA69C300CCD371 /* SingleBlogImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleBlogImageView.swift; sourceTree = "<group>"; };
 		FA6ADCF519BA705300CCD371 /* SLColorArt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLColorArt.m; sourceTree = "<group>"; };
@@ -645,6 +649,8 @@
 				FA33002F197CB1EE0063C552 /* TransparentButton.swift */,
 				FAF21D8F19C128E700615D2F /* TransparentButtonCell.swift */,
 				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */,
+				FA67371719E44C0D009BF6D2 /* TagButton.swift */,
+				FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */,
 			);
 			name = NSButtons;
 			sourceTree = "<group>";
@@ -1020,6 +1026,7 @@
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
 				FA6ADCF419BA69C300CCD371 /* SingleBlogImageView.swift in Sources */,
+				FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */,
 				FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
 				FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */,
@@ -1082,6 +1089,7 @@
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
+				FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
 				FABA62A819C4BC6C00E217D9 /* SingleTrackDataSource.swift in Sources */,
 				FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */,

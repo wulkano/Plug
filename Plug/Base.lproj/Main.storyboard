@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A379a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -1622,14 +1622,14 @@
                                 <rect key="frame" x="0.0" y="186" width="409" height="86"/>
                                 <subviews>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZP2-yQ-pdE" customClass="SingleBlogImageView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="297" y="1" width="112" height="85"/>
+                                        <rect key="frame" x="293" y="1" width="113" height="85"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="112" id="tfA-bU-8k7"/>
+                                            <constraint firstAttribute="width" constant="113" id="tfA-bU-8k7"/>
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" id="d5a-YW-j0r"/>
                                     </imageView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FcN-sE-7Km">
-                                        <rect key="frame" x="19" y="17" width="270" height="20"/>
+                                        <rect key="frame" x="19" y="17" width="266" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="gNh-5a-PNx"/>
                                         </constraints>
@@ -1662,7 +1662,7 @@
                                     <constraint firstItem="ZP2-yQ-pdE" firstAttribute="top" secondItem="ajQ-K1-Hhs" secondAttribute="top" id="C2a-zI-27l"/>
                                     <constraint firstAttribute="bottom" secondItem="ZP2-yQ-pdE" secondAttribute="bottom" constant="1" id="E7w-ZD-5tT"/>
                                     <constraint firstAttribute="bottom" secondItem="FcN-sE-7Km" secondAttribute="bottom" constant="17" id="GOX-AV-blz"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZP2-yQ-pdE" secondAttribute="trailing" id="QPq-m6-lCz"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZP2-yQ-pdE" secondAttribute="trailing" constant="3" id="QPq-m6-lCz"/>
                                     <constraint firstItem="ZP2-yQ-pdE" firstAttribute="leading" secondItem="FcN-sE-7Km" secondAttribute="trailing" constant="10" id="Sb5-Xk-54J"/>
                                     <constraint firstItem="FcN-sE-7Km" firstAttribute="leading" secondItem="ajQ-K1-Hhs" secondAttribute="leading" constant="21" id="VH4-WW-w8u"/>
                                     <constraint firstItem="FcN-sE-7Km" firstAttribute="top" secondItem="Dt0-FY-WNS" secondAttribute="bottom" constant="8" id="Wp9-W3-UhN"/>

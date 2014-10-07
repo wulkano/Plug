@@ -248,6 +248,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
             trackValue.loved = true
             loveButton.selected = true
         }
+        updateLoveContainerSpacing()
     }
     
     func trackUnLoved(notification: NSNotification) {
@@ -256,6 +257,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
             trackValue.loved = false
             loveButton.selected = false
         }
+        updateLoveContainerSpacing()
     }
     
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {

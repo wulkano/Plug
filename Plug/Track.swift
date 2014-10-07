@@ -27,6 +27,7 @@ class Track: NSObject {
     var postedByDescription: String
     var datePosted: NSDate
     var audioUnavailable: Bool = false
+    var tags: [String] = ["electronic", "indie", "new rave", "experimental", "pop", "british", "2k11 mix", "2011"]
     
     init(JSON json: NSDictionary) {
         

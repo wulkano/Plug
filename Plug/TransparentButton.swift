@@ -13,6 +13,11 @@ class TransparentButton: NSButton {
     @IBInspectable var selectedImage: NSImage?
     @IBInspectable var unselectedImage: NSImage?
     
+    @IBInspectable var selectedOpacity: CGFloat = 1
+    @IBInspectable var mouseDownOpacity: CGFloat = 1
+    @IBInspectable var mouseInsideOpacity: CGFloat = 0.7
+    @IBInspectable var inactiveOpacity: CGFloat = 0.3
+    
     var mouseInside: Bool = false {
         didSet { needsDisplay = true }
     }
@@ -23,11 +28,6 @@ class TransparentButton: NSButton {
         didSet { needsDisplay = true }
     }
 
-    let selectedOpacity: CGFloat = 1
-    let mouseDownOpacity: CGFloat = 1
-    let mouseInsideOpacity: CGFloat = 0.7
-    let inactiveOpacity: CGFloat = 0.3
-    
     override func drawRect(dirtyRect: NSRect) {
         var drawPosition = bounds
         let drawImage = getDrawImage()
