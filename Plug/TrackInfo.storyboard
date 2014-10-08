@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A386a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
@@ -167,24 +167,10 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="b8U-k7-XJI" userLabel="Tag Container">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="b8U-k7-XJI" userLabel="Tag Container" customClass="TagContainerView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="26" y="222" width="326" height="24"/>
-                                        <subviews>
-                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="36x-YV-2J1" customClass="TagButton" customModule="Plug" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="-3" width="95" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="KYV-cE-Sp1"/>
-                                                </constraints>
-                                                <buttonCell key="cell" type="bevel" title="ELECTRONIC" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pvF-Cl-zUR" customClass="TagButtonCell">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" size="12" name="DINBold"/>
-                                                </buttonCell>
-                                            </button>
-                                        </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="KTI-fn-VgR"/>
-                                            <constraint firstItem="36x-YV-2J1" firstAttribute="leading" secondItem="b8U-k7-XJI" secondAttribute="leading" id="aYS-aC-YIG"/>
-                                            <constraint firstItem="36x-YV-2J1" firstAttribute="top" secondItem="b8U-k7-XJI" secondAttribute="top" id="xvE-Pq-26a"/>
                                         </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="30g-H7-OMr" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
@@ -211,12 +197,12 @@
                                         </textFieldCell>
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="fyf-Nu-8Ss" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="26" y="27" width="80" height="21"/>
+                                        <rect key="frame" x="26" y="27" width="98" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="LP7-VP-0rC"/>
-                                            <constraint firstAttribute="width" constant="80" id="nx6-KB-QTb"/>
+                                            <constraint firstAttribute="width" constant="98" id="nx6-KB-QTb"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="bevel" title="See More..." bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="cbL-eJ-TxP">
+                                        <buttonCell key="cell" type="bevel" title="See More →" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="cbL-eJ-TxP">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="HelveticaNeue-Bold"/>
                                         </buttonCell>
@@ -224,7 +210,11 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                                 <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hoverUnderline" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="seeMoreButtonClicked:" target="Vxx-At-YHR" id="XRb-3O-s1E"/>
+                                        </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c50-ra-W0O">
                                         <rect key="frame" x="24" y="60" width="330" height="51"/>
@@ -235,6 +225,26 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="TJA-PX-GMz" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="96" y="187" width="61" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="30p-XS-EjP"/>
+                                            <constraint firstAttribute="width" constant="61" id="R1g-a9-mxe"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="iTunes →" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eDJ-QF-UCD">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hoverUnderline" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="downloadITunesButtonClicked:" target="Vxx-At-YHR" id="oZZ-fa-XLH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Ept-mv-Wd9" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="0Q1-Cw-dad"/>
@@ -246,6 +256,7 @@
                                     <constraint firstItem="iSf-OI-jrN" firstAttribute="top" secondItem="Ept-mv-Wd9" secondAttribute="bottom" constant="19" id="FM5-P0-nOM"/>
                                     <constraint firstItem="fyf-Nu-8Ss" firstAttribute="top" secondItem="c50-ra-W0O" secondAttribute="bottom" constant="12" id="Gqi-wV-ZjC"/>
                                     <constraint firstItem="CPv-VB-7wB" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="23" id="HxO-uH-Nrv"/>
+                                    <constraint firstItem="TJA-PX-GMz" firstAttribute="leading" secondItem="30g-H7-OMr" secondAttribute="trailing" constant="4" id="L1W-as-F1L"/>
                                     <constraint firstAttribute="width" constant="378" id="L6r-wW-f40"/>
                                     <constraint firstItem="b8U-k7-XJI" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="N9V-Cq-DMM"/>
                                     <constraint firstAttribute="trailing" secondItem="FRo-Wa-gmQ" secondAttribute="trailing" constant="26" id="NP5-xx-oSe"/>
@@ -262,6 +273,7 @@
                                     <constraint firstItem="B1q-P6-SHo" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="mf0-6P-FDY"/>
                                     <constraint firstItem="B1q-P6-SHo" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="26" id="mjo-BW-HlY"/>
                                     <constraint firstItem="Nmb-6S-LHb" firstAttribute="top" secondItem="u83-S7-jFD" secondAttribute="bottom" constant="4" id="omW-ZQ-lYW"/>
+                                    <constraint firstItem="TJA-PX-GMz" firstAttribute="top" secondItem="b8U-k7-XJI" secondAttribute="bottom" constant="15" id="qfC-aU-d13"/>
                                     <constraint firstItem="30g-H7-OMr" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="rQ4-DL-wgr"/>
                                     <constraint firstAttribute="trailing" secondItem="yJz-dw-ivo" secondAttribute="trailing" constant="26" id="rd8-r5-o2a"/>
                                     <constraint firstItem="iSf-OI-jrN" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="sd6-IZ-MUQ"/>

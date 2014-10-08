@@ -31,10 +31,6 @@ class SwissArmyButton: NSButton {
         set { swissArmyButtonCell.mouseDown = newValue }
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         if tracksHover {
@@ -43,6 +39,20 @@ class SwissArmyButton: NSButton {
                 addTrackingArea(trackingArea!)
             }
         }
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        setupCell()
+    }
+    
+    func setupCell() {
+        let newCell = SwissArmyButtonCell(textCell: "")
+        setCell(newCell)
     }
     
     func ensureTrackingArea() {

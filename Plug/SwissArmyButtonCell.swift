@@ -11,9 +11,14 @@ import Cocoa
 class SwissArmyButtonCell: NSButtonCell {
     var mouseInside: Bool = false
     var mouseDown: Bool = false
-    
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        highlightsBy = NSCellStyleMask.NoCellMask
+    }
+    
+    init(textCell aString: String!) {
+        super.init(textCell: aString)
         highlightsBy = NSCellStyleMask.NoCellMask
     }
 }

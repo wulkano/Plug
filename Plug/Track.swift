@@ -27,7 +27,8 @@ class Track: NSObject {
     var postedByDescription: String
     var datePosted: NSDate
     var audioUnavailable: Bool = false
-    var tags: [String] = ["electronic", "indie", "new rave", "experimental", "pop", "british", "2k11 mix", "2011"]
+    var iTunesURL: NSURL
+    var tags: [Genre]
     
     init(JSON json: NSDictionary) {
         
@@ -66,6 +67,20 @@ class Track: NSObject {
         if json["pub_audio_unavail"] is Bool {
             audioUnavailable = true
         }
+        var iTunesURLString = json["itunes_link"] as String
+        let unescapedString = iTunesURLString.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let escapedString = unescapedString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
+        iTunesURL = NSURL(string: escapedString)!
+        tags = [
+            Genre(JSON: ["tag_name": "electronic"]),
+            Genre(JSON: ["tag_name": "indie"]),
+            Genre(JSON: ["tag_name": "new rave"]),
+            Genre(JSON: ["tag_name": "experimental"]),
+            Genre(JSON: ["tag_name": "pop"]),
+            Genre(JSON: ["tag_name": "british"]),
+            Genre(JSON: ["tag_name": "2k11 mix"]),
+            Genre(JSON: ["tag_name": "2011"]),
+        ]
         
         super.init()
     }
@@ -111,6 +126,12 @@ class Track: NSObject {
     
     func hypeMachineURL() -> NSURL {
         return NSURL(string: "http://hypem.com/track/\(id)")!
+    }
+    
+    func cleanITunesURL(iTunesURLString: String) -> String {
+        let unescapedString = iTunesURLString.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let escapedString = unescapedString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
+        return escapedString
     }
     
     enum ImageSize {

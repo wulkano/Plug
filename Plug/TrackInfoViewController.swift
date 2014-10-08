@@ -8,12 +8,12 @@
 
 import Cocoa
 
-class TrackInfoViewController: NSViewController {
+class TrackInfoViewController: NSViewController, TagContainerViewDelegate {
     @IBOutlet weak var albumArt: NSImageView!
     @IBOutlet weak var postedCountTextField: NSTextField!
     @IBOutlet var postInfoTextField: NSTextField!
     @IBOutlet weak var loveButton: TransparentButton!
-    @IBOutlet weak var tagContainer: NSView!
+    @IBOutlet weak var tagContainer: TagContainerView!
     
     override var representedObject: AnyObject! {
         didSet {
@@ -29,6 +29,7 @@ class TrackInfoViewController: NSViewController {
         
         Notifications.Subscribe.TrackLoved(self, selector: "trackLoved:")
         Notifications.Subscribe.TrackUnLoved(self, selector: "trackUnLoved:")
+        tagContainer.delegate = self
         
         Analytics.sharedInstance.trackView("TrackInfoWindow")
     }
@@ -55,6 +56,33 @@ class TrackInfoViewController: NSViewController {
                 Logger.LogError(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
         })
+    }
+    
+    func genreButtonClicked(genre: Genre) {
+        loadSingleGenreView(genre)
+    }
+    
+    func loadSingleGenreView(genre: Genre) {
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        viewController.title = genre.name
+        Notifications.Post.PushViewController(viewController, sender: self)
+        viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
+    }
+    
+    @IBAction func downloadITunesButtonClicked(sender: NSButton) {
+        Analytics.sharedInstance.trackButtonClick("Track Info Download iTunes")
+
+        NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
+    }
+    
+    @IBAction func blogDescriptionClicked(sender: NSButton) {
+        Analytics.sharedInstance.trackButtonClick("Track Info Blog Description")
+    }
+    
+    @IBAction func seeMoreButtonClicked(sender: NSButton) {
+        Analytics.sharedInstance.trackButtonClick("Track Info See More")
+        
+        NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
     }
     
     func trackLoved(notification: NSNotification) {
@@ -114,11 +142,6 @@ class TrackInfoViewController: NSViewController {
     }
     
     func updateTags() {
-        for tag in representedTrack.tags {
-            let buttonRect = NSMakeRect(0, 0, 84, 24)
-            let button = NSButton(frame: buttonRect)
-            button.title = tag
-            tagContainer.addSubview(button)
-        }
+        tagContainer.tags = representedTrack.tags
     }
 }
