@@ -11,9 +11,13 @@ import Cocoa
 class TrackInfoViewController: NSViewController, TagContainerViewDelegate {
     @IBOutlet weak var albumArt: NSImageView!
     @IBOutlet weak var postedCountTextField: NSTextField!
-    @IBOutlet var postInfoTextField: NSTextField!
     @IBOutlet weak var loveButton: TransparentButton!
     @IBOutlet weak var tagContainer: TagContainerView!
+    @IBOutlet weak var postedByTextField: NSTextField!
+    @IBOutlet weak var seeMoreButton: NSButton!
+    @IBOutlet weak var postInfoPlaceholder: NSButton!
+    
+    var postInfoTextView: NSTextView!
     
     override var representedObject: AnyObject! {
         didSet {
@@ -32,6 +36,24 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate {
         tagContainer.delegate = self
         
         Analytics.sharedInstance.trackView("TrackInfoWindow")
+        
+        setupPostInfoTextView()
+    }
+    
+    func setupPostInfoTextView() {
+        postInfoTextView = NSTextView(frame: NSZeroRect)
+        postInfoTextView.drawsBackground = false
+        postInfoTextView.selectable = true
+        postInfoTextView.editable = false
+        postInfoTextView.textContainerInset = NSZeroSize
+        
+        postInfoTextView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(postInfoTextView)
+        
+        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|-26-[view]-26-|", options: nil, metrics: nil, views: ["view": postInfoTextView])
+        view.addConstraints(constraints)
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[topView]-10-[view]-12-[bottomView]", options: nil, metrics: nil, views: ["topView": postedByTextField, "view": postInfoTextView, "bottomView": seeMoreButton])
+        view.addConstraints(constraints)
     }
     
     @IBAction func closeButtonClicked(sender: NSButton) {
@@ -75,7 +97,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate {
         NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
     }
     
-    @IBAction func blogDescriptionClicked(sender: NSButton) {
+    @IBAction func postInfoClicked(sender: NSButton) {
         Analytics.sharedInstance.trackButtonClick("Track Info Blog Description")
     }
     
@@ -133,8 +155,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate {
     }
     
     func updatePostInfo() {
-        var postInfoAttributedString = PostInfoFormatter().attributedStringForPostInfo(representedTrack.postedBy, description: representedTrack.postedByDescription, datePosted: representedTrack.datePosted)
-        postInfoTextField.attributedStringValue = postInfoAttributedString
+        var postInfoAttributedString = PostInfoFormatter().attributedStringForPostInfo(representedTrack.postedBy, description: representedTrack.postedByDescription, datePosted: representedTrack.datePosted, url: representedTrack.hypeMachineURL())
+        postInfoTextView.textStorage!.appendAttributedString(postInfoAttributedString)
     }
     
     func updateLoveButton() {

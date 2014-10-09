@@ -9,12 +9,11 @@
 import Cocoa
 
 class PostInfoFormatter: NSFormatter {
-    
-    func attributedStringForPostInfo(blogName: String, description: String, datePosted: NSDate) -> NSAttributedString {
+    func attributedStringForPostInfo(track: Track) -> NSAttributedString {
         var postInfoAttributedString = NSMutableAttributedString()
-        var formattedBlogName = attributedBlogName(blogName)
-        var formattedDescription = attributedDescription(description)
-        var formattedDatePosted = attributedDatePosted(datePosted)
+        var formattedBlogName = attributedBlogName(track.postedBy)
+        var formattedDescription = attributedDescription(track.postedByDescription)
+        var formattedDatePosted = attributedDatePosted(track.datePosted, url: track.hypeMachineURL())
         postInfoAttributedString.appendAttributedString(formattedBlogName)
         postInfoAttributedString.appendAttributedString(formattedDescription)
         postInfoAttributedString.appendAttributedString(formattedDatePosted)
@@ -30,9 +29,11 @@ class PostInfoFormatter: NSFormatter {
         return NSAttributedString(string: string, attributes: normalAttributes())
     }
     
-    private func attributedDatePosted(datePosted: NSDate) -> NSAttributedString {
+    private func attributedDatePosted(datePosted: NSDate, url: NSURL) -> NSAttributedString {
         var string = formattedDatePosted(datePosted)
-        return NSAttributedString(string: string, attributes: boldAttributes())
+        var dateAttributes = boldAttributes()
+        dateAttributes[NSLinkAttributeName] = url.absoluteString!
+        return NSAttributedString(string: string, attributes: dateAttributes)
     }
     
     private func formattedDatePosted(datePosted: NSDate) -> String {

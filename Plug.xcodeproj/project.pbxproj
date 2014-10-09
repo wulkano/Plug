@@ -36,6 +36,7 @@
 		FA3199AF19824E030097B081 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AE19824E030097B081 /* Blog.swift */; };
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
 		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
+		FA33F43219E673F900FF7649 /* NoScrollTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33F43119E673F900FF7649 /* NoScrollTextView.swift */; };
 		FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */; };
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
@@ -219,6 +220,7 @@
 		FA3199AE19824E030097B081 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
+		FA33F43119E673F900FF7649 /* NoScrollTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoScrollTextView.swift; sourceTree = "<group>"; };
 		FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationHandler.swift; sourceTree = "<group>"; };
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				FA9A2F4019B68AD20057080C /* NSTableRowViews */,
 				FA9A2F4319B68AFE0057080C /* NSTableView */,
 				FA9A2F3D19B68A900057080C /* NSTextFields */,
+				FA33F43019E673DA00FF7649 /* NSTextViews */,
 				FA9A2F3B19B689A70057080C /* NSViews */,
 				FA9A2F4219B68AF60057080C /* NSWindows */,
 			);
@@ -506,6 +509,14 @@
 				FA24EDB51974A9A500A781C8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA33F43019E673DA00FF7649 /* NSTextViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA33F43119E673F900FF7649 /* NoScrollTextView.swift */,
+			);
+			name = NSTextViews;
 			sourceTree = "<group>";
 		};
 		FA51263419761424004D0776 /* Extensions */ = {
@@ -1028,6 +1039,7 @@
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
+				FA33F43219E673F900FF7649 /* NoScrollTextView.swift in Sources */,
 				FA6ADCF419BA69C300CCD371 /* SingleBlogImageView.swift in Sources */,
 				FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */,
 				FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */,

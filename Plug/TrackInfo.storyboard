@@ -185,6 +185,26 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="TJA-PX-GMz" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="96" y="187" width="61" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="30p-XS-EjP"/>
+                                            <constraint firstAttribute="width" constant="61" id="R1g-a9-mxe"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" title="iTunes →" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eDJ-QF-UCD">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hoverUnderline" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="downloadITunesButtonClicked:" target="Vxx-At-YHR" id="oZZ-fa-XLH"/>
+                                        </connections>
+                                    </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iSf-OI-jrN" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="24" y="121" width="336" height="24"/>
                                         <constraints>
@@ -216,45 +236,21 @@
                                             <action selector="seeMoreButtonClicked:" target="Vxx-At-YHR" id="XRb-3O-s1E"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c50-ra-W0O">
-                                        <rect key="frame" x="24" y="60" width="330" height="51"/>
-                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="hhi-vE-Xhv">
-                                            <font key="font" metaFont="system"/>
-                                            <string key="title">Sunken Sounds  “A new remix from Tycho via Com Truise - we can finally say that it is officially summer. These vibes…” Jun 28th →</string>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="TJA-PX-GMz" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="96" y="187" width="61" height="20"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="erZ-9e-6vw">
+                                        <rect key="frame" x="26" y="60" width="326" height="51"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="30p-XS-EjP"/>
-                                            <constraint firstAttribute="width" constant="61" id="R1g-a9-mxe"/>
+                                            <constraint firstAttribute="height" constant="51" id="wse-8P-g7F"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" title="iTunes →" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eDJ-QF-UCD">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hoverUnderline" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="downloadITunesButtonClicked:" target="Vxx-At-YHR" id="oZZ-fa-XLH"/>
-                                        </connections>
-                                    </button>
+                                    </customView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Ept-mv-Wd9" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="0Q1-Cw-dad"/>
-                                    <constraint firstAttribute="trailing" secondItem="c50-ra-W0O" secondAttribute="trailing" constant="26" id="1s1-89-wRj"/>
-                                    <constraint firstItem="c50-ra-W0O" firstAttribute="top" secondItem="iSf-OI-jrN" secondAttribute="bottom" constant="10" id="27c-4J-1dE"/>
                                     <constraint firstAttribute="trailing" secondItem="Ept-mv-Wd9" secondAttribute="trailing" constant="65" id="3WU-Fp-mna"/>
                                     <constraint firstItem="fyf-Nu-8Ss" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="6uE-8D-0NZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="erZ-9e-6vw" secondAttribute="trailing" constant="26" id="7pa-ow-9Ht"/>
+                                    <constraint firstItem="erZ-9e-6vw" firstAttribute="top" secondItem="iSf-OI-jrN" secondAttribute="bottom" constant="10" id="Acw-A7-Gyj"/>
                                     <constraint firstItem="Nmb-6S-LHb" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="Ahy-KQ-JKk"/>
                                     <constraint firstItem="iSf-OI-jrN" firstAttribute="top" secondItem="Ept-mv-Wd9" secondAttribute="bottom" constant="19" id="FM5-P0-nOM"/>
-                                    <constraint firstItem="fyf-Nu-8Ss" firstAttribute="top" secondItem="c50-ra-W0O" secondAttribute="bottom" constant="12" id="Gqi-wV-ZjC"/>
                                     <constraint firstItem="CPv-VB-7wB" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="23" id="HxO-uH-Nrv"/>
                                     <constraint firstItem="TJA-PX-GMz" firstAttribute="leading" secondItem="30g-H7-OMr" secondAttribute="trailing" constant="4" id="L1W-as-F1L"/>
                                     <constraint firstAttribute="width" constant="378" id="L6r-wW-f40"/>
@@ -263,7 +259,8 @@
                                     <constraint firstAttribute="bottom" secondItem="fyf-Nu-8Ss" secondAttribute="bottom" constant="27" id="NV8-Vc-rMq"/>
                                     <constraint firstAttribute="trailing" secondItem="iSf-OI-jrN" secondAttribute="trailing" constant="20" id="PUK-rK-jHG"/>
                                     <constraint firstItem="b8U-k7-XJI" firstAttribute="top" secondItem="Nmb-6S-LHb" secondAttribute="bottom" constant="19" id="Qts-aQ-KXQ"/>
-                                    <constraint firstItem="c50-ra-W0O" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="R8y-Mj-IFQ"/>
+                                    <constraint firstItem="fyf-Nu-8Ss" firstAttribute="top" secondItem="erZ-9e-6vw" secondAttribute="bottom" constant="12" id="Skc-qc-eSB"/>
+                                    <constraint firstItem="erZ-9e-6vw" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="Vvy-Ga-3gn"/>
                                     <constraint firstItem="30g-H7-OMr" firstAttribute="top" secondItem="b8U-k7-XJI" secondAttribute="bottom" constant="16" id="WIc-ZG-7Ab"/>
                                     <constraint firstItem="u83-S7-jFD" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="XnI-xw-V64"/>
                                     <constraint firstAttribute="trailing" secondItem="b8U-k7-XJI" secondAttribute="trailing" constant="26" id="azR-jI-X21"/>
@@ -292,7 +289,7 @@
                     <connections>
                         <outlet property="albumArt" destination="yJz-dw-ivo" id="ThC-gJ-3Q2"/>
                         <outlet property="loveButton" destination="FRo-Wa-gmQ" id="WL8-Ly-kz7"/>
-                        <outlet property="postInfoTextField" destination="c50-ra-W0O" id="EFY-OS-BtA"/>
+                        <outlet property="postInfoContainer" destination="erZ-9e-6vw" id="JV7-XL-iss"/>
                         <outlet property="postedCountTextField" destination="iSf-OI-jrN" id="ehG-Gz-XiX"/>
                         <outlet property="tagContainer" destination="b8U-k7-XJI" id="AE3-IN-D5x"/>
                     </connections>
