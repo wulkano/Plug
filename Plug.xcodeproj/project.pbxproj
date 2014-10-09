@@ -36,6 +36,7 @@
 		FA3199AF19824E030097B081 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AE19824E030097B081 /* Blog.swift */; };
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
 		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
+		FA33F43419E67FB200FF7649 /* PostInfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33F43319E67FB200FF7649 /* PostInfoTextField.swift */; };
 		FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */; };
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
@@ -219,6 +220,7 @@
 		FA3199AE19824E030097B081 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
+		FA33F43319E67FB200FF7649 /* PostInfoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfoTextField.swift; sourceTree = "<group>"; };
 		FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationHandler.swift; sourceTree = "<group>"; };
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -673,6 +675,7 @@
 				FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */,
 				FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */,
 				FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */,
+				FA33F43319E67FB200FF7649 /* PostInfoTextField.swift */,
 			);
 			name = NSTextFields;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */,
+				FA33F43419E67FB200FF7649 /* PostInfoTextField.swift in Sources */,
 				FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */,
 				FADC96F61974D10C009458FA /* DraggableView.swift in Sources */,
 				FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */,

@@ -23,11 +23,12 @@ class Track: NSObject {
     var lovedBy: String?
     var postedBy: String
     var postedById: Int
+    var postURL: NSURL!
     var postedCount: Int
     var postedByDescription: String
     var datePosted: NSDate
     var audioUnavailable: Bool = false
-    var iTunesURL: NSURL
+    var iTunesURL: NSURL!
     var tags: [Genre]
     
     init(JSON json: NSDictionary) {
@@ -67,10 +68,6 @@ class Track: NSObject {
         if json["pub_audio_unavail"] is Bool {
             audioUnavailable = true
         }
-        var iTunesURLString = json["itunes_link"] as String
-        let unescapedString = iTunesURLString.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        let escapedString = unescapedString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
-        iTunesURL = NSURL(string: escapedString)!
         tags = [
             Genre(JSON: ["tag_name": "electronic"]),
             Genre(JSON: ["tag_name": "indie"]),
@@ -83,6 +80,9 @@ class Track: NSObject {
         ]
         
         super.init()
+        
+        postURL = NSURL(string: cleanURLString(json["posturl"] as String))
+        iTunesURL = NSURL(string: cleanURLString(json["itunes_link"] as String))
     }
     
     func mediaURL() -> NSURL {
@@ -128,8 +128,8 @@ class Track: NSObject {
         return NSURL(string: "http://hypem.com/track/\(id)")!
     }
     
-    func cleanITunesURL(iTunesURLString: String) -> String {
-        let unescapedString = iTunesURLString.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+    func cleanURLString(URLString: String) -> String {
+        let unescapedString = URLString.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         let escapedString = unescapedString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
         return escapedString
     }
