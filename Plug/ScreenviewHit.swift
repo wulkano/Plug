@@ -1,9 +1,9 @@
 //
 //  ScreenviewHit.swift
-//  Plug
+//  Alex Marchant
 //
-//  Created by Alex Marchant on 9/11/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//  Created by Alex Marchant on 10/10/14.
+//  Copyright (c) 2014 Alex Marchant. All rights reserved.
 //
 
 import Foundation

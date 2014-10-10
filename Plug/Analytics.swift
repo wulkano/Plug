@@ -16,7 +16,7 @@ class Analytics {
         return Singleton.instance
     }
     
-    let tracker = GoogleAnalytics(trackingID: "UA-54659511-1")
+    let tracker = PlugGoogleAnalytics(trackingID: "UA-54659511-1")
     
     func trackView(viewName: String) {
         tracker.trackPageview(viewName)

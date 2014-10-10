@@ -1,14 +1,14 @@
 //
-//  GoogleAnalytics.swift
-//  Plug
+//  SimpleGoogleAnalytics.swift
+//  Alex Marchant
 //
-//  Created by Alex Marchant on 9/10/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//  Created by Alex Marchant on 10/10/14.
+//  Copyright (c) 2014 Alex Marchant. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
-class GoogleAnalytics: NSObject {
+class SimpleGoogleAnalytics: NSObject {
     let trackingID: String
     let apiBase = "https://ssl.google-analytics.com/collect"
     let GAClientIDKey = "GAClientIDKey"
@@ -41,7 +41,7 @@ class GoogleAnalytics: NSObject {
         sendHit(hit)
     }
     
-    func trackEvent(category: String, action: String, label: String?, value: String?) {
+    func trackEvent(#category: String, action: String, label: String?, value: String?) {
         let hit = EventHit(category: category, action: action, label: label, value: value)
         sendHit(hit)
     }
@@ -108,7 +108,8 @@ class GoogleAnalytics: NSObject {
     }
     
     private func userID() -> String? {
-        return Authentication.GetUsernameHash()
+        // subclass and override this method if you'd like to provide a custom userID
+        return nil
     }
     
     private func screenResolution() -> String {

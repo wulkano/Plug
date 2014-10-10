@@ -1,9 +1,9 @@
 //
-//  Dictionary<String-String>.swift
-//  Plug
+//  Dictionary+merge.swift
+//  Alex Marchant
 //
-//  Created by Alex Marchant on 9/10/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//  Created by Alex Marchant on 10/10/14.
+//  Copyright (c) 2014 Alex Marchant. All rights reserved.
 //
 
 import Foundation

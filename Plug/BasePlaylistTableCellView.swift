@@ -273,7 +273,8 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     @IBAction func infoButtonClicked(sender: TransparentButton) {
         Analytics.sharedInstance.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
-            trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil)!.instantiateInitialController() as? NSWindowController
+            let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)!
+            trackInfoWindowController = trackInfoStoryboard.instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
             trackInfoViewController.representedObject = objectValue
         }
