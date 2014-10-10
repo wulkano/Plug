@@ -5,7 +5,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 target "Plug" do
 	pod 'INAppStoreWindow', '~> 1.4'
     pod 'AFNetworking', '~> 2.4.1'
-    pod 'SSKeychain', '~> 1.2'    
+    pod 'SSKeychain', '~> 1.2'
+    pod 'Sparkle', '~> 1.8'
 end
 
 target "PlugTests" do

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A379a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6246"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -18,6 +18,12 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="geA-u8-YPg" id="ky7-oN-Jrl"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Check for Updates..." id="ZDE-Y2-Ce0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="SOx-gO-vDg" id="C5W-IO-OtF"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rCw-n8-jFb"/>
@@ -146,6 +152,7 @@
                         <outlet property="signOutMenuSeparator" destination="fnM-qT-VnK" id="Ddk-dg-v0x"/>
                     </connections>
                 </customObject>
+                <customObject id="SOx-gO-vDg" userLabel="Sparkle Updater" customClass="SUUpdater"/>
             </objects>
             <point key="canvasLocation" x="-254.5" y="-64"/>
         </scene>

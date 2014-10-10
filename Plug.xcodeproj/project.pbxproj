@@ -88,6 +88,7 @@
 		FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77499F198C1CAA0048863F /* FriendsViewController.swift */; };
 		FA7749A4198C1EBD0048863F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7749A3198C1EBD0048863F /* Friend.swift */; };
 		FA7B3CB9199B626B008E8B01 /* SidebarOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */; };
+		FA7BBFDC19E87472002387CB /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA7BBFDA19E87455002387CB /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C4976198ABD3300A38B27 /* GroupRowView.swift */; };
 		FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */; };
 		FA7C5CCF19BD4F2D002239AB /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCE19BD4F2D002239AB /* HTTP.swift */; };
@@ -184,6 +185,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FA7BBFD919E8742A002387CB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA7BBFDC19E87472002387CB /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		02B59474A966D82A786DAE14 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
 		2327ABFB9604D97F56576A64 /* Pods-Plug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.release.xcconfig"; sourceTree = "<group>"; };
@@ -275,6 +289,7 @@
 		FA77499F198C1CAA0048863F /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		FA7749A3198C1EBD0048863F /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarOverlayView.swift; sourceTree = "<group>"; };
+		FA7BBFDA19E87455002387CB /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Pods/Sparkle/Sparkle.framework; sourceTree = "<group>"; };
 		FA7C4976198ABD3300A38B27 /* GroupRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRowView.swift; sourceTree = "<group>"; };
 		FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundCloudAPI.swift; sourceTree = "<group>"; };
 		FA7C5CCE19BD4F2D002239AB /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
@@ -383,6 +398,7 @@
 			children = (
 				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
 				8C87AD95253F47AAA335DADD /* libPods-Plug.a */,
+				FA7BBFDA19E87455002387CB /* Sparkle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -846,6 +862,7 @@
 				FA24ED991974A9A500A781C8 /* Frameworks */,
 				FA24ED9A1974A9A500A781C8 /* Resources */,
 				DBCD6BFCABB74E4481EA64FA /* Copy Pods Resources */,
+				FA7BBFD919E8742A002387CB /* CopyFiles */,
 			);
 			buildRules = (
 			);
