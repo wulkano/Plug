@@ -72,7 +72,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
-            preferencesWindowController = NSStoryboard(name: "Preferences", bundle: nil)!.instantiateInitialController() as? NSWindowController
+            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: nil)!
+            preferencesWindowController = preferencesStoryboard.instantiateInitialController() as? NSWindowController
         }
         preferencesWindowController!.showWindow(self)
     }

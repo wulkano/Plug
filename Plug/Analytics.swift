@@ -23,14 +23,14 @@ class Analytics {
     }
     
     func trackButtonClick(buttonName: String) {
-        trackEvent("Button", action: "Click", label: buttonName, value: nil)
+        trackEvent(category: "Button", action: "Click", label: buttonName, value: nil)
     }
     
     func trackAudioPlaybackEvent(actionName: String) {
-        trackEvent("AudioPlayback", action: actionName, label: nil, value: nil)
+        trackEvent(category: "AudioPlayback", action: actionName, label: nil, value: nil)
     }
     
-    func trackEvent(category: String, action: String, label: String?, value: String?) {
-        tracker.trackEvent(category, action: action, label: label, value: value)
+    func trackEvent(#category: String, action: String, label: String?, value: String?) {
+        tracker.trackEvent(category: category, action: action, label: label, value: value)
     }
 }

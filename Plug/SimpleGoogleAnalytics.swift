@@ -107,7 +107,7 @@ class SimpleGoogleAnalytics: NSObject {
         return NSBundle.mainBundle().bundleIdentifier!
     }
     
-    private func userID() -> String? {
+    func userID() -> String? {
         // subclass and override this method if you'd like to provide a custom userID
         return nil
     }

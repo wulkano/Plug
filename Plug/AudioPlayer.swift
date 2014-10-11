@@ -20,9 +20,12 @@ class AudioPlayer: NSObject {
     
     var player: AVPlayer!
     var playerItem: AVPlayerItem!
-    var currentPlaylist: Playlist!
+    var currentPlaylist: Playlist! {
+        didSet {
+            recentlyPlayedTrackIndexes = []
+        }
+    }
     var currentTrack: Track!
-    var currentTrackIndex: Int = 0
     var playing: Bool = false
     var volume: Float = 1 {
         didSet {
@@ -31,6 +34,7 @@ class AudioPlayer: NSObject {
     }
     var progressObserver: AnyObject?
     var seeking = false
+    var recentlyPlayedTrackIndexes: [Int] = []
     
     override init() {
         super.init()
@@ -51,7 +55,6 @@ class AudioPlayer: NSObject {
         playerItem = nil
         currentPlaylist = nil
         currentTrack = nil
-        currentTrackIndex = 0
         playing = false
         progressObserver = nil
         seeking = false
@@ -90,9 +93,8 @@ class AudioPlayer: NSObject {
     func skipForward() {
         if currentPlaylist == nil { return }
         
-        let nextTrack = currentPlaylist.trackAfter(currentTrack)
-        if nextTrack != nil {
-            play(nextTrack!)
+        if let nextTrack = findNextTrack() {
+            play(nextTrack)
         }
     }
     
@@ -153,8 +155,11 @@ class AudioPlayer: NSObject {
             player.replaceCurrentItemWithPlayerItem(playerItem)
         }
         
-        currentPlaylist = track.playlist
+        if currentPlaylist != track.playlist {
+            currentPlaylist = track.playlist
+        }
         currentTrack = track
+        recentlyPlayedTrackIndexes.append(currentPlaylist.indexOfTrack(currentTrack)!)
     }
     
     private func volumeChanged() {
@@ -182,5 +187,29 @@ class AudioPlayer: NSObject {
     
     private func unsubscribeFromPlayerItem(playerItem: AVPlayerItem) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+    }
+    
+    private func findNextTrack() -> Track? {
+        let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as Bool
+        
+        if shuffle {
+            return nextShuffleTrack()
+        } else {
+            return currentPlaylist.trackAfter(currentTrack)
+        }
+    }
+    
+    private func nextShuffleTrack() -> Track? {
+        if recentlyPlayedTrackIndexes.count >= currentPlaylist.tracks.count {
+            recentlyPlayedTrackIndexes = []
+        }
+        
+        var nextShuffleTrackIndex = randInRange(0..<currentPlaylist.tracks.count)
+        
+        while find(recentlyPlayedTrackIndexes, nextShuffleTrackIndex) != nil {
+            nextShuffleTrackIndex = randInRange(0..<currentPlaylist.tracks.count)
+        }
+        
+        return currentPlaylist.trackAtIndex(nextShuffleTrackIndex)
     }
 }
