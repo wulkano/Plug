@@ -55,6 +55,10 @@ class Playlist: NSObject {
             return nil
         }
     }
+    
+    func availableTracks() -> [Track] {
+        return tracks.filter { $0.audioUnavailable == false }
+    }
 }
 
 enum PlaylistType {

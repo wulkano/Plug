@@ -18,6 +18,7 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
     
     var preferences: [GeneralPreference] = [
         GeneralPreference(title: "Show notification when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
+        GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
     ]
 
     override func viewDidLoad() {
