@@ -9,7 +9,9 @@
 import Cocoa
 
 class GeneralPreferencesTableCellView: NSTableCellView {
+    @IBOutlet var preferenceTitle: NSTextField!
     @IBOutlet var switchButton: ITSwitch!
+    
     override var objectValue: AnyObject! {
         didSet {
             objectValueChanged()
@@ -22,7 +24,12 @@ class GeneralPreferencesTableCellView: NSTableCellView {
     func objectValueChanged() {
         if objectValue == nil { return }
         
+        updatePreferenceTitle()
         updateSwitchButton()
+    }
+    
+    func updatePreferenceTitle() {
+        preferenceTitle.stringValue = generalPreferenceValue.title
     }
     
     func updateSwitchButton() {

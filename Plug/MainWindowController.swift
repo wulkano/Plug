@@ -15,6 +15,6 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
     
         trafficButtons = TrafficButtons(style: .Dark, groupIdentifier: "MainWindow")
-        trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(8, 11))
+        trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(8, 10))
     }
 }

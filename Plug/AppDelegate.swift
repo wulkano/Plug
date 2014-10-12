@@ -39,7 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             openLoginWindow()
         }
-        
         openPreferencesWindow()
     }
     
@@ -74,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
-            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: nil)!
+            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: NSBundle.mainBundle())!
             preferencesWindowController = preferencesStoryboard.instantiateInitialController() as? NSWindowController
         }
         preferencesWindowController!.showWindow(self)

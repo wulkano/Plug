@@ -16,7 +16,8 @@ class PreferencesWindowController: NSWindowController {
     
         window!.titleVisibility = NSWindowTitleVisibility.Visible
         
-        trafficButtons = TrafficButtons(style: .Light, groupIdentifier: "LoginWindow")
-        trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(10, 10))
+        trafficButtons = TrafficButtons(style: .Light, groupIdentifier: "PreferencesWindow")
+        trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(10, 8))
+        trafficButtons.zoomButton.enabled = false
     }
 }

@@ -63,7 +63,7 @@
                                             <action selector="generalTabClicked:" target="5IL-x6-7lA" id="Lzo-Pd-mwt"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="GrM-zG-xU0">
+                                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrM-zG-xU0">
                                         <rect key="frame" x="60" y="0.0" width="60" height="62"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="HA2-8n-jzy"/>
@@ -77,7 +77,7 @@
                                             <action selector="hotkeysTabClicked:" target="5IL-x6-7lA" id="ZTO-x8-K3m"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="fFB-I6-T8t">
+                                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFB-I6-T8t">
                                         <rect key="frame" x="120" y="0.0" width="60" height="62"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="UMZ-cV-zqN"/>
@@ -109,7 +109,7 @@
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-IR-ILH">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="352"/>
                                 <connections>
-                                    <segue destination="1Vu-97-aLL" kind="embed" id="Kp8-SP-KNn"/>
+                                    <segue destination="1Vu-97-aLL" kind="embed" id="nTm-n5-eI0"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -136,7 +136,7 @@
         <!--Tab View Controller-->
         <scene sceneID="bT4-Fi-q2f">
             <objects>
-                <tabViewController tabStyle="unspecified" id="1Vu-97-aLL" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="1Vu-97-aLL" sceneMemberID="viewController">
                     <tabView key="view" type="noTabsNoBorder" id="YQn-LH-X2O">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -144,14 +144,10 @@
                         <tabViewItems/>
                     </tabView>
                     <tabViewItems>
-                        <tabViewItem identifier="" id="p6l-uX-BcF"/>
-                        <tabViewItem identifier="" id="6nf-tq-LFX"/>
-                        <tabViewItem id="aam-aj-uXK"/>
+                        <tabViewItem id="K8b-E0-NDp"/>
                     </tabViewItems>
                     <connections>
-                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItems" id="uy7-yz-DcF"/>
-                        <segue destination="UXZ-1h-gFf" kind="relationship" relationship="tabItems" id="Jcq-FH-wwn"/>
-                        <segue destination="9YK-AT-qbV" kind="relationship" relationship="tabItems" id="yhh-lX-cXs"/>
+                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItems" id="LuI-Uf-MVg"/>
                     </connections>
                 </tabViewController>
                 <customObject id="sNG-BB-J3A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -194,8 +190,8 @@
                                                             <rect key="frame" x="1" y="1" width="397" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
-                                                                    <rect key="frame" x="18" y="27" width="289" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
+                                                                    <rect key="frame" x="18" y="27" width="292" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="WgU-NV-bLE"/>
                                                                     </constraints>
@@ -204,12 +200,9 @@
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="sSJ-Ca-gwb" name="value" keyPath="objectValue.title" id="sWe-5C-BPK"/>
-                                                                    </connections>
                                                                 </textField>
-                                                                <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aip-oN-OkS" customClass="ITSwitch">
-                                                                    <rect key="frame" x="325" y="19" width="52" height="32"/>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="aip-oN-OkS" customClass="ITSwitch">
+                                                                    <rect key="frame" x="328" y="19" width="52" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="52" id="Yss-ke-dQB"/>
                                                                         <constraint firstAttribute="height" constant="32" id="f1K-vT-hFC"/>
@@ -227,6 +220,7 @@
                                                                 <constraint firstAttribute="centerY" secondItem="pmI-yL-LF8" secondAttribute="centerY" id="tTV-pX-2qt"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="preferenceTitle" destination="pmI-yL-LF8" id="nmY-Dx-jGP"/>
                                                                 <outlet property="switchButton" destination="aip-oN-OkS" id="6of-MB-ABW"/>
                                                                 <outlet property="textField" destination="pmI-yL-LF8" id="QKc-DQ-f6Y"/>
                                                             </connections>
@@ -244,7 +238,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="seI-KD-IWG" name="content" keyPath="preferences" id="nfT-NC-4Uq"/>
+                                                <outlet property="dataSource" destination="seI-KD-IWG" id="wVm-Qj-WgR"/>
                                                 <outlet property="delegate" destination="seI-KD-IWG" id="yfv-3F-Lt0"/>
                                             </connections>
                                         </tableView>
@@ -278,34 +272,9 @@
                     </connections>
                 </viewController>
                 <customObject id="oqK-qV-mZv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="194-IG-p90"/>
             </objects>
-            <point key="canvasLocation" x="696" y="914.5"/>
-        </scene>
-        <!--Hotkeys Preferences View Controller-->
-        <scene sceneID="tns-yc-flh">
-            <objects>
-                <viewController id="UXZ-1h-gFf" customClass="HotkeysPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="RW6-gX-w1T">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="423"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="PQu-kQ-7NH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1189" y="981.5"/>
-        </scene>
-        <!--Muted Preferences View Controller-->
-        <scene sceneID="aDl-SU-q6t">
-            <objects>
-                <viewController id="9YK-AT-qbV" customClass="MutedPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="wCs-fy-jdJ">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="423"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="MS1-Va-1VD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1680" y="982"/>
+            <point key="canvasLocation" x="1189" y="811.5"/>
         </scene>
     </scenes>
     <resources>

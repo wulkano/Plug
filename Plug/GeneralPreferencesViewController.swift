@@ -12,13 +12,12 @@ let ShowTrackChangeNotificationsKey = "ShowTrackChangeNotifications"
 let EnableMediaKeysKey = "EnableMediaKeysKey"
 let HideUnavailableTracks = "HideUnavailableTracks"
 
-class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate {
+class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
     @IBOutlet weak var scrollViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: NSTableView!
     
     var preferences: [GeneralPreference] = [
         GeneralPreference(title: "Show notification when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
-        GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
     ]
 
     override func viewDidLoad() {
@@ -37,23 +36,30 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate {
     func selectionShouldChangeInTableView(tableView: NSTableView!) -> Bool {
         return false
     }
+    
+    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
+        return preferences[row]
+    }
+    
+    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
+        return preferences.count
+    }
 }
 
 // Only supports Bools for now
-class GeneralPreference: NSObject {
+class GeneralPreference {
     var title: String
     var settingsKey: String
-    
+
     init(title: String, settingsKey: String) {
         self.title = title
         self.settingsKey = settingsKey
-        super.init()
     }
-    
+
     func getUserDefaultsValue() -> Bool {
         return NSUserDefaults.standardUserDefaults().valueForKey(settingsKey) as Bool
     }
-    
+
     func setUserDefaultsValue(value: Bool) {
         NSUserDefaults.standardUserDefaults().setValue(value, forKey: settingsKey)
     }
