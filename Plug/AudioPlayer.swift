@@ -204,10 +204,10 @@ class AudioPlayer: NSObject {
             recentlyPlayedTrackIndexes = []
         }
         
-        var nextShuffleTrackIndex = randInRange(0..<currentPlaylist.tracks.count)
+        var nextShuffleTrackIndex = Rand.inRange(0..<currentPlaylist.tracks.count)
         
         while find(recentlyPlayedTrackIndexes, nextShuffleTrackIndex) != nil {
-            nextShuffleTrackIndex = randInRange(0..<currentPlaylist.tracks.count)
+            nextShuffleTrackIndex = Rand.inRange(0..<currentPlaylist.tracks.count)
         }
         
         return currentPlaylist.trackAtIndex(nextShuffleTrackIndex)

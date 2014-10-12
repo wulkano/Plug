@@ -9,11 +9,14 @@
 import Cocoa
 
 class PreferencesWindowController: NSWindowController {
-
+    var trafficButtons: TrafficButtons!
+    
     override func windowDidLoad() {
         super.windowDidLoad()
     
         window!.titleVisibility = NSWindowTitleVisibility.Visible
+        
+        trafficButtons = TrafficButtons(style: .Light, groupIdentifier: "LoginWindow")
+        trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(10, 10))
     }
-
 }

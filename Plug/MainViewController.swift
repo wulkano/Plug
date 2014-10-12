@@ -26,6 +26,8 @@ class MainViewController: NSViewController {
     
     var currentTrackViewController: NSViewController?
     
+    var trafficButtons: TrafficButtons?
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")

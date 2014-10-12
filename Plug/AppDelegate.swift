@@ -39,6 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             openLoginWindow()
         }
+        
+        openPreferencesWindow()
     }
     
     func openMainWindow() {

@@ -148,6 +148,10 @@
 		FADC96F21974CA0D009458FA /* LoveCountPlaylistTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* LoveCountPlaylistTableCellView.swift */; };
 		FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */; };
 		FADC96F61974D10C009458FA /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F51974D10C009458FA /* DraggableView.swift */; };
+		FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3919E9E521005FD94B /* Rand.swift */; };
+		FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */; };
+		FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */; };
+		FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */; };
 		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */; };
 		FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */; };
@@ -352,6 +356,10 @@
 		FADC96F11974CA0D009458FA /* LoveCountPlaylistTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveCountPlaylistTableCellView.swift; sourceTree = "<group>"; };
 		FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenTitlebarWindow.swift; sourceTree = "<group>"; };
 		FADC96F51974D10C009458FA /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
+		FAE38D3919E9E521005FD94B /* Rand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rand.swift; sourceTree = "<group>"; };
+		FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficButtons.swift; sourceTree = "<group>"; };
+		FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		FAE95B7719A2DED7009F9946 /* FlatSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSlider.swift; sourceTree = "<group>"; };
 		FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrackInfo.storyboard; sourceTree = "<group>"; };
 		FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantImageView.swift; sourceTree = "<group>"; };
@@ -466,8 +474,10 @@
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
 				FA1C5AE319E88D0800DD7165 /* PlugGoogleAnalytics.swift */,
 				FA53950119AFC50D006A95A5 /* PlugJSONResponseSerializer.swift */,
+				FAE38D3919E9E521005FD94B /* Rand.swift */,
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
+				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
 				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
 				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
 				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
@@ -850,6 +860,7 @@
 			isa = PBXGroup;
 			children = (
 				FA4C44F819A6C9B70052D506 /* LoginViewController.swift */,
+				FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -858,15 +869,16 @@
 			isa = PBXGroup;
 			children = (
 				FA222A8719BCCA68005A631F /* ContentViewControllers */,
+				FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
 				FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
+				FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */,
 				FA9A2F3019B66C6F0057080C /* NavigationController.swift */,
 				FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
 				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
 				FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */,
-				FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1030,6 +1042,7 @@
 				FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */,
 				FADC96F61974D10C009458FA /* DraggableView.swift in Sources */,
 				FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */,
+				FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */,
 				FAA51A59198084E50057EC34 /* NavigationSection.swift in Sources */,
 				FA9A2F3619B66D7D0057080C /* PlugNavigationController.swift in Sources */,
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
@@ -1075,6 +1088,7 @@
 				FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */,
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
 				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
+				FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */,
 				FA6ADCF719BA705300CCD371 /* SLColorArt.m in Sources */,
 				FA9A2F3319B66C760057080C /* NavigationBar.swift in Sources */,
 				FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */,
@@ -1132,6 +1146,7 @@
 				FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */,
 				FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
+				FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,
 				FACFAAE919BBB5DF006BD52B /* FriendPlaylistDataSource.swift in Sources */,
@@ -1156,6 +1171,7 @@
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
 				FABA62A819C4BC6C00E217D9 /* SingleTrackDataSource.swift in Sources */,
 				FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */,
+				FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* BasePlaylistViewController.swift in Sources */,
 				FADC96F21974CA0D009458FA /* LoveCountPlaylistTableCellView.swift in Sources */,
 				FACFAAE719BAB815006BD52B /* FriendTableCellView.swift in Sources */,
