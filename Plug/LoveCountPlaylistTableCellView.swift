@@ -9,7 +9,14 @@
 import Cocoa
 
 class LoveCountPlaylistTableCellView: BasePlaylistTableCellView {
-    @IBOutlet var loveCount: NSView!
+    @IBOutlet var loveCount: ColorChangingTextField!
+    
+    override func objectValueChanged() {
+        super.objectValueChanged()
+        if objectValue == nil { return }
+        
+        updateLoveCount()
+    }
     
     override func mouseInsideChanged() {
         super.mouseInsideChanged()
@@ -19,6 +26,10 @@ class LoveCountPlaylistTableCellView: BasePlaylistTableCellView {
     override func playStateChanged() {
         super.playStateChanged()
         updateLoveCountVisibility()
+    }
+    
+    func updateLoveCount() {
+        loveCount.objectValue = trackValue.lovedCountNum
     }
     
     func updateLoveCountVisibility() {

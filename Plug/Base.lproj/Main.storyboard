@@ -98,6 +98,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Popular-Off" imagePosition="only" alignment="center" alternateImage="Nav-Popular-On" state="on" imageScaling="proportionallyDown" inset="2" id="PzH-Pg-kkz" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -115,6 +118,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Favorites-Off" imagePosition="only" alignment="center" alternateImage="Nav-Favorites-On" imageScaling="proportionallyDown" inset="2" id="yxI-bl-JC3" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -132,6 +138,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Latest-Off" imagePosition="only" alignment="center" alternateImage="Nav-Latest-On" imageScaling="proportionallyDown" inset="2" id="Q8s-Aq-qJj" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -149,6 +158,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Blogs-Off" imagePosition="only" alignment="center" alternateImage="Nav-Blogs-On" imageScaling="proportionallyDown" inset="2" id="dKB-0t-pqo" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -166,6 +178,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Feed-Off" imagePosition="only" alignment="center" alternateImage="Nav-Feed-On" imageScaling="proportionallyDown" inset="2" id="TAx-IK-xnR" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -183,6 +198,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Genres-Off" imagePosition="only" alignment="center" alternateImage="Nav-Genres-On" imageScaling="proportionallyDown" inset="2" id="1ve-rA-BR6" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -200,6 +218,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Friends-Off" imagePosition="only" alignment="center" alternateImage="Nav-Friends-On" imageScaling="proportionallyDown" inset="2" id="zkF-aT-N3Y" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -217,6 +238,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Nav-Search-Off" imagePosition="only" alignment="center" alternateImage="Nav-Search-On" imageScaling="proportionallyDown" inset="2" id="4vK-Rc-jsI" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
@@ -307,9 +331,6 @@
                                                                         <color key="textColor" red="0.80000000000000004" green="0.38823529411764707" blue="0.67843137254901964" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="LM0-KM-ycg" name="value" keyPath="objectValue.lovedCountNum" id="5F4-C5-wLy"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIx-RP-bP5" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="19" y="15" width="34" height="34"/>
@@ -317,7 +338,7 @@
                                                                         <constraint firstAttribute="width" constant="34" id="5d6-Kx-aK9"/>
                                                                         <constraint firstAttribute="height" constant="34" id="W5s-5x-5lm"/>
                                                                     </constraints>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="oMW-LB-wEg">
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="oMW-LB-wEg">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
@@ -786,9 +807,6 @@
                                                                         <color key="textColor" red="0.80000000000000004" green="0.38823529410000002" blue="0.67843137249999996" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="3MY-eq-1bY" name="value" keyPath="objectValue.lovedCountNum" id="GVA-aN-2DU"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ct5-PX-TfL" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="19" y="15" width="34" height="34"/>
@@ -1051,14 +1069,11 @@
                                                                         <constraint firstAttribute="width" constant="72" id="wQV-eg-Y3I"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="kNZ-Qe-eTy">
-                                                                        <customFormatter key="formatter" id="z4b-RE-l4z" customClass="LovedCountFormatter" customModule="Plug" customModuleProvider="target"/>
+                                                                        <customFormatter key="formatter" id="KSe-6f-ryq" customClass="LovedCountFormatter" customModule="Plug" customModuleProvider="target"/>
                                                                         <font key="font" size="22" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" red="0.80000000000000004" green="0.38823529410000002" blue="0.67843137249999996" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="4ug-9y-aGU" name="value" keyPath="objectValue.lovedCountNum" id="HgG-sQ-Qd8"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aug-o2-Ci4" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="19" y="15" width="34" height="34"/>
@@ -2174,9 +2189,6 @@
                                                                         <color key="textColor" red="0.80000000000000004" green="0.38823529410000002" blue="0.67843137249999996" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="4gR-JS-eJJ" name="value" keyPath="objectValue.lovedCountNum" id="Wi6-Wt-Nlf"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Meg-9s-aqM" customClass="HoverToggleButton" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="19" y="25" width="34" height="34"/>
@@ -2930,6 +2942,9 @@
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Footer-Shuffle-Normal" imagePosition="only" alignment="center" alternateImage="Footer-Shuffle-Active" imageScaling="proportionallyDown" inset="2" id="QRr-tQ-Eeq" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsSelectedState" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>

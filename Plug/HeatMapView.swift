@@ -22,11 +22,10 @@ class HeatMapView: NSView {
     }
     
     func drawHeatMap(dirtyRect: NSRect) {
-        var dataPoints = heatMap!.relativeLast24HourData()
         
         let bottomLeftPoint = NSZeroPoint
-        let topLeftPoint = NSMakePoint(0, frame.height * CGFloat(dataPoints.start))
-        let topRightPoint = NSMakePoint(frame.width, frame.height * CGFloat(dataPoints.end))
+        let topLeftPoint = NSMakePoint(0, frame.height * CGFloat(heatMap!.start))
+        let topRightPoint = NSMakePoint(frame.width, frame.height * CGFloat(heatMap!.end))
         let bottomRightPoint = NSMakePoint(frame.width, 0)
         
         let path = NSBezierPath()

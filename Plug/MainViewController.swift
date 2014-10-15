@@ -74,6 +74,7 @@ class MainViewController: NSViewController {
     
     func updateUIForSection(section: NavigationSection) {
         var newViewController = viewControllerForSection(section)
+        currentViewController = newViewController
         navigationController.setNewRootViewController(newViewController)
     }
     

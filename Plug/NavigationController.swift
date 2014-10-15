@@ -140,8 +140,6 @@ class NavigationController: NSViewController {
         var transitions = transitionOptions(reversed)
         ViewPlacementHelper.AddFullSizeSubview(toViewController.view, toSuperView: contentView)
         transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
-        
-//        let index = find(viewControllers, toViewController)
     }
     
     private func transitionOptions(reversed: Bool) -> NSViewControllerTransitionOptions {
@@ -155,22 +153,5 @@ class NavigationController: NSViewController {
     private func updateNavigationBar() {
         navigationBar.previousViewControllerUpdated(nextTopViewController)
         navigationBar.currentViewControllerUpdated(topViewController)
-    }
-    
-    override func keyDown(theEvent: NSEvent) {
-        switch theEvent.keyCode {
-        case 123:
-            leftArrowKeyPressed(theEvent)
-        default:
-            super.keyDown(theEvent)
-        }
-    }
-    
-    func leftArrowKeyPressed(theEvent: NSEvent!) {
-        if nextTopViewController != nil {
-            popViewController()
-        } else {
-            super.keyDown(theEvent)
-        }
     }
 }

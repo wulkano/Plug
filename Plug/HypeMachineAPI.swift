@@ -397,17 +397,18 @@ struct HypeMachineAPI  {
     }
     
     static func HeatMapFor(track: Track, success: (heatMap: HeatMap)->(), failure: (error: NSError)->()) {
-        let url = "http://hypem.com/inc/serve_track_graph.php"
-        let params = ["id": track.id]
-        HTTP.GetHTML(url, parameters: params,
+        let url = "http://www.plugformac.com/data/heatmaps.json"
+        HTTP.GetJSON(url, parameters: nil,
             success: {operation, responseObject in
-                let responseData = responseObject as NSData
-                var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)!
-                var error: NSError?
-                let heatMap = HeatMap(track: track, html: html, error: &error)
-                if error != nil {
-                    failure(error: error!)
+                var responseDict = responseObject as NSDictionary
+                if let trackData: AnyObject = responseDict[track.id] {
+                    let trackDataDict = trackData as NSDictionary
+                    let startPoint = (trackDataDict["beginningValue"]! as NSNumber).doubleValue
+                    let endPoint = (trackDataDict["endValue"]! as NSNumber).doubleValue
+                    let heatMap = HeatMap(track: track, start: startPoint, end: endPoint)
+                    success(heatMap: heatMap)
                 } else {
+                    let heatMap = HeatMap(track: track, start: 0.1, end: 0.1)
                     success(heatMap: heatMap)
                 }
             }, failure: {operation, error in

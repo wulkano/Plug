@@ -43,14 +43,6 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
         initialSetup()
     }
     
-    override func viewDidUnhide() {
-        println("Unhide")
-    }
-    
-    override func viewDidHide() {
-        println("Hide")
-    }
-    
     deinit {
         Notifications.Unsubscribe.All(self)
     }

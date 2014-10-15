@@ -19,6 +19,13 @@ struct ViewPlacementHelper {
         superview.addConstraints(constraints)
     }
     
+    static func AddFullSizeConstaintsToSubview(subview: NSView, superview: NSView) {
+        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: ["view": subview])
+        superview.addConstraints(constraints)
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: nil, metrics: nil, views: ["view": subview])
+        superview.addConstraints(constraints)
+    }
+    
     static func AddSubview(subview: NSView, toSuperView superview: NSView, withInsets insets: NSEdgeInsets) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(subview)
