@@ -8,8 +8,7 @@
 
 import Cocoa
 
-class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
-    @IBOutlet weak var tableView: ExtendedTableView!
+class BasePlaylistViewController: BaseDataSourceViewController {
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
     var previousMouseInsideRow: Int = -1
@@ -24,7 +23,7 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
     let infiniteScrollTriggerHeight: CGFloat = 40
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
 
     override func viewDidLoad() {
@@ -40,10 +39,6 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
         tableView.setDataSource(dataSource!)
         dataSource!.loadInitialValues()
         addLoaderView()
-    }
-    
-    func requestInitialValuesFinished() {
-        removeLoaderView()
     }
     
     func cellViewForRow(row: Int) -> BasePlaylistTableCellView? {
@@ -70,14 +65,15 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
     func tableView(tableView: ExtendedTableView, rowDidShow row: Int) {
         let track = dataSource!.trackForRow(row)
         if track === AudioPlayer.sharedInstance.currentTrack {
-            Notifications.Post.CurrentTrackDidShow(self)
+            Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: nil)
         }
     }
     
     func tableView(tableView: ExtendedTableView, rowDidHide row: Int) {
-        let track = dataSource!.trackForRow(row)
-        if track === AudioPlayer.sharedInstance.currentTrack {
-            Notifications.Post.CurrentTrackDidHide(self)
+        if let track = dataSource!.trackForRow(row) {
+            if track === AudioPlayer.sharedInstance.currentTrack {
+                Notifications.post(name: Notifications.CurrentTrackDidHide, object: self, userInfo: nil)
+            }
         }
     }
     
@@ -97,7 +93,7 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
         switch theEvent.keyCode {
         case 36: // Enter
             let row = tableView.selectedRow
-            let track = dataSource!.trackForRow(row)
+            let track = dataSource!.trackForRow(row)!
             AudioPlayer.sharedInstance.play(track)
         default:
             super.keyDown(theEvent)
@@ -109,5 +105,10 @@ class BasePlaylistViewController: BaseContentViewController, NSTableViewDelegate
         menuController.loadView()
         menuController.representedObject = dataSource!.trackForRow(row)
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
+    }
+    
+    override func refresh() {
+        addLoaderView()
+        dataSource!.refresh()
     }
 }

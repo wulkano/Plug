@@ -62,7 +62,7 @@ class NavigationController: NSViewController {
         updateNavigationBar()
     }
     
-    func popViewController() -> NSViewController? {
+    func popViewController() -> BaseContentViewController? {
         if !canPopViewController() { return nil }
         
         transitionFromViewController(visibleViewController, toViewController: nextTopViewController!, reversed: true)
@@ -74,11 +74,11 @@ class NavigationController: NSViewController {
         return poppedController
     }
     
-    func popToRootViewController() -> [NSViewController] {
+    func popToRootViewController() -> [BaseContentViewController] {
         return popToViewController(rootViewController)
     }
     
-    func popToViewController(viewController: NSViewController) -> [NSViewController] {
+    func popToViewController(viewController: BaseContentViewController) -> [BaseContentViewController] {
         if !canPopViewController() { return [] }
         if !canPopToViewController(viewController) { return [] }
         
@@ -97,8 +97,8 @@ class NavigationController: NSViewController {
     
     // MARK: Private methods
     
-    private func removeViewControllersAbove(viewController: NSViewController) -> [NSViewController] {
-        var removedControllers = [NSViewController]()
+    private func removeViewControllersAbove(viewController: BaseContentViewController) -> [BaseContentViewController] {
+        var removedControllers = [BaseContentViewController]()
         while topViewController !== viewController {
             var controller = topViewController
             controller.removeFromParentViewController()
@@ -107,8 +107,8 @@ class NavigationController: NSViewController {
         return removedControllers
     }
     
-    private func removeAllViewControllersExcept(viewController: NSViewController) -> [NSViewController] {
-        var removedControllers = [NSViewController]()
+    private func removeAllViewControllersExcept(viewController: BaseContentViewController) -> [BaseContentViewController] {
+        var removedControllers = [BaseContentViewController]()
         for controller in viewControllers {
             if controller !== viewController {
                 controller.removeFromParentViewController()
@@ -118,7 +118,7 @@ class NavigationController: NSViewController {
         return removedControllers
     }
     
-    private func removeTopViewController() -> NSViewController {
+    private func removeTopViewController() -> BaseContentViewController {
         var poppedController = topViewController
         poppedController.removeFromParentViewController()
         return poppedController
@@ -128,18 +128,21 @@ class NavigationController: NSViewController {
         return viewControllers.count > 1
     }
     
-    private func canPopToViewController(viewController: NSViewController) -> Bool {
+    private func canPopToViewController(viewController: BaseContentViewController) -> Bool {
         return hasChildViewController(viewController)
     }
     
-    private func hasChildViewController(viewController: NSViewController) -> Bool {
+    private func hasChildViewController(viewController: BaseContentViewController) -> Bool {
         return viewController.parentViewController === self
     }
     
-    private func transitionFromViewController(fromViewController: NSViewController!, toViewController: NSViewController!, reversed: Bool) {
+    private func transitionFromViewController(fromViewController: BaseContentViewController!, toViewController: BaseContentViewController!, reversed: Bool) {
         var transitions = transitionOptions(reversed)
         ViewPlacementHelper.AddFullSizeSubview(toViewController.view, toSuperView: contentView)
         transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
+        
+        if fromViewController != nil { fromViewController.didLoseCurrentViewController() }
+        toViewController.didBecomeCurrentViewController()
     }
     
     private func transitionOptions(reversed: Bool) -> NSViewControllerTransitionOptions {

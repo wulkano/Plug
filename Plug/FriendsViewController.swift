@@ -8,8 +8,7 @@
 
 import Cocoa
 
-class FriendsViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
-    @IBOutlet var tableView: ExtendedTableView!
+class FriendsViewController: BaseDataSourceViewController {
     var dataSource: FriendsDataSource!
     override var analyticsViewName: String {
         return "MainWindow/Friends"
@@ -32,17 +31,19 @@ class FriendsViewController: BaseContentViewController, NSTableViewDelegate, Ext
     }
     
     func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        let friend = dataSource.itemForRow(row)
-        loadSingleFriendView(friend)
+        if let item: AnyObject = dataSource.itemForRow(row) {
+            loadSingleFriendView(item as Friend)
+        }
     }
     
     func loadSingleFriendView(friend: Friend) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = friend
     }
     
-    func requestInitialValuesFinished() {
-        removeLoaderView()
+    override func refresh() {
+        addLoaderView()
+        dataSource.refresh()
     }
 }

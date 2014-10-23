@@ -10,6 +10,8 @@ import Cocoa
 
 class FriendTableCellView: IOSStyleTableCellView {
     @IBOutlet var avatarView: NSImageView!
+    @IBOutlet var fullNameTextField: NSTextField!
+    @IBOutlet var usernameTextField: NSTextField!
 
     override var objectValue: AnyObject! {
         didSet {
@@ -23,7 +25,17 @@ class FriendTableCellView: IOSStyleTableCellView {
     func objectValueChanged() {
         if objectValue == nil { return }
         
+        updateFullName()
+        updateUsername()
         updateImage()
+    }
+    
+    func updateFullName() {
+        fullNameTextField.stringValue = friendValue.fullName
+    }
+    
+    func updateUsername() {
+        usernameTextField.stringValue = friendValue.username
     }
     
     func updateImage() {
@@ -34,7 +46,7 @@ class FriendTableCellView: IOSStyleTableCellView {
             success: { image in
                 self.avatarView.image = image
             }, failure: { error in
-//                Notifications.Post.DisplayError(error, sender: self)
+//               Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
     }

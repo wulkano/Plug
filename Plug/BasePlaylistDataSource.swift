@@ -13,9 +13,9 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     var currentPage: Int = 1
     var loadingData: Bool = false
     var allTracksLoaded: Bool = false
-    var viewController: BasePlaylistViewController
+    var viewController: BaseDataSourceViewController
     
-    init(viewController: BasePlaylistViewController) {
+    init(viewController: BaseDataSourceViewController) {
         self.viewController = viewController
         super.init()
     }
@@ -25,6 +25,10 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
         
         loadingData = true
         requestInitialValues()
+    }
+    
+    func refresh() {
+        loadInitialValues()
     }
     
     func requestInitialValues() {}
@@ -41,8 +45,6 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
         viewController.requestInitialValuesFinished()
     }
     
-    // TODO: find a way to mark the end of a playlist and prevent further calls
-    // here
     func loadNextPage() {
         if loadingData { return }
         if allTracksLoaded { return }
@@ -71,7 +73,7 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     }
     
     func loadingError(error: NSError) {
-        Notifications.Post.DisplayError(error, sender: self)
+        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
         Logger.LogError(error)
         loadingData = false
     }
@@ -97,8 +99,8 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
         }
     }
     
-    func trackForRow(row: Int) -> Track {
-        return playlist!.tracks[row]
+    func trackForRow(row: Int) -> Track? {
+        return playlist!.tracks.optionalAtIndex(row)
     }
     
     private func rowIndexesForNewTracks(tracks: [Track]) -> NSIndexSet {

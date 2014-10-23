@@ -22,12 +22,12 @@ class SidebarOverlayView: NSView {
     }
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
     
     func initialSetup() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowStatusChanged", name: NSWindowDidBecomeMainNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "windowStatusChanged", name: NSWindowDidResignMainNotification, object: nil)
+        Notifications.subscribe(observer: self, selector: "windowStatusChanged", name: NSWindowDidBecomeMainNotification, object: nil)
+        Notifications.subscribe(observer: self, selector: "windowStatusChanged", name: NSWindowDidResignMainNotification, object: nil)
     }
 
     override func drawRect(dirtyRect: NSRect) {

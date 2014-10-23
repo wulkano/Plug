@@ -13,15 +13,17 @@ class TitleBarViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
+
+        Notifications.subscribe(observer: self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
     }
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        let section = Notifications.Read.NavigationSectionNotification(notification)
+        let raw = (notification.userInfo!["navigationSection"] as NSNumber).integerValue
+        let section = NavigationSection(rawValue: raw)!
         updateUIForSection(section)
     }
     

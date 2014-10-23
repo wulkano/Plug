@@ -83,24 +83,24 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     
     func loadSingleFriendPage() {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         HypeMachineAPI.Friends.SingleFriend(trackValue.lovedBy!,
             success: { friend in
                 viewController.representedObject = friend
             }, failure: { error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
     }
     
     func loadSingleBlogPage() {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         HypeMachineAPI.Blogs.SingleBlog(trackValue.postedById,
             success: { blog in
                 viewController.representedObject = blog
             }, failure: { error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
 

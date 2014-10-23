@@ -43,14 +43,14 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
     
     func initialSetup() {
-        Notifications.Subscribe.TrackPlaying(self, selector: "trackPlaying:")
-        Notifications.Subscribe.TrackPaused(self, selector: "trackPaused:")
-        Notifications.Subscribe.TrackLoved(self, selector: "trackLoved:")
-        Notifications.Subscribe.TrackUnLoved(self, selector: "trackUnLoved:")
+        Notifications.subscribe(observer: self, selector: "trackPlaying:", name: Notifications.TrackPlaying, object: nil)
+        Notifications.subscribe(observer: self, selector: "trackPaused:", name: Notifications.TrackPaused, object: nil)
+        Notifications.subscribe(observer: self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
+        Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
     }
     
     func trackChanged() {
@@ -205,20 +205,20 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     
     func trackProgress() {
         if trackingProgress == false {
-            Notifications.Subscribe.TrackProgressUpdated(self, selector: "progressUpdated:")
+            Notifications.subscribe(observer: self, selector: "progressUpdated:", name: Notifications.TrackProgressUpdated, object: nil)
         }
         trackingProgress = true
     }
     
     func untrackProgress() {
-        Notifications.Unsubscribe.TrackProgressUpdated(self)
+        Notifications.unsubscribe(observer: self, name: Notifications.TrackProgressUpdated, object: self)
         trackingProgress = false
     }
     
     func trackPlaying(notification: NSNotification) {
-        let newTrack = Notifications.Read.TrackNotification(notification)
-        if track !== newTrack {
-            track = newTrack
+        let notificationTrack = notification.userInfo!["track"] as Track
+        if track !== notificationTrack {
+            track = notificationTrack
             playState = PlayState.Playing
             view.hidden = true
         }
@@ -229,16 +229,16 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackLoved(notification: NSNotification) {
-        let notifcationTrack = Notifications.Read.TrackNotification(notification)
-        if track != nil && track! === notifcationTrack {
+        let notificationTrack = notification.userInfo!["track"] as Track
+        if track != nil && track! === notificationTrack {
             trackValue.loved = true
             loveButton.selected = true
         }
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notifcationTrack = Notifications.Read.TrackNotification(notification)
-        if track != nil && track === notifcationTrack {
+        let notificationTrack = notification.userInfo!["track"] as Track
+        if track != nil && track === notificationTrack {
             trackValue.loved = false
             loveButton.selected = false
         }
@@ -277,7 +277,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
                     self.changeTrackLovedValueTo(loved)
                 }
             }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
         })
@@ -291,7 +291,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, viewController: viewController)
     }
     
@@ -301,15 +301,16 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     
     func changeTrackLovedValueTo(loved: Bool) {
         if loved {
-            Notifications.Post.TrackLoved(trackValue, sender: self)
+            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track": trackValue])
         } else {
-            Notifications.Post.TrackUnLoved(trackValue, sender: self)
+            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track": trackValue])
         }
     }
     
     func progressUpdated(notification: NSNotification) {
-        let update = Notifications.Read.TrackProgressNotification(notification)
-        progressSlider.doubleValue = update.progress / update.duration
+        let progress = (notification.userInfo!["progress"] as NSNumber).doubleValue
+        let duration = (notification.userInfo!["duration"] as NSNumber).doubleValue
+        progressSlider.doubleValue = progress / duration
     }
     
     enum PlayState {

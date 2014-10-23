@@ -11,17 +11,17 @@ import Cocoa
 class PlugNavigationController: NavigationController {
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Notifications.Subscribe.PushViewController(self, selector: "pushViewControllerNotification:")
+        Notifications.subscribe(observer: self, selector: "pushViewControllerNotification:", name: Notifications.PushViewController, object: nil)
     }
     
     func pushViewControllerNotification(notification: NSNotification) {
-        let viewController = Notifications.Read.PushViewControllerNotification(notification)
+        let viewController = notification.userInfo!["viewController"] as BaseContentViewController
         pushViewController(viewController)
     }
     

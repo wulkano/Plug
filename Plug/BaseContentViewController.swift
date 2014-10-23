@@ -10,8 +10,6 @@ import Cocoa
 
 class BaseContentViewController: NSViewController {
     var loaderViewController: LoaderViewController?
-    var actionButton: NSButton?
-    var actionButtonSelector: Selector?
     var analyticsViewName: String {
         return defaultAnalyticsViewName
     }
@@ -37,4 +35,14 @@ class BaseContentViewController: NSViewController {
             loaderViewController = nil
         }
     }
+    
+    func didBecomeCurrentViewController() {
+        Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
+    }
+    
+    func didLoseCurrentViewController() {
+        Notifications.unsubscribe(observer: self, name: Notifications.RefreshCurrentView, object: nil)
+    }
+    
+    func refresh() {}
 }

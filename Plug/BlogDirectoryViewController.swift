@@ -8,8 +8,7 @@
 
 import Cocoa
 
-class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
-    @IBOutlet var tableView: ExtendedTableView!
+class BlogDirectoryViewController: BaseDataSourceViewController {
     var dataSource: BlogDirectoryDataSource!
     override var analyticsViewName: String {
         return "MainWindow/BlogDirectory"
@@ -26,17 +25,25 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
         dataSource.loadInitialValues()
     }
     
-    func itemForRow(row: Int) -> BlogDirectoryItem {
-        return dataSource.itemForRow(row)
+    func itemForRow(row: Int) -> BlogDirectoryItem? {
+        if let item: AnyObject = dataSource.itemForRow(row) {
+            return BlogDirectoryItem.fromObject(item)
+        } else {
+            return nil
+        }
     }
     
     func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        return dataSource.itemAfterRow(row)
+        if let item: AnyObject = dataSource.itemAfterRow(row) {
+            return BlogDirectoryItem.fromObject(item)
+        } else {
+            return nil
+        }
     }
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as NSView
         case .BlogItem:
@@ -45,7 +52,7 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     }
     
     func tableView(tableView: NSTableView!, isGroupRow row: Int) -> Bool {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  true
         case .BlogItem:
@@ -54,7 +61,7 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     }
     
     func tableView(tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  32
         case .BlogItem:
@@ -63,7 +70,7 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     }
     
     func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as NSTableRowView
             return rowView
@@ -84,7 +91,7 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     }
     
     func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return false
         case .BlogItem:
@@ -98,7 +105,7 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     }
     
     func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .BlogItem(let blog):
             loadSingleBlogView(blog)
         case .SectionHeaderItem:
@@ -108,11 +115,12 @@ class BlogDirectoryViewController: BaseContentViewController, NSTableViewDelegat
     
     func loadSingleBlogView(blog: Blog) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = blog
     }
     
-    func requestInitialValuesFinished() {
-        removeLoaderView()
+    override func refresh() {
+        addLoaderView()
+        dataSource.refresh()
     }
 }

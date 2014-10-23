@@ -9,6 +9,9 @@
 import Cocoa
 
 class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
+    @IBOutlet weak var titleTextField: VibrantTextField!
+    @IBOutlet weak var artistTextField: VibrantTextField!
+    @IBOutlet weak var loveCountTextField: VibrantTextField!
     @IBOutlet weak var albumArt: NSImageView!
     @IBOutlet weak var postedCountTextField: NSTextField!
     @IBOutlet var postInfoTextField: PostInfoTextField!
@@ -27,8 +30,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Notifications.Subscribe.TrackLoved(self, selector: "trackLoved:")
-        Notifications.Subscribe.TrackUnLoved(self, selector: "trackUnLoved:")
+        Notifications.subscribe(observer: self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
+        Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
         tagContainer.delegate = self
         postInfoTextField.postInfoDelegate = self
         
@@ -53,7 +56,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
                     self.changeTrackLovedValueTo(loved)
                 }
             }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
         })
@@ -72,7 +75,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     func loadSingleGenreView(genre: Genre) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = genre.name
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
     }
     
@@ -89,7 +92,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackLoved(notification: NSNotification) {
-        let track = Notifications.Read.TrackNotification(notification)
+        let track = notification.userInfo!["track"] as Track
         if track === representedObject {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -97,7 +100,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let track = Notifications.Read.TrackNotification(notification)
+        let track = notification.userInfo!["track"] as Track
         if track === representedTrack {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -107,13 +110,16 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     func changeTrackLovedValueTo(loved: Bool) {
         representedTrack.loved = loved
         if loved {
-            Notifications.Post.TrackLoved(representedTrack, sender: self)
+            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track": representedTrack])
         } else {
-            Notifications.Post.TrackUnLoved(representedTrack, sender: self)
+            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track": representedTrack])
         }
     }
 
     func representedObjectChanged() {
+        updateTitle()
+        updateArtist()
+        updateLoveCount()
         updateAlbumArt()
         updatePostedCount()
         updatePostInfo()
@@ -121,12 +127,24 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         updateTags()
     }
     
+    func updateTitle() {
+        titleTextField.stringValue = representedTrack.title
+    }
+    
+    func updateArtist() {
+        artistTextField.stringValue = representedTrack.artist
+    }
+    
+    func updateLoveCount() {
+        loveCountTextField.objectValue = representedTrack.lovedCountNum
+    }
+    
     func updateAlbumArt() {
         HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
             success: { image in
                 self.albumArt.image = image
             }, failure: { error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
     }

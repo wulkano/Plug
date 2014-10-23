@@ -8,8 +8,7 @@
 
 import Cocoa
 
-class GenresViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
-    @IBOutlet var tableView: ExtendedTableView!
+class GenresViewController: BaseDataSourceViewController {
     var dataSource: GenresDataSource!
     override var analyticsViewName: String {
         return "MainWindow/Genres"
@@ -26,27 +25,38 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
         self.dataSource.loadInitialValues()
     }
     
-    func itemForRow(row: Int) -> GenresListItem {
-        return dataSource!.itemForRow(row)
+    func itemForRow(row: Int) -> GenresListItem? {
+        if let item: AnyObject = dataSource!.itemForRow(row) {
+            return GenresListItem.fromObject(item)
+        } else {
+            return nil
+        }
     }
     
     func itemAfterRow(row: Int) -> GenresListItem? {
-        return dataSource!.itemAfterRow(row)
+        if let item: AnyObject = dataSource!.itemAfterRow(row) {
+            return GenresListItem.fromObject(item)
+        } else {
+            return nil
+        }
     }
     
     func selectedGenre() -> Genre? {
         let row = tableView.selectedRow
-        let item = itemForRow(row)
-        switch itemForRow(row) {
-        case .GenreItem(let genre):
-            return genre
-        default:
+        if let item = itemForRow(row) {
+            switch item {
+            case .GenreItem(let genre):
+                return genre
+            default:
+                return nil
+            }
+        } else {
             return nil
         }
     }
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as NSView
         case .GenreItem:
@@ -55,7 +65,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     }
     
     func tableView(tableView: NSTableView!, isGroupRow row: Int) -> Bool {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  true
         case .GenreItem:
@@ -64,7 +74,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     }
     
     func tableView(tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  32
         case .GenreItem:
@@ -73,7 +83,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     }
     
     func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as NSTableRowView
             return rowView
@@ -94,7 +104,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     }
 
     func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .SectionHeaderItem:
             return false
         case .GenreItem:
@@ -135,7 +145,7 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     }
     
     func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        switch itemForRow(row) {
+        switch itemForRow(row)! {
         case .GenreItem(let genre):
             loadSingleGenreView(genre)
         case .SectionHeaderItem:
@@ -146,11 +156,12 @@ class GenresViewController: BaseContentViewController, NSTableViewDelegate, Exte
     func loadSingleGenreView(genre: Genre) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
         viewController.title = genre.name
-        Notifications.Post.PushViewController(viewController, sender: self)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
     }
     
-    func requestInitialValuesFinished() {
-        removeLoaderView()
+    override func refresh() {
+        addLoaderView()
+        dataSource.refresh()
     }
 }

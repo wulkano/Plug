@@ -22,7 +22,7 @@ class MainViewController: NSViewController {
     var friendsViewController: FriendsViewController?
     var searchViewController: SearchViewController?
     
-    var currentViewController: NSViewController?
+    var currentViewController: BaseContentViewController!
     
     var currentTrackViewController: NSViewController?
     
@@ -30,14 +30,14 @@ class MainViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        Notifications.Subscribe.NavigationSectionChanged(self, selector: "navigationSectionChanged:")
-        Notifications.Subscribe.DisplayError(self, selector: "displayError:")
-        Notifications.Subscribe.CurrentTrackDidShow(self, selector: "currentTrackDidShow:")
-        Notifications.Subscribe.CurrentTrackDidHide(self, selector: "currentTrackDidHide:")
+        Notifications.subscribe(observer: self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
+        Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
+        Notifications.subscribe(observer: self, selector: "currentTrackDidShow:", name: Notifications.CurrentTrackDidShow, object: nil)
+        Notifications.subscribe(observer: self, selector: "currentTrackDidHide:", name: Notifications.CurrentTrackDidHide, object: nil)
     }
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
     
     override func viewDidLoad() {
@@ -59,16 +59,17 @@ class MainViewController: NSViewController {
     }
     
     func changeNavigationSection(section: NavigationSection) {
-        Notifications.Post.NavigationSectionChanged(section, sender: self)
+        Notifications.post(name: Notifications.NavigationSectionChanged, object: self, userInfo: ["navigationSection": section.rawValue])
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        let section = Notifications.Read.NavigationSectionNotification(notification)
+        let raw = (notification.userInfo!["navigationSection"] as NSNumber).integerValue
+        let section = NavigationSection(rawValue: raw)!
         updateUIForSection(section)
     }
     
     func displayError(notification: NSNotification) {
-        let error = Notifications.Read.ErrorNotification(notification)
+        let error = notification.userInfo!["error"] as NSError
         NSAlert(error: error).runModal()
     }
     

@@ -123,6 +123,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPreferencesWindow()
     }
     
+    @IBAction func refreshItemClicked(sender: AnyObject) {
+        Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
+    }
+    
     private func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!

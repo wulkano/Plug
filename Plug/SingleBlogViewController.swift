@@ -50,7 +50,7 @@ class SingleBlogViewController: BaseContentViewController {
             success: {image in
                 self.extractColorAndResizeImage(image)
             }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
     }
@@ -91,5 +91,9 @@ class SingleBlogViewController: BaseContentViewController {
         loaderViewController = storyboard!.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
+    }
+    
+    override func refresh() {
+        playlistViewController.refresh()
     }
 }

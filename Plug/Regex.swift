@@ -12,7 +12,7 @@ class Regex {
     let internalExpression: NSRegularExpression
     let pattern: String
     
-    init(_ pattern: String) {
+    init(pattern: String) {
         self.pattern = pattern
         var error: NSError?
         self.internalExpression = NSRegularExpression(pattern: pattern, options: .CaseInsensitive, error: &error)!
@@ -27,5 +27,5 @@ class Regex {
 infix operator =~ {}
 
 func =~ (input: String, pattern: String) -> Bool {
-    return Regex(pattern).test(input)
+    return Regex(pattern: pattern).test(input)
 }

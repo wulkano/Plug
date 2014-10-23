@@ -33,7 +33,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
                 NSPasteboard.generalPasteboard().clearContents()
                 NSPasteboard.generalPasteboard().setString(trackURL.absoluteString!, forType: NSStringPboardType)
             }, failure: { error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
     }
@@ -46,7 +46,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
                 NSWorkspace.sharedWorkspace().openURL(trackURL)
                 return
             }, failure: { error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
         })
     }

@@ -34,4 +34,10 @@ class SearchViewController: BaseContentViewController {
     }
     
     override func addLoaderView() {}
+    
+    override func refresh() {
+        if playlistViewController != nil {
+            playlistViewController!.refresh()
+        }
+    }
 }

@@ -8,105 +8,39 @@
 
 import Cocoa
 
-class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
-    var viewController: BlogDirectoryViewController
-    var filtering: Bool = false
-    var allBlogs: [Blog]?
-    var tableContents: [BlogDirectoryItem]?
-    var filteredTableContents: [BlogDirectoryItem]?
-    
-    init(viewController: BlogDirectoryViewController) {
-        self.viewController = viewController
-        super.init()
-    }
-    
-    func loadInitialValues() {
+class BlogDirectoryDataSource: MainContentDataSource {
+
+    override func loadInitialValues() {
         HypeMachineAPI.Blogs.AllBlogs(
             {blogs in
-                self.allBlogs = blogs
                 self.generateTableContents(blogs)
                 self.viewController.tableView!.reloadData()
                 self.viewController.requestInitialValuesFinished()
             }, failure: {error in
-                Notifications.Post.DisplayError(error, sender: self)
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 Logger.LogError(error)
                 self.viewController.requestInitialValuesFinished()
         })
     }
     
-    func itemForRow(row: Int) -> BlogDirectoryItem {
-        if filtering {
-            return filteredTableContents![row]
-        } else {
-            return tableContents![row]
-        }
-    }
-    
-    func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        var list: [BlogDirectoryItem]
-        
-        if filtering {
-            list = filteredTableContents!
-        } else {
-            list = tableContents!
-        }
-        
-        if list.count > row + 1{
-            return itemForRow(row + 1)
-        } else {
-            return nil
-        }
-    }
-    
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
-        
-        switch itemForRow(row) {
-        case .SectionHeaderItem(let sectionHeader):
-            return sectionHeader
-        case .BlogItem(let blog):
-            return blog
-        }
-    }
-    
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
-        if tableContents == nil { return 0 }
-        
-        if filtering {
-            return filteredTableContents!.count
-        } else {
-            return tableContents!.count
-        }
-    }
-    
     func generateTableContents(blogs: [Blog]) {
-        tableContents = [BlogDirectoryItem]()
+        standardTableContents = []
         
         var followingBlogs = blogs.filter { $0.following == true }
         if followingBlogs.count > 0 {
-            appendSectionHeader("Following")
+            standardTableContents.append(SectionHeader(title: "Following"))
             followingBlogs = followingBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-            appendBlogs(followingBlogs)
+            standardTableContents += followingBlogs as [AnyObject]
         }
         
-        appendSectionHeader("Featured")
+        standardTableContents.append(SectionHeader(title: "Featured"))
         var featuredBlogs = blogs.filter { $0.featured == true }
         featuredBlogs = featuredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-        appendBlogs(featuredBlogs)
-        
-        appendSectionHeader("All Blogs")
+        standardTableContents += featuredBlogs as [AnyObject]
+
+        standardTableContents.append(SectionHeader(title: "All Blogs"))
         var allBlogs = blogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-        appendBlogs(allBlogs)
-    }
-    
-    func appendSectionHeader(title: String) {
-        let sectionHeader = SectionHeader(title: title)
-        let sectionHeaderItem = BlogDirectoryItem.SectionHeaderItem(sectionHeader)
-        tableContents!.append(sectionHeaderItem)
-    }
-    
-    func appendBlogs(blogs: [Blog]) {
-        let wrappedBlogs = BlogDirectoryItem.WrapBlogObjects(blogs)
-        tableContents! += wrappedBlogs
+        standardTableContents += allBlogs as [AnyObject]
     }
     
     func filterByKeywords(keywords: String) {
@@ -114,13 +48,26 @@ class BlogDirectoryDataSource: NSObject, NSTableViewDataSource {
             filtering = false
         } else {
             filtering = true
-            var filteredBlogs = allBlogs!.filter {
+            var filteredBlogs = allBlogs().filter {
                 $0.name =~ keywords
             }
             var sortedBlogs = filteredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-            filteredTableContents = BlogDirectoryItem.WrapBlogObjects(sortedBlogs)
+            filteredTableContents = sortedBlogs as [AnyObject]
         }
         viewController.tableView!.reloadData()
+    }
+    
+    func allBlogs() -> [Blog] {
+        var results = [Blog]()
+        for object in standardTableContents {
+            if object is Blog {
+                let blog = object as Blog
+                if find(results, blog) == nil {
+                    results.append(blog)
+                }
+            }
+        }
+        return results
     }
 }
 
@@ -128,11 +75,13 @@ enum BlogDirectoryItem {
     case SectionHeaderItem(SectionHeader)
     case BlogItem(Blog)
     
-    static func WrapBlogObjects(blogs: [Blog]) -> [BlogDirectoryItem] {
-        var blogItems = [BlogDirectoryItem]()
-        for blog in blogs {
-            blogItems.append(.BlogItem(blog))
+    static func fromObject(object: AnyObject) -> BlogDirectoryItem? {
+        if object is Blog {
+            return BlogDirectoryItem.BlogItem(object as Blog)
+        } else if object is SectionHeader {
+            return BlogDirectoryItem.SectionHeaderItem(object as SectionHeader)
+        } else {
+            return nil
         }
-        return blogItems
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -75,9 +75,6 @@
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="Vxx-At-YHR" name="value" keyPath="representedObject.title" id="Ey6-Ow-aO9"/>
-                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-6S-LHb" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="24" y="265" width="258" height="22"/>
@@ -89,9 +86,6 @@
                                             <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="Vxx-At-YHR" name="value" keyPath="representedObject.artist" id="c1o-QM-z0h"/>
-                                        </connections>
                                     </textField>
                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yJz-dw-ivo" userLabel="Album Art">
                                         <rect key="frame" x="300" y="262" width="52" height="52"/>
@@ -148,9 +142,6 @@
                                             <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="Vxx-At-YHR" name="value" keyPath="representedObject.lovedCountNum" id="XjY-Pt-8C4"/>
-                                        </connections>
                                     </textField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ept-mv-Wd9" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="26" y="164" width="287" height="1"/>
@@ -291,10 +282,13 @@
                     </view>
                     <connections>
                         <outlet property="albumArt" destination="yJz-dw-ivo" id="ThC-gJ-3Q2"/>
+                        <outlet property="artistTextField" destination="Nmb-6S-LHb" id="8XE-QL-TlH"/>
                         <outlet property="loveButton" destination="FRo-Wa-gmQ" id="WL8-Ly-kz7"/>
+                        <outlet property="loveCountTextField" destination="CPv-VB-7wB" id="voh-Xo-08T"/>
                         <outlet property="postInfoTextField" destination="c50-ra-W0O" id="EFY-OS-BtA"/>
                         <outlet property="postedCountTextField" destination="iSf-OI-jrN" id="ehG-Gz-XiX"/>
                         <outlet property="tagContainer" destination="b8U-k7-XJI" id="AE3-IN-D5x"/>
+                        <outlet property="titleTextField" destination="u83-S7-jFD" id="Pau-eL-PGu"/>
                     </connections>
                 </viewController>
                 <customObject id="62W-k5-YkX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

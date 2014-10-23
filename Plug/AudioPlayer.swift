@@ -71,13 +71,13 @@ class AudioPlayer: NSObject {
     func play() {
         player.play()
         playing = true
-        Notifications.Post.TrackPlaying(currentTrack!, sender: self)
+        Notifications.post(name: Notifications.TrackPlaying, object: self, userInfo: ["track": currentTrack!])
     }
     
     func pause() {
         player.pause()
         playing = false
-        Notifications.Post.TrackPaused(currentTrack!, sender: self)
+        Notifications.post(name: Notifications.TrackPaused, object: self, userInfo: ["track": currentTrack!])
     }
     
     func playPauseToggle() {
@@ -178,7 +178,12 @@ class AudioPlayer: NSObject {
         
         let progress = Double(CMTimeGetSeconds(time))
         let duration = Double(CMTimeGetSeconds(playerItem.duration))
-        Notifications.Post.TrackProgressUpdated(currentTrack, progress: progress, duration: duration, sender: self)
+        let userInfo = [
+            "progress": progress,
+            "duration": duration,
+            "track": currentTrack
+        ]
+        Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
     }
     
     private func subscribeToPlayerItem(playerItem: AVPlayerItem) {

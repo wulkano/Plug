@@ -16,11 +16,11 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        Notifications.Subscribe.DisplayError(self, selector: "displayError:")
+        Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
     }
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func displayError(notification: NSNotification) {
-        let error = Notifications.Read.ErrorNotification(notification)
+        let error = notification.userInfo!["error"] as NSError
         NSAlert(error: error).runModal()
     }
     

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -1748,9 +1748,6 @@
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="z2f-JR-RpO" name="value" keyPath="representedObject.username" id="FoQ-i5-Fnv"/>
-                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jV4-fD-OoP">
                                         <rect key="frame" x="73" y="17" width="26" height="20"/>
@@ -1762,9 +1759,6 @@
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="z2f-JR-RpO" name="value" keyPath="representedObject.favoritesCountNum" id="ekP-7k-OsE"/>
-                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8V4-nf-b46">
                                         <rect key="frame" x="98" y="17" width="63" height="20"/>
@@ -1787,9 +1781,6 @@
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
-                                        <connections>
-                                            <binding destination="z2f-JR-RpO" name="value" keyPath="representedObject.followersCountNum" id="QIz-21-gCa"/>
-                                        </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Cl-Ij-Pci">
                                         <rect key="frame" x="190" y="17" width="49" height="20"/>
@@ -2042,9 +2033,6 @@
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="CO0-wB-bR7" name="value" keyPath="objectValue.fullName" id="Spv-gj-oBa"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xvd-pS-7So">
                                                                     <rect key="frame" x="73" y="14" width="311" height="20"/>
@@ -2056,9 +2044,6 @@
                                                                         <color key="textColor" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="CO0-wB-bR7" name="value" keyPath="objectValue.username" id="IaQ-7Q-jpl"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="daH-Ku-Kdh" customClass="CircleMaskImageView" customModule="Plug" customModuleProvider="target">
                                                                     <rect key="frame" x="17" y="14" width="36" height="36"/>
@@ -2091,6 +2076,8 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="avatarView" destination="daH-Ku-Kdh" id="RLU-z2-NtF"/>
+                                                                <outlet property="fullNameTextField" destination="rKX-D5-byy" id="P9o-op-Ohh"/>
+                                                                <outlet property="usernameTextField" destination="xvd-pS-7So" id="Voj-qx-ll7"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="ouh-58-vs8" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
@@ -2525,7 +2512,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="BlogDirectoryBlog" id="1MS-JC-RR4" customClass="IOSStyleTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView identifier="BlogDirectoryBlog" id="1MS-JC-RR4" customClass="BlogTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2539,9 +2526,6 @@
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="1MS-JC-RR4" name="value" keyPath="objectValue.name" id="4lI-my-Hrl"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V07-iE-Ftn">
                                                                     <rect key="frame" x="19" y="10" width="54" height="20"/>
@@ -2587,8 +2571,11 @@
                                                                 <constraint firstItem="aH6-EF-KSn" firstAttribute="leading" secondItem="1MS-JC-RR4" secondAttribute="leading" constant="21" id="wH3-Tw-8Ag"/>
                                                                 <constraint firstAttribute="trailing" secondItem="1N8-4b-BEM" secondAttribute="trailing" constant="15" id="yhk-bG-r94"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="nameTextField" destination="aH6-EF-KSn" id="J8A-tR-EWF"/>
+                                                            </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="SectionHeader" id="Dpd-Pz-k8J">
+                                                        <tableCellView identifier="SectionHeader" id="Dpd-Pz-k8J" customClass="SectionHeaderTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="60" width="409" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2599,9 +2586,6 @@
                                                                         <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="Dpd-Pz-k8J" name="value" keyPath="objectValue.title" id="rEV-bF-EAJ"/>
-                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
@@ -2739,7 +2723,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenreTableCellView" id="Uhc-9h-ryt" customClass="IOSStyleTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView identifier="GenreTableCellView" id="Uhc-9h-ryt" customClass="GenresTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="406" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2750,9 +2734,6 @@
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="Uhc-9h-ryt" name="value" keyPath="objectValue.name" id="F68-fs-VhX"/>
-                                                                    </connections>
                                                                 </textField>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fye-6B-829">
                                                                     <rect key="frame" x="385" y="17" width="9" height="14"/>
@@ -2770,8 +2751,11 @@
                                                                 <constraint firstAttribute="centerY" secondItem="crE-do-0TI" secondAttribute="centerY" constant="1" id="PtI-m0-YOW"/>
                                                                 <constraint firstAttribute="centerY" secondItem="fye-6B-829" secondAttribute="centerY" id="ssk-eg-5uY"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="textField" destination="crE-do-0TI" id="28d-q8-2iY"/>
+                                                            </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="SectionHeader" id="nrv-TY-PLW">
+                                                        <tableCellView identifier="SectionHeader" id="nrv-TY-PLW" customClass="SectionHeaderTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="96" width="406" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2782,9 +2766,6 @@
                                                                         <color key="textColor" red="0.54117647059999996" green="0.57254901960000004" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="nrv-TY-PLW" name="value" keyPath="objectValue.title" id="9PT-aR-5mw"/>
-                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>

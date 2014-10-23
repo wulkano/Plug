@@ -24,7 +24,7 @@ class ExtendedTableView: NSTableView {
     var visibleRows: Range<Int> = Range(start: 0,end: 0)
     
     deinit {
-        Notifications.Unsubscribe.All(self)
+        Notifications.unsubscribeAll(observer: self)
     }
     
     override func updateTrackingAreas() {
