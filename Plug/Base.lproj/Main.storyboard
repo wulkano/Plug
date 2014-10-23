@@ -523,7 +523,7 @@
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.23072787534321168" horizontal="NO" id="d2J-DU-XlX">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="d2J-DU-XlX">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -995,11 +995,11 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="5.4303713436350746e-13" horizontal="YES" id="Inp-sk-Csd">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Inp-sk-Csd">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.23072806060505341" horizontal="NO" id="9xD-ag-VNk">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="9xD-ag-VNk">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1266,7 +1266,7 @@
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.23072806060505341" horizontal="NO" id="dlK-tP-Tpa">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="dlK-tP-Tpa">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1528,7 +1528,7 @@
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.0038208052455653767" horizontal="NO" id="7Qb-2j-5Fe">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="7Qb-2j-5Fe">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2096,7 +2096,7 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="dc8-xN-WZI">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="dc8-xN-WZI">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2410,7 +2410,7 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="rJa-pi-aTQ">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="rJa-pi-aTQ">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2623,7 +2623,7 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="2.296997399117141e-06" horizontal="YES" id="bKw-ut-Gnh">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="bKw-ut-Gnh">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2797,7 +2797,7 @@
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="pBu-Td-aFI">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="pBu-Td-aFI">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2824,6 +2824,67 @@
                 <customObject id="L7m-XM-TlR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1524.5" y="-102"/>
+        </scene>
+        <!--Display Error View Controller-->
+        <scene sceneID="1Wr-FX-9hu">
+            <objects>
+                <viewController storyboardIdentifier="DisplayErrorViewController" id="L1D-Bd-tOJ" customClass="DisplayErrorViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="lE1-zR-QZE">
+                        <rect key="frame" x="0.0" y="0.0" width="381" height="79"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="YQH-JV-uEi" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="381" height="79"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="nvW-9b-2G0">
+                                        <rect key="frame" x="12" y="52" width="359" height="21"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Network Error" id="v7w-f2-Pqt">
+                                            <font key="font" size="14" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ptm-2M-Gv3">
+                                        <rect key="frame" x="12" y="13" width="359" height="34"/>
+                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Check your network connection. Hype Machine could also be down." id="CEu-t4-rc2">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ptm-2M-Gv3" secondAttribute="bottom" constant="13" id="Dqx-4p-5WD"/>
+                                    <constraint firstItem="nvW-9b-2G0" firstAttribute="leading" secondItem="YQH-JV-uEi" secondAttribute="leading" constant="14" id="Gj2-bz-cZm"/>
+                                    <constraint firstItem="ptm-2M-Gv3" firstAttribute="leading" secondItem="YQH-JV-uEi" secondAttribute="leading" constant="14" id="Hos-Ue-7Q7"/>
+                                    <constraint firstAttribute="trailing" secondItem="ptm-2M-Gv3" secondAttribute="trailing" constant="12" id="Obh-h4-fDn"/>
+                                    <constraint firstAttribute="trailing" secondItem="nvW-9b-2G0" secondAttribute="trailing" constant="12" id="Wfa-wj-7Fa"/>
+                                    <constraint firstItem="ptm-2M-Gv3" firstAttribute="top" secondItem="nvW-9b-2G0" secondAttribute="bottom" constant="5" id="iVT-Pz-AMN"/>
+                                    <constraint firstItem="nvW-9b-2G0" firstAttribute="top" secondItem="YQH-JV-uEi" secondAttribute="top" constant="6" id="v7b-cK-085"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="1" green="0.37254901960784315" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YQH-JV-uEi" secondAttribute="trailing" id="Mna-Jh-CiD"/>
+                            <constraint firstItem="YQH-JV-uEi" firstAttribute="leading" secondItem="lE1-zR-QZE" secondAttribute="leading" id="gm0-Wr-R7x"/>
+                            <constraint firstAttribute="bottom" secondItem="YQH-JV-uEi" secondAttribute="bottom" id="mru-MA-bWW"/>
+                            <constraint firstItem="YQH-JV-uEi" firstAttribute="top" secondItem="lE1-zR-QZE" secondAttribute="top" id="o9w-ee-bGB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="errorDescriptionTextField" destination="ptm-2M-Gv3" id="tgQ-m8-dwj"/>
+                        <outlet property="errorTitleTextField" destination="nvW-9b-2G0" id="0VZ-nG-bVT"/>
+                    </connections>
+                </viewController>
+                <customObject id="YtB-m8-bgA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1398.5" y="265.5"/>
         </scene>
         <!--Footer View Controller-->
         <scene sceneID="TRJ-Wz-yw3">

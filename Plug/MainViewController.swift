@@ -56,6 +56,7 @@ class MainViewController: NSViewController {
         }
         
         addCurrentTrackViewController()
+        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": NSError()])
     }
     
     func changeNavigationSection(section: NavigationSection) {
@@ -70,7 +71,13 @@ class MainViewController: NSViewController {
     
     func displayError(notification: NSNotification) {
         let error = notification.userInfo!["error"] as NSError
-        NSAlert(error: error).runModal()
+        let displayErrorViewController = storyboard!.instantiateControllerWithIdentifier("DisplayErrorViewController") as DisplayErrorViewController
+        displayErrorViewController.representedObject = error
+        let insets = NSEdgeInsetsMake(36, 69, 0, 0)
+        ViewPlacementHelper.AddTopAnchoredSubview(displayErrorViewController.view, toSuperView: view, withFixedHeight: 40, andInsets: insets)
+        Interval.single(5, closure: {
+            displayErrorViewController.view.removeFromSuperview()
+        })
     }
     
     func updateUIForSection(section: NavigationSection) {

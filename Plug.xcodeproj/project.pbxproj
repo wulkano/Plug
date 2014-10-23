@@ -104,6 +104,7 @@
 		FA7C5CCF19BD4F2D002239AB /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCE19BD4F2D002239AB /* HTTP.swift */; };
 		FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */; };
 		FA7CC30B19F835880092B254 /* Array+optionalAtIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CC30A19F835880092B254 /* Array+optionalAtIndex.swift */; };
+		FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */; };
 		FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */; };
 		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
 		FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -316,6 +317,7 @@
 		FA7C5CCE19BD4F2D002239AB /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+getSubstringBetweenPrefix.swift"; sourceTree = "<group>"; };
 		FA7CC30A19F835880092B254 /* Array+optionalAtIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+optionalAtIndex.swift"; sourceTree = "<group>"; };
+		FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayErrorViewController.swift; sourceTree = "<group>"; };
 		FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+contains.swift"; sourceTree = "<group>"; };
 		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
 		FA99EECA19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
@@ -904,6 +906,7 @@
 			children = (
 				FA222A8719BCCA68005A631F /* ContentViewControllers */,
 				FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */,
+				FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
 				FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
@@ -1210,6 +1213,7 @@
 				FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */,
 				FA1C5AE419E88D0800DD7165 /* PlugGoogleAnalytics.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
+				FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */,
 				FAA51A5B1980D4FC0057EC34 /* Error.swift in Sources */,
 				FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */,
 				FA24EDC31974ACAA00A781C8 /* BasePlaylistViewController.swift in Sources */,
