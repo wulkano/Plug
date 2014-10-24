@@ -22,10 +22,6 @@
 		FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
 		FA1C5AE419E88D0800DD7165 /* PlugGoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5AE319E88D0800DD7165 /* PlugGoogleAnalytics.swift */; };
-		FA1C5AEE19E8983700DD7165 /* EventHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5AEA19E8983700DD7165 /* EventHit.swift */; };
-		FA1C5AEF19E8983700DD7165 /* ScreenviewHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5AEB19E8983700DD7165 /* ScreenviewHit.swift */; };
-		FA1C5AF019E8983700DD7165 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5AEC19E8983700DD7165 /* Dictionary+merge.swift */; };
-		FA1C5AF219E898BA00DD7165 /* SimpleGoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C5AF119E898BA00DD7165 /* SimpleGoogleAnalytics.swift */; };
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
 		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
 		FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */; };
@@ -166,6 +162,11 @@
 		FAEE914819BA5AF600D4274C /* SingleBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */; };
 		FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0371C197B83C800F716CE /* VolumeIconView.swift */; };
 		FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0372E197B8A3500F716CE /* FooterViewController.swift */; };
+		FAF0D3EB19FACF0400FAE9B5 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0D3E619FACF0400FAE9B5 /* Dictionary+merge.swift */; };
+		FAF0D3EC19FACF0400FAE9B5 /* EventHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0D3E719FACF0400FAE9B5 /* EventHit.swift */; };
+		FAF0D3ED19FACF0400FAE9B5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FAF0D3E819FACF0400FAE9B5 /* README.md */; };
+		FAF0D3EE19FACF0400FAE9B5 /* ScreenviewHit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0D3E919FACF0400FAE9B5 /* ScreenviewHit.swift */; };
+		FAF0D3EF19FACF0400FAE9B5 /* SimpleGoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0D3EA19FACF0400FAE9B5 /* SimpleGoogleAnalytics.swift */; };
 		FAF13B28199D22D5009D9F66 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B27199D22D5009D9F66 /* Notifications.swift */; };
 		FAF13B2A199D3D62009D9F66 /* FeedTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */; };
 		FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */; };
@@ -229,10 +230,6 @@
 		FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		FA1C5AE319E88D0800DD7165 /* PlugGoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlugGoogleAnalytics.swift; sourceTree = "<group>"; };
-		FA1C5AEA19E8983700DD7165 /* EventHit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHit.swift; sourceTree = "<group>"; };
-		FA1C5AEB19E8983700DD7165 /* ScreenviewHit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenviewHit.swift; sourceTree = "<group>"; };
-		FA1C5AEC19E8983700DD7165 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
-		FA1C5AF119E898BA00DD7165 /* SimpleGoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleGoogleAnalytics.swift; sourceTree = "<group>"; };
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
 		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
 		FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackContextMenuController.swift; sourceTree = "<group>"; };
@@ -381,6 +378,11 @@
 		FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleBlogViewController.swift; sourceTree = "<group>"; };
 		FAF0371C197B83C800F716CE /* VolumeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeIconView.swift; sourceTree = "<group>"; };
 		FAF0372E197B8A3500F716CE /* FooterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewController.swift; sourceTree = "<group>"; };
+		FAF0D3E619FACF0400FAE9B5 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
+		FAF0D3E719FACF0400FAE9B5 /* EventHit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHit.swift; sourceTree = "<group>"; };
+		FAF0D3E819FACF0400FAE9B5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FAF0D3E919FACF0400FAE9B5 /* ScreenviewHit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenviewHit.swift; sourceTree = "<group>"; };
+		FAF0D3EA19FACF0400FAE9B5 /* SimpleGoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleGoogleAnalytics.swift; sourceTree = "<group>"; };
 		FAF13B27199D22D5009D9F66 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		FAF13B29199D3D62009D9F66 /* FeedTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableCellView.swift; sourceTree = "<group>"; };
 		FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackInfoViewController.swift; sourceTree = "<group>"; };
@@ -516,17 +518,6 @@
 				FA6ADCF519BA705300CCD371 /* SLColorArt.m */,
 			);
 			name = SLColorArt;
-			sourceTree = "<group>";
-		};
-		FA1C5AE819E8982800DD7165 /* SimpleGoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				FA1C5AF119E898BA00DD7165 /* SimpleGoogleAnalytics.swift */,
-				FA1C5AEA19E8983700DD7165 /* EventHit.swift */,
-				FA1C5AEB19E8983700DD7165 /* ScreenviewHit.swift */,
-				FA1C5AEC19E8983700DD7165 /* Dictionary+merge.swift */,
-			);
-			name = SimpleGoogleAnalytics;
 			sourceTree = "<group>";
 		};
 		FA222A8719BCCA68005A631F /* ContentViewControllers */ = {
@@ -687,7 +678,7 @@
 		FA666D5919B3948E00AA0AA1 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				FA1C5AE819E8982800DD7165 /* SimpleGoogleAnalytics */,
+				FAF0D3E519FACF0400FAE9B5 /* SimpleGoogleAnalytics */,
 				FA1C5AE619E8980A00DD7165 /* ITSwitch */,
 				FA0C4E9D19C22CAA00A1B83C /* SPMediaKeyTap */,
 				FA1C5AE719E8981400DD7165 /* SLColorArt */,
@@ -928,6 +919,18 @@
 			name = "Track Info";
 			sourceTree = "<group>";
 		};
+		FAF0D3E519FACF0400FAE9B5 /* SimpleGoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				FAF0D3E619FACF0400FAE9B5 /* Dictionary+merge.swift */,
+				FAF0D3E719FACF0400FAE9B5 /* EventHit.swift */,
+				FAF0D3E819FACF0400FAE9B5 /* README.md */,
+				FAF0D3E919FACF0400FAE9B5 /* ScreenviewHit.swift */,
+				FAF0D3EA19FACF0400FAE9B5 /* SimpleGoogleAnalytics.swift */,
+			);
+			path = SimpleGoogleAnalytics;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1075,7 +1078,6 @@
 			files = (
 				FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */,
 				FA33F43419E67FB200FF7649 /* PostInfoTextField.swift in Sources */,
-				FA1C5AEF19E8983700DD7165 /* ScreenviewHit.swift in Sources */,
 				FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */,
 				FADC96F61974D10C009458FA /* DraggableView.swift in Sources */,
 				FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */,
@@ -1083,6 +1085,7 @@
 				FAA51A59198084E50057EC34 /* NavigationSection.swift in Sources */,
 				FA9A2F3619B66D7D0057080C /* PlugNavigationController.swift in Sources */,
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
+				FAF0D3EF19FACF0400FAE9B5 /* SimpleGoogleAnalytics.swift in Sources */,
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
 				FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */,
@@ -1104,17 +1107,16 @@
 				FAACE4C619AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift in Sources */,
 				FAEE914619BA3A3300D4274C /* ExtendedTableView.swift in Sources */,
 				FAEE914819BA5AF600D4274C /* SingleBlogViewController.swift in Sources */,
+				FAF0D3EE19FACF0400FAE9B5 /* ScreenviewHit.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
 				FA9EA040199AFC4100D9AB8A /* FeedPlaylistDataSource.swift in Sources */,
 				FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */,
-				FA1C5AEE19E8983700DD7165 /* EventHit.swift in Sources */,
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
-				FA1C5AF019E8983700DD7165 /* Dictionary+merge.swift in Sources */,
 				FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */,
+				FAF0D3EB19FACF0400FAE9B5 /* Dictionary+merge.swift in Sources */,
 				FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */,
 				FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */,
 				FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */,
-				FA1C5AF219E898BA00DD7165 /* SimpleGoogleAnalytics.swift in Sources */,
 				FAA34A9319B2E4090038868A /* FavoritesPlaylistViewController.swift in Sources */,
 				FA9EA03C199AEC0A00D9AB8A /* FavoritesPlaylistDataSource.swift in Sources */,
 				FA5394FA19AFA065006A95A5 /* Animations.swift in Sources */,
@@ -1140,6 +1142,7 @@
 				FA53950419AFFE31006A95A5 /* HeatMapPlaylistTableCellView.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextField.swift in Sources */,
 				FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */,
+				FAF0D3EC19FACF0400FAE9B5 /* EventHit.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
@@ -1174,6 +1177,7 @@
 				FAACE4C419AC2ADD00F8E9E8 /* SignUpButtonCell.swift in Sources */,
 				FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */,
 				FA2C86011977AF2F007B1622 /* HeatMap.swift in Sources */,
+				FAF0D3ED19FACF0400FAE9B5 /* README.md in Sources */,
 				FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */,
 				FA4BF21719F609AE0078AB82 /* SectionHeaderTableCellView.swift in Sources */,
 				FA7C5CCF19BD4F2D002239AB /* HTTP.swift in Sources */,
