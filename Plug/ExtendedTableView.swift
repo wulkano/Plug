@@ -11,6 +11,12 @@ import Cocoa
 class ExtendedTableView: NSTableView {
     @IBInspectable var tracksMouseEnterExit: Bool = false
     
+    override var visibleRect: NSRect {
+        var rect = super.visibleRect
+        rect.size.height -= 47 // Don't track over the play controls bar at the bottom
+        return rect
+    }
+    
     var trackingArea: NSTrackingArea?
     var extendedDelegate: ExtendedTableViewDelegate?
     var mouseInsideRow: Int = -1
@@ -39,7 +45,7 @@ class ExtendedTableView: NSTableView {
     
     func ensureTrackingArea() {
         if trackingArea == nil {
-            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited | NSTrackingAreaOptions.MouseMoved, owner: self, userInfo: nil)
+            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited | NSTrackingAreaOptions.MouseMoved | NSTrackingAreaOptions.AssumeInside, owner: self, userInfo: nil)
         }
     }
     
@@ -89,6 +95,12 @@ class ExtendedTableView: NSTableView {
             }
             mouseInsideRow = newMouseInsideRow
         }
+    }
+    
+    override func mouseEntered(theEvent: NSEvent) {
+        super.mouseEntered(theEvent)
+        
+        updateTrackingAreas()
     }
     
     override func mouseExited(theEvent: NSEvent) {
