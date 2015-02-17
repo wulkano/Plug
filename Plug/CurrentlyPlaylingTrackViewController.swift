@@ -216,7 +216,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if track !== notificationTrack {
             track = notificationTrack
             playState = PlayState.Playing
@@ -229,7 +229,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if track != nil && track! === notificationTrack {
             trackValue.loved = true
             loveButton.selected = true
@@ -237,7 +237,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if track != nil && track === notificationTrack {
             trackValue.loved = false
             loveButton.selected = false
@@ -288,7 +288,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
@@ -308,8 +308,8 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func progressUpdated(notification: NSNotification) {
-        let progress = (notification.userInfo!["progress"] as NSNumber).doubleValue
-        let duration = (notification.userInfo!["duration"] as NSNumber).doubleValue
+        let progress = (notification.userInfo!["progress"] as! NSNumber).doubleValue
+        let duration = (notification.userInfo!["duration"] as! NSNumber).doubleValue
         progressSlider.doubleValue = progress / duration
     }
     

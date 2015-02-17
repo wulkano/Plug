@@ -23,16 +23,16 @@ class Blog: NSObject {
     
     init(JSON json: NSDictionary) {
         
-        id = String(json["siteid"] as Int)
-        name = json["sitename"] as String
-        var siteurlString = (json["siteurl"] as String).stringByReplacingOccurrencesOfString(" ", withString: "")
+        id = String(json["siteid"] as! Int)
+        name = json["sitename"] as! String
+        var siteurlString = (json["siteurl"] as! String).stringByReplacingOccurrencesOfString(" ", withString: "")
         url = NSURL(string: siteurlString)!
-        followerCount = json["followers"] as Int
+        followerCount = json["followers"] as! Int
         followerCountNum = NSNumber(integer: followerCount)
-        trackCount = json["total_tracks"] as Int
+        trackCount = json["total_tracks"] as! Int
         trackCountNum = NSNumber(integer: trackCount)
-        imageURL = NSURL(string: json["blog_image"] as String)!
-        imageURLSmall = NSURL(string: json["blog_image_small"] as String)!
+        imageURL = NSURL(string: json["blog_image"] as! String)!
+        imageURLSmall = NSURL(string: json["blog_image_small"] as! String)!
         if json["ts_featured"] is Int {
             featured = true
         }

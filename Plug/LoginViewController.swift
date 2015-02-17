@@ -39,12 +39,12 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func displayError(notification: NSNotification) {
-        let error = notification.userInfo!["error"] as NSError
+        let error = notification.userInfo!["error"] as! NSError
         NSAlert(error: error).runModal()
     }
     
     func signedInSuccessfully() {
-        let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.finishedSigningIn()
     }
     

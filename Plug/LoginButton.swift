@@ -10,7 +10,7 @@ import Cocoa
 
 class LoginButton: SwissArmyButton {
     var loginButtonCell: LoginButtonCell {
-        return cell() as LoginButtonCell
+        return cell() as! LoginButtonCell
     }
     var buttonState: LoginButtonState = .Disabled {
         didSet { buttonStateChanged() }

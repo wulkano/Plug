@@ -11,18 +11,17 @@ import Cocoa
 class Genre: NSObject {
     var name: String
     var priority: Bool = false
+    override var description: String {
+        return "<Genre - name: \(name), priority: \(priority)>"
+    }
     
     init(JSON json: NSDictionary) {
-        name = (json["tag_name"] as String).capitalizedString
+        name = (json["tag_name"] as! String).capitalizedString
         
         if json["priority"] is Bool {
-            priority = json["priority"] as Bool
+            priority = json["priority"] as! Bool
         }
         
         super.init()
-    }
-    
-    func description() -> String {
-        return "<Genre - name: \(name), priority: \(priority)>"
     }
 }

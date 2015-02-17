@@ -58,9 +58,9 @@ class GenresViewController: BaseDataSourceViewController {
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
-            return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as NSView
+            return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as! NSView
         case .GenreItem:
-            return tableView.makeViewWithIdentifier("GenreTableCellView", owner: self) as NSView
+            return tableView.makeViewWithIdentifier("GenreTableCellView", owner: self) as! NSView
         }
     }
     
@@ -85,10 +85,10 @@ class GenresViewController: BaseDataSourceViewController {
     func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
-            let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as NSTableRowView
+            let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as! NSTableRowView
             return rowView
         case .GenreItem:
-            let rowView = tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as IOSStyleTableRowView
+            let rowView = tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as! IOSStyleTableRowView
             if let nextItem = itemAfterRow(row) {
                 switch nextItem {
                 case .SectionHeaderItem:
@@ -154,7 +154,7 @@ class GenresViewController: BaseDataSourceViewController {
     }
     
     func loadSingleGenreView(genre: Genre) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
         viewController.title = genre.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)

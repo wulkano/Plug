@@ -22,10 +22,10 @@ class ExtendedTableView: NSTableView {
     var mouseInsideRow: Int = -1
     
     var clipView: NSClipView {
-        return superview as NSClipView
+        return superview as! NSClipView
     }
     var scrollView: NSScrollView {
-        return clipView.superview as NSScrollView
+        return clipView.superview as! NSScrollView
     }
     var visibleRows: Range<Int> = Range(start: 0,end: 0)
     
@@ -37,7 +37,7 @@ class ExtendedTableView: NSTableView {
         super.updateTrackingAreas()
         if tracksMouseEnterExit {
             ensureTrackingArea()
-            if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+            if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
                 addTrackingArea(trackingArea!)
             }
         }
@@ -53,6 +53,18 @@ class ExtendedTableView: NSTableView {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
+
+        resetTrackingArea()
+    }
+    
+    func resetTrackingArea() {
+        if tracksMouseEnterExit && trackingArea != nil {
+            removeTrackingArea(trackingArea!)
+            trackingArea = nil
+            ensureTrackingArea()
+        }
+        
+        println(self)
     }
 
     override func mouseDown(theEvent: NSEvent) {

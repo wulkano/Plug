@@ -18,7 +18,7 @@ class DisplayErrorViewController: NSViewController {
         }
     }
     var representedError: NSError {
-        return representedObject as NSError
+        return representedObject as! NSError
     }
     
     override func viewDidLoad() {

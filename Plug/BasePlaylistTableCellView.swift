@@ -33,7 +33,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
         didSet { playStateChanged() }
     }
     var trackValue: Track {
-        return objectValue as Track
+        return objectValue as! Track
     }
     var trackingProgress: Bool = false
     
@@ -219,7 +219,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if notificationTrack === objectValue {
             playState = PlayState.Playing
         } else {
@@ -228,14 +228,14 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackPaused(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if notificationTrack === objectValue {
             playState = PlayState.Paused
         }
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if notificationTrack === objectValue {
             trackValue.loved = true
             loveButton.selected = true
@@ -244,7 +244,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as Track
+        let notificationTrack = notification.userInfo!["track"] as! Track
         if notificationTrack === objectValue {
             trackValue.loved = false
             loveButton.selected = false
@@ -297,7 +297,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
@@ -317,8 +317,8 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func progressUpdated(notification: NSNotification) {
-        let progress = (notification.userInfo!["progress"] as NSNumber).doubleValue
-        let duration = (notification.userInfo!["duration"] as NSNumber).doubleValue
+        let progress = (notification.userInfo!["progress"] as! NSNumber).doubleValue
+        let duration = (notification.userInfo!["duration"] as! NSNumber).doubleValue
         progressSlider.doubleValue = progress / duration
     }
     

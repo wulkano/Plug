@@ -20,7 +20,7 @@ class FlatSlider: NSSlider {
         }
     }
     var flatSliderCell: FlatSliderCell {
-        return cell() as FlatSliderCell
+        return cell() as! FlatSliderCell
     }
     var mouseDown: Bool {
         get { return flatSliderCell.mouseDown }

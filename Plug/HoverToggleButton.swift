@@ -50,7 +50,7 @@ class HoverToggleButton: NSButton {
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         ensureTrackingArea()
-        if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+        if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
             addTrackingArea(trackingArea!)
         }
     }

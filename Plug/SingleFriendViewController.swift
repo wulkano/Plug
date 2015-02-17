@@ -27,7 +27,7 @@ class SingleFriendViewController: BaseContentViewController {
         }
     }
     var representedFriend: Friend {
-        return representedObject as Friend
+        return representedObject as! Friend
     }
     
     func representedObjectChanged() {
@@ -66,7 +66,7 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
         addChildViewController(playlistViewController)
         ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
         playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, viewController: playlistViewController)

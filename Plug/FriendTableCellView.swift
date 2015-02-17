@@ -19,7 +19,7 @@ class FriendTableCellView: IOSStyleTableCellView {
         }
     }
     var friendValue: Friend {
-        return objectValue as Friend
+        return objectValue as! Friend
     }
     
     func objectValueChanged() {

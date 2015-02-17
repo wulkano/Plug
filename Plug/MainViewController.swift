@@ -43,7 +43,7 @@ class MainViewController: NSViewController {
     override func viewDidLoad() {
         for controller in childViewControllers {
             if controller is NavigationController {
-                navigationController = controller as NavigationController
+                navigationController = controller as! NavigationController
             }
         }
     }
@@ -56,7 +56,7 @@ class MainViewController: NSViewController {
         }
         
         addCurrentTrackViewController()
-        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": NSError()])
+//        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": NSError()])
     }
     
     func changeNavigationSection(section: NavigationSection) {
@@ -64,14 +64,14 @@ class MainViewController: NSViewController {
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        let raw = (notification.userInfo!["navigationSection"] as NSNumber).integerValue
+        let raw = (notification.userInfo!["navigationSection"] as! NSNumber).integerValue
         let section = NavigationSection(rawValue: raw)!
         updateUIForSection(section)
     }
     
     func displayError(notification: NSNotification) {
-        let error = notification.userInfo!["error"] as NSError
-        let displayErrorViewController = storyboard!.instantiateControllerWithIdentifier("DisplayErrorViewController") as DisplayErrorViewController
+        let error = notification.userInfo!["error"] as! NSError
+        let displayErrorViewController = storyboard!.instantiateControllerWithIdentifier("DisplayErrorViewController") as! DisplayErrorViewController
         displayErrorViewController.representedObject = error
         let insets = NSEdgeInsetsMake(36, 69, 0, 0)
         ViewPlacementHelper.AddTopAnchoredSubview(displayErrorViewController.view, toSuperView: view, withFixedHeight: 40, andInsets: insets)
@@ -95,7 +95,7 @@ class MainViewController: NSViewController {
     }
     
     func addCurrentTrackViewController() {
-        currentTrackViewController = storyboard!.instantiateControllerWithIdentifier("CurrentlyPlaylingTrackViewController") as CurrentlyPlaylingTrackViewController
+        currentTrackViewController = storyboard!.instantiateControllerWithIdentifier("CurrentlyPlaylingTrackViewController") as! CurrentlyPlaylingTrackViewController
         let insets = NSEdgeInsetsMake(0, 69, 47, 0)
         ViewPlacementHelper.AddBottomAnchoredSubview(currentTrackViewController!.view, toSuperView: view, withFixedHeight: 70, andInsets: insets)
         currentTrackViewController!.view.hidden = true
@@ -108,28 +108,28 @@ class MainViewController: NSViewController {
         
         switch section {
         case .Popular:
-            popularViewController = (ensureViewController(popularViewController, identifier: "PopularPlaylistViewController") as PopularPlaylistViewController)
+            popularViewController = (ensureViewController(popularViewController, identifier: "PopularPlaylistViewController") as! PopularPlaylistViewController)
             return popularViewController!
         case .Favorites:
-            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoritesPlaylistViewController") as FavoritesPlaylistViewController)
+            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoritesPlaylistViewController") as! FavoritesPlaylistViewController)
             return favoritesViewController!
         case .Latest:
-            latestViewController = (ensureViewController(latestViewController, identifier: "LatestPlaylistViewController") as LatestPlaylistViewController)
+            latestViewController = (ensureViewController(latestViewController, identifier: "LatestPlaylistViewController") as! LatestPlaylistViewController)
             return latestViewController!
         case .Blogs:
-            blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as BlogDirectoryViewController)
+            blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as! BlogDirectoryViewController)
             return blogDirectoryViewController!
         case .Feed:
-            feedViewController = (ensureViewController(feedViewController, identifier: "FeedPlaylistViewController") as FeedPlaylistViewController)
+            feedViewController = (ensureViewController(feedViewController, identifier: "FeedPlaylistViewController") as! FeedPlaylistViewController)
             return feedViewController!
         case .Genres:
-            genresViewController = (ensureViewController(genresViewController, identifier: "GenresViewController") as GenresViewController)
+            genresViewController = (ensureViewController(genresViewController, identifier: "GenresViewController") as! GenresViewController)
             return genresViewController!
         case .Friends:
-            friendsViewController = (ensureViewController(friendsViewController, identifier: "FriendsViewController") as FriendsViewController)
+            friendsViewController = (ensureViewController(friendsViewController, identifier: "FriendsViewController") as! FriendsViewController)
             return friendsViewController!
         case .Search:
-            searchViewController = (ensureViewController(searchViewController, identifier: "SearchViewController") as SearchViewController)
+            searchViewController = (ensureViewController(searchViewController, identifier: "SearchViewController") as! SearchViewController)
             return searchViewController!
         }
     }
@@ -138,7 +138,7 @@ class MainViewController: NSViewController {
         if controller != nil {
             return controller!
         } else {
-            let newController = storyboard!.instantiateControllerWithIdentifier(identifier) as NSViewController
+            let newController = storyboard!.instantiateControllerWithIdentifier(identifier) as! NSViewController
             addChildViewController(newController)
             return newController
         }
@@ -151,7 +151,7 @@ class MainViewController: NSViewController {
         transitionFromViewController(currentViewController!, toViewController: controller, options: transitions, completionHandler:  {
             for subview in self.mainContentView.subviews {
                 if subview !== controller.view {
-                    (subview as NSView).removeFromSuperview()
+                    (subview as! NSView).removeFromSuperview()
                 }
             }
         })

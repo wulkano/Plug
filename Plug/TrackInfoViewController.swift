@@ -24,7 +24,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         }
     }
     var representedTrack: Track {
-        return representedObject as Track
+        return representedObject as! Track
     }
     
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func loadSingleGenreView(genre: Genre) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
         viewController.title = genre.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
@@ -92,7 +92,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackLoved(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as Track
+        let track = notification.userInfo!["track"] as! Track
         if track === representedObject {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -100,7 +100,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as Track
+        let track = notification.userInfo!["track"] as! Track
         if track === representedTrack {
             representedTrack.loved = track.loved
             updateLoveButton()

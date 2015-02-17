@@ -17,7 +17,7 @@ class BlogTableCellView: IOSStyleTableCellView {
         }
     }
     var blogValue: Blog {
-        return objectValue as Blog
+        return objectValue as! Blog
     }
     
     func objectValueChanged() {

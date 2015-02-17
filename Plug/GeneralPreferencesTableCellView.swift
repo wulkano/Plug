@@ -18,7 +18,7 @@ class GeneralPreferencesTableCellView: NSTableCellView {
         }
     }
     var generalPreferenceValue: GeneralPreference {
-        return objectValue as GeneralPreference
+        return objectValue as! GeneralPreference
     }
 
     func objectValueChanged() {

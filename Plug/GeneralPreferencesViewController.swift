@@ -58,7 +58,7 @@ class GeneralPreference {
     }
 
     func getUserDefaultsValue() -> Bool {
-        return NSUserDefaults.standardUserDefaults().valueForKey(settingsKey) as Bool
+        return NSUserDefaults.standardUserDefaults().valueForKey(settingsKey) as! Bool
     }
 
     func setUserDefaultsValue(value: Bool) {

@@ -25,8 +25,11 @@ struct HTTP {
         var manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager(baseURL: nil)
         manager.responseSerializer = AFImageResponseSerializer.sharedSerializer()
         // Need this to load images from S3
-        let contentTypesSet = manager.responseSerializer.acceptableContentTypes;
-        manager.responseSerializer.acceptableContentTypes = contentTypesSet.setByAddingObject("application/octet-stream")
+        var contentTypesSet = manager.responseSerializer.acceptableContentTypes as Set<NSObject>
+        var newSet = Set<NSObject>()
+        newSet.union(contentTypesSet)
+        newSet.insert("application/octet-stream")
+        manager.responseSerializer.acceptableContentTypes = newSet
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }
     

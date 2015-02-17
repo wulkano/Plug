@@ -82,7 +82,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     }
     
     func loadSingleFriendPage() {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as! SingleFriendViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         HypeMachineAPI.Friends.SingleFriend(trackValue.lovedBy!,
             success: { friend in
@@ -94,7 +94,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
     }
     
     func loadSingleBlogPage() {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as! SingleBlogViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         HypeMachineAPI.Blogs.SingleBlog(trackValue.postedById,
             success: { blog in

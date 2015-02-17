@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openMainWindow() {
         if mainWindowController == nil {
-            mainWindowController = NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as NSWindowController
+            mainWindowController = NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as! NSWindowController
         }
         mainWindowController!.showWindow(self)
         showSignOutInMenu()
@@ -58,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openLoginWindow() {
         Analytics.sharedInstance.trackView("LoginWindow")
         if loginWindowController == nil {
-            loginWindowController = NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as NSWindowController
+            loginWindowController = NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as! NSWindowController
         }
         loginWindowController!.showWindow(self)
         hideSignOutFromMenu()
@@ -73,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
             let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: NSBundle.mainBundle())!
-            preferencesWindowController = preferencesStoryboard.instantiateInitialController() as NSWindowController
+            preferencesWindowController = preferencesStoryboard.instantiateInitialController() as! NSWindowController
         }
         preferencesWindowController!.showWindow(self)
     }
@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
-        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict)
+        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [NSObject : AnyObject])
     }
     
     private func setupUserNotifications() {

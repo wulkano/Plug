@@ -32,12 +32,12 @@ class FriendsViewController: BaseDataSourceViewController {
     
     func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         if let item: AnyObject = dataSource.itemForRow(row) {
-            loadSingleFriendView(item as Friend)
+            loadSingleFriendView(item as! Friend)
         }
     }
     
     func loadSingleFriendView(friend: Friend) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as SingleFriendViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as! SingleFriendViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = friend
     }

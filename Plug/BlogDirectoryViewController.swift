@@ -45,9 +45,9 @@ class BlogDirectoryViewController: BaseDataSourceViewController {
         
         switch itemForRow(row)! {
         case .SectionHeaderItem:
-            return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as NSView
+            return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as! NSView
         case .BlogItem:
-            return tableView.makeViewWithIdentifier("BlogDirectoryBlog", owner: self) as NSView
+            return tableView.makeViewWithIdentifier("BlogDirectoryBlog", owner: self) as! NSView
         }
     }
     
@@ -72,10 +72,10 @@ class BlogDirectoryViewController: BaseDataSourceViewController {
     func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
-            let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as NSTableRowView
+            let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as! NSTableRowView
             return rowView
         case .BlogItem:
-            let rowView = tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as IOSStyleTableRowView
+            let rowView = tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as! IOSStyleTableRowView
             if let nextItem = itemAfterRow(row) {
                 switch nextItem {
                 case .SectionHeaderItem:
@@ -114,7 +114,7 @@ class BlogDirectoryViewController: BaseDataSourceViewController {
     }
     
     func loadSingleBlogView(blog: Blog) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as SingleBlogViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as! SingleBlogViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = blog
     }

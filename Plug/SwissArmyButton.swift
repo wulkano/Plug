@@ -20,7 +20,7 @@ class SwissArmyButton: NSButton {
     }
     var trackingArea: NSTrackingArea?
     var swissArmyButtonCell: SwissArmyButtonCell {
-        return cell() as SwissArmyButtonCell
+        return cell() as! SwissArmyButtonCell
     }
     var mouseInside: Bool {
         get { return swissArmyButtonCell.mouseInside }
@@ -35,7 +35,7 @@ class SwissArmyButton: NSButton {
         super.updateTrackingAreas()
         if tracksHover {
             ensureTrackingArea()
-            if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+            if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
                 addTrackingArea(trackingArea!)
             }
         }

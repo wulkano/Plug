@@ -22,7 +22,7 @@ class TitleBarViewController: NSViewController {
     }
     
     func navigationSectionChanged(notification: NSNotification) {
-        let raw = (notification.userInfo!["navigationSection"] as NSNumber).integerValue
+        let raw = (notification.userInfo!["navigationSection"] as! NSNumber).integerValue
         let section = NavigationSection(rawValue: raw)!
         updateUIForSection(section)
     }

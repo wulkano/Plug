@@ -19,7 +19,7 @@ struct UserNotifications {
         }
         
         private static func deliverNotification(title: String, informativeText: String?) {
-            if NSUserDefaults.standardUserDefaults().valueForKey(ShowTrackChangeNotificationsKey) as Bool {
+            if NSUserDefaults.standardUserDefaults().valueForKey(ShowTrackChangeNotificationsKey) as! Bool {
                 var notification = NSUserNotification()
                 notification.title = title
                 notification.informativeText = informativeText

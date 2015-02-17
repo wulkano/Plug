@@ -18,7 +18,7 @@ struct SoundCloudAPI {
             HTTP.GetJSON(url,
                 parameters: parameters,
                 success: { operation, responseObject in
-                    let responseDictionary = responseObject as NSDictionary
+                    let responseDictionary = responseObject as! NSDictionary
                     if let permalink = responseDictionary["permalink_url"] as? String {
                         let trackURL = NSURL(string: permalink)!
                         success(trackURL: trackURL)

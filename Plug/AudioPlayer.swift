@@ -195,7 +195,7 @@ class AudioPlayer: NSObject {
     }
     
     private func findNextTrack() -> Track? {
-        let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as Bool
+        let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
         
         if shuffle {
             return nextShuffleTrack()

@@ -46,10 +46,10 @@ struct HypeMachineAPI  {
         }
         
         private static func parseTracksFromResponse(responseObject: AnyObject) -> [Track] {
-            let responseArray = responseObject as NSArray
+            let responseArray = responseObject as! NSArray
             var tracks = [Track]()
             for trackObject: AnyObject in responseArray {
-                let trackDictionary = trackObject as NSDictionary
+                let trackDictionary = trackObject as! NSDictionary
                 let track = Track(JSON: trackDictionary)
                 tracks.append(track)
             }
@@ -121,7 +121,7 @@ struct HypeMachineAPI  {
             let params = ["type": "item", "val": track.id]
             HTTP.PostHTML(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                    let responseData = responseObject as NSData
+                    let responseData = responseObject as! NSData
                     var html = NSString(data: responseData, encoding: NSUTF8StringEncoding)
                     if html == "1" {
                         success(loved: true)
@@ -141,7 +141,7 @@ struct HypeMachineAPI  {
             var url = track.thumbURLWithPreferedSize(preferedSize).absoluteString!
             HTTP.GetImage(url, parameters: nil,
                 success: {operation, responseObject in
-                    let image = responseObject as NSImage
+                    let image = responseObject as! NSImage
                     success(image: image)
                 }, failure: {operation, error in
                     failure(error: error)
@@ -269,10 +269,10 @@ struct HypeMachineAPI  {
             let params = ["hm_token": Authentication.GetToken()!]
             HTTP.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                    let responseArray = responseObject as NSArray
+                    let responseArray = responseObject as! NSArray
                     var blogs = [Blog]()
                     for blogObject: AnyObject in responseArray {
-                        let blogDictionary = blogObject as NSDictionary
+                        let blogDictionary = blogObject as! NSDictionary
                         blogs.append(Blog(JSON: blogDictionary))
                     }
                     success(blogs: blogs)
@@ -287,7 +287,7 @@ struct HypeMachineAPI  {
             let params = ["hm_token": Authentication.GetToken()!]
             HTTP.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                    let blogDictionary = responseObject as NSDictionary
+                    let blogDictionary = responseObject as! NSDictionary
                     let blog = Blog(JSON: blogDictionary)
                     success(blog: blog)
                 }, failure: {
@@ -300,7 +300,7 @@ struct HypeMachineAPI  {
             var url = blog.imageURLForSize(size).absoluteString!
             HTTP.GetImage(url, parameters: nil,
                 success: {operation, responseObject in
-                    let image = responseObject as NSImage
+                    let image = responseObject as! NSImage
                     success(image: image)
                 }, failure: {operation, error in
                     failure(error: error)
@@ -314,10 +314,10 @@ struct HypeMachineAPI  {
             let params = ["hm_token": Authentication.GetToken()!]
             HTTP.GetJSON(url, parameters: params,
                 success: {(operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                    let responseArray = responseObject as NSArray
+                    let responseArray = responseObject as! NSArray
                     var genres = [Genre]()
                     for genreObject: AnyObject in responseArray {
-                        let genreDictionary = genreObject as NSDictionary
+                        let genreDictionary = genreObject as! NSDictionary
                         genres.append(Genre(JSON: genreDictionary))
                     }
                     success(genres: genres)
@@ -334,10 +334,10 @@ struct HypeMachineAPI  {
             let params = ["hm_token": Authentication.GetToken()!]
             HTTP.GetJSON(url, parameters: params,
                 success: {operation, responseObject in
-                    let responseArray = responseObject as NSArray
+                    let responseArray = responseObject as! NSArray
                     var friends = [Friend]()
                     for friendObject: AnyObject in responseArray {
-                        let friendDictionary = friendObject as NSDictionary
+                        let friendDictionary = friendObject as! NSDictionary
                         friends.append(Friend(JSON: friendDictionary))
                     }
                     success(friends: friends)
@@ -352,7 +352,7 @@ struct HypeMachineAPI  {
             let params = ["hm_token": Authentication.GetToken()!]
             HTTP.GetJSON(url, parameters: params,
                 success: {operation, responseObject in
-                    let friendDictionary = responseObject as NSDictionary
+                    let friendDictionary = responseObject as! NSDictionary
                     let friend = Friend(JSON: friendDictionary)
                     success(friend: friend)
                 }, failure: {operation, error in
@@ -364,7 +364,7 @@ struct HypeMachineAPI  {
             var url = friend.avatarURL!.absoluteString!
             HTTP.GetImage(url, parameters: nil,
                 success: {operation, responseObject in
-                    let image = responseObject as NSImage
+                    let image = responseObject as! NSImage
                     success(image: image)
                 }, failure: {operation, error in
                     failure(error: error)
@@ -382,9 +382,9 @@ struct HypeMachineAPI  {
                     failure(error: NSError(domain: PlugErrorDomain, code: 2, userInfo: [NSLocalizedDescriptionKey: errorMessage]))
                     return
                 } else {
-                    let responseDictionary = responseObject as NSDictionary
-                    let username = responseDictionary["username"] as String
-                    let token = responseDictionary["hm_token"] as String
+                    let responseDictionary = responseObject as! NSDictionary
+                    let username = responseDictionary["username"] as! String
+                    let token = responseDictionary["hm_token"] as! String
                     success(username: username, token: token)
                 }
             }, failure: {operation, error in
@@ -400,11 +400,11 @@ struct HypeMachineAPI  {
         let url = "http://www.plugformac.com/data/heatmaps.json"
         HTTP.GetJSON(url, parameters: nil,
             success: {operation, responseObject in
-                var responseDict = responseObject as NSDictionary
+                var responseDict = responseObject as! NSDictionary
                 if let trackData: AnyObject = responseDict[track.id] {
-                    let trackDataDict = trackData as NSDictionary
-                    let startPoint = (trackDataDict["beginningValue"]! as NSNumber).doubleValue
-                    let endPoint = (trackDataDict["endValue"]! as NSNumber).doubleValue
+                    let trackDataDict = trackData as! NSDictionary
+                    let startPoint = (trackDataDict["beginningValue"]! as! NSNumber).doubleValue
+                    let endPoint = (trackDataDict["endValue"]! as! NSNumber).doubleValue
                     let heatMap = HeatMap(track: track, start: startPoint, end: endPoint)
                     success(heatMap: heatMap)
                 } else {
@@ -428,8 +428,8 @@ struct HypeMachineAPI  {
         var responseObject = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &serializationError) as? NSDictionary
         if serializationError != nil { return nil }
         if responseObject == nil { return nil }
-        if responseObject!["status"] as? NSString != "error" { return nil }
+        if (responseObject!["status"] as! NSString) != "error" { return nil }
         
-        return responseObject!["error_msg"] as? NSString
+        return responseObject!["error_msg"] as? String
     }
 }

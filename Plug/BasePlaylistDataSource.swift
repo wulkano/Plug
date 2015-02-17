@@ -80,7 +80,7 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
         
-        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as Bool
+        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
         if hideUnavailableTracks {
             return playlist!.availableTracks()[row]
         } else {
@@ -91,7 +91,7 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
         if playlist == nil { return 0 }
         
-        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as Bool
+        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
         if hideUnavailableTracks {
             return playlist!.availableTracks().count
         } else {

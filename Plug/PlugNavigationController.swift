@@ -21,7 +21,7 @@ class PlugNavigationController: NavigationController {
     }
     
     func pushViewControllerNotification(notification: NSNotification) {
-        let viewController = notification.userInfo!["viewController"] as BaseContentViewController
+        let viewController = notification.userInfo!["viewController"] as! BaseContentViewController
         pushViewController(viewController)
     }
     

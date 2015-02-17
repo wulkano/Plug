@@ -11,7 +11,7 @@ import Foundation
 extension Array {
     func contains(str: String) -> Bool {
         for obj in self {
-            if obj as String == str {
+            if obj as! String == str {
                 return true
             }
         }

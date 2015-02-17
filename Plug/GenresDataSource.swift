@@ -50,7 +50,7 @@ class GenresDataSource: MainContentDataSource {
         var results = [Genre]()
         for object in standardTableContents {
             if object is Genre {
-                let genre = object as Genre
+                let genre = object as! Genre
                 if find(results, genre) == nil {
                     results.append(genre)
                 }
@@ -67,9 +67,9 @@ enum GenresListItem {
     
     static func fromObject(object: AnyObject) -> GenresListItem? {
         if object is Genre {
-            return GenresListItem.GenreItem(object as Genre)
+            return GenresListItem.GenreItem(object as! Genre)
         } else if object is SectionHeader {
-            return GenresListItem.SectionHeaderItem(object as SectionHeader)
+            return GenresListItem.SectionHeaderItem(object as! SectionHeader)
         } else {
             return nil
         }

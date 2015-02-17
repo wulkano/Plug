@@ -31,7 +31,7 @@ class TagContainerView: NSView {
             button.action = "tagButtonClick:"
             button.target = self
         }
-        let heightConstraint = constraints.last as NSLayoutConstraint
+        let heightConstraint = constraints.last as! NSLayoutConstraint
         if let lastButton = buttons.last {
            heightConstraint.constant = lastButton.frame.origin.y + lastButton.frame.size.height
         } else {

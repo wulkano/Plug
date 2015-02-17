@@ -10,7 +10,7 @@ import Cocoa
 
 class LoginButtonCell: SwissArmyButtonCell {
     var loginButton: LoginButton {
-        return controlView as LoginButton
+        return controlView as! LoginButton
     }
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {

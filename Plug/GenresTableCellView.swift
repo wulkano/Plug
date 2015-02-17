@@ -15,7 +15,7 @@ class GenresTableCellView: IOSStyleTableCellView {
         }
     }
     var genreValue: Genre {
-        return objectValue as Genre
+        return objectValue as! Genre
     }
     
     func objectValueChanged() {

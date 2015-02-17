@@ -12,7 +12,7 @@ class PlugJSONResponseSerializer: AFJSONResponseSerializer {
     
     override func responseObjectForResponse(response: NSURLResponse!, data: NSData!, error: NSErrorPointer) -> AnyObject! {
         
-        if !validateResponse(response as NSHTTPURLResponse, data: data, error: error) {
+        if !validateResponse(response as! NSHTTPURLResponse, data: data, error: error) {
             if error.memory != nil {
                 var oldError = error.memory!
                 var userInfo = oldError.userInfo!

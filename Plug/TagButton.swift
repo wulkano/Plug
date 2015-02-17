@@ -24,7 +24,7 @@ class TagButton: SwissArmyButton {
         }
     }
     var tagButtonCell: TagButtonCell {
-        return cell() as TagButtonCell
+        return cell() as! TagButtonCell
     }
     
     required init?(coder: NSCoder) {

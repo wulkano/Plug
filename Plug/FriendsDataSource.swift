@@ -33,7 +33,7 @@ class FriendsDataSource: MainContentDataSource {
         } else {
             filtering = true
             filteredTableContents = standardTableContents.filter {
-                let friend = $0 as Friend
+                let friend = $0 as! Friend
                 return (friend.username =~ keywords) || (friend.fullName =~ keywords)
             }
         }

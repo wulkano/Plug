@@ -53,6 +53,6 @@ class FlatSliderCell: NSSliderCell {
     }
     
     func verticalSlider() -> Bool {
-        return (controlView as NSSlider).vertical == 1
+        return (controlView as! NSSlider).vertical == 1
     }
 }

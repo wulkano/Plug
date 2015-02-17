@@ -45,9 +45,9 @@ class HyperlinkButton: NSButton {
         } else {
             attributes[NSForegroundColorAttributeName] = textColor
         }
-        attributes[NSFontAttributeName] = (cell() as NSButtonCell).font
-        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
-        paragraphStyle.lineBreakMode = (cell() as NSButtonCell).lineBreakMode
+        attributes[NSFontAttributeName] = (cell() as! NSButtonCell).font
+        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        paragraphStyle.lineBreakMode = (cell() as! NSButtonCell).lineBreakMode
         attributes[NSParagraphStyleAttributeName] = paragraphStyle
         var coloredString = NSMutableAttributedString(string: title, attributes: attributes)
         attributedTitle = coloredString
@@ -58,7 +58,7 @@ class HyperlinkButton: NSButton {
         
         if hoverUnderline {
             ensureTrackingArea()
-            if find(trackingAreas as [NSTrackingArea], trackingArea!) == nil {
+            if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
                 addTrackingArea(trackingArea!)
             }
         }

@@ -33,38 +33,38 @@ class Track: NSObject {
     
     init(JSON json: NSDictionary) {
         
-        id = json["itemid"] as String
-        artist = json["artist"] as? String ?? "Unknown artist"
+        id = json["itemid"] as! String
+        artist = (json["artist"] as? String) ?? "Unknown artist"
         if artist == "" { artist = "Unknown artist" }
-        title = json["title"] as? String ?? "Unknown track"
+        title = (json["title"] as? String) ?? "Unknown track"
         if title == "" { title = "Unknown track" }
         if json["ts_loved_me"] is Int {
             loved = true
         } else {
             loved = false
         }
-        lovedCount = json["loved_count"] as Int
+        lovedCount = json["loved_count"] as! Int
         lovedCountNum = NSNumber(integer: lovedCount)
         if json["thumb_url"] is String {
-            thumbURLSmall = NSURL(string: json["thumb_url"] as String)
+            thumbURLSmall = NSURL(string: json["thumb_url"] as! String)
         }
         if json["thumb_url_medium"] is String {
-            thumbURLMedium = NSURL(string: json["thumb_url_medium"] as String)
+            thumbURLMedium = NSURL(string: json["thumb_url_medium"] as! String)
         }
         if json["thumb_url_large"] is String {
-            thumbURLLarge = NSURL(string: json["thumb_url_large"] as String)
+            thumbURLLarge = NSURL(string: json["thumb_url_large"] as! String)
         }
         if json["rank"] is Int {
-            rank = (json["rank"] as Int)
+            rank = (json["rank"] as! Int)
         }
         if json["via_user"] is String {
             lovedBy = json["via_user"] as? String
         }
-        postedBy = json["sitename"] as String
-        postedById = json["siteid"] as Int
-        postedCount = json["posted_count"] as Int
-        postedByDescription = json["description"] as? String ?? "No description available"
-        datePosted = NSDate(timeIntervalSince1970: json["dateposted"] as NSTimeInterval)
+        postedBy = json["sitename"] as! String
+        postedById = json["siteid"] as! Int
+        postedCount = json["posted_count"] as! Int
+        postedByDescription = (json["description"] as? String) ?? "No description available"
+        datePosted = NSDate(timeIntervalSince1970: json["dateposted"] as! NSTimeInterval)
         if json["pub_audio_unavail"] is Bool {
             audioUnavailable = true
         }
@@ -81,8 +81,8 @@ class Track: NSObject {
         
         super.init()
         
-        postURL = NSURL(string: cleanURLString(json["posturl"] as String))
-        iTunesURL = NSURL(string: cleanURLString(json["itunes_link"] as String))
+        postURL = NSURL(string: cleanURLString(json["posturl"] as! String))
+        iTunesURL = NSURL(string: cleanURLString(json["itunes_link"] as! String))
     }
     
     func mediaURL() -> NSURL {

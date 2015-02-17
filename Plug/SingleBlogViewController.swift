@@ -26,7 +26,7 @@ class SingleBlogViewController: BaseContentViewController {
         }
     }
     var representedBlog: Blog {
-        return representedObject as Blog
+        return representedObject as! Blog
     }
     
     func representedObjectChanged() {
@@ -78,7 +78,7 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as BasePlaylistViewController
+        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
         
         addChildViewController(playlistViewController)
         

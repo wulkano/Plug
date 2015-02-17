@@ -61,7 +61,7 @@ class BlogDirectoryDataSource: MainContentDataSource {
         var results = [Blog]()
         for object in standardTableContents {
             if object is Blog {
-                let blog = object as Blog
+                let blog = object as! Blog
                 if find(results, blog) == nil {
                     results.append(blog)
                 }
@@ -77,9 +77,9 @@ enum BlogDirectoryItem {
     
     static func fromObject(object: AnyObject) -> BlogDirectoryItem? {
         if object is Blog {
-            return BlogDirectoryItem.BlogItem(object as Blog)
+            return BlogDirectoryItem.BlogItem(object as! Blog)
         } else if object is SectionHeader {
-            return BlogDirectoryItem.SectionHeaderItem(object as SectionHeader)
+            return BlogDirectoryItem.SectionHeaderItem(object as! SectionHeader)
         } else {
             return nil
         }

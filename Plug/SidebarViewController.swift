@@ -11,7 +11,7 @@ import Cocoa
 class SidebarViewController: NSViewController {
     
     var mainViewController: MainViewController {
-        return parentViewController as MainViewController
+        return parentViewController as! MainViewController
     }
     
     @IBAction func popularButtonClicked(sender: AnyObject) {
@@ -65,7 +65,7 @@ class SidebarViewController: NSViewController {
     }
     
     func allButtons() -> [NSButton] {
-        let visualEffectsView = view.subviews[0] as NSView
-        return visualEffectsView.subviews as [NSButton]
+        let visualEffectsView = view.subviews[0] as! NSView
+        return visualEffectsView.subviews as! [NSButton]
     }
 }

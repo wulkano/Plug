@@ -15,7 +15,7 @@ class SectionHeaderTableCellView: NSTableCellView {
         }
     }
     var sectionHeaderValue: SectionHeader {
-        return objectValue as SectionHeader
+        return objectValue as! SectionHeader
     }
     
     func objectValueChanged() {

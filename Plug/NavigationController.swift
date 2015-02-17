@@ -13,7 +13,7 @@ class NavigationController: NSViewController {
     @IBOutlet var contentView: NSView!
 
     var viewControllers: [BaseContentViewController] {
-        return childViewControllers as [BaseContentViewController]
+        return childViewControllers as! [BaseContentViewController]
     }
     var topViewController: BaseContentViewController! {
         return viewControllers.last

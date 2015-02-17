@@ -48,7 +48,7 @@ class TrafficButtons {
     }
     
     private func placeButtonsInWindow(window: NSWindow, origin: NSPoint) {
-        let contentView = window.contentView! as NSView
+        let contentView = window.contentView as! NSView
         
         var buttonOrigin = origin
         addButton(closeButton, toView: contentView, origin: buttonOrigin)

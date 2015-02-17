@@ -27,7 +27,7 @@ class VibrantSecureTextField: NSSecureTextField {
     func placeholderAttributes() -> [NSObject: AnyObject] {
         var attributes = [NSObject: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor.whiteColor().colorWithAlphaComponent(0.2)
-        attributes[NSFontAttributeName] = (cell() as NSSecureTextFieldCell).font
+        attributes[NSFontAttributeName] = (cell() as! NSSecureTextFieldCell).font
         return attributes
     }
 }

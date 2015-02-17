@@ -12,7 +12,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     @IBOutlet var contextMenu: NSMenu!
     
     var representedTrack: Track {
-        return representedObject as Track
+        return representedObject as! Track
     }
     
     @IBAction func copyHypeMachineLinkClicked(sender: AnyObject) {
@@ -91,13 +91,13 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {
-        println(request.URL.host!)
+        println(request.URL!.host!)
         
-        if request.URL.host! == "api.soundcloud.com" {
+        if request.URL!.host! == "api.soundcloud.com" {
             
             connection.cancel()
             
-            if let trackID = parseTrackIDFromURL(request.URL) {
+            if let trackID = parseTrackIDFromURL(request.URL!) {
                 requestPermalinkForTrackID(trackID)
             } else {
                 let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])

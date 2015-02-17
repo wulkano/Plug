@@ -84,7 +84,7 @@ class BasePlaylistViewController: BaseDataSourceViewController {
     }
     
     func distanceFromBottomOfScrollView() -> CGFloat {
-        var documentViewHeight = (scrollView.documentView as NSView).frame.height
+        var documentViewHeight = (scrollView.documentView as! NSView).frame.height
         var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
         return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }

@@ -52,7 +52,7 @@ struct ViewPlacementHelper {
         constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view(\(height))]", options: nil, metrics: nil, views: ["view": subview])
         for constraint in constraints {
             if constraint is NSLayoutConstraint {
-               (constraint as NSLayoutConstraint).priority = 750
+               (constraint as! NSLayoutConstraint).priority = 750
             }
         }
         superview.addConstraints(constraints)
