@@ -38,7 +38,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     var trackingProgress: Bool = false
     
     
-    required override init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         initialSetup()
     }

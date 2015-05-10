@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 //    TODO: Switch release channel compilation flag back to fast when they fix some bug
     
-    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
         setupUserDefaults()
         setupUserNotifications()
         setupMediaKeys()

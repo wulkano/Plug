@@ -26,7 +26,7 @@ class UserNotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
     }
     
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification!) -> Bool {
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
         return true
     }
 }

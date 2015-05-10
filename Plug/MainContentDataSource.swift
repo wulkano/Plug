@@ -40,11 +40,11 @@ class MainContentDataSource: NSObject, NSTableViewDataSource {
         return itemForRow(row + 1)
     }
     
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         return itemForRow(row)
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return tableContents.count
     }
 }

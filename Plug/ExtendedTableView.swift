@@ -63,8 +63,6 @@ class ExtendedTableView: NSTableView {
             trackingArea = nil
             ensureTrackingArea()
         }
-        
-        println(self)
     }
 
     override func mouseDown(theEvent: NSEvent) {

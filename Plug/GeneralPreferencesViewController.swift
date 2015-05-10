@@ -34,15 +34,15 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
     }
     
     // Disallows row selection
-    func selectionShouldChangeInTableView(tableView: NSTableView!) -> Bool {
+    func selectionShouldChangeInTableView(tableView: NSTableView) -> Bool {
         return false
     }
     
-    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject! {
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         return preferences[row]
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView!) -> Int {
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return preferences.count
     }
 }

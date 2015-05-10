@@ -29,6 +29,8 @@ struct HTTP {
         var newSet = Set<NSObject>()
         newSet.union(contentTypesSet)
         newSet.insert("application/octet-stream")
+        newSet.insert("image/jpeg")
+        newSet.insert("image/png")
         manager.responseSerializer.acceptableContentTypes = newSet
         manager.GET(url, parameters: parameters, success: success, failure: failure)
     }

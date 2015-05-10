@@ -55,11 +55,11 @@ extension String {
     
     func digest(algorithm: HMACAlgorithm, key: String) -> String! {
         let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
-        let strLen = UInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let strLen = Int(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
         let digestLen = algorithm.digestLength()
         let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
         let keyStr = key.cStringUsingEncoding(NSUTF8StringEncoding)
-        let keyLen = UInt(key.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let keyLen = Int(key.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
         
         CCHmac(algorithm.toCCEnum(), keyStr!, keyLen, str!, strLen, result)
         
