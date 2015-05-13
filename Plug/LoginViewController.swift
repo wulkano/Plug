@@ -49,7 +49,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func loginButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Log In")
+        Analytics.trackButtonClick("Log In")
         let usernameOrEmail = usernameOrEmailTextField.stringValue
         let password = passwordTextField.stringValue
         
@@ -76,12 +76,12 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Forgot Password")
+        Analytics.trackButtonClick("Forgot Password")
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php")!)
     }
     
     @IBAction func signUpButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Sign Up")
+        Analytics.trackButtonClick("Sign Up")
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1")!)
     }
     

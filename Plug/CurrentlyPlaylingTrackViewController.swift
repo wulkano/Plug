@@ -245,7 +245,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Play/Pause")
+        Analytics.trackButtonClick("Playlist Play/Pause")
         switch playState {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
@@ -255,7 +255,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Info")
+        Analytics.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
             trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil)!.instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
@@ -265,7 +265,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Heart")
+        Analytics.trackButtonClick("Playlist Heart")
         let oldLovedValue = trackValue.loved
         let newLovedValue = !oldLovedValue
         

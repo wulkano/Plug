@@ -22,17 +22,17 @@ class FooterViewController: NSViewController {
     }
     
     @IBAction func skipForwardButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Footer Skip Forward")
+        Analytics.trackButtonClick("Footer Skip Forward")
         AudioPlayer.sharedInstance.skipForward()
     }
     
     @IBAction func skipBackwardButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Footer Skip Backward")
+        Analytics.trackButtonClick("Footer Skip Backward")
         AudioPlayer.sharedInstance.skipBackward()
     }
 
     @IBAction func shuffleButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Footer Shuffle")
+        Analytics.trackButtonClick("Footer Shuffle")
         toggleShuffle()
     }
     

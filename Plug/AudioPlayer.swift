@@ -137,7 +137,7 @@ class AudioPlayer: NSObject {
     }
     
     private func setupForNewTrack(track: Track) {
-        Analytics.sharedInstance.trackAudioPlaybackEvent("Play New Track")
+        Analytics.trackAudioPlaybackEvent("Play New Track")
         
         if playerItem != nil {
             unsubscribeFromPlayerItem(playerItem)

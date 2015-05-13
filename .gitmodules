@@ -1,3 +1,0 @@
-[submodule "Plug/SimpleGoogleAnalytics"]
-	path = Plug/SimpleGoogleAnalytics
-	url = git@github.com:alexmarchant/SimpleGoogleAnalytics.git

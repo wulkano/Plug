@@ -35,7 +35,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         tagContainer.delegate = self
         postInfoTextField.postInfoDelegate = self
         
-        Analytics.sharedInstance.trackView("TrackInfoWindow")
+        Analytics.trackView("TrackInfoWindow")
     }
     
     @IBAction func closeButtonClicked(sender: NSButton) {
@@ -43,7 +43,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     @IBAction func loveButtonClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackButtonClick("Track Info Heart")
+        Analytics.trackButtonClick("Track Info Heart")
         
         let oldLovedValue = representedTrack.loved
         let newLovedValue = !oldLovedValue
@@ -63,7 +63,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func postInfoTextFieldClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Track Info Blog Description")
+        Analytics.trackButtonClick("Track Info Blog Description")
         
         NSWorkspace.sharedWorkspace().openURL(representedTrack.postURL)
     }
@@ -80,13 +80,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     @IBAction func downloadITunesButtonClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackButtonClick("Track Info Download iTunes")
+        Analytics.trackButtonClick("Track Info Download iTunes")
 
         NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
     }
     
     @IBAction func seeMoreButtonClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackButtonClick("Track Info See More")
+        Analytics.trackButtonClick("Track Info See More")
         
         NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
     }

@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func openLoginWindow() {
-        Analytics.sharedInstance.trackView("LoginWindow")
+        Analytics.trackView("LoginWindow")
         if loginWindowController == nil {
             loginWindowController = NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as! NSWindowController
         }
@@ -109,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func signOut(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Sign Out")
+        Analytics.trackButtonClick("Sign Out")
         closeMainWindow()
         if preferencesWindowController != nil {
             closePreferencesWindow()

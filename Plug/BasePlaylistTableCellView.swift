@@ -253,7 +253,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Play/Pause")
+        Analytics.trackButtonClick("Playlist Play/Pause")
         switch playState {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
@@ -263,7 +263,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Info")
+        Analytics.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
             let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)!
             trackInfoWindowController = trackInfoStoryboard.instantiateInitialController() as? NSWindowController
@@ -274,7 +274,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Heart")
+        Analytics.trackButtonClick("Playlist Heart")
         let oldLovedValue = trackValue.loved
         let newLovedValue = !oldLovedValue
         
