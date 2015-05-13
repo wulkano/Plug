@@ -18,6 +18,9 @@
 		FA0B1D3A197725E90030C873 /* FeedPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D39197725E90030C873 /* FeedPlaylist.swift */; };
 		FA0B1D3C1977281A0030C873 /* SearchPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */; };
 		FA0B1D3E1977355B0030C873 /* ColorChangingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */; };
+		FA107A781B03E17F006FA015 /* SimpleGoogleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A771B03E17F006FA015 /* SimpleGoogleAnalytics.framework */; };
+		FA107A7A1B03E1BD006FA015 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = FA107A791B03E1BD006FA015 /* Cartfile */; };
+		FA107A7C1B03E24A006FA015 /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A7B1B03E24A006FA015 /* HypeMachineAPI.framework */; };
 		FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */; };
 		FA18A8E219A2F27000B7CFDC /* SearchPlaylistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
@@ -82,7 +85,6 @@
 		FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */; };
 		FA6ADD0319BAB0E300CCD371 /* SingleFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */; };
 		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
-		FA6F98141B03DC9400CCA1CB /* SimpleGoogleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F98131B03DC9400CCA1CB /* SimpleGoogleAnalytics.framework */; };
 		FA6F98161B03DEC700CCA1CB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6F98151B03DEC700CCA1CB /* Alamofire.framework */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
 		FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */; };
@@ -196,6 +198,9 @@
 		FA0B1D39197725E90030C873 /* FeedPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedPlaylist.swift; sourceTree = "<group>"; };
 		FA0B1D3B1977281A0030C873 /* SearchPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylist.swift; sourceTree = "<group>"; };
 		FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChangingTextField.swift; sourceTree = "<group>"; };
+		FA107A771B03E17F006FA015 /* SimpleGoogleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleGoogleAnalytics.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug/SimpleGoogleAnalytics.framework"; sourceTree = "<group>"; };
+		FA107A791B03E1BD006FA015 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		FA107A7B1B03E24A006FA015 /* HypeMachineAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HypeMachineAPI.framework; path = ../HypeMachineAPI/build/Debug/HypeMachineAPI.framework; sourceTree = "<group>"; };
 		FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyHandler.swift; sourceTree = "<group>"; };
 		FA18A8E119A2F27000B7CFDC /* SearchPlaylistDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaylistDataSource.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
@@ -264,7 +269,6 @@
 		FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleFriendViewController.swift; sourceTree = "<group>"; };
 		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabButtonCell.swift; sourceTree = "<group>"; };
-		FA6F98131B03DC9400CCA1CB /* SimpleGoogleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleGoogleAnalytics.framework; path = Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug/SimpleGoogleAnalytics.framework; sourceTree = "<group>"; };
 		FA6F98151B03DEC700CCA1CB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTitleButton.swift; sourceTree = "<group>"; };
 		FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
@@ -360,8 +364,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA107A7C1B03E24A006FA015 /* HypeMachineAPI.framework in Frameworks */,
+				FA107A781B03E17F006FA015 /* SimpleGoogleAnalytics.framework in Frameworks */,
 				FA6F98161B03DEC700CCA1CB /* Alamofire.framework in Frameworks */,
-				FA6F98141B03DC9400CCA1CB /* SimpleGoogleAnalytics.framework in Frameworks */,
 				FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */,
 				F502BB1D23558470D375E6E0 /* libPods-Plug.a in Frameworks */,
 			);
@@ -373,8 +378,9 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA107A7B1B03E24A006FA015 /* HypeMachineAPI.framework */,
+				FA107A771B03E17F006FA015 /* SimpleGoogleAnalytics.framework */,
 				FA6F98151B03DEC700CCA1CB /* Alamofire.framework */,
-				FA6F98131B03DC9400CCA1CB /* SimpleGoogleAnalytics.framework */,
 				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
 				FA562EF619E886D600B760A2 /* Sparkle.framework */,
 				DD63B6DF8D6095416CA5EFF6 /* libPods-Plug.a */,
@@ -496,6 +502,7 @@
 				FA24ED9D1974A9A500A781C8 /* Products */,
 				8649AE136FF74B02AB61EE0C /* Frameworks */,
 				B5CA9F0DFEEFB525CB06CA32 /* Pods */,
+				FA107A791B03E1BD006FA015 /* Cartfile */,
 			);
 			sourceTree = "<group>";
 		};
@@ -604,12 +611,12 @@
 		FA64C6A119764DAE003933E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FA3199AE19824E030097B081 /* Blog.swift */,
 				FA7749A3198C1EBD0048863F /* Friend.swift */,
 				FA77499B198C07D10048863F /* Genre.swift */,
 				FA0B1D2D1977109E0030C873 /* Playlist.swift */,
 				FA7749A5198C298E0048863F /* Playlists */,
-				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FA691BFE197654AF008D5C3E /* Track.swift */,
 			);
 			name = Models;
@@ -920,6 +927,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA107A7A1B03E1BD006FA015 /* Cartfile in Resources */,
 				FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */,
 				FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */,
 				FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */,
@@ -1240,6 +1248,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
+					/Users/alex/Developer/osx/HypeMachineAPI/build/Debug,
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1269,6 +1279,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
+					/Users/alex/Developer/osx/HypeMachineAPI/build/Debug,
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

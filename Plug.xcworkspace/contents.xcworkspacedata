@@ -5,7 +5,10 @@
       location = "group:Plug.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Carthage/Checkouts/SimpleGoogleAnalytics/SimpleGoogleAnalytics.xcodeproj">
+      location = "absolute:../SimpleGoogleAnalytics/SimpleGoogleAnalytics.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "absolute:../HypeMachineAPI/HypeMachineAPI.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
