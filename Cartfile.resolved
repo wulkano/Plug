@@ -1,2 +1,5 @@
+github "AFNetworking/AFNetworking" "2.5.3"
 github "Alamofire/Alamofire" "1.2.1"
+github "indragiek/INAppStoreWindow" "v1.5"
+github "soffes/sskeychain" "v1.2.3"
 github "PlugForMac/SimpleGoogleAnalytics" "0.1.2"

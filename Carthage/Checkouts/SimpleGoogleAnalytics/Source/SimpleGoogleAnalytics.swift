@@ -49,7 +49,6 @@ public class Manager: NSObject {
         configuration.HTTPAdditionalHeaders = defaultHeaders
         
         self.requestManager = Alamofire.Manager(configuration: configuration)
-        println("setup")
     }
     
     func userAgent() -> String {
