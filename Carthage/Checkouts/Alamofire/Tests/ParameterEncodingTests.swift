@@ -1,6 +1,6 @@
 // ParameterEncodingTests.swift
 //
-// Copyright (c) 2014–2015 Alamofire (http://alamofire.org)
+// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -248,10 +248,11 @@ class AlamofireJSONParameterEncodingTestCase: XCTestCase {
         let parameters = [
             "foo": "bar",
             "baz": ["a", 1, true],
-            "qux": ["a": 1,
-                    "b": [2, 2],
-                    "c": [3, 3, 3]
-                   ]
+            "qux": [
+                "a": 1,
+                "b": [2, 2],
+                "c": [3, 3, 3]
+            ]
         ]
 
         let (URLRequest, error) = self.encoding.encode(self.URLRequest, parameters: parameters)
@@ -294,7 +295,8 @@ class AlamofirePropertyListParameterEncodingTestCase: XCTestCase {
         let parameters = [
             "foo": "bar",
             "baz": ["a", 1, true],
-            "qux": ["a": 1,
+            "qux": [
+                "a": 1,
                 "b": [2, 2],
                 "c": [3, 3, 3]
             ]
@@ -339,7 +341,7 @@ class AlamofirePropertyListParameterEncodingTestCase: XCTestCase {
 
 class AlamofireCustomParameterEncodingTestCase: XCTestCase {
     func testCustomParameterEncode() {
-        let encodingClosure: (URLRequestConvertible, [String: AnyObject]?) -> (NSURLRequest, NSError?) = { (URLRequest, parameters) in
+        let encodingClosure: (URLRequestConvertible, [String: AnyObject]?) -> (NSURLRequest, NSError?) = { URLRequest, parameters in
             let mutableURLRequest = URLRequest.URLRequest.mutableCopy() as! NSMutableURLRequest
             mutableURLRequest.setValue("Xcode", forHTTPHeaderField: "User-Agent")
             return (mutableURLRequest, nil)

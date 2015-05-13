@@ -1,6 +1,6 @@
 // DownloadTests.swift
 //
-// Copyright (c) 2014–2015 Alamofire (http://alamofire.org)
+// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,14 +31,14 @@ class AlamofireTLSEvaluationTestCase: XCTestCase {
         let expectation = expectationWithDescription("\(URL)")
 
         Alamofire.request(.GET, URL)
-            .response { (_, _, _, error) in
+            .response { _, _, _, error in
                 XCTAssertNotNil(error, "error should not be nil")
                 XCTAssert(error?.code == NSURLErrorServerCertificateUntrusted, "error should be NSURLErrorServerCertificateUntrusted")
 
                 expectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(10) { (error) in
+        waitForExpectationsWithTimeout(10) { error in
             XCTAssertNil(error, "\(error)")
         }
     }

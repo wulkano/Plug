@@ -1,6 +1,6 @@
 // DownloadTests.swift
 //
-// Copyright (c) 2014–2015 Alamofire (http://alamofire.org)
+// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +76,7 @@ class AlamofireDownloadResponseTestCase: XCTestCase {
                 expectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(10) { (error) in
+        waitForExpectationsWithTimeout(10) { error in
             XCTAssertNil(error, "\(error)")
         }
     }
@@ -90,7 +90,7 @@ class AlamofireDownloadResponseTestCase: XCTestCase {
         let destination = Alamofire.Request.suggestedDownloadDestination(directory: searchPathDirectory, domain: searchPathDomain)
 
         let download = Alamofire.download(.GET, URL, destination)
-        download.progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) -> Void in
+        download.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
             XCTAssert(bytesRead > 0, "bytesRead should be > 0")
             XCTAssert(totalBytesRead > 0, "totalBytesRead should be > 0")
             XCTAssert(totalBytesExpectedToRead == -1, "totalBytesExpectedToRead should be -1")
@@ -100,7 +100,7 @@ class AlamofireDownloadResponseTestCase: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(10) { (error) in
+        waitForExpectationsWithTimeout(10) { error in
             XCTAssertNil(error, "\(error)")
         }
     }

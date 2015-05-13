@@ -1,6 +1,6 @@
 // RequestTests.swift
 //
-// Copyright (c) 2014–2015 Alamofire (http://alamofire.org)
+// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -35,10 +35,10 @@ class AlamofireManagerTestCase: XCTestCase {
         let expectation = expectationWithDescription("\(URL)")
 
         manager.request(URLRequest)
-            .response { (_,_,_,_) in expectation.fulfill() }
+            .response { _, _, _, _ in expectation.fulfill() }
             .resume()
 
-        waitForExpectationsWithTimeout(10) { (error) in
+        waitForExpectationsWithTimeout(10) { error in
             XCTAssertNil(error, "\(error)")
         }
     }
@@ -55,6 +55,22 @@ class AlamofireManagerTestCase: XCTestCase {
         manager = nil
 
         XCTAssert(request.task.state == .Suspended)
+        XCTAssertNil(manager)
+    }
+
+    func testReleasingManagerWithPendingCanceledRequestDeinitializesSuccessfully() {
+        var manager: Manager? = Alamofire.Manager()
+        manager!.startRequestsImmediately = false
+
+        let URL = NSURL(string: "http://httpbin.org/get")!
+        let URLRequest = NSURLRequest(URL: URL)
+
+        let request = manager!.request(URLRequest)
+        request.cancel()
+
+        manager = nil
+
+        XCTAssert(request.task.state == .Canceling)
         XCTAssertNil(manager)
     }
 }

@@ -76,7 +76,9 @@ public class Manager: NSObject {
         let params = defaultParams().merge(hitParams)
         requestManager.request(.POST, apiBase, parameters: params)
             .response { (_, _, _, error) in
-                println(error)
+                if error != nil {
+                    println("Error: #sendHit - \(error)")
+                }
             }
     }
     

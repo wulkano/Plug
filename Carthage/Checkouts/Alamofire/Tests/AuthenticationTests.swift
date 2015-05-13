@@ -1,6 +1,6 @@
 // DownloadTests.swift
 //
-// Copyright (c) 2014–2015 Alamofire (http://alamofire.org)
+// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ class AlamofireAuthenticationTestCase: XCTestCase {
 
         Alamofire.request(.GET, URL)
             .authenticate(user: "invalid", password: "credentials")
-            .response { (request, response, _, error) in
+            .response { request, response, _, error in
                 XCTAssertNotNil(request, "request should not be nil")
                 XCTAssertNil(response, "response should be nil")
                 XCTAssertNotNil(error, "error should not be nil")
@@ -47,7 +47,7 @@ class AlamofireAuthenticationTestCase: XCTestCase {
 
         Alamofire.request(.GET, URL)
             .authenticate(user: user, password: password)
-            .response { (request, response, _, error) in
+            .response { request, response, _, error in
                 XCTAssertNotNil(request, "request should not be nil")
                 XCTAssertNotNil(response, "response should not be nil")
                 XCTAssert(response?.statusCode == 200, "response status code should be 200")
@@ -56,7 +56,7 @@ class AlamofireAuthenticationTestCase: XCTestCase {
                 validCredentialsExpectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(10) { (error) in
+        waitForExpectationsWithTimeout(10) { error in
             XCTAssertNil(error, "\(error)")
         }
     }
@@ -71,7 +71,7 @@ class AlamofireAuthenticationTestCase: XCTestCase {
 
         Alamofire.request(.GET, URL)
             .authenticate(user: "invalid", password: "credentials")
-            .response { (request, response, _, error) in
+            .response { request, response, _, error in
                 XCTAssertNotNil(request, "request should not be nil")
                 XCTAssertNil(response, "response should be nil")
                 XCTAssertNotNil(error, "error should not be nil")
@@ -84,7 +84,7 @@ class AlamofireAuthenticationTestCase: XCTestCase {
 
         Alamofire.request(.GET, URL)
             .authenticate(user: user, password: password)
-            .response { (request, response, _, error) in
+            .response { request, response, _, error in
                 XCTAssertNotNil(request, "request should not be nil")
                 XCTAssertNotNil(response, "response should not be nil")
                 XCTAssert(response?.statusCode == 200, "response status code should be 200")
@@ -93,7 +93,7 @@ class AlamofireAuthenticationTestCase: XCTestCase {
                 validCredentialsExpectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(10) { (error) in
+        waitForExpectationsWithTimeout(10) { error in
             XCTAssertNil(error, "\(error)")
         }
     }
