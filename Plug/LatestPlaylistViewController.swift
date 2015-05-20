@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class LatestPlaylistViewController: BasePlaylistViewController {
+class LatestPlaylistViewController: TracksViewController {
     override var analyticsViewName: String {
         return "MainWindow/Latest"
     }
@@ -17,6 +17,6 @@ class LatestPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = LatestPlaylistDataSource(viewController: self)
+        dataSource = LatestDataSource(viewController: self)
     }
 }

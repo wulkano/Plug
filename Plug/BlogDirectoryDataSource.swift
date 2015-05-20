@@ -7,23 +7,28 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class BlogDirectoryDataSource: MainContentDataSource {
 
     override func loadInitialValues() {
-        HypeMachineAPI.Blogs.AllBlogs(
-            {blogs in
-                self.generateTableContents(blogs)
-                self.viewController.tableView!.reloadData()
+        HypeMachineAPI.Requests.Blogs.index(nil) {
+            (blogs, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                Logger.LogError(error!)
                 self.viewController.requestInitialValuesFinished()
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-                self.viewController.requestInitialValuesFinished()
-        })
+                return
+            }
+            
+            self.generateTableContents(blogs!)
+            self.viewController.tableView!.reloadData()
+            self.viewController.requestInitialValuesFinished()
+        }
     }
     
-    func generateTableContents(blogs: [Blog]) {
+    func generateTableContents(blogs: [HypeMachineAPI.Blog]) {
         standardTableContents = []
         
         var followingBlogs = blogs.filter { $0.following == true }
@@ -57,11 +62,11 @@ class BlogDirectoryDataSource: MainContentDataSource {
         viewController.tableView!.reloadData()
     }
     
-    func allBlogs() -> [Blog] {
-        var results = [Blog]()
+    func allBlogs() -> [HypeMachineAPI.Blog] {
+        var results: [HypeMachineAPI.Blog] = []
         for object in standardTableContents {
-            if object is Blog {
-                let blog = object as! Blog
+            if object is HypeMachineAPI.Blog {
+                let blog = object as! HypeMachineAPI.Blog
                 if find(results, blog) == nil {
                     results.append(blog)
                 }
@@ -73,11 +78,11 @@ class BlogDirectoryDataSource: MainContentDataSource {
 
 enum BlogDirectoryItem {
     case SectionHeaderItem(SectionHeader)
-    case BlogItem(Blog)
+    case BlogItem(HypeMachineAPI.Blog)
     
     static func fromObject(object: AnyObject) -> BlogDirectoryItem? {
-        if object is Blog {
-            return BlogDirectoryItem.BlogItem(object as! Blog)
+        if object is HypeMachineAPI.Blog {
+            return BlogDirectoryItem.BlogItem(object as! HypeMachineAPI.Blog)
         } else if object is SectionHeader {
             return BlogDirectoryItem.SectionHeaderItem(object as! SectionHeader)
         } else {

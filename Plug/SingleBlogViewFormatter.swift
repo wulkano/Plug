@@ -7,11 +7,12 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class SingleBlogViewFormatter: NSFormatter {
     var colorArt: SLColorArt!
 
-    func attributedBlogDetails(blog: Blog, colorArt: SLColorArt) -> NSAttributedString {
+    func attributedBlogDetails(blog: HypeMachineAPI.Blog, colorArt: SLColorArt) -> NSAttributedString {
         self.colorArt = colorArt
         
         var formattedFollowersCount = formattedCount(blog.followerCountNum)

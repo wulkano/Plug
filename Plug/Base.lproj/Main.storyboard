@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -298,6 +298,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="kY8-wE-2Y2" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -774,6 +775,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="7Rr-Jb-sVJ" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -1041,6 +1043,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="YGd-I5-a64" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -1308,6 +1311,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="KzI-j4-OAQ" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2002,6 +2006,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="8VV-gy-4I5" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2143,6 +2148,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="84" viewBased="YES" id="eiU-iy-OBO" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2495,6 +2501,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="ozp-GG-kE1" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2543,7 +2550,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="71a-NO-iTk"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Artist 1, Artist 2, Artist 3" id="P3s-z8-4eS">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Artist 1, Artist 2, Artist 3" id="P3s-z8-4eS">
                                                                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2573,6 +2580,7 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="nameTextField" destination="aH6-EF-KSn" id="J8A-tR-EWF"/>
+                                                                <outlet property="recentArtistsTextField" destination="UAH-dv-bw8" id="bfU-sN-y2J"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="SectionHeader" id="Dpd-Pz-k8J" customClass="SectionHeaderTableCellView" customModule="Plug" customModuleProvider="target">
@@ -2652,10 +2660,10 @@
             </objects>
             <point key="canvasLocation" x="1082.5" y="-121.5"/>
         </scene>
-        <!--Genres-->
+        <!--Tags-->
         <scene sceneID="Inn-Jm-Try">
             <objects>
-                <viewController title="Genres" storyboardIdentifier="GenresViewController" id="ibg-UP-aYQ" customClass="GenresViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tags" storyboardIdentifier="TagsViewController" id="ibg-UP-aYQ" customClass="TagsViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Vxh-Sr-Uh2">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2706,6 +2714,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="6Se-cr-Bvs" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2723,13 +2732,13 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenreTableCellView" id="Uhc-9h-ryt" customClass="GenresTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView identifier="TagTableCellView" id="Uhc-9h-ryt" customClass="TagTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="406" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crE-do-0TI">
                                                                     <rect key="frame" x="20" y="13" width="388" height="24"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Genre Name" id="2zh-jR-Kh2">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tag Name" id="2zh-jR-Kh2">
                                                                         <font key="font" size="16" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -1,5 +1,5 @@
 //
-//  HypeMachineAPI.swift
+//  HypeMachineAPIOld.swift
 //  Plug
 //
 //  Created by Alex Marchant on 7/5/14.
@@ -10,7 +10,7 @@ import Foundation
 
 var apiBase = "https://api.hypem.com/v2"
 
-struct HypeMachineAPI  {
+struct HypeMachineAPIOld  {
  
     private static func deviceId() -> String {
         //        TODO fix this
@@ -153,7 +153,7 @@ struct HypeMachineAPI  {
         static var trackCount: Int = 20
         
         static func Popular(subType: PopularPlaylistSubType, success: (playlist: PopularPlaylist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Popular(subType,
+            HypeMachineAPIOld.Tracks.Popular(subType,
                 page: 1,
                 count: trackCount,
                 success: { tracks, lastPage in
@@ -165,7 +165,7 @@ struct HypeMachineAPI  {
         }
         
         static func Favorites(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Favorites(1,
+            HypeMachineAPIOld.Tracks.Favorites(1,
                 count: trackCount,
                 success: { tracks, lastPage in
                     let playlist = FavoritesPlaylist(tracks: tracks)
@@ -176,7 +176,7 @@ struct HypeMachineAPI  {
         }
         
         static func Latest(success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Latest(1,
+            HypeMachineAPIOld.Tracks.Latest(1,
                 count: trackCount,
                 success: { tracks, lastPage in
                     let playlist = LatestPlaylist(tracks: tracks)
@@ -187,7 +187,7 @@ struct HypeMachineAPI  {
         }
         
         static func Feed(subType: FeedPlaylistSubType, success: (playlist: FeedPlaylist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Feed(subType,
+            HypeMachineAPIOld.Tracks.Feed(subType,
                 page: 1,
                 count: trackCount,
                 success: { tracks, lastPage in
@@ -199,7 +199,7 @@ struct HypeMachineAPI  {
         }
         
         static func Search(searchKeywords: String, subType: SearchPlaylistSubType, success: (playlist: SearchPlaylist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Search(searchKeywords,
+            HypeMachineAPIOld.Tracks.Search(searchKeywords,
                 subType: subType,
                 page: 1,
                 count: trackCount,
@@ -215,7 +215,7 @@ struct HypeMachineAPI  {
         }
         
         static func Artist(artistName: String, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.Artist(artistName,
+            HypeMachineAPIOld.Tracks.Artist(artistName,
                 page: 1,
                 count: trackCount,
                 success: { tracks, lastPage in
@@ -227,7 +227,7 @@ struct HypeMachineAPI  {
         }
         
         static func BlogPlaylist(blog: Blog, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.BlogTracks(blog,
+            HypeMachineAPIOld.Tracks.BlogTracks(blog,
                 page: 1,
                 count: trackCount,
                 success: { tracks, lastPage in
@@ -239,7 +239,7 @@ struct HypeMachineAPI  {
         }
         
         static func GenrePlaylist(genre: Genre, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.GenreTracks(genre,
+            HypeMachineAPIOld.Tracks.GenreTracks(genre,
                 page: 1,
                 count: trackCount,
                 success: { tracks, lastPage in
@@ -251,7 +251,7 @@ struct HypeMachineAPI  {
         }
         
         static func FriendPlaylist(friend: Friend, success: (playlist: Playlist)->(), failure: (error: NSError)->()) {
-            HypeMachineAPI.Tracks.FriendTracks(friend,
+            HypeMachineAPIOld.Tracks.FriendTracks(friend,
                 page: 1,
                 count: trackCount,
                 success: { tracks, lastPage in

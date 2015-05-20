@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class LoginViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var usernameOrEmailTextField: NSTextField!
@@ -58,21 +59,25 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func loginWithUsernameOrEmail(usernameOrEmail: String, andPassword password: String) {
-        HypeMachineAPI.GetToken(usernameOrEmail, password: password,
-            success: { username, token in
-                Authentication.SaveUsername(username, withToken: token)
-                self.signedInSuccessfully()
-            }, failure: { error in
-                // TODO: Better appwide errors
+        HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) {
+            (username, token, error) in
+            
+            if error != nil {
                 var errorMessage: String
-                if error.localizedDescription == "Wrong password" {
+                if error!.localizedDescription == "Wrong password" {
                     errorMessage = "Incorrect username/password"
                 } else {
                     errorMessage = "Network Error"
-                    Logger.LogError(error)
+                    Logger.LogError(error!)
                 }
                 self.loginButton.buttonState = .Error(errorMessage)
-        })
+                return
+            }
+            
+            Authentication.SaveUsername(username!, withToken: token!)
+            HypeMachineAPI.hmToken = token!
+            self.signedInSuccessfully()
+        }
     }
     
     @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {

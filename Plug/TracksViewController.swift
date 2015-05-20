@@ -1,5 +1,5 @@
 //
-//  PlaylistViewController.swift
+//  TracksViewController.swift
 //  Plug
 //
 //  Created by Alexander Marchant on 7/14/14.
@@ -8,12 +8,12 @@
 
 import Cocoa
 
-class BasePlaylistViewController: BaseDataSourceViewController {
+class TracksViewController: DataSourceViewController {
     @IBOutlet weak var scrollView: NSScrollView!
     var playlist: Playlist?
     var previousMouseInsideRow: Int = -1
     var anchoredRow: Int?
-    var anchoredCellViewViewController: BasePlaylistViewController?
+    var anchoredCellViewViewController: TracksViewController?
     var dataSource: BasePlaylistDataSource? {
         didSet {
             dataSourceChanged()

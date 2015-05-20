@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class PopularPlaylistViewController: BasePlaylistViewController {
+class PopularPlaylistViewController: TracksViewController {
     override var analyticsViewName: String {
         return "MainWindow/Popular"
     }
@@ -16,6 +16,6 @@ class PopularPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataSource = PopularPlaylistDataSource(playlistSubType: .Now, viewController: self)
+        dataSource = PopularDataSource(playlistSubType: .Now, viewController: self)
     }
 }

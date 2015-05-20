@@ -1,5 +1,5 @@
 //
-//  BaseDataSourceViewController.swift
+//  DataSourceViewController.swift
 //  Plug
 //
 //  Created by Alex Marchant on 10/22/14.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class BaseDataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
     @IBOutlet var tableView: ExtendedTableView!
     
     func requestInitialValuesFinished() {

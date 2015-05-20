@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import HypeMachineAPI
+import Alamofire
 
 class SingleBlogViewController: BaseContentViewController {
     @IBOutlet weak var backgroundView: BackgroundBorderView!
@@ -25,8 +27,8 @@ class SingleBlogViewController: BaseContentViewController {
             representedObjectChanged()
         }
     }
-    var representedBlog: Blog {
-        return representedObject as! Blog
+    var representedBlog: HypeMachineAPI.Blog {
+        return representedObject as! HypeMachineAPI.Blog
     }
     
     func representedObjectChanged() {
@@ -45,14 +47,17 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     func updateImage() {
-        HypeMachineAPI.Blogs.Image(representedBlog,
-            size: .Normal,
-            success: {image in
-                self.extractColorAndResizeImage(image)
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+        Alamofire.request(.GET, representedBlog.imageURLForSize(.Normal)).validate().responseImage() {
+            (_, _, image, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                Logger.LogError(error!)
+                return
+            }
+            
+            self.extractColorAndResizeImage(image!)
+        }
     }
     
     func extractColorAndResizeImage(image: NSImage) {

@@ -18,7 +18,7 @@ class MainViewController: NSViewController {
     var latestViewController: LatestPlaylistViewController?
     var blogDirectoryViewController: BlogDirectoryViewController?
     var feedViewController: FeedPlaylistViewController?
-    var genresViewController: GenresViewController?
+    var tagsViewController: TagsViewController?
     var friendsViewController: FriendsViewController?
     var searchViewController: SearchViewController?
     
@@ -123,8 +123,8 @@ class MainViewController: NSViewController {
             feedViewController = (ensureViewController(feedViewController, identifier: "FeedPlaylistViewController") as! FeedPlaylistViewController)
             return feedViewController!
         case .Genres:
-            genresViewController = (ensureViewController(genresViewController, identifier: "GenresViewController") as! GenresViewController)
-            return genresViewController!
+            tagsViewController = (ensureViewController(tagsViewController, identifier: "TagsViewController") as! TagsViewController)
+            return tagsViewController!
         case .Friends:
             friendsViewController = (ensureViewController(friendsViewController, identifier: "FriendsViewController") as! FriendsViewController)
             return friendsViewController!

@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
-class FriendsViewController: BaseDataSourceViewController {
+class FriendsViewController: DataSourceViewController {
     var dataSource: FriendsDataSource!
     override var analyticsViewName: String {
         return "MainWindow/Friends"
@@ -32,11 +33,11 @@ class FriendsViewController: BaseDataSourceViewController {
     
     func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         if let item: AnyObject = dataSource.itemForRow(row) {
-            loadSingleFriendView(item as! Friend)
+            loadSingleFriendView(item as! HypeMachineAPI.User)
         }
     }
     
-    func loadSingleFriendView(friend: Friend) {
+    func loadSingleFriendView(friend: HypeMachineAPI.User) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as! SingleFriendViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = friend

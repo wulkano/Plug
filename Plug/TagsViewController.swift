@@ -7,11 +7,12 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
-class GenresViewController: BaseDataSourceViewController {
-    var dataSource: GenresDataSource!
+class TagsViewController: DataSourceViewController {
+    var dataSource: TagsDataSource!
     override var analyticsViewName: String {
-        return "MainWindow/Genres"
+        return "MainWindow/Tags"
     }
 
     override func viewDidLoad() {
@@ -20,33 +21,33 @@ class GenresViewController: BaseDataSourceViewController {
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
 
-        self.dataSource = GenresDataSource(viewController: self)
+        self.dataSource = TagsDataSource(viewController: self)
         tableView.setDataSource(dataSource)
         self.dataSource.loadInitialValues()
     }
     
-    func itemForRow(row: Int) -> GenresListItem? {
+    func itemForRow(row: Int) -> TagsListItem? {
         if let item: AnyObject = dataSource!.itemForRow(row) {
-            return GenresListItem.fromObject(item)
+            return TagsListItem.fromObject(item)
         } else {
             return nil
         }
     }
     
-    func itemAfterRow(row: Int) -> GenresListItem? {
+    func itemAfterRow(row: Int) -> TagsListItem? {
         if let item: AnyObject = dataSource!.itemAfterRow(row) {
-            return GenresListItem.fromObject(item)
+            return TagsListItem.fromObject(item)
         } else {
             return nil
         }
     }
     
-    func selectedGenre() -> Genre? {
+    func selectedTag() -> HypeMachineAPI.Tag? {
         let row = tableView.selectedRow
         if let item = itemForRow(row) {
             switch item {
-            case .GenreItem(let genre):
-                return genre
+            case .TagItem(let tag):
+                return tag
             default:
                 return nil
             }
@@ -59,8 +60,8 @@ class GenresViewController: BaseDataSourceViewController {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as! NSView
-        case .GenreItem:
-            return tableView.makeViewWithIdentifier("GenreTableCellView", owner: self) as! NSView
+        case .TagItem:
+            return tableView.makeViewWithIdentifier("TagTableCellView", owner: self) as! NSView
         }
     }
     
@@ -68,7 +69,7 @@ class GenresViewController: BaseDataSourceViewController {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  true
-        case .GenreItem:
+        case .TagItem:
             return false
         }
     }
@@ -77,7 +78,7 @@ class GenresViewController: BaseDataSourceViewController {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
             return  32
-        case .GenreItem:
+        case .TagItem:
             return 48
         }
     }
@@ -87,13 +88,13 @@ class GenresViewController: BaseDataSourceViewController {
         case .SectionHeaderItem:
             let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as! NSTableRowView
             return rowView
-        case .GenreItem:
+        case .TagItem:
             let rowView = tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as! IOSStyleTableRowView
             if let nextItem = itemAfterRow(row) {
                 switch nextItem {
                 case .SectionHeaderItem:
                     rowView.nextRowIsGroupRow = true
-                case .GenreItem:
+                case .TagItem:
                     rowView.nextRowIsGroupRow = false
                 }
             } else {
@@ -107,7 +108,7 @@ class GenresViewController: BaseDataSourceViewController {
         switch itemForRow(row)! {
         case .SectionHeaderItem:
             return false
-        case .GenreItem:
+        case .TagItem:
             return true
         }
     }
@@ -129,16 +130,16 @@ class GenresViewController: BaseDataSourceViewController {
     }
     
     func enterKeyPressed(theEvent: NSEvent) {
-        if let genre = selectedGenre() {
-            loadSingleGenreView(genre)
+        if let tag = selectedTag() {
+            loadSingleTagView(tag)
         } else {
             super.keyDown(theEvent)
         }
     }
     
     func rightArrowKeyPressed(theEvent: NSEvent) {
-        if let genre = selectedGenre() {
-            loadSingleGenreView(genre)
+        if let tag = selectedTag() {
+            loadSingleTagView(tag)
         } else {
             super.keyDown(theEvent)
         }
@@ -146,18 +147,18 @@ class GenresViewController: BaseDataSourceViewController {
     
     func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
-        case .GenreItem(let genre):
-            loadSingleGenreView(genre)
+        case .TagItem(let tag):
+            loadSingleTagView(tag)
         case .SectionHeaderItem:
             return
         }
     }
     
-    func loadSingleGenreView(genre: Genre) {
+    func loadSingleTagView(tag: HypeMachineAPI.Tag) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
-        viewController.title = genre.name
+        viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
+        viewController.dataSource = TagPlaylistDataSource(tag: tag, viewController: viewController)
     }
     
     override func refresh() {

@@ -11,8 +11,8 @@ import Cocoa
 class SearchViewController: BaseContentViewController {
     @IBOutlet var searchResultsView: NSView!
     var playlistSubType: SearchPlaylistSubType = .MostFavorites
-    var playlistViewController: BasePlaylistViewController?
-    var dataSource: SearchPlaylistDataSource?
+    var playlistViewController: TracksViewController?
+    var dataSource: SearchDataSource?
     override var analyticsViewName: String {
         return "MainWindow/Search"
     }
@@ -22,12 +22,12 @@ class SearchViewController: BaseContentViewController {
         if keywords == "" { return }
 
         ensurePlaylistViewController()
-        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, viewController: playlistViewController!)
+        playlistViewController!.dataSource = SearchDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, viewController: playlistViewController!)
     }
     
     func ensurePlaylistViewController() {
         if playlistViewController == nil {
-            playlistViewController = (storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController)
+            playlistViewController = (storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! TracksViewController)
             addChildViewController(playlistViewController!)
             ViewPlacementHelper.AddFullSizeSubview(playlistViewController!.view, toSuperView: searchResultsView)
         }

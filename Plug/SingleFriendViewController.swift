@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import HypeMachineAPI
+import Alamofire
 
 class SingleFriendViewController: BaseContentViewController {
     @IBOutlet var avatarView: NSImageView!
@@ -26,8 +28,8 @@ class SingleFriendViewController: BaseContentViewController {
             representedObjectChanged()
         }
     }
-    var representedFriend: Friend {
-        return representedObject as! Friend
+    var representedFriend: HypeMachineAPI.User {
+        return representedObject as! HypeMachineAPI.User
     }
     
     func representedObjectChanged() {
@@ -44,13 +46,17 @@ class SingleFriendViewController: BaseContentViewController {
     func updateImage() {
         if representedFriend.avatarURL == nil { return }
         
-        HypeMachineAPI.Friends.Avatar(representedFriend,
-            success: { image in
-                self.avatarView.image = image
-            }, failure: { error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+        Alamofire.request(.GET, representedFriend.avatarURL!).validate().responseImage {
+            (_, _, image, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                Logger.LogError(error!)
+                return
+            }
+            
+            self.avatarView.image = image
+        }
     }
     
     func updateUsername() {

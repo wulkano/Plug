@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
     @IBOutlet weak var titleTextField: VibrantTextField!
@@ -23,8 +24,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
             representedObjectChanged()
         }
     }
-    var representedTrack: Track {
-        return representedObject as! Track
+    var representedTrack: HypeMachineAPI.Track {
+        return representedObject as! HypeMachineAPI.Track
     }
     
     override func viewDidLoad() {
@@ -50,16 +51,16 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Tracks.ToggleLoved(representedTrack,
-            success: {loved in
-                if loved != newLovedValue {
-                    self.changeTrackLovedValueTo(loved)
-                }
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-                self.changeTrackLovedValueTo(oldLovedValue)
-        })
+//        HypeMachineAPI.Tracks.ToggleLoved(representedTrack,
+//            success: {loved in
+//                if loved != newLovedValue {
+//                    self.changeTrackLovedValueTo(loved)
+//                }
+//            }, failure: {error in
+//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+//                Logger.LogError(error)
+//                self.changeTrackLovedValueTo(oldLovedValue)
+//        })
     }
     
     func postInfoTextFieldClicked(sender: AnyObject) {
@@ -68,15 +69,15 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         NSWorkspace.sharedWorkspace().openURL(representedTrack.postURL)
     }
     
-    func genreButtonClicked(genre: Genre) {
-        loadSingleGenreView(genre)
+    func tagButtonClicked(tag: HypeMachineAPI.Tag) {
+        loadSingleTagView(tag)
     }
     
-    func loadSingleGenreView(genre: Genre) {
+    func loadSingleTagView(tag: HypeMachineAPI.Tag) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
-        viewController.title = genre.name
+        viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
+        viewController.dataSource = TagPlaylistDataSource(tag: tag, viewController: viewController)
     }
     
     @IBAction func downloadITunesButtonClicked(sender: NSButton) {
@@ -92,7 +93,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackLoved(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as! Track
+        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track === representedObject {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -100,7 +101,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as! Track
+        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track === representedTrack {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -140,13 +141,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func updateAlbumArt() {
-        HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
-            success: { image in
-                self.albumArt.image = image
-            }, failure: { error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+//        HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
+//            success: { image in
+//                self.albumArt.image = image
+//            }, failure: { error in
+//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+//                Logger.LogError(error)
+//        })
     }
     
     func updatePostedCount() {

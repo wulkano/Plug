@@ -29,12 +29,12 @@ class HeatMapPlaylistTableCellView: BasePlaylistTableCellView {
     }
     
     func updateHeatMap() {
-        HypeMachineAPI.HeatMapFor(trackValue,
-            success: {heatMap in
-                self.heatMapView.heatMap = heatMap
-            }, failure: {error in
-                Logger.LogError(error)
-        })
+//        HypeMachineAPI.HeatMapFor(trackValue,
+//            success: {heatMap in
+//                self.heatMapView.heatMap = heatMap
+//            }, failure: {error in
+//                Logger.LogError(error)
+//        })
     }
     
     func updateHeatMapVisibility() {

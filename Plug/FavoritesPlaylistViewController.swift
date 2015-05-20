@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class FavoritesPlaylistViewController: BasePlaylistViewController {
+class FavoritesPlaylistViewController: TracksViewController {
     override var analyticsViewName: String {
         return "MainWindow/Favorites"
     }
@@ -16,6 +16,6 @@ class FavoritesPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = FavoritesPlaylistDataSource(viewController: self)
+        dataSource = FavoritesDataSource(viewController: self)
     }
 }

@@ -7,15 +7,16 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
-class GenresTableCellView: IOSStyleTableCellView {
+class TagTableCellView: IOSStyleTableCellView {
     override var objectValue: AnyObject! {
         didSet {
             objectValueChanged()
         }
     }
-    var genreValue: Genre {
-        return objectValue as! Genre
+    var tagValue: HypeMachineAPI.Tag {
+        return objectValue as! HypeMachineAPI.Tag
     }
     
     func objectValueChanged() {
@@ -25,6 +26,6 @@ class GenresTableCellView: IOSStyleTableCellView {
     }
     
     func updateName() {
-        textField!.stringValue = genreValue.name
+        textField!.stringValue = tagValue.name
     }
 }

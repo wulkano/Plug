@@ -1,21 +1,24 @@
 //
-//  BasePlaylistDataSource.swift
+//  TracksDataSource.swift
 //  Plug
 //
-//  Created by Alex Marchant on 8/30/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//  Created by Alex Marchant on 5/15/15.
+//  Copyright (c) 2015 Plug. All rights reserved.
 //
 
-import Cocoa
+import Foundation
+import HypeMachineAPI
 
-class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
-    var playlist: Playlist?
-    var currentPage: Int = 1
+class TracksDataSource: NSObject, NSTableViewDataSource {
+    let tracksPerPage: Int = 20
+    
+    var tracks: [HypeMachineAPI.Track]?
+    var currentPage: Int = 0
     var loadingData: Bool = false
     var allTracksLoaded: Bool = false
-    var viewController: BaseDataSourceViewController
+    var viewController: DataSourceViewController!
     
-    init(viewController: BaseDataSourceViewController) {
+    init(viewController: DataSourceViewController) {
         self.viewController = viewController
         super.init()
     }
@@ -33,8 +36,8 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func requestInitialValues() {}
     
-    func requestInitialValuesSuccess(newPlaylist: Playlist) {
-        playlist = newPlaylist
+    func requestInitialValuesSuccess(tracks: [HypeMachineAPI.Track]) {
+        self.tracks = tracks
         viewController.tableView.reloadData()
         loadingData = false
         viewController.requestInitialValuesFinished()
@@ -55,13 +58,13 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
     
     func requestNextPage() {}
     
-    func requestNextPageSuccess(tracks: [Track], lastPage: Bool) {
+    func requestNextPageSuccess(tracks: [HypeMachineAPI.Track], lastPage: Bool) {
         currentPage++
         allTracksLoaded = lastPage
         
         if tracks.count > 0 {
             let rowIndexes = rowIndexesForNewTracks(tracks)
-            playlist!.addTracks(tracks)
+            self.tracks! = self.tracks! + tracks
             viewController.tableView.insertRowsAtIndexes(rowIndexes, withAnimation: .EffectNone)
         }
         
@@ -82,29 +85,29 @@ class BasePlaylistDataSource: NSObject, NSTableViewDataSource {
         
         let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
         if hideUnavailableTracks {
-            return playlist!.availableTracks()[row]
+            return tracks!.filter({ $0.audioUnavailable == false })[row]
         } else {
-            return playlist!.tracks[row]
+            return tracks![row]
         }
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        if playlist == nil { return 0 }
+        if tracks == nil { return 0 }
         
         let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
         if hideUnavailableTracks {
-            return playlist!.availableTracks().count
+            return tracks!.filter({ $0.audioUnavailable == false }).count
         } else {
-            return playlist!.tracks.count
+            return tracks!.count
         }
     }
     
-    func trackForRow(row: Int) -> Track? {
-        return playlist!.tracks.optionalAtIndex(row)
+    func trackForRow(row: Int) -> HypeMachineAPI.Track? {
+        return tracks!.optionalAtIndex(row)
     }
     
-    private func rowIndexesForNewTracks(tracks: [Track]) -> NSIndexSet {
-        let rowRange: NSRange = NSMakeRange(playlist!.tracks.count, tracks.count)
+    private func rowIndexesForNewTracks(newTracks: [HypeMachineAPI.Track]) -> NSIndexSet {
+        let rowRange: NSRange = NSMakeRange(tracks!.count, newTracks.count)
         return NSIndexSet(indexesInRange: rowRange)
     }
 }

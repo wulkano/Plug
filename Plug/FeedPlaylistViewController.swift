@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class FeedPlaylistViewController: BasePlaylistViewController {
+class FeedPlaylistViewController: TracksViewController {
     override var analyticsViewName: String {
         return "MainWindow/Feed"
     }
@@ -16,6 +16,6 @@ class FeedPlaylistViewController: BasePlaylistViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = FeedPlaylistDataSource(playlistSubType: .All, viewController: self)
+        dataSource = FeedDataSource(playlistSubType: .All, viewController: self)
     }
 }
