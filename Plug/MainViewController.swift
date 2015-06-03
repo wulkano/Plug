@@ -115,16 +115,16 @@ class MainViewController: NSViewController {
             popularViewController = (ensureViewController(popularViewController, identifier: "PopularTracksViewController") as! TracksViewController)
             return popularViewController!
         case .Favorites:
-            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "TracksViewController") as! TracksViewController)
+            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoriteTracksViewController") as! TracksViewController)
             return favoritesViewController!
         case .Latest:
-            latestViewController = (ensureViewController(latestViewController, identifier: "TracksViewController") as! TracksViewController)
+            latestViewController = (ensureViewController(latestViewController, identifier: "LatestTracksViewController") as! TracksViewController)
             return latestViewController!
         case .Blogs:
             blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as! BlogDirectoryViewController)
             return blogDirectoryViewController!
         case .Feed:
-            feedViewController = (ensureViewController(feedViewController, identifier: "TracksViewController") as! TracksViewController)
+            feedViewController = (ensureViewController(feedViewController, identifier: "FeedTracksViewController") as! TracksViewController)
             return feedViewController!
         case .Genres:
             tagsViewController = (ensureViewController(tagsViewController, identifier: "TagsViewController") as! TagsViewController)

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Alamofire
 
 class HeatMapTrackTableCellView: TrackTableCellView {
     @IBOutlet var heatMapView: HeatMapView!
@@ -29,12 +30,21 @@ class HeatMapTrackTableCellView: TrackTableCellView {
     }
     
     func updateHeatMap() {
-//        HypeMachineAPI.HeatMapFor(trackValue,
-//            success: {heatMap in
-//                self.heatMapView.heatMap = heatMap
-//            }, failure: {error in
-//                println(error)
-//        })
+        Alamofire.request(.GET, "http://www.plugformac.com/data/heatmaps.json").validate().responseJSON {
+            (_, _, JSON, error) in
+            
+            if error != nil {
+                println(error)
+                return
+            }
+            
+            if let trackJSON = (JSON?.valueForKeyPath(self.trackValue.id) as? NSDictionary) {
+                let startPoint = (trackJSON["beginningValue"]! as! NSNumber).doubleValue
+                let endPoint = (trackJSON["endValue"]! as! NSNumber).doubleValue
+                let heatMap = HeatMap(track: self.trackValue, start: startPoint, end: endPoint)
+                self.heatMapView.heatMap = heatMap
+            }
+        }
     }
     
     func updateHeatMapVisibility() {

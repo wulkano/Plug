@@ -286,7 +286,7 @@
         <!--Latest-->
         <scene sceneID="kN2-xY-ctg">
             <objects>
-                <viewController title="Latest" storyboardIdentifier="LatestPlaylistViewController" id="Azb-xg-1yq" customClass="LatestPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Latest" storyboardIdentifier="LatestTracksViewController" id="Azb-xg-1yq" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="KgC-Ty-CTV">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -316,7 +316,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="LM0-KM-ycg" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="LM0-KM-ycg" customClass="LoveCountTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -542,12 +542,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="OPM-oQ-fo3" id="Sxe-11-1Mu"/>
                         <outlet property="scrollView" destination="ZgV-ZE-c2y" id="0sl-25-sqz"/>
                         <outlet property="tableView" destination="kY8-wE-2Y2" id="kVl-hR-aeO"/>
                     </connections>
                 </viewController>
                 <customObject id="bmf-sw-c1m" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="L7n-0t-AG1"/>
+                <customObject id="OPM-oQ-fo3" customClass="LatestTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="Azb-xg-1yq" id="Jkk-Xe-N9Y"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="186.5" y="-145.5"/>
         </scene>
@@ -793,7 +799,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="3MY-eq-1bY" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="3MY-eq-1bY" customClass="LoveCountTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1031,7 +1037,7 @@
         <!--Favorites-->
         <scene sceneID="Spe-UF-Md6">
             <objects>
-                <viewController title="Favorites" storyboardIdentifier="FavoritesPlaylistViewController" id="qhz-2Y-kA5" customClass="FavoritesPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Favorites" storyboardIdentifier="FavoriteTracksViewController" id="qhz-2Y-kA5" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="1XT-Fm-bwq">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1061,7 +1067,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="4ug-9y-aGU" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="4ug-9y-aGU" customClass="LoveCountTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1287,12 +1293,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="cB2-Tf-AWY" id="Mfb-P9-uBg"/>
                         <outlet property="scrollView" destination="2uO-5P-o9f" id="xYX-zG-Lmp"/>
                         <outlet property="tableView" destination="YGd-I5-a64" id="84J-e7-GRQ"/>
                     </connections>
                 </viewController>
                 <customObject id="mUV-I8-7nb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="6kC-Hh-vvC"/>
+                <customObject id="cB2-Tf-AWY" customClass="FavoriteTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="qhz-2Y-kA5" id="BzW-lJ-R2W"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-249.5" y="-145.5"/>
         </scene>
@@ -2142,7 +2154,7 @@
         <!--Feed-->
         <scene sceneID="ab2-zX-tc6">
             <objects>
-                <viewController title="Feed" storyboardIdentifier="FeedPlaylistViewController" id="gGO-bu-pEf" customClass="FeedPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Feed" storyboardIdentifier="FeedTracksViewController" id="gGO-bu-pEf" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="Jga-UC-nwf">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2444,12 +2456,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="hB1-Lj-KJO" id="L6W-W5-UXU"/>
                         <outlet property="scrollView" destination="aqt-fZ-qx4" id="btZ-pv-Rrk"/>
                         <outlet property="tableView" destination="eiU-iy-OBO" id="26S-qk-fVO"/>
                     </connections>
                 </viewController>
                 <customObject id="xx9-mh-PCn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="fAA-nw-HF3"/>
+                <customObject id="hB1-Lj-KJO" customClass="FeedTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="gGO-bu-pEf" id="ZNQ-KD-CZD"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="642.5" y="-145.5"/>
         </scene>

@@ -27,6 +27,8 @@
 		FA21F9B51B1EC66400EBAA09 /* ArtistTracksDataSoure.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B41B1EC66400EBAA09 /* ArtistTracksDataSoure.swift */; };
 		FA21F9B71B1EC7AD00EBAA09 /* TagTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B61B1EC7AD00EBAA09 /* TagTracksDataSource.swift */; };
 		FA21F9B91B1EC83000EBAA09 /* SearchTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */; };
+		FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */; };
+		FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */; };
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
 		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
 		FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */; };
@@ -188,6 +190,8 @@
 		FA21F9B41B1EC66400EBAA09 /* ArtistTracksDataSoure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTracksDataSoure.swift; sourceTree = "<group>"; };
 		FA21F9B61B1EC7AD00EBAA09 /* TagTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTracksDataSource.swift; sourceTree = "<group>"; };
 		FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTracksDataSource.swift; sourceTree = "<group>"; };
+		FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTracksDataSource.swift; sourceTree = "<group>"; };
+		FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTracksDataSource.swift; sourceTree = "<group>"; };
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
 		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
 		FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackContextMenuController.swift; sourceTree = "<group>"; };
@@ -725,6 +729,8 @@
 				FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */,
 				FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */,
 				FA21F9AC1B1EC1FF00EBAA09 /* PopularTracksDataSource.swift */,
+				FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */,
+				FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */,
 				FA21F9AE1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift */,
 				FA21F9B01B1EC34700EBAA09 /* BlogTracksDataSource.swift */,
 				FA21F9B21B1EC4C400EBAA09 /* UserTracksDataSource.swift */,
@@ -951,6 +957,7 @@
 				FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
+				FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */,
 				FA21F9B31B1EC4C400EBAA09 /* UserTracksDataSource.swift in Sources */,
 				FA21F9AF1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
@@ -987,6 +994,7 @@
 				FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */,
 				FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */,
 				FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */,
+				FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
