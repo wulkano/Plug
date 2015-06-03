@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBOutlet var playPauseButton: HoverToggleButton!
@@ -19,9 +20,10 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBOutlet var titleButton: HyperlinkButton!
     @IBOutlet var artistButton: HyperlinkButton!
     
+    var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
-    var track: Track? {
+    var track: HypeMachineAPI.Track? {
         didSet {
             trackChanged()
         }
@@ -33,7 +35,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         didSet { playStateChanged() }
     }
     var trackingProgress: Bool = false
-    var trackValue: Track {
+    var trackValue: HypeMachineAPI.Track {
         return track!
     }
     
@@ -195,12 +197,13 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func showLoveButton() -> Bool {
-        switch trackValue.playlist!.type {
-        case .Favorites:
-            return false
-        default:
-            return true
-        }
+//        switch trackValue.playlist!.type {
+//        case .Favorites:
+//            return false
+//        default:
+//            return true
+//        }
+        return true
     }
     
     func trackProgress() {
@@ -216,7 +219,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track !== notificationTrack {
             track = notificationTrack
             playState = PlayState.Playing
@@ -229,7 +232,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track != nil && track! === notificationTrack {
             trackValue.loved = true
             loveButton.selected = true
@@ -237,7 +240,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track != nil && track === notificationTrack {
             trackValue.loved = false
             loveButton.selected = false
@@ -250,7 +253,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
-            AudioPlayer.sharedInstance.play(trackValue)
+            AudioPlayer.sharedInstance.playNewTrack(trackValue, dataSource: dataSource!)
         }
     }
     
@@ -278,7 +281,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
 //                }
 //            }, failure: {error in
 //                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                Logger.LogError(error)
+//                println(error)
 //                self.changeTrackLovedValueTo(oldLovedValue)
 //        })
     }
@@ -288,11 +291,12 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, viewController: viewController)
+        viewController.dataSource = ArtistTracksDataSource(artistName: trackValue.artist)
+        viewController.dataSource!.viewController = viewController
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {

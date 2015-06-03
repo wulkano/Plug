@@ -1,5 +1,5 @@
 //
-//  PopularPlaylistTableCellView.swift
+//  HeatMapTrackTableCellView.swift
 //  Plug
 //
 //  Created by Alex Marchant on 8/28/14.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class HeatMapPlaylistTableCellView: BasePlaylistTableCellView {
+class HeatMapTrackTableCellView: TrackTableCellView {
     @IBOutlet var heatMapView: HeatMapView!
     
     override func objectValueChanged() {
@@ -33,7 +33,7 @@ class HeatMapPlaylistTableCellView: BasePlaylistTableCellView {
 //            success: {heatMap in
 //                self.heatMapView.heatMap = heatMap
 //            }, failure: {error in
-//                Logger.LogError(error)
+//                println(error)
 //        })
     }
     

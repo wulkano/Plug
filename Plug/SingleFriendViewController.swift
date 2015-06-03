@@ -21,7 +21,7 @@ class SingleFriendViewController: BaseContentViewController {
         return "MainWindow/SingleFriend"
     }
     
-    var playlistViewController: BasePlaylistViewController!
+    var tracksViewController: TracksViewController!
 
     override var representedObject: AnyObject! {
         didSet {
@@ -51,7 +51,7 @@ class SingleFriendViewController: BaseContentViewController {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                Logger.LogError(error!)
+                println(error!)
                 return
             }
             
@@ -72,10 +72,11 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
-        addChildViewController(playlistViewController)
-        ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
-        playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, viewController: playlistViewController)
+        tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+        addChildViewController(tracksViewController)
+        ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
+        tracksViewController.dataSource = UserTracksDataSource(username: representedFriend.username)
+        tracksViewController.dataSource!.viewController = tracksViewController
     }
     
     override func addLoaderView() {
@@ -85,6 +86,6 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     override func refresh() {
-        playlistViewController.refresh()
+        tracksViewController.refresh()
     }
 }

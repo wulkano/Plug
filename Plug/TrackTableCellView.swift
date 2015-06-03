@@ -1,5 +1,5 @@
 //
-//  BasePlaylistTableCellView.swift
+//  TrackTableCellView.swift
 //  Plug
 //
 //  Created by Alex Marchant on 8/28/14.
@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
-class BasePlaylistTableCellView: IOSStyleTableCellView {
+class TrackTableCellView: IOSStyleTableCellView {
     @IBOutlet var playPauseButton: HoverToggleButton!
     @IBOutlet var loveButton: TransparentButton!
     @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
@@ -19,6 +20,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     @IBOutlet var titleButton: HyperlinkButton!
     @IBOutlet var artistButton: HyperlinkButton!
     
+    var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
     override var objectValue: AnyObject! {
@@ -32,8 +34,8 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     var playState: PlayState = PlayState.NotPlaying {
         didSet { playStateChanged() }
     }
-    var trackValue: Track {
-        return objectValue as! Track
+    var trackValue: HypeMachineAPI.Track {
+        return objectValue as! HypeMachineAPI.Track
     }
     var trackingProgress: Bool = false
     
@@ -198,12 +200,13 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func showLoveButton() -> Bool {
-        switch trackValue.playlist!.type {
-        case .Favorites:
-            return false
-        default:
-            return true
-        }
+//        switch trackValue.playlist!.type {
+//        case .Favorites:
+//            return false
+//        default:
+//            return true
+//        }
+        return true
     }
     
     func trackProgress() {
@@ -219,7 +222,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             playState = PlayState.Playing
         } else {
@@ -228,14 +231,14 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackPaused(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             playState = PlayState.Paused
         }
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             trackValue.loved = true
             loveButton.selected = true
@@ -244,7 +247,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             trackValue.loved = false
             loveButton.selected = false
@@ -258,7 +261,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
-            AudioPlayer.sharedInstance.play(trackValue)
+            AudioPlayer.sharedInstance.playNewTrack(trackValue, dataSource: dataSource)
         }
     }
     
@@ -287,7 +290,7 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
 //                }
 //            }, failure: {error in
 //                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                Logger.LogError(error)
+//                println(error)
 //                self.changeTrackLovedValueTo(oldLovedValue)
 //        })
     }
@@ -297,11 +300,12 @@ class BasePlaylistTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, viewController: viewController)
+        viewController.dataSource = ArtistTracksDataSource(artistName: trackValue.artist)
+        viewController.dataSource!.viewController = viewController
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {

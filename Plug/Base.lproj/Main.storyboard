@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -760,10 +760,10 @@
             </objects>
             <point key="canvasLocation" x="-1631.5" y="-203.5"/>
         </scene>
-        <!--Base Playlist View Controller-->
+        <!--Tracks View Controller-->
         <scene sceneID="0BS-Vn-flk">
             <objects>
-                <viewController storyboardIdentifier="BasePlaylistViewController" id="hDU-e6-m9s" customClass="BasePlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TracksViewController" id="hDU-e6-m9s" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="JYz-b3-t2X">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1299,7 +1299,7 @@
         <!--Popular-->
         <scene sceneID="DIj-Vb-cfL">
             <objects>
-                <viewController title="Popular" storyboardIdentifier="PopularPlaylistViewController" id="ksC-Xt-iaG" customClass="PopularPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Popular" storyboardIdentifier="PopularTracksViewController" id="ksC-Xt-iaG" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="ntW-KG-MHd">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1329,7 +1329,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="zMt-8W-wXo" customClass="HeatMapPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="zMt-8W-wXo" customClass="HeatMapTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1550,12 +1550,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="bcj-UT-MyW" id="h7f-hl-tsL"/>
                         <outlet property="scrollView" destination="eyc-FO-vNr" id="CXF-3T-kH1"/>
                         <outlet property="tableView" destination="KzI-j4-OAQ" id="bW3-Vt-6QL"/>
                     </connections>
                 </viewController>
                 <customObject id="1sU-F0-EzU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="8Il-7A-zXp"/>
+                <customObject id="bcj-UT-MyW" customClass="PopularTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="ksC-Xt-iaG" id="SWE-IV-85X"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-687.5" y="-145.5"/>
         </scene>

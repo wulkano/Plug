@@ -10,15 +10,16 @@ import Cocoa
 
 class TracksViewController: DataSourceViewController {
     @IBOutlet weak var scrollView: NSScrollView!
-    var playlist: Playlist?
-    var previousMouseInsideRow: Int = -1
-    var anchoredRow: Int?
-    var anchoredCellViewViewController: TracksViewController?
-    var dataSource: BasePlaylistDataSource? {
+    @IBOutlet var dataSource: TracksDataSource? {
         didSet {
             dataSourceChanged()
         }
     }
+    
+    var previousMouseInsideRow: Int = -1
+    var anchoredRow: Int?
+    var anchoredCellViewViewController: TracksViewController?
+
     
     let infiniteScrollTriggerHeight: CGFloat = 40
     
@@ -33,19 +34,31 @@ class TracksViewController: DataSourceViewController {
         tableView.extendedDelegate = self
         scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
         scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
+        
+        if dataSource != nil {
+            loadDataSource()
+        }
     }
     
     func dataSourceChanged() {
+        if viewLoaded {
+            loadDataSource()
+        }
+    }
+    
+    func loadDataSource() {
         tableView.setDataSource(dataSource!)
         dataSource!.loadInitialValues()
         addLoaderView()
     }
     
-    func cellViewForRow(row: Int) -> BasePlaylistTableCellView? {
+    func cellViewForRow(row: Int) -> TrackTableCellView? {
         if row < 0 {
             return nil
         } else {
-            return tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? BasePlaylistTableCellView
+            var cellView = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView
+            cellView!.dataSource = dataSource!
+            return cellView
         }
     }
     
@@ -94,7 +107,7 @@ class TracksViewController: DataSourceViewController {
         case 36: // Enter
             let row = tableView.selectedRow
             let track = dataSource!.trackForRow(row)!
-            AudioPlayer.sharedInstance.play(track)
+            AudioPlayer.sharedInstance.playNewTrack(track, dataSource: dataSource!)
         default:
             super.keyDown(theEvent)
         }

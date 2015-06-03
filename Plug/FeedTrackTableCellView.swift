@@ -1,5 +1,5 @@
 //
-//  FeedTableCellView.swift
+//  FeedTrackTableCellView.swift
 //  Plug
 //
 //  Created by Alex Marchant on 8/14/14.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
+class FeedTrackTableCellView: LoveCountTrackTableCellView {
     @IBOutlet var usernameOrBlogNameTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedByWidthConstraint: NSLayoutConstraint!
     @IBOutlet var lovedByOrPostedBy: SelectableTextField!
@@ -89,7 +89,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
 //                viewController.representedObject = friend
 //            }, failure: { error in
 //                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                Logger.LogError(error)
+//                println(error)
 //        })
     }
     
@@ -101,7 +101,7 @@ class FeedPlaylistTableCellView: LoveCountPlaylistTableCellView {
 //                viewController.representedObject = blog
 //            }, failure: { error in
 //                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                Logger.LogError(error)
+//                println(error)
 //        })
 
     }

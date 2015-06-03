@@ -13,11 +13,11 @@ class MainViewController: NSViewController {
     
     var navigationController: NavigationController!
     
-    var popularViewController: PopularPlaylistViewController?
-    var favoritesViewController: FavoritesPlaylistViewController?
-    var latestViewController: LatestPlaylistViewController?
+    var popularViewController: TracksViewController?
+    var favoritesViewController: TracksViewController?
+    var latestViewController: TracksViewController?
     var blogDirectoryViewController: BlogDirectoryViewController?
-    var feedViewController: FeedPlaylistViewController?
+    var feedViewController: TracksViewController?
     var tagsViewController: TagsViewController?
     var friendsViewController: FriendsViewController?
     var searchViewController: SearchViewController?
@@ -30,14 +30,18 @@ class MainViewController: NSViewController {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        Notifications.subscribe(observer: self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
-        Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
-        Notifications.subscribe(observer: self, selector: "currentTrackDidShow:", name: Notifications.CurrentTrackDidShow, object: nil)
-        Notifications.subscribe(observer: self, selector: "currentTrackDidHide:", name: Notifications.CurrentTrackDidHide, object: nil)
+        setup()
     }
     
     deinit {
         Notifications.unsubscribeAll(observer: self)
+    }
+    
+    func setup() {
+        Notifications.subscribe(observer: self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
+        Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
+        Notifications.subscribe(observer: self, selector: "currentTrackDidShow:", name: Notifications.CurrentTrackDidShow, object: nil)
+        Notifications.subscribe(observer: self, selector: "currentTrackDidHide:", name: Notifications.CurrentTrackDidHide, object: nil)
     }
     
     override func viewDidLoad() {
@@ -108,19 +112,19 @@ class MainViewController: NSViewController {
         
         switch section {
         case .Popular:
-            popularViewController = (ensureViewController(popularViewController, identifier: "PopularPlaylistViewController") as! PopularPlaylistViewController)
+            popularViewController = (ensureViewController(popularViewController, identifier: "PopularTracksViewController") as! TracksViewController)
             return popularViewController!
         case .Favorites:
-            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoritesPlaylistViewController") as! FavoritesPlaylistViewController)
+            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "TracksViewController") as! TracksViewController)
             return favoritesViewController!
         case .Latest:
-            latestViewController = (ensureViewController(latestViewController, identifier: "LatestPlaylistViewController") as! LatestPlaylistViewController)
+            latestViewController = (ensureViewController(latestViewController, identifier: "TracksViewController") as! TracksViewController)
             return latestViewController!
         case .Blogs:
             blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as! BlogDirectoryViewController)
             return blogDirectoryViewController!
         case .Feed:
-            feedViewController = (ensureViewController(feedViewController, identifier: "FeedPlaylistViewController") as! FeedPlaylistViewController)
+            feedViewController = (ensureViewController(feedViewController, identifier: "TracksViewController") as! TracksViewController)
             return feedViewController!
         case .Genres:
             tagsViewController = (ensureViewController(tagsViewController, identifier: "TagsViewController") as! TagsViewController)

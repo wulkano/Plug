@@ -20,7 +20,7 @@ class SingleBlogViewController: BaseContentViewController {
         return "MainWindow/SingleBlog"
     }
     
-    var playlistViewController: BasePlaylistViewController!
+    var tracksViewController: TracksViewController!
     
     override var representedObject: AnyObject! {
         didSet {
@@ -52,7 +52,7 @@ class SingleBlogViewController: BaseContentViewController {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                Logger.LogError(error!)
+                println(error!)
                 return
             }
             
@@ -83,13 +83,14 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
+        tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         
-        addChildViewController(playlistViewController)
+        addChildViewController(tracksViewController)
         
-        ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
+        ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
 
-        playlistViewController.dataSource = BlogPlaylistDataSource(blog: representedBlog, viewController: playlistViewController)
+        tracksViewController.dataSource = BlogTracksDataSource(blogID: representedBlog.id)
+        tracksViewController.dataSource!.viewController = tracksViewController
     }
     
     override func addLoaderView() {
@@ -99,6 +100,6 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     override func refresh() {
-        playlistViewController.refresh()
+        tracksViewController.refresh()
     }
 }

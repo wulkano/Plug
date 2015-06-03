@@ -58,7 +58,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 //                }
 //            }, failure: {error in
 //                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                Logger.LogError(error)
+//                println(error)
 //                self.changeTrackLovedValueTo(oldLovedValue)
 //        })
     }
@@ -74,10 +74,11 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = TagPlaylistDataSource(tag: tag, viewController: viewController)
+        viewController.dataSource = TagTracksDataSource(tagName: tag.name)
+        viewController.dataSource!.viewController = viewController
     }
     
     @IBAction func downloadITunesButtonClicked(sender: NSButton) {
@@ -146,7 +147,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 //                self.albumArt.image = image
 //            }, failure: { error in
 //                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                Logger.LogError(error)
+//                println(error)
 //        })
     }
     

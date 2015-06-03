@@ -42,7 +42,7 @@ class BlogTableCellView: IOSStyleTableCellView {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                Logger.LogError(error!)
+                println(error!)
                 return
             }
             

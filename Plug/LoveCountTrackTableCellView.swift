@@ -1,5 +1,5 @@
 //
-//  PlaylistTableCellView.swift
+//  LoveCountTrackTableCellView.swift
 //  Plug
 //
 //  Created by Alexander Marchant on 7/14/14.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class LoveCountPlaylistTableCellView: BasePlaylistTableCellView {
+class LoveCountTrackTableCellView: TrackTableCellView {
     @IBOutlet var loveCount: ColorChangingTextField!
     
     override func objectValueChanged() {

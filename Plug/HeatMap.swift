@@ -7,13 +7,14 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class HeatMap: NSObject {
-    var track: Track
+    var track: HypeMachineAPI.Track
     var start: Double
     var end: Double
     
-    init(track: Track, start: Double, end: Double) {
+    init(track: HypeMachineAPI.Track, start: Double, end: Double) {
         self.track = track
         self.start = start
         self.end = end

@@ -9,6 +9,7 @@
 import Cocoa
 import AVFoundation
 import CoreMedia
+import HypeMachineAPI
 
 class AudioPlayer: NSObject {
     class var sharedInstance: AudioPlayer {
@@ -20,12 +21,12 @@ class AudioPlayer: NSObject {
     
     var player: AVPlayer!
     var playerItem: AVPlayerItem!
-    var currentPlaylist: Playlist! {
+    var currentDataSource: TracksDataSource! {
         didSet {
             recentlyPlayedTrackIndexes = []
         }
     }
-    var currentTrack: Track!
+    var currentTrack: HypeMachineAPI.Track!
     var playing: Bool = false
     var volume: Float = 1 {
         didSet {
@@ -53,16 +54,16 @@ class AudioPlayer: NSObject {
         }
         player = nil
         playerItem = nil
-        currentPlaylist = nil
+        currentDataSource = nil
         currentTrack = nil
         playing = false
         progressObserver = nil
         seeking = false
     }
     
-    func play(track: Track) {
+    func playNewTrack(track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
         if currentTrack != track {
-            setupForNewTrack(track)
+            setupForNewTrack(track, dataSource: dataSource)
             UserNotifications.Deliver.NewTrackPlaying(track)
         }
         play()
@@ -91,19 +92,18 @@ class AudioPlayer: NSObject {
     }
     
     func skipForward() {
-        if currentPlaylist == nil { return }
+        if currentDataSource == nil { return }
         
         if let nextTrack = findNextTrack() {
-            play(nextTrack)
+            playNewTrack(nextTrack, dataSource: currentDataSource)
         }
     }
     
     func skipBackward() {
-        if currentPlaylist == nil { return }
+        if currentDataSource == nil { return }
         
-        let previousTrack = currentPlaylist.trackBefore(currentTrack)
-        if previousTrack != nil {
-            play(previousTrack!)
+        if let previousTrack = currentDataSource.trackBefore(currentTrack) {
+            playNewTrack(previousTrack, dataSource: currentDataSource)
         }
     }
     
@@ -136,7 +136,7 @@ class AudioPlayer: NSObject {
         return Double(CMTimeGetSeconds(playerItem.duration))
     }
     
-    private func setupForNewTrack(track: Track) {
+    private func setupForNewTrack(track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
         Analytics.trackAudioPlaybackEvent("Play New Track")
         
         if playerItem != nil {
@@ -155,11 +155,11 @@ class AudioPlayer: NSObject {
             player.replaceCurrentItemWithPlayerItem(playerItem)
         }
         
-        if currentPlaylist != track.playlist {
-            currentPlaylist = track.playlist
+        if currentDataSource != dataSource {
+            currentDataSource = dataSource
         }
         currentTrack = track
-        recentlyPlayedTrackIndexes.append(currentPlaylist.indexOfTrack(currentTrack)!)
+        recentlyPlayedTrackIndexes.append(currentDataSource.indexOfTrack(currentTrack)!)
     }
     
     private func volumeChanged() {
@@ -194,27 +194,27 @@ class AudioPlayer: NSObject {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
     }
     
-    private func findNextTrack() -> Track? {
+    private func findNextTrack() -> HypeMachineAPI.Track? {
         let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
         
         if shuffle {
             return nextShuffleTrack()
         } else {
-            return currentPlaylist.trackAfter(currentTrack)
+            return currentDataSource.trackAfter(currentTrack)
         }
     }
     
-    private func nextShuffleTrack() -> Track? {
-        if recentlyPlayedTrackIndexes.count >= currentPlaylist.tracks.count {
+    private func nextShuffleTrack() -> HypeMachineAPI.Track? {
+        if recentlyPlayedTrackIndexes.count >= currentDataSource.tracks!.count {
             recentlyPlayedTrackIndexes = []
         }
         
-        var nextShuffleTrackIndex = Rand.inRange(0..<currentPlaylist.tracks.count)
+        var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tracks!.count)
         
         while find(recentlyPlayedTrackIndexes, nextShuffleTrackIndex) != nil {
-            nextShuffleTrackIndex = Rand.inRange(0..<currentPlaylist.tracks.count)
+            nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tracks!.count)
         }
         
-        return currentPlaylist.trackAtIndex(nextShuffleTrackIndex)
+        return currentDataSource.trackAtIndex(nextShuffleTrackIndex)
     }
 }

@@ -17,7 +17,7 @@ class FriendsDataSource: MainContentDataSource {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                Logger.LogError(error!)
+                println(error!)
                 self.viewController.requestInitialValuesFinished()
                 return
             }

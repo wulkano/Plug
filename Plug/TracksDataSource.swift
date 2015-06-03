@@ -12,16 +12,17 @@ import HypeMachineAPI
 class TracksDataSource: NSObject, NSTableViewDataSource {
     let tracksPerPage: Int = 20
     
+    @IBOutlet var viewController: DataSourceViewController!
+    
     var tracks: [HypeMachineAPI.Track]?
     var currentPage: Int = 0
     var loadingData: Bool = false
     var allTracksLoaded: Bool = false
-    var viewController: DataSourceViewController!
     
-    init(viewController: DataSourceViewController) {
-        self.viewController = viewController
-        super.init()
-    }
+//    init(viewController: DataSourceViewController) {
+//        self.viewController = viewController
+//        super.init()
+//    }
     
     func loadInitialValues() {
         if loadingData { return }
@@ -36,15 +37,16 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     
     func requestInitialValues() {}
     
-    func requestInitialValuesSuccess(tracks: [HypeMachineAPI.Track]) {
+    func requestInitialValuesResponse(tracks: [HypeMachineAPI.Track]?, error: NSError?) {
+        if error != nil {
+            loadingError(error!)
+            viewController.requestInitialValuesFinished()
+            return
+        }
+        
         self.tracks = tracks
         viewController.tableView.reloadData()
         loadingData = false
-        viewController.requestInitialValuesFinished()
-    }
-    
-    func requestInitialValuesFailure(error: NSError) {
-        loadingError(error)
         viewController.requestInitialValuesFinished()
     }
     
@@ -77,7 +79,7 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     
     func loadingError(error: NSError) {
         Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-        Logger.LogError(error)
+        println(error)
         loadingData = false
     }
     
@@ -109,5 +111,39 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     private func rowIndexesForNewTracks(newTracks: [HypeMachineAPI.Track]) -> NSIndexSet {
         let rowRange: NSRange = NSMakeRange(tracks!.count, newTracks.count)
         return NSIndexSet(indexesInRange: rowRange)
+    }
+    
+    func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
+        if let currentIndex = indexOfTrack(track) {
+            let index = currentIndex + 1
+            return trackAtIndex(index)
+        } else {
+            return nil
+        }
+    }
+    
+    func trackBefore(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
+        if let currentIndex = indexOfTrack(track) {
+            let index = currentIndex - 1
+            return trackAtIndex(index)
+        } else {
+            return nil
+        }
+    }
+    
+    func indexOfTrack(track: HypeMachineAPI.Track) -> Int? {
+        if tracks == nil { return nil }
+        
+        return find(tracks!, track)
+    }
+    
+    func trackAtIndex(index: Int) -> HypeMachineAPI.Track? {
+        if tracks == nil { return nil }
+        
+        if index >= 0 && index <= tracks!.count - 1 {
+            return tracks![index]
+        } else {
+            return nil
+        }
     }
 }
