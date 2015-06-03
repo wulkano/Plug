@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
-class BlogDirectoryViewController: BaseDataSourceViewController {
+class BlogDirectoryViewController: DataSourceViewController {
     var dataSource: BlogDirectoryDataSource!
     override var analyticsViewName: String {
         return "MainWindow/BlogDirectory"
@@ -113,7 +114,7 @@ class BlogDirectoryViewController: BaseDataSourceViewController {
         }
     }
     
-    func loadSingleBlogView(blog: Blog) {
+    func loadSingleBlogView(blog: HypeMachineAPI.Blog) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as! SingleBlogViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = blog

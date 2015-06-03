@@ -50,7 +50,7 @@ class NavigationController: NSViewController {
             removeAllViewControllersExcept(viewController)
         }
         
-        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
+        Analytics.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
     }
     
@@ -58,7 +58,7 @@ class NavigationController: NSViewController {
         addChildViewController(viewController)
         transitionFromViewController(nextTopViewController, toViewController: topViewController, reversed: false)
         
-        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
+        Analytics.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
     }
     
@@ -68,7 +68,7 @@ class NavigationController: NSViewController {
         transitionFromViewController(visibleViewController, toViewController: nextTopViewController!, reversed: true)
         var poppedController = removeTopViewController()
         
-        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
+        Analytics.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
         
         return poppedController
@@ -85,7 +85,7 @@ class NavigationController: NSViewController {
         transitionFromViewController(visibleViewController, toViewController: viewController,  reversed: true)
         var poppedControllers = removeViewControllersAbove(viewController)
         
-        Analytics.sharedInstance.trackView(visibleViewController.analyticsViewName)
+        Analytics.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
         
         return poppedControllers

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
     @IBOutlet weak var titleTextField: VibrantTextField!
@@ -23,8 +24,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
             representedObjectChanged()
         }
     }
-    var representedTrack: Track {
-        return representedObject as! Track
+    var representedTrack: HypeMachineAPI.Track {
+        return representedObject as! HypeMachineAPI.Track
     }
     
     override func viewDidLoad() {
@@ -35,7 +36,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         tagContainer.delegate = self
         postInfoTextField.postInfoDelegate = self
         
-        Analytics.sharedInstance.trackView("TrackInfoWindow")
+        Analytics.trackView("TrackInfoWindow")
     }
     
     @IBAction func closeButtonClicked(sender: NSButton) {
@@ -43,56 +44,57 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     @IBAction func loveButtonClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackButtonClick("Track Info Heart")
+        Analytics.trackButtonClick("Track Info Heart")
         
         let oldLovedValue = representedTrack.loved
         let newLovedValue = !oldLovedValue
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Tracks.ToggleLoved(representedTrack,
-            success: {loved in
-                if loved != newLovedValue {
-                    self.changeTrackLovedValueTo(loved)
-                }
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-                self.changeTrackLovedValueTo(oldLovedValue)
-        })
+//        HypeMachineAPI.Tracks.ToggleLoved(representedTrack,
+//            success: {loved in
+//                if loved != newLovedValue {
+//                    self.changeTrackLovedValueTo(loved)
+//                }
+//            }, failure: {error in
+//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+//                println(error)
+//                self.changeTrackLovedValueTo(oldLovedValue)
+//        })
     }
     
     func postInfoTextFieldClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Track Info Blog Description")
+        Analytics.trackButtonClick("Track Info Blog Description")
         
         NSWorkspace.sharedWorkspace().openURL(representedTrack.postURL)
     }
     
-    func genreButtonClicked(genre: Genre) {
-        loadSingleGenreView(genre)
+    func tagButtonClicked(tag: HypeMachineAPI.Tag) {
+        loadSingleTagView(tag)
     }
     
-    func loadSingleGenreView(genre: Genre) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
-        viewController.title = genre.name
+    func loadSingleTagView(tag: HypeMachineAPI.Tag) {
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+        viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = GenrePlaylistDataSource(genre: genre, viewController: viewController)
+        viewController.dataSource = TagTracksDataSource(tagName: tag.name)
+        viewController.dataSource!.viewController = viewController
     }
     
     @IBAction func downloadITunesButtonClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackButtonClick("Track Info Download iTunes")
+        Analytics.trackButtonClick("Track Info Download iTunes")
 
         NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
     }
     
     @IBAction func seeMoreButtonClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackButtonClick("Track Info See More")
+        Analytics.trackButtonClick("Track Info See More")
         
         NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
     }
     
     func trackLoved(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as! Track
+        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track === representedObject {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -100,7 +102,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as! Track
+        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track === representedTrack {
             representedTrack.loved = track.loved
             updateLoveButton()
@@ -140,13 +142,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func updateAlbumArt() {
-        HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
-            success: { image in
-                self.albumArt.image = image
-            }, failure: { error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+//        HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
+//            success: { image in
+//                self.albumArt.image = image
+//            }, failure: { error in
+//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+//                println(error)
+//        })
     }
     
     func updatePostedCount() {

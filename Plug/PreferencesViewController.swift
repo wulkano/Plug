@@ -17,23 +17,23 @@ class PreferencesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Analytics.sharedInstance.trackView("PreferencesWindow/General")
+        Analytics.trackView("PreferencesWindow/General")
     }
 
     @IBAction func generalTabClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackView("PreferencesWindow/General")
+        Analytics.trackView("PreferencesWindow/General")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(0)
     }
     
     @IBAction func hotkeysTabClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackView("PreferencesWindow/HotKeys")
+        Analytics.trackView("PreferencesWindow/HotKeys")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(1)
     }
 
     @IBAction func mutedTabClicked(sender: NSButton) {
-        Analytics.sharedInstance.trackView("PreferencesWindow/Muted")
+        Analytics.trackView("PreferencesWindow/Muted")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(2)
     }

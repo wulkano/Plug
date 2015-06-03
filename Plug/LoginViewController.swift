@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class LoginViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var usernameOrEmailTextField: NSTextField!
@@ -49,7 +50,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func loginButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Log In")
+        Analytics.trackButtonClick("Log In")
         let usernameOrEmail = usernameOrEmailTextField.stringValue
         let password = passwordTextField.stringValue
         
@@ -58,30 +59,34 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func loginWithUsernameOrEmail(usernameOrEmail: String, andPassword password: String) {
-        HypeMachineAPI.GetToken(usernameOrEmail, password: password,
-            success: { username, token in
-                Authentication.SaveUsername(username, withToken: token)
-                self.signedInSuccessfully()
-            }, failure: { error in
-                // TODO: Better appwide errors
+        HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) {
+            (username, token, error) in
+            
+            if error != nil {
                 var errorMessage: String
-                if error.localizedDescription == "Wrong password" {
+                if error!.localizedDescription == "Wrong password" {
                     errorMessage = "Incorrect username/password"
                 } else {
                     errorMessage = "Network Error"
-                    Logger.LogError(error)
+                    println(error!)
                 }
                 self.loginButton.buttonState = .Error(errorMessage)
-        })
+                return
+            }
+            
+            Authentication.SaveUsername(username!, withToken: token!)
+            HypeMachineAPI.hmToken = token!
+            self.signedInSuccessfully()
+        }
     }
     
     @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Forgot Password")
+        Analytics.trackButtonClick("Forgot Password")
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php")!)
     }
     
     @IBAction func signUpButtonClicked(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Sign Up")
+        Analytics.trackButtonClick("Sign Up")
         NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1")!)
     }
     

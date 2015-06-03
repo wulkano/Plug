@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
@@ -33,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupUserDefaults()
         setupUserNotifications()
         setupMediaKeys()
+        setupHypeMachineAPI()
         
         if Authentication.UserSignedIn() {
             openMainWindow()
@@ -43,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openMainWindow() {
         if mainWindowController == nil {
-            mainWindowController = NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as! NSWindowController
+            mainWindowController = (NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as! NSWindowController)
         }
         mainWindowController!.showWindow(self)
         showSignOutInMenu()
@@ -56,9 +58,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func openLoginWindow() {
-        Analytics.sharedInstance.trackView("LoginWindow")
+        Analytics.trackView("LoginWindow")
         if loginWindowController == nil {
-            loginWindowController = NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as! NSWindowController
+            loginWindowController = (NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as! NSWindowController)
         }
         loginWindowController!.showWindow(self)
         hideSignOutFromMenu()
@@ -73,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
             let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: NSBundle.mainBundle())!
-            preferencesWindowController = preferencesStoryboard.instantiateInitialController() as! NSWindowController
+            preferencesWindowController = (preferencesStoryboard.instantiateInitialController() as! NSWindowController)
         }
         preferencesWindowController!.showWindow(self)
     }
@@ -109,13 +111,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func signOut(sender: AnyObject) {
-        Analytics.sharedInstance.trackButtonClick("Sign Out")
+        Analytics.trackButtonClick("Sign Out")
         closeMainWindow()
         if preferencesWindowController != nil {
             closePreferencesWindow()
         }
         AudioPlayer.sharedInstance.reset()
         Authentication.DeleteUsernameAndToken()
+        HypeMachineAPI.hmToken = nil
         openLoginWindow()
     }
     
@@ -139,5 +142,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func setupMediaKeys() {
         MediaKeyHandler.sharedInstance
+    }
+    
+    private func setupHypeMachineAPI() {
+        HypeMachineAPI.apiKey = ApiKey
+        if let hmToken = Authentication.GetToken() {
+            HypeMachineAPI.hmToken = hmToken
+        }
     }
 }

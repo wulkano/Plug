@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import HypeMachineAPI
+import Alamofire
 
 class SingleFriendViewController: BaseContentViewController {
     @IBOutlet var avatarView: NSImageView!
@@ -19,15 +21,15 @@ class SingleFriendViewController: BaseContentViewController {
         return "MainWindow/SingleFriend"
     }
     
-    var playlistViewController: BasePlaylistViewController!
+    var tracksViewController: TracksViewController!
 
     override var representedObject: AnyObject! {
         didSet {
             representedObjectChanged()
         }
     }
-    var representedFriend: Friend {
-        return representedObject as! Friend
+    var representedFriend: HypeMachineAPI.User {
+        return representedObject as! HypeMachineAPI.User
     }
     
     func representedObjectChanged() {
@@ -44,13 +46,17 @@ class SingleFriendViewController: BaseContentViewController {
     func updateImage() {
         if representedFriend.avatarURL == nil { return }
         
-        HypeMachineAPI.Friends.Avatar(representedFriend,
-            success: { image in
-                self.avatarView.image = image
-            }, failure: { error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+        Alamofire.request(.GET, representedFriend.avatarURL!).validate().responseImage {
+            (_, _, image, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                return
+            }
+            
+            self.avatarView.image = image
+        }
     }
     
     func updateUsername() {
@@ -66,10 +72,11 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
-        addChildViewController(playlistViewController)
-        ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
-        playlistViewController.dataSource = FriendPlaylistDataSource(friend: representedFriend, viewController: playlistViewController)
+        tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+        addChildViewController(tracksViewController)
+        ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
+        tracksViewController.dataSource = UserTracksDataSource(username: representedFriend.username)
+        tracksViewController.dataSource!.viewController = tracksViewController
     }
     
     override func addLoaderView() {
@@ -79,6 +86,6 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     override func refresh() {
-        playlistViewController.refresh()
+        tracksViewController.refresh()
     }
 }

@@ -7,12 +7,13 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     @IBOutlet var contextMenu: NSMenu!
     
-    var representedTrack: Track {
-        return representedObject as! Track
+    var representedTrack: HypeMachineAPI.Track {
+        return representedObject as! HypeMachineAPI.Track
     }
     
     @IBAction func copyHypeMachineLinkClicked(sender: AnyObject) {
@@ -34,7 +35,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
                 NSPasteboard.generalPasteboard().setString(trackURL.absoluteString!, forType: NSStringPboardType)
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
+                println(error)
         })
     }
     
@@ -47,7 +48,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
                 return
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
+                println(error)
         })
     }
     
@@ -121,6 +122,15 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func requestPermalinkForTrackID(trackID: String) {
-        SoundCloudAPI.Tracks.Permalink(trackID, success: success, failure: failure)
+        SoundCloudAPI.Tracks.permalink(trackID) {
+            (permalink, error) in
+            
+            if permalink != nil {
+                self.success(trackURL: permalink!)
+                return
+            } else {
+                self.failure(error: error!)
+            }
+        }
     }
 }

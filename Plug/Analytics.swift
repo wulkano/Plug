@@ -7,30 +7,24 @@
 //
 
 import Cocoa
+import SimpleGoogleAnalytics
 
-class Analytics {
-    class var sharedInstance: Analytics {
-        struct Singleton {
-            static let instance = Analytics()
-        }
-        return Singleton.instance
+struct Analytics {
+    static let sharedTracker = SimpleGoogleAnalytics.Manager(trackingID: "UA-54659511-1", userID: Authentication.GetUsernameHash())
+    
+    static func trackView(viewName: String) {
+        sharedTracker.trackPageview(viewName)
     }
     
-    let tracker = PlugGoogleAnalytics(trackingID: "UA-54659511-1")
-    
-    func trackView(viewName: String) {
-        tracker.trackPageview(viewName)
+    static func trackEvent(#category: String, action: String, label: String?, value: String?) {
+        sharedTracker.trackEvent(category: category, action: action, label: label, value: value)
     }
     
-    func trackButtonClick(buttonName: String) {
+    static func trackButtonClick(buttonName: String) {
         trackEvent(category: "Button", action: "Click", label: buttonName, value: nil)
     }
     
-    func trackAudioPlaybackEvent(actionName: String) {
+    static func trackAudioPlaybackEvent(actionName: String) {
         trackEvent(category: "AudioPlayback", action: actionName, label: nil, value: nil)
-    }
-    
-    func trackEvent(#category: String, action: String, label: String?, value: String?) {
-        tracker.trackEvent(category: category, action: action, label: label, value: value)
     }
 }

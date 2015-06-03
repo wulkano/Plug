@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import HypeMachineAPI
+import Alamofire
 
 class FriendTableCellView: IOSStyleTableCellView {
     @IBOutlet var avatarView: NSImageView!
@@ -18,8 +20,8 @@ class FriendTableCellView: IOSStyleTableCellView {
             objectValueChanged()
         }
     }
-    var friendValue: Friend {
-        return objectValue as! Friend
+    var friendValue: HypeMachineAPI.User {
+        return objectValue as! HypeMachineAPI.User
     }
     
     func objectValueChanged() {
@@ -42,12 +44,16 @@ class FriendTableCellView: IOSStyleTableCellView {
         avatarView.image = NSImage(named: "Avatar-Placeholder")
         if friendValue.avatarURL == nil { return }
         
-        HypeMachineAPI.Friends.Avatar(friendValue,
-            success: { image in
-                self.avatarView.image = image
-            }, failure: { error in
-//               Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+        Alamofire.request(.GET, friendValue.avatarURL!).validate().responseImage {
+            (_, _, image, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                return
+            }
+            
+            self.avatarView.image = image
+        }
     }
 }

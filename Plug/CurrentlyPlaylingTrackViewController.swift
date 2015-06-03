@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBOutlet var playPauseButton: HoverToggleButton!
@@ -19,9 +20,10 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBOutlet var titleButton: HyperlinkButton!
     @IBOutlet var artistButton: HyperlinkButton!
     
+    var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
-    var track: Track? {
+    var track: HypeMachineAPI.Track? {
         didSet {
             trackChanged()
         }
@@ -33,7 +35,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         didSet { playStateChanged() }
     }
     var trackingProgress: Bool = false
-    var trackValue: Track {
+    var trackValue: HypeMachineAPI.Track {
         return track!
     }
     
@@ -195,10 +197,9 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func showLoveButton() -> Bool {
-        switch trackValue.playlist!.type {
-        case .Favorites:
+        if dataSource is FavoriteTracksDataSource {
             return false
-        default:
+        } else {
             return true
         }
     }
@@ -216,7 +217,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackPlaying(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track !== notificationTrack {
             track = notificationTrack
             playState = PlayState.Playing
@@ -229,7 +230,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track != nil && track! === notificationTrack {
             trackValue.loved = true
             loveButton.selected = true
@@ -237,7 +238,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func trackUnLoved(notification: NSNotification) {
-        let notificationTrack = notification.userInfo!["track"] as! Track
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track != nil && track === notificationTrack {
             trackValue.loved = false
             loveButton.selected = false
@@ -245,17 +246,17 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Play/Pause")
+        Analytics.trackButtonClick("Playlist Play/Pause")
         switch playState {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
-            AudioPlayer.sharedInstance.play(trackValue)
+            AudioPlayer.sharedInstance.playNewTrack(trackValue, dataSource: dataSource!)
         }
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Info")
+        Analytics.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
             trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil)!.instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
@@ -265,22 +266,22 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {
-        Analytics.sharedInstance.trackButtonClick("Playlist Heart")
+        Analytics.trackButtonClick("Playlist Heart")
         let oldLovedValue = trackValue.loved
         let newLovedValue = !oldLovedValue
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Tracks.ToggleLoved(trackValue,
-            success: {loved in
-                if loved != newLovedValue {
-                    self.changeTrackLovedValueTo(loved)
-                }
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-                self.changeTrackLovedValueTo(oldLovedValue)
-        })
+//        HypeMachineAPI.Tracks.ToggleLoved(trackValue,
+//            success: {loved in
+//                if loved != newLovedValue {
+//                    self.changeTrackLovedValueTo(loved)
+//                }
+//            }, failure: {error in
+//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+//                println(error)
+//                self.changeTrackLovedValueTo(oldLovedValue)
+//        })
     }
     
     @IBAction func progressSliderDragged(sender: NSSlider) {
@@ -288,11 +289,12 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = ArtistPlaylistDataSource(artistName: trackValue.artist, viewController: viewController)
+        viewController.dataSource = ArtistTracksDataSource(artistName: trackValue.artist)
+        viewController.dataSource!.viewController = viewController
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {

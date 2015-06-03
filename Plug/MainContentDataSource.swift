@@ -9,7 +9,7 @@
 import Cocoa
 
 class MainContentDataSource: NSObject, NSTableViewDataSource {
-    var viewController: BaseDataSourceViewController
+    var viewController: DataSourceViewController
     var filtering: Bool = false
     var standardTableContents: [AnyObject] = []
     var filteredTableContents: [AnyObject] = []
@@ -21,7 +21,7 @@ class MainContentDataSource: NSObject, NSTableViewDataSource {
         }
     }
     
-    init(viewController: BaseDataSourceViewController) {
+    init(viewController: DataSourceViewController) {
         self.viewController = viewController
         super.init()
     }
