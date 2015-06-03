@@ -17,7 +17,7 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
     @IBOutlet weak var tableView: NSTableView!
     
     var preferences: [GeneralPreference] = [
-        GeneralPreference(title: "Show notification when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
+        GeneralPreference(title: "Show notifications when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
         GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
     ]
 

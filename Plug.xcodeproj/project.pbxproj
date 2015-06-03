@@ -404,30 +404,6 @@
 			name = SPMediaKeyTap;
 			sourceTree = "<group>";
 		};
-		FA1C5AAB19E889C800DD7165 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				FA50280219C02EE800E3C84E /* Analytics.swift */,
-				FA5394F919AFA065006A95A5 /* Animations.swift */,
-				FAA34A9419B2F0450038868A /* Async.swift */,
-				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
-				FAD1F54819A7C793002322D6 /* Authentication.swift */,
-				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
-				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
-				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
-				FAA51A58198084E50057EC34 /* NavigationSection.swift */,
-				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
-				FAE38D3919E9E521005FD94B /* Rand.swift */,
-				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
-				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
-				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
-				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
-				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
-				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
-			);
-			name = Helpers;
-			sourceTree = "<group>";
-		};
 		FA1C5AE619E8980A00DD7165 /* ITSwitch */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,10 +460,9 @@
 				FA64C6A619764FE9003933E3 /* Globals.swift */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
 				FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */,
+				FA64C6A119764DAE003933E3 /* Models */,
 				FA9EA043199B0D1500D9AB8A /* Data Sources */,
 				FA53950E19B03440006A95A5 /* Formatters */,
-				FA1C5AAB19E889C800DD7165 /* Helpers */,
-				FA64C6A119764DAE003933E3 /* Models */,
 				FA0B1CF31976D8420030C873 /* Views */,
 				FA0B1CF21976D8320030C873 /* Controllers */,
 				FA9A2F4419B6A5470057080C /* Storyboards */,
@@ -565,7 +540,24 @@
 		FA64C6A119764DAE003933E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA50280219C02EE800E3C84E /* Analytics.swift */,
+				FA5394F919AFA065006A95A5 /* Animations.swift */,
+				FAA34A9419B2F0450038868A /* Async.swift */,
+				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
+				FAD1F54819A7C793002322D6 /* Authentication.swift */,
+				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
+				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
+				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
+				FAA51A58198084E50057EC34 /* NavigationSection.swift */,
+				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
+				FAE38D3919E9E521005FD94B /* Rand.swift */,
+				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
+				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
+				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
+				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
+				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
+				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";

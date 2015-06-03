@@ -33,15 +33,16 @@ class LoveCountTrackTableCellView: TrackTableCellView {
     }
     
     func updateLoveCountVisibility() {
-        if mouseInside {
-            loveCount.hidden = true
-        } else {
-            switch playState {
-            case .Playing, .Paused:
-                loveCount.hidden = true
-            case .NotPlaying:
-                loveCount.hidden = false
-            }
-        }
+        loveCount.hidden = !playPauseButton.hidden
+//        if mouseInside {
+//            loveCount.hidden = true
+//        } else {
+//            switch playState {
+//            case .Playing, .Paused:
+//                loveCount.hidden = true
+//            case .NotPlaying:
+//                loveCount.hidden = false
+//            }
+//        }
     }
 }

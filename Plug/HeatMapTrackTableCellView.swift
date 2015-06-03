@@ -48,15 +48,16 @@ class HeatMapTrackTableCellView: TrackTableCellView {
     }
     
     func updateHeatMapVisibility() {
-        if mouseInside {
-            heatMapView.hidden = true
-        } else {
-            switch playState {
-            case .Playing, .Paused:
-                heatMapView.hidden = true
-            case .NotPlaying:
-                heatMapView.hidden = false
-            }
-        }
+        heatMapView.hidden = !playPauseButton.hidden
+//        if mouseInside {
+//            heatMapView.hidden = true
+//        } else {
+//            switch playState {
+//            case .Playing, .Paused:
+//                heatMapView.hidden = true
+//            case .NotPlaying:
+//                heatMapView.hidden = false
+//            }
+//        }
     }
 }

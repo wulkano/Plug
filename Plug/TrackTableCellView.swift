@@ -10,6 +10,11 @@ import Cocoa
 import HypeMachineAPI
 
 class TrackTableCellView: IOSStyleTableCellView {
+    let titleColor = NSColor(red256: 0, green256: 0, blue256: 0)
+    let artistColor = NSColor(red256: 138, green256: 146, blue256: 150)
+    let disabledTitleColor = NSColor(red256: 120, green256: 120, blue256: 120)
+    let disabledArtistColor = NSColor(red256: 178, green256: 186, blue256: 190)
+    
     @IBOutlet var playPauseButton: HoverToggleButton!
     @IBOutlet var loveButton: TransparentButton!
     @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
@@ -100,9 +105,11 @@ class TrackTableCellView: IOSStyleTableCellView {
     
     func updateTrackAvailability() {
         if trackValue.audioUnavailable {
-            // TODO:
+            titleButton.textColor = disabledTitleColor
+            artistButton.textColor = disabledArtistColor
         } else {
-            
+            titleButton.textColor = titleColor
+            artistButton.textColor = artistColor
         }
     }
     
@@ -127,7 +134,9 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func updatePlayPauseButtonVisibility() {
-        if mouseInside {
+        if trackValue.audioUnavailable {
+            playPauseButton.hidden = true
+        } else if mouseInside {
             playPauseButton.hidden = false
         } else {
             switch playState {
