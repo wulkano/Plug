@@ -1239,6 +1239,9 @@
                                                                 <constraint firstItem="12d-ZB-ZJc" firstAttribute="leading" secondItem="4ug-9y-aGU" secondAttribute="leading" constant="73" id="x88-Hg-oVQ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="dDi-zo-fI3" secondAttribute="bottom" id="zvl-iC-aLb"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="showLoveButton" value="NO"/>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <outlet property="artistButton" destination="yB2-EY-2N6" id="QkP-3d-SNL"/>
                                                                 <outlet property="artistTrailingConstraint" destination="GF8-eK-4D8" id="Nz0-Kg-uW0"/>
@@ -2184,7 +2187,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="4gR-JS-eJJ" customClass="FeedPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="4gR-JS-eJJ" customClass="FeedTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="84"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>

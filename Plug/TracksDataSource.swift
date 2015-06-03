@@ -15,14 +15,17 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     @IBOutlet var viewController: DataSourceViewController!
     
     var tracks: [HypeMachineAPI.Track]?
-    var currentPage: Int = 0
+    var currentPage: Int = 1
     var loadingData: Bool = false
     var allTracksLoaded: Bool = false
-    
-//    init(viewController: DataSourceViewController) {
-//        self.viewController = viewController
-//        super.init()
-//    }
+    var nextPageParams: [String: AnyObject] {
+        get {
+            return [
+                "page": currentPage + 1,
+                "count": tracksPerPage,
+            ]
+        }
+    }
     
     func loadInitialValues() {
         if loadingData { return }
@@ -60,21 +63,23 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     
     func requestNextPage() {}
     
-    func requestNextPageSuccess(tracks: [HypeMachineAPI.Track], lastPage: Bool) {
-        currentPage++
-        allTracksLoaded = lastPage
+    func requestNextPageResponse(newTracks: [HypeMachineAPI.Track]?, error: NSError?) {
         
-        if tracks.count > 0 {
-            let rowIndexes = rowIndexesForNewTracks(tracks)
-            self.tracks! = self.tracks! + tracks
+        if error != nil {
+            loadingError(error!)
+            return
+        }
+        
+        currentPage++
+        allTracksLoaded = newTracks!.count < tracksPerPage
+        
+        if newTracks!.count > 0 {
+            let rowIndexes = rowIndexesForNewTracks(newTracks!)
+            self.tracks! = self.tracks! + newTracks!
             viewController.tableView.insertRowsAtIndexes(rowIndexes, withAnimation: .EffectNone)
         }
         
         loadingData = false
-    }
-    
-    func requestNextPageFailure(error: NSError) {
-        loadingError(error)
     }
     
     func loadingError(error: NSError) {

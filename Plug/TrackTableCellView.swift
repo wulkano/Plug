@@ -20,6 +20,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     @IBOutlet var titleButton: HyperlinkButton!
     @IBOutlet var artistButton: HyperlinkButton!
     
+    @IBInspectable var showLoveButton: Bool = true
+    
     var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
@@ -181,7 +183,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         var openWidth: CGFloat = 38
         var closedWidth: CGFloat = 0
         
-        if mouseInside || (trackValue.loved && showLoveButton()) {
+        if mouseInside || (trackValue.loved && showLoveButton) {
             loveContainerWidthConstraint.constant = openWidth
         } else {
             loveContainerWidthConstraint.constant = closedWidth
@@ -197,16 +199,6 @@ class TrackTableCellView: IOSStyleTableCellView {
         } else {
             infoContainerWidthConstraint.constant = closedWidth
         }
-    }
-    
-    func showLoveButton() -> Bool {
-//        switch trackValue.playlist!.type {
-//        case .Favorites:
-//            return false
-//        default:
-//            return true
-//        }
-        return true
     }
     
     func trackProgress() {

@@ -22,6 +22,6 @@ class SearchTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.index(["q": searchQuery, "page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Tracks.index(nextPageParams.merge(["q": searchQuery]), callback: requestNextPageResponse)
     }
 }

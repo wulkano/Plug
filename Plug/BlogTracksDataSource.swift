@@ -22,6 +22,6 @@ class BlogTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, optionalParams: ["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

@@ -29,6 +29,7 @@
 		FA21F9B91B1EC83000EBAA09 /* SearchTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */; };
 		FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */; };
 		FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */; };
+		FA21F9BF1B1EE94E00EBAA09 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */; };
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
 		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
 		FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */; };
@@ -192,6 +193,7 @@
 		FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTracksDataSource.swift; sourceTree = "<group>"; };
 		FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTracksDataSource.swift; sourceTree = "<group>"; };
 		FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTracksDataSource.swift; sourceTree = "<group>"; };
+		FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
 		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
 		FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackContextMenuController.swift; sourceTree = "<group>"; };
@@ -545,19 +547,9 @@
 				FABB112E19C10DD8000DB1BC /* String+digest.swift */,
 				FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */,
 				FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */,
+				FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		FA53950519AFFE67006A95A5 /* TrackTableCellViews */ = {
-			isa = PBXGroup;
-			children = (
-				FA53950619AFFF01006A95A5 /* TrackTableCellView.swift */,
-				FAF13B29199D3D62009D9F66 /* FeedTrackTableCellView.swift */,
-				FA53950319AFFE31006A95A5 /* HeatMapTrackTableCellView.swift */,
-				FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */,
-			);
-			name = TrackTableCellViews;
 			sourceTree = "<group>";
 		};
 		FA53950E19B03440006A95A5 /* Formatters */ = {
@@ -606,7 +598,10 @@
 				FA4BF21819F60C4E0078AB82 /* TagTableCellView.swift */,
 				FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */,
 				FA4BF21619F609AE0078AB82 /* SectionHeaderTableCellView.swift */,
-				FA53950519AFFE67006A95A5 /* TrackTableCellViews */,
+				FA53950619AFFF01006A95A5 /* TrackTableCellView.swift */,
+				FAF13B29199D3D62009D9F66 /* FeedTrackTableCellView.swift */,
+				FA53950319AFFE31006A95A5 /* HeatMapTrackTableCellView.swift */,
+				FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */,
 			);
 			name = NSTableCellViews;
 			sourceTree = "<group>";
@@ -912,6 +907,7 @@
 				FA64C6A919765323003933E3 /* Array+contains.swift in Sources */,
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
+				FA21F9BF1B1EE94E00EBAA09 /* Dictionary+merge.swift in Sources */,
 				FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */,
 				FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,

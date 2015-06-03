@@ -22,6 +22,6 @@ class UserTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Users.showFavorites(username: username, optionalParams: ["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Users.showFavorites(username: username, optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

@@ -197,13 +197,11 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func showLoveButton() -> Bool {
-//        switch trackValue.playlist!.type {
-//        case .Favorites:
-//            return false
-//        default:
-//            return true
-//        }
-        return true
+        if dataSource is FavoriteTracksDataSource {
+            return false
+        } else {
+            return true
+        }
     }
     
     func trackProgress() {

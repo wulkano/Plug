@@ -15,6 +15,6 @@ class PopularTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.popular(["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Tracks.popular(nextPageParams, callback: requestNextPageResponse)
     }
 }

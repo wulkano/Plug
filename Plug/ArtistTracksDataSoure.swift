@@ -22,6 +22,6 @@ class ArtistTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, optionalParams: ["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

@@ -15,6 +15,6 @@ class FeedTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Me.feed(["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Me.feed(nextPageParams, callback: requestNextPageResponse)
     }
 }

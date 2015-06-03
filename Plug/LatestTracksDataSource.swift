@@ -15,6 +15,6 @@ class LatestTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.index(["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Tracks.index(nextPageParams, callback: requestNextPageResponse)
     }
 }

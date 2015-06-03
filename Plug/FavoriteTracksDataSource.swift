@@ -15,6 +15,6 @@ class FavoriteTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Me.favorites(["page": currentPage, "count": tracksPerPage], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Me.favorites(nextPageParams, callback: requestNextPageResponse)
     }
 }
