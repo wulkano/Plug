@@ -10,9 +10,9 @@ import Cocoa
 
 class SearchViewController: BaseContentViewController {
     @IBOutlet var searchResultsView: NSView!
-    var playlistSubType: SearchPlaylistSubType = .MostFavorites
-    var playlistViewController: BasePlaylistViewController?
-    var dataSource: SearchPlaylistDataSource?
+//    var playlistSubType: SearchPlaylistSubType = .MostFavorites
+    var tracksViewController: TracksViewController?
+    var dataSource: TracksDataSource?
     override var analyticsViewName: String {
         return "MainWindow/Search"
     }
@@ -22,22 +22,23 @@ class SearchViewController: BaseContentViewController {
         if keywords == "" { return }
 
         ensurePlaylistViewController()
-        playlistViewController!.dataSource = SearchPlaylistDataSource(searchKeywords: keywords, playlistSubType: playlistSubType, viewController: playlistViewController!)
+        tracksViewController!.dataSource = SearchTracksDataSource(searchQuery: keywords)
+        tracksViewController!.dataSource!.viewController = tracksViewController
     }
     
     func ensurePlaylistViewController() {
-        if playlistViewController == nil {
-            playlistViewController = (storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController)
-            addChildViewController(playlistViewController!)
-            ViewPlacementHelper.AddFullSizeSubview(playlistViewController!.view, toSuperView: searchResultsView)
+        if tracksViewController == nil {
+            tracksViewController = (storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController)
+            addChildViewController(tracksViewController!)
+            ViewPlacementHelper.AddFullSizeSubview(tracksViewController!.view, toSuperView: searchResultsView)
         }
     }
     
     override func addLoaderView() {}
     
     override func refresh() {
-        if playlistViewController != nil {
-            playlistViewController!.refresh()
+        if tracksViewController != nil {
+            tracksViewController!.refresh()
         }
     }
 }

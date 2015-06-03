@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import HypeMachineAPI
+import Alamofire
 
 class SingleBlogViewController: BaseContentViewController {
     @IBOutlet weak var backgroundView: BackgroundBorderView!
@@ -18,15 +20,15 @@ class SingleBlogViewController: BaseContentViewController {
         return "MainWindow/SingleBlog"
     }
     
-    var playlistViewController: BasePlaylistViewController!
+    var tracksViewController: TracksViewController!
     
     override var representedObject: AnyObject! {
         didSet {
             representedObjectChanged()
         }
     }
-    var representedBlog: Blog {
-        return representedObject as! Blog
+    var representedBlog: HypeMachineAPI.Blog {
+        return representedObject as! HypeMachineAPI.Blog
     }
     
     func representedObjectChanged() {
@@ -45,14 +47,17 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     func updateImage() {
-        HypeMachineAPI.Blogs.Image(representedBlog,
-            size: .Normal,
-            success: {image in
-                self.extractColorAndResizeImage(image)
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-        })
+        Alamofire.request(.GET, representedBlog.imageURLForSize(.Normal)).validate().responseImage() {
+            (_, _, image, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                return
+            }
+            
+            self.extractColorAndResizeImage(image!)
+        }
     }
     
     func extractColorAndResizeImage(image: NSImage) {
@@ -78,13 +83,14 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        playlistViewController = storyboard!.instantiateControllerWithIdentifier("BasePlaylistViewController") as! BasePlaylistViewController
+        tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         
-        addChildViewController(playlistViewController)
+        addChildViewController(tracksViewController)
         
-        ViewPlacementHelper.AddFullSizeSubview(playlistViewController.view, toSuperView: playlistContainer)
+        ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
 
-        playlistViewController.dataSource = BlogPlaylistDataSource(blog: representedBlog, viewController: playlistViewController)
+        tracksViewController.dataSource = BlogTracksDataSource(blogID: representedBlog.id)
+        tracksViewController.dataSource!.viewController = tracksViewController
     }
     
     override func addLoaderView() {
@@ -94,6 +100,6 @@ class SingleBlogViewController: BaseContentViewController {
     }
     
     override func refresh() {
-        playlistViewController.refresh()
+        tracksViewController.refresh()
     }
 }

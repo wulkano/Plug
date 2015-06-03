@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -286,7 +286,7 @@
         <!--Latest-->
         <scene sceneID="kN2-xY-ctg">
             <objects>
-                <viewController title="Latest" storyboardIdentifier="LatestPlaylistViewController" id="Azb-xg-1yq" customClass="LatestPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Latest" storyboardIdentifier="LatestTracksViewController" id="Azb-xg-1yq" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="KgC-Ty-CTV">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -298,6 +298,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="kY8-wE-2Y2" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -315,7 +316,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="LM0-KM-ycg" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="LM0-KM-ycg" customClass="LoveCountTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -541,12 +542,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="OPM-oQ-fo3" id="Sxe-11-1Mu"/>
                         <outlet property="scrollView" destination="ZgV-ZE-c2y" id="0sl-25-sqz"/>
                         <outlet property="tableView" destination="kY8-wE-2Y2" id="kVl-hR-aeO"/>
                     </connections>
                 </viewController>
                 <customObject id="bmf-sw-c1m" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="L7n-0t-AG1"/>
+                <customObject id="OPM-oQ-fo3" customClass="LatestTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="Azb-xg-1yq" id="Jkk-Xe-N9Y"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="186.5" y="-145.5"/>
         </scene>
@@ -759,10 +766,10 @@
             </objects>
             <point key="canvasLocation" x="-1631.5" y="-203.5"/>
         </scene>
-        <!--Base Playlist View Controller-->
+        <!--Tracks View Controller-->
         <scene sceneID="0BS-Vn-flk">
             <objects>
-                <viewController storyboardIdentifier="BasePlaylistViewController" id="hDU-e6-m9s" customClass="BasePlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TracksViewController" id="hDU-e6-m9s" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="JYz-b3-t2X">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -774,6 +781,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="7Rr-Jb-sVJ" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -791,7 +799,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="3MY-eq-1bY" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="3MY-eq-1bY" customClass="LoveCountTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1029,7 +1037,7 @@
         <!--Favorites-->
         <scene sceneID="Spe-UF-Md6">
             <objects>
-                <viewController title="Favorites" storyboardIdentifier="FavoritesPlaylistViewController" id="qhz-2Y-kA5" customClass="FavoritesPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Favorites" storyboardIdentifier="FavoriteTracksViewController" id="qhz-2Y-kA5" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="1XT-Fm-bwq">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1041,6 +1049,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="YGd-I5-a64" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -1058,7 +1067,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="4ug-9y-aGU" customClass="LoveCountPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="4ug-9y-aGU" customClass="LoveCountTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1230,6 +1239,9 @@
                                                                 <constraint firstItem="12d-ZB-ZJc" firstAttribute="leading" secondItem="4ug-9y-aGU" secondAttribute="leading" constant="73" id="x88-Hg-oVQ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="dDi-zo-fI3" secondAttribute="bottom" id="zvl-iC-aLb"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="showLoveButton" value="NO"/>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <outlet property="artistButton" destination="yB2-EY-2N6" id="QkP-3d-SNL"/>
                                                                 <outlet property="artistTrailingConstraint" destination="GF8-eK-4D8" id="Nz0-Kg-uW0"/>
@@ -1284,19 +1296,25 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="cB2-Tf-AWY" id="Mfb-P9-uBg"/>
                         <outlet property="scrollView" destination="2uO-5P-o9f" id="xYX-zG-Lmp"/>
                         <outlet property="tableView" destination="YGd-I5-a64" id="84J-e7-GRQ"/>
                     </connections>
                 </viewController>
                 <customObject id="mUV-I8-7nb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="6kC-Hh-vvC"/>
+                <customObject id="cB2-Tf-AWY" customClass="FavoriteTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="qhz-2Y-kA5" id="BzW-lJ-R2W"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-249.5" y="-145.5"/>
         </scene>
         <!--Popular-->
         <scene sceneID="DIj-Vb-cfL">
             <objects>
-                <viewController title="Popular" storyboardIdentifier="PopularPlaylistViewController" id="ksC-Xt-iaG" customClass="PopularPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Popular" storyboardIdentifier="PopularTracksViewController" id="ksC-Xt-iaG" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="ntW-KG-MHd">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1308,6 +1326,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="KzI-j4-OAQ" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -1325,7 +1344,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="zMt-8W-wXo" customClass="HeatMapPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="zMt-8W-wXo" customClass="HeatMapTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1546,12 +1565,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="bcj-UT-MyW" id="h7f-hl-tsL"/>
                         <outlet property="scrollView" destination="eyc-FO-vNr" id="CXF-3T-kH1"/>
                         <outlet property="tableView" destination="KzI-j4-OAQ" id="bW3-Vt-6QL"/>
                     </connections>
                 </viewController>
                 <customObject id="1sU-F0-EzU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="8Il-7A-zXp"/>
+                <customObject id="bcj-UT-MyW" customClass="PopularTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="ksC-Xt-iaG" id="SWE-IV-85X"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-687.5" y="-145.5"/>
         </scene>
@@ -2002,6 +2027,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="8VV-gy-4I5" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2131,7 +2157,7 @@
         <!--Feed-->
         <scene sceneID="ab2-zX-tc6">
             <objects>
-                <viewController title="Feed" storyboardIdentifier="FeedPlaylistViewController" id="gGO-bu-pEf" customClass="FeedPlaylistViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Feed" storyboardIdentifier="FeedTracksViewController" id="gGO-bu-pEf" customClass="TracksViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="Jga-UC-nwf">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="213"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2143,6 +2169,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="84" viewBased="YES" id="eiU-iy-OBO" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2160,7 +2187,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="4gR-JS-eJJ" customClass="FeedPlaylistTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView id="4gR-JS-eJJ" customClass="FeedTrackTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="409" height="84"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2432,12 +2459,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="hB1-Lj-KJO" id="L6W-W5-UXU"/>
                         <outlet property="scrollView" destination="aqt-fZ-qx4" id="btZ-pv-Rrk"/>
                         <outlet property="tableView" destination="eiU-iy-OBO" id="26S-qk-fVO"/>
                     </connections>
                 </viewController>
                 <customObject id="xx9-mh-PCn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="fAA-nw-HF3"/>
+                <customObject id="hB1-Lj-KJO" customClass="FeedTracksDataSource" customModule="Plug" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="gGO-bu-pEf" id="ZNQ-KD-CZD"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="642.5" y="-145.5"/>
         </scene>
@@ -2495,6 +2528,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="64" viewBased="YES" id="ozp-GG-kE1" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2543,7 +2577,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="71a-NO-iTk"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Artist 1, Artist 2, Artist 3" id="P3s-z8-4eS">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Artist 1, Artist 2, Artist 3" id="P3s-z8-4eS">
                                                                         <font key="font" size="13" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" red="0.54117647058823526" green="0.5725490196078431" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -2573,6 +2607,7 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="nameTextField" destination="aH6-EF-KSn" id="J8A-tR-EWF"/>
+                                                                <outlet property="recentArtistsTextField" destination="UAH-dv-bw8" id="bfU-sN-y2J"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="SectionHeader" id="Dpd-Pz-k8J" customClass="SectionHeaderTableCellView" customModule="Plug" customModuleProvider="target">
@@ -2652,10 +2687,10 @@
             </objects>
             <point key="canvasLocation" x="1082.5" y="-121.5"/>
         </scene>
-        <!--Genres-->
+        <!--Tags-->
         <scene sceneID="Inn-Jm-Try">
             <objects>
-                <viewController title="Genres" storyboardIdentifier="GenresViewController" id="ibg-UP-aYQ" customClass="GenresViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tags" storyboardIdentifier="TagsViewController" id="ibg-UP-aYQ" customClass="TagsViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Vxh-Sr-Uh2">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2706,6 +2741,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" viewBased="YES" id="6Se-cr-Bvs" customClass="ExtendedTableView" customModule="Plug" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="409" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -2723,13 +2759,13 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenreTableCellView" id="Uhc-9h-ryt" customClass="GenresTableCellView" customModule="Plug" customModuleProvider="target">
+                                                        <tableCellView identifier="TagTableCellView" id="Uhc-9h-ryt" customClass="TagTableCellView" customModule="Plug" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="406" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="crE-do-0TI">
                                                                     <rect key="frame" x="20" y="13" width="388" height="24"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Genre Name" id="2zh-jR-Kh2">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tag Name" id="2zh-jR-Kh2">
                                                                         <font key="font" size="16" name="HelveticaNeue-Medium"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

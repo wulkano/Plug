@@ -7,28 +7,28 @@
 //
 
 import Foundation
+import Alamofire
 
 let ClientID = "2c3c67194673f9968b7c8b5f2b50d486"
 
 struct SoundCloudAPI {
     struct Tracks {
-        static func Permalink(trackID: String, success: (trackURL: NSURL)->(), failure: (error: NSError)->()) {
-            let url = "http://api.soundcloud.com/tracks/\(trackID).json"
-            let parameters: [NSObject: AnyObject] = ["client_id": ClientID]
-            HTTP.GetJSON(url,
-                parameters: parameters,
-                success: { operation, responseObject in
-                    let responseDictionary = responseObject as! NSDictionary
-                    if let permalink = responseDictionary["permalink_url"] as? String {
-                        let trackURL = NSURL(string: permalink)!
-                        success(trackURL: trackURL)
-                    } else {
-                        let error = NSError(domain: PlugErrorDomain, code: 3, userInfo: [NSLocalizedDescriptionKey: "No permalink found in response."])
-                        failure(error: error)
+        
+        static func permalink(trackId: String, callback: (permalink: NSURL?, error: NSError?)->Void) {
+            let url = "http://api.soundcloud.com/tracks/\(trackId).json"
+            
+            Alamofire.request(.GET, url, parameters: ["client_id": ClientID]).validate().responseJSON {
+                (_, _, JSON, error) in
+                var permalink: NSURL?
+                
+                if error == nil {
+                    if let permalinkString = (JSON?.valueForKeyPath("permalink_url") as? String) {
+                        permalink = NSURL(string: permalinkString)
                     }
-                }, failure: { operation, error in
-                    failure(error: error)
-            })
+                }
+                
+                callback(permalink: permalink, error: error)
+            }
         }
     }
 }

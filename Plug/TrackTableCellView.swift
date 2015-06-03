@@ -1,15 +1,15 @@
 //
-//  CurrentlyPlaylingTrackViewController.swift
+//  TrackTableCellView.swift
 //  Plug
 //
-//  Created by Alex Marchant on 9/13/14.
+//  Created by Alex Marchant on 8/28/14.
 //  Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 import HypeMachineAPI
 
-class CurrentlyPlaylingTrackViewController: NSViewController {
+class TrackTableCellView: IOSStyleTableCellView {
     @IBOutlet var playPauseButton: HoverToggleButton!
     @IBOutlet var loveButton: TransparentButton!
     @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
@@ -20,12 +20,14 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     @IBOutlet var titleButton: HyperlinkButton!
     @IBOutlet var artistButton: HyperlinkButton!
     
+    @IBInspectable var showLoveButton: Bool = true
+    
     var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
-    var track: HypeMachineAPI.Track? {
+    override var objectValue: AnyObject! {
         didSet {
-            trackChanged()
+            objectValueChanged()
         }
     }
     var mouseInside: Bool = false {
@@ -34,10 +36,11 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     var playState: PlayState = PlayState.NotPlaying {
         didSet { playStateChanged() }
     }
-    var trackingProgress: Bool = false
     var trackValue: HypeMachineAPI.Track {
-        return track!
+        return objectValue as! HypeMachineAPI.Track
     }
+    var trackingProgress: Bool = false
+    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -55,7 +58,9 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
     }
     
-    func trackChanged() {
+    func objectValueChanged() {
+        if objectValue == nil { return }
+
         playState = currentPlayState()
         updateTrackAvailability()
         updateTrackTitle()
@@ -66,7 +71,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     }
     
     func currentPlayState() -> PlayState {
-        if AudioPlayer.sharedInstance.currentTrack === trackValue {
+        if AudioPlayer.sharedInstance.currentTrack === objectValue {
             if AudioPlayer.sharedInstance.playing {
                 return PlayState.Playing
             } else {
@@ -178,7 +183,7 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         var openWidth: CGFloat = 38
         var closedWidth: CGFloat = 0
         
-        if mouseInside || (trackValue.loved && showLoveButton()) {
+        if mouseInside || (trackValue.loved && showLoveButton) {
             loveContainerWidthConstraint.constant = openWidth
         } else {
             loveContainerWidthConstraint.constant = closedWidth
@@ -196,14 +201,6 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         }
     }
     
-    func showLoveButton() -> Bool {
-        if dataSource is FavoriteTracksDataSource {
-            return false
-        } else {
-            return true
-        }
-    }
-    
     func trackProgress() {
         if trackingProgress == false {
             Notifications.subscribe(observer: self, selector: "progressUpdated:", name: Notifications.TrackProgressUpdated, object: nil)
@@ -218,31 +215,36 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
     
     func trackPlaying(notification: NSNotification) {
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track !== notificationTrack {
-            track = notificationTrack
+        if notificationTrack === objectValue {
             playState = PlayState.Playing
-            view.hidden = true
+        } else {
+            playState = PlayState.NotPlaying
         }
     }
     
     func trackPaused(notification: NSNotification) {
-        playState = PlayState.Paused
+        let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
+        if notificationTrack === objectValue {
+            playState = PlayState.Paused
+        }
     }
     
     func trackLoved(notification: NSNotification) {
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track != nil && track! === notificationTrack {
+        if notificationTrack === objectValue {
             trackValue.loved = true
             loveButton.selected = true
         }
+        updateLoveContainerSpacing()
     }
     
     func trackUnLoved(notification: NSNotification) {
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track != nil && track === notificationTrack {
+        if notificationTrack === objectValue {
             trackValue.loved = false
             loveButton.selected = false
         }
+        updateLoveContainerSpacing()
     }
     
     @IBAction func playPauseButtonClicked(sender: HoverToggleButton) {
@@ -251,16 +253,17 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
-            AudioPlayer.sharedInstance.playNewTrack(trackValue, dataSource: dataSource!)
+            AudioPlayer.sharedInstance.playNewTrack(trackValue, dataSource: dataSource)
         }
     }
     
     @IBAction func infoButtonClicked(sender: TransparentButton) {
         Analytics.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
-            trackInfoWindowController = NSStoryboard(name: "TrackInfo", bundle: nil)!.instantiateInitialController() as? NSWindowController
+            let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)!
+            trackInfoWindowController = trackInfoStoryboard.instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
-            trackInfoViewController.representedObject = track
+            trackInfoViewController.representedObject = objectValue
         }
         trackInfoWindowController!.showWindow(self)
     }

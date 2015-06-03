@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import HypeMachineAPI
 
 struct UserNotifications {
     struct Deliver {
-        static func NewTrackPlaying(track: Track) {
+        static func NewTrackPlaying(track: HypeMachineAPI.Track) {
             deliverNotification(track.title, informativeText: track.artist)
         }
         

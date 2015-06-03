@@ -7,9 +7,10 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class PostInfoFormatter: NSFormatter {
-    func attributedStringForPostInfo(track: Track) -> NSAttributedString {
+    func attributedStringForPostInfo(track: HypeMachineAPI.Track) -> NSAttributedString {
         var postInfoAttributedString = NSMutableAttributedString()
         var formattedBlogName = attributedBlogName(track.postedBy)
         var formattedDescription = attributedDescription(track.postedByDescription)

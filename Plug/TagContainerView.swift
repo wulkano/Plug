@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class TagContainerView: NSView {
     override var flipped: Bool {
@@ -14,7 +15,7 @@ class TagContainerView: NSView {
     }
     let buttonSpacing: CGFloat = 4
     let buttonHeight: CGFloat = 24
-    var tags: [Genre] = [] {
+    var tags: [HypeMachineAPI.Tag] = [] {
         didSet {
             updateTags()
         }
@@ -39,7 +40,7 @@ class TagContainerView: NSView {
         }
     }
     
-    func generateTagButtonForTag(tag: Genre) -> TagButton {
+    func generateTagButtonForTag(tag: HypeMachineAPI.Tag) -> TagButton {
         let tagButton = TagButton(frame: NSMakeRect(0, 0, 0, buttonHeight))
         tagButton.title = tag.name.uppercaseString
         tagButton.fillColor = getFillColorForTag(tag)
@@ -61,13 +62,13 @@ class TagContainerView: NSView {
         }
     }
     
-    func getFillColorForTag(tag: Genre) -> NSColor {
+    func getFillColorForTag(tag: HypeMachineAPI.Tag) -> NSColor {
         let gradient = makeGradient()
         let gradientLocation = gradientLocationForTag(tag)
         return gradient.interpolatedColorAtLocation(gradientLocation)
     }
     
-    func gradientLocationForTag(tag: Genre) -> CGFloat {
+    func gradientLocationForTag(tag: HypeMachineAPI.Tag) -> CGFloat {
         let index = find(tags, tag)!
         return CGFloat(index) / CGFloat((tags.count - 1))
     }
@@ -81,16 +82,16 @@ class TagContainerView: NSView {
     }
     
     func tagButtonClick(sender: TagButton) {
-        let genre = genreForButton(sender)
-        delegate.genreButtonClicked(genre)
+        let tag = tagForButton(sender)
+        delegate.tagButtonClicked(tag)
     }
 
-    func genreForButton(button: TagButton) -> Genre {
+    func tagForButton(button: TagButton) -> HypeMachineAPI.Tag {
         let index = find(buttons, button)!
         return tags[index]
     }
 }
 
 protocol TagContainerViewDelegate {
-    func genreButtonClicked(genre: Genre)
+    func tagButtonClicked(tag: HypeMachineAPI.Tag)
 }

@@ -7,23 +7,28 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class FriendsDataSource: MainContentDataSource {
     
     override func loadInitialValues() {
-        HypeMachineAPI.Friends.AllFriends(
-            {friends in
-                self.generateTableContents(friends)
-                self.viewController.tableView.reloadData()
+        HypeMachineAPI.Requests.Me.friends(nil) {
+            (friends: [HypeMachineAPI.User]?, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
                 self.viewController.requestInitialValuesFinished()
-            }, failure: {error in
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                Logger.LogError(error)
-                self.viewController.requestInitialValuesFinished()
-        })
+                return
+            }
+            
+            self.generateTableContents(friends!)
+            self.viewController.tableView.reloadData()
+            self.viewController.requestInitialValuesFinished()
+        }
     }
     
-    func generateTableContents(friends: [Friend]) {
+    func generateTableContents(friends: [HypeMachineAPI.User]) {
         standardTableContents = friends.sorted { $0.username.lowercaseString < $1.username.lowercaseString }
     }
     
@@ -33,7 +38,7 @@ class FriendsDataSource: MainContentDataSource {
         } else {
             filtering = true
             filteredTableContents = standardTableContents.filter {
-                let friend = $0 as! Friend
+                let friend = $0 as! HypeMachineAPI.User
                 return (friend.username =~ keywords) || (friend.fullName =~ keywords)
             }
         }
