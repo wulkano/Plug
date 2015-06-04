@@ -150,4 +150,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             HypeMachineAPI.hmToken = hmToken
         }
     }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        if Authentication.UserSignedIn() {
+            return false
+        } else {
+            return true
+        }
+    }
 }
