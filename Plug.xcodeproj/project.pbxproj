@@ -30,6 +30,7 @@
 		FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */; };
 		FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */; };
 		FA21F9BF1B1EE94E00EBAA09 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */; };
+		FA21F9C11B1FDDC400EBAA09 /* PullToRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9C01B1FDDC400EBAA09 /* PullToRefreshViewController.swift */; };
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
 		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
 		FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */; };
@@ -194,6 +195,7 @@
 		FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTracksDataSource.swift; sourceTree = "<group>"; };
 		FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTracksDataSource.swift; sourceTree = "<group>"; };
 		FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
+		FA21F9C01B1FDDC400EBAA09 /* PullToRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshViewController.swift; sourceTree = "<group>"; };
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
 		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
 		FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackContextMenuController.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
 				FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */,
+				FA21F9C01B1FDDC400EBAA09 /* PullToRefreshViewController.swift */,
 				FA9A2F3019B66C6F0057080C /* NavigationController.swift */,
 				FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
@@ -946,6 +949,7 @@
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
 				FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */,
+				FA21F9C11B1FDDC400EBAA09 /* PullToRefreshViewController.swift in Sources */,
 				FA21F9B31B1EC4C400EBAA09 /* UserTracksDataSource.swift in Sources */,
 				FA21F9AF1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,

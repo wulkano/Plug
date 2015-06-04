@@ -10,6 +10,7 @@ import Cocoa
 
 class ExtendedTableView: NSTableView {
     @IBInspectable var tracksMouseEnterExit: Bool = false
+    @IBInspectable var pullToRefresh: Bool = false
     
     override var visibleRect: NSRect {
         var rect = super.visibleRect

@@ -158,4 +158,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return true
         }
     }
+    
+    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if flag == false {
+            openMainWindow()
+        }
+        return true
+    }
 }

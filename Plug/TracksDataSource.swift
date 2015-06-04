@@ -120,8 +120,11 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     
     func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
         if let currentIndex = indexOfTrack(track) {
-            let index = currentIndex + 1
-            return trackAtIndex(index)
+            let track = trackAtIndex(currentIndex + 1)
+            if track != nil && track!.audioUnavailable {
+                return trackAfter(track!)
+            }
+            return track
         } else {
             return nil
         }
@@ -129,8 +132,11 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     
     func trackBefore(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
         if let currentIndex = indexOfTrack(track) {
-            let index = currentIndex - 1
-            return trackAtIndex(index)
+            let track = trackAtIndex(currentIndex - 1)
+            if track != nil && track!.audioUnavailable {
+                return trackBefore(track!)
+            }
+            return track
         } else {
             return nil
         }

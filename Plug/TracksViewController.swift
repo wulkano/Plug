@@ -56,7 +56,9 @@ class TracksViewController: DataSourceViewController {
         if row < 0 {
             return nil
         } else {
-            return tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView
+            let cell = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView
+            cell!.dataSource = dataSource
+            return cell
         }
     }
     
