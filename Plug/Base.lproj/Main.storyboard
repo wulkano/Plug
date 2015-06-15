@@ -3157,7 +3157,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="381" height="36"/>
                                                 <subviews>
                                                     <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qbf-sG-xly" userLabel="Dropdown" customClass="TitleBarPopUpButton" customModule="Plug" customModuleProvider="target">
-                                                        <rect key="frame" x="158" y="5" width="66" height="26"/>
+                                                        <rect key="frame" x="158" y="6" width="66" height="26"/>
                                                         <popUpButtonCell key="cell" type="push" title="Now" alternateTitle="Popular" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="LQW-VY-RyD" id="KW2-b0-CrI" customClass="TitleBarPopUpButtonCell" customModule="Plug" customModuleProvider="target">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" size="14" name="HelveticaNeue-Medium"/>
@@ -3200,7 +3200,7 @@
                                                     <constraint firstAttribute="centerX" secondItem="Qbf-sG-xly" secondAttribute="centerX" id="MEW-KZ-jMT"/>
                                                     <constraint firstItem="Y49-y9-MwN" firstAttribute="leading" secondItem="CKk-2C-5NT" secondAttribute="leading" constant="4" id="NH1-ae-F56"/>
                                                     <constraint firstAttribute="centerY" secondItem="e2q-R0-tw3" secondAttribute="centerY" constant="1" id="O2a-Pd-GmQ"/>
-                                                    <constraint firstAttribute="centerY" secondItem="Qbf-sG-xly" secondAttribute="centerY" id="Wrr-B7-WEX"/>
+                                                    <constraint firstAttribute="centerY" secondItem="Qbf-sG-xly" secondAttribute="centerY" constant="1" id="Wrr-B7-WEX"/>
                                                     <constraint firstAttribute="centerY" secondItem="Y49-y9-MwN" secondAttribute="centerY" id="cPB-1X-kHb"/>
                                                     <constraint firstItem="Qbf-sG-xly" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y49-y9-MwN" secondAttribute="trailing" constant="10" id="ejw-f8-nCZ"/>
                                                 </constraints>

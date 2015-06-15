@@ -8,6 +8,7 @@
 
 import Cocoa
 import HypeMachineAPI
+import Alamofire
 
 class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
     @IBOutlet weak var titleTextField: VibrantTextField!
@@ -142,13 +143,19 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func updateAlbumArt() {
-//        HypeMachineAPI.Tracks.Thumb(representedTrack, preferedSize: .Medium,
-//            success: { image in
-//                self.albumArt.image = image
-//            }, failure: { error in
-//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                println(error)
-//        })
+        let url = representedTrack.thumbURLWithPreferedSize(.Medium)
+        
+        Alamofire.request(.GET, url).validate().responseImage {
+            (_, _, image, error) in
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                return
+            }
+            
+            self.albumArt.image = image
+        }
     }
     
     func updatePostedCount() {

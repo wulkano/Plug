@@ -15,6 +15,20 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     @IBOutlet var viewController: DataSourceViewController!
     
     var tracks: [HypeMachineAPI.Track]?
+    var availableTracks: [HypeMachineAPI.Track]? {
+        if tracks == nil { return nil }
+        return filterAvailableTracks(tracks!)
+    }
+    var hideUnavailableTracks: Bool {
+        return NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
+    }
+    var tracksToDisplay: [HypeMachineAPI.Track]? {
+        if hideUnavailableTracks {
+            return availableTracks
+        } else {
+            return tracks
+        }
+    }
     var currentPage: Int = 1
     var loadingData: Bool = false
     var allTracksLoaded: Bool = false
@@ -89,32 +103,28 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
     }
     
     func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        
-        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
-        if hideUnavailableTracks {
-            return tracks!.filter({ $0.audioUnavailable == false })[row]
-        } else {
-            return tracks![row]
-        }
+        return tracksToDisplay![row]
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        if tracks == nil { return 0 }
-        
-        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
-        if hideUnavailableTracks {
-            return tracks!.filter({ $0.audioUnavailable == false }).count
-        } else {
-            return tracks!.count
-        }
+        if tracksToDisplay == nil { return 0 }
+        return tracksToDisplay!.count
     }
     
     func trackForRow(row: Int) -> HypeMachineAPI.Track? {
-        return tracks!.optionalAtIndex(row)
+        return tracksToDisplay!.optionalAtIndex(row)
     }
     
     private func rowIndexesForNewTracks(newTracks: [HypeMachineAPI.Track]) -> NSIndexSet {
-        let rowRange: NSRange = NSMakeRange(tracks!.count, newTracks.count)
+        let tracksToAdd: [HypeMachineAPI.Track]
+        
+        if hideUnavailableTracks {
+            tracksToAdd = filterAvailableTracks(newTracks)
+        } else {
+            tracksToAdd = newTracks
+        }
+        
+        let rowRange: NSRange = NSMakeRange(tracksToDisplay!.count, tracksToAdd.count)
         return NSIndexSet(indexesInRange: rowRange)
     }
     
@@ -156,5 +166,9 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
         } else {
             return nil
         }
+    }
+    
+    func filterAvailableTracks(tracks: [HypeMachineAPI.Track]) -> [HypeMachineAPI.Track] {
+        return tracks.filter { $0.audioUnavailable == false }
     }
 }
