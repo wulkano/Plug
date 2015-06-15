@@ -114,10 +114,10 @@ class MainViewController: NSViewController {
         case .Popular:
             popularViewController = (ensureViewController(popularViewController, identifier: "PopularTracksViewController") as! TracksViewController)
             let menu = NSMenu(title: "Popular")
-            menu.addItemWithTitle("Now", action: "", keyEquivalent: "")
-            menu.addItemWithTitle("Last Week", action: "", keyEquivalent: "")
-            menu.addItemWithTitle("No Remixes", action: "", keyEquivalent: "")
-            menu.addItemWithTitle("Remixes Only", action: "", keyEquivalent: "")
+            menu.addItemWithTitle("Now", action: "junk", keyEquivalent: "")
+            menu.addItemWithTitle("Last Week", action: "junk", keyEquivalent: "")
+            menu.addItemWithTitle("No Remixes", action: "junk", keyEquivalent: "")
+            menu.addItemWithTitle("Remixes Only", action: "junk", keyEquivalent: "")
             popularViewController!.dropdownMenu = menu
             return popularViewController!
         case .Favorites:
@@ -142,6 +142,10 @@ class MainViewController: NSViewController {
             searchViewController = (ensureViewController(searchViewController, identifier: "SearchViewController") as! SearchViewController)
             return searchViewController!
         }
+    }
+    
+    func junk() {
+        
     }
     
     func ensureViewController(controller: NSViewController?, identifier: String) -> NSViewController {

@@ -1786,8 +1786,8 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8V4-nf-b46">
-                                        <rect key="frame" x="98" y="17" width="63" height="20"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8V4-nf-b46">
+                                        <rect key="frame" x="98" y="17" width="60" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="bC7-H1-5X5"/>
                                         </constraints>
@@ -1797,8 +1797,8 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-RU-UKf">
-                                        <rect key="frame" x="172" y="17" width="20" height="20"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-RU-UKf">
+                                        <rect key="frame" x="169" y="17" width="19" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="2au-vc-YgU"/>
                                         </constraints>
@@ -1808,8 +1808,8 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Cl-Ij-Pci">
-                                        <rect key="frame" x="190" y="17" width="49" height="20"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Cl-Ij-Pci">
+                                        <rect key="frame" x="187" y="17" width="49" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="4b7-6q-Dxr"/>
                                         </constraints>
@@ -3156,14 +3156,14 @@
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="CKk-2C-5NT" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="381" height="36"/>
                                                 <subviews>
-                                                    <popUpButton hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qbf-sG-xly" userLabel="Dropdown">
-                                                        <rect key="frame" x="141" y="5" width="100" height="26"/>
-                                                        <popUpButtonCell key="cell" type="push" title="Title" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="LQW-VY-RyD" id="KW2-b0-CrI" customClass="TitleBarPopUpButtonCell" customModule="Plug" customModuleProvider="target">
+                                                    <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qbf-sG-xly" userLabel="Dropdown" customClass="TitleBarPopUpButton" customModule="Plug" customModuleProvider="target">
+                                                        <rect key="frame" x="158" y="5" width="66" height="26"/>
+                                                        <popUpButtonCell key="cell" type="push" title="Now" alternateTitle="Popular" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="LQW-VY-RyD" id="KW2-b0-CrI" customClass="TitleBarPopUpButtonCell" customModule="Plug" customModuleProvider="target">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" size="14" name="HelveticaNeue-Medium"/>
                                                             <menu key="menu" id="FK0-tQ-0hc">
                                                                 <items>
-                                                                    <menuItem title="Title" state="on" hidden="YES" id="LQW-VY-RyD"/>
+                                                                    <menuItem title="Now" state="on" hidden="YES" id="LQW-VY-RyD"/>
                                                                     <menuItem title="Item 2" id="FOp-rw-L9W"/>
                                                                     <menuItem title="Item 3" id="n9G-U8-GjH"/>
                                                                 </items>

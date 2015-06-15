@@ -126,6 +126,8 @@
 		FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */; };
 		FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */; };
 		FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */; };
+		FABAA8911B2F57A80090D773 /* TitleBarPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */; };
+		FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
 		FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
@@ -299,6 +301,8 @@
 		FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectOutlineButton.swift; sourceTree = "<group>"; };
 		FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonCell.swift; sourceTree = "<group>"; };
 		FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CurrentlyPlaylingTrackViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarPopUpButton.swift; sourceTree = "<group>"; };
+		FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownTitleFormatter.swift; sourceTree = "<group>"; };
 		FABB112E19C10DD8000DB1BC /* String+digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+digest.swift"; sourceTree = "<group>"; };
 		FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plug-Bridging-Header.m"; sourceTree = "<group>"; };
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 		FA0B1CF31976D8420030C873 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FABAA8941B2F596F0090D773 /* Helpers */,
+				FA9A2F4419B6A5470057080C /* Storyboards */,
 				FA9A2F3C19B689AF0057080C /* NSButtons */,
 				FA9A2F4119B68AEB0057080C /* NSImageViews */,
 				FA9A2F3F19B68AC00057080C /* NSSliders */,
@@ -466,9 +472,7 @@
 				FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */,
 				FA64C6A119764DAE003933E3 /* Models */,
 				FA9EA043199B0D1500D9AB8A /* Data Sources */,
-				FA53950E19B03440006A95A5 /* Formatters */,
 				FA0B1CF31976D8420030C873 /* Views */,
-				FA9A2F4419B6A5470057080C /* Storyboards */,
 				FA0B1CF21976D8320030C873 /* Controllers */,
 				FA51263419761424004D0776 /* Extensions */,
 				FA666D5919B3948E00AA0AA1 /* Plugins */,
@@ -537,6 +541,7 @@
 				FA53950819B01E47006A95A5 /* LovedCountFormatter.swift */,
 				FA53951119B0583D006A95A5 /* PostInfoFormatter.swift */,
 				FA6ADCFA19BA8B9600CCD371 /* SingleBlogViewFormatter.swift */,
+				FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */,
 				FA67371719E44C0D009BF6D2 /* TagButton.swift */,
 				FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */,
+				FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */,
 				FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */,
 			);
 			name = NSButtons;
@@ -731,6 +737,14 @@
 				FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */,
 			);
 			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		FABAA8941B2F596F0090D773 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FA53950E19B03440006A95A5 /* Formatters */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		FACEEBEB19ABC3210093A81B /* Preferences */ = {
@@ -918,6 +932,7 @@
 				FAACE4C619AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift in Sources */,
 				FAEE914619BA3A3300D4274C /* ExtendedTableView.swift in Sources */,
 				FAEE914819BA5AF600D4274C /* SingleBlogViewController.swift in Sources */,
+				FABAA8911B2F57A80090D773 /* TitleBarPopUpButton.swift in Sources */,
 				FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */,
 				FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */,
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
@@ -988,6 +1003,7 @@
 				FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */,
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
 				FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */,
+				FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */,
 				FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */,
 				FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */,
 				FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */,

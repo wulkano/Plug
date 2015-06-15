@@ -9,15 +9,24 @@
 import Cocoa
 
 class TitleBarPopUpButtonCell: NSPopUpButtonCell {
-
+    
+    var formattedTitle: NSAttributedString {
+        return DropdownTitleFormatter().attributedDropdownTitle(menu!.title, optionTitle: title)
+    }
+    
+    var extraWidthForFormattedTitle: CGFloat {
+        return formattedTitle.size.width - attributedTitle.size.width
+    }
+    
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
-        println(self.title)
-        println(title)
-//        let newString = NSMutableAttributedString(string: "\(title)")
-        return super.drawTitle(title, withFrame: frame, inView: controlView)
+        return super.drawTitle(formattedTitle, withFrame: frame, inView: controlView)
     }
     
     override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
+        drawArrow(frame, inView: controlView)
+    }
+    
+    private func drawArrow(frame: NSRect, inView controlView: NSView) {
         let arrowColor = NSColor(white: 0, alpha: 0.4)
         
         let path = NSBezierPath()

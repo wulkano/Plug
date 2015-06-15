@@ -11,7 +11,7 @@ import Cocoa
 class NavigationBar: NSView {
     @IBOutlet var backButton: NSButton!
     @IBOutlet var titleTextField: NSTextField!
-    @IBOutlet var titleDropdownButton: NSPopUpButton!
+    @IBOutlet var titleDropdownButton: TitleBarPopUpButton!
     
     func currentViewControllerUpdated(viewController: BaseContentViewController) {
         if viewController.dropdownMenu != nil {

@@ -44,7 +44,7 @@ class HeatMapTrackTableCellView: TrackTableCellView {
                 let heatMap = HeatMap(track: self.trackValue, start: startPoint, end: endPoint)
                 self.heatMapView.heatMap = heatMap
             } else {
-                println("Heatmap missed for track: \(self.trackValue)")
+//                println("Heatmap missed for track: \(self.trackValue)")
             }
         }
     }
