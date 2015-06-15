@@ -43,21 +43,13 @@ class HeatMapTrackTableCellView: TrackTableCellView {
                 let endPoint = (trackJSON["endValue"]! as! NSNumber).doubleValue
                 let heatMap = HeatMap(track: self.trackValue, start: startPoint, end: endPoint)
                 self.heatMapView.heatMap = heatMap
+            } else {
+                println("Heatmap missed for track: \(self.trackValue)")
             }
         }
     }
     
     func updateHeatMapVisibility() {
         heatMapView.hidden = !playPauseButton.hidden
-//        if mouseInside {
-//            heatMapView.hidden = true
-//        } else {
-//            switch playState {
-//            case .Playing, .Paused:
-//                heatMapView.hidden = true
-//            case .NotPlaying:
-//                heatMapView.hidden = false
-//            }
-//        }
     }
 }

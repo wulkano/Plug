@@ -113,6 +113,12 @@ class MainViewController: NSViewController {
         switch section {
         case .Popular:
             popularViewController = (ensureViewController(popularViewController, identifier: "PopularTracksViewController") as! TracksViewController)
+            let menu = NSMenu(title: "Popular")
+            menu.addItemWithTitle("Now", action: "", keyEquivalent: "")
+            menu.addItemWithTitle("Last Week", action: "", keyEquivalent: "")
+            menu.addItemWithTitle("No Remixes", action: "", keyEquivalent: "")
+            menu.addItemWithTitle("Remixes Only", action: "", keyEquivalent: "")
+            popularViewController!.dropdownMenu = menu
             return popularViewController!
         case .Favorites:
             favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoriteTracksViewController") as! TracksViewController)

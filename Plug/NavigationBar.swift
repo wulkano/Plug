@@ -9,14 +9,25 @@
 import Cocoa
 
 class NavigationBar: NSView {
-    @IBOutlet var titleTextField: NSTextField!
     @IBOutlet var backButton: NSButton!
+    @IBOutlet var titleTextField: NSTextField!
+    @IBOutlet var titleDropdownButton: NSPopUpButton!
     
-    func currentViewControllerUpdated(viewController: NSViewController) {
-        titleTextField.stringValue = viewController.title!
+    func currentViewControllerUpdated(viewController: BaseContentViewController) {
+        if viewController.dropdownMenu != nil {
+            titleTextField.hidden = true
+            titleDropdownButton.hidden = false
+            
+            titleDropdownButton.menu = viewController.dropdownMenu
+        } else {
+            titleTextField.hidden = false
+            titleDropdownButton.hidden = true
+            
+            titleTextField.stringValue = viewController.title!
+        }
     }
     
-    func previousViewControllerUpdated(viewController: NSViewController?) {
+    func previousViewControllerUpdated(viewController: BaseContentViewController?) {
         if viewController == nil {
             backButton.hidden = true
             backButton.title = ""
