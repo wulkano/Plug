@@ -69,7 +69,7 @@
                                             <constraint firstAttribute="width" constant="60" id="HA2-8n-jzy"/>
                                             <constraint firstAttribute="height" constant="62" id="NkX-Sg-uSd"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="square" title="Hotkeys" bezelStyle="shadowlessSquare" image="Preferences-Hotkeys-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Hotkeys-On" borderStyle="border" inset="2" id="q3g-72-SgQ" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
+                                        <buttonCell key="cell" type="square" title="Hotkeys" bezelStyle="shadowlessSquare" image="Preferences-Hotkeys-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Hotkeys-On" state="on" borderStyle="border" inset="2" id="q3g-72-SgQ" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" size="11" name="HelveticaNeue"/>
                                         </buttonCell>

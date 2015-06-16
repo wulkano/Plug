@@ -25,8 +25,8 @@ class ExtendedTableView: NSTableView {
     var clipView: NSClipView {
         return superview as! NSClipView
     }
-    var scrollView: NSScrollView {
-        return clipView.superview as! NSScrollView
+    var scrollView: NSScrollView? {
+        return clipView.superview as? NSScrollView
     }
     var visibleRows: Range<Int> = Range(start: 0,end: 0)
     
@@ -153,7 +153,6 @@ class ExtendedTableView: NSTableView {
 }
 
 @objc protocol ExtendedTableViewDelegate {
-    
     optional func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int)
     optional func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int)
     optional func tableView(tableView: ExtendedTableView, mouseEnteredRow row: Int)

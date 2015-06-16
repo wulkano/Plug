@@ -32,8 +32,6 @@ class TracksViewController: DataSourceViewController {
         
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
-        scrollView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0) // TODO: Doesn't seem to work yet
-        scrollView.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
         
         if dataSource != nil {
             loadDataSource()
