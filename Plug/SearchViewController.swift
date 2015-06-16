@@ -48,7 +48,7 @@ class SearchViewController: BaseContentViewController {
     }
     
     func sortChanged() {
-        if tracksViewController!.dataSource == nil { return }
+        if tracksViewController == nil || tracksViewController!.dataSource == nil { return }
         
         let searchDataSource = tracksViewController!.dataSource! as! SearchTracksDataSource
         tracksViewController!.dataSource = SearchTracksDataSource(sort: sort, searchQuery: searchDataSource.searchQuery)
