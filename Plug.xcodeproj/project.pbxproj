@@ -17,6 +17,7 @@
 		FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A881B03F3AE006FA015 /* Alamofire.framework */; };
 		FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A881B03F3AE006FA015 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA107A8E1B03F63C006FA015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA91974A9A500A781C8 /* Main.storyboard */; };
+		FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DE71B30B458003F4E54 /* IOSSwitch.swift */; };
 		FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
 		FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */; };
@@ -68,7 +69,6 @@
 		FA6127161B05B1AE00E9F2C9 /* TracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */; };
 		FA64C6A719764FE9003933E3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Globals.swift */; };
 		FA64C6A919765323003933E3 /* Array+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array+contains.swift */; };
-		FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */; };
 		FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */; };
 		FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */; };
 		FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67371719E44C0D009BF6D2 /* TagButton.swift */; };
@@ -181,6 +181,7 @@
 		FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HypeMachineAPI.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug/HypeMachineAPI.framework"; sourceTree = "<group>"; };
 		FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleGoogleAnalytics.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug/SimpleGoogleAnalytics.framework"; sourceTree = "<group>"; };
 		FA107A881B03F3AE006FA015 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
+		FA117DE71B30B458003F4E54 /* IOSSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSSwitch.swift; sourceTree = "<group>"; };
 		FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyHandler.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
@@ -234,8 +235,6 @@
 		FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSource.swift; sourceTree = "<group>"; };
 		FA64C6A619764FE9003933E3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+contains.swift"; sourceTree = "<group>"; };
-		FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
-		FA666D5B19B3950D00AA0AA1 /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
 		FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesTableCellView.swift; sourceTree = "<group>"; };
 		FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		FA67371719E44C0D009BF6D2 /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
@@ -406,15 +405,6 @@
 			name = SPMediaKeyTap;
 			sourceTree = "<group>";
 		};
-		FA1C5AE619E8980A00DD7165 /* ITSwitch */ = {
-			isa = PBXGroup;
-			children = (
-				FA666D5B19B3950D00AA0AA1 /* ITSwitch.h */,
-				FA666D5A19B3950D00AA0AA1 /* ITSwitch.m */,
-			);
-			name = ITSwitch;
-			sourceTree = "<group>";
-		};
 		FA1C5AE719E8981400DD7165 /* SLColorArt */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,7 +552,6 @@
 		FA666D5919B3948E00AA0AA1 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				FA1C5AE619E8980A00DD7165 /* ITSwitch */,
 				FA0C4E9D19C22CAA00A1B83C /* SPMediaKeyTap */,
 				FA1C5AE719E8981400DD7165 /* SLColorArt */,
 			);
@@ -632,6 +621,7 @@
 				FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */,
 				FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */,
 				FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */,
+				FA117DE71B30B458003F4E54 /* IOSSwitch.swift */,
 			);
 			name = NSButtons;
 			sourceTree = "<group>";
@@ -995,7 +985,6 @@
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
 				FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */,
-				FA666D5C19B3950D00AA0AA1 /* ITSwitch.m in Sources */,
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
@@ -1003,6 +992,7 @@
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
+				FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */,
 				FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
 				FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */,

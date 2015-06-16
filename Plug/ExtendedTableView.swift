@@ -56,6 +56,7 @@ class ExtendedTableView: NSTableView {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
 
         resetTrackingArea()
+        mouseEntered(NSEvent())
     }
     
     func resetTrackingArea() {

@@ -10,7 +10,7 @@ import Cocoa
 
 class GeneralPreferencesTableCellView: NSTableCellView {
     @IBOutlet var preferenceTitle: NSTextField!
-    @IBOutlet var switchButton: ITSwitch!
+    @IBOutlet var switchButton: IOSSwitch!
     
     override var objectValue: AnyObject! {
         didSet {
@@ -33,10 +33,10 @@ class GeneralPreferencesTableCellView: NSTableCellView {
     }
     
     func updateSwitchButton() {
-        switchButton.isOn = generalPreferenceValue.getUserDefaultsValue()
+        switchButton.on = generalPreferenceValue.getUserDefaultsValue()
     }
     
-    @IBAction func switchButtonClicked(sender: ITSwitch) {
+    @IBAction func switchButtonClicked(sender: IOSSwitch) {
         let oldValue = generalPreferenceValue.getUserDefaultsValue()
         let newValue = !oldValue
         generalPreferenceValue.setUserDefaultsValue(newValue)

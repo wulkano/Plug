@@ -137,9 +137,13 @@ class NavigationController: NSViewController {
     }
     
     private func transitionFromViewController(fromViewController: BaseContentViewController!, toViewController: BaseContentViewController!, reversed: Bool) {
-        var transitions = transitionOptions(reversed)
+        
+        fromViewController.view.removeFromSuperview()
         ViewPlacementHelper.AddFullSizeSubview(toViewController.view, toSuperView: contentView)
-        transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
+        
+//        TODO: Transitions are OK but a bit buggy with autolayout, can turn back on later
+//        var transitions = transitionOptions(reversed)
+//        transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
         
         if fromViewController != nil { fromViewController.didLoseCurrentViewController() }
         toViewController.didBecomeCurrentViewController()
