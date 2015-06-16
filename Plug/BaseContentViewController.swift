@@ -13,7 +13,7 @@ class BaseContentViewController: NSViewController {
     var analyticsViewName: String {
         return defaultAnalyticsViewName
     }
-    var defaultAnalyticsViewName: String = "Oops, this should be overridden"
+    var defaultAnalyticsViewName: String = "Oops, this should be overwritten"
     var dropdownMenu: NSMenu?
     
     override func viewDidLoad() {

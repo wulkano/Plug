@@ -378,6 +378,10 @@
 			children = (
 				FA9A2F4419B6A5470057080C /* Storyboards */,
 				FABAA8941B2F596F0090D773 /* Helpers */,
+				FA5394F919AFA065006A95A5 /* Animations.swift */,
+				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
+				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
+				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
 				FA9A2F3C19B689AF0057080C /* NSButtons */,
 				FA9A2F4119B68AEB0057080C /* NSImageViews */,
 				FA9A2F3F19B68AC00057080C /* NSSliders */,
@@ -538,11 +542,9 @@
 			isa = PBXGroup;
 			children = (
 				FA50280219C02EE800E3C84E /* Analytics.swift */,
-				FA5394F919AFA065006A95A5 /* Animations.swift */,
 				FAA34A9419B2F0450038868A /* Async.swift */,
 				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
 				FAD1F54819A7C793002322D6 /* Authentication.swift */,
-				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
 				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
 				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
 				FAA51A58198084E50057EC34 /* NavigationSections.swift */,
@@ -551,10 +553,8 @@
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
-				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
 				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
 				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
-				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";

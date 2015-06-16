@@ -17,6 +17,8 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
         }
     }
     
+    var trimPaddingBetweenArrowAndTitle: CGFloat = 5
+    
     var formattedTitle: NSAttributedString {
         return DropdownTitleFormatter().attributedDropdownTitle(menu!.title, optionTitle: title)
     }
@@ -26,7 +28,9 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
     }
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
-        return super.drawTitle(formattedTitle, withFrame: frame, inView: controlView)
+        var newFrame = frame
+        newFrame.size.width += trimPaddingBetweenArrowAndTitle
+        return super.drawTitle(formattedTitle, withFrame: newFrame, inView: controlView)
     }
     
     override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {

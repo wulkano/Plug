@@ -3119,7 +3119,7 @@
         <scene sceneID="OwI-W4-zwy">
             <objects>
                 <viewController id="aCl-8y-4N3" customClass="PlugNavigationController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="HQU-zo-P67">
+                    <view key="view" horizontalHuggingPriority="500" verticalHuggingPriority="500" id="HQU-zo-P67">
                         <rect key="frame" x="0.0" y="0.0" width="381" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

@@ -46,7 +46,7 @@ class ExtendedTableView: NSTableView {
     
     func ensureTrackingArea() {
         if trackingArea == nil {
-            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited | NSTrackingAreaOptions.MouseMoved | NSTrackingAreaOptions.AssumeInside, owner: self, userInfo: nil)
+            trackingArea = NSTrackingArea(rect: NSZeroRect, options: .InVisibleRect | .ActiveAlways | .MouseEnteredAndExited | .MouseMoved | .AssumeInside, owner: self, userInfo: nil)
         }
     }
     
