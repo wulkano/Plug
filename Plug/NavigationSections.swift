@@ -40,24 +40,86 @@ enum NavigationSection: Int {
     }
 }
 
-enum PopularSectionMode {
+enum PopularSectionMode: String {
+    case Now = "Now"
+    case NoRemixes = "No Remixes"
+    case OnlyRemixes = "Only Remixes"
+    case LastWeek = "Last Week"
+    
     static let navigationSection = NavigationSection.Popular
     
-    case Now
-    case LastWeek
-    case NoRemixes
-    case RemixesOnly
-    
     var title: String {
+        return self.rawValue
+    }
+    
+    var params: [String: AnyObject] {
+        return ["mode": self.slug]
+    }
+    
+    var slug: String {
         switch self {
         case .Now:
-            return "Now"
-        case .LastWeek:
-            return "Last Week"
+            return "now"
         case .NoRemixes:
-            return "No Remixes"
-        case .RemixesOnly:
-            return "Remixes Only"
+            return "noremix"
+        case .OnlyRemixes:
+            return "remix"
+        case .LastWeek:
+            return "lastweek"
+        }
+    }
+}
+
+enum FeedSectionMode: String {
+    case All = "All"
+    case Friends = "Friends"
+    case Blogs = "Blogs"
+    
+    static let navigationSection = NavigationSection.Feed
+    
+    var title: String {
+        return self.rawValue
+    }
+    
+    var params: [String: AnyObject] {
+        return ["mode": self.slug]
+    }
+    
+    var slug: String {
+        switch self {
+        case .All:
+            return "all"
+        case .Friends:
+            return "friends"
+        case .Blogs:
+            return "blogs"
+        }
+    }
+}
+
+enum SearchSectionSort: String {
+    case Newest = "Newest"
+    case MostFavorites = "Most Favorites"
+    case MostReblogged = "Most Reblogged"
+    
+    static let navigationSection = NavigationSection.Search
+    
+    var title: String {
+        return self.rawValue
+    }
+    
+    var params: [String: AnyObject] {
+        return ["sort": self.slug]
+    }
+    
+    var slug: String {
+        switch self {
+        case .Newest:
+            return "latest"
+        case .MostFavorites:
+            return "loved"
+        case .MostReblogged:
+            return "posted"
         }
     }
 }

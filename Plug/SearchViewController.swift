@@ -10,9 +10,14 @@ import Cocoa
 
 class SearchViewController: BaseContentViewController {
     @IBOutlet var searchResultsView: NSView!
-//    var playlistSubType: SearchPlaylistSubType = .MostFavorites
+    var sort: SearchSectionSort = .Newest {
+        didSet {
+            sortChanged()
+        }
+    }
     var tracksViewController: TracksViewController?
     var dataSource: TracksDataSource?
+    
     override var analyticsViewName: String {
         return "MainWindow/Search"
     }
@@ -22,7 +27,7 @@ class SearchViewController: BaseContentViewController {
         if keywords == "" { return }
 
         ensurePlaylistViewController()
-        tracksViewController!.dataSource = SearchTracksDataSource(searchQuery: keywords)
+        tracksViewController!.dataSource = SearchTracksDataSource(sort: sort, searchQuery: keywords)
         tracksViewController!.dataSource!.viewController = tracksViewController
     }
     
@@ -40,5 +45,13 @@ class SearchViewController: BaseContentViewController {
         if tracksViewController != nil {
             tracksViewController!.refresh()
         }
+    }
+    
+    func sortChanged() {
+        if tracksViewController!.dataSource == nil { return }
+        
+        let searchDataSource = tracksViewController!.dataSource! as! SearchTracksDataSource
+        tracksViewController!.dataSource = SearchTracksDataSource(sort: sort, searchQuery: searchDataSource.searchQuery)
+        tracksViewController!.dataSource!.viewController = tracksViewController
     }
 }

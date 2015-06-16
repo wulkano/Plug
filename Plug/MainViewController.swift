@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainViewController: NSViewController, PopularSectionModeMenuTarget {
+class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
     
     var navigationController: NavigationController!
@@ -93,7 +93,25 @@ class MainViewController: NSViewController, PopularSectionModeMenuTarget {
     }
     
     func popularSectionModeChanged(sender: NSMenuItem) {
-        
+        let mode = PopularSectionMode(rawValue: sender.title)!
+        let dataSource = PopularTracksDataSource(mode: mode)
+        let viewController = currentViewController as! TracksViewController
+        viewController.dataSource = dataSource
+        dataSource.viewController = viewController
+    }
+    
+    func feedSectionModeChanged(sender: NSMenuItem) {
+        let mode = FeedSectionMode(rawValue: sender.title)!
+        let dataSource = FeedTracksDataSource(mode: mode)
+        let viewController = currentViewController as! TracksViewController
+        viewController.dataSource = dataSource
+        dataSource.viewController = viewController
+    }
+    
+    func searchSectionSortChanged(sender: NSMenuItem) {
+        let sort = SearchSectionSort(rawValue: sender.title)!
+        let viewController = currentViewController as! SearchViewController
+        viewController.sort = sort
     }
 }
 
@@ -125,6 +143,10 @@ extension NavigationSection {
         switch self {
         case .Popular:
             return PopularSectionMode.menu(target)
+        case .Feed:
+            return FeedSectionMode.menu(target)
+        case .Search:
+            return SearchSectionSort.menu(target)
         default:
             return nil
         }
@@ -142,6 +164,23 @@ extension NavigationSection {
         let targetViewController = storyboard.instantiateControllerWithIdentifier(self.viewControllerIdentifier) as! BaseContentViewController
         targetViewController.dropdownMenu = self.menu(target)
         
+        switch self {
+        case .Popular:
+            (targetViewController as! TracksViewController).dataSource = PopularTracksDataSource(mode: .Now)
+            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
+        case .Favorites:
+            (targetViewController as! TracksViewController).dataSource = FavoriteTracksDataSource()
+            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
+        case .Latest:
+            (targetViewController as! TracksViewController).dataSource = LatestTracksDataSource()
+            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
+        case .Feed:
+            (targetViewController as! TracksViewController).dataSource = FeedTracksDataSource(mode: .All)
+            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
+        default:
+            break
+        }
+        
         NavigationSection.viewControllers[self.viewControllerIdentifier] = targetViewController
         
         return targetViewController
@@ -154,9 +193,9 @@ extension PopularSectionMode {
         menu.title = self.navigationSection.title
         
         menu.addItemWithTitle(self.Now.title, action: "popularSectionModeChanged:", keyEquivalent: "")
-        menu.addItemWithTitle(self.LastWeek.title, action: "popularSectionModeChanged:", keyEquivalent: "")
         menu.addItemWithTitle(self.NoRemixes.title, action: "popularSectionModeChanged:", keyEquivalent: "")
-        menu.addItemWithTitle(self.RemixesOnly.title, action: "popularSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.OnlyRemixes.title, action: "popularSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.LastWeek.title, action: "popularSectionModeChanged:", keyEquivalent: "")
         
         for item in (menu.itemArray as! [NSMenuItem]) {
             item.target = target
@@ -168,4 +207,46 @@ extension PopularSectionMode {
 
 protocol PopularSectionModeMenuTarget {
     func popularSectionModeChanged(sender: NSMenuItem)
+}
+
+extension FeedSectionMode {
+    static func menu(target: AnyObject?) -> NSMenu {
+        let menu = NSMenu()
+        menu.title = self.navigationSection.title
+        
+        menu.addItemWithTitle(self.All.title, action: "feedSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.Friends.title, action: "feedSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.Blogs.title, action: "feedSectionModeChanged:", keyEquivalent: "")
+        
+        for item in (menu.itemArray as! [NSMenuItem]) {
+            item.target = target
+        }
+        
+        return menu
+    }
+}
+
+protocol FeedSectionModeMenuTarget {
+    func feedSectionModeChanged(sender: NSMenuItem)
+}
+
+extension SearchSectionSort {
+    static func menu(target: AnyObject?) -> NSMenu {
+        let menu = NSMenu()
+        menu.title = self.navigationSection.title
+        
+        menu.addItemWithTitle(self.Newest.title, action: "searchSectionSortChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.MostFavorites.title, action: "searchSectionSortChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.MostReblogged.title, action: "searchSectionSortChanged:", keyEquivalent: "")
+        
+        for item in (menu.itemArray as! [NSMenuItem]) {
+            item.target = target
+        }
+        
+        return menu
+    }
+}
+
+protocol SearchSectionSortMenuTarget {
+    func searchSectionSortChanged(sender: NSMenuItem)
 }

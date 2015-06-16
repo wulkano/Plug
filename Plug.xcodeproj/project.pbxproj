@@ -20,15 +20,7 @@
 		FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
 		FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */; };
-		FA21F9AD1B1EC1FF00EBAA09 /* PopularTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9AC1B1EC1FF00EBAA09 /* PopularTracksDataSource.swift */; };
-		FA21F9AF1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9AE1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift */; };
-		FA21F9B11B1EC34700EBAA09 /* BlogTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B01B1EC34700EBAA09 /* BlogTracksDataSource.swift */; };
-		FA21F9B31B1EC4C400EBAA09 /* UserTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B21B1EC4C400EBAA09 /* UserTracksDataSource.swift */; };
-		FA21F9B51B1EC66400EBAA09 /* ArtistTracksDataSoure.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B41B1EC66400EBAA09 /* ArtistTracksDataSoure.swift */; };
-		FA21F9B71B1EC7AD00EBAA09 /* TagTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B61B1EC7AD00EBAA09 /* TagTracksDataSource.swift */; };
-		FA21F9B91B1EC83000EBAA09 /* SearchTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */; };
-		FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */; };
-		FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */; };
+		FA21F9AD1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9AC1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift */; };
 		FA21F9BF1B1EE94E00EBAA09 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */; };
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
 		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
@@ -188,15 +180,7 @@
 		FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyHandler.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
-		FA21F9AC1B1EC1FF00EBAA09 /* PopularTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9AE1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9B01B1EC34700EBAA09 /* BlogTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9B21B1EC4C400EBAA09 /* UserTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9B41B1EC66400EBAA09 /* ArtistTracksDataSoure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTracksDataSoure.swift; sourceTree = "<group>"; };
-		FA21F9B61B1EC7AD00EBAA09 /* TagTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestTracksDataSource.swift; sourceTree = "<group>"; };
-		FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTracksDataSource.swift; sourceTree = "<group>"; };
+		FA21F9AC1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSourceSubclasses.swift; sourceTree = "<group>"; };
 		FA21F9BE1B1EE94E00EBAA09 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
 		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
@@ -388,8 +372,8 @@
 		FA0B1CF31976D8420030C873 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FABAA8941B2F596F0090D773 /* Helpers */,
 				FA9A2F4419B6A5470057080C /* Storyboards */,
+				FABAA8941B2F596F0090D773 /* Helpers */,
 				FA9A2F3C19B689AF0057080C /* NSButtons */,
 				FA9A2F4119B68AEB0057080C /* NSImageViews */,
 				FA9A2F3F19B68AC00057080C /* NSSliders */,
@@ -726,15 +710,7 @@
 				FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */,
 				FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */,
 				FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */,
-				FA21F9AC1B1EC1FF00EBAA09 /* PopularTracksDataSource.swift */,
-				FA21F9BA1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift */,
-				FA21F9BC1B1EDF2100EBAA09 /* FeedTracksDataSource.swift */,
-				FA21F9AE1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift */,
-				FA21F9B01B1EC34700EBAA09 /* BlogTracksDataSource.swift */,
-				FA21F9B21B1EC4C400EBAA09 /* UserTracksDataSource.swift */,
-				FA21F9B41B1EC66400EBAA09 /* ArtistTracksDataSoure.swift */,
-				FA21F9B61B1EC7AD00EBAA09 /* TagTracksDataSource.swift */,
-				FA21F9B81B1EC83000EBAA09 /* SearchTracksDataSource.swift */,
+				FA21F9AC1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -925,7 +901,6 @@
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */,
 				FA4BF21519F601090078AB82 /* BlogTableCellView.swift in Sources */,
-				FA21F9B51B1EC66400EBAA09 /* ArtistTracksDataSoure.swift in Sources */,
 				FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */,
 				FA53951219B0583D006A95A5 /* PostInfoFormatter.swift in Sources */,
 				FA5394FC19AFA903006A95A5 /* LoginButtonImageView.swift in Sources */,
@@ -941,11 +916,10 @@
 				FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */,
 				FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */,
 				FA5394FA19AFA065006A95A5 /* Animations.swift in Sources */,
-				FA21F9AD1B1EC1FF00EBAA09 /* PopularTracksDataSource.swift in Sources */,
+				FA21F9AD1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift in Sources */,
 				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
 				FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* TagsDataSource.swift in Sources */,
-				FA21F9B91B1EC83000EBAA09 /* SearchTracksDataSource.swift in Sources */,
 				FA6ADCFD19BA935C00CCD371 /* ViewPlacementHelper.swift in Sources */,
 				FA3241BA19F81579009FCDE3 /* DataSourceViewController.swift in Sources */,
 				FA99EED219D0210F008C9C4A /* SPMediaKeyTap.m in Sources */,
@@ -967,9 +941,6 @@
 				FA5927F91B28ED1E00D07176 /* PullToRefreshViewController.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
-				FA21F9BB1B1EDEDF00EBAA09 /* LatestTracksDataSource.swift in Sources */,
-				FA21F9B31B1EC4C400EBAA09 /* UserTracksDataSource.swift in Sources */,
-				FA21F9AF1B1EC30300EBAA09 /* FavoriteTracksDataSource.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
 				FA6ADCF419BA69C300CCD371 /* SingleBlogImageView.swift in Sources */,
 				FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */,
@@ -984,7 +955,6 @@
 				FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */,
 				FA6ADD0319BAB0E300CCD371 /* SingleFriendViewController.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
-				FA21F9B11B1EC34700EBAA09 /* BlogTracksDataSource.swift in Sources */,
 				FAF13B2A199D3D62009D9F66 /* FeedTrackTableCellView.swift in Sources */,
 				FA53950919B01E47006A95A5 /* LovedCountFormatter.swift in Sources */,
 				FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */,
@@ -1006,7 +976,6 @@
 				FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */,
 				FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */,
 				FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */,
-				FA21F9BD1B1EDF2100EBAA09 /* FeedTracksDataSource.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
@@ -1016,7 +985,6 @@
 				FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */,
 				FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */,
 				FA3241B819F810F4009FCDE3 /* MainContentDataSource.swift in Sources */,
-				FA21F9B71B1EC7AD00EBAA09 /* TagTracksDataSource.swift in Sources */,
 				FA4BF21919F60C4E0078AB82 /* TagTableCellView.swift in Sources */,
 				FA24EDA21974A9A500A781C8 /* main.swift in Sources */,
 				FA53950719AFFF01006A95A5 /* TrackTableCellView.swift in Sources */,
