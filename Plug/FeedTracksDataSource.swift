@@ -11,10 +11,10 @@ import HypeMachineAPI
 
 class FeedTracksDataSource: TracksDataSource {
     override func requestInitialValues() {
-        HypeMachineAPI.Requests.Me.feed(nil, callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Me.feed(optionalParams: nil, callback: requestInitialValuesResponse)
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Me.feed(nextPageParams, callback: requestNextPageResponse)
+        HypeMachineAPI.Requests.Me.feed(optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

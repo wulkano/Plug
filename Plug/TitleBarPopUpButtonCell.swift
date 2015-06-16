@@ -9,6 +9,13 @@
 import Cocoa
 
 class TitleBarPopUpButtonCell: NSPopUpButtonCell {
+    var originalMenu: NSMenu?
+    
+    override var menu: NSMenu? {
+        didSet {
+            originalMenu = menu!.copy() as? NSMenu
+        }
+    }
     
     var formattedTitle: NSAttributedString {
         return DropdownTitleFormatter().attributedDropdownTitle(menu!.title, optionTitle: title)
@@ -43,5 +50,26 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
         arrowColor.set()
         path.lineWidth = 2
         path.stroke()
+    }
+    
+    
+    override func selectItem(item: NSMenuItem?) {
+        super.selectItem(item)
+        sortMenuForSelectedItem(item)
+    }
+    
+    private func sortMenuForSelectedItem(item: NSMenuItem?) {
+        let originalMenuItems = (originalMenu!.itemArray as! [NSMenuItem])
+        let sortedItemArray = originalMenuItems.map { self.menu!.itemWithTitle($0.title)! }
+        
+        for sortItem in sortedItemArray.reverse() {
+            if sortItem === item! { continue }
+            
+            menu!.removeItem(sortItem)
+            menu!.insertItem(sortItem, atIndex: 0)
+        }
+        
+        menu!.removeItem(item!)
+        menu!.insertItem(item!, atIndex: 0)
     }
 }

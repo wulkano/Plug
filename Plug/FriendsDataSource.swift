@@ -12,7 +12,7 @@ import HypeMachineAPI
 class FriendsDataSource: MainContentDataSource {
     
     override func loadInitialValues() {
-        HypeMachineAPI.Requests.Me.friends(nil) {
+        HypeMachineAPI.Requests.Me.friends(optionalParams: nil) {
             (friends: [HypeMachineAPI.User]?, error) in
             
             if error != nil {

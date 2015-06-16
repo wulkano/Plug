@@ -28,7 +28,7 @@ class TitleBarViewController: NSViewController {
     }
     
     func updateUIForSection(section: NavigationSection) {
-        println("\(section.windowTitle())")
-        titleTextField.stringValue = section.windowTitle()
+        println("\(section.title)")
+        titleTextField.stringValue = section.title
     }
 }

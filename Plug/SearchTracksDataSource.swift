@@ -18,10 +18,10 @@ class SearchTracksDataSource: TracksDataSource {
     }
     
     override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tracks.index(["q": searchQuery], callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: ["q": searchQuery], callback: requestInitialValuesResponse)
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.index(nextPageParams.merge(["q": searchQuery]), callback: requestNextPageResponse)
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: nextPageParams.merge(["q": searchQuery]), callback: requestNextPageResponse)
     }
 }

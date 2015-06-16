@@ -11,10 +11,10 @@ import HypeMachineAPI
 
 class FavoriteTracksDataSource: TracksDataSource {
     override func requestInitialValues() {
-        HypeMachineAPI.Requests.Me.favorites(nil, callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Me.favorites(optionalParams: nil, callback: requestInitialValuesResponse)
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Me.favorites(nextPageParams, callback: requestNextPageResponse)
+        HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

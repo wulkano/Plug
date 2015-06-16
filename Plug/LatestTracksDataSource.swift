@@ -11,10 +11,10 @@ import HypeMachineAPI
 
 class LatestTracksDataSource: TracksDataSource {
     override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tracks.index(nil, callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: nil, callback: requestInitialValuesResponse)
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.index(nextPageParams, callback: requestNextPageResponse)
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

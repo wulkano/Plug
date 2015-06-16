@@ -18,7 +18,7 @@ enum NavigationSection: Int {
     case Friends
     case Search
     
-    func windowTitle() -> String {
+    var title: String {
         switch self {
         case .Popular:
             return "Popular"
@@ -36,6 +36,28 @@ enum NavigationSection: Int {
             return "Friends"
         case .Search:
             return "Search"
+        }
+    }
+}
+
+enum PopularSectionMode {
+    static let navigationSection = NavigationSection.Popular
+    
+    case Now
+    case LastWeek
+    case NoRemixes
+    case RemixesOnly
+    
+    var title: String {
+        switch self {
+        case .Now:
+            return "Now"
+        case .LastWeek:
+            return "Last Week"
+        case .NoRemixes:
+            return "No Remixes"
+        case .RemixesOnly:
+            return "Remixes Only"
         }
     }
 }

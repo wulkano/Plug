@@ -8,24 +8,12 @@
 
 import Cocoa
 
-class MainViewController: NSViewController {
+class MainViewController: NSViewController, PopularSectionModeMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
     
     var navigationController: NavigationController!
-    
-    var popularViewController: TracksViewController?
-    var favoritesViewController: TracksViewController?
-    var latestViewController: TracksViewController?
-    var blogDirectoryViewController: BlogDirectoryViewController?
-    var feedViewController: TracksViewController?
-    var tagsViewController: TagsViewController?
-    var friendsViewController: FriendsViewController?
-    var searchViewController: SearchViewController?
-    
     var currentViewController: BaseContentViewController!
-    
     var currentTrackViewController: NSViewController?
-    
     var trafficButtons: TrafficButtons?
     
     required init?(coder: NSCoder) {
@@ -60,7 +48,6 @@ class MainViewController: NSViewController {
         }
         
         addCurrentTrackViewController()
-//        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": NSError()])
     }
     
     func changeNavigationSection(section: NavigationSection) {
@@ -85,7 +72,7 @@ class MainViewController: NSViewController {
     }
     
     func updateUIForSection(section: NavigationSection) {
-        var newViewController = viewControllerForSection(section)
+        var newViewController = section.viewController(storyboard!, target: self)
         currentViewController = newViewController
         navigationController.setNewRootViewController(newViewController)
     }
@@ -105,69 +92,80 @@ class MainViewController: NSViewController {
         currentTrackViewController!.view.hidden = true
     }
     
-    func viewControllerForSection(section: NavigationSection) -> BaseContentViewController {
+    func popularSectionModeChanged(sender: NSMenuItem) {
         
-//        TODO: This sucks I hate it
-        var newViewController: NSViewController
-        
-        switch section {
+    }
+}
+
+extension NavigationSection {
+    static var viewControllers = [String: BaseContentViewController]()
+    
+    var viewControllerIdentifier: String {
+        switch self {
         case .Popular:
-            popularViewController = (ensureViewController(popularViewController, identifier: "PopularTracksViewController") as! TracksViewController)
-            let menu = NSMenu(title: "Popular")
-            menu.addItemWithTitle("Now", action: "junk", keyEquivalent: "")
-            menu.addItemWithTitle("Last Week", action: "junk", keyEquivalent: "")
-            menu.addItemWithTitle("No Remixes", action: "junk", keyEquivalent: "")
-            menu.addItemWithTitle("Remixes Only", action: "junk", keyEquivalent: "")
-            popularViewController!.dropdownMenu = menu
-            return popularViewController!
+            return "PopularTracksViewController"
         case .Favorites:
-            favoritesViewController = (ensureViewController(favoritesViewController, identifier: "FavoriteTracksViewController") as! TracksViewController)
-            return favoritesViewController!
+            return "FavoriteTracksViewController"
         case .Latest:
-            latestViewController = (ensureViewController(latestViewController, identifier: "LatestTracksViewController") as! TracksViewController)
-            return latestViewController!
+            return "LatestTracksViewController"
         case .Blogs:
-            blogDirectoryViewController = (ensureViewController(blogDirectoryViewController, identifier: "BlogDirectoryViewController") as! BlogDirectoryViewController)
-            return blogDirectoryViewController!
+            return "BlogDirectoryViewController"
         case .Feed:
-            feedViewController = (ensureViewController(feedViewController, identifier: "FeedTracksViewController") as! TracksViewController)
-            return feedViewController!
+            return "FeedTracksViewController"
         case .Genres:
-            tagsViewController = (ensureViewController(tagsViewController, identifier: "TagsViewController") as! TagsViewController)
-            return tagsViewController!
+            return "TagsViewController"
         case .Friends:
-            friendsViewController = (ensureViewController(friendsViewController, identifier: "FriendsViewController") as! FriendsViewController)
-            return friendsViewController!
+            return "FriendsViewController"
         case .Search:
-            searchViewController = (ensureViewController(searchViewController, identifier: "SearchViewController") as! SearchViewController)
-            return searchViewController!
+            return "SearchViewController"
         }
     }
     
-    func junk() {
-        
-    }
-    
-    func ensureViewController(controller: NSViewController?, identifier: String) -> NSViewController {
-        if controller != nil {
-            return controller!
-        } else {
-            let newController = storyboard!.instantiateControllerWithIdentifier(identifier) as! NSViewController
-            addChildViewController(newController)
-            return newController
+    func menu(target: AnyObject?) -> NSMenu? {
+        switch self {
+        case .Popular:
+            return PopularSectionMode.menu(target)
+        default:
+            return nil
         }
     }
     
-    func transitionMainContentViewController(controller: NSViewController) {
-        if currentViewController == nil { return }
-        
-        let transitions = NSViewControllerTransitionOptions.Crossfade | NSViewControllerTransitionOptions.SlideLeft
-        transitionFromViewController(currentViewController!, toViewController: controller, options: transitions, completionHandler:  {
-            for subview in self.mainContentView.subviews {
-                if subview !== controller.view {
-                    (subview as! NSView).removeFromSuperview()
-                }
-            }
-        })
+    func viewController(storyboard: NSStoryboard, target: AnyObject?) -> BaseContentViewController {
+        return savedViewController ?? createViewController(storyboard, target: target)
     }
+    
+    private var savedViewController: BaseContentViewController? {
+        return NavigationSection.viewControllers[self.viewControllerIdentifier]
+    }
+    
+    private func createViewController(storyboard: NSStoryboard, target: AnyObject?) -> BaseContentViewController {
+        let targetViewController = storyboard.instantiateControllerWithIdentifier(self.viewControllerIdentifier) as! BaseContentViewController
+        targetViewController.dropdownMenu = self.menu(target)
+        
+        NavigationSection.viewControllers[self.viewControllerIdentifier] = targetViewController
+        
+        return targetViewController
+    }
+}
+
+extension PopularSectionMode {
+    static func menu(target: AnyObject?) -> NSMenu {
+        let menu = NSMenu()
+        menu.title = self.navigationSection.title
+        
+        menu.addItemWithTitle(self.Now.title, action: "popularSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.LastWeek.title, action: "popularSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.NoRemixes.title, action: "popularSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.RemixesOnly.title, action: "popularSectionModeChanged:", keyEquivalent: "")
+        
+        for item in (menu.itemArray as! [NSMenuItem]) {
+            item.target = target
+        }
+        
+        return menu
+    }
+}
+
+protocol PopularSectionModeMenuTarget {
+    func popularSectionModeChanged(sender: NSMenuItem)
 }

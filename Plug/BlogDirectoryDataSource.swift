@@ -12,7 +12,7 @@ import HypeMachineAPI
 class BlogDirectoryDataSource: MainContentDataSource {
 
     override func loadInitialValues() {
-        HypeMachineAPI.Requests.Blogs.index(nil) {
+        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) {
             (blogs, error) in
             
             if error != nil {

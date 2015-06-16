@@ -11,10 +11,10 @@ import HypeMachineAPI
 
 class PopularTracksDataSource: TracksDataSource {
     override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tracks.popular(nil, callback: requestInitialValuesResponse)
+        HypeMachineAPI.Requests.Tracks.popular(optionalParams: nil, callback: requestInitialValuesResponse)
     }
     
     override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.popular(nextPageParams, callback: requestNextPageResponse)
+        HypeMachineAPI.Requests.Tracks.popular(optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }

@@ -12,7 +12,7 @@
                     <window key="window" identifier="MainWindow" title="Main Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="472" height="778"/>
+                        <rect key="contentRect" x="226" y="48" width="472" height="778"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <value key="minSize" type="size" width="370" height="515"/>
                         <value key="maxSize" type="size" width="700" height="10000"/>
@@ -2932,9 +2932,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="0Eq-Vp-z56" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="73" y="39" width="99" height="20"/>
+                                <rect key="frame" x="73" y="37" width="99" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="v7E-5U-skl"/>
+                                    <constraint firstAttribute="height" constant="22" id="v7E-5U-skl"/>
                                 </constraints>
                                 <buttonCell key="cell" type="bevel" title="Pull to Refresh" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" id="9k9-0s-Y9i">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
