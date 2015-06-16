@@ -120,6 +120,8 @@
 		FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */; };
 		FABAA8911B2F57A80090D773 /* TitleBarPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */; };
 		FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */; };
+		FABAA8971B2FEAFB0090D773 /* SimpleGoogleAnalytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FABAA8981B2FEB030090D773 /* HypeMachineAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
 		FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
@@ -158,6 +160,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FABAA8981B2FEB030090D773 /* HypeMachineAPI.framework in CopyFiles */,
+				FABAA8971B2FEAFB0090D773 /* SimpleGoogleAnalytics.framework in CopyFiles */,
 				FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */,
 				FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */,
 			);
