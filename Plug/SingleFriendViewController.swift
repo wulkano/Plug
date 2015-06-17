@@ -1,5 +1,5 @@
 //
-//  SingleFriendViewController.swift
+//  SingleUserViewController.swift
 //  Plug
 //
 //  Created by Alex Marchant on 9/5/14.
@@ -10,7 +10,7 @@ import Cocoa
 import HypeMachineAPI
 import Alamofire
 
-class SingleFriendViewController: BaseContentViewController {
+class SingleUserViewController: BaseContentViewController {
     @IBOutlet var avatarView: NSImageView!
     @IBOutlet weak var backgroundView: BackgroundBorderView!
     @IBOutlet weak var usernameTextField: NSTextField!
@@ -28,8 +28,16 @@ class SingleFriendViewController: BaseContentViewController {
             representedObjectChanged()
         }
     }
-    var representedFriend: HypeMachineAPI.User {
+    var representedUser: HypeMachineAPI.User {
         return representedObject as! HypeMachineAPI.User
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        displayActionButton = true
+        actionButtonTarget = self
+        actionButtonAction = "followButtonClicked:"
     }
     
     func representedObjectChanged() {
@@ -41,12 +49,13 @@ class SingleFriendViewController: BaseContentViewController {
         updateFriendsCount()
         loadPlaylist()
         removeLoaderView()
+        updateActionButton()
     }
     
     func updateImage() {
-        if representedFriend.avatarURL == nil { return }
+        if representedUser.avatarURL == nil { return }
         
-        Alamofire.request(.GET, representedFriend.avatarURL!).validate().responseImage {
+        Alamofire.request(.GET, representedUser.avatarURL!).validate().responseImage {
             (_, _, image, error) in
             
             if error != nil {
@@ -60,22 +69,22 @@ class SingleFriendViewController: BaseContentViewController {
     }
     
     func updateUsername() {
-        usernameTextField.stringValue = representedFriend.username
+        usernameTextField.stringValue = representedUser.username
     }
     
     func updateFavoritesCount() {
-        favoritesCountTextField.integerValue = representedFriend.favoritesCount
+        favoritesCountTextField.integerValue = representedUser.favoritesCount
     }
     
     func updateFriendsCount() {
-        friendsCountTextField.integerValue = representedFriend.followersCount
+        friendsCountTextField.integerValue = representedUser.followersCount
     }
     
     func loadPlaylist() {
         tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         addChildViewController(tracksViewController)
         ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
-        tracksViewController.dataSource = UserTracksDataSource(username: representedFriend.username)
+        tracksViewController.dataSource = UserTracksDataSource(username: representedUser.username)
         tracksViewController.dataSource!.viewController = tracksViewController
     }
     
@@ -87,5 +96,40 @@ class SingleFriendViewController: BaseContentViewController {
     
     override func refresh() {
         tracksViewController.refresh()
+    }
+    
+    func updateActionButton() {
+        if representedUser.friend! == true {
+            actionButton!.state = NSOnState
+        } else {
+            actionButton!.state = NSOffState
+        }
+    }
+    
+    func followButtonClicked(sender: ActionButton) {
+        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: representedUser.username, optionalParams: nil) { (favorited, error) in
+            let favoritedState = sender.state == NSOnState
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                
+                if sender.state == NSOffState {
+                    sender.state = NSOnState
+                } else {
+                    sender.state = NSOffState
+                }
+                
+                return
+            }
+            
+            if favorited! != favoritedState {
+                if favorited! {
+                    sender.state = NSOnState
+                } else {
+                    sender.state = NSOffState
+                }
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ class FriendsViewController: DataSourceViewController {
     }
     
     func loadSingleFriendView(friend: HypeMachineAPI.User) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as! SingleFriendViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleUserViewController") as! SingleUserViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.representedObject = friend
     }

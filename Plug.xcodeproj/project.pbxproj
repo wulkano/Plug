@@ -19,6 +19,8 @@
 		FA107A8E1B03F63C006FA015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA91974A9A500A781C8 /* Main.storyboard */; };
 		FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DE71B30B458003F4E54 /* IOSSwitch.swift */; };
 		FA117DEA1B30E4AC003F4E54 /* InsetTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DE91B30E4AC003F4E54 /* InsetTableView.swift */; };
+		FA117DEC1B31120C003F4E54 /* ActionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */; };
+		FA117DEE1B3115C0003F4E54 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DED1B3115C0003F4E54 /* ActionButton.swift */; };
 		FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */; };
 		FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA18A8E319A303CC00B7CFDC /* Regex.swift */; };
 		FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */; };
@@ -184,6 +186,8 @@
 		FA107A881B03F3AE006FA015 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		FA117DE71B30B458003F4E54 /* IOSSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSSwitch.swift; sourceTree = "<group>"; };
 		FA117DE91B30E4AC003F4E54 /* InsetTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTableView.swift; sourceTree = "<group>"; };
+		FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonCell.swift; sourceTree = "<group>"; };
+		FA117DED1B3115C0003F4E54 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyHandler.swift; sourceTree = "<group>"; };
 		FA18A8E319A303CC00B7CFDC /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMap.swift; sourceTree = "<group>"; };
@@ -605,6 +609,8 @@
 		FA9A2F3C19B689AF0057080C /* NSButtons */ = {
 			isa = PBXGroup;
 			children = (
+				FA117DED1B3115C0003F4E54 /* ActionButton.swift */,
+				FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */,
 				FA9A2F4919B783B30057080C /* BackButtonCell.swift */,
 				FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */,
 				FAACE4C519AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift */,
@@ -956,7 +962,9 @@
 				FAF13B2A199D3D62009D9F66 /* FeedTrackTableCellView.swift in Sources */,
 				FA53950919B01E47006A95A5 /* LovedCountFormatter.swift in Sources */,
 				FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */,
+				FA117DEE1B3115C0003F4E54 /* ActionButton.swift in Sources */,
 				FA18A8E419A303CC00B7CFDC /* Regex.swift in Sources */,
+				FA117DEC1B31120C003F4E54 /* ActionButtonCell.swift in Sources */,
 				FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */,
 				FAAC8DAE19E4A1A300B1231B /* TagContainerView.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,

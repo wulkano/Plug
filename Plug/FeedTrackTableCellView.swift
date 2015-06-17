@@ -7,56 +7,62 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class FeedTrackTableCellView: LoveCountTrackTableCellView {
-    @IBOutlet var usernameOrBlogNameTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet var lovedByOrPostedByWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var lovedByOrPostedBy: SelectableTextField!
-    @IBOutlet var usernameOrBlogNameButton: HyperlinkButton!
+    @IBOutlet var sourceTypeTextField: SelectableTextField!
+    @IBOutlet var sourceButtonTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet var sourceButton: HyperlinkButton!
+    @IBOutlet var sourceTypeTextFieldWidthConstraint: NSLayoutConstraint!
     
     override func objectValueChanged() {
         super.objectValueChanged()
         if objectValue == nil { return }
         
-        updateLovedByOrPostedBy()
-        updateUsernameOrBlogName()
+        updateSourceTypeTextField()
+        updateSourceButton()
     }
     
     override func playStateChanged() {
         super.playStateChanged()
         
-        updateLovedByOrPostedBy()
-        updateUsernameOrBlogName()
+        updateSourceTypeTextField()
+        updateSourceButton()
     }
     
-    func updateLovedByOrPostedBy() {
-        var lovedByWidth: CGFloat = 52
-        var postedByWidth: CGFloat = 57
-        
-        if trackValue.lovedBy != nil {
-            lovedByOrPostedByWidthConstraint.constant = lovedByWidth
-            lovedByOrPostedBy.stringValue = "Loved by"
-            usernameOrBlogNameButton.title = trackValue.lovedBy!
+    func updateSourceTypeTextField() {
+        if trackValue.viaUser != nil {
+            sourceTypeTextField.stringValue = "Loved by"
+        } else if trackValue.viaQuery != nil {
+            sourceTypeTextField.stringValue = "Matched query"
         } else {
-            lovedByOrPostedByWidthConstraint.constant = postedByWidth
-            lovedByOrPostedBy.stringValue = "Posted by"
-            usernameOrBlogNameButton.title = trackValue.postedBy
+            sourceTypeTextField.stringValue = "Posted by"
+        }
+        
+        sourceTypeTextFieldWidthConstraint.constant = sourceTypeTextField.attributedStringValue.size.width + 1.5
+        
+        switch playState {
+        case .Playing, .Paused:
+            sourceTypeTextField.selected = true
+        case .NotPlaying:
+            sourceTypeTextField.selected = false
+        }
+    }
+    
+    func updateSourceButton() {
+        if trackValue.viaUser != nil {
+            sourceButton.title = trackValue.viaUser!
+        } else if trackValue.viaQuery != nil {
+            sourceButton.title = trackValue.viaQuery! + " →"
+        } else {
+            sourceButton.title = trackValue.postedBy
         }
         
         switch playState {
         case .Playing, .Paused:
-            lovedByOrPostedBy.selected = true
+            sourceButton.selected = true
         case .NotPlaying:
-            lovedByOrPostedBy.selected = false
-        }
-    }
-    
-    func updateUsernameOrBlogName() {
-        switch playState {
-        case .Playing, .Paused:
-            usernameOrBlogNameButton.selected = true
-        case .NotPlaying:
-            usernameOrBlogNameButton.selected = false
+            sourceButton.selected = false
         }
     }
 
@@ -67,43 +73,55 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         var mouseInSpacing: CGFloat = 20
         
         if mouseInside {
-            usernameOrBlogNameTrailingConstraint.constant = mouseInSpacing
+            sourceButtonTrailingConstraint.constant = mouseInSpacing
         } else {
-            usernameOrBlogNameTrailingConstraint.constant = mouseOutSpacing
+            sourceButtonTrailingConstraint.constant = mouseOutSpacing
         }
     }
     
     @IBAction func usernameOrBlogNameClicked(sender: NSButton) {
-        if trackValue.lovedBy != nil {
+        if trackValue.viaUser != nil {
             loadSingleFriendPage()
+        } else if trackValue.viaQuery != nil {
+            loadQuery()
         } else {
             loadSingleBlogPage()
         }
     }
     
     func loadSingleFriendPage() {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleFriendViewController") as! SingleFriendViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleUserViewController") as! SingleUserViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-//        HypeMachineAPI.Friends.SingleFriend(trackValue.lovedBy!,
-//            success: { friend in
-//                viewController.representedObject = friend
-//            }, failure: { error in
-//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                println(error)
-//        })
+        HypeMachineAPI.Requests.Users.show(username: trackValue.viaUser!) {
+            (user, error) in
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error)
+                return
+            }
+            
+            viewController.representedObject = user!
+        }
+    }
+    
+    func loadQuery() {
+        let url = NSURL(string: "http://hypem.com/search/\(trackValue.viaQuery!)")!
+        NSWorkspace.sharedWorkspace().openURL(url)
     }
     
     func loadSingleBlogPage() {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as! SingleBlogViewController
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-//        HypeMachineAPI.Blogs.SingleBlog(trackValue.postedById,
-//            success: { blog in
-//                viewController.representedObject = blog
-//            }, failure: { error in
-//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                println(error)
-//        })
-
+        
+        HypeMachineAPI.Requests.Blogs.show(id: trackValue.postedById) {
+            (blog, error) in
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error)
+                return
+            }
+            
+            viewController.representedObject = blog!
+        }
     }
-
 }

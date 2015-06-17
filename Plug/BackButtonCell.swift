@@ -9,13 +9,13 @@
 import Cocoa
 
 class BackButtonCell: SwissArmyButtonCell {
-    var normalLeftImage = NSImage(named: "Header-Back-Normal-Left")
-    var normalMiddleImage = NSImage(named: "Header-Back-Normal-Middle")
-    var normalRightImage = NSImage(named: "Header-Back-Normal-Right")
+    let normalLeftImage = NSImage(named: "Header-Back-Normal-Left")
+    let normalMiddleImage = NSImage(named: "Header-Button-Normal-Middle")
+    let normalRightImage = NSImage(named: "Header-Button-Normal-Right")
     
-    var mouseDownLeftImage = NSImage(named: "Header-Back-Tap-Left")
-    var mouseDownMiddleImage = NSImage(named: "Header-Back-Tap-Middle")
-    var mouseDownRightImage = NSImage(named: "Header-Back-Tap-Right")
+    let mouseDownLeftImage = NSImage(named: "Header-Back-Tap-Left")
+    let mouseDownMiddleImage = NSImage(named: "Header-Button-Tap-Middle")
+    let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
     
     override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
         if mouseDown {

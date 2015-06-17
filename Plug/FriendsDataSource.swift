@@ -39,7 +39,11 @@ class FriendsDataSource: MainContentDataSource {
             filtering = true
             filteredTableContents = standardTableContents.filter {
                 let friend = $0 as! HypeMachineAPI.User
-                return (friend.username =~ keywords) || (friend.fullName =~ keywords)
+                if friend.fullName != nil {
+                    return (friend.username =~ keywords) || (friend.fullName! =~ keywords)
+                } else {
+                    return friend.username =~ keywords
+                }
             }
         }
         viewController.tableView.reloadData()

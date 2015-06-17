@@ -31,11 +31,20 @@ class SingleBlogViewController: BaseContentViewController {
         return representedObject as! HypeMachineAPI.Blog
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        displayActionButton = true
+        actionButtonTarget = self
+        actionButtonAction = "followButtonClicked:"
+    }
+    
     func representedObjectChanged() {
         updateTitle()
         updateDetails()
         updateImage()
         loadPlaylist()
+        updateActionButton()
     }
     
     func updateTitle() {
@@ -101,5 +110,40 @@ class SingleBlogViewController: BaseContentViewController {
     
     override func refresh() {
         tracksViewController.refresh()
+    }
+    
+    func updateActionButton() {
+        if representedBlog.following {
+            actionButton!.state = NSOnState
+        } else {
+            actionButton!.state = NSOffState
+        }
+    }
+    
+    func followButtonClicked(sender: ActionButton) {
+        HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: representedBlog.id, optionalParams: nil) { (favorited, error) in
+            let favoritedState = sender.state == NSOnState
+            
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                
+                if sender.state == NSOffState {
+                    sender.state = NSOnState
+                } else {
+                    sender.state = NSOffState
+                }
+                
+                return
+            }
+            
+            if favorited! != favoritedState {
+                if favorited! {
+                    sender.state = NSOnState
+                } else {
+                    sender.state = NSOffState
+                }
+            }
+        }
     }
 }

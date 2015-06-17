@@ -33,7 +33,7 @@ class FriendTableCellView: IOSStyleTableCellView {
     }
     
     func updateFullName() {
-        fullNameTextField.stringValue = friendValue.fullName
+        fullNameTextField.stringValue = friendValue.fullName ?? friendValue.username
     }
     
     func updateUsername() {

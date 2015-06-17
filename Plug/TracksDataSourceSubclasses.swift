@@ -64,9 +64,9 @@ class FavoriteTracksDataSource: TracksDataSource {
 }
 
 class BlogTracksDataSource: TracksDataSource {
-    var blogID: String
+    var blogID: Int
     
-    init(blogID: String) {
+    init(blogID: Int) {
         self.blogID = blogID
         super.init()
     }

@@ -1735,10 +1735,10 @@
             </objects>
             <point key="canvasLocation" x="2844.5" y="-116"/>
         </scene>
-        <!--Single Friend View Controller-->
+        <!--Single User View Controller-->
         <scene sceneID="E0K-CQ-nOH">
             <objects>
-                <viewController title="User" storyboardIdentifier="SingleFriendViewController" id="z2f-JR-RpO" userLabel="Single Friend View Controller" customClass="SingleFriendViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="User" storyboardIdentifier="SingleUserViewController" id="z2f-JR-RpO" userLabel="Single User View Controller" customClass="SingleUserViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="409" placeholderIntrinsicHeight="213" id="geV-qg-bAh">
                         <rect key="frame" x="0.0" y="0.0" width="409" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2391,14 +2391,14 @@
                                                                 <outlet property="loveButton" destination="RBh-SV-6XE" id="PY5-Qv-M0B"/>
                                                                 <outlet property="loveContainerWidthConstraint" destination="ioZ-eS-03d" id="0dh-8O-mvm"/>
                                                                 <outlet property="loveCount" destination="Y1u-Jd-vHb" id="v5r-yp-7av"/>
-                                                                <outlet property="lovedByOrPostedBy" destination="IyW-gF-PZN" id="bQa-Jn-ZDO"/>
-                                                                <outlet property="lovedByOrPostedByWidthConstraint" destination="8VQ-HY-GdV" id="H9W-b6-CdH"/>
                                                                 <outlet property="playPauseButton" destination="Meg-9s-aqM" id="Kxh-xf-oOn"/>
                                                                 <outlet property="progressSlider" destination="feB-JE-6lE" id="Mt6-Ug-mcL"/>
+                                                                <outlet property="sourceButton" destination="tay-QN-93z" id="n4U-9m-XwJ"/>
+                                                                <outlet property="sourceButtonTrailingConstraint" destination="FCM-6R-JHk" id="ubG-px-Pn4"/>
+                                                                <outlet property="sourceTypeTextField" destination="IyW-gF-PZN" id="dGk-lD-8Yp"/>
+                                                                <outlet property="sourceTypeTextFieldWidthConstraint" destination="8VQ-HY-GdV" id="BX5-eU-MlX"/>
                                                                 <outlet property="titleButton" destination="jbj-gZ-Vbn" id="yNU-3Y-TGT"/>
                                                                 <outlet property="titleTrailingConstraint" destination="Sdn-Wa-pgG" id="kkI-gs-gLt"/>
-                                                                <outlet property="usernameOrBlogNameButton" destination="tay-QN-93z" id="RKc-dq-v5B"/>
-                                                                <outlet property="usernameOrBlogNameTrailingConstraint" destination="FCM-6R-JHk" id="OA6-j4-kah"/>
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="xAW-am-Piq" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
@@ -3169,6 +3169,21 @@
                                                             <action selector="backButtonClicked:" target="aCl-8y-4N3" id="ln8-wt-xAG"/>
                                                         </connections>
                                                     </button>
+                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="b2h-Ow-flS" customClass="ActionButton" customModule="Plug" customModuleProvider="target">
+                                                        <rect key="frame" x="327" y="5" width="50" height="26"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="8zL-vW-a1F"/>
+                                                            <constraint firstAttribute="height" constant="26" id="fE9-IJ-ENN"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="z5k-Lf-0vS"/>
+                                                        </constraints>
+                                                        <buttonCell key="cell" type="square" title="Follow" alternateTitle="Unfollow" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="truncatingMiddle" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GOu-3A-IW3" customClass="ActionButtonCell" customModule="Plug" customModuleProvider="target">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="backButtonClicked:" target="aCl-8y-4N3" id="CVC-8J-K8o"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="centerX" secondItem="e2q-R0-tw3" secondAttribute="centerX" priority="250" id="73B-Hb-hd9"/>
@@ -3176,9 +3191,13 @@
                                                     <constraint firstAttribute="centerX" secondItem="Qbf-sG-xly" secondAttribute="centerX" id="MEW-KZ-jMT"/>
                                                     <constraint firstItem="Y49-y9-MwN" firstAttribute="leading" secondItem="CKk-2C-5NT" secondAttribute="leading" constant="4" id="NH1-ae-F56"/>
                                                     <constraint firstAttribute="centerY" secondItem="e2q-R0-tw3" secondAttribute="centerY" constant="1" id="O2a-Pd-GmQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="b2h-Ow-flS" secondAttribute="trailing" constant="4" id="S8R-fc-nPD"/>
                                                     <constraint firstAttribute="centerY" secondItem="Qbf-sG-xly" secondAttribute="centerY" constant="1" id="Wrr-B7-WEX"/>
+                                                    <constraint firstItem="b2h-Ow-flS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e2q-R0-tw3" secondAttribute="trailing" constant="10" id="Zh7-gG-rzE"/>
                                                     <constraint firstAttribute="centerY" secondItem="Y49-y9-MwN" secondAttribute="centerY" id="cPB-1X-kHb"/>
+                                                    <constraint firstAttribute="centerY" secondItem="b2h-Ow-flS" secondAttribute="centerY" id="dW4-9F-z66"/>
                                                     <constraint firstItem="Qbf-sG-xly" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Y49-y9-MwN" secondAttribute="trailing" constant="10" id="ejw-f8-nCZ"/>
+                                                    <constraint firstItem="b2h-Ow-flS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Qbf-sG-xly" secondAttribute="trailing" constant="10" id="h2F-Jb-wxz"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
@@ -3204,6 +3223,7 @@
                                     <constraint firstAttribute="trailing" secondItem="ZvM-TH-mic" secondAttribute="trailing" id="ySP-66-xLA"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="actionButton" destination="b2h-Ow-flS" id="Kx7-4Y-PS8"/>
                                     <outlet property="backButton" destination="Y49-y9-MwN" id="txF-UD-LZL"/>
                                     <outlet property="titleDropdownButton" destination="Qbf-sG-xly" id="fvD-fP-uXo"/>
                                     <outlet property="titleTextField" destination="e2q-R0-tw3" id="jsZ-Ow-ULO"/>

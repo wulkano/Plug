@@ -272,16 +272,18 @@ class CurrentlyPlaylingTrackViewController: NSViewController {
         
         changeTrackLovedValueTo(newLovedValue)
         
-//        HypeMachineAPI.Tracks.ToggleLoved(trackValue,
-//            success: {loved in
-//                if loved != newLovedValue {
-//                    self.changeTrackLovedValueTo(loved)
-//                }
-//            }, failure: {error in
-//                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-//                println(error)
-//                self.changeTrackLovedValueTo(oldLovedValue)
-//        })
+        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: trackValue.id, optionalParams: nil) {
+            (favorited, error) in
+            if error != nil {
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+                println(error!)
+                self.changeTrackLovedValueTo(oldLovedValue)
+            }
+            
+            if favorited! != newLovedValue {
+                self.changeTrackLovedValueTo(favorited!)
+            }
+        }
     }
     
     @IBAction func progressSliderDragged(sender: NSSlider) {
