@@ -206,8 +206,8 @@
 		FA24EDA71974A9A500A781C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
-		FA277E791B31EFF0009254A0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
-		FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
+		FA277E791B31EFF0009254A0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Plug/Fabric.framework; sourceTree = SOURCE_ROOT; };
+		FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Plug/Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryViewController.swift; sourceTree = "<group>"; };
 		FA3241B319F80378009FCDE3 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentDataSource.swift; sourceTree = "<group>"; };
@@ -427,8 +427,8 @@
 		FA222A8719BCCA68005A631F /* ContentViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA222A8519BCC947005A631F /* BaseContentViewController.swift */,
 				FA3241BB19F815AD009FCDE3 /* DataSourceViewControllers */,
+				FA222A8519BCC947005A631F /* BaseContentViewController.swift */,
 				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */,
 				FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */,
