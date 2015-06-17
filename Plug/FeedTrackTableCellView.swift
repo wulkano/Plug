@@ -10,6 +10,9 @@ import Cocoa
 import HypeMachineAPI
 
 class FeedTrackTableCellView: LoveCountTrackTableCellView {
+    let sourceTypeColor = NSColor(red256: 175, green256: 179, blue256: 181)
+    let sourceColor = NSColor(red256: 138, green256: 146, blue256: 150)
+    
     @IBOutlet var sourceTypeTextField: SelectableTextField!
     @IBOutlet var sourceButtonTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var sourceButton: HyperlinkButton!
@@ -19,18 +22,30 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         super.objectValueChanged()
         if objectValue == nil { return }
         
-        updateSourceTypeTextField()
-        updateSourceButton()
+        updateSourceType()
+        updateSource()
     }
     
     override func playStateChanged() {
         super.playStateChanged()
         
-        updateSourceTypeTextField()
-        updateSourceButton()
+        updateSourceType()
+        updateSource()
     }
     
-    func updateSourceTypeTextField() {
+    override func updateTrackAvailability() {
+        super.updateTrackAvailability()
+        
+        if trackValue.audioUnavailable {
+            sourceTypeTextField.textColor = disabledTextColor
+            sourceButton.textColor = disabledTextColor
+        } else {
+            sourceTypeTextField.textColor = sourceTypeColor
+            sourceButton.textColor = sourceColor
+        }
+    }
+    
+    func updateSourceType() {
         if trackValue.viaUser != nil {
             sourceTypeTextField.stringValue = "Loved by"
         } else if trackValue.viaQuery != nil {
@@ -49,7 +64,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         }
     }
     
-    func updateSourceButton() {
+    func updateSource() {
         if trackValue.viaUser != nil {
             sourceButton.title = trackValue.viaUser!
         } else if trackValue.viaQuery != nil {
