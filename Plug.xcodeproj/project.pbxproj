@@ -34,6 +34,8 @@
 		FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA51974A9A500A781C8 /* AppDelegate.swift */; };
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
+		FA277E7B1B31EFF0009254A0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E791B31EFF0009254A0 /* Fabric.framework */; };
+		FA277E7C1B31EFF0009254A0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */; };
 		FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */; };
 		FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B319F80378009FCDE3 /* MainMenuController.swift */; };
 		FA3241B819F810F4009FCDE3 /* MainContentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */; };
@@ -204,6 +206,8 @@
 		FA24EDA71974A9A500A781C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
+		FA277E791B31EFF0009254A0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryViewController.swift; sourceTree = "<group>"; };
 		FA3241B319F80378009FCDE3 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentDataSource.swift; sourceTree = "<group>"; };
@@ -338,6 +342,8 @@
 				FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */,
 				FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */,
 				F502BB1D23558470D375E6E0 /* libPods-Plug.a in Frameworks */,
+				FA277E7B1B31EFF0009254A0 /* Fabric.framework in Frameworks */,
+				FA277E7C1B31EFF0009254A0 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +353,8 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA277E791B31EFF0009254A0 /* Fabric.framework */,
+				FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */,
 				FA107A881B03F3AE006FA015 /* Alamofire.framework */,
 				FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */,
 				FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */,
@@ -383,10 +391,6 @@
 			children = (
 				FA9A2F4419B6A5470057080C /* Storyboards */,
 				FABAA8941B2F596F0090D773 /* Helpers */,
-				FA5394F919AFA065006A95A5 /* Animations.swift */,
-				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
-				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
-				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
 				FA9A2F3C19B689AF0057080C /* NSButtons */,
 				FA9A2F4119B68AEB0057080C /* NSImageViews */,
 				FA9A2F3F19B68AC00057080C /* NSSliders */,
@@ -722,6 +726,10 @@
 			isa = PBXGroup;
 			children = (
 				FA53950E19B03440006A95A5 /* Formatters */,
+				FA5394F919AFA065006A95A5 /* Animations.swift */,
+				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
+				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
+				FA6ADCFC19BA935C00CCD371 /* ViewPlacementHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -788,6 +796,7 @@
 				FA24ED9A1974A9A500A781C8 /* Resources */,
 				FA562EF319E8810E00B760A2 /* CopyFiles */,
 				57E4971D7C9F9B6BDDFCF71F /* Copy Pods Resources */,
+				FA277E781B31EF07009254A0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -865,6 +874,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Plug/Pods-Plug-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		FA277E781B31EF07009254A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 8ef496111659c38e8a61e76814c17be6bb14bfca d1050dcac544ac3ebcd95826011f71f5fb44a7e0f345109a2efbfb2c6d976387";
 		};
 		FA2D6436A7B122E0BD821592 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1120,6 +1142,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

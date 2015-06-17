@@ -8,6 +8,8 @@
 
 import Cocoa
 import HypeMachineAPI
+import Fabric
+import Crashlytics
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
@@ -18,19 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var signOutMenuItem: NSMenuItem!
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
     
-    // An attempt to fix bug: https://github.com/alexmarchant/Plug2Issues/issues/8
-    // TODO: remove this after public release
-    convenience init(coder: NSCoder) {
-        self.init()
-    }
-    
-    override init() {
-        super.init()
-    }
-    
-//    TODO: Switch release channel compilation flag back to fast when they fix some bug
-    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        Fabric.with([Crashlytics()]) // Crash Reporting
         setupUserDefaults()
         setupUserNotifications()
         setupMediaKeys()

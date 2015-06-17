@@ -27,4 +27,8 @@ struct Analytics {
     static func trackAudioPlaybackEvent(actionName: String) {
         trackEvent(category: "AudioPlayback", action: actionName, label: nil, value: nil)
     }
+    
+    static func trackException(description: String, fatal: Bool) {
+        sharedTracker.trackException(description: description, fatal: fatal)
+    }
 }
