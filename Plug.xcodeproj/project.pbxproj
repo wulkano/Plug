@@ -36,6 +36,10 @@
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
 		FA277E7B1B31EFF0009254A0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E791B31EFF0009254A0 /* Fabric.framework */; };
 		FA277E7C1B31EFF0009254A0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */; };
+		FA277E7D1B322A69009254A0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E791B31EFF0009254A0 /* Fabric.framework */; };
+		FA277E7E1B322A69009254A0 /* Fabric.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA277E791B31EFF0009254A0 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA277E7F1B322A6E009254A0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */; };
+		FA277E801B322A6E009254A0 /* Crashlytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */; };
 		FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B319F80378009FCDE3 /* MainMenuController.swift */; };
 		FA3241B819F810F4009FCDE3 /* MainContentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */; };
@@ -166,8 +170,10 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FABAA8981B2FEB030090D773 /* HypeMachineAPI.framework in CopyFiles */,
+				FA277E7E1B322A69009254A0 /* Fabric.framework in CopyFiles */,
 				FABAA8971B2FEAFB0090D773 /* SimpleGoogleAnalytics.framework in CopyFiles */,
 				FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */,
+				FA277E801B322A6E009254A0 /* Crashlytics.framework in CopyFiles */,
 				FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,8 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA107A871B03F333006FA015 /* SimpleGoogleAnalytics.framework in Frameworks */,
+				FA277E7F1B322A6E009254A0 /* Crashlytics.framework in Frameworks */,
 				FA107A861B03F32C006FA015 /* HypeMachineAPI.framework in Frameworks */,
 				FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */,
+				FA277E7D1B322A69009254A0 /* Fabric.framework in Frameworks */,
 				FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */,
 				F502BB1D23558470D375E6E0 /* libPods-Plug.a in Frameworks */,
 				FA277E7B1B31EFF0009254A0 /* Fabric.framework in Frameworks */,
@@ -358,8 +366,8 @@
 				FA107A881B03F3AE006FA015 /* Alamofire.framework */,
 				FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */,
 				FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */,
-				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
 				FA562EF619E886D600B760A2 /* Sparkle.framework */,
+				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
 				DD63B6DF8D6095416CA5EFF6 /* libPods-Plug.a */,
 			);
 			name = Frameworks;
@@ -886,7 +894,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 8ef496111659c38e8a61e76814c17be6bb14bfca d1050dcac544ac3ebcd95826011f71f5fb44a7e0f345109a2efbfb2c6d976387";
+			shellScript = "./Plug/Fabric.framework/run 8ef496111659c38e8a61e76814c17be6bb14bfca d1050dcac544ac3ebcd95826011f71f5fb44a7e0f345109a2efbfb2c6d976387";
 		};
 		FA2D6436A7B122E0BD821592 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1150,6 +1158,7 @@
 					"$(PROJECT_DIR)/Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
 					/Users/alex/Developer/osx/HypeMachineAPI/build/Debug,
+					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1181,6 +1190,7 @@
 					"$(PROJECT_DIR)/Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
 					/Users/alex/Developer/osx/HypeMachineAPI/build/Debug,
+					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
