@@ -13,18 +13,12 @@ class PostInfoTextField: NSTextField {
     var trackingArea: NSTrackingArea?
     var mouseInside = false
     
-    override func updateTrackingAreas() {
-        super.updateTrackingAreas()
-        ensureTrackingArea()
-        if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
-            addTrackingArea(trackingArea!)
-        }
-    }
-    
-    func ensureTrackingArea() {
-        if trackingArea == nil {
-            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited, owner: self, userInfo: nil)
-        }
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
+        let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
+        let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
+        addTrackingArea(trackingArea)
     }
     
     override func mouseDown(theEvent: NSEvent) {

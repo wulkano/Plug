@@ -12,7 +12,14 @@ class ExtendedTableView: NSTableView {
     @IBInspectable var tracksMouseEnterExit: Bool = false
     @IBInspectable var pullToRefresh: Bool = false
     
-    var trackingArea: NSTrackingArea?
+    var extendedTrackingArea: NSTrackingArea?
+    var extendedTrackingAreaInsets: NSEdgeInsets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0) {
+        didSet { updateExtendedTrackingArea() }
+    }
+    var extendedTrackingAreaRect: NSRect {
+        return insetRect(scrollView!.bounds, insets: extendedTrackingAreaInsets)
+    }
+    
     var extendedDelegate: ExtendedTableViewDelegate?
     var mouseInsideRow: Int = -1
     
@@ -28,43 +35,49 @@ class ExtendedTableView: NSTableView {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    override func updateTrackingAreas() {
-        super.updateTrackingAreas()
-        if tracksMouseEnterExit {
-            ensureTrackingArea()
-            if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
-                addTrackingArea(trackingArea!)
-            }
-        }
-    }
-    
-    func ensureTrackingArea() {
-        if trackingArea == nil {
-            trackingArea = NSTrackingArea(rect: NSZeroRect, options: .InVisibleRect | .ActiveAlways | .MouseEnteredAndExited | .MouseMoved | .AssumeInside, owner: self, userInfo: nil)
-        }
-    }
-    
     override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
         Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
         Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
         Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
-
-        resetTrackingArea()
-        mouseEntered(NSEvent())
+        
+        updateExtendedTrackingArea()
     }
     
-    func resetTrackingArea() {
-        if tracksMouseEnterExit && trackingArea != nil {
-            removeTrackingArea(trackingArea!)
-            trackingArea = nil
-            ensureTrackingArea()
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        
+        updateExtendedTrackingArea()
+    }
+    
+    func updateExtendedTrackingArea() {
+        if extendedTrackingArea != nil {
+            removeTrackingArea(extendedTrackingArea!)
         }
+        
+        let options: NSTrackingAreaOptions = (.ActiveAlways | .MouseEnteredAndExited | .MouseMoved | .AssumeInside)
+        extendedTrackingArea = NSTrackingArea(rect: extendedTrackingAreaRect, options: options, owner: self, userInfo: nil)
+        addTrackingArea(extendedTrackingArea!)
+    }
+    
+    func insetRect(rect: NSRect, insets: NSEdgeInsets) -> NSRect {
+        var newRect = rect
+        newRect.origin.x -= insets.left
+        newRect.origin.y -= insets.top
+        newRect.size.width -= insets.right
+        newRect.size.height -= insets.bottom
+        
+        if newRect.origin.x < 0 { newRect.origin.x = 0 }
+        if newRect.origin.y < 0 { newRect.origin.y = 0 }
+        if newRect.size.width < 0 { newRect.size.width = 0 }
+        if newRect.size.height < 0 { newRect.size.height = 0 }
+        
+        return newRect
     }
 
     override func mouseDown(theEvent: NSEvent) {
-        let globalLocation = theEvent.locationInWindow
-        let localLocation = convertPoint(globalLocation, fromView: nil)
-        let clickedRow = rowAtPoint(localLocation)
+        let clickedRow = rowForEvent(theEvent)
         
         super.mouseDown(theEvent)
         
@@ -74,9 +87,7 @@ class ExtendedTableView: NSTableView {
     }
     
     override func rightMouseDown(theEvent: NSEvent) {
-        let globalLocation = theEvent.locationInWindow
-        let localLocation = convertPoint(globalLocation, fromView: nil)
-        let clickedRow = rowAtPoint(localLocation)
+        let clickedRow = rowForEvent(theEvent)
         
         super.rightMouseDown(theEvent)
         
@@ -88,9 +99,7 @@ class ExtendedTableView: NSTableView {
     override func mouseMoved(theEvent: NSEvent) {
         super.mouseMoved(theEvent)
         
-        let globalLocation = theEvent.locationInWindow
-        let localLocation = convertPoint(globalLocation, fromView: nil)
-        let newMouseInsideRow = rowAtPoint(localLocation)
+        let newMouseInsideRow = rowForEvent(theEvent)
         
         if newMouseInsideRow != mouseInsideRow {
             if newMouseInsideRow != -1 {
@@ -103,10 +112,14 @@ class ExtendedTableView: NSTableView {
         }
     }
     
+    func rowForEvent(theEvent: NSEvent) -> Int {
+        let globalLocation = theEvent.locationInWindow
+        let localLocation = convertPoint(globalLocation, fromView: nil)
+        return rowAtPoint(localLocation)
+    }
+    
     override func mouseEntered(theEvent: NSEvent) {
         super.mouseEntered(theEvent)
-        
-        updateTrackingAreas()
     }
     
     override func mouseExited(theEvent: NSEvent) {
@@ -136,13 +149,6 @@ class ExtendedTableView: NSTableView {
         
         let hiddenRows = visibleRows.filter { !contains(newVisibleRows, $0) }
         let shownRows = newVisibleRows.filter { !contains(self.visibleRows, $0) }
-        
-//        if !shownRows.isEmpty {
-//            println("Shown \(shownRows)\n\(self)")
-//        }
-//        if !hiddenRows.isEmpty {
-//            println("Hidden \(hiddenRows)\n\(self)")
-//        }
         
         if !hiddenRows.isEmpty {
             let hiddenDirection = (average(hiddenRows) > average(newVisibleRows)) ? RowShowHideDirection.Below : RowShowHideDirection.Above

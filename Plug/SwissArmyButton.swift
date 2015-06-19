@@ -31,13 +31,13 @@ class SwissArmyButton: NSButton {
         set { swissArmyButtonCell.mouseDown = newValue }
     }
     
-    override func updateTrackingAreas() {
-        super.updateTrackingAreas()
+    override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
         if tracksHover {
-            ensureTrackingArea()
-            if find(trackingAreas as! [NSTrackingArea], trackingArea!) == nil {
-                addTrackingArea(trackingArea!)
-            }
+            let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
+            let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
+            addTrackingArea(trackingArea)
         }
     }
     
@@ -53,12 +53,6 @@ class SwissArmyButton: NSButton {
     func setupCell() {
         let newCell = SwissArmyButtonCell(textCell: "")
         setCell(newCell)
-    }
-    
-    func ensureTrackingArea() {
-        if trackingArea == nil {
-            trackingArea = NSTrackingArea(rect: NSZeroRect, options: NSTrackingAreaOptions.InVisibleRect | NSTrackingAreaOptions.ActiveAlways | NSTrackingAreaOptions.MouseEnteredAndExited, owner: self, userInfo: nil)
-        }
     }
     
     override func mouseEntered(theEvent: NSEvent) {
