@@ -31,7 +31,7 @@ class FriendsViewController: DataSourceViewController {
         dataSource.filterByKeywords(keywords)
     }
     
-    func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         if let item: AnyObject = dataSource.itemForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }

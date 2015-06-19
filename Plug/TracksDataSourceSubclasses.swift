@@ -149,3 +149,17 @@ class SearchTracksDataSource: TracksDataSource {
         HypeMachineAPI.Requests.Tracks.index(optionalParams: sort.params.merge(nextPageParams).merge(["q": searchQuery]), callback: requestNextPageResponse)
     }
 }
+
+class SingleTrackDataSource: TracksDataSource {
+    let track: HypeMachineAPI.Track
+    
+    init(track: HypeMachineAPI.Track) {
+        self.track = track
+        super.init()
+    }
+    
+    override func requestInitialValues() {
+        self.allTracksLoaded = true
+        requestInitialValuesResponse([track], error: nil)
+    }
+}

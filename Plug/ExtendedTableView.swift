@@ -12,12 +12,6 @@ class ExtendedTableView: NSTableView {
     @IBInspectable var tracksMouseEnterExit: Bool = false
     @IBInspectable var pullToRefresh: Bool = false
     
-    override var visibleRect: NSRect {
-        var rect = super.visibleRect
-        rect.size.height -= 47 // Don't track over the play controls bar at the bottom
-        return rect
-    }
-    
     var trackingArea: NSTrackingArea?
     var extendedDelegate: ExtendedTableViewDelegate?
     var mouseInsideRow: Int = -1
@@ -28,7 +22,7 @@ class ExtendedTableView: NSTableView {
     var scrollView: NSScrollView? {
         return clipView.superview as? NSScrollView
     }
-    var visibleRows: Range<Int> = Range(start: 0,end: 0)
+    var visibleRows: [Int] = []
     
     deinit {
         Notifications.unsubscribeAll(observer: self)
@@ -51,9 +45,9 @@ class ExtendedTableView: NSTableView {
     }
     
     override func viewDidMoveToWindow() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
 
         resetTrackingArea()
         mouseEntered(NSEvent())
@@ -76,7 +70,7 @@ class ExtendedTableView: NSTableView {
         
         if clickedRow == -1 { return }
 
-        extendedDelegate?.tableView?(self, wasClicked: theEvent, atRow: clickedRow)
+        extendedDelegate?.tableView(self, wasClicked: theEvent, atRow: clickedRow)
     }
     
     override func rightMouseDown(theEvent: NSEvent) {
@@ -88,7 +82,7 @@ class ExtendedTableView: NSTableView {
         
         if clickedRow == -1 { return }
         
-        extendedDelegate?.tableView?(self, wasRightClicked: theEvent, atRow: clickedRow)
+        extendedDelegate?.tableView(self, wasRightClicked: theEvent, atRow: clickedRow)
     }
     
     override func mouseMoved(theEvent: NSEvent) {
@@ -100,10 +94,10 @@ class ExtendedTableView: NSTableView {
         
         if newMouseInsideRow != mouseInsideRow {
             if newMouseInsideRow != -1 {
-                extendedDelegate?.tableView?(self, mouseEnteredRow: newMouseInsideRow)
+                extendedDelegate?.tableView(self, mouseEnteredRow: newMouseInsideRow)
             }
             if mouseInsideRow != -1 {
-                extendedDelegate?.tableView?(self, mouseExitedRow: mouseInsideRow)
+                extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
             }
             mouseInsideRow = newMouseInsideRow
         }
@@ -119,46 +113,77 @@ class ExtendedTableView: NSTableView {
         super.mouseExited(theEvent)
         
         if mouseInsideRow != -1 {
-            extendedDelegate?.tableView?(self, mouseExitedRow: mouseInsideRow)
+            extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
             mouseInsideRow = -1
         }
     }
     
     func scrollViewDidStartScrolling(notification: NSNotification) {
         if mouseInsideRow != -1 {
-            extendedDelegate?.tableView?(self, mouseExitedRow: mouseInsideRow)
+            extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
             mouseInsideRow = -1
         }
     }
     
     func scrollViewDidScroll(notification: NSNotification) {
-        var newVisibleRows = rowsInRect(clipView.visibleRect).toRange()!
-        for row in newVisibleRows {
-            if !visibleRows.contains(row) {
-                extendedDelegate?.tableView?(self, rowDidShow: row)
+        updateVisibleRows()
+        extendedDelegate?.didScrollTableView(self)
+    }
+    
+    func updateVisibleRows() {
+        let newVisibleRange = rowsInRect(clipView.visibleRect).toRange()!
+        let newVisibleRows = [Int](newVisibleRange)
+        
+        let hiddenRows = visibleRows.filter { !contains(newVisibleRows, $0) }
+        let shownRows = newVisibleRows.filter { !contains(self.visibleRows, $0) }
+        
+//        if !shownRows.isEmpty {
+//            println("Shown \(shownRows)\n\(self)")
+//        }
+//        if !hiddenRows.isEmpty {
+//            println("Hidden \(hiddenRows)\n\(self)")
+//        }
+        
+        if !hiddenRows.isEmpty {
+            let hiddenDirection = (average(hiddenRows) > average(newVisibleRows)) ? RowShowHideDirection.Below : RowShowHideDirection.Above
+            for row in hiddenRows {
+                extendedDelegate?.tableView(self, rowDidHide: row, direction: hiddenDirection)
             }
         }
-        for row in visibleRows {
-            if !newVisibleRows.contains(row) {
-                extendedDelegate?.tableView?(self, rowDidHide: row)
+        
+        if !shownRows.isEmpty {
+            let shownDirection = (average(shownRows) > average(newVisibleRows)) ? RowShowHideDirection.Below : RowShowHideDirection.Above
+            for row in shownRows {
+                extendedDelegate?.tableView(self, rowDidShow: row, direction: shownDirection)
             }
         }
+        
         visibleRows = newVisibleRows
-        extendedDelegate?.didScrollTableView?(self)
     }
     
     func scrollViewDidEndScrolling(notification: NSNotification) {
-        extendedDelegate?.didEndScrollingTableView?(self)
+        extendedDelegate?.didEndScrollingTableView(self)
+    }
+    
+    func average(array: [Int]) -> Double {
+        return Double(array.reduce(0) { $0 + $1 }) / Double(array.count)
     }
 }
 
-@objc protocol ExtendedTableViewDelegate {
-    optional func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int)
-    optional func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int)
-    optional func tableView(tableView: ExtendedTableView, mouseEnteredRow row: Int)
-    optional func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int)
-    optional func tableView(tableView: ExtendedTableView, rowDidShow row: Int)
-    optional func tableView(tableView: ExtendedTableView, rowDidHide row: Int)
-    optional func didEndScrollingTableView(tableView: ExtendedTableView)
-    optional func didScrollTableView(tableView: ExtendedTableView)
+// TODO: Swift 2.0 update with default implementation to make these optional
+
+protocol ExtendedTableViewDelegate {
+    func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int)
+    func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int)
+    func tableView(tableView: ExtendedTableView, mouseEnteredRow row: Int)
+    func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int)
+    func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection)
+    func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection)
+    func didEndScrollingTableView(tableView: ExtendedTableView)
+    func didScrollTableView(tableView: ExtendedTableView)
+}
+
+enum RowShowHideDirection: Int {
+    case Above
+    case Below
 }

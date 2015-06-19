@@ -1,14 +1,23 @@
 //
-//  Array+optionalAtIndex.swift
+//  Array+contains.swift
 //  Plug
 //
-//  Created by Alex Marchant on 10/22/14.
+//  Created by Alexander Marchant on 7/16/14.
 //  Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Foundation
 
 extension Array {
+    
+    func first () -> T? {
+        return count > 0 ? self[0] : nil
+    }
+    
+    func last () -> T? {
+        return count > 0 ? self[count - 1] : nil
+    }
+    
     func optionalAtIndex(index: Int) -> T? {
         if self.count > index {
             return self[index]
@@ -16,4 +25,5 @@ extension Array {
             return nil
         }
     }
+
 }

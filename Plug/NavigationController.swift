@@ -43,7 +43,8 @@ class NavigationController: NSViewController {
         
         if rootViewController == nil {
             addChildViewController(viewController)
-            ViewPlacementHelper.AddFullSizeSubview(viewController.view, toSuperView: contentView)
+            ViewPlacementHelper.addFullSizeSubview(viewController.view, toSuperView: contentView)
+            viewController.didBecomeCurrentViewController()
         } else {
             addChildViewController(viewController)
             transitionFromViewController(nextTopViewController, toViewController: viewController, reversed: false)
@@ -139,7 +140,7 @@ class NavigationController: NSViewController {
     private func transitionFromViewController(fromViewController: BaseContentViewController!, toViewController: BaseContentViewController!, reversed: Bool) {
         
         fromViewController.view.removeFromSuperview()
-        ViewPlacementHelper.AddFullSizeSubview(toViewController.view, toSuperView: contentView)
+        ViewPlacementHelper.addFullSizeSubview(toViewController.view, toSuperView: contentView)
         
 //        TODO: Transitions are OK but a bit buggy with autolayout, can turn back on later
 //        var transitions = transitionOptions(reversed)

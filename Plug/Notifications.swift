@@ -11,6 +11,8 @@ import Cocoa
 struct Notifications {
     static let CurrentTrackDidShow = "Plug.CurrentTrackDidShow"
     static let CurrentTrackDidHide = "Plug.CurrentTrackDidHide"
+    static let FixedCurrentTrackDidShow = "Plug.FixedCurrentTrackDidShow"
+    static let FixedCurrentTrackDidHide = "Plug.FixedCurrentTrackDidHide"
     static let DisplayError = "Plug.DisplayErrorNotification"
     static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
     static let PushViewController = "Plug.PushViewController"

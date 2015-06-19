@@ -35,7 +35,7 @@ class SearchViewController: BaseContentViewController {
         if tracksViewController == nil {
             tracksViewController = (storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController)
             addChildViewController(tracksViewController!)
-            ViewPlacementHelper.AddFullSizeSubview(tracksViewController!.view, toSuperView: searchResultsView)
+            ViewPlacementHelper.addFullSizeSubview(tracksViewController!.view, toSuperView: searchResultsView)
         }
     }
     

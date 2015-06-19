@@ -145,7 +145,7 @@ class TagsViewController: DataSourceViewController {
         }
     }
     
-    func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
         case .TagItem(let tag):
             loadSingleTagView(tag)

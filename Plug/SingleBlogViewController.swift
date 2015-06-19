@@ -96,7 +96,7 @@ class SingleBlogViewController: BaseContentViewController {
         
         addChildViewController(tracksViewController)
         
-        ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
+        ViewPlacementHelper.addFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
 
         tracksViewController.dataSource = BlogTracksDataSource(blogID: representedBlog.id)
         tracksViewController.dataSource!.viewController = tracksViewController
@@ -105,7 +105,7 @@ class SingleBlogViewController: BaseContentViewController {
     override func addLoaderView() {
         loaderViewController = storyboard!.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
-        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
+        ViewPlacementHelper.addSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
     }
     
     override func refresh() {

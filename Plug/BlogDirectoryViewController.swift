@@ -105,7 +105,7 @@ class BlogDirectoryViewController: DataSourceViewController {
         dataSource.filterByKeywords(keywords)
     }
     
-    func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
         case .BlogItem(let blog):
             loadSingleBlogView(blog)

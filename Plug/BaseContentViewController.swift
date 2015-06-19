@@ -34,7 +34,7 @@ class BaseContentViewController: NSViewController {
         if loaderViewController == nil {
             loaderViewController = storyboard!.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
             let insets = NSEdgeInsetsMake(0, 0, 47, 0)
-            ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
+            ViewPlacementHelper.addSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
         }
     }
     
@@ -54,4 +54,9 @@ class BaseContentViewController: NSViewController {
     }
     
     func refresh() {}
+}
+
+enum FixedTrackViewPosition: Int {
+    case Top
+    case Bottom
 }

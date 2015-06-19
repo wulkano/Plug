@@ -83,7 +83,7 @@ class SingleUserViewController: BaseContentViewController {
     func loadPlaylist() {
         tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         addChildViewController(tracksViewController)
-        ViewPlacementHelper.AddFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
+        ViewPlacementHelper.addFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
         tracksViewController.dataSource = UserTracksDataSource(username: representedUser.username)
         tracksViewController.dataSource!.viewController = tracksViewController
     }
@@ -91,7 +91,7 @@ class SingleUserViewController: BaseContentViewController {
     override func addLoaderView() {
         loaderViewController = storyboard!.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
-        ViewPlacementHelper.AddSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
+        ViewPlacementHelper.addSubview(loaderViewController!.view, toSuperView: backgroundView, withInsets: insets)
     }
     
     override func refresh() {

@@ -9,11 +9,19 @@
 import Cocoa
 
 class InsetTableView: ExtendedTableView {
+    var insets: NSEdgeInsets = NSEdgeInsetsMake(0, 0, 47, 0) {
+        didSet { updateInsets() }
+    }
+    
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         
+        updateInsets()
+    }
+    
+    func updateInsets() {
         clipView.automaticallyAdjustsContentInsets = false
-        clipView.contentInsets = NSEdgeInsetsMake(0, 0, 47, 0)
-        scrollView!.scrollerInsets = NSEdgeInsetsMake(0, 0, 47, 0)
+        clipView.contentInsets = insets
+        scrollView!.scrollerInsets = insets
     }
 }

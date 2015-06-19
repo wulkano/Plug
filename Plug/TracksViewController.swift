@@ -45,9 +45,9 @@ class TracksViewController: DataSourceViewController {
     }
     
     func loadDataSource() {
+        addLoaderView()
         tableView.setDataSource(dataSource!)
         dataSource!.loadInitialValues()
-        addLoaderView()
     }
     
     func cellViewForRow(row: Int) -> TrackTableCellView? {
@@ -60,35 +60,35 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    func tableView(tableView: NSTableView, mouseEnteredRow row: Int) {
+    override func tableView(tableView: NSTableView, mouseEnteredRow row: Int) {
         if let cellView = cellViewForRow(row) {
             cellView.mouseInside = true
         }
         previousMouseInsideRow = row
     }
     
-    func tableView(tableView: NSTableView, mouseExitedRow row: Int) {
+    override func tableView(tableView: NSTableView, mouseExitedRow row: Int) {
         if let cellView = cellViewForRow(row) {
             cellView.mouseInside = false
         }
     }
     
-    func tableView(tableView: ExtendedTableView, rowDidShow row: Int) {
+    override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
         let track = dataSource!.trackForRow(row)
         if track === AudioPlayer.sharedInstance.currentTrack {
-            Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: nil)
+            Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: ["direction": direction.rawValue])
         }
     }
     
-    func tableView(tableView: ExtendedTableView, rowDidHide row: Int) {
+    override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {
         if let track = dataSource!.trackForRow(row) {
             if track === AudioPlayer.sharedInstance.currentTrack {
-                Notifications.post(name: Notifications.CurrentTrackDidHide, object: self, userInfo: nil)
+                Notifications.post(name: Notifications.CurrentTrackDidHide, object: self, userInfo: ["direction": direction.rawValue])
             }
         }
     }
     
-    func didEndScrollingTableView(tableView: ExtendedTableView) {
+    override func didEndScrollingTableView(tableView: ExtendedTableView) {
         if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
             dataSource!.loadNextPage()
         }
@@ -111,7 +111,7 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
         let menuController = TrackContextMenuController(nibName: "TrackContextMenuController", bundle: nil)!
         menuController.loadView()
         menuController.representedObject = dataSource!.trackForRow(row)
