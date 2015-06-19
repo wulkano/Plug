@@ -70,6 +70,20 @@ enum PopularSectionMode: String {
     }
 }
 
+
+enum FavoritesSectionPlaylist: String {
+    case All = "All"
+    case One = "Up"
+    case Two = "Down"
+    case Three = "Weird"
+    
+    static let navigationSection = NavigationSection.Favorites
+    
+    var title: String {
+        return self.rawValue
+    }
+}
+
 enum FeedSectionMode: String {
     case All = "All"
     case Friends = "Friends"

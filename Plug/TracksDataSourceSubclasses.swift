@@ -26,6 +26,43 @@ class PopularTracksDataSource: TracksDataSource {
     }
 }
 
+class FavoriteTracksDataSource: TracksDataSource {
+    var playlist: FavoritesSectionPlaylist
+    
+    init(viewController: DataSourceViewController, playlist: FavoritesSectionPlaylist) {
+        self.playlist = playlist
+        super.init(viewController: viewController)
+    }
+    
+    override func requestInitialValues() {
+        switch playlist {
+        case .All:
+            HypeMachineAPI.Requests.Me.favorites(optionalParams: nil, callback: requestInitialValuesResponse)
+        case .One:
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, optionalParams: nil, callback: requestInitialValuesResponse)
+        case .Two:
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, optionalParams: nil, callback: requestInitialValuesResponse)
+        case .Three:
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, optionalParams: nil, callback: requestInitialValuesResponse)
+            
+        }
+    }
+    
+    override func requestNextPage() {
+        switch playlist {
+        case .All:
+            HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, callback: requestNextPageResponse)
+        case .One:
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, optionalParams: nextPageParams, callback: requestNextPageResponse)
+        case .Two:
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, optionalParams: nextPageParams, callback: requestNextPageResponse)
+        case .Three:
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, optionalParams: nextPageParams, callback: requestNextPageResponse)
+            
+        }
+    }
+}
+
 class LatestTracksDataSource: TracksDataSource {
     override func requestInitialValues() {
         HypeMachineAPI.Requests.Tracks.index(optionalParams: nil, callback: requestInitialValuesResponse)
@@ -50,16 +87,6 @@ class FeedTracksDataSource: TracksDataSource {
     
     override func requestNextPage() {
         HypeMachineAPI.Requests.Me.feed(optionalParams: mode.params.merge(nextPageParams), callback: requestNextPageResponse)
-    }
-}
-
-class FavoriteTracksDataSource: TracksDataSource {
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Me.favorites(optionalParams: nil, callback: requestInitialValuesResponse)
-    }
-    
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, callback: requestNextPageResponse)
     }
 }
 

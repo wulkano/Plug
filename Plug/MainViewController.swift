@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget {
+class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
     
     var navigationController: NavigationController!
@@ -90,6 +90,12 @@ class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSe
         let viewController = currentViewController as! SearchViewController
         viewController.sort = sort
     }
+    
+    func favoritesSectionPlaylistChanged(sender: NSMenuItem) {
+        let playlist = FavoritesSectionPlaylist(rawValue: sender.title)!
+        let viewController = currentViewController as! TracksViewController
+        viewController.dataSource = FavoriteTracksDataSource(viewController: viewController, playlist: playlist)
+    }
 }
 
 extension NavigationSection {
@@ -120,6 +126,8 @@ extension NavigationSection {
         switch self {
         case .Popular:
             return PopularSectionMode.menu(target)
+        case .Favorites:
+            return FavoritesSectionPlaylist.menu(target)
         case .Feed:
             return FeedSectionMode.menu(target)
         case .Search:
@@ -146,7 +154,7 @@ extension NavigationSection {
             case .Popular:
                 tracksViewController.dataSource = PopularTracksDataSource(viewController: tracksViewController, mode: .Now)
             case .Favorites:
-                tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController)
+                tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController, playlist: .All)
             case .Latest:
                 tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController)
             case .Feed:
@@ -182,6 +190,28 @@ extension PopularSectionMode {
 
 protocol PopularSectionModeMenuTarget {
     func popularSectionModeChanged(sender: NSMenuItem)
+}
+
+extension FavoritesSectionPlaylist {
+    static func menu(target: AnyObject?) -> NSMenu {
+        let menu = NSMenu()
+        menu.title = self.navigationSection.title
+        
+        menu.addItemWithTitle(self.All.title, action: "favoritesSectionPlaylistChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.One.title, action: "favoritesSectionPlaylistChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.Two.title, action: "favoritesSectionPlaylistChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.Three.title, action: "favoritesSectionPlaylistChanged:", keyEquivalent: "")
+        
+        for item in (menu.itemArray as! [NSMenuItem]) {
+            item.target = target
+        }
+        
+        return menu
+    }
+}
+
+protocol FavoritesSectionPlaylistMenuTarget {
+    func favoritesSectionPlaylistChanged(sender: NSMenuItem)
 }
 
 extension FeedSectionMode {
