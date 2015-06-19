@@ -17,7 +17,7 @@ class ExtendedTableView: NSTableView {
         didSet { updateExtendedTrackingArea() }
     }
     var extendedTrackingAreaRect: NSRect {
-        return insetRect(scrollView!.bounds, insets: extendedTrackingAreaInsets)
+        return insetRect(clipView.documentVisibleRect, insets: extendedTrackingAreaInsets)
     }
     
     var extendedDelegate: ExtendedTableViewDelegate?
@@ -169,6 +169,8 @@ class ExtendedTableView: NSTableView {
     
     func scrollViewDidEndScrolling(notification: NSNotification) {
         extendedDelegate?.didEndScrollingTableView(self)
+        
+        updateExtendedTrackingArea()
     }
     
     func average(array: [Int]) -> Double {
