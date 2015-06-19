@@ -13,11 +13,12 @@ class ExtendedTableView: NSTableView {
     @IBInspectable var pullToRefresh: Bool = false
     
     var extendedTrackingArea: NSTrackingArea?
-    var extendedTrackingAreaInsets: NSEdgeInsets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0) {
+    let defaultExtendedTrackingAreaInsets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
+    var extendedTrackingAreaInsets: NSEdgeInsets? {
         didSet { updateExtendedTrackingArea() }
     }
     var extendedTrackingAreaRect: NSRect {
-        return insetRect(clipView.documentVisibleRect, insets: extendedTrackingAreaInsets)
+        return insetRect(clipView.documentVisibleRect, insets: extendedTrackingAreaInsets ?? defaultExtendedTrackingAreaInsets)
     }
     
     var extendedDelegate: ExtendedTableViewDelegate?

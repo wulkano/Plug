@@ -91,6 +91,25 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
+    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
+        super.addStickyTrackAtPosition(position)
+        
+        var insets = tableView.defaultExtendedTrackingAreaInsets
+        switch position {
+        case .Top:
+            insets.top += stickyTrackHeight
+        case .Bottom:
+            insets.bottom += stickyTrackHeight
+        }
+        
+        tableView.extendedTrackingAreaInsets = insets
+    }
+    
+    override func removeStickyTrack() {
+        super.removeStickyTrack()
+        tableView.extendedTrackingAreaInsets = nil
+    }
+    
     override func didEndScrollingTableView(tableView: ExtendedTableView) {
         if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
             dataSource!.loadNextPage()

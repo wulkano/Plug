@@ -12,8 +12,6 @@
 		FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1CF61976ECF60030C873 /* MainViewController.swift */; };
 		FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2719770AEB0030C873 /* HeatMapView.swift */; };
 		FA0B1D3E1977355B0030C873 /* ColorChangingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */; };
-		FA107A861B03F32C006FA015 /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; };
-		FA107A871B03F333006FA015 /* SimpleGoogleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; };
 		FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A881B03F3AE006FA015 /* Alamofire.framework */; };
 		FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A881B03F3AE006FA015 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA107A8E1B03F63C006FA015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA91974A9A500A781C8 /* Main.storyboard */; };
@@ -84,6 +82,12 @@
 		FA6ADD0319BAB0E300CCD371 /* SingleFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */; };
 		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
+		FA7404E21B34867500684ADA /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; };
+		FA7404E31B34867500684ADA /* HypeMachineAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA7404E41B34868000684ADA /* SimpleGoogleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; };
+		FA7404E51B34868000684ADA /* SimpleGoogleAnalytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EB1B348E8A00684ADA /* Fabric.framework */; };
+		FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EC1B348E8A00684ADA /* Crashlytics.framework */; };
 		FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */; };
 		FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774993198B46770048863F /* BackgroundBorderView.swift */; };
 		FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */; };
@@ -122,8 +126,6 @@
 		FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */; };
 		FABAA8911B2F57A80090D773 /* TitleBarPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */; };
 		FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */; };
-		FABAA8971B2FEAFB0090D773 /* SimpleGoogleAnalytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FABAA8981B2FEB030090D773 /* HypeMachineAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
 		FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
@@ -143,10 +145,6 @@
 		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */; };
 		FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */; };
-		FAEC5D4A1B32B515009A9FB1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E791B31EFF0009254A0 /* Fabric.framework */; };
-		FAEC5D4B1B32B515009A9FB1 /* Fabric.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA277E791B31EFF0009254A0 /* Fabric.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FAEC5D4C1B32B515009A9FB1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */; };
-		FAEC5D4D1B32B515009A9FB1 /* Crashlytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAEE914619BA3A3300D4274C /* ExtendedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE914519BA3A3300D4274C /* ExtendedTableView.swift */; };
 		FAEE914819BA5AF600D4274C /* SingleBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */; };
 		FAF0371D197B83C800F716CE /* VolumeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF0371C197B83C800F716CE /* VolumeIconView.swift */; };
@@ -166,11 +164,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FABAA8981B2FEB030090D773 /* HypeMachineAPI.framework in CopyFiles */,
-				FAEC5D4B1B32B515009A9FB1 /* Fabric.framework in CopyFiles */,
-				FABAA8971B2FEAFB0090D773 /* SimpleGoogleAnalytics.framework in CopyFiles */,
 				FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */,
-				FAEC5D4D1B32B515009A9FB1 /* Crashlytics.framework in CopyFiles */,
+				FA7404E51B34868000684ADA /* SimpleGoogleAnalytics.framework in CopyFiles */,
+				FA7404E31B34867500684ADA /* HypeMachineAPI.framework in CopyFiles */,
 				FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,8 +205,6 @@
 		FA24EDA71974A9A500A781C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
-		FA277E791B31EFF0009254A0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
-		FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryViewController.swift; sourceTree = "<group>"; };
 		FA3241B319F80378009FCDE3 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentDataSource.swift; sourceTree = "<group>"; };
@@ -262,6 +256,8 @@
 		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabButtonCell.swift; sourceTree = "<group>"; };
 		FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTitleButton.swift; sourceTree = "<group>"; };
 		FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
+		FA7404EB1B348E8A00684ADA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		FA7404EC1B348E8A00684ADA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableTextField.swift; sourceTree = "<group>"; };
 		FA774993198B46770048863F /* BackgroundBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundBorderView.swift; sourceTree = "<group>"; };
 		FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSStyleTableRowView.swift; sourceTree = "<group>"; };
@@ -339,13 +335,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA107A871B03F333006FA015 /* SimpleGoogleAnalytics.framework in Frameworks */,
-				FA107A861B03F32C006FA015 /* HypeMachineAPI.framework in Frameworks */,
 				FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */,
+				FA7404E41B34868000684ADA /* SimpleGoogleAnalytics.framework in Frameworks */,
 				FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */,
 				F502BB1D23558470D375E6E0 /* libPods-Plug.a in Frameworks */,
-				FAEC5D4A1B32B515009A9FB1 /* Fabric.framework in Frameworks */,
-				FAEC5D4C1B32B515009A9FB1 /* Crashlytics.framework in Frameworks */,
+				FA7404E21B34867500684ADA /* HypeMachineAPI.framework in Frameworks */,
+				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
+				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,8 +351,8 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA277E791B31EFF0009254A0 /* Fabric.framework */,
-				FA277E7A1B31EFF0009254A0 /* Crashlytics.framework */,
+				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
+				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
 				FA107A881B03F3AE006FA015 /* Alamofire.framework */,
 				FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */,
 				FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */,
@@ -797,7 +793,7 @@
 				FA24ED9A1974A9A500A781C8 /* Resources */,
 				FA562EF319E8810E00B760A2 /* CopyFiles */,
 				57E4971D7C9F9B6BDDFCF71F /* Copy Pods Resources */,
-				FA277E781B31EF07009254A0 /* ShellScript */,
+				FA7404EA1B348E6E00684ADA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -876,19 +872,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Plug/Pods-Plug-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FA277E781B31EF07009254A0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 8ef496111659c38e8a61e76814c17be6bb14bfca d1050dcac544ac3ebcd95826011f71f5fb44a7e0f345109a2efbfb2c6d976387";
-		};
 		FA2D6436A7B122E0BD821592 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -903,6 +886,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		FA7404EA1B348E6E00684ADA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 8ef496111659c38e8a61e76814c17be6bb14bfca d1050dcac544ac3ebcd95826011f71f5fb44a7e0f345109a2efbfb2c6d976387";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1147,9 +1143,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
-					/Users/alex/Developer/osx/HypeMachineAPI/build/Debug,
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
@@ -1179,9 +1173,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/Carthage/Checkouts/SimpleGoogleAnalytics/build/Debug",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
-					/Users/alex/Developer/osx/HypeMachineAPI/build/Debug,
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;

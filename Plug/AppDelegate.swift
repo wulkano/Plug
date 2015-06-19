@@ -7,9 +7,9 @@
 //
 
 import Cocoa
-import HypeMachineAPI
 import Fabric
 import Crashlytics
+import HypeMachineAPI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
