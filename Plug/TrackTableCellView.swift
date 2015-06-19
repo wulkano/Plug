@@ -306,8 +306,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         viewController.title = trackValue.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = ArtistTracksDataSource(artistName: trackValue.artist)
-        viewController.dataSource!.viewController = viewController
+        viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: trackValue.artist)
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {

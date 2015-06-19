@@ -84,8 +84,7 @@ class SingleUserViewController: BaseContentViewController {
         tracksViewController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         addChildViewController(tracksViewController)
         ViewPlacementHelper.addFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
-        tracksViewController.dataSource = UserTracksDataSource(username: representedUser.username)
-        tracksViewController.dataSource!.viewController = tracksViewController
+        tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: representedUser.username)
     }
     
     override func addLoaderView() {

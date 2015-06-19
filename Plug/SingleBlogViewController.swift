@@ -98,8 +98,7 @@ class SingleBlogViewController: BaseContentViewController {
         
         ViewPlacementHelper.addFullSizeSubview(tracksViewController.view, toSuperView: playlistContainer)
 
-        tracksViewController.dataSource = BlogTracksDataSource(blogID: representedBlog.id)
-        tracksViewController.dataSource!.viewController = tracksViewController
+        tracksViewController.dataSource = BlogTracksDataSource(viewController: tracksViewController, blogID: representedBlog.id)
     }
     
     override func addLoaderView() {

@@ -76,6 +76,7 @@ class TracksViewController: DataSourceViewController {
     override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
         let track = dataSource!.trackForRow(row)
         if track === AudioPlayer.sharedInstance.currentTrack {
+            removeStickyTrack()
             Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: ["direction": direction.rawValue])
         }
     }
@@ -83,6 +84,8 @@ class TracksViewController: DataSourceViewController {
     override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {
         if let track = dataSource!.trackForRow(row) {
             if track === AudioPlayer.sharedInstance.currentTrack {
+                let position = (direction == .Above ? StickyTrackPosition.Top : StickyTrackPosition.Bottom)
+                addStickyTrackAtPosition(position)
                 Notifications.post(name: Notifications.CurrentTrackDidHide, object: self, userInfo: ["direction": direction.rawValue])
             }
         }

@@ -27,8 +27,7 @@ class SearchViewController: BaseContentViewController {
         if keywords == "" { return }
 
         ensurePlaylistViewController()
-        tracksViewController!.dataSource = SearchTracksDataSource(sort: sort, searchQuery: keywords)
-        tracksViewController!.dataSource!.viewController = tracksViewController
+        tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: keywords)
     }
     
     func ensurePlaylistViewController() {
@@ -51,7 +50,6 @@ class SearchViewController: BaseContentViewController {
         if tracksViewController == nil || tracksViewController!.dataSource == nil { return }
         
         let searchDataSource = tracksViewController!.dataSource! as! SearchTracksDataSource
-        tracksViewController!.dataSource = SearchTracksDataSource(sort: sort, searchQuery: searchDataSource.searchQuery)
-        tracksViewController!.dataSource!.viewController = tracksViewController
+        tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: searchDataSource.searchQuery)
     }
 }

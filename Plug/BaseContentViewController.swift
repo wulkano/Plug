@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class BaseContentViewController: NSViewController {
     var loaderViewController: LoaderViewController?
@@ -24,16 +25,21 @@ class BaseContentViewController: NSViewController {
     var actionButtonTarget: AnyObject?
     var actionButtonAction: Selector?
     
+    deinit {
+        Notifications.unsubscribeAll(observer: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addLoaderView()
+        setupStickyTrackController()
     }
 
     func addLoaderView() {
         if loaderViewController == nil {
             loaderViewController = storyboard!.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
-            let insets = NSEdgeInsetsMake(0, 0, 47, 0)
+            let insets = NSEdgeInsets(top: 47, left: 0, bottom: 0, right: 0)
             ViewPlacementHelper.addSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
         }
     }
@@ -47,16 +53,54 @@ class BaseContentViewController: NSViewController {
     
     func didBecomeCurrentViewController() {
         Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
+        Notifications.subscribe(observer: self, selector: "updateStickyTrack:", name: Notifications.NewCurrentTrack, object: nil)
     }
     
     func didLoseCurrentViewController() {
         Notifications.unsubscribe(observer: self, name: Notifications.RefreshCurrentView, object: nil)
     }
     
+    // MARK: Sticky Track
+    
+    var stickyTrackController: TracksViewController!
+    var stickyTrackTopInsets: NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    var stickyTrackBottomInsets: NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
+    }
+    var stickyTrackHeight: CGFloat {
+        return 64
+    }
+    
+    func setupStickyTrackController() {
+        stickyTrackController = storyboard!.instantiateControllerWithIdentifier("TracksViewController") as? TracksViewController
+    }
+    
+    func addStickyTrackAtPosition(position: StickyTrackPosition) {
+        switch position {
+        case .Top:
+            ViewPlacementHelper.addTopAnchoredSubview(stickyTrackController.view, toSuperView: view, withFixedHeight: stickyTrackHeight, andInsets: stickyTrackTopInsets)
+        case .Bottom:
+            ViewPlacementHelper.addBottomAnchoredSubview(stickyTrackController.view, toSuperView: view, withFixedHeight: stickyTrackHeight, andInsets: stickyTrackBottomInsets)
+        }
+    }
+    
+    func removeStickyTrack() {
+        stickyTrackController.view.removeFromSuperview()
+    }
+    
+    // MARK: Notifications
+    
     func refresh() {}
+    
+    func updateStickyTrack(notification: NSNotification) {
+        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
+        stickyTrackController.dataSource = SingleTrackDataSource(viewController: stickyTrackController, track: track)
+    }
 }
 
-enum FixedTrackViewPosition: Int {
+enum StickyTrackPosition: Int {
     case Top
     case Bottom
 }

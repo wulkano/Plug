@@ -12,9 +12,9 @@ import HypeMachineAPI
 class PopularTracksDataSource: TracksDataSource {
     var mode: PopularSectionMode
     
-    init(mode: PopularSectionMode) {
+    init(viewController: DataSourceViewController, mode: PopularSectionMode) {
         self.mode = mode
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -39,9 +39,9 @@ class LatestTracksDataSource: TracksDataSource {
 class FeedTracksDataSource: TracksDataSource {
     var mode: FeedSectionMode
     
-    init(mode: FeedSectionMode) {
+    init(viewController: DataSourceViewController, mode: FeedSectionMode) {
         self.mode = mode
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -66,9 +66,9 @@ class FavoriteTracksDataSource: TracksDataSource {
 class BlogTracksDataSource: TracksDataSource {
     var blogID: Int
     
-    init(blogID: Int) {
+    init(viewController: DataSourceViewController, blogID: Int) {
         self.blogID = blogID
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -83,9 +83,9 @@ class BlogTracksDataSource: TracksDataSource {
 class UserTracksDataSource: TracksDataSource {
     var username: String
     
-    init(username: String) {
+    init(viewController: DataSourceViewController, username: String) {
         self.username = username
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -100,9 +100,9 @@ class UserTracksDataSource: TracksDataSource {
 class ArtistTracksDataSource: TracksDataSource {
     var artistName: String
     
-    init(artistName: String) {
+    init(viewController: DataSourceViewController, artistName: String) {
         self.artistName = artistName
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -117,9 +117,9 @@ class ArtistTracksDataSource: TracksDataSource {
 class TagTracksDataSource: TracksDataSource {
     var tagName: String
     
-    init(tagName: String) {
+    init(viewController: DataSourceViewController, tagName: String) {
         self.tagName = tagName
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -135,10 +135,10 @@ class SearchTracksDataSource: TracksDataSource {
     var searchQuery: String
     var sort: SearchSectionSort
     
-    init(sort: SearchSectionSort, searchQuery: String) {
+    init(viewController: DataSourceViewController, sort: SearchSectionSort, searchQuery: String) {
         self.searchQuery = searchQuery
         self.sort = sort
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {
@@ -153,9 +153,9 @@ class SearchTracksDataSource: TracksDataSource {
 class SingleTrackDataSource: TracksDataSource {
     let track: HypeMachineAPI.Track
     
-    init(track: HypeMachineAPI.Track) {
+    init(viewController: DataSourceViewController, track: HypeMachineAPI.Track) {
         self.track = track
-        super.init()
+        super.init(viewController: viewController)
     }
     
     override func requestInitialValues() {

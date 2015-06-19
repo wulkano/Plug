@@ -11,16 +11,21 @@ import Cocoa
 struct Notifications {
     static let CurrentTrackDidShow = "Plug.CurrentTrackDidShow"
     static let CurrentTrackDidHide = "Plug.CurrentTrackDidHide"
-    static let FixedCurrentTrackDidShow = "Plug.FixedCurrentTrackDidShow"
-    static let FixedCurrentTrackDidHide = "Plug.FixedCurrentTrackDidHide"
+    
     static let DisplayError = "Plug.DisplayErrorNotification"
+    
     static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
+    
     static let PushViewController = "Plug.PushViewController"
+
+    static let NewCurrentTrack = "Plug.NewCurrentTrack"
+    
     static let TrackLoved = "Plug.TrackLovedNotification"
     static let TrackUnLoved = "Plug.TrackUnLovedNotification"
     static let TrackPaused = "Plug.TrackPausedNotification"
     static let TrackPlaying = "Plug.TrackPlayingNotification"
     static let TrackProgressUpdated = "Plug.TrackProgressUpdatedNotification"
+    
     static let RefreshCurrentView = "Plug.RefreshCurrentView"
 
     static func post(#name: String, object: AnyObject!, userInfo: [NSObject: AnyObject]!) {

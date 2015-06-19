@@ -158,8 +158,7 @@ class TagsViewController: DataSourceViewController {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = TagTracksDataSource(tagName: tag.name)
-        viewController.dataSource!.viewController = viewController
+        viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
     
     override func refresh() {

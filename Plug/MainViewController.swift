@@ -75,18 +75,14 @@ class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSe
     
     func popularSectionModeChanged(sender: NSMenuItem) {
         let mode = PopularSectionMode(rawValue: sender.title)!
-        let dataSource = PopularTracksDataSource(mode: mode)
         let viewController = currentViewController as! TracksViewController
-        viewController.dataSource = dataSource
-        dataSource.viewController = viewController
+        viewController.dataSource = PopularTracksDataSource(viewController: viewController, mode: mode)
     }
     
     func feedSectionModeChanged(sender: NSMenuItem) {
         let mode = FeedSectionMode(rawValue: sender.title)!
-        let dataSource = FeedTracksDataSource(mode: mode)
         let viewController = currentViewController as! TracksViewController
-        viewController.dataSource = dataSource
-        dataSource.viewController = viewController
+        viewController.dataSource = FeedTracksDataSource(viewController: viewController, mode: mode)
     }
     
     func searchSectionSortChanged(sender: NSMenuItem) {
@@ -144,22 +140,20 @@ extension NavigationSection {
     private func createViewController(storyboard: NSStoryboard, target: AnyObject?) -> BaseContentViewController {
         let targetViewController = storyboard.instantiateControllerWithIdentifier(self.viewControllerIdentifier) as! BaseContentViewController
         targetViewController.dropdownMenu = self.menu(target)
-        
-        switch self {
-        case .Popular:
-            (targetViewController as! TracksViewController).dataSource = PopularTracksDataSource(mode: .Now)
-            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
-        case .Favorites:
-            (targetViewController as! TracksViewController).dataSource = FavoriteTracksDataSource()
-            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
-        case .Latest:
-            (targetViewController as! TracksViewController).dataSource = LatestTracksDataSource()
-            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
-        case .Feed:
-            (targetViewController as! TracksViewController).dataSource = FeedTracksDataSource(mode: .All)
-            (targetViewController as! TracksViewController).dataSource!.viewController = targetViewController as! DataSourceViewController
-        default:
-            break
+
+        if let tracksViewController = targetViewController as? TracksViewController {
+            switch self {
+            case .Popular:
+                tracksViewController.dataSource = PopularTracksDataSource(viewController: tracksViewController, mode: .Now)
+            case .Favorites:
+                tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController)
+            case .Latest:
+                tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController)
+            case .Feed:
+                tracksViewController.dataSource = FeedTracksDataSource(viewController: tracksViewController, mode: .All)
+            default:
+                break
+            }
         }
         
         NavigationSection.viewControllers[self.viewControllerIdentifier] = targetViewController

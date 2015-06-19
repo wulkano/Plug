@@ -34,9 +34,7 @@ class DisplayErrorViewController: NSViewController {
         let title = "Error"
         var description = "Oops. Something went wrong."
         
-        if representedError.userInfo![NSLocalizedDescriptionKey] != nil {
-            description = representedError.localizedDescription
-        }
+        description = representedError.localizedDescription
         
         errorTitleTextField.stringValue = title
         errorDescriptionTextField.stringValue = description

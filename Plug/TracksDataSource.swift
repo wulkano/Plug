@@ -41,6 +41,11 @@ class TracksDataSource: NSObject, NSTableViewDataSource {
         }
     }
     
+    init(viewController: DataSourceViewController) {
+        self.viewController = viewController
+        super.init()
+    }
+    
     func loadInitialValues() {
         if loadingData { return }
         

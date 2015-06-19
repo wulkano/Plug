@@ -64,7 +64,8 @@ class AudioPlayer: NSObject {
     func playNewTrack(track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
         if currentTrack != track {
             setupForNewTrack(track, dataSource: dataSource)
-            UserNotifications.Deliver.NewTrackPlaying(track)
+            UserNotifications.deliverNotification(title: track.title, informativeText: track.artist)
+            Notifications.post(name: Notifications.NewCurrentTrack, object: self, userInfo: ["track": track])
         }
         play()
     }
