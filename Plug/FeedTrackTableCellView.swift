@@ -37,8 +37,8 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         super.updateTrackAvailability()
         
         if trackValue.audioUnavailable {
-            sourceTypeTextField.textColor = disabledTextColor
-            sourceButton.textColor = disabledTextColor
+            sourceTypeTextField.textColor = disabledArtistColor
+            sourceButton.textColor = disabledArtistColor
         } else {
             sourceTypeTextField.textColor = sourceTypeColor
             sourceButton.textColor = sourceColor
