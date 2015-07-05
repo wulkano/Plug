@@ -60,7 +60,13 @@ class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSe
         let displayErrorViewController = storyboard!.instantiateControllerWithIdentifier("DisplayErrorViewController") as! DisplayErrorViewController
         displayErrorViewController.representedObject = error
         let insets = NSEdgeInsetsMake(0,0, 0, 0)
-        ViewPlacementHelper.addTopAnchoredSubview(displayErrorViewController.view, toSuperView: navigationController.contentView, withFixedHeight: 40, andInsets: insets)
+        navigationController.contentView.addSubview(displayErrorViewController.view)
+        displayErrorViewController.view.snp_makeConstraints { make in
+            make.height.equalTo(40)
+            make.top.equalTo(displayErrorViewController.view)
+            make.left.equalTo(displayErrorViewController.view)
+            make.right.equalTo(displayErrorViewController.view)
+        }
         Interval.single(5) {
             displayErrorViewController.view.removeFromSuperview()
             displayErrorViewController.removeFromParentViewController()

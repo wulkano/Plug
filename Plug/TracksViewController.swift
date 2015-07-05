@@ -134,9 +134,7 @@ class TracksViewController: DataSourceViewController {
     }
     
     override func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
-        let menuController = TrackContextMenuController(nibName: "TrackContextMenuController", bundle: nil)!
-        menuController.loadView()
-        menuController.representedObject = dataSource!.trackForRow(row)
+        let menuController = TrackContextMenuController(track: dataSource!.trackForRow(row)!)!
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
     }
     

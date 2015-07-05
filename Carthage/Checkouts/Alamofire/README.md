@@ -1,5 +1,9 @@
 ![Alamofire: Elegant Networking in Swift](https://raw.githubusercontent.com/Alamofire/Alamofire/assets/alamofire.png)
 
+[![Build Status](https://travis-ci.org/Alamofire/Alamofire.svg)](https://travis-ci.org/Alamofire/Alamofire)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Alamofire.svg)](https://img.shields.io/cocoapods/v/Alamofire.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Alamofire is an HTTP networking library written in Swift.
 
 ## Features
@@ -32,7 +36,7 @@ Alamofire is an HTTP networking library written in Swift.
 
 > **Embedded frameworks require a minimum deployment target of iOS 8 or OS X Mavericks.**
 >
-> To use Alamofire with a project targeting iOS 7, you must include the `Alamofire.swift` source file directly in your project. See the ['Source File'](#source-file) section for instructions.
+> To use Alamofire with a project targeting iOS 7, you must include all Swift files located inside the `Source` directory directly in your project. See the ['Source File'](#source-file) section for additional instructions.
 
 ### CocoaPods
 
@@ -62,7 +66,7 @@ $ pod install
 
 ### Carthage
 
-Carthage is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
 
 You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
 
@@ -111,7 +115,7 @@ $ git submodule add https://github.com/Alamofire/Alamofire.git
 
 #### Source File
 
-For application targets that do not support embedded frameworks, such as iOS 7, Alamofire can be integrated by adding the `Alamofire.swift` source file directly into your project. Note that you will no longer need to `import Alamofire` since you are not actually loading a framework. Additionally, any of the calling conventions described in the ['Usage'](#usage) section with the `Alamofire` prefix would instead omit it (for example, `Alamofire.request` becomes `request`), since this functionality is incorporated into the top-level namespace.
+For application targets that do not support embedded frameworks, such as iOS 7, Alamofire can be integrated by adding all the Swift files located inside the `Source` directory (`Source/*.swift`) directly into your project. Note that you will no longer need to `import Alamofire` since you are not actually loading a framework. Additionally, any of the calling conventions described in the ['Usage'](#usage) section with the `Alamofire` prefix would instead omit it (for example, `Alamofire.request` becomes `request`), since this functionality is incorporated into the top-level namespace.
 
 ---
 
@@ -723,7 +727,7 @@ enum Router: URLRequestConvertible {
 ```
 
 ```swift
-Alamofire.request(Router.Search(query: "foo bar", page: 1)) // ?q=foo+bar&offset=50
+Alamofire.request(Router.Search(query: "foo bar", page: 1)) // ?q=foo%20bar&offset=50
 ```
 
 #### CRUD & Authorization

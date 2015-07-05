@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SnapKit
 
 class NavigationController: NSViewController {
     @IBOutlet var navigationBar: NavigationBar!
@@ -43,7 +44,10 @@ class NavigationController: NSViewController {
         
         if rootViewController == nil {
             addChildViewController(viewController)
-            ViewPlacementHelper.addFullSizeSubview(viewController.view, toSuperView: contentView)
+            contentView.addSubview(viewController.view)
+            viewController.view.snp_makeConstraints { make in
+                make.edges.equalTo(contentView)
+            }
             viewController.didBecomeCurrentViewController()
         } else {
             addChildViewController(viewController)
@@ -140,13 +144,18 @@ class NavigationController: NSViewController {
     private func transitionFromViewController(fromViewController: BaseContentViewController!, toViewController: BaseContentViewController!, reversed: Bool) {
         
         fromViewController.view.removeFromSuperview()
-        ViewPlacementHelper.addFullSizeSubview(toViewController.view, toSuperView: contentView)
+        contentView.addSubview(toViewController.view)
+        toViewController.view.snp_makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
         
 //        TODO: Transitions are OK but a bit buggy with autolayout, can turn back on later
 //        var transitions = transitionOptions(reversed)
 //        transitionFromViewController(fromViewController, toViewController: toViewController, options: transitions, completionHandler: nil)
         
-        if fromViewController != nil { fromViewController.didLoseCurrentViewController() }
+        if fromViewController != nil {
+            fromViewController.didLoseCurrentViewController()
+        }
         toViewController.didBecomeCurrentViewController()
     }
     

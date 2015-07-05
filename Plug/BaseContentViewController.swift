@@ -8,6 +8,7 @@
 
 import Cocoa
 import HypeMachineAPI
+import SnapKit
 
 class BaseContentViewController: NSViewController {
     var loaderViewController: LoaderViewController?
@@ -40,7 +41,10 @@ class BaseContentViewController: NSViewController {
         if loaderViewController == nil {
             loaderViewController = storyboard!.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
             let insets = NSEdgeInsets(top: 47, left: 0, bottom: 0, right: 0)
-            ViewPlacementHelper.addSubview(loaderViewController!.view, toSuperView: view, withInsets: insets)
+            view.addSubview(loaderViewController!.view)
+            loaderViewController!.view.snp_makeConstraints { make in
+                make.edges.equalTo(self.view).insets(insets)
+            }
         }
     }
     
@@ -78,11 +82,22 @@ class BaseContentViewController: NSViewController {
     }
     
     func addStickyTrackAtPosition(position: StickyTrackPosition) {
+        view.addSubview(stickyTrackController.view)
         switch position {
         case .Top:
-            ViewPlacementHelper.addTopAnchoredSubview(stickyTrackController.view, toSuperView: view, withFixedHeight: stickyTrackHeight, andInsets: stickyTrackTopInsets)
+            stickyTrackController.view.snp_makeConstraints { make in
+                make.height.equalTo(stickyTrackHeight)
+                make.top.equalTo(self.view)
+                make.left.equalTo(self.view)
+                make.right.equalTo(self.view)
+            }
         case .Bottom:
-            ViewPlacementHelper.addBottomAnchoredSubview(stickyTrackController.view, toSuperView: view, withFixedHeight: stickyTrackHeight, andInsets: stickyTrackBottomInsets)
+            stickyTrackController.view.snp_makeConstraints { make in
+                make.height.equalTo(stickyTrackHeight)
+                make.bottom.equalTo(self.view).offset(47)
+                make.left.equalTo(self.view)
+                make.right.equalTo(self.view)
+            }
         }
     }
     

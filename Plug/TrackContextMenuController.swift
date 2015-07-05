@@ -10,24 +10,54 @@ import Cocoa
 import HypeMachineAPI
 
 class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
-    @IBOutlet var contextMenu: NSMenu!
+    let track: HypeMachineAPI.Track
     
-    var representedTrack: HypeMachineAPI.Track {
-        return representedObject as! HypeMachineAPI.Track
+    var contextMenu: NSMenu!
+    
+    init?(track: HypeMachineAPI.Track) {
+        self.track = track
+        super.init(nibName: nil, bundle: nil)
+        setupViews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    @IBAction func copyHypeMachineLinkClicked(sender: AnyObject) {
-        let hypeMachineURL = representedTrack.hypeMachineURL().absoluteString!
+    func setupViews() {
+        contextMenu = NSMenu()
+        
+        contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: "copyHypeMachineLinkClicked:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: "openHypeMachineLinkInBrowserClicked:", keyEquivalent: ""))
+        
+        contextMenu.addItem(NSMenuItem.separatorItem())
+        contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: "copySoundCloudLinkClicked:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: "openSoundCloudLinkInBrowser:", keyEquivalent: ""))
+        
+        contextMenu.addItem(NSMenuItem.separatorItem())
+        contextMenu.addItem(NSMenuItem(title: "Share to Facebook", action: "shareToFacebookClicked:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Share to Twitter", action: "shareToTwitterClicked:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Share to Messages", action: "shareToMessagesClicked:", keyEquivalent: ""))
+        
+        for item in contextMenu.itemArray as! [NSMenuItem] {
+            item.target = self
+        }
+    }
+    
+    // MARK: Actions
+    
+    func copyHypeMachineLinkClicked(sender: AnyObject) {
+        let hypeMachineURL = track.hypeMachineURL().absoluteString!
         NSPasteboard.generalPasteboard().clearContents()
         NSPasteboard.generalPasteboard().setString(hypeMachineURL, forType: NSStringPboardType)
     }
     
-    @IBAction func openHypeMachineLinkInBrowserClicked(sender: AnyObject) {
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
+    func openHypeMachineLinkInBrowserClicked(sender: AnyObject) {
+        NSWorkspace.sharedWorkspace().openURL(track.hypeMachineURL())
     }
     
-    @IBAction func copySoundCloudLinkClicked(sender: AnyObject) {
-        let url = representedTrack.mediaURL()
+    func copySoundCloudLinkClicked(sender: AnyObject) {
+        let url = track.mediaURL()
         
         SoundCloudPermalinkFinder(mediaURL: url,
             success: { (trackURL: NSURL) in
@@ -39,8 +69,8 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         })
     }
     
-    @IBAction func openSoundCloudLinkInBrowser(sender: AnyObject) {
-        let url = representedTrack.mediaURL()
+    func openSoundCloudLinkInBrowser(sender: AnyObject) {
+        let url = track.mediaURL()
         
         SoundCloudPermalinkFinder(mediaURL: url,
             success: { (trackURL: NSURL) in
@@ -52,17 +82,19 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         })
     }
     
-    @IBAction func shareToFacebookClicked(sender: AnyObject) {
+    func shareToFacebookClicked(sender: AnyObject) {
         shareTrackWithServiceNamed(NSSharingServiceNamePostOnFacebook)
     }
     
-    @IBAction func shareToTwitterClicked(sender: AnyObject) {
+    func shareToTwitterClicked(sender: AnyObject) {
         shareTrackWithServiceNamed(NSSharingServiceNamePostOnTwitter)
     }
     
-    @IBAction func shareToMessagesClicked(sender: AnyObject) {
+    func shareToMessagesClicked(sender: AnyObject) {
         shareTrackWithServiceNamed(NSSharingServiceNameComposeMessage)
     }
+    
+    // MARK: Private
     
     private func shareTrackWithServiceNamed(name: String) {
         let shareContents = [shareMessage()]
@@ -72,7 +104,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     }
     
     private func shareMessage() -> String {
-        return "\(representedTrack.title) - \(representedTrack.artist) \(representedTrack.hypeMachineURL())\nvia @plugformac"
+        return "\(track.title) - \(track.artist) \(track.hypeMachineURL())\nvia @plugformac"
     }
     
 
