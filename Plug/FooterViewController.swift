@@ -11,7 +11,105 @@ import Cocoa
 class FooterViewController: NSViewController {
     @IBOutlet var volumeIcon: VolumeIconView!
     @IBOutlet var volumeSlider: NSSlider!
-    @IBOutlet var shuffleButton: NSButton!
+    @IBOutlet var shuffleButton: SwissArmyButton!
+    
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
+        let backgroundView = DraggableVisualEffectsView()
+        backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+        backgroundView.blendingMode = .WithinWindow
+        view.addSubview(backgroundView)
+        backgroundView.snp_makeConstraints { make in
+            make.edges.equalTo(view)
+        }
+        
+        let borderBox = BackgroundBorderView()
+        borderBox.borderWidth = 1
+        borderBox.borderColor = NSColor(red256: 225, green256: 226, blue256: 226)
+        borderBox.topBorder = true
+        backgroundView.addSubview(borderBox)
+        borderBox.snp_makeConstraints { make in
+            make.edges.equalTo(backgroundView)
+        }
+        
+        volumeIcon = VolumeIconView(frame: NSZeroRect)
+        volumeIcon.offImage = NSImage(named: "Footer-Volume-Off")
+        volumeIcon.oneImage = NSImage(named: "Footer-Volume-1")
+        volumeIcon.twoImage = NSImage(named: "Footer-Volume-2")
+        volumeIcon.threeImage = NSImage(named: "Footer-Volume-3")
+        backgroundView.addSubview(volumeIcon)
+        volumeIcon.snp_makeConstraints { make in
+            make.width.equalTo(16)
+            make.height.equalTo(16)
+            make.centerY.equalTo(backgroundView)
+            make.left.equalTo(backgroundView).offset(20)
+        }
+        
+        volumeSlider = NSSlider(frame: NSZeroRect)
+        let cell = FlatSliderCell()
+        cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
+        cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
+        cell.knobSize = 10
+        volumeSlider.setCell(cell)
+        volumeSlider.controlSize = .MiniControlSize
+        backgroundView.addSubview(volumeSlider)
+        volumeSlider.snp_makeConstraints { make in
+            make.centerY.equalTo(backgroundView)
+            make.width.equalTo(60)
+            make.left.equalTo(backgroundView).offset(48)
+        }
+        
+        shuffleButton = SwissArmyButton(frame: NSZeroRect)
+        let shuffleCell = TransparentButtonCell(textCell: "")
+        shuffleCell.allowsSelectedState = true
+        shuffleButton.setCell(shuffleCell)
+        shuffleButton.bordered = false
+        shuffleButton.tracksHover = true
+        shuffleButton.image = NSImage(named: "Footer-Shuffle-Normal")
+        shuffleButton.alternateImage = NSImage(named: "Footer-Shuffle-Active")
+        shuffleButton.target = self
+        shuffleButton.action = "shuffleButtonClicked:"
+        backgroundView.addSubview(shuffleButton)
+        shuffleButton.snp_makeConstraints { make in
+            make.width.equalTo(42)
+            make.top.equalTo(backgroundView)
+            make.bottom.equalTo(backgroundView)
+            make.right.equalTo(backgroundView).offset(-8)
+        }
+        
+        let forwardButton = SwissArmyButton(frame: NSZeroRect)
+        let forwardCell = TransparentButtonCell(textCell: "")
+        forwardButton.setCell(forwardCell)
+        forwardButton.bordered = false
+        forwardButton.tracksHover = true
+        forwardButton.image = NSImage(named: "Footer-Forward")
+        forwardButton.target = self
+        forwardButton.action = "skipForwardButtonClicked:"
+        backgroundView.addSubview(forwardButton)
+        forwardButton.snp_makeConstraints { make in
+            make.width.equalTo(42)
+            make.top.equalTo(backgroundView)
+            make.bottom.equalTo(backgroundView)
+            make.right.equalTo(shuffleButton.snp_left)
+        }
+        
+        let backButton = SwissArmyButton(frame: NSZeroRect)
+        let backCell = TransparentButtonCell(textCell: "")
+        backButton.setCell(backCell)
+        backButton.bordered = false
+        backButton.tracksHover = true
+        backButton.image = NSImage(named: "Footer-Previous")
+        backButton.target = self
+        backButton.action = "skipBackwardButtonClicked:"
+        backgroundView.addSubview(backButton)
+        backButton.snp_makeConstraints { make in
+            make.width.equalTo(42)
+            make.top.equalTo(backgroundView)
+            make.bottom.equalTo(backgroundView)
+            make.right.equalTo(forwardButton.snp_left)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +118,8 @@ class FooterViewController: NSViewController {
         volumeIcon.bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
         shuffleButton.bind("state", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.shuffle", options: nil)
     }
+    
+    // MARK: Actions
     
     @IBAction func skipForwardButtonClicked(sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Forward")

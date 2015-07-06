@@ -41,13 +41,19 @@ class SwissArmyButton: NSButton {
         }
     }
     
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        setup()
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
+    func setup() {
         setupCell()
+        
+        bordered = false
     }
     
     func setupCell() {

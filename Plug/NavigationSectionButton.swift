@@ -14,23 +14,23 @@ class NavigationSectionButton: SwissArmyButton {
     init(navigationSection: NavigationSection) {
         self.navigationSection = navigationSection
         super.init(frame: NSZeroRect)
-        setup()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
-        let cell = TransparentButtonCell(textCell: "Go")
-        cell.allowsSelectedState = true
-        setCell(cell)
+    override func setup() {
+        super.setup()
         
         tracksHover = true
         image = NSImage(named: "Nav-\(navigationSection.title)-Off")
         alternateImage = NSImage(named: "Nav-\(navigationSection.title)-On")
-        setButtonType(NSButtonType.MomentaryPushInButton)
-        bezelStyle = NSBezelStyle.RegularSquareBezelStyle
-        bordered = false
+    }
+    
+    override func setupCell() {
+        let cell = TransparentButtonCell(textCell: "")
+        cell.allowsSelectedState = true
+        setCell(cell)
     }
 }

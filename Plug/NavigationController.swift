@@ -50,6 +50,10 @@ class NavigationController: NSViewController {
             }
             viewController.didBecomeCurrentViewController()
         } else {
+            if viewController == rootViewController {
+                println("Trying to transition to current view controller")
+                return
+            }
             addChildViewController(viewController)
             transitionFromViewController(nextTopViewController, toViewController: viewController, reversed: false)
             removeAllViewControllersExcept(viewController)

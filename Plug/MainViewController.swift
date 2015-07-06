@@ -29,12 +29,6 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-    }
-    
     override func viewDidAppear() {
         super.viewDidAppear()
         
@@ -43,7 +37,9 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         }
     }
     
-    func setupViews() {
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
         let sidebarViewController = SidebarViewController(delegate: self)!
         addChildViewController(sidebarViewController)
         view.addSubview(sidebarViewController.view)
@@ -64,7 +60,7 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
             make.right.equalTo(self.view)
         }
         
-        let footerViewController = storyboard!.instantiateControllerWithIdentifier("FooterViewControllerID") as! FooterViewController
+        let footerViewController = FooterViewController()
         addChildViewController(footerViewController)
         view.addSubview(footerViewController.view)
         footerViewController.view.snp_makeConstraints { make in
