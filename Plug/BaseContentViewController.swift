@@ -39,7 +39,7 @@ class BaseContentViewController: NSViewController {
 
     func addLoaderView() {
         if loaderViewController == nil {
-            loaderViewController = storyboard!.instantiateControllerWithIdentifier("LargeLoaderViewController") as? LoaderViewController
+            loaderViewController = LoaderViewController(size: .Large)
             let insets = NSEdgeInsets(top: 47, left: 0, bottom: 0, right: 0)
             view.addSubview(loaderViewController!.view)
             loaderViewController!.view.snp_makeConstraints { make in

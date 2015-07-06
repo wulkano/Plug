@@ -1627,92 +1627,6 @@
             </objects>
             <point key="canvasLocation" x="3296.5" y="-116"/>
         </scene>
-        <!--Small Loader-->
-        <scene sceneID="Xe0-aa-Hao">
-            <objects>
-                <viewController storyboardIdentifier="SmallLoaderViewController" id="jiB-94-3JR" userLabel="Small Loader" customClass="LoaderViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="JyS-OH-RB2">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="155"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="yxP-R9-ly6" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="220" height="155"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </customView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uBL-Gi-2Tb">
-                                <rect key="frame" x="94" y="62" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="O14-Es-xXc"/>
-                                    <constraint firstAttribute="width" constant="32" id="Zl4-k2-AE9"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" image="Loader-Small" id="D4N-rw-ThN"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="yxP-R9-ly6" firstAttribute="leading" secondItem="JyS-OH-RB2" secondAttribute="leading" id="NSn-E5-6Yi"/>
-                            <constraint firstAttribute="bottom" secondItem="yxP-R9-ly6" secondAttribute="bottom" id="R4C-jH-2lY"/>
-                            <constraint firstAttribute="centerY" secondItem="uBL-Gi-2Tb" secondAttribute="centerY" id="UPJ-c8-9wF"/>
-                            <constraint firstAttribute="centerX" secondItem="uBL-Gi-2Tb" secondAttribute="centerX" id="b7a-Fz-uiH"/>
-                            <constraint firstItem="yxP-R9-ly6" firstAttribute="top" secondItem="JyS-OH-RB2" secondAttribute="top" id="jSo-nQ-Eeb"/>
-                            <constraint firstAttribute="trailing" secondItem="yxP-R9-ly6" secondAttribute="trailing" id="roR-f0-gzt"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="loaderView" destination="uBL-Gi-2Tb" id="9Du-l5-lhT"/>
-                    </connections>
-                </viewController>
-                <customObject id="nRu-iN-fr6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="877" y="771.5"/>
-        </scene>
-        <!--Large Loader-->
-        <scene sceneID="VHC-KU-dPn">
-            <objects>
-                <viewController storyboardIdentifier="LargeLoaderViewController" id="iWO-g4-3TF" userLabel="Large Loader" customClass="LoaderViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="u8Z-ap-ox5">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="214"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="76c-zq-uc7" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="214"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </customView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IaY-eW-wWt">
-                                <rect key="frame" x="95" y="67" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="SjI-Ie-6UN"/>
-                                    <constraint firstAttribute="height" constant="80" id="u3F-qB-Ir4"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Loader-Large" id="sMZ-lw-oIw"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="IaY-eW-wWt" secondAttribute="centerX" id="Ch8-Ma-shS"/>
-                            <constraint firstAttribute="centerY" secondItem="IaY-eW-wWt" secondAttribute="centerY" id="MTC-qv-TO0"/>
-                            <constraint firstAttribute="trailing" secondItem="76c-zq-uc7" secondAttribute="trailing" id="PCt-GE-eGE"/>
-                            <constraint firstItem="76c-zq-uc7" firstAttribute="top" secondItem="u8Z-ap-ox5" secondAttribute="top" id="QJi-5G-GpI"/>
-                            <constraint firstAttribute="bottom" secondItem="76c-zq-uc7" secondAttribute="bottom" id="ZNy-GU-ALO"/>
-                            <constraint firstItem="76c-zq-uc7" firstAttribute="leading" secondItem="u8Z-ap-ox5" secondAttribute="leading" id="czA-gG-oEG"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="loaderView" destination="IaY-eW-wWt" id="RYQ-FO-hkt"/>
-                    </connections>
-                </viewController>
-                <customObject id="19z-pm-w2K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1152" y="801"/>
-        </scene>
         <!--Friends-->
         <scene sceneID="bIa-98-xxa">
             <objects>
@@ -2865,7 +2779,6 @@
     <resources>
         <image name="Avatar-Placeholder" width="36" height="36"/>
         <image name="List-Arrow" width="9" height="14"/>
-        <image name="Loader-Large" width="80" height="80"/>
         <image name="Loader-Small" width="32" height="32"/>
         <image name="Shadow-Track-Bottom" width="1" height="6"/>
         <image name="Track-Info" width="18" height="18"/>

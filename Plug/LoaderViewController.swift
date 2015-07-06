@@ -9,12 +9,32 @@
 import Cocoa
 
 class LoaderViewController: NSViewController {
+    let size: LoaderViewSize
+    var loaderView: NSImageView!
     
-    @IBOutlet var loaderView: NSImageView!
+    init?(size: LoaderViewSize) {
+        self.size = size
+        super.init(nibName: nil, bundle: nil)
+    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
+        loaderView = NSImageView()
+        switch size {
+        case .Small:
+            loaderView.image = NSImage(named: "Loader-Small")
+        case .Large:
+            loaderView.image = NSImage(named: "Loader-Large")
+        }
+        view.addSubview(loaderView)
+        loaderView.snp_makeConstraints { make in
+            make.center.equalTo(view)
+        }
     }
     
     override func viewDidAppear() {
@@ -28,5 +48,9 @@ class LoaderViewController: NSViewController {
     func stopAnimation() {
         Animations.RemoveAllAnimations(loaderView)
     }
-    
+}
+
+enum LoaderViewSize {
+    case Small
+    case Large
 }

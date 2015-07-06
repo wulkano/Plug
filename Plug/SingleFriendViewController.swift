@@ -91,7 +91,7 @@ class SingleUserViewController: BaseContentViewController {
     }
     
     override func addLoaderView() {
-        loaderViewController = storyboard!.instantiateControllerWithIdentifier("SmallLoaderViewController") as? LoaderViewController
+        loaderViewController = LoaderViewController(size: .Small)
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         backgroundView.addSubview(loaderViewController!.view)
         loaderViewController!.view.snp_makeConstraints { make in
