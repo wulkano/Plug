@@ -9,48 +9,95 @@
 import Cocoa
 
 class SidebarViewController: NSViewController {
+    let delegate: SidebarViewControllerDelegate
     
-    var mainViewController: MainViewController {
-        return parentViewController as! MainViewController
+    init?(delegate: SidebarViewControllerDelegate) {
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    @IBAction func popularButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Popular)
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
+        let backgroundView = DraggableVisualEffectsView()
+        backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+        view.addSubview(backgroundView)
+        backgroundView.snp_makeConstraints { make in
+            make.edges.equalTo(self.view)
+        }
+        
+        loadButtons(superview: backgroundView)
+    }
+    
+    func loadButtons(#superview: NSView) {
+        var buttons = [SwissArmyButton]()
+        
+        var n = 0
+        while let navigationSection = NavigationSection(rawValue: n) {
+            let button = NavigationSectionButton(navigationSection: navigationSection)
+            superview.addSubview(button)
+            
+            button.snp_makeConstraints { make in
+                make.centerX.equalTo(superview)
+                make.width.equalTo(30)
+                make.height.equalTo(30)
+                
+                if n == 0 {
+                    make.top.equalTo(superview).offset(53)
+                } else {
+                    let previousButton = buttons[n - 1]
+                    make.top.equalTo(previousButton.snp_bottom).offset(28)
+                }
+            }
+            
+            buttons.append(button)
+            n++
+        }
+        
+        buttons[0].state = NSOnState
+    }
+    
+    func popularButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Popular)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func favoritesButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Favorites)
+    func favoritesButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Favorites)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func latestButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Latest)
+    func latestButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Latest)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func blogsButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Blogs)
+    func blogsButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Blogs)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func feedButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Feed)
+    func feedButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Feed)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func genresButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Genres)
+    func genresButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Genres)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func friendsButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Friends)
+    func friendsButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Friends)
         toggleAllButtonsOffExcept(sender)
     }
     
-    @IBAction func searchButtonClicked(sender: AnyObject) {
-        mainViewController.changeNavigationSection(.Search)
+    func searchButtonClicked(sender: AnyObject) {
+        delegate.changeNavigationSection(.Search)
         toggleAllButtonsOffExcept(sender)
     }
     
@@ -68,4 +115,8 @@ class SidebarViewController: NSViewController {
         let visualEffectsView = view.subviews[0] as! NSView
         return visualEffectsView.subviews as! [NSButton]
     }
+}
+
+protocol SidebarViewControllerDelegate {
+    func changeNavigationSection(section: NavigationSection)
 }

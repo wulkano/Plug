@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
@@ -22,7 +22,7 @@
                         </view>
                     </window>
                     <connections>
-                        <segue destination="ERP-yi-bbR" kind="relationship" relationship="window.shadowedContentViewController" id="uJj-vx-Hhk"/>
+                        <segue destination="ERP-yi-bbR" kind="relationship" relationship="window.shadowedContentViewController" id="k9A-QC-MRL"/>
                     </connections>
                 </windowController>
             </objects>
@@ -35,49 +35,11 @@
                     <view key="view" id="mGG-FI-E6b">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="778"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="gDM-wg-3aa" userLabel="Sidebar Controller">
-                                <rect key="frame" x="0.0" y="0.0" width="69" height="778"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="69" id="xV4-KS-4Rk"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="PDa-TY-X6v" kind="embed" id="bBN-Ob-7AH"/>
-                                </connections>
-                            </containerView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="wRr-yO-oH5" userLabel="Navigation Controller">
-                                <rect key="frame" x="69" y="0.0" width="381" height="778"/>
-                                <connections>
-                                    <segue destination="aCl-8y-4N3" kind="embed" id="qHA-hR-572"/>
-                                </connections>
-                            </containerView>
-                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="XMn-MG-iTU" userLabel="Footer Controller">
-                                <rect key="frame" x="69" y="0.0" width="381" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="bMi-ud-CdU"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="VIy-Aa-JTO" kind="embed" id="AKs-wG-byq"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="wRr-yO-oH5" secondAttribute="trailing" id="4v7-a7-hGD"/>
-                            <constraint firstItem="XMn-MG-iTU" firstAttribute="leading" secondItem="gDM-wg-3aa" secondAttribute="trailing" id="5Rn-Ak-6ue"/>
-                            <constraint firstAttribute="trailing" secondItem="XMn-MG-iTU" secondAttribute="trailing" id="Fg7-mn-GZ4"/>
-                            <constraint firstAttribute="bottom" secondItem="wRr-yO-oH5" secondAttribute="bottom" id="GoO-uB-6t2"/>
-                            <constraint firstItem="gDM-wg-3aa" firstAttribute="top" secondItem="mGG-FI-E6b" secondAttribute="top" id="Io4-n1-bsK"/>
-                            <constraint firstAttribute="bottom" secondItem="XMn-MG-iTU" secondAttribute="bottom" id="bZU-0z-sVF"/>
-                            <constraint firstItem="gDM-wg-3aa" firstAttribute="leading" secondItem="mGG-FI-E6b" secondAttribute="leading" id="cDl-pY-MPm"/>
-                            <constraint firstItem="wRr-yO-oH5" firstAttribute="leading" secondItem="gDM-wg-3aa" secondAttribute="trailing" id="cdg-iZ-tsp"/>
-                            <constraint firstAttribute="bottom" secondItem="gDM-wg-3aa" secondAttribute="bottom" id="kwx-Ud-Hs3"/>
-                            <constraint firstItem="wRr-yO-oH5" firstAttribute="top" secondItem="mGG-FI-E6b" secondAttribute="top" id="ohZ-OT-oaN"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="Cne-m3-gcb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="505"/>
+            <point key="canvasLocation" x="386" y="497"/>
         </scene>
         <!--Sidebar View Controller-->
         <scene sceneID="HkI-u9-ali">
@@ -106,9 +68,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="popularButtonClicked:" target="PDa-TY-X6v" id="LZO-cE-FpK"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="80s-Vx-U3K" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="418" width="30" height="30"/>
@@ -126,9 +85,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="favoritesButtonClicked:" target="PDa-TY-X6v" id="sSm-EN-WQg"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="Qsg-Lr-5Vk" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="360" width="30" height="30"/>
@@ -146,9 +102,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="latestButtonClicked:" target="PDa-TY-X6v" id="fBI-4o-efz"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="2fD-HB-W4s" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="302" width="30" height="30"/>
@@ -166,9 +119,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="blogsButtonClicked:" target="PDa-TY-X6v" id="ZC4-gg-DTq"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="Ejj-yr-XFN" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="244" width="30" height="30"/>
@@ -186,9 +136,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="feedButtonClicked:" target="PDa-TY-X6v" id="Nng-Zd-WAA"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="YcU-bf-DlL" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="186" width="30" height="30"/>
@@ -206,9 +153,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="genresButtonClicked:" target="PDa-TY-X6v" id="ojg-lc-kax"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="K0C-Y5-R6z" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="128" width="30" height="30"/>
@@ -226,9 +170,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="friendsButtonClicked:" target="PDa-TY-X6v" id="Ajm-16-qXR"/>
-                                        </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="8JV-bI-0rh" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="20" y="70" width="30" height="30"/>
@@ -246,9 +187,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="tracksHover" value="YES"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="searchButtonClicked:" target="PDa-TY-X6v" id="uZS-DY-nmi"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -282,7 +220,7 @@
                 </viewController>
                 <customObject id="REL-JP-yox" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182.5" y="1404.5"/>
+            <point key="canvasLocation" x="195.5" y="1239.5"/>
         </scene>
         <!--Latest-->
         <scene sceneID="kN2-xY-ctg">
@@ -2970,7 +2908,7 @@
         <!--Footer View Controller-->
         <scene sceneID="TRJ-Wz-yw3">
             <objects>
-                <viewController id="VIy-Aa-JTO" customClass="FooterViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FooterViewControllerID" id="VIy-Aa-JTO" customClass="FooterViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="u5h-1a-tgk">
                         <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3113,12 +3051,12 @@
                 </viewController>
                 <customObject id="vUK-wH-Gnk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="587.5" y="1148.5"/>
+            <point key="canvasLocation" x="440.5" y="983.5"/>
         </scene>
         <!--Plug Navigation Controller-->
         <scene sceneID="OwI-W4-zwy">
             <objects>
-                <viewController id="aCl-8y-4N3" customClass="PlugNavigationController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlugNavigationControllerID" id="aCl-8y-4N3" customClass="PlugNavigationController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="500" verticalHuggingPriority="500" id="HQU-zo-P67">
                         <rect key="frame" x="0.0" y="0.0" width="381" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>

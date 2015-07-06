@@ -10,6 +10,7 @@
 		F502BB1D23558470D375E6E0 /* libPods-Plug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD63B6DF8D6095416CA5EFF6 /* libPods-Plug.a */; };
 		FA07423F1B470FBD00AA49D7 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA07423E1B470FBD00AA49D7 /* SnapKit.framework */; };
 		FA0742401B470FBD00AA49D7 /* SnapKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA07423E1B470FBD00AA49D7 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */; };
 		FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */; };
 		FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1CF61976ECF60030C873 /* MainViewController.swift */; };
 		FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1D2719770AEB0030C873 /* HeatMapView.swift */; };
@@ -179,6 +180,7 @@
 		50DB6E359A4153AEFDC576C4 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
 		DD63B6DF8D6095416CA5EFF6 /* libPods-Plug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA07423E1B470FBD00AA49D7 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/Mac/SnapKit.framework; sourceTree = "<group>"; };
+		FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSectionButton.swift; sourceTree = "<group>"; };
 		FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		FA0B1CF61976ECF60030C873 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FA0B1D2719770AEB0030C873 /* HeatMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */,
 				FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */,
 				FA117DE71B30B458003F4E54 /* IOSSwitch.swift */,
+				FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */,
 			);
 			name = NSButtons;
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */,
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
+				FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */,
 				FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */,
 				FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */,
 				FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */,

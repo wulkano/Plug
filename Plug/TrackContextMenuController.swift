@@ -11,7 +11,6 @@ import HypeMachineAPI
 
 class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     let track: HypeMachineAPI.Track
-    
     var contextMenu: NSMenu!
     
     init?(track: HypeMachineAPI.Track) {

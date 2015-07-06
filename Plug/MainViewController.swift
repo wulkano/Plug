@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget {
+class MainViewController: NSViewController, SidebarViewControllerDelegate, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
     
     var navigationController: NavigationController!
@@ -30,18 +30,48 @@ class MainViewController: NSViewController, PopularSectionModeMenuTarget, FeedSe
     }
     
     override func viewDidLoad() {
-        for controller in childViewControllers {
-            if controller is NavigationController {
-                navigationController = controller as! NavigationController
-            }
-        }
+        super.viewDidLoad()
+        
+        setupViews()
     }
     
     override func viewDidAppear() {
-        super.viewDidLoad()
+        super.viewDidAppear()
         
         if currentViewController == nil {
             changeNavigationSection(NavigationSection.Popular)
+        }
+    }
+    
+    func setupViews() {
+        let sidebarViewController = SidebarViewController(delegate: self)!
+        addChildViewController(sidebarViewController)
+        view.addSubview(sidebarViewController.view)
+        sidebarViewController.view.snp_makeConstraints { make in
+            make.width.equalTo(69)
+            make.top.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+        }
+        
+        navigationController = storyboard!.instantiateControllerWithIdentifier("PlugNavigationControllerID") as! PlugNavigationController
+        addChildViewController(navigationController)
+        view.addSubview(navigationController.view)
+        navigationController.view.snp_makeConstraints { make in
+            make.top.equalTo(self.view)
+            make.left.equalTo(sidebarViewController.view.snp_right)
+            make.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        
+        let footerViewController = storyboard!.instantiateControllerWithIdentifier("FooterViewControllerID") as! FooterViewController
+        addChildViewController(footerViewController)
+        view.addSubview(footerViewController.view)
+        footerViewController.view.snp_makeConstraints { make in
+            make.height.equalTo(47)
+            make.left.equalTo(sidebarViewController.view.snp_right)
+            make.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
         }
     }
     
