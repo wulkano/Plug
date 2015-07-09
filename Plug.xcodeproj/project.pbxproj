@@ -106,8 +106,7 @@
 		FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FA99EED219D0210F008C9C4A /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3019B66C6F0057080C /* NavigationController.swift */; };
-		FA9A2F3319B66C760057080C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3219B66C760057080C /* NavigationBar.swift */; };
-		FA9A2F3619B66D7D0057080C /* PlugNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */; };
+		FA9A2F3319B66C760057080C /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3219B66C760057080C /* NavigationBarController.swift */; };
 		FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */; };
 		FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F4919B783B30057080C /* BackButtonCell.swift */; };
 		FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */; };
@@ -279,8 +278,7 @@
 		FA99EECC19D0210F008C9C4A /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		FA9A2F3019B66C6F0057080C /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NavigationController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		FA9A2F3219B66C760057080C /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlugNavigationController.swift; sourceTree = "<group>"; };
+		FA9A2F3219B66C760057080C /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSStyleTableCellView.swift; sourceTree = "<group>"; };
 		FA9A2F4919B783B30057080C /* BackButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonCell.swift; sourceTree = "<group>"; };
 		FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryDataSource.swift; sourceTree = "<group>"; };
@@ -376,6 +374,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA0742431B4BAFD700AA49D7 /* NSButtonCells */ = {
+			isa = PBXGroup;
+			children = (
+				FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */,
+				FA9A2F4919B783B30057080C /* BackButtonCell.swift */,
+				FAACE4C519AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift */,
+				FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */,
+				FAACE4C319AC2ADD00F8E9E8 /* SignUpButtonCell.swift */,
+				FA5394F319AF7339006A95A5 /* SwissArmyButtonCell.swift */,
+				FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */,
+				FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */,
+				FAF21D8F19C128E700615D2F /* TransparentButtonCell.swift */,
+				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */,
+			);
+			name = NSButtonCells;
+			sourceTree = "<group>";
+		};
 		FA0B1CF21976D8320030C873 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +409,7 @@
 				FA9A2F4419B6A5470057080C /* Storyboards */,
 				FABAA8941B2F596F0090D773 /* Helpers */,
 				FA9A2F3C19B689AF0057080C /* NSButtons */,
+				FA0742431B4BAFD700AA49D7 /* NSButtonCells */,
 				FA9A2F4119B68AEB0057080C /* NSImageViews */,
 				FA9A2F3F19B68AC00057080C /* NSSliders */,
 				FA9A2F3819B6891C0057080C /* NSTableCellViews */,
@@ -603,7 +619,6 @@
 				FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */,
 				FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */,
 				FA0B1D2719770AEB0030C873 /* HeatMapView.swift */,
-				FA9A2F3219B66C760057080C /* NavigationBar.swift */,
 				FAAC8DAD19E4A1A300B1231B /* TagContainerView.swift */,
 				FA7B3CB8199B626B008E8B01 /* SidebarOverlayView.swift */,
 				FAF0371C197B83C800F716CE /* VolumeIconView.swift */,
@@ -615,27 +630,17 @@
 			isa = PBXGroup;
 			children = (
 				FA117DED1B3115C0003F4E54 /* ActionButton.swift */,
-				FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */,
-				FA9A2F4919B783B30057080C /* BackButtonCell.swift */,
 				FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */,
-				FAACE4C519AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift */,
 				FAF6F097197A05D300F2102B /* HoverToggleButton.swift */,
 				FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */,
-				FA5394FD19AFB24C006A95A5 /* LoginButton.swift */,
-				FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */,
-				FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */,
-				FAACE4C319AC2ADD00F8E9E8 /* SignUpButtonCell.swift */,
-				FA5394EF19AF6B0F006A95A5 /* SwissArmyButton.swift */,
-				FA5394F319AF7339006A95A5 /* SwissArmyButtonCell.swift */,
-				FA33002F197CB1EE0063C552 /* TransparentButton.swift */,
-				FAF21D8F19C128E700615D2F /* TransparentButtonCell.swift */,
-				FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */,
-				FA67371719E44C0D009BF6D2 /* TagButton.swift */,
-				FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */,
-				FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */,
-				FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */,
 				FA117DE71B30B458003F4E54 /* IOSSwitch.swift */,
+				FA5394FD19AFB24C006A95A5 /* LoginButton.swift */,
 				FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */,
+				FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */,
+				FA5394EF19AF6B0F006A95A5 /* SwissArmyButton.swift */,
+				FA67371719E44C0D009BF6D2 /* TagButton.swift */,
+				FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */,
+				FA33002F197CB1EE0063C552 /* TransparentButton.swift */,
 			);
 			name = NSButtons;
 			sourceTree = "<group>";
@@ -767,7 +772,7 @@
 				FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */,
 				FA5927F81B28ED1E00D07176 /* PullToRefreshViewController.swift */,
 				FA9A2F3019B66C6F0057080C /* NavigationController.swift */,
-				FA9A2F3419B66D7D0057080C /* PlugNavigationController.swift */,
+				FA9A2F3219B66C760057080C /* NavigationBarController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
 				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
 				FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */,
@@ -915,7 +920,6 @@
 				FADC96F61974D10C009458FA /* DraggableView.swift in Sources */,
 				FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */,
 				FAA51A59198084E50057EC34 /* NavigationSections.swift in Sources */,
-				FA9A2F3619B66D7D0057080C /* PlugNavigationController.swift in Sources */,
 				FA64C6A919765323003933E3 /* Array.swift in Sources */,
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* FriendsViewController.swift in Sources */,
@@ -951,7 +955,7 @@
 				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
 				FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */,
 				FA6ADCF719BA705300CCD371 /* SLColorArt.m in Sources */,
-				FA9A2F3319B66C760057080C /* NavigationBar.swift in Sources */,
+				FA9A2F3319B66C760057080C /* NavigationBarController.swift in Sources */,
 				FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */,
 				FA5394FE19AFB24C006A95A5 /* LoginButton.swift in Sources */,
 				FA5394F419AF7339006A95A5 /* SwissArmyButtonCell.swift in Sources */,

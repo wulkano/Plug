@@ -27,14 +27,14 @@ class BackButtonCell: SwissArmyButtonCell {
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         var newFrame = frame
-        newFrame.origin.y -= 2
+//        newFrame.origin.y -= 1
         newFrame.origin.x += 3
         return super.drawTitle(title, withFrame: newFrame, inView: controlView)
     }
     
     override func cellSizeForBounds(aRect: NSRect) -> NSSize {
         var size = super.cellSizeForBounds(aRect)
-        size.width += 15
+        size.width += 2
         return size
     }
 }

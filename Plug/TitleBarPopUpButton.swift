@@ -18,6 +18,9 @@ class TitleBarPopUpButton: NSPopUpButton {
     var extraWidthForFormattedTitle: CGFloat {
         return titleBarPopUpButtonCell.extraWidthForFormattedTitle
     }
+    var extraHeightForFormattedTitle: CGFloat {
+        return titleBarPopUpButtonCell.extraHeightForFormattedTitle
+    }
     var trimPaddingBetweenArrowAndTitle: CGFloat {
         return titleBarPopUpButtonCell.trimPaddingBetweenArrowAndTitle
     }
@@ -25,6 +28,7 @@ class TitleBarPopUpButton: NSPopUpButton {
     override var intrinsicContentSize: NSSize {
         var newSize = super.intrinsicContentSize
         newSize.width += extraWidthForFormattedTitle - trimPaddingBetweenArrowAndTitle
+        newSize.height += extraHeightForFormattedTitle
         return newSize
     }
 }

@@ -26,7 +26,7 @@ class ActionButton: SwissArmyButton {
     
     override var intrinsicContentSize: NSSize {
         var newSize = super.intrinsicContentSize
-        newSize.width += horizontalPadding * 2
+        newSize.width += horizontalPadding
         return newSize
     }
 }

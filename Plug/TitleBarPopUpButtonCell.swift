@@ -27,9 +27,15 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
         return formattedTitle.size.width - attributedTitle.size.width
     }
     
+    var extraHeightForFormattedTitle: CGFloat {
+        return formattedTitle.size.height - attributedTitle.size.height
+    }
+    
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         var newFrame = frame
         newFrame.size.width += trimPaddingBetweenArrowAndTitle
+        newFrame.size.height += 4
+        newFrame.origin.y -= 1
         return super.drawTitle(formattedTitle, withFrame: newFrame, inView: controlView)
     }
     

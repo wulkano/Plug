@@ -50,7 +50,7 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
             make.bottom.equalTo(self.view)
         }
         
-        navigationController = storyboard!.instantiateControllerWithIdentifier("PlugNavigationControllerID") as! PlugNavigationController
+        navigationController = NavigationController(nibName: nil, bundle: nil)
         addChildViewController(navigationController)
         view.addSubview(navigationController.view)
         navigationController.view.snp_makeConstraints { make in

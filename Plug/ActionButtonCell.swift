@@ -9,7 +9,7 @@
 import Cocoa
 
 class ActionButtonCell: SwissArmyButtonCell {
-    let horizontalPadding: CGFloat = 6
+    let horizontalPadding: CGFloat = 0
     
     let onStateColor = NSColor(red256: 255, green256: 95, blue256: 82)
     let offStateColor = NSColor(red256: 44, green256: 144, blue256: 251)
@@ -59,7 +59,6 @@ class ActionButtonCell: SwissArmyButtonCell {
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         var newFrame = frame
-        newFrame.origin.y -= 2
         newFrame.origin.x += horizontalPadding
         return super.drawTitle(formattedTitle, withFrame: newFrame, inView: controlView)
     }

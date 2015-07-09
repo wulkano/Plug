@@ -10,8 +10,8 @@ import Cocoa
 import SnapKit
 
 class NavigationController: NSViewController {
-    @IBOutlet var navigationBar: NavigationBar!
-    @IBOutlet var contentView: NSView!
+    var navigationBarController: NavigationBarController!
+    var contentView: NSView!
 
     var viewControllers: [BaseContentViewController] {
         return childViewControllers as! [BaseContentViewController]
@@ -34,10 +34,44 @@ class NavigationController: NSViewController {
         return topViewController
     }
     
+    deinit {
+        Notifications.unsubscribeAll(observer: self)
+    }
+    
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
+        navigationBarController = NavigationBarController(nibName: nil, bundle: nil)
+        view.addSubview(navigationBarController.view)
+        navigationBarController.backButton.target = self
+        navigationBarController.backButton.action = "backButtonClicked:"
+        navigationBarController.view.snp_makeConstraints { make in
+            make.height.equalTo(36)
+            make.top.equalTo(view)
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+        }
+        
+        contentView = NSView(frame: NSZeroRect)
+        view.addSubview(contentView)
+        contentView.snp_makeConstraints { make in
+            make.top.equalTo(navigationBarController.view.snp_bottom)
+            make.left.equalTo(view)
+            make.bottom.equalTo(view)
+            make.right.equalTo(view)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         contentView.wantsLayer = true
+        Notifications.subscribe(observer: self, selector: "pushViewControllerNotification:", name: Notifications.PushViewController, object: nil)
+    }
+    
+    func pushViewControllerNotification(notification: NSNotification) {
+        let viewController = notification.userInfo!["viewController"] as! BaseContentViewController
+        pushViewController(viewController)
     }
     
     func setNewRootViewController(viewController: BaseContentViewController) {
@@ -172,7 +206,7 @@ class NavigationController: NSViewController {
     }
     
     private func updateNavigationBar() {
-        navigationBar.previousViewControllerUpdated(nextTopViewController)
-        navigationBar.currentViewControllerUpdated(topViewController)
+        navigationBarController.previousViewControllerUpdated(nextTopViewController)
+        navigationBarController.currentViewControllerUpdated(topViewController)
     }
 }
