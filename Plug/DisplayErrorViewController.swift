@@ -9,34 +9,59 @@
 import Cocoa
 
 class DisplayErrorViewController: NSViewController {
-    @IBOutlet weak var errorTitleTextField: NSTextField!
-    @IBOutlet weak var errorDescriptionTextField: NSTextField!
+    let error: NSError
     
-    override var representedObject: AnyObject! {
-        didSet {
-            representedObjectChanged()
+    var errorTitleTextField: NSTextField!
+    var errorDescriptionTextField: NSTextField!
+    
+    init!(error: NSError) {
+        self.error = error
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
+        let background = BackgroundBorderView()
+        background.background = true
+        background.backgroundColor = NSColor(red256: 255, green256: 95, blue256: 82)
+        view.addSubview(background)
+        background.snp_makeConstraints { make in
+            make.edges.equalTo(view)
         }
-    }
-    var representedError: NSError {
-        return representedObject as! NSError
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        representedObjectChanged()
-    }
-    
-    func representedObjectChanged() {
-        if representedObject == nil { return }
-        if !viewLoaded { return }
+        errorTitleTextField = NSTextField(frame: NSZeroRect)
+        errorTitleTextField.stringValue = "Error"
+        errorTitleTextField.bordered = false
+        errorTitleTextField.drawsBackground = false
+        errorTitleTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)!
+        (errorTitleTextField.cell() as! NSTextFieldCell).textColor = NSColor.whiteColor()
+        view.addSubview(errorTitleTextField)
+        errorTitleTextField.snp_makeConstraints { make in
+            make.top.equalTo(self.view).offset(6)
+            make.left.equalTo(self.view).offset(14)
+            make.right.equalTo(self.view).offset(14)
+        }
         
-        let title = "Error"
-        var description = "Oops. Something went wrong."
+        errorDescriptionTextField = NSTextField(frame: NSZeroRect)
+        errorDescriptionTextField.stringValue = "Oops"
+        errorDescriptionTextField.bordered = false
+        errorDescriptionTextField.drawsBackground = false
+        errorDescriptionTextField.font = NSFont(name: "HelveticaNeue", size: 13)!
+        (errorDescriptionTextField.cell() as! NSTextFieldCell).textColor = NSColor.whiteColor()
+        view.addSubview(errorDescriptionTextField)
+        errorDescriptionTextField.snp_makeConstraints { make in
+            make.top.equalTo(errorTitleTextField.snp_bottom)
+            make.left.equalTo(self.view).offset(14)
+            make.right.equalTo(self.view).offset(14)
+        }
         
-        description = representedError.localizedDescription
-        
-        errorTitleTextField.stringValue = title
-        errorDescriptionTextField.stringValue = description
+        view.snp_makeConstraints { make in
+            make.height.equalTo(6 + errorTitleTextField.intrinsicContentSize.height + errorDescriptionTextField.intrinsicContentSize.height + 14)
+        }
     }
 }

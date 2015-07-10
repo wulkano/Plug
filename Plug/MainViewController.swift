@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SnapKit
 
 class MainViewController: NSViewController, SidebarViewControllerDelegate, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
@@ -83,17 +84,16 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
     
     func displayError(notification: NSNotification) {
         let error = notification.userInfo!["error"] as! NSError
-        let displayErrorViewController = storyboard!.instantiateControllerWithIdentifier("DisplayErrorViewController") as! DisplayErrorViewController
-        displayErrorViewController.representedObject = error
-        let insets = NSEdgeInsetsMake(0,0, 0, 0)
+        let displayErrorViewController = DisplayErrorViewController(error: error)
+        addChildViewController(displayErrorViewController)
         navigationController.contentView.addSubview(displayErrorViewController.view)
+        var topConstraint: Constraint!
         displayErrorViewController.view.snp_makeConstraints { make in
-            make.height.equalTo(40)
-            make.top.equalTo(displayErrorViewController.view)
-            make.left.equalTo(displayErrorViewController.view)
-            make.right.equalTo(displayErrorViewController.view)
+            topConstraint = make.top.equalTo(navigationController.contentView).constraint
+            make.left.equalTo(navigationController.contentView)
+            make.right.equalTo(navigationController.contentView)
         }
-        Interval.single(5) {
+        Interval.single(3) {
             displayErrorViewController.view.removeFromSuperview()
             displayErrorViewController.removeFromParentViewController()
         }

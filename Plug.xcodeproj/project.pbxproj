@@ -80,7 +80,7 @@
 		FA6ADCF719BA705300CCD371 /* SLColorArt.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADCF519BA705300CCD371 /* SLColorArt.m */; };
 		FA6ADCFB19BA8B9600CCD371 /* SingleBlogViewFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADCFA19BA8B9600CCD371 /* SingleBlogViewFormatter.swift */; };
 		FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */; };
-		FA6ADD0319BAB0E300CCD371 /* SingleFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */; };
+		FA6ADD0319BAB0E300CCD371 /* SingleUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0219BAB0E300CCD371 /* SingleUserViewController.swift */; };
 		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
 		FA7404E21B34867500684ADA /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; };
@@ -253,7 +253,7 @@
 		FA6ADCF619BA705300CCD371 /* SLColorArt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLColorArt.h; sourceTree = "<group>"; };
 		FA6ADCFA19BA8B9600CCD371 /* SingleBlogViewFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleBlogViewFormatter.swift; sourceTree = "<group>"; };
 		FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
-		FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleFriendViewController.swift; sourceTree = "<group>"; };
+		FA6ADD0219BAB0E300CCD371 /* SingleUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUserViewController.swift; sourceTree = "<group>"; };
 		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabButtonCell.swift; sourceTree = "<group>"; };
 		FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTitleButton.swift; sourceTree = "<group>"; };
 		FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
@@ -449,7 +449,7 @@
 				FA222A8519BCC947005A631F /* BaseContentViewController.swift */,
 				FA77499D198C0D180048863F /* SearchViewController.swift */,
 				FAEE914719BA5AF600D4274C /* SingleBlogViewController.swift */,
-				FA6ADD0219BAB0E300CCD371 /* SingleFriendViewController.swift */,
+				FA6ADD0219BAB0E300CCD371 /* SingleUserViewController.swift */,
 			);
 			name = ContentViewControllers;
 			sourceTree = "<group>";
@@ -981,7 +981,7 @@
 				FA6127141B051F9700E9F2C9 /* Alamofire+responseImage.swift in Sources */,
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
 				FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */,
-				FA6ADD0319BAB0E300CCD371 /* SingleFriendViewController.swift in Sources */,
+				FA6ADD0319BAB0E300CCD371 /* SingleUserViewController.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
 				FAF13B2A199D3D62009D9F66 /* FeedTrackTableCellView.swift in Sources */,
 				FA53950919B01E47006A95A5 /* LovedCountFormatter.swift in Sources */,
