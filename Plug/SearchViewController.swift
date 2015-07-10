@@ -9,7 +9,8 @@
 import Cocoa
 
 class SearchViewController: BaseContentViewController {
-    @IBOutlet var searchResultsView: NSView!
+    var searchResultsView: NSView!
+    
     var sort: SearchSectionSort = .Newest {
         didSet {
             sortChanged()
@@ -22,6 +23,41 @@ class SearchViewController: BaseContentViewController {
         return "MainWindow/Search"
     }
     
+    override func loadView() {
+        view = NSView()
+        
+        let header = BackgroundBorderView()
+        header.background = true
+        header.backgroundColor = NSColor.whiteColor()
+        header.bottomBorder = true
+        header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
+        view.addSubview(header)
+        header.snp_makeConstraints { make in
+            make.height.equalTo(52)
+            make.top.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        
+        let searchField = NSSearchField()
+        searchField.target = self
+        searchField.action  = "searchFieldSubmit:"
+        header.addSubview(searchField)
+        searchField.snp_makeConstraints { make in
+            let insets = NSEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
+            make.edges.equalTo(header).insets(insets)
+        }
+        
+        searchResultsView = NSView()
+        view.addSubview(searchResultsView)
+        searchResultsView.snp_makeConstraints { make in
+            make.top.equalTo(header.snp_bottom)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+    }
+    
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
         let keywords = sender.stringValue
         if keywords == "" { return }
@@ -32,7 +68,8 @@ class SearchViewController: BaseContentViewController {
     
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
-            tracksViewController = (storyboard!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController)
+            let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
+            tracksViewController = (mainStoryboard.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController)
             addChildViewController(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
             tracksViewController!.view.snp_makeConstraints { make in

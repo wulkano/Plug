@@ -178,7 +178,16 @@ extension NavigationSection {
     }
     
     private func createViewController(storyboard: NSStoryboard, target: AnyObject?) -> BaseContentViewController {
-        let targetViewController = storyboard.instantiateControllerWithIdentifier(self.viewControllerIdentifier) as! BaseContentViewController
+        
+        var targetViewController: BaseContentViewController
+        
+        switch self {
+        case .Search:
+            targetViewController = SearchViewController(nibName: nil, bundle: nil)!
+        default:
+            targetViewController = storyboard.instantiateControllerWithIdentifier(self.viewControllerIdentifier) as! BaseContentViewController
+        }
+        
         targetViewController.dropdownMenu = self.menu(target)
 
         if let tracksViewController = targetViewController as? TracksViewController {
@@ -195,6 +204,8 @@ extension NavigationSection {
                 break
             }
         }
+        
+        targetViewController.title = self.title
         
         NavigationSection.viewControllers[self.viewControllerIdentifier] = targetViewController
         

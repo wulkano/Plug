@@ -108,16 +108,15 @@ class BlogDirectoryViewController: DataSourceViewController {
     override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
         case .BlogItem(let blog):
-            loadSingleBlogView(blog)
+            loadBlogViewController(blog)
         case .SectionHeaderItem:
             return
         }
     }
     
-    func loadSingleBlogView(blog: HypeMachineAPI.Blog) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as! SingleBlogViewController
+    func loadBlogViewController(blog: HypeMachineAPI.Blog) {
+        var viewController = BlogViewController(blog: blog)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.representedObject = blog
     }
     
     override func refresh() {

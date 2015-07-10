@@ -38,7 +38,7 @@ class FriendsViewController: DataSourceViewController {
     }
     
     func loadSingleFriendView(friend: HypeMachineAPI.User) {
-        let viewController = SingleUserViewController(user: friend)
+        let viewController = UserViewController(user: friend)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     

@@ -40,7 +40,7 @@ class NavigationBarController: NSViewController {
         backgroundView.addSubview(backButton)
         backButton.snp_makeConstraints { make in
             make.centerY.equalTo(backgroundView).offset(-1)
-            make.left.equalTo(backgroundView).offset(4)
+            make.left.equalTo(backgroundView).offset(6)
             make.height.equalTo(22)
         }
         

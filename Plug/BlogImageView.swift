@@ -1,5 +1,5 @@
 //
-//  SingleBlogImageView.swift
+//  BlogImageView.swift
 //  Plug
 //
 //  Created by Alex Marchant on 9/5/14.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class SingleBlogImageView: NSImageView {
+class BlogImageView: NSImageView {
     var sideLength: CGFloat {
         return image!.size.width
     }

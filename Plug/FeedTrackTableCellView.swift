@@ -105,7 +105,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func loadSingleFriendPage() {
-        var viewController = SingleUserViewController(username: trackValue.viaUser!)
+        var viewController = UserViewController(username: trackValue.viaUser!)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     
@@ -115,18 +115,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func loadSingleBlogPage() {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("SingleBlogViewController") as! SingleBlogViewController
+        var viewController = BlogViewController(blogID: trackValue.postedById, blogName: trackValue.postedBy)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        
-        HypeMachineAPI.Requests.Blogs.show(id: trackValue.postedById) {
-            (blog, error) in
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error)
-                return
-            }
-            
-            viewController.representedObject = blog!
-        }
     }
 }

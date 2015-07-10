@@ -10,7 +10,7 @@ import Cocoa
 import HypeMachineAPI
 import Alamofire
 
-class SingleUserViewController: BaseContentViewController {
+class UserViewController: BaseContentViewController {
     var user: HypeMachineAPI.User! {
         didSet { userChanged() }
     }
