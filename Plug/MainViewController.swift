@@ -182,6 +182,8 @@ extension NavigationSection {
         var targetViewController: BaseContentViewController
         
         switch self {
+        case .Friends:
+            targetViewController = UsersViewController(nibName: nil, bundle: nil)!
         case .Search:
             targetViewController = SearchViewController(nibName: nil, bundle: nil)!
         default:

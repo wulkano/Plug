@@ -26,32 +26,21 @@ class SearchViewController: BaseContentViewController {
     override func loadView() {
         view = NSView()
         
-        let header = BackgroundBorderView()
-        header.background = true
-        header.backgroundColor = NSColor.whiteColor()
-        header.bottomBorder = true
-        header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
-        view.addSubview(header)
-        header.snp_makeConstraints { make in
+        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+        view.addSubview(searchHeaderController.view)
+        searchHeaderController.view.snp_makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-        
-        let searchField = NSSearchField()
-        searchField.target = self
-        searchField.action  = "searchFieldSubmit:"
-        header.addSubview(searchField)
-        searchField.snp_makeConstraints { make in
-            let insets = NSEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
-            make.edges.equalTo(header).insets(insets)
-        }
+        searchHeaderController.searchField.target = self
+        searchHeaderController.searchField.action = "searchFieldSubmit:"
         
         searchResultsView = NSView()
         view.addSubview(searchResultsView)
         searchResultsView.snp_makeConstraints { make in
-            make.top.equalTo(header.snp_bottom)
+            make.top.equalTo(searchHeaderController.view.snp_bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)

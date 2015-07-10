@@ -10,7 +10,7 @@ import Cocoa
 import HypeMachineAPI
 import Alamofire
 
-class FriendTableCellView: IOSStyleTableCellView {
+class UserTableCellView: IOSStyleTableCellView {
     @IBOutlet var avatarView: NSImageView!
     @IBOutlet var fullNameTextField: NSTextField!
     @IBOutlet var usernameTextField: NSTextField!
@@ -20,7 +20,7 @@ class FriendTableCellView: IOSStyleTableCellView {
             objectValueChanged()
         }
     }
-    var friendValue: HypeMachineAPI.User {
+    var user: HypeMachineAPI.User {
         return objectValue as! HypeMachineAPI.User
     }
     
@@ -33,18 +33,18 @@ class FriendTableCellView: IOSStyleTableCellView {
     }
     
     func updateFullName() {
-        fullNameTextField.stringValue = friendValue.fullName ?? friendValue.username
+        fullNameTextField.stringValue = user.fullName ?? user.username
     }
     
     func updateUsername() {
-        usernameTextField.stringValue = friendValue.username
+        usernameTextField.stringValue = user.username
     }
     
     func updateImage() {
         avatarView.image = NSImage(named: "Avatar-Placeholder")
-        if friendValue.avatarURL == nil { return }
+        if user.avatarURL == nil { return }
         
-        Alamofire.request(.GET, friendValue.avatarURL!).validate().responseImage {
+        Alamofire.request(.GET, user.avatarURL!).validate().responseImage {
             (_, _, image, error) in
             
             if error != nil {
