@@ -26,7 +26,6 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
     }
     
     func setup() {
-        Notifications.subscribe(observer: self, selector: "navigationSectionChanged:", name: Notifications.NavigationSectionChanged, object: nil)
         Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
     }
     
@@ -70,20 +69,9 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         if currentViewController == nil {
             changeNavigationSection(NavigationSection.Popular)
         }
-        
-        Interval.single(1) {
-            let note = NSNotification(name: "Test", object: nil, userInfo: ["error": NSError(domain: "Test", code: 0, userInfo: [NSLocalizedDescriptionKey: "This is a really long error so that we can see what happens when the line extends past the edge of the view."])])
-            self.displayError(note)
-        }
     }
     
     func changeNavigationSection(section: NavigationSection) {
-        Notifications.post(name: Notifications.NavigationSectionChanged, object: self, userInfo: ["navigationSection": section.rawValue])
-    }
-    
-    func navigationSectionChanged(notification: NSNotification) {
-        let raw = (notification.userInfo!["navigationSection"] as! NSNumber).integerValue
-        let section = NavigationSection(rawValue: raw)!
         updateUIForSection(section)
     }
     

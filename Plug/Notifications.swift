@@ -14,8 +14,6 @@ struct Notifications {
     
     static let DisplayError = "Plug.DisplayErrorNotification"
     
-    static let NavigationSectionChanged = "Plug.NavigationSectionChangedNotification"
-    
     static let PushViewController = "Plug.PushViewController"
 
     static let NewCurrentTrack = "Plug.NewCurrentTrack"

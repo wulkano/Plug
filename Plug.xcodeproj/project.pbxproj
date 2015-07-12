@@ -115,7 +115,6 @@
 		FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */; };
 		FAA34A9519B2F0450038868A /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9419B2F0450038868A /* Async.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
-		FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */; };
 		FAA51A59198084E50057EC34 /* NavigationSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A58198084E50057EC34 /* NavigationSections.swift */; };
 		FAAC8DAE19E4A1A300B1231B /* TagContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC8DAD19E4A1A300B1231B /* TagContainerView.swift */; };
 		FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */; };
@@ -288,7 +287,6 @@
 		FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDataSource.swift; sourceTree = "<group>"; };
 		FAA34A9419B2F0450038868A /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
 		FAA51A58198084E50057EC34 /* NavigationSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSections.swift; sourceTree = "<group>"; };
 		FAAC8DAD19E4A1A300B1231B /* TagContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagContainerView.swift; sourceTree = "<group>"; };
 		FAACE4C119AC0A0900F8E9E8 /* VibrantTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantTextField.swift; sourceTree = "<group>"; };
@@ -776,7 +774,6 @@
 				FA9A2F3019B66C6F0057080C /* NavigationController.swift */,
 				FA9A2F3219B66C760057080C /* NavigationBarController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
-				FAA51A56198060AE0057EC34 /* TitleBarViewController.swift */,
 				FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */,
 				FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */,
 			);
@@ -975,7 +972,6 @@
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
 				FA6ADCF419BA69C300CCD371 /* BlogImageView.swift in Sources */,
 				FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */,
-				FAA51A57198060AE0057EC34 /* TitleBarViewController.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
 				FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */,
 				FA117DEA1B30E4AC003F4E54 /* InsetTableView.swift in Sources */,
