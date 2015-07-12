@@ -518,9 +518,9 @@
 			children = (
 				FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */,
 				FA3199AC198247970097B081 /* BlogsViewController.swift */,
-				FA77499F198C1CAA0048863F /* UsersViewController.swift */,
 				FA774999198C07110048863F /* TagsViewController.swift */,
 				FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */,
+				FA77499F198C1CAA0048863F /* UsersViewController.swift */,
 			);
 			name = DataSourceViewControllers;
 			sourceTree = "<group>";

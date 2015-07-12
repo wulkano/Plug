@@ -11,9 +11,9 @@ import HypeMachineAPI
 import Alamofire
 
 class UserTableCellView: IOSStyleTableCellView {
-    @IBOutlet var avatarView: NSImageView!
-    @IBOutlet var fullNameTextField: NSTextField!
-    @IBOutlet var usernameTextField: NSTextField!
+    var avatarView: NSImageView!
+    var fullNameTextField: NSTextField!
+    var usernameTextField: NSTextField!
 
     override var objectValue: AnyObject! {
         didSet {

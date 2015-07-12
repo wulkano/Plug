@@ -10,15 +10,15 @@ import Cocoa
 import HypeMachineAPI
 
 class BlogTableCellView: IOSStyleTableCellView {
-    @IBOutlet var nameTextField: NSTextField!
-    @IBOutlet var recentArtistsTextField: NSTextField!
+    var nameTextField: NSTextField!
+    var recentArtistsTextField: NSTextField!
     
     override var objectValue: AnyObject! {
         didSet {
             objectValueChanged()
         }
     }
-    var blogValue: HypeMachineAPI.Blog {
+    var blog: HypeMachineAPI.Blog {
         return objectValue as! HypeMachineAPI.Blog
     }
     
@@ -30,14 +30,14 @@ class BlogTableCellView: IOSStyleTableCellView {
     }
     
     func updateName() {
-        nameTextField.stringValue = blogValue.name
+        nameTextField.stringValue = blog.name
     }
     
     func updateArtists() {
         recentArtistsTextField.stringValue = "Loading..."
         
         let params = ["page": 1, "count": 3]
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blogValue.id, optionalParams: params) {
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, optionalParams: params) {
             (tracks: [HypeMachineAPI.Track]?, error) in
             
             if error != nil {

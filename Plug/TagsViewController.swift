@@ -12,7 +12,42 @@ import HypeMachineAPI
 class TagsViewController: DataSourceViewController {
     var dataSource: TagsDataSource!
     override var analyticsViewName: String {
-        return "MainWindow/Tags"
+        return "MainWindow/Genres"
+    }
+    
+    override func loadView() {
+        view = NSView()
+        
+        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+        view.addSubview(searchHeaderController.view)
+        searchHeaderController.view.snp_makeConstraints { make in
+            make.height.equalTo(52)
+            make.top.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        searchHeaderController.searchField.target = self
+        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        
+        let scrollView = NSScrollView()
+        view.addSubview(scrollView)
+        scrollView.snp_makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp_bottom)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        
+        tableView = InsetTableView()
+        tableView.headerView = nil
+        let column = NSTableColumn(identifier: "Col0")
+        column.width = 400
+        column.minWidth = 40
+        column.maxWidth = 1000
+        tableView.addTableColumn(column)
+        
+        scrollView.documentView = tableView
+        scrollView.hasVerticalScroller = true
     }
 
     override func viewDidLoad() {
@@ -56,68 +91,6 @@ class TagsViewController: DataSourceViewController {
         }
     }
     
-    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
-        switch itemForRow(row)! {
-        case .SectionHeaderItem:
-            return  tableView.makeViewWithIdentifier("SectionHeader", owner: self) as! NSView
-        case .TagItem:
-            return tableView.makeViewWithIdentifier("TagTableCellView", owner: self) as! NSView
-        }
-    }
-    
-    func tableView(tableView: NSTableView!, isGroupRow row: Int) -> Bool {
-        switch itemForRow(row)! {
-        case .SectionHeaderItem:
-            return  true
-        case .TagItem:
-            return false
-        }
-    }
-    
-    func tableView(tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
-        switch itemForRow(row)! {
-        case .SectionHeaderItem:
-            return  32
-        case .TagItem:
-            return 48
-        }
-    }
-    
-    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
-        switch itemForRow(row)! {
-        case .SectionHeaderItem:
-            let rowView = tableView.makeViewWithIdentifier("GroupRow", owner: self) as! NSTableRowView
-            return rowView
-        case .TagItem:
-            let rowView = tableView.makeViewWithIdentifier("IOSStyleTableRowView", owner: self) as! IOSStyleTableRowView
-            if let nextItem = itemAfterRow(row) {
-                switch nextItem {
-                case .SectionHeaderItem:
-                    rowView.nextRowIsGroupRow = true
-                case .TagItem:
-                    rowView.nextRowIsGroupRow = false
-                }
-            } else {
-                rowView.nextRowIsGroupRow = false
-            }
-            return rowView
-        }
-    }
-
-    func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
-        switch itemForRow(row)! {
-        case .SectionHeaderItem:
-            return false
-        case .TagItem:
-            return true
-        }
-    }
-    
-    @IBAction func searchFieldSubmit(sender: NSSearchField) {
-        let keywords = sender.stringValue
-        dataSource!.filterByKeywords(keywords)
-    }
-    
     override func keyDown(theEvent: NSEvent) {
         switch theEvent.keyCode {
         case 36:
@@ -145,15 +118,6 @@ class TagsViewController: DataSourceViewController {
         }
     }
     
-    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        switch itemForRow(row)! {
-        case .TagItem(let tag):
-            loadSingleTagView(tag)
-        case .SectionHeaderItem:
-            return
-        }
-    }
-    
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
         var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = tag.name
@@ -164,5 +128,127 @@ class TagsViewController: DataSourceViewController {
     override func refresh() {
         addLoaderView()
         dataSource.refresh()
+    }
+    
+    func tagCellView(tableView: NSTableView) -> TagTableCellView {
+        let id = "TagTableCellViewID"
+        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? TagTableCellView
+        
+        if cellView == nil {
+            cellView = TagTableCellView()
+            cellView!.identifier = id
+            
+            cellView!.nameTextField = NSTextField()
+            cellView!.nameTextField.editable = false
+            cellView!.nameTextField.selectable = false
+            cellView!.nameTextField.bordered = false
+            cellView!.nameTextField.drawsBackground = false
+            cellView!.nameTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 16)
+            cellView!.addSubview(cellView!.nameTextField)
+            cellView!.nameTextField.snp_makeConstraints { make in
+                make.centerY.equalTo(cellView!).offset(1)
+                make.left.equalTo(cellView!).offset(21)
+                make.right.lessThanOrEqualTo(cellView!).offset(-53)
+            }
+            
+            let arrow = NSImageView()
+            arrow.image = NSImage(named: "List-Arrow")!
+            cellView!.addSubview(arrow)
+            arrow.snp_makeConstraints { make in
+                make.centerY.equalTo(cellView!)
+                make.right.equalTo(cellView!).offset(-15)
+            }
+        }
+        
+        return cellView!
+    }
+    
+    func tagRowView(tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
+        let id = "IOSStyleTableRowViewID"
+        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? IOSStyleTableRowView
+        
+        if rowView == nil {
+            rowView = IOSStyleTableRowView()
+            rowView!.identifier = id
+            rowView!.separatorSpacing = 21
+            
+            if let nextItem = itemAfterRow(row) {
+                switch nextItem {
+                case .SectionHeaderItem:
+                    rowView!.nextRowIsGroupRow = true
+                case .TagItem:
+                    rowView!.nextRowIsGroupRow = false
+                }
+            } else {
+                rowView!.nextRowIsGroupRow = false
+            }
+        }
+        
+        return rowView!
+    }
+    
+    // MARK: NSTableViewDelegate
+    
+    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+        switch itemForRow(row)! {
+        case .SectionHeaderItem:
+            return sectionHeaderCellView(tableView)
+        case .TagItem:
+            return tagCellView(tableView)
+        }
+    }
+    
+    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
+        switch itemForRow(row)! {
+        case .SectionHeaderItem:
+            return groupRowView(tableView)
+        case .TagItem:
+            return tagRowView(tableView, row: row)
+        }
+    }
+    
+    func tableView(tableView: NSTableView!, isGroupRow row: Int) -> Bool {
+        switch itemForRow(row)! {
+        case .SectionHeaderItem:
+            return  true
+        case .TagItem:
+            return false
+        }
+    }
+    
+    func tableView(tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
+        switch itemForRow(row)! {
+        case .SectionHeaderItem:
+            return 32
+        case .TagItem:
+            return 48
+        }
+    }
+    
+    func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
+        switch itemForRow(row)! {
+        case .SectionHeaderItem:
+            return false
+        case .TagItem:
+            return true
+        }
+    }
+    
+    // MARK: ExtendedTableViewDelegate
+    
+    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+        switch itemForRow(row)! {
+        case .TagItem(let tag):
+            loadSingleTagView(tag)
+        case .SectionHeaderItem:
+            return
+        }
+    }
+    
+    // MARK: Actions
+    
+    func searchFieldSubmit(sender: NSSearchField) {
+        let keywords = sender.stringValue
+        dataSource!.filterByKeywords(keywords)
     }
 }

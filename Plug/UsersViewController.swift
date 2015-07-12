@@ -61,11 +61,6 @@ class UsersViewController: DataSourceViewController {
         dataSource.loadInitialValues()
     }
     
-    @IBAction func searchFieldSubmit(sender: NSSearchField) {
-        let keywords = sender.stringValue
-        dataSource.filterByKeywords(keywords)
-    }
-    
     func loadSingleFriendView(friend: HypeMachineAPI.User) {
         let viewController = UserViewController(user: friend)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
@@ -151,7 +146,6 @@ class UsersViewController: DataSourceViewController {
     func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 64
     }
-
     
     // MARK: ExtendedTableViewDelegate
     
@@ -160,5 +154,13 @@ class UsersViewController: DataSourceViewController {
         if let item: AnyObject = dataSource.itemForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }
+    }
+    
+    // MARK: Actions
+    
+    
+    func searchFieldSubmit(sender: NSSearchField) {
+        let keywords = sender.stringValue
+        dataSource.filterByKeywords(keywords)
     }
 }

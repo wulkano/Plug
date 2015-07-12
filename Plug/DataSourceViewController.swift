@@ -27,6 +27,44 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         tableView.visibleRows = []
     }
     
+    func sectionHeaderCellView(tableView: NSTableView) -> SectionHeaderTableCellView {
+        let id = "SectionHeaderCellViewID"
+        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? SectionHeaderTableCellView
+        
+        if cellView == nil {
+            cellView = SectionHeaderTableCellView()
+            cellView!.identifier = id
+            
+            cellView!.titleTextField = NSTextField()
+            cellView!.titleTextField.editable = false
+            cellView!.titleTextField.selectable = false
+            cellView!.titleTextField.bordered = false
+            cellView!.titleTextField.drawsBackground = false
+            cellView!.titleTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
+            cellView!.titleTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
+            cellView!.addSubview(cellView!.titleTextField)
+            cellView!.titleTextField.snp_makeConstraints { make in
+                make.centerY.equalTo(cellView!).offset(-1)
+                make.left.equalTo(cellView!).offset(9)
+                make.right.equalTo(cellView!).offset(-9)
+            }
+        }
+        
+        return cellView!
+    }
+    
+    func groupRowView(tableView: NSTableView) -> GroupRowView {
+        let id = "GroupRowID"
+        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? GroupRowView
+        
+        if rowView == nil {
+            rowView = GroupRowView()
+            rowView!.identifier = id
+        }
+        
+        return rowView!
+    }
+    
     // MARK: ExtendedTableViewDelegate default implementations
     
     func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int) {}

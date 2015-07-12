@@ -10,6 +10,8 @@ import Cocoa
 import HypeMachineAPI
 
 class TagTableCellView: IOSStyleTableCellView {
+    var nameTextField: NSTextField!
+    
     override var objectValue: AnyObject! {
         didSet {
             objectValueChanged()
@@ -26,6 +28,6 @@ class TagTableCellView: IOSStyleTableCellView {
     }
     
     func updateName() {
-        textField!.stringValue = tagValue.name
+        nameTextField.stringValue = tagValue.name
     }
 }
