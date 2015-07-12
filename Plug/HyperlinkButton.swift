@@ -10,32 +10,37 @@ import Cocoa
 
 class HyperlinkButton: NSButton {
     @IBInspectable var textColor: NSColor = NSColor.blackColor() {
-        didSet {
-            applyAttributes()
-        }
+        didSet { applyAttributes() }
     }
     @IBInspectable var selectedTextColor: NSColor = NSColor(red256: 255, green256: 95, blue256: 82) {
-        didSet {
-            applyAttributes()
-        }
+        didSet { applyAttributes() }
     }
     @IBInspectable var selected: Bool = false {
-        didSet {
-            applyAttributes()
-        }
+        didSet { applyAttributes() }
     }
     @IBInspectable var hoverUnderline: Bool = false
     
     override var title: String {
-        didSet {
-            applyAttributes()
-        }
+        didSet { applyAttributes() }
     }
     var trackingArea: NSTrackingArea?
     var mouseInside: Bool = false {
-        didSet {
-            mouseInsideChanged()
-        }
+        didSet { mouseInsideChanged() }
+    }
+    
+    init() {
+        super.init(frame: NSZeroRect)
+        setup()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    func setup() {
+        setButtonType(NSButtonType.MomentaryPushInButton)
+        bezelStyle = NSBezelStyle.RoundedBezelStyle
     }
     
     func applyAttributes() {
@@ -56,9 +61,11 @@ class HyperlinkButton: NSButton {
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
-        let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
-        let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
-        addTrackingArea(trackingArea)
+        if hoverUnderline {
+            let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
+            let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
+            addTrackingArea(trackingArea)
+        }
     }
 
     override func mouseEntered(theEvent: NSEvent) {

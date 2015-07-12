@@ -24,6 +24,8 @@ class TracksViewController: DataSourceViewController {
     
     let infiniteScrollTriggerHeight: CGFloat = 40
     
+    var showLoveButton: Bool = true
+    
     init?(type: TracksViewControllerType) {
         self.type = type
         super.init(nibName: nil, bundle: nil)
@@ -143,15 +145,7 @@ class TracksViewController: DataSourceViewController {
             cellView!.identifier = id
             
             setupTrackCellView(cellView!)
-            
-            cellView!.heatMapView = HeatMapView()
-            cellView!.addSubview(cellView!.heatMapView)
-            cellView!.heatMapView.snp_makeConstraints { make in
-                make.centerY.equalTo(cellView!)
-                make.width.equalTo(32)
-                make.height.equalTo(32)
-                make.left.equalTo(cellView!).offset(20)
-            }
+            setupHeatMapCellView(cellView!)
         }
         
         return cellView!
@@ -166,23 +160,7 @@ class TracksViewController: DataSourceViewController {
             cellView!.identifier = id
             
             setupTrackCellView(cellView!)
-            
-            cellView!.loveCount = ColorChangingTextField()
-            cellView!.loveCount.selectable = false
-            cellView!.loveCount.editable = false
-            cellView!.loveCount.bordered = false
-            cellView!.loveCount.drawsBackground = false
-            cellView!.loveCount.alignment = .CenterTextAlignment
-            cellView!.loveCount.font = NSFont(name: "HelveticaNeue-Medium", size: 22)
-            cellView!.loveCount.objectValue = NSNumber(integer: 2200)
-            cellView!.loveCount.formatter = LovedCountFormatter()
-            cellView!.addSubview(cellView!.loveCount)
-            cellView!.loveCount.snp_makeConstraints { make in
-                make.centerY.equalTo(cellView!)
-                make.left.equalTo(cellView!)
-                make.width.equalTo(72)
-                make.height.equalTo(26)
-            }
+            setupLoveCountCellView(cellView!)
         }
         
         return cellView!
@@ -197,12 +175,16 @@ class TracksViewController: DataSourceViewController {
             cellView!.identifier = id
             
             setupTrackCellView(cellView!)
+            setupLoveCountCellView(cellView!)
+            setupFeedCellView(cellView!)
         }
         
         return cellView!
     }
     
     func setupTrackCellView(cellView: TrackTableCellView) {
+        cellView.showLoveButton = showLoveButton
+        
         cellView.playPauseButton = HoverToggleButton()
         cellView.playPauseButton.hidden = true
         cellView.playPauseButton.onImage = NSImage(named: "Track-Pause-Normal")!
@@ -242,9 +224,9 @@ class TracksViewController: DataSourceViewController {
             make.left.equalTo(loveContainer)
         }
         
-        let infoContainer = NSView()
-        cellView.addSubview(infoContainer)
-        infoContainer.snp_makeConstraints { make in
+        cellView.infoContainer = NSView()
+        cellView.addSubview(cellView.infoContainer)
+        cellView.infoContainer.snp_makeConstraints { make in
             cellView.infoContainerWidthConstraint = make.width.equalTo(30).constraint
             make.top.equalTo(cellView)
             make.bottom.equalTo(cellView)
@@ -255,12 +237,12 @@ class TracksViewController: DataSourceViewController {
         infoButton.unselectedImage = NSImage(named: "Track-Info")!
         infoButton.target = cellView
         infoButton.action = "infoButtonClicked:"
-        infoContainer.addSubview(infoButton)
+        cellView.infoContainer.addSubview(infoButton)
         infoButton.snp_makeConstraints { make in
-            make.centerY.equalTo(infoContainer)
+            make.centerY.equalTo(cellView.infoContainer)
             make.width.equalTo(18)
             make.height.equalTo(18)
-            make.left.equalTo(infoContainer)
+            make.left.equalTo(cellView.infoContainer)
         }
         
         cellView.titleButton = HyperlinkButton()
@@ -272,7 +254,7 @@ class TracksViewController: DataSourceViewController {
             make.height.equalTo(20)
             make.top.equalTo(cellView).offset(9)
             make.left.equalTo(cellView).offset(73)
-            make.right.lessThanOrEqualTo(infoContainer.snp_left).offset(-20)
+            make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
         }
         
         cellView.artistButton = HyperlinkButton()
@@ -288,7 +270,7 @@ class TracksViewController: DataSourceViewController {
             make.height.equalTo(20)
             make.top.equalTo(cellView.titleButton.snp_bottom).offset(1)
             make.left.equalTo(cellView).offset(73)
-            make.right.lessThanOrEqualTo(infoContainer.snp_left).offset(-20)
+            make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
         }
         
         cellView.progressSlider = FlatSlider()
@@ -303,6 +285,66 @@ class TracksViewController: DataSourceViewController {
             make.left.equalTo(cellView).offset(-9)
             make.bottom.equalTo(cellView).offset(-6)
             make.right.equalTo(cellView).offset(-12)
+        }
+    }
+    
+    func setupLoveCountCellView(cellView: LoveCountTrackTableCellView) {
+        cellView.loveCount = ColorChangingTextField()
+        cellView.loveCount.selectable = false
+        cellView.loveCount.editable = false
+        cellView.loveCount.bordered = false
+        cellView.loveCount.drawsBackground = false
+        cellView.loveCount.alignment = .CenterTextAlignment
+        cellView.loveCount.font = NSFont(name: "HelveticaNeue-Medium", size: 22)
+        cellView.loveCount.objectValue = NSNumber(integer: 2200)
+        cellView.loveCount.formatter = LovedCountFormatter()
+        cellView.addSubview(cellView.loveCount)
+        cellView.loveCount.snp_makeConstraints { make in
+            make.centerY.equalTo(cellView)
+            make.left.equalTo(cellView)
+            make.width.equalTo(72)
+            make.height.equalTo(26)
+        }
+    }
+    
+    func setupHeatMapCellView(cellView: HeatMapTrackTableCellView) {
+        cellView.heatMapView = HeatMapView()
+        cellView.addSubview(cellView.heatMapView)
+        cellView.heatMapView.snp_makeConstraints { make in
+            make.centerY.equalTo(cellView)
+            make.width.equalTo(32)
+            make.height.equalTo(32)
+            make.left.equalTo(cellView).offset(20)
+        }
+    }
+    
+    func setupFeedCellView(cellView: FeedTrackTableCellView) {
+        cellView.sourceTypeTextField = SelectableTextField()
+        cellView.sourceTypeTextField.editable = false
+        cellView.sourceTypeTextField.selectable = false
+        cellView.sourceTypeTextField.bordered = false
+        cellView.sourceTypeTextField.drawsBackground = false
+        cellView.sourceTypeTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 12)
+        cellView.sourceTypeTextField.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
+        cellView.addSubview(cellView.sourceTypeTextField)
+        cellView.sourceTypeTextField.snp_makeConstraints { make in
+            make.height.equalTo(20)
+            make.top.equalTo(cellView.artistButton.snp_bottom).offset(1)
+            make.left.equalTo(cellView).offset(74)
+        }
+        
+        cellView.sourceButton = HyperlinkButton()
+        cellView.sourceButton.hoverUnderline = true
+        cellView.sourceButton.bordered = false
+        cellView.sourceButton.lineBreakMode = .ByTruncatingTail
+        cellView.sourceButton.font = NSFont(name: "HelveticaNeue-Medium", size: 12)
+        cellView.sourceButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
+        cellView.addSubview(cellView.sourceButton)
+        cellView.sourceButton.snp_makeConstraints { make in
+            make.height.equalTo(20)
+            make.top.equalTo(cellView.artistButton.snp_bottom).offset(1)
+            make.left.equalTo(cellView.sourceTypeTextField.snp_right).offset(1)
+            make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
         }
     }
     

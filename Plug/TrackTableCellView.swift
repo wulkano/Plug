@@ -25,6 +25,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     var progressSlider: NSSlider!
     var titleButton: HyperlinkButton!
     var artistButton: HyperlinkButton!
+    var infoContainer: NSView!
     
     var showLoveButton: Bool = true
     

@@ -186,6 +186,7 @@ extension NavigationSection {
             targetViewController = TracksViewController(type: .HeatMap)!
         case .Favorites:
             targetViewController = TracksViewController(type: .LoveCount)!
+            (targetViewController as! TracksViewController).showLoveButton = false
         case .Latest:
             targetViewController = TracksViewController(type: .LoveCount)!
         case .Blogs:

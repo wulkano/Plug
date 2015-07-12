@@ -8,15 +8,16 @@
 
 import Cocoa
 import HypeMachineAPI
+import SnapKit
 
 class FeedTrackTableCellView: LoveCountTrackTableCellView {
     let sourceTypeColor = NSColor(red256: 175, green256: 179, blue256: 181)
     let sourceColor = NSColor(red256: 138, green256: 146, blue256: 150)
     
-    @IBOutlet var sourceTypeTextField: SelectableTextField!
+    var sourceTypeTextField: SelectableTextField!
 //    @IBOutlet var sourceButtonTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet var sourceButton: HyperlinkButton!
-    @IBOutlet var sourceTypeTextFieldWidthConstraint: NSLayoutConstraint!
+    var sourceButton: HyperlinkButton!
+//    var sourceTypeTextFieldWidthConstraint: Constraint!
     
     override func objectValueChanged() {
         super.objectValueChanged()
@@ -54,7 +55,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
             sourceTypeTextField.stringValue = "Posted by"
         }
         
-        sourceTypeTextFieldWidthConstraint.constant = sourceTypeTextField.attributedStringValue.size.width + 1.5
+//        sourceTypeTextFieldWidthConstraint.updateOffset(sourceTypeTextField.attributedStringValue.size.width + 1.5)
         
         switch playState {
         case .Playing, .Paused:
