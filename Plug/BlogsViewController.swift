@@ -40,6 +40,7 @@ class BlogsViewController: DataSourceViewController {
         
         tableView = InsetTableView()
         tableView.headerView = nil
+        tableView.intercellSpacing = NSSize(width: 0, height: 0)
         let column = NSTableColumn(identifier: "Col0")
         column.width = 400
         column.minWidth = 40

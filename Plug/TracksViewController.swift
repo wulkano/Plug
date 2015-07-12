@@ -50,6 +50,7 @@ class TracksViewController: DataSourceViewController {
         
         tableView = InsetTableView()
         tableView.headerView = nil
+        tableView.intercellSpacing = NSSize(width: 0, height: 0)
         let column = NSTableColumn(identifier: "Col0")
         column.width = 400
         column.minWidth = 40
@@ -280,7 +281,7 @@ class TracksViewController: DataSourceViewController {
         sliderCell.knobSize = 12
         sliderCell.knobFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
         cellView.progressSlider.setCell(sliderCell)
-        cellView.progressSlider.target = self
+        cellView.progressSlider.target = cellView
         cellView.progressSlider.action = "progressSliderDragged:"
         cellView.addSubview(cellView.progressSlider)
         cellView.progressSlider.snp_makeConstraints { make in
