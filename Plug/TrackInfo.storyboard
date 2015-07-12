@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -35,10 +35,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="378" height="378"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CG1-Wl-IKB">
+                            <visualEffectView appearanceType="vibrantDark" misplaced="YES" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="CG1-Wl-IKB">
                                 <rect key="frame" x="0.0" y="0.0" width="378" height="378"/>
                                 <subviews>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="B1q-P6-SHo" userLabel="Close Button" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1q-P6-SHo" userLabel="Close Button" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="26" y="338" width="14" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14" id="6cH-eU-TcA"/>
@@ -65,7 +65,7 @@
                                             <action selector="closeButtonClicked:" target="Vxx-At-YHR" id="zNk-PW-Vto"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u83-S7-jFD" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u83-S7-jFD" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="24" y="291" width="258" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="254" id="Dxb-6l-CyO"/>
@@ -76,7 +76,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-6S-LHb" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-6S-LHb" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="24" y="265" width="258" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="254" id="dRz-p0-1ue"/>
@@ -87,7 +87,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yJz-dw-ivo" userLabel="Album Art">
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yJz-dw-ivo" userLabel="Album Art">
                                         <rect key="frame" x="300" y="262" width="52" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="fWW-lU-lmh"/>
@@ -95,7 +95,7 @@
                                         </constraints>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="SKL-5G-qxI"/>
                                     </imageView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="FRo-Wa-gmQ" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FRo-Wa-gmQ" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="334" y="334" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="Ri8-Lf-OEr"/>
@@ -126,7 +126,7 @@
                                             <action selector="loveButtonClicked:" target="Vxx-At-YHR" id="NLh-hl-oWP"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CPv-VB-7wB" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CPv-VB-7wB" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="289" y="335" width="38" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="nxf-JM-ppk"/>
@@ -157,12 +157,6 @@
                                                 <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="b8U-k7-XJI" userLabel="Tag Container" customClass="TagContainerView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="26" y="222" width="326" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="KTI-fn-VgR"/>
-                                        </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="30g-H7-OMr" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="24" y="186" width="70" height="20"/>
@@ -216,7 +210,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="TJA-PX-GMz" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
+                                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJA-PX-GMz" customClass="HyperlinkButton" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="96" y="187" width="61" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="30p-XS-EjP"/>
@@ -249,22 +243,19 @@
                                     <constraint firstItem="CPv-VB-7wB" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="23" id="HxO-uH-Nrv"/>
                                     <constraint firstItem="TJA-PX-GMz" firstAttribute="leading" secondItem="30g-H7-OMr" secondAttribute="trailing" constant="4" id="L1W-as-F1L"/>
                                     <constraint firstAttribute="width" constant="378" id="L6r-wW-f40"/>
-                                    <constraint firstItem="b8U-k7-XJI" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="N9V-Cq-DMM"/>
                                     <constraint firstAttribute="trailing" secondItem="FRo-Wa-gmQ" secondAttribute="trailing" constant="26" id="NP5-xx-oSe"/>
                                     <constraint firstAttribute="bottom" secondItem="fyf-Nu-8Ss" secondAttribute="bottom" constant="27" id="NV8-Vc-rMq"/>
                                     <constraint firstAttribute="trailing" secondItem="iSf-OI-jrN" secondAttribute="trailing" constant="20" id="PUK-rK-jHG"/>
-                                    <constraint firstItem="b8U-k7-XJI" firstAttribute="top" secondItem="Nmb-6S-LHb" secondAttribute="bottom" constant="19" id="Qts-aQ-KXQ"/>
                                     <constraint firstItem="c50-ra-W0O" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="R8y-Mj-IFQ"/>
-                                    <constraint firstItem="30g-H7-OMr" firstAttribute="top" secondItem="b8U-k7-XJI" secondAttribute="bottom" constant="16" id="WIc-ZG-7Ab"/>
                                     <constraint firstItem="u83-S7-jFD" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="XnI-xw-V64"/>
-                                    <constraint firstAttribute="trailing" secondItem="b8U-k7-XJI" secondAttribute="trailing" constant="26" id="azR-jI-X21"/>
+                                    <constraint firstItem="30g-H7-OMr" firstAttribute="top" secondItem="Nmb-6S-LHb" secondAttribute="bottom" constant="19" id="a4k-HX-bNG"/>
                                     <constraint firstItem="yJz-dw-ivo" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="64" id="cMz-fj-BUi"/>
                                     <constraint firstItem="FRo-Wa-gmQ" firstAttribute="leading" secondItem="CPv-VB-7wB" secondAttribute="trailing" constant="9" id="ctZ-LY-gqi"/>
                                     <constraint firstItem="FRo-Wa-gmQ" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="26" id="g8T-gW-l5m"/>
                                     <constraint firstItem="B1q-P6-SHo" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="mf0-6P-FDY"/>
                                     <constraint firstItem="B1q-P6-SHo" firstAttribute="top" secondItem="CG1-Wl-IKB" secondAttribute="top" constant="26" id="mjo-BW-HlY"/>
+                                    <constraint firstItem="TJA-PX-GMz" firstAttribute="top" secondItem="Nmb-6S-LHb" secondAttribute="bottom" constant="19" id="oXG-GF-Y55"/>
                                     <constraint firstItem="Nmb-6S-LHb" firstAttribute="top" secondItem="u83-S7-jFD" secondAttribute="bottom" constant="4" id="omW-ZQ-lYW"/>
-                                    <constraint firstItem="TJA-PX-GMz" firstAttribute="top" secondItem="b8U-k7-XJI" secondAttribute="bottom" constant="15" id="qfC-aU-d13"/>
                                     <constraint firstItem="30g-H7-OMr" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="rQ4-DL-wgr"/>
                                     <constraint firstAttribute="trailing" secondItem="yJz-dw-ivo" secondAttribute="trailing" constant="26" id="rd8-r5-o2a"/>
                                     <constraint firstItem="iSf-OI-jrN" firstAttribute="leading" secondItem="CG1-Wl-IKB" secondAttribute="leading" constant="26" id="sd6-IZ-MUQ"/>
@@ -287,7 +278,6 @@
                         <outlet property="loveCountTextField" destination="CPv-VB-7wB" id="voh-Xo-08T"/>
                         <outlet property="postInfoTextField" destination="c50-ra-W0O" id="EFY-OS-BtA"/>
                         <outlet property="postedCountTextField" destination="iSf-OI-jrN" id="ehG-Gz-XiX"/>
-                        <outlet property="tagContainer" destination="b8U-k7-XJI" id="AE3-IN-D5x"/>
                         <outlet property="titleTextField" destination="u83-S7-jFD" id="Pau-eL-PGu"/>
                     </connections>
                 </viewController>

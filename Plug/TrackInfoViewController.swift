@@ -18,7 +18,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     @IBOutlet weak var postedCountTextField: NSTextField!
     @IBOutlet var postInfoTextField: PostInfoTextField!
     @IBOutlet weak var loveButton: TransparentButton!
-    @IBOutlet weak var tagContainer: TagContainerView!
+//    @IBOutlet weak var tagContainer: TagContainerView!
     
     override var representedObject: AnyObject! {
         didSet {
@@ -34,7 +34,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         
         Notifications.subscribe(observer: self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
         Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
-        tagContainer.delegate = self
+//        tagContainer.delegate = self
         postInfoTextField.postInfoDelegate = self
         
         Analytics.trackView("TrackInfoWindow")
@@ -128,7 +128,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         updatePostedCount()
         updatePostInfo()
         updateLoveButton()
-        updateTags()
+//        updateTags()
     }
     
     func updateTitle() {
@@ -171,8 +171,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     func updateLoveButton() {
         loveButton.selected = representedTrack.loved
     }
-    
-    func updateTags() {
-        tagContainer.tags = representedTrack.tags
-    }
+//    
+//    func updateTags() {
+//        tagContainer.tags = representedTrack.tags
+//    }
 }

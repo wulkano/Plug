@@ -10,9 +10,11 @@ import Cocoa
 
 class ColorChangingTextField: NSTextField {
     override var objectValue: AnyObject! {
-        didSet {
-            setColorForStringValue()
-        }
+        didSet { objectValueChanged() }
+    }
+    
+    func objectValueChanged() {
+        setColorForStringValue()
     }
     
     func setColorForStringValue() {
