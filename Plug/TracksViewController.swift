@@ -280,11 +280,13 @@ class TracksViewController: DataSourceViewController {
         sliderCell.knobSize = 12
         sliderCell.knobFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
         cellView.progressSlider.setCell(sliderCell)
+        cellView.progressSlider.target = self
+        cellView.progressSlider.action = "progressSliderDragged:"
         cellView.addSubview(cellView.progressSlider)
         cellView.progressSlider.snp_makeConstraints { make in
-            make.left.equalTo(cellView).offset(-9)
-            make.bottom.equalTo(cellView).offset(-6)
-            make.right.equalTo(cellView).offset(-12)
+            make.left.equalTo(cellView).offset(-8)
+            make.bottom.equalTo(cellView).offset(6)
+            make.right.equalTo(cellView).offset(14)
         }
     }
     
