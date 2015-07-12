@@ -102,6 +102,7 @@ class DisplayErrorViewController: NSViewController {
             { context in
                 context.duration = 0.25
                 context.allowsImplicitAnimation = true
+                context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
                 self.view.superview!.layoutSubtreeIfNeeded()
             }, completionHandler: nil)
     }
@@ -120,6 +121,7 @@ class DisplayErrorViewController: NSViewController {
                 { context in
                     context.duration = 0.25
                     context.allowsImplicitAnimation = true
+                    context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
                     self.view.superview!.layoutSubtreeIfNeeded()
                 }, completionHandler: {
                     completionHandler()
