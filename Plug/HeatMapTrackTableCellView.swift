@@ -10,7 +10,7 @@ import Cocoa
 import Alamofire
 
 class HeatMapTrackTableCellView: TrackTableCellView {
-    @IBOutlet var heatMapView: HeatMapView!
+    var heatMapView: HeatMapView!
     
     override func objectValueChanged() {
         super.objectValueChanged()
@@ -38,10 +38,10 @@ class HeatMapTrackTableCellView: TrackTableCellView {
                 return
             }
             
-            if let trackJSON = (JSON?.valueForKeyPath(self.trackValue.id) as? NSDictionary) {
+            if let trackJSON = (JSON?.valueForKeyPath(self.track.id) as? NSDictionary) {
                 let startPoint = (trackJSON["beginningValue"]! as! NSNumber).doubleValue
                 let endPoint = (trackJSON["endValue"]! as! NSNumber).doubleValue
-                let heatMap = HeatMap(track: self.trackValue, start: startPoint, end: endPoint)
+                let heatMap = HeatMap(track: self.track, start: startPoint, end: endPoint)
                 self.heatMapView.heatMap = heatMap
             } else {
 //                println("Heatmap missed for track: \(self.trackValue)")

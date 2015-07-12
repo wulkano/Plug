@@ -48,6 +48,8 @@ class TagsViewController: DataSourceViewController {
         
         scrollView.documentView = tableView
         scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.horizontalScrollElasticity = .None
     }
 
     override func viewDidLoad() {

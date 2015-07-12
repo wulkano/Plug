@@ -9,7 +9,7 @@
 import Cocoa
 
 class LoveCountTrackTableCellView: TrackTableCellView {
-    @IBOutlet var loveCount: ColorChangingTextField!
+    var loveCount: ColorChangingTextField!
     
     override func objectValueChanged() {
         super.objectValueChanged()
@@ -29,20 +29,10 @@ class LoveCountTrackTableCellView: TrackTableCellView {
     }
     
     func updateLoveCount() {
-        loveCount.objectValue = trackValue.lovedCountNum
+        loveCount.objectValue = track.lovedCountNum
     }
     
     func updateLoveCountVisibility() {
         loveCount.hidden = !playPauseButton.hidden
-//        if mouseInside {
-//            loveCount.hidden = true
-//        } else {
-//            switch playState {
-//            case .Playing, .Paused:
-//                loveCount.hidden = true
-//            case .NotPlaying:
-//                loveCount.hidden = false
-//            }
-//        }
     }
 }

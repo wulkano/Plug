@@ -183,9 +183,7 @@ class BlogViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
-        tracksViewController = mainStoryboard.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
-        
+        tracksViewController = TracksViewController(type: .LoveCount)!
         addChildViewController(tracksViewController)
         
         playlistContainer.addSubview(tracksViewController.view)

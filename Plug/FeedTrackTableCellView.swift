@@ -14,7 +14,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     let sourceColor = NSColor(red256: 138, green256: 146, blue256: 150)
     
     @IBOutlet var sourceTypeTextField: SelectableTextField!
-    @IBOutlet var sourceButtonTrailingConstraint: NSLayoutConstraint!
+//    @IBOutlet var sourceButtonTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var sourceButton: HyperlinkButton!
     @IBOutlet var sourceTypeTextFieldWidthConstraint: NSLayoutConstraint!
     
@@ -36,7 +36,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     override func updateTrackAvailability() {
         super.updateTrackAvailability()
         
-        if trackValue.audioUnavailable {
+        if track.audioUnavailable {
             sourceTypeTextField.textColor = disabledArtistColor
             sourceButton.textColor = disabledArtistColor
         } else {
@@ -46,9 +46,9 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func updateSourceType() {
-        if trackValue.viaUser != nil {
+        if track.viaUser != nil {
             sourceTypeTextField.stringValue = "Loved by"
-        } else if trackValue.viaQuery != nil {
+        } else if track.viaQuery != nil {
             sourceTypeTextField.stringValue = "Matched query"
         } else {
             sourceTypeTextField.stringValue = "Posted by"
@@ -65,12 +65,12 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func updateSource() {
-        if trackValue.viaUser != nil {
-            sourceButton.title = trackValue.viaUser!
-        } else if trackValue.viaQuery != nil {
-            sourceButton.title = trackValue.viaQuery! + " →"
+        if track.viaUser != nil {
+            sourceButton.title = track.viaUser!
+        } else if track.viaQuery != nil {
+            sourceButton.title = track.viaQuery! + " →"
         } else {
-            sourceButton.title = trackValue.postedBy
+            sourceButton.title = track.postedBy
         }
         
         switch playState {
@@ -81,23 +81,23 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         }
     }
 
-    override func updateTextFieldsSpacing() {
-        super.updateTextFieldsSpacing()
-        
-        var mouseOutSpacing: CGFloat = 32
-        var mouseInSpacing: CGFloat = 20
-        
-        if mouseInside {
-            sourceButtonTrailingConstraint.constant = mouseInSpacing
-        } else {
-            sourceButtonTrailingConstraint.constant = mouseOutSpacing
-        }
-    }
+//    override func updateTextFieldsSpacing() {
+//        super.updateTextFieldsSpacing()
+//        
+//        var mouseOutSpacing: CGFloat = 32
+//        var mouseInSpacing: CGFloat = 20
+//        
+//        if mouseInside {
+//            sourceButtonTrailingConstraint.constant = mouseInSpacing
+//        } else {
+//            sourceButtonTrailingConstraint.constant = mouseOutSpacing
+//        }
+//    }
     
     @IBAction func usernameOrBlogNameClicked(sender: NSButton) {
-        if trackValue.viaUser != nil {
+        if track.viaUser != nil {
             loadSingleFriendPage()
-        } else if trackValue.viaQuery != nil {
+        } else if track.viaQuery != nil {
             loadQuery()
         } else {
             loadSingleBlogPage()
@@ -105,17 +105,17 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func loadSingleFriendPage() {
-        var viewController = UserViewController(username: trackValue.viaUser!)
+        var viewController = UserViewController(username: track.viaUser!)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     
     func loadQuery() {
-        let url = NSURL(string: "http://hypem.com/search/\(trackValue.viaQuery!)")!
+        let url = NSURL(string: "http://hypem.com/search/\(track.viaQuery!)")!
         NSWorkspace.sharedWorkspace().openURL(url)
     }
     
     func loadSingleBlogPage() {
-        var viewController = BlogViewController(blogID: trackValue.postedById, blogName: trackValue.postedBy)
+        var viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
 }

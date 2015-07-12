@@ -8,6 +8,7 @@
 
 import Cocoa
 import HypeMachineAPI
+import SnapKit
 
 class TrackTableCellView: IOSStyleTableCellView {
     let titleColor = NSColor(red256: 0, green256: 0, blue256: 0)
@@ -15,25 +16,26 @@ class TrackTableCellView: IOSStyleTableCellView {
     let disabledTitleColor = NSColor(red256: 138, green256: 146, blue256: 150)
     let disabledArtistColor = NSColor(red256: 184, green256: 192, blue256: 196)
     
-    @IBOutlet var playPauseButton: HoverToggleButton!
-    @IBOutlet var loveButton: TransparentButton!
-    @IBOutlet var artistTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet var titleTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet var loveContainerWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var infoContainerWidthConstraint: NSLayoutConstraint!
-    @IBOutlet var progressSlider: NSSlider!
-    @IBOutlet var titleButton: HyperlinkButton!
-    @IBOutlet var artistButton: HyperlinkButton!
+    var playPauseButton: HoverToggleButton!
+    var loveButton: TransparentButton!
+//    var artistTrailingConstraint: NSLayoutConstraint!
+//    var titleTrailingConstraint: NSLayoutConstraint!
+    var loveContainerWidthConstraint: Constraint!
+    var infoContainerWidthConstraint: Constraint!
+    var progressSlider: NSSlider!
+    var titleButton: HyperlinkButton!
+    var artistButton: HyperlinkButton!
     
-    @IBInspectable var showLoveButton: Bool = true
+    var showLoveButton: Bool = true
     
     var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
     override var objectValue: AnyObject! {
-        didSet {
-            objectValueChanged()
-        }
+        didSet { objectValueChanged() }
+    }
+    var track: HypeMachineAPI.Track {
+        return objectValue as! HypeMachineAPI.Track
     }
     var mouseInside: Bool = false {
         didSet{ mouseInsideChanged() }
@@ -41,22 +43,22 @@ class TrackTableCellView: IOSStyleTableCellView {
     var playState: PlayState = PlayState.NotPlaying {
         didSet { playStateChanged() }
     }
-    var trackValue: HypeMachineAPI.Track {
-        return objectValue as! HypeMachineAPI.Track
-    }
     var trackingProgress: Bool = false
     
-    
+    init() {
+        super.init(frame: NSZeroRect)
+        setup()
+    }
+
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        initialSetup()
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    func initialSetup() {
+    func setup() {
         Notifications.subscribe(observer: self, selector: "trackPlaying:", name: Notifications.TrackPlaying, object: nil)
         Notifications.subscribe(observer: self, selector: "trackPaused:", name: Notifications.TrackPaused, object: nil)
         Notifications.subscribe(observer: self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
@@ -71,7 +73,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         updateTrackTitle()
         updateTrackArtist()
         mouseInside = false
-        loveButton.selected = trackValue.loved
+        loveButton.selected = track.loved
         progressSlider.doubleValue = 0
     }
     
@@ -89,7 +91,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     
     func mouseInsideChanged() {
         updatePlayPauseButtonVisibility()
-        updateTextFieldsSpacing()
+//        updateTextFieldsSpacing()
         updateLoveContainerSpacing()
         updateInfoContainerSpacing()
     }
@@ -104,7 +106,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func updateTrackAvailability() {
-        if trackValue.audioUnavailable {
+        if track.audioUnavailable {
             titleButton.textColor = disabledTitleColor
             artistButton.textColor = disabledArtistColor
         } else {
@@ -114,7 +116,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func updateTrackTitle() {
-        titleButton.title = trackValue.title
+        titleButton.title = track.title
         switch playState {
         case .Playing, .Paused:
             titleButton.selected = true
@@ -124,7 +126,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func updateTrackArtist() {
-        artistButton.title = trackValue.artist
+        artistButton.title = track.artist
         switch playState {
         case .Playing, .Paused:
             artistButton.selected = true
@@ -134,7 +136,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func updatePlayPauseButtonVisibility() {
-        if trackValue.audioUnavailable {
+        if track.audioUnavailable {
             playPauseButton.hidden = true
         } else if mouseInside {
             playPauseButton.hidden = false
@@ -174,28 +176,30 @@ class TrackTableCellView: IOSStyleTableCellView {
             untrackProgress()
         }
     }
-    
-    func updateTextFieldsSpacing() {
-        var mouseOutSpacing: CGFloat = 32
-        var mouseInSpacing: CGFloat = 20
-        
-        if mouseInside {
-            artistTrailingConstraint.constant = mouseInSpacing
-            titleTrailingConstraint.constant = mouseInSpacing
-        } else {
-            artistTrailingConstraint.constant = mouseOutSpacing
-            titleTrailingConstraint.constant = mouseOutSpacing
-        }
-    }
+//    
+//    func updateTextFieldsSpacing() {
+//        var mouseOutSpacing: CGFloat = 32
+//        var mouseInSpacing: CGFloat = 20
+//        
+//        if mouseInside {
+//            artistTrailingConstraint.constant = mouseInSpacing
+//            titleTrailingConstraint.constant = mouseInSpacing
+//        } else {
+//            artistTrailingConstraint.constant = mouseOutSpacing
+//            titleTrailingConstraint.constant = mouseOutSpacing
+//        }
+//    }
     
     func updateLoveContainerSpacing() {
         var openWidth: CGFloat = 38
         var closedWidth: CGFloat = 0
         
-        if mouseInside || (trackValue.loved && showLoveButton) {
-            loveContainerWidthConstraint.constant = openWidth
+        if mouseInside || (track.loved && showLoveButton) {
+            loveContainerWidthConstraint.updateOffset(openWidth)
+//            loveContainerWidthConstraint.constant = openWidth
         } else {
-            loveContainerWidthConstraint.constant = closedWidth
+            loveContainerWidthConstraint.updateOffset(closedWidth)
+//            loveContainerWidthConstraint.constant = closedWidth
         }
     }
     
@@ -204,9 +208,11 @@ class TrackTableCellView: IOSStyleTableCellView {
         var closedWidth: CGFloat = 0
         
         if mouseInside {
-            infoContainerWidthConstraint.constant = openWidth
+            infoContainerWidthConstraint.updateOffset(openWidth)
+//            infoContainerWidthConstraint.constant = openWidth
         } else {
-            infoContainerWidthConstraint.constant = closedWidth
+            infoContainerWidthConstraint.updateOffset(closedWidth)
+//            infoContainerWidthConstraint.constant = closedWidth
         }
     }
     
@@ -241,7 +247,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     func trackLoved(notification: NSNotification) {
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
-            trackValue.loved = true
+            track.loved = true
             loveButton.selected = true
         }
         updateLoveContainerSpacing()
@@ -250,7 +256,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     func trackUnLoved(notification: NSNotification) {
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
-            trackValue.loved = false
+            track.loved = false
             loveButton.selected = false
         }
         updateLoveContainerSpacing()
@@ -262,7 +268,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         case .Playing:
             AudioPlayer.sharedInstance.pause()
         case .Paused, .NotPlaying:
-            AudioPlayer.sharedInstance.playNewTrack(trackValue, dataSource: dataSource)
+            AudioPlayer.sharedInstance.playNewTrack(track, dataSource: dataSource)
         }
     }
     
@@ -279,12 +285,12 @@ class TrackTableCellView: IOSStyleTableCellView {
     
     @IBAction func loveButtonClicked(sender: TransparentButton) {
         Analytics.trackButtonClick("Playlist Heart")
-        let oldLovedValue = trackValue.loved
+        let oldLovedValue = track.loved
         let newLovedValue = !oldLovedValue
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: trackValue.id, optionalParams: nil) {
+        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id, optionalParams: nil) {
             (favorited, error) in
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
@@ -303,22 +309,22 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
-        viewController.title = trackValue.artist
+        var viewController = TracksViewController(type: .LoveCount)!
+        viewController.title = track.artist
         viewController.defaultAnalyticsViewName = "MainWindow/SingleArtist"
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-        viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: trackValue.artist)
+        viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {
-        println("Track title clicked: \(trackValue.title)")
+        println("Track title clicked: \(track.title)")
     }
     
     func changeTrackLovedValueTo(loved: Bool) {
         if loved {
-            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track": trackValue])
+            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track": track])
         } else {
-            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track": trackValue])
+            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track": track])
         }
     }
     

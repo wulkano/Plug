@@ -78,8 +78,7 @@ class BaseContentViewController: NSViewController {
     }
     
     func setupStickyTrackController() {
-        let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
-        stickyTrackController = mainStoryboard.instantiateControllerWithIdentifier("TracksViewController") as? TracksViewController
+        stickyTrackController = TracksViewController(type: .LoveCount)
     }
     
     func addStickyTrackAtPosition(position: StickyTrackPosition) {

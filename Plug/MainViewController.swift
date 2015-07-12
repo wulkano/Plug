@@ -182,14 +182,22 @@ extension NavigationSection {
         var targetViewController: BaseContentViewController
         
         switch self {
+        case .Popular:
+            targetViewController = TracksViewController(type: .HeatMap)!
+        case .Favorites:
+            targetViewController = TracksViewController(type: .LoveCount)!
+        case .Latest:
+            targetViewController = TracksViewController(type: .LoveCount)!
         case .Blogs:
             targetViewController = BlogsViewController(nibName: nil, bundle: nil)!
+        case .Feed:
+            targetViewController = TracksViewController(type: .Feed)!
+        case .Genres:
+            targetViewController = TagsViewController(nibName: nil, bundle: nil)!
         case .Friends:
             targetViewController = UsersViewController(nibName: nil, bundle: nil)!
         case .Search:
             targetViewController = SearchViewController(nibName: nil, bundle: nil)!
-        default:
-            targetViewController = storyboard.instantiateControllerWithIdentifier(self.viewControllerIdentifier) as! BaseContentViewController
         }
         
         targetViewController.dropdownMenu = self.menu(target)
