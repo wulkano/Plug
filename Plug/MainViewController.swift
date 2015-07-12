@@ -30,14 +30,6 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
-        if currentViewController == nil {
-            changeNavigationSection(NavigationSection.Popular)
-        }
-    }
-    
     override func loadView() {
         view = NSView(frame: NSZeroRect)
         
@@ -71,6 +63,19 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
             make.right.equalTo(self.view)
         }
     }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        if currentViewController == nil {
+            changeNavigationSection(NavigationSection.Popular)
+        }
+        
+        Interval.single(1) {
+            let note = NSNotification(name: "Test", object: nil, userInfo: ["error": NSError(domain: "Test", code: 0, userInfo: [NSLocalizedDescriptionKey: "This is a really long error so that we can see what happens when the line extends past the edge of the view."])])
+            self.displayError(note)
+        }
+    }
     
     func changeNavigationSection(section: NavigationSection) {
         Notifications.post(name: Notifications.NavigationSectionChanged, object: self, userInfo: ["navigationSection": section.rawValue])
@@ -85,18 +90,16 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
     func displayError(notification: NSNotification) {
         let error = notification.userInfo!["error"] as! NSError
         let displayErrorViewController = DisplayErrorViewController(error: error)
+        
         addChildViewController(displayErrorViewController)
         navigationController.contentView.addSubview(displayErrorViewController.view)
-        var topConstraint: Constraint!
-        displayErrorViewController.view.snp_makeConstraints { make in
-            topConstraint = make.top.equalTo(navigationController.contentView).constraint
-            make.left.equalTo(navigationController.contentView)
-            make.right.equalTo(navigationController.contentView)
-        }
-        Interval.single(3) {
+        
+        displayErrorViewController.setupLayoutInSuperview()
+        displayErrorViewController.animateIn()
+        displayErrorViewController.animateOutWithDelay(4, completionHandler: {
             displayErrorViewController.view.removeFromSuperview()
             displayErrorViewController.removeFromParentViewController()
-        }
+        })
     }
     
     func updateUIForSection(section: NavigationSection) {

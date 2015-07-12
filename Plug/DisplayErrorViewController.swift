@@ -7,12 +7,16 @@
 //
 
 import Cocoa
+import SnapKit
 
 class DisplayErrorViewController: NSViewController {
     let error: NSError
     
     var errorTitleTextField: NSTextField!
     var errorDescriptionTextField: NSTextField!
+    
+    var bottomConstraint: Constraint?
+    var topConstraint: Constraint?
     
     init!(error: NSError) {
         self.error = error
@@ -36,32 +40,90 @@ class DisplayErrorViewController: NSViewController {
         
         errorTitleTextField = NSTextField(frame: NSZeroRect)
         errorTitleTextField.stringValue = "Error"
+        errorTitleTextField.editable = false
+        errorTitleTextField.selectable = false
         errorTitleTextField.bordered = false
         errorTitleTextField.drawsBackground = false
+        errorTitleTextField.lineBreakMode = .ByWordWrapping
         errorTitleTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)!
-        (errorTitleTextField.cell() as! NSTextFieldCell).textColor = NSColor.whiteColor()
+        errorTitleTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
+        errorTitleTextField.textColor = NSColor.whiteColor()
         view.addSubview(errorTitleTextField)
         errorTitleTextField.snp_makeConstraints { make in
-            make.top.equalTo(self.view).offset(6)
-            make.left.equalTo(self.view).offset(14)
-            make.right.equalTo(self.view).offset(14)
+            make.top.equalTo(view).offset(6)
+            make.left.equalTo(view).offset(14)
+            make.right.equalTo(view).offset(-14)
         }
         
         errorDescriptionTextField = NSTextField(frame: NSZeroRect)
-        errorDescriptionTextField.stringValue = "Oops"
+        errorDescriptionTextField.stringValue = error.localizedDescription
+        errorDescriptionTextField.editable = false
+        errorDescriptionTextField.selectable = false
         errorDescriptionTextField.bordered = false
         errorDescriptionTextField.drawsBackground = false
+        errorDescriptionTextField.lineBreakMode = .ByWordWrapping
         errorDescriptionTextField.font = NSFont(name: "HelveticaNeue", size: 13)!
-        (errorDescriptionTextField.cell() as! NSTextFieldCell).textColor = NSColor.whiteColor()
+        errorDescriptionTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
+        errorDescriptionTextField.textColor = NSColor.whiteColor()
         view.addSubview(errorDescriptionTextField)
         errorDescriptionTextField.snp_makeConstraints { make in
             make.top.equalTo(errorTitleTextField.snp_bottom)
-            make.left.equalTo(self.view).offset(14)
-            make.right.equalTo(self.view).offset(14)
+            make.left.equalTo(view).offset(14)
+            make.right.equalTo(view).offset(-14)
+            make.bottom.equalTo(view).offset(-14)
         }
+    }
+    
+    override func viewDidLayout() {
+        super.viewDidLayout()
+        errorTitleTextField.preferredMaxLayoutWidth = errorTitleTextField.frame.size.width
+        errorDescriptionTextField.preferredMaxLayoutWidth = errorDescriptionTextField.frame.size.width
+        view.layoutSubtreeIfNeeded()
+    }
+    
+    func setupLayoutInSuperview() {
+        view.snp_makeConstraints { make in
+            bottomConstraint = make.bottom.equalTo(view.superview!.snp_top).constraint
+            make.left.equalTo(view.superview!)
+            make.right.equalTo(view.superview!)
+        }
+    }
+    
+    func animateIn() {
+        view.superview!.layoutSubtreeIfNeeded()
+        
+        bottomConstraint!.uninstall()
         
         view.snp_makeConstraints { make in
-            make.height.equalTo(6 + errorTitleTextField.intrinsicContentSize.height + errorDescriptionTextField.intrinsicContentSize.height + 14)
+            topConstraint = make.top.equalTo(view.superview!).constraint
+        }
+        
+        NSAnimationContext.runAnimationGroup(
+            { context in
+                context.duration = 0.25
+                context.allowsImplicitAnimation = true
+                self.view.superview!.layoutSubtreeIfNeeded()
+            }, completionHandler: nil)
+    }
+    
+    func animateOutWithDelay(delay: Double, completionHandler: ()->Void) {
+        Interval.single(delay) {
+            self.view.superview!.layoutSubtreeIfNeeded()
+            
+            self.topConstraint!.uninstall()
+            
+            self.view.snp_makeConstraints { make in
+                make.bottom.equalTo(view.superview!.snp_top)
+            }
+            
+            NSAnimationContext.runAnimationGroup(
+                { context in
+                    context.duration = 0.25
+                    context.allowsImplicitAnimation = true
+                    self.view.superview!.layoutSubtreeIfNeeded()
+                }, completionHandler: {
+                    completionHandler()
+            })
         }
     }
 }
