@@ -142,7 +142,7 @@ extension NavigationSection {
         case .Latest:
             return "LatestTracksViewController"
         case .Blogs:
-            return "BlogDirectoryViewController"
+            return "BlogsViewController"
         case .Feed:
             return "FeedTracksViewController"
         case .Genres:
@@ -182,6 +182,8 @@ extension NavigationSection {
         var targetViewController: BaseContentViewController
         
         switch self {
+        case .Blogs:
+            targetViewController = BlogsViewController(nibName: nil, bundle: nil)!
         case .Friends:
             targetViewController = UsersViewController(nibName: nil, bundle: nil)!
         case .Search:

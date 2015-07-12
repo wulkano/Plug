@@ -87,7 +87,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.identifier = id
             
             cellView!.avatarView = CircleMaskImageView()
-            cellView!.avatarView.image = NSImage(named: "Avatar-Placeholder")
+            cellView!.avatarView.image = NSImage(named: "Avatar-Placeholder")!
             cellView!.addSubview(cellView!.avatarView)
             cellView!.avatarView.snp_makeConstraints { make in
                 make.centerY.equalTo(cellView!)
@@ -104,7 +104,6 @@ class UsersViewController: DataSourceViewController {
             cellView!.fullNameTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
             cellView!.addSubview(cellView!.fullNameTextField)
             cellView!.fullNameTextField.snp_makeConstraints { make in
-                make.height.equalTo(20)
                 make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
                 make.top.equalTo(cellView!).offset(9)
                 make.right.equalTo(cellView!).offset(27)
@@ -119,20 +118,17 @@ class UsersViewController: DataSourceViewController {
             cellView!.usernameTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.usernameTextField)
             cellView!.usernameTextField.snp_makeConstraints { make in
-                make.height.equalTo(20)
                 make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
                 make.top.equalTo(cellView!.fullNameTextField.snp_bottom).offset(1)
                 make.right.equalTo(cellView!).offset(27)
             }
             
             let arrow = NSImageView()
-            arrow.image = NSImage(named: "List-Arrow")
+            arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
             arrow.snp_makeConstraints { make in
                 make.centerY.equalTo(cellView!)
-                make.width.equalTo(9)
-                make.height.equalTo(14)
-                make.right.equalTo(cellView!).offset(15)
+                make.right.equalTo(cellView!).offset(-15)
             }
         }
         
@@ -145,8 +141,8 @@ class UsersViewController: DataSourceViewController {
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
-            rowView?.identifier = id
-            rowView?.separatorSpacing = 73
+            rowView!.identifier = id
+            rowView!.separatorSpacing = 73
         }
         
         return rowView

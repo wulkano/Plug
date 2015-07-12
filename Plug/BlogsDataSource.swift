@@ -1,5 +1,5 @@
 //
-//  BlogDirectoryDataSource.swift
+//  BlogsDataSource.swift
 //  Plug
 //
 //  Created by Alex Marchant on 8/12/14.
@@ -9,7 +9,7 @@
 import Cocoa
 import HypeMachineAPI
 
-class BlogDirectoryDataSource: MainContentDataSource {
+class BlogsDataSource: MainContentDataSource {
 
     override func loadInitialValues() {
         HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) {

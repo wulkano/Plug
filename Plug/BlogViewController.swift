@@ -80,7 +80,7 @@ class BlogViewController: BaseContentViewController {
             make.height.equalTo(24)
             make.top.equalTo(self.header).offset(17)
             make.left.equalTo(self.header).offset(19)
-            make.right.greaterThanOrEqualTo(self.imageView.snp_left).offset(-10)
+            make.right.lessThanOrEqualTo(self.imageView.snp_left).offset(-10)
         }
         
         detailsTextField = NSTextField()
@@ -94,7 +94,7 @@ class BlogViewController: BaseContentViewController {
             make.top.equalTo(self.titleButton.snp_bottom).offset(8)
             make.left.equalTo(self.header).offset(19)
             make.bottom.equalTo(self.header).offset(-17)
-            make.right.greaterThanOrEqualTo(self.imageView.snp_left).offset(-10)
+            make.right.lessThanOrEqualTo(self.imageView.snp_left).offset(-10)
         }
         
         playlistContainer = NSView()

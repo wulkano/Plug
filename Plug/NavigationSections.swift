@@ -27,7 +27,7 @@ enum NavigationSection: Int {
         case .Latest:
             return "Latest"
         case .Blogs:
-            return "Blog Directory"
+            return "Blogs"
         case .Feed:
             return "Feed"
         case .Genres:

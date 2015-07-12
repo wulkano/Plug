@@ -9,12 +9,14 @@
 import Cocoa
 
 class SectionHeaderTableCellView: NSTableCellView {
+    var titleTextField: NSTextField!
+    
     override var objectValue: AnyObject! {
         didSet {
             objectValueChanged()
         }
     }
-    var sectionHeaderValue: SectionHeader {
+    var sectionHeader: SectionHeader {
         return objectValue as! SectionHeader
     }
     
@@ -25,6 +27,6 @@ class SectionHeaderTableCellView: NSTableCellView {
     }
     
     func updateTitle() {
-        textField!.stringValue = sectionHeaderValue.title
+        titleTextField!.stringValue = sectionHeader.title
     }
 }

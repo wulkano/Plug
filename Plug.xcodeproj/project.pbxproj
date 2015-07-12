@@ -35,7 +35,7 @@
 		FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA51974A9A500A781C8 /* AppDelegate.swift */; };
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
-		FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */; };
+		FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogsViewController.swift */; };
 		FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B319F80378009FCDE3 /* MainMenuController.swift */; };
 		FA3241B819F810F4009FCDE3 /* MainContentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */; };
 		FA3241BA19F81579009FCDE3 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */; };
@@ -110,7 +110,7 @@
 		FA9A2F3319B66C760057080C /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3219B66C760057080C /* NavigationBarController.swift */; };
 		FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */; };
 		FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F4919B783B30057080C /* BackButtonCell.swift */; };
-		FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */; };
+		FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */; };
 		FA9EA042199B08E100D9AB8A /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */; };
 		FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */; };
 		FAA34A9519B2F0450038868A /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9419B2F0450038868A /* Async.swift */; };
@@ -209,7 +209,7 @@
 		FA24EDA71974A9A500A781C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
-		FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryViewController.swift; sourceTree = "<group>"; };
+		FA3199AC198247970097B081 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
 		FA3241B319F80378009FCDE3 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentDataSource.swift; sourceTree = "<group>"; };
 		FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 		FA9A2F3219B66C760057080C /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSStyleTableCellView.swift; sourceTree = "<group>"; };
 		FA9A2F4919B783B30057080C /* BackButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonCell.swift; sourceTree = "<group>"; };
-		FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDirectoryDataSource.swift; sourceTree = "<group>"; };
+		FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsDataSource.swift; sourceTree = "<group>"; };
 		FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
 		FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDataSource.swift; sourceTree = "<group>"; };
 		FAA34A9419B2F0450038868A /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */,
-				FA3199AC198247970097B081 /* BlogDirectoryViewController.swift */,
+				FA3199AC198247970097B081 /* BlogsViewController.swift */,
 				FA77499F198C1CAA0048863F /* UsersViewController.swift */,
 				FA774999198C07110048863F /* TagsViewController.swift */,
 				FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */,
@@ -600,15 +600,15 @@
 			isa = PBXGroup;
 			children = (
 				FA4BF21419F601090078AB82 /* BlogTableCellView.swift */,
-				FACFAAE619BAB815006BD52B /* UserTableCellView.swift */,
-				FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */,
-				FA4BF21819F60C4E0078AB82 /* TagTableCellView.swift */,
-				FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */,
-				FA4BF21619F609AE0078AB82 /* SectionHeaderTableCellView.swift */,
-				FA53950619AFFF01006A95A5 /* TrackTableCellView.swift */,
 				FAF13B29199D3D62009D9F66 /* FeedTrackTableCellView.swift */,
+				FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */,
 				FA53950319AFFE31006A95A5 /* HeatMapTrackTableCellView.swift */,
+				FA9A2F3919B6893A0057080C /* IOSStyleTableCellView.swift */,
 				FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */,
+				FA4BF21619F609AE0078AB82 /* SectionHeaderTableCellView.swift */,
+				FA4BF21819F60C4E0078AB82 /* TagTableCellView.swift */,
+				FA53950619AFFF01006A95A5 /* TrackTableCellView.swift */,
+				FACFAAE619BAB815006BD52B /* UserTableCellView.swift */,
 			);
 			name = NSTableCellViews;
 			sourceTree = "<group>";
@@ -721,7 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */,
-				FA9EA03D199AF00900D9AB8A /* BlogDirectoryDataSource.swift */,
+				FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */,
 				FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */,
 				FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */,
 				FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */,
@@ -986,7 +986,7 @@
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
 				FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */,
 				FA6ADD0319BAB0E300CCD371 /* UserViewController.swift in Sources */,
-				FA3199AD198247980097B081 /* BlogDirectoryViewController.swift in Sources */,
+				FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */,
 				FAF13B2A199D3D62009D9F66 /* FeedTrackTableCellView.swift in Sources */,
 				FA53950919B01E47006A95A5 /* LovedCountFormatter.swift in Sources */,
 				FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */,
@@ -1031,7 +1031,7 @@
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
-				FA9EA03E199AF00900D9AB8A /* BlogDirectoryDataSource.swift in Sources */,
+				FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */,
 				FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */,
 				FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
