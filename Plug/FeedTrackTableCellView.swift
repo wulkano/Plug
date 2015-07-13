@@ -95,7 +95,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
 //        }
 //    }
     
-    @IBAction func usernameOrBlogNameClicked(sender: NSButton) {
+    @IBAction func sourceButtonClicked(sender: NSButton) {
         if track.viaUser != nil {
             loadSingleFriendPage()
         } else if track.viaQuery != nil {

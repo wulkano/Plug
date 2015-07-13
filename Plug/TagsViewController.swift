@@ -122,7 +122,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+        var viewController = TracksViewController(type: .LoveCount)!
         viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)

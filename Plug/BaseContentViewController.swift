@@ -17,14 +17,8 @@ class BaseContentViewController: NSViewController {
     }
     var defaultAnalyticsViewName: String = "Oops, this should be overwritten"
     var dropdownMenu: NSMenu?
-
+    
     var actionButton: ActionButton?
-    var displayActionButton: Bool = false
-    var actionButtonDefaultState: Int = NSOffState
-    var actionButtonOffTitle: String = "Follow"
-    var actionButtonOnTitle: String = "Unfollow"
-    var actionButtonTarget: AnyObject?
-    var actionButtonAction: Selector?
     
     deinit {
         Notifications.unsubscribeAll(observer: self)

@@ -9,15 +9,16 @@
 import Cocoa
 
 class NavigationBarController: NSViewController {
-    @IBOutlet var backButton: SwissArmyButton!
-    @IBOutlet var titleTextField: NSTextField!
-    @IBOutlet var titleDropdownButton: TitleBarPopUpButton!
-    @IBOutlet var actionButton: ActionButton!
+    var backButton: SwissArmyButton!
+    var titleTextField: NSTextField!
+    var titleDropdownButton: TitleBarPopUpButton!
+    var backgroundView: NSView!
+    var currentActionButton: ActionButton?
     
     override func loadView() {
         view = NSView(frame: NSZeroRect)
         
-        let backgroundView = NSVisualEffectView(frame: NSZeroRect)
+        backgroundView = NSVisualEffectView(frame: NSZeroRect)
         view.addSubview(backgroundView)
         backgroundView.snp_makeConstraints { make in
             make.edges.equalTo(self.view)
@@ -43,19 +44,19 @@ class NavigationBarController: NSViewController {
             make.left.equalTo(backgroundView).offset(6)
             make.height.equalTo(22)
         }
-        
-        actionButton = ActionButton(frame: NSZeroRect)
-        let actionCell = ActionButtonCell(textCell: "")
-        actionButton.setCell(actionCell)
-        actionButton.bezelStyle = .RegularSquareBezelStyle
-        actionButton.bordered = true
-        actionButton.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
-        backgroundView.addSubview(actionButton)
-        actionButton.snp_makeConstraints { make in
-            make.centerY.equalTo(backgroundView).offset(-1)
-            make.right.equalTo(backgroundView).offset(-6)
-            make.height.equalTo(22)
-        }
+//        
+//        actionButton = ActionButton(frame: NSZeroRect)
+//        let actionCell = ActionButtonCell(textCell: "")
+//        actionButton.setCell(actionCell)
+//        actionButton.bezelStyle = .RegularSquareBezelStyle
+//        actionButton.bordered = true
+//        actionButton.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+//        backgroundView.addSubview(actionButton)
+//        actionButton.snp_makeConstraints { make in
+//            make.centerY.equalTo(backgroundView).offset(-1)
+//            make.right.equalTo(backgroundView).offset(-6)
+//            make.height.equalTo(22)
+//        }
         
         titleTextField = NSTextField()
         titleTextField.editable = false
@@ -109,14 +110,17 @@ class NavigationBarController: NSViewController {
     }
     
     func updateActionButton(viewController: BaseContentViewController) {
-        viewController.actionButton = actionButton
-        actionButton.onStateTitle = viewController.actionButtonOnTitle
-        actionButton.offStateTitle = viewController.actionButtonOffTitle
-        actionButton.state = viewController.actionButtonDefaultState
-        actionButton.hidden = !viewController.displayActionButton
-        actionButton.target = viewController.actionButtonTarget
-        if let action = viewController.actionButtonAction {
-            actionButton.action = action
+        currentActionButton?.removeFromSuperview()
+        
+        if viewController.actionButton != nil {
+            currentActionButton = viewController.actionButton
+            
+            backgroundView.addSubview(viewController.actionButton!)
+            viewController.actionButton!.snp_makeConstraints { make in
+                make.centerY.equalTo(backgroundView).offset(-1)
+                make.right.equalTo(backgroundView).offset(-6)
+                make.height.equalTo(22)
+            }
         }
     }
     

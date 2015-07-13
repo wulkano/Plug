@@ -33,12 +33,14 @@ class BlogViewController: BaseContentViewController {
         super.init(nibName: nil, bundle: nil)
         
         title = self.blog.name
+        loadActionButton()
     }
     
     init!(blogID: Int, blogName: String) {
         super.init(nibName: nil, bundle: nil)
         
         title = blogName
+        loadActionButton()
         loadBlog(blogID)
     }
 
@@ -107,12 +109,22 @@ class BlogViewController: BaseContentViewController {
         }
     }
     
+    func loadActionButton() {
+        actionButton = ActionButton(frame: NSZeroRect)
+        let actionCell = ActionButtonCell(textCell: "")
+        actionButton!.setCell(actionCell)
+        actionButton!.onStateTitle = "Unfollow"
+        actionButton!.offStateTitle = "Follow"
+        actionButton!.state = NSOffState
+        actionButton!.bezelStyle = .RegularSquareBezelStyle
+        actionButton!.bordered = true
+        actionButton!.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        actionButton!.target = self
+        actionButton!.action = "followButtonClicked:"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        displayActionButton = true
-        actionButtonTarget = self
-        actionButtonAction = "followButtonClicked:"
         
         if blog != nil { blogChanged() }
     }
@@ -208,11 +220,11 @@ class BlogViewController: BaseContentViewController {
     }
     
     func updateActionButton() {
-//        if blog.following {
-//            actionButton!.state = NSOnState
-//        } else {
-//            actionButton!.state = NSOffState
-//        }
+        if blog.following {
+            actionButton!.state = NSOnState
+        } else {
+            actionButton!.state = NSOffState
+        }
     }
     
     func followButtonClicked(sender: ActionButton) {

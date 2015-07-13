@@ -342,6 +342,8 @@ class TracksViewController: DataSourceViewController {
         cellView.sourceButton.lineBreakMode = .ByTruncatingTail
         cellView.sourceButton.font = NSFont(name: "HelveticaNeue-Medium", size: 12)
         cellView.sourceButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
+        cellView.sourceButton.target = cellView
+        cellView.sourceButton.action = "sourceButtonClicked:"
         cellView.addSubview(cellView.sourceButton)
         cellView.sourceButton.snp_makeConstraints { make in
             make.height.equalTo(20)

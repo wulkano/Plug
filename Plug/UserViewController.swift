@@ -11,7 +11,7 @@ import HypeMachineAPI
 import Alamofire
 
 class UserViewController: BaseContentViewController {
-    var user: HypeMachineAPI.User! {
+    var user: HypeMachineAPI.User? {
         didSet { userChanged() }
     }
     
@@ -34,12 +34,14 @@ class UserViewController: BaseContentViewController {
         super.init(nibName: nil, bundle: nil)
         
         title = user.username
+        loadActionButton()
     }
     
     init!(username: String) {
         super.init(nibName: nil, bundle: nil)
         
         title = username
+        loadActionButton()
         loadUser(username)
     }
 
@@ -153,12 +155,22 @@ class UserViewController: BaseContentViewController {
         }
     }
     
+    func loadActionButton() {
+        actionButton = ActionButton(frame: NSZeroRect)
+        let actionCell = ActionButtonCell(textCell: "")
+        actionButton!.setCell(actionCell)
+        actionButton!.onStateTitle = "Unfollow"
+        actionButton!.offStateTitle = "Follow"
+        actionButton!.state = NSOffState
+        actionButton!.bezelStyle = .RegularSquareBezelStyle
+        actionButton!.bordered = true
+        actionButton!.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        actionButton!.target = self
+        actionButton!.action = "followButtonClicked:"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        displayActionButton = true
-        actionButtonTarget = self
-        actionButtonAction = "followButtonClicked:"
         
         if user != nil { userChanged() }
     }
@@ -177,21 +189,19 @@ class UserViewController: BaseContentViewController {
     }
     
     func userChanged() {
-        if user == nil { return }
-        
         updateImage()
         updateUsername()
         updateFavoritesCount()
         updateFriendsCount()
         loadPlaylist()
         removeLoaderView()
-//        updateActionButton()
+        updateActionButton()
     }
     
     func updateImage() {
-        if user.avatarURL == nil { return }
+        if user!.avatarURL == nil { return }
         
-        Alamofire.request(.GET, user.avatarURL!).validate().responseImage {
+        Alamofire.request(.GET, user!.avatarURL!).validate().responseImage {
             (_, _, image, error) in
             
             if error != nil {
@@ -205,15 +215,15 @@ class UserViewController: BaseContentViewController {
     }
     
     func updateUsername() {
-        usernameTextField.stringValue = user.username
+        usernameTextField.stringValue = user!.username
     }
     
     func updateFavoritesCount() {
-        favoritesCountTextField.integerValue = user.favoritesCount
+        favoritesCountTextField.integerValue = user!.favoritesCount
     }
     
     func updateFriendsCount() {
-        friendsCountTextField.integerValue = user.followersCount
+        friendsCountTextField.integerValue = user!.followersCount
     }
     
     func loadPlaylist() {
@@ -224,7 +234,7 @@ class UserViewController: BaseContentViewController {
         tracksViewController.view.snp_makeConstraints { make in
             make.edges.equalTo(playlistContainer)
         }
-        tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: user.username)
+        tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: user!.username)
     }
     
     override func addLoaderView() {
@@ -241,7 +251,7 @@ class UserViewController: BaseContentViewController {
     }
     
     func updateActionButton() {
-        if user.friend! == true {
+        if user!.friend! == true {
             actionButton!.state = NSOnState
         } else {
             actionButton!.state = NSOffState
@@ -249,7 +259,7 @@ class UserViewController: BaseContentViewController {
     }
     
     func followButtonClicked(sender: ActionButton) {
-        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user.username, optionalParams: nil) { (favorited, error) in
+        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username, optionalParams: nil) { (favorited, error) in
             let favoritedState = sender.state == NSOnState
             
             if error != nil {
