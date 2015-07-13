@@ -91,7 +91,7 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
     }
     
     func updateUIForSection(section: NavigationSection) {
-        var newViewController = section.viewController(storyboard!, target: self)
+        var newViewController = section.viewControllerForTarget(self)
         currentViewController = newViewController
         navigationController.setNewRootViewController(newViewController)
     }
@@ -160,15 +160,15 @@ extension NavigationSection {
         }
     }
     
-    func viewController(storyboard: NSStoryboard, target: AnyObject?) -> BaseContentViewController {
-        return savedViewController ?? createViewController(storyboard, target: target)
+    func viewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
+        return savedViewController ?? createViewControllerForTarget(target)
     }
     
     private var savedViewController: BaseContentViewController? {
         return NavigationSection.viewControllers[self.viewControllerIdentifier]
     }
     
-    private func createViewController(storyboard: NSStoryboard, target: AnyObject?) -> BaseContentViewController {
+    private func createViewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
         
         var targetViewController: BaseContentViewController
         

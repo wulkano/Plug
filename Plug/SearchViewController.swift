@@ -57,8 +57,7 @@ class SearchViewController: BaseContentViewController {
     
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
-            let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
-            tracksViewController = (mainStoryboard.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController)
+            tracksViewController = TracksViewController(type: .LoveCount)
             addChildViewController(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
             tracksViewController!.view.snp_makeConstraints { make in
