@@ -75,23 +75,24 @@ class NavigationController: NSViewController {
     }
     
     func setNewRootViewController(viewController: BaseContentViewController) {
-        
-        if rootViewController == nil {
-            addChildViewController(viewController)
-            contentView.addSubview(viewController.view)
-            viewController.view.snp_makeConstraints { make in
-                make.edges.equalTo(contentView)
-            }
-            viewController.didBecomeCurrentViewController()
-        } else {
-            if viewController == rootViewController {
-                println("Trying to transition to current view controller")
-                return
-            }
-            addChildViewController(viewController)
-            transitionFromViewController(nextTopViewController, toViewController: viewController, reversed: false)
-            removeAllViewControllersExcept(viewController)
+        if rootViewController != nil && viewController == rootViewController {
+            println("Trying to transition to current view controller")
+            return
         }
+        
+        if topViewController != nil {
+            topViewController.view.removeFromSuperview()
+            topViewController.didLoseCurrentViewController()
+        }
+        
+        addChildViewController(viewController)
+        contentView.addSubview(viewController.view)
+        viewController.view.snp_makeConstraints { make in
+            make.edges.equalTo(contentView)
+        }
+        viewController.didBecomeCurrentViewController()
+        
+        removeAllViewControllersExcept(viewController)
         
         Analytics.trackView(visibleViewController.analyticsViewName)
         updateNavigationBar()
