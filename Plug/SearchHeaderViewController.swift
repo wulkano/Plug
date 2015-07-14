@@ -25,6 +25,7 @@ class SearchHeaderViewController: NSViewController {
         }
         
         searchField = NSSearchField()
+        searchField.sendsWholeSearchString = true
         background.addSubview(searchField)
         searchField.snp_makeConstraints { make in
             make.centerY.equalTo(self.view)
