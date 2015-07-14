@@ -59,12 +59,22 @@ class RefreshScrollView: NSScrollView {
         default:
             break
         }
-
+        
+        // Make scrolling above the refresh header easier by amplifying
+        // scrolling x 3
+        if scrolledPastTopOfContentView() {
+            super.scrollWheel(theEvent)
+            super.scrollWheel(theEvent)
+        }
         super.scrollWheel(theEvent)
     }
     
     func scrolledPastTopOfRefreshHeader() -> Bool {
         return refreshClipView.bounds.origin.y <= -refreshHeaderController.viewHeight
+    }
+    
+    func scrolledPastTopOfContentView() -> Bool {
+        return contentView.bounds.origin.y < 0
     }
     
     func startRefresh() {
