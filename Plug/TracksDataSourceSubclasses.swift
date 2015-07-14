@@ -10,157 +10,139 @@ import Foundation
 import HypeMachineAPI
 
 class PopularTracksDataSource: TracksDataSource {
-    var mode: PopularSectionMode
+    let mode: PopularSectionMode
     
     init(viewController: DataSourceViewController, mode: PopularSectionMode) {
         self.mode = mode
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tracks.popular(optionalParams: mode.params, callback: requestInitialValuesResponse)
+    // MARK: HypeMachineDataSource
+    
+    override var objectsPerPage: Int {
+        return 50
+    }
+    override var singlePage: Bool {
+        return true
     }
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.popular(optionalParams: mode.params.merge(nextPageParams), callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Tracks.popular(optionalParams: mode.params.merge(nextPageParams), callback: nextPageTracksReceived)
     }
 }
 
 class FavoriteTracksDataSource: TracksDataSource {
-    var playlist: FavoritesSectionPlaylist
+    let playlist: FavoritesSectionPlaylist
     
     init(viewController: DataSourceViewController, playlist: FavoritesSectionPlaylist) {
         self.playlist = playlist
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        switch playlist {
-        case .All:
-            HypeMachineAPI.Requests.Me.favorites(optionalParams: nil, callback: requestInitialValuesResponse)
-        case .One:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, optionalParams: nil, callback: requestInitialValuesResponse)
-        case .Two:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, optionalParams: nil, callback: requestInitialValuesResponse)
-        case .Three:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, optionalParams: nil, callback: requestInitialValuesResponse)
-            
-        }
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
+    override func requestNextPageObjects() {
         switch playlist {
         case .All:
-            HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, callback: requestNextPageResponse)
+            HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, callback: nextPageTracksReceived)
         case .One:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, optionalParams: nextPageParams, callback: requestNextPageResponse)
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, optionalParams: nextPageParams, callback: nextPageTracksReceived)
         case .Two:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, optionalParams: nextPageParams, callback: requestNextPageResponse)
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, optionalParams: nextPageParams, callback: nextPageTracksReceived)
         case .Three:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, optionalParams: nextPageParams, callback: requestNextPageResponse)
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, optionalParams: nextPageParams, callback: nextPageTracksReceived)
             
         }
     }
 }
 
 class LatestTracksDataSource: TracksDataSource {
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: nil, callback: requestInitialValuesResponse)
-    }
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: nextPageParams, callback: requestNextPageResponse)
+    // MARK: HypeMachineDataSource
+    
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: nextPageParams, callback: nextPageTracksReceived)
     }
 }
 
 class FeedTracksDataSource: TracksDataSource {
-    var mode: FeedSectionMode
+    let mode: FeedSectionMode
     
     init(viewController: DataSourceViewController, mode: FeedSectionMode) {
         self.mode = mode
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Me.feed(optionalParams: mode.params, callback: requestInitialValuesResponse)
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Me.feed(optionalParams: mode.params.merge(nextPageParams), callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Me.feed(optionalParams: mode.params.merge(nextPageParams), callback: nextPageTracksReceived)
     }
 }
 
 class BlogTracksDataSource: TracksDataSource {
-    var blogID: Int
+    let blogID: Int
     
     init(viewController: DataSourceViewController, blogID: Int) {
         self.blogID = blogID
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, optionalParams: nil, callback: requestInitialValuesResponse)
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, optionalParams: nextPageParams, callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, optionalParams: nextPageParams, callback: nextPageTracksReceived)
     }
 }
 
 class UserTracksDataSource: TracksDataSource {
-    var username: String
+    let username: String
     
     init(viewController: DataSourceViewController, username: String) {
         self.username = username
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Users.showFavorites(username: username, optionalParams: nil, callback: requestInitialValuesResponse)
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Users.showFavorites(username: username, optionalParams: nextPageParams, callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Users.showFavorites(username: username, optionalParams: nextPageParams, callback: nextPageTracksReceived)
     }
 }
 
 class ArtistTracksDataSource: TracksDataSource {
-    var artistName: String
+    let artistName: String
     
     init(viewController: DataSourceViewController, artistName: String) {
         self.artistName = artistName
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, optionalParams: nil, callback: requestInitialValuesResponse)
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, optionalParams: nextPageParams, callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, optionalParams: nextPageParams, callback: nextPageTracksReceived)
     }
 }
 
 class TagTracksDataSource: TracksDataSource {
-    var tagName: String
+    let tagName: String
     
     init(viewController: DataSourceViewController, tagName: String) {
         self.tagName = tagName
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tags.showTracks(name: tagName, optionalParams: nil, callback: requestInitialValuesResponse)
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Tags.showTracks(name: tagName, optionalParams: nextPageParams, callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Tags.showTracks(name: tagName, optionalParams: nextPageParams, callback: nextPageTracksReceived)
     }
 }
 
 class SearchTracksDataSource: TracksDataSource {
-    var searchQuery: String
-    var sort: SearchSectionSort
+    let searchQuery: String
+    let sort: SearchSectionSort
     
     init(viewController: DataSourceViewController, sort: SearchSectionSort, searchQuery: String) {
         self.searchQuery = searchQuery
@@ -168,12 +150,10 @@ class SearchTracksDataSource: TracksDataSource {
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: sort.params.merge(["q": searchQuery]), callback: requestInitialValuesResponse)
-    }
+    // MARK: HypeMachineDataSource
     
-    override func requestNextPage() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: sort.params.merge(nextPageParams).merge(["q": searchQuery]), callback: requestNextPageResponse)
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: sort.params.merge(nextPageParams).merge(["q": searchQuery]), callback: nextPageTracksReceived)
     }
 }
 
@@ -185,8 +165,13 @@ class SingleTrackDataSource: TracksDataSource {
         super.init(viewController: viewController)
     }
     
-    override func requestInitialValues() {
-        self.allTracksLoaded = true
-        requestInitialValuesResponse([track], error: nil)
+    // MARK: HypeMachineDataSource
+    
+    override var singlePage: Bool {
+        return true
+    }
+    
+    override func requestNextPageObjects() {
+        nextPageTracksReceived([track], error: nil)
     }
 }

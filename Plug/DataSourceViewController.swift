@@ -9,7 +9,11 @@
 import Cocoa
 
 class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
-    @IBOutlet var tableView: ExtendedTableView!
+    var dataSource: HypeMachineDataSource? {
+        didSet { dataSourceChanged() }
+    }
+    var scrollView: RefreshScrollView!
+    var tableView: ExtendedTableView!
     
     func requestInitialValuesFinished() {
         removeLoaderView()
@@ -63,6 +67,13 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         }
         
         return rowView!
+    }
+    
+    func dataSourceChanged() {}
+    
+    override func refresh() {
+        addLoaderView()
+        dataSource!.refresh()
     }
     
     // MARK: ExtendedTableViewDelegate default implementations

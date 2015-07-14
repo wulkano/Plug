@@ -10,7 +10,9 @@ import Cocoa
 import HypeMachineAPI
 
 class TagsViewController: DataSourceViewController {
-    var dataSource: TagsDataSource!
+    var tagsDataSource: TagsDataSource? {
+        return dataSource as? TagsDataSource
+    }
     override var analyticsViewName: String {
         return "MainWindow/Genres"
     }
@@ -29,7 +31,7 @@ class TagsViewController: DataSourceViewController {
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = "searchFieldSubmit:"
         
-        let scrollView = NSScrollView()
+        scrollView = RefreshScrollView()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp_bottom)
@@ -61,11 +63,11 @@ class TagsViewController: DataSourceViewController {
 
         self.dataSource = TagsDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        self.dataSource.loadInitialValues()
+        self.dataSource?.loadNextPageObjects()
     }
     
     func itemForRow(row: Int) -> TagsListItem? {
-        if let item: AnyObject = dataSource!.itemForRow(row) {
+        if let item: AnyObject = dataSource!.objectForRow(row) {
             return TagsListItem.fromObject(item)
         } else {
             return nil
@@ -73,7 +75,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func itemAfterRow(row: Int) -> TagsListItem? {
-        if let item: AnyObject = dataSource!.itemAfterRow(row) {
+        if let item: AnyObject = dataSource!.objectForRow(row) {
             return TagsListItem.fromObject(item)
         } else {
             return nil
@@ -130,7 +132,7 @@ class TagsViewController: DataSourceViewController {
     
     override func refresh() {
         addLoaderView()
-        dataSource.refresh()
+        dataSource!.refresh()
     }
     
     func tagCellView(tableView: NSTableView) -> TagTableCellView {
@@ -251,7 +253,6 @@ class TagsViewController: DataSourceViewController {
     // MARK: Actions
     
     func searchFieldSubmit(sender: NSSearchField) {
-        let keywords = sender.stringValue
-        dataSource!.filterByKeywords(keywords)
+        tagsDataSource!.searchKeywords = sender.stringValue
     }
 }

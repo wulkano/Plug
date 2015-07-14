@@ -206,14 +206,14 @@ class AudioPlayer: NSObject {
     }
     
     private func nextShuffleTrack() -> HypeMachineAPI.Track? {
-        if recentlyPlayedTrackIndexes.count >= currentDataSource.tracks!.count {
+        if recentlyPlayedTrackIndexes.count >= currentDataSource.tableContents!.count {
             recentlyPlayedTrackIndexes = []
         }
         
-        var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tracks!.count)
+        var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         
         while find(recentlyPlayedTrackIndexes, nextShuffleTrackIndex) != nil {
-            nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tracks!.count)
+            nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         }
         
         return currentDataSource.trackAtIndex(nextShuffleTrackIndex)

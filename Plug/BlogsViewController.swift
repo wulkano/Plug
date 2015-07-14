@@ -10,7 +10,9 @@ import Cocoa
 import HypeMachineAPI
 
 class BlogsViewController: DataSourceViewController {
-    var dataSource: BlogsDataSource!
+    var blogDataSource: BlogsDataSource? {
+        return dataSource as? BlogsDataSource
+    }
     override var analyticsViewName: String {
         return "MainWindow/BlogDirectory"
     }
@@ -29,7 +31,7 @@ class BlogsViewController: DataSourceViewController {
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = "searchFieldSubmit:"
         
-        let scrollView = NSScrollView()
+        scrollView = RefreshScrollView()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp_bottom)
@@ -61,11 +63,11 @@ class BlogsViewController: DataSourceViewController {
         
         dataSource = BlogsDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        dataSource.loadInitialValues()
+        dataSource!.loadNextPageObjects()
     }
     
     func itemForRow(row: Int) -> BlogDirectoryItem? {
-        if let item: AnyObject = dataSource.itemForRow(row) {
+        if let item: AnyObject = dataSource!.objectForRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
             return nil
@@ -73,7 +75,7 @@ class BlogsViewController: DataSourceViewController {
     }
     
     func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        if let item: AnyObject = dataSource.itemAfterRow(row) {
+        if let item: AnyObject = dataSource!.objectForRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
             return nil
@@ -87,7 +89,7 @@ class BlogsViewController: DataSourceViewController {
     
     override func refresh() {
         addLoaderView()
-        dataSource.refresh()
+        dataSource!.refresh()
     }
     
     func blogCellView(tableView: NSTableView) -> BlogTableCellView {
@@ -237,7 +239,6 @@ class BlogsViewController: DataSourceViewController {
     // MARK: Actions
     
     @IBAction func searchFieldSubmit(sender: NSSearchField) {
-        let keywords = sender.stringValue
-        dataSource.filterByKeywords(keywords)
+        blogDataSource!.searchKeywords = sender.stringValue
     }
 }

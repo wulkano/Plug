@@ -9,70 +9,87 @@
 import Cocoa
 import HypeMachineAPI
 
-class BlogsDataSource: MainContentDataSource {
-
-    override func loadInitialValues() {
-        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) {
-            (blogs, error) in
-            
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
-                self.viewController.requestInitialValuesFinished()
-                return
-            }
-            
-            self.generateTableContents(blogs!)
-            self.viewController.tableView!.reloadData()
-            self.viewController.requestInitialValuesFinished()
-        }
+class BlogsDataSource: SearchableDataSource {
+    
+    func filterBlogs(contents: [AnyObject]) -> [HypeMachineAPI.Blog] {
+        return contents.filter({ $0 is HypeMachineAPI.Blog }) as! [HypeMachineAPI.Blog]
     }
     
-    func generateTableContents(blogs: [HypeMachineAPI.Blog]) {
-        standardTableContents = []
+    func filterUniqueBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+        return Array(Set(blogs))
+    }
+    
+    func filterBlogsMatchingSearchKeywords(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+        return blogs.filter { $0.name =~ self.searchKeywords! }
+    }
+    
+    func filterFollowingBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+        return blogs.filter { $0.following == true }
+    }
+    
+    func filterFeaturedBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+        return blogs.filter { $0.featured == true }
+    }
+    
+    func sortBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+        return blogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+    }
+    
+    func groupBlogs(blogs: [HypeMachineAPI.Blog]) -> [AnyObject] {
+        var groupedBlogs: [AnyObject] = []
         
-        var followingBlogs = blogs.filter { $0.following == true }
+        let followingBlogs = filterFollowingBlogs(blogs)
         if followingBlogs.count > 0 {
-            standardTableContents.append(SectionHeader(title: "Following"))
-            followingBlogs = followingBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-            standardTableContents += followingBlogs as [AnyObject]
+            let sortedFollowingBlogs = sortBlogs(followingBlogs)
+            groupedBlogs.append(SectionHeader(title: "Following"))
+            groupedBlogs += sortedFollowingBlogs as [AnyObject]
         }
         
-        standardTableContents.append(SectionHeader(title: "Featured"))
-        var featuredBlogs = blogs.filter { $0.featured == true }
-        featuredBlogs = featuredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-        standardTableContents += featuredBlogs as [AnyObject]
-
-        standardTableContents.append(SectionHeader(title: "All Blogs"))
-        var allBlogs = blogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-        standardTableContents += allBlogs as [AnyObject]
+        let featuredBlogs = filterFeaturedBlogs(blogs)
+        if featuredBlogs.count > 0 {
+            let sortedFeaturedBlogs = sortBlogs(featuredBlogs)
+            groupedBlogs.append(SectionHeader(title: "Featured"))
+            groupedBlogs += sortedFeaturedBlogs as [AnyObject]
+        }
+        
+        groupedBlogs.append(SectionHeader(title: "All Blogs"))
+        let allSortedBlogs = sortBlogs(blogs)
+        groupedBlogs += allSortedBlogs as [AnyObject]
+        
+        return groupedBlogs
     }
     
-    func filterByKeywords(keywords: String) {
-        if keywords == "" {
-            filtering = false
+    // MARK: SearchableDataSource
+    
+    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+        let blogs = filterBlogs(objects)
+        let uniqueBlogs = filterUniqueBlogs(blogs)
+        let sortedBlogs = sortBlogs(blogs)
+        
+        if searchKeywords == "" || searchKeywords == nil {
+            println("Filtering, but no keywords present")
+            return sortedBlogs
         } else {
-            filtering = true
-            var filteredBlogs = allBlogs().filter {
-                $0.name =~ keywords
-            }
-            var sortedBlogs = filteredBlogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-            filteredTableContents = sortedBlogs as [AnyObject]
+            return filterBlogsMatchingSearchKeywords(sortedBlogs)
         }
-        viewController.tableView!.reloadData()
     }
     
-    func allBlogs() -> [HypeMachineAPI.Blog] {
-        var results: [HypeMachineAPI.Blog] = []
-        for object in standardTableContents {
-            if object is HypeMachineAPI.Blog {
-                let blog = object as! HypeMachineAPI.Blog
-                if find(results, blog) == nil {
-                    results.append(blog)
-                }
-            }
+    // MARK: HypeMachineDataSource
+    
+    override var singlePage: Bool {
+        return true
+    }
+    
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) { (blogs, error) in
+            self.nextPageObjectsReceived(blogs, error: error)
         }
-        return results
+    }
+    
+    override func appendTableContents(contents: [AnyObject]) {
+        let blogs = contents as! [HypeMachineAPI.Blog]
+        let groupedBlogs = groupBlogs(blogs)
+        super.appendTableContents(groupedBlogs)
     }
 }
 

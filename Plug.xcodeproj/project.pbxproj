@@ -37,7 +37,7 @@
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
 		FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogsViewController.swift */; };
 		FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B319F80378009FCDE3 /* MainMenuController.swift */; };
-		FA3241B819F810F4009FCDE3 /* MainContentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */; };
+		FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */; };
 		FA3241BA19F81579009FCDE3 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */; };
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
 		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
@@ -47,6 +47,10 @@
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
 		FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */; };
 		FA410CF419A40C2600E71B20 /* Plug.iconset in Resources */ = {isa = PBXBuildFile; fileRef = FA410CF319A40C2600E71B20 /* Plug.iconset */; };
+		FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */; };
+		FA4BA9991B543FA700A983A5 /* RefreshClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */; };
+		FA4BA99C1B5492BE00A983A5 /* TracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */; };
+		FA4BA99E1B54C03900A983A5 /* SearchableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA99D1B54C03900A983A5 /* SearchableDataSource.swift */; };
 		FA4BF21519F601090078AB82 /* BlogTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BF21419F601090078AB82 /* BlogTableCellView.swift */; };
 		FA4BF21719F609AE0078AB82 /* SectionHeaderTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BF21619F609AE0078AB82 /* SectionHeaderTableCellView.swift */; };
 		FA4BF21919F60C4E0078AB82 /* TagTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BF21819F60C4E0078AB82 /* TagTableCellView.swift */; };
@@ -68,9 +72,8 @@
 		FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA562EF619E886D600B760A2 /* Sparkle.framework */; };
 		FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA562EF619E886D600B760A2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */; };
-		FA5927F91B28ED1E00D07176 /* PullToRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5927F81B28ED1E00D07176 /* PullToRefreshViewController.swift */; };
+		FA5927F91B28ED1E00D07176 /* RefreshHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */; };
 		FA6127141B051F9700E9F2C9 /* Alamofire+responseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */; };
-		FA6127161B05B1AE00E9F2C9 /* TracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */; };
 		FA64C6A719764FE9003933E3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Globals.swift */; };
 		FA64C6A919765323003933E3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array.swift */; };
 		FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */; };
@@ -112,7 +115,7 @@
 		FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A2F4919B783B30057080C /* BackButtonCell.swift */; };
 		FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */; };
 		FA9EA042199B08E100D9AB8A /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */; };
-		FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */; };
+		FA9EA045199B0F4200D9AB8A /* UsersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA044199B0F4200D9AB8A /* UsersDataSource.swift */; };
 		FAA34A9519B2F0450038868A /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9419B2F0450038868A /* Async.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
 		FAA51A59198084E50057EC34 /* NavigationSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A58198084E50057EC34 /* NavigationSections.swift */; };
@@ -123,7 +126,6 @@
 		FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */; };
 		FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */; };
 		FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */; };
-		FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */; };
 		FABAA8911B2F57A80090D773 /* TitleBarPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */; };
 		FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
@@ -210,7 +212,7 @@
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
 		FA3199AC198247970097B081 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
 		FA3241B319F80378009FCDE3 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
-		FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentDataSource.swift; sourceTree = "<group>"; };
+		FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HypeMachineDataSource.swift; sourceTree = "<group>"; };
 		FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
@@ -220,6 +222,10 @@
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutedPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA410CF319A40C2600E71B20 /* Plug.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Plug.iconset; sourceTree = "<group>"; };
+		FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
+		FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshClipView.swift; sourceTree = "<group>"; };
+		FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSource.swift; sourceTree = "<group>"; };
+		FA4BA99D1B54C03900A983A5 /* SearchableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableDataSource.swift; sourceTree = "<group>"; };
 		FA4BF21419F601090078AB82 /* BlogTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogTableCellView.swift; sourceTree = "<group>"; };
 		FA4BF21619F609AE0078AB82 /* SectionHeaderTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderTableCellView.swift; sourceTree = "<group>"; };
 		FA4BF21819F60C4E0078AB82 /* TagTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTableCellView.swift; sourceTree = "<group>"; };
@@ -240,9 +246,8 @@
 		FA53951119B0583D006A95A5 /* PostInfoFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfoFormatter.swift; sourceTree = "<group>"; };
 		FA562EF619E886D600B760A2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterBackgroundView.swift; sourceTree = "<group>"; };
-		FA5927F81B28ED1E00D07176 /* PullToRefreshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshViewController.swift; sourceTree = "<group>"; };
+		FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderViewController.swift; sourceTree = "<group>"; };
 		FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+responseImage.swift"; sourceTree = "<group>"; };
-		FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSource.swift; sourceTree = "<group>"; };
 		FA64C6A619764FE9003933E3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesTableCellView.swift; sourceTree = "<group>"; };
@@ -284,7 +289,7 @@
 		FA9A2F4919B783B30057080C /* BackButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButtonCell.swift; sourceTree = "<group>"; };
 		FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsDataSource.swift; sourceTree = "<group>"; };
 		FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
-		FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDataSource.swift; sourceTree = "<group>"; };
+		FA9EA044199B0F4200D9AB8A /* UsersDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersDataSource.swift; sourceTree = "<group>"; };
 		FAA34A9419B2F0450038868A /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FAA51A58198084E50057EC34 /* NavigationSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSections.swift; sourceTree = "<group>"; };
@@ -295,7 +300,6 @@
 		FAACE4C719AC3AE300F8E9E8 /* VibrantSecureTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantSecureTextField.swift; sourceTree = "<group>"; };
 		FAB4305919AAF89A00FFCA63 /* RoundedRectOutlineButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectOutlineButton.swift; sourceTree = "<group>"; };
 		FAB4305B19AB001600FFCA63 /* LoginButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonCell.swift; sourceTree = "<group>"; };
-		FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CurrentlyPlaylingTrackViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarPopUpButton.swift; sourceTree = "<group>"; };
 		FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownTitleFormatter.swift; sourceTree = "<group>"; };
 		FABB112E19C10DD8000DB1BC /* String+digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+digest.swift"; sourceTree = "<group>"; };
@@ -408,9 +412,11 @@
 			children = (
 				FA9A2F4419B6A5470057080C /* Storyboards */,
 				FABAA8941B2F596F0090D773 /* Helpers */,
-				FA9A2F3C19B689AF0057080C /* NSButtons */,
 				FA0742431B4BAFD700AA49D7 /* NSButtonCells */,
+				FA9A2F3C19B689AF0057080C /* NSButtons */,
+				FA4BA99A1B543FA900A983A5 /* NSClipViews */,
 				FA9A2F4119B68AEB0057080C /* NSImageViews */,
+				FA4BA9951B54337D00A983A5 /* NSScrollViews */,
 				FA9A2F3F19B68AC00057080C /* NSSliders */,
 				FA9A2F3819B6891C0057080C /* NSTableCellViews */,
 				FA9A2F4019B68AD20057080C /* NSTableRowViews */,
@@ -528,6 +534,31 @@
 			children = (
 			);
 			name = NSTextViews;
+			sourceTree = "<group>";
+		};
+		FA4BA9951B54337D00A983A5 /* NSScrollViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */,
+			);
+			name = NSScrollViews;
+			sourceTree = "<group>";
+		};
+		FA4BA99A1B543FA900A983A5 /* NSClipViews */ = {
+			isa = PBXGroup;
+			children = (
+				FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */,
+			);
+			name = NSClipViews;
+			sourceTree = "<group>";
+		};
+		FA4BA99F1B54C5AF00A983A5 /* Abstracts */ = {
+			isa = PBXGroup;
+			children = (
+				FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */,
+				FA4BA99D1B54C03900A983A5 /* SearchableDataSource.swift */,
+			);
+			name = Abstracts;
 			sourceTree = "<group>";
 		};
 		FA51263419761424004D0776 /* Extensions */ = {
@@ -718,12 +749,12 @@
 		FA9EA043199B0D1500D9AB8A /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
-				FA3241B719F810F4009FCDE3 /* MainContentDataSource.swift */,
+				FA4BA99F1B54C5AF00A983A5 /* Abstracts */,
 				FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */,
-				FA9EA044199B0F4200D9AB8A /* FriendsDataSource.swift */,
 				FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */,
-				FA6127151B05B1AD00E9F2C9 /* TracksDataSource.swift */,
+				FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */,
 				FA21F9AC1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift */,
+				FA9EA044199B0F4200D9AB8A /* UsersDataSource.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -764,13 +795,12 @@
 			isa = PBXGroup;
 			children = (
 				FA222A8719BCCA68005A631F /* ContentViewControllers */,
-				FABA62A919C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift */,
 				FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */,
 				FAF0372E197B8A3500F716CE /* FooterViewController.swift */,
 				FA6ADD0019BAAB5E00CCD371 /* LoaderViewController.swift */,
 				FA0B1CF61976ECF60030C873 /* MainViewController.swift */,
 				FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */,
-				FA5927F81B28ED1E00D07176 /* PullToRefreshViewController.swift */,
+				FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */,
 				FA9A2F3019B66C6F0057080C /* NavigationController.swift */,
 				FA9A2F3219B66C760057080C /* NavigationBarController.swift */,
 				FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */,
@@ -924,7 +954,7 @@
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
 				FA7749A1198C1CAA0048863F /* UsersViewController.swift in Sources */,
 				FA21F9BF1B1EE94E00EBAA09 /* Dictionary+merge.swift in Sources */,
-				FABA62AA19C4DFE200E217D9 /* CurrentlyPlaylingTrackViewController.swift in Sources */,
+				FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */,
 				FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */,
@@ -964,9 +994,10 @@
 				FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */,
 				FA53950419AFFE31006A95A5 /* HeatMapTrackTableCellView.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextField.swift in Sources */,
+				FA4BA99C1B5492BE00A983A5 /* TracksDataSource.swift in Sources */,
 				FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */,
-				FA9EA045199B0F4200D9AB8A /* FriendsDataSource.swift in Sources */,
-				FA5927F91B28ED1E00D07176 /* PullToRefreshViewController.swift in Sources */,
+				FA9EA045199B0F4200D9AB8A /* UsersDataSource.swift in Sources */,
+				FA5927F91B28ED1E00D07176 /* RefreshHeaderViewController.swift in Sources */,
 				FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */,
 				FA6ADD0119BAAB5E00CCD371 /* LoaderViewController.swift in Sources */,
 				FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */,
@@ -980,6 +1011,7 @@
 				FA77499A198C07110048863F /* TagsViewController.swift in Sources */,
 				FA6127141B051F9700E9F2C9 /* Alamofire+responseImage.swift in Sources */,
 				FA0B1D2819770AEB0030C873 /* HeatMapView.swift in Sources */,
+				FA4BA9991B543FA700A983A5 /* RefreshClipView.swift in Sources */,
 				FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */,
 				FA6ADD0319BAB0E300CCD371 /* UserViewController.swift in Sources */,
 				FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */,
@@ -998,7 +1030,6 @@
 				FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */,
 				FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */,
 				FA4BF21719F609AE0078AB82 /* SectionHeaderTableCellView.swift in Sources */,
-				FA6127161B05B1AE00E9F2C9 /* TracksDataSource.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */,
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
@@ -1015,7 +1046,7 @@
 				FA5394F019AF6B0F006A95A5 /* SwissArmyButton.swift in Sources */,
 				FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */,
 				FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */,
-				FA3241B819F810F4009FCDE3 /* MainContentDataSource.swift in Sources */,
+				FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */,
 				FA4BF21919F60C4E0078AB82 /* TagTableCellView.swift in Sources */,
 				FA24EDA21974A9A500A781C8 /* main.swift in Sources */,
 				FA53950719AFFF01006A95A5 /* TrackTableCellView.swift in Sources */,
@@ -1028,6 +1059,7 @@
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */,
+				FA4BA99E1B54C03900A983A5 /* SearchableDataSource.swift in Sources */,
 				FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */,
 				FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,

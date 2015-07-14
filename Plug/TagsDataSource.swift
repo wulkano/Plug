@@ -9,59 +9,66 @@
 import Cocoa
 import HypeMachineAPI
 
-class TagsDataSource: MainContentDataSource {
+class TagsDataSource: SearchableDataSource {
     
-    override func loadInitialValues() {
-        HypeMachineAPI.Requests.Tags.index {
-            (tags: [Tag]?, error) in
-            
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
-                self.viewController.requestInitialValuesFinished()
-                return
-            }
-            
-            self.generateTableContents(tags!)
-            self.viewController.tableView.reloadData()
-            self.viewController.requestInitialValuesFinished()
-        }
+    func filterTags(contents: [AnyObject]) -> [HypeMachineAPI.Tag] {
+        return contents.filter({ $0 is HypeMachineAPI.Tag }) as! [HypeMachineAPI.Tag]
     }
     
-    func generateTableContents(tags: [HypeMachineAPI.Tag]) {
-        standardTableContents.append(SectionHeader(title: "The Basics"))
+    func filterUniqueTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+        return Array(Set(tags))
+    }
+    
+    func filterTagsMatchingSearchKeywords(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+        return tags.filter { $0.name =~ self.searchKeywords! }
+    }
+    
+    func sortTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+        return tags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+    }
+    
+    func groupTags(tags: [HypeMachineAPI.Tag]) -> [AnyObject] {
+        var groupedTags: [AnyObject] = []
+        
+        groupedTags.append(SectionHeader(title: "The Basics"))
         var priorityTags = tags.filter { $0.priority == true }
         priorityTags = priorityTags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-        standardTableContents += priorityTags as [AnyObject]
+        groupedTags += priorityTags as [AnyObject]
         
-        standardTableContents.append(SectionHeader(title: "Everything"))
+        groupedTags.append(SectionHeader(title: "Everything"))
         var sortedTags = tags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-        standardTableContents += sortedTags as [AnyObject]
+        groupedTags += sortedTags as [AnyObject]
+        
+        return groupedTags
     }
     
-    func filterByKeywords(keywords: String) {
-        if keywords == "" {
-            filtering = false
+    // MARK: SearchableDataSource
+    
+    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+        let tags = filterTags(objects)
+        let uniqueTags = filterUniqueTags(tags)
+        let sortedTags = sortTags(uniqueTags)
+        
+        if searchKeywords == "" || searchKeywords == nil {
+            println("Filtering, but no keywords present")
+            return sortedTags
         } else {
-            filtering = true
-            var filteredTags = allTags().filter { $0.name =~ keywords }
-            var sortedTags = filteredTags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
-            filteredTableContents = filteredTags
+            return filterTagsMatchingSearchKeywords(sortedTags)
         }
-        viewController.tableView.reloadData()
     }
     
-    func allTags() -> [HypeMachineAPI.Tag] {
-        var results: [HypeMachineAPI.Tag] = []
-        for object in standardTableContents {
-            if object is HypeMachineAPI.Tag {
-                let tag = object as! HypeMachineAPI.Tag
-                if find(results, tag) == nil {
-                    results.append(tag)
-                }
-            }
+    // MARK: HypeMachineDataSource
+    
+    override func requestNextPageObjects() {
+        HypeMachineAPI.Requests.Tags.index { (tags, error) in
+            self.nextPageObjectsReceived(tags, error: error)
         }
-        return results
+    }
+    
+    override func appendTableContents(contents: [AnyObject]) {
+        let tags = contents as! [HypeMachineAPI.Tag]
+        let groupedTags = groupTags(tags)
+        super.appendTableContents(groupedTags)
     }
 }
 

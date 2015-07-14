@@ -7,15 +7,12 @@
 //
 
 import Cocoa
+import HypeMachineAPI
 
 class TracksViewController: DataSourceViewController {
     let type: TracksViewControllerType
-    
-    var scrollView: NSScrollView!
-    var dataSource: TracksDataSource? {
-        didSet {
-            dataSourceChanged()
-        }
+    var tracksDataSource: TracksDataSource? {
+        return dataSource! as? TracksDataSource
     }
     
     var previousMouseInsideRow: Int = -1
@@ -42,7 +39,7 @@ class TracksViewController: DataSourceViewController {
     override func loadView() {
         view = NSView()
         
-        scrollView = NSScrollView()
+        scrollView = RefreshScrollView()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { make in
             make.edges.equalTo(self.view)
@@ -74,7 +71,7 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    func dataSourceChanged() {
+    override func dataSourceChanged() {
         if viewLoaded {
             loadDataSource()
         }
@@ -83,7 +80,7 @@ class TracksViewController: DataSourceViewController {
     func loadDataSource() {
         addLoaderView()
         tableView.setDataSource(dataSource!)
-        dataSource!.loadInitialValues()
+        dataSource!.loadNextPageObjects()
     }
     
     func cellViewForRow(row: Int) -> TrackTableCellView? {
@@ -91,7 +88,7 @@ class TracksViewController: DataSourceViewController {
             return nil
         } else {
             let cell = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView
-            cell!.dataSource = dataSource
+            cell!.dataSource = tracksDataSource
             return cell
         }
     }
@@ -125,8 +122,8 @@ class TracksViewController: DataSourceViewController {
         switch theEvent.keyCode {
         case 36: // Enter
             let row = tableView.selectedRow
-            let track = dataSource!.trackForRow(row)!
-            AudioPlayer.sharedInstance.playNewTrack(track, dataSource: dataSource!)
+            let track = tracksDataSource!.objectForRow(row)! as! HypeMachineAPI.Track
+            AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
         default:
             super.keyDown(theEvent)
         }
@@ -197,8 +194,7 @@ class TracksViewController: DataSourceViewController {
         cellView.addSubview(cellView.playPauseButton)
         cellView.playPauseButton.snp_makeConstraints { make in
             make.centerY.equalTo(cellView)
-            make.width.equalTo(34)
-            make.height.equalTo(34)
+            make.size.equalTo(34)
             make.left.equalTo(cellView).offset(19)
         }
         
@@ -404,7 +400,7 @@ class TracksViewController: DataSourceViewController {
     }
     
     override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
-        let track = dataSource!.trackForRow(row)
+        let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
         if track === AudioPlayer.sharedInstance.currentTrack {
             removeStickyTrack()
             Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: ["direction": direction.rawValue])
@@ -412,7 +408,7 @@ class TracksViewController: DataSourceViewController {
     }
     
     override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {
-        if let track = dataSource!.trackForRow(row) {
+        if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 let position = (direction == .Above ? StickyTrackPosition.Top : StickyTrackPosition.Bottom)
                 addStickyTrackAtPosition(position)
@@ -423,12 +419,13 @@ class TracksViewController: DataSourceViewController {
     
     override func didEndScrollingTableView(tableView: ExtendedTableView) {
         if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
-            dataSource!.loadNextPage()
+            tracksDataSource!.loadNextPageObjects()
         }
     }
     
     override func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
-        let menuController = TrackContextMenuController(track: dataSource!.trackForRow(row)!)!
+        let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
+        let menuController = TrackContextMenuController(track: track)!
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
     }
 }

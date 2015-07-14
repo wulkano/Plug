@@ -101,7 +101,9 @@ class BaseContentViewController: NSViewController {
     
     // MARK: Notifications
     
-    func refresh() {}
+    func refresh() {
+        fatalError("refresh() not implemented")
+    }
     
     func updateStickyTrack(notification: NSNotification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track

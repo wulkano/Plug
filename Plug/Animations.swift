@@ -58,6 +58,6 @@ struct Animations {
     }
     
     static func RemoveAllAnimations(view: NSView) {
-        view.layer!.removeAllAnimations()
+        view.layer?.removeAllAnimations()
     }
 }

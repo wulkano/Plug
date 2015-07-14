@@ -10,7 +10,9 @@ import Cocoa
 import HypeMachineAPI
 
 class UsersViewController: DataSourceViewController {
-    var dataSource: FriendsDataSource!
+    var usersDataSource: UsersDataSource? {
+        return dataSource! as? UsersDataSource
+    }
     override var analyticsViewName: String {
         return "MainWindow/Friends"
     }
@@ -29,7 +31,7 @@ class UsersViewController: DataSourceViewController {
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = "searchFieldSubmit:"
         
-        let scrollView = NSScrollView()
+        scrollView = RefreshScrollView()
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp_bottom)
@@ -59,9 +61,9 @@ class UsersViewController: DataSourceViewController {
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
 
-        dataSource = FriendsDataSource(viewController: self)
+        dataSource = UsersDataSource(viewController: self)
         tableView.setDataSource(dataSource)
-        dataSource.loadInitialValues()
+        dataSource!.loadNextPageObjects()
     }
     
     func loadSingleFriendView(friend: HypeMachineAPI.User) {
@@ -71,7 +73,7 @@ class UsersViewController: DataSourceViewController {
     
     override func refresh() {
         addLoaderView()
-        dataSource.refresh()
+        dataSource!.refresh()
     }
     
     // MARK: NSTableViewDelegate
@@ -154,16 +156,14 @@ class UsersViewController: DataSourceViewController {
     
     
     override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        if let item: AnyObject = dataSource.itemForRow(row) {
+        if let item: AnyObject = dataSource!.objectForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }
     }
     
     // MARK: Actions
     
-    
     func searchFieldSubmit(sender: NSSearchField) {
-        let keywords = sender.stringValue
-        dataSource.filterByKeywords(keywords)
+        usersDataSource!.searchKeywords = sender.stringValue
     }
 }
