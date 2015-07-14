@@ -24,21 +24,6 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        usernameOrEmailTextField.delegate = self
-        passwordTextField.delegate = self
-        usernameOrEmailTextField.nextKeyView = passwordTextField
-        passwordTextField.nextKeyView = usernameOrEmailTextField
-    }
-    
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        
-        view.window!.initialFirstResponder = usernameOrEmailTextField
-    }
-    
     func displayError(notification: NSNotification) {
         let error = notification.userInfo!["error"] as! NSError
         NSAlert(error: error).runModal()
@@ -47,15 +32,6 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     func signedInSuccessfully() {
         let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.finishedSigningIn()
-    }
-    
-    @IBAction func loginButtonClicked(sender: AnyObject) {
-        Analytics.trackButtonClick("Log In")
-        let usernameOrEmail = usernameOrEmailTextField.stringValue
-        let password = passwordTextField.stringValue
-        
-        loginButton.buttonState = .Sending
-        loginWithUsernameOrEmail(usernameOrEmail, andPassword: password)
     }
     
     func loginWithUsernameOrEmail(usernameOrEmail: String, andPassword password: String) {
@@ -80,20 +56,6 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         }
     }
     
-    @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
-        Analytics.trackButtonClick("Forgot Password")
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php")!)
-    }
-    
-    @IBAction func signUpButtonClicked(sender: AnyObject) {
-        Analytics.trackButtonClick("Sign Up")
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1")!)
-    }
-    
-    override func controlTextDidChange(notification: NSNotification) {
-        formFieldsChanged()
-    }
-    
     func formFieldsChanged() {
         if formFieldsValid() {
             loginButton.buttonState = .Enabled
@@ -112,4 +74,47 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         return  usernameOrEmailTextField.stringValue == "" || passwordTextField.stringValue == ""
     }
     
+    // MARK: Actions
+    
+    @IBAction func loginButtonClicked(sender: AnyObject) {
+        Analytics.trackButtonClick("Log In")
+        let usernameOrEmail = usernameOrEmailTextField.stringValue
+        let password = passwordTextField.stringValue
+        
+        loginButton.buttonState = .Sending
+        loginWithUsernameOrEmail(usernameOrEmail, andPassword: password)
+    }
+    
+    @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
+        Analytics.trackButtonClick("Forgot Password")
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php")!)
+    }
+    
+    @IBAction func signUpButtonClicked(sender: AnyObject) {
+        Analytics.trackButtonClick("Sign Up")
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1")!)
+    }
+    
+    // MARK: NSViewController
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        usernameOrEmailTextField.delegate = self
+        passwordTextField.delegate = self
+        usernameOrEmailTextField.nextKeyView = passwordTextField
+        passwordTextField.nextKeyView = usernameOrEmailTextField
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        view.window!.initialFirstResponder = usernameOrEmailTextField
+    }
+    
+    // MARK: NSTextFieldDelegate
+    
+    override func controlTextDidChange(notification: NSNotification) {
+        formFieldsChanged()
+    }
 }

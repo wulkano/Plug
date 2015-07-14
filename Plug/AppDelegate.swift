@@ -101,6 +101,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         signOutMenuSeparator.hidden = true
     }
     
+    func setupUserDefaults() {
+        let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
+        let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
+        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [NSObject : AnyObject])
+    }
+    
+    func setupUserNotifications() {
+        UserNotificationHandler.sharedInstance
+    }
+    
+    func setupMediaKeys() {
+        MediaKeyHandler.sharedInstance
+    }
+    
+    func setupHypeMachineAPI() {
+        HypeMachineAPI.apiKey = ApiKey
+        if let hmToken = Authentication.GetToken() {
+            HypeMachineAPI.hmToken = hmToken
+        }
+    }
+    
+    // MARK: Actions
+    
     @IBAction func signOut(sender: AnyObject) {
         Analytics.trackButtonClick("Sign Out")
         closeMainWindow()
@@ -121,26 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
     }
     
-    private func setupUserDefaults() {
-        let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
-        let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
-        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [NSObject : AnyObject])
-    }
-    
-    private func setupUserNotifications() {
-        UserNotificationHandler.sharedInstance
-    }
-    
-    private func setupMediaKeys() {
-        MediaKeyHandler.sharedInstance
-    }
-    
-    private func setupHypeMachineAPI() {
-        HypeMachineAPI.apiKey = ApiKey
-        if let hmToken = Authentication.GetToken() {
-            HypeMachineAPI.hmToken = hmToken
-        }
-    }
+    // MARK: NSApplicationDelegate
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
         if Authentication.UserSignedIn() {
