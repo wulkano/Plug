@@ -36,47 +36,6 @@ class TracksViewController: DataSourceViewController {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    override func loadView() {
-        view = NSView()
-        
-        scrollView = RefreshScrollView()
-        view.addSubview(scrollView)
-        scrollView.snp_makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
-        
-        tableView = InsetTableView()
-        tableView.headerView = nil
-        tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
-        column.width = 400
-        column.minWidth = 40
-        column.maxWidth = 1000
-        tableView.addTableColumn(column)
-        
-        scrollView.documentView = tableView
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.setDelegate(self)
-        tableView.extendedDelegate = self
-        
-        if dataSource != nil {
-            loadDataSource()
-        }
-    }
-    
-    override func dataSourceChanged() {
-        if viewLoaded {
-            loadDataSource()
-        }
-    }
-    
     func loadDataSource() {
         addLoaderView()
         tableView.setDataSource(dataSource!)
@@ -93,45 +52,10 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
-        super.addStickyTrackAtPosition(position)
-        
-        var insets = tableView.defaultExtendedTrackingAreaInsets
-        switch position {
-        case .Top:
-            insets.top += stickyTrackHeight
-        case .Bottom:
-            insets.bottom += stickyTrackHeight
-        }
-        
-        tableView.extendedTrackingAreaInsets = insets
-    }
-    
-    override func removeStickyTrack() {
-        super.removeStickyTrack()
-        tableView.extendedTrackingAreaInsets = nil
-    }
-    
     func distanceFromBottomOfScrollView() -> CGFloat {
         var documentViewHeight = (scrollView.documentView as! NSView).frame.height
         var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
         return documentViewHeight - bottomPositionOfDocumentVisibleRect
-    }
-    
-    override func keyDown(theEvent: NSEvent) {
-        switch theEvent.keyCode {
-        case 36: // Enter
-            let row = tableView.selectedRow
-            let track = tracksDataSource!.objectForRow(row)! as! HypeMachineAPI.Track
-            AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
-        default:
-            super.keyDown(theEvent)
-        }
-    }
-    
-    override func refresh() {
-        addLoaderView()
-        dataSource!.refresh()
     }
     
     func heatMapCellView(tableView: NSTableView) -> HeatMapTrackTableCellView {
@@ -346,6 +270,90 @@ class TracksViewController: DataSourceViewController {
             make.top.equalTo(cellView.artistButton.snp_bottom).offset(1)
             make.left.equalTo(cellView.sourceTypeTextField.snp_right).offset(1)
             make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
+        }
+    }
+    
+    // MARK: NSResponder
+    
+    override func keyDown(theEvent: NSEvent) {
+        switch theEvent.keyCode {
+        case 36: // Enter
+            let row = tableView.selectedRow
+            let track = tracksDataSource!.objectForRow(row)! as! HypeMachineAPI.Track
+            AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
+        default:
+            super.keyDown(theEvent)
+        }
+    }
+    
+    // MARK: NSViewController
+    
+    override func loadView() {
+        view = NSView()
+        
+        scrollView = RefreshScrollView()
+        view.addSubview(scrollView)
+        scrollView.snp_makeConstraints { make in
+            make.edges.equalTo(self.view)
+        }
+        
+        tableView = InsetTableView()
+        tableView.headerView = nil
+        tableView.intercellSpacing = NSSize(width: 0, height: 0)
+        let column = NSTableColumn(identifier: "Col0")
+        column.width = 400
+        column.minWidth = 40
+        column.maxWidth = 1000
+        tableView.addTableColumn(column)
+        
+        scrollView.documentView = tableView
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.horizontalScrollElasticity = .None
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.setDelegate(self)
+        tableView.extendedDelegate = self
+        
+        if dataSource != nil {
+            loadDataSource()
+        }
+    }
+    
+    // MARK: BaseContentViewController
+    
+    override func refresh() {
+        addLoaderView()
+        dataSource!.refresh()
+    }
+    
+    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
+        super.addStickyTrackAtPosition(position)
+        
+        var insets = tableView.defaultExtendedTrackingAreaInsets
+        switch position {
+        case .Top:
+            insets.top += stickyTrackHeight
+        case .Bottom:
+            insets.bottom += stickyTrackHeight
+        }
+        
+        tableView.extendedTrackingAreaInsets = insets
+    }
+    
+    override func removeStickyTrack() {
+        super.removeStickyTrack()
+        tableView.extendedTrackingAreaInsets = nil
+    }
+    
+    // MARK: DataSourceViewController
+    
+    override func dataSourceChanged() {
+        if viewLoaded {
+            loadDataSource()
         }
     }
     

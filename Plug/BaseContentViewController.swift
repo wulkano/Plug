@@ -99,11 +99,11 @@ class BaseContentViewController: NSViewController {
         stickyTrackController.view.removeFromSuperview()
     }
     
-    // MARK: Notifications
-    
     func refresh() {
         fatalError("refresh() not implemented")
     }
+    
+    // MARK: Notifications
     
     func updateStickyTrack(notification: NSNotification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track

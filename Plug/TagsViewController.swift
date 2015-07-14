@@ -13,58 +13,6 @@ class TagsViewController: DataSourceViewController {
     var tagsDataSource: TagsDataSource? {
         return dataSource as? TagsDataSource
     }
-    override var analyticsViewName: String {
-        return "MainWindow/Genres"
-    }
-    
-    override func loadView() {
-        view = NSView()
-        
-        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
-        view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
-            make.height.equalTo(52)
-            make.top.equalTo(self.view)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-        }
-        searchHeaderController.searchField.target = self
-        searchHeaderController.searchField.action = "searchFieldSubmit:"
-        
-        scrollView = RefreshScrollView()
-        view.addSubview(scrollView)
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
-            make.left.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-            make.right.equalTo(self.view)
-        }
-        
-        tableView = InsetTableView()
-        tableView.headerView = nil
-        tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
-        column.width = 400
-        column.minWidth = 40
-        column.maxWidth = 1000
-        tableView.addTableColumn(column)
-        
-        scrollView.documentView = tableView
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.setDelegate(self)
-        tableView.extendedDelegate = self
-
-        self.dataSource = TagsDataSource(viewController: self)
-        tableView.setDataSource(dataSource)
-        self.dataSource?.loadNextPageObjects()
-    }
     
     func itemForRow(row: Int) -> TagsListItem? {
         if let item: AnyObject = dataSource!.objectForRow(row) {
@@ -96,17 +44,6 @@ class TagsViewController: DataSourceViewController {
         }
     }
     
-    override func keyDown(theEvent: NSEvent) {
-        switch theEvent.keyCode {
-        case 36:
-            enterKeyPressed(theEvent)
-        case 124:
-            rightArrowKeyPressed(theEvent)
-        default:
-            super.keyDown(theEvent)
-        }
-    }
-    
     func enterKeyPressed(theEvent: NSEvent) {
         if let tag = selectedTag() {
             loadSingleTagView(tag)
@@ -128,11 +65,6 @@ class TagsViewController: DataSourceViewController {
         viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
-    }
-    
-    override func refresh() {
-        addLoaderView()
-        dataSource!.refresh()
     }
     
     func tagCellView(tableView: NSTableView) -> TagTableCellView {
@@ -192,6 +124,87 @@ class TagsViewController: DataSourceViewController {
         return rowView!
     }
     
+    // MARK: Actions
+    
+    func searchFieldSubmit(sender: NSSearchField) {
+        tagsDataSource!.searchKeywords = sender.stringValue
+    }
+    
+    // MARK: NSResponder
+    
+    override func keyDown(theEvent: NSEvent) {
+        switch theEvent.keyCode {
+        case 36:
+            enterKeyPressed(theEvent)
+        case 124:
+            rightArrowKeyPressed(theEvent)
+        default:
+            super.keyDown(theEvent)
+        }
+    }
+    
+    // MARK: NSViewController
+    
+    override func loadView() {
+        view = NSView()
+        
+        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+        view.addSubview(searchHeaderController.view)
+        searchHeaderController.view.snp_makeConstraints { make in
+            make.height.equalTo(52)
+            make.top.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        searchHeaderController.searchField.target = self
+        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        
+        scrollView = RefreshScrollView()
+        view.addSubview(scrollView)
+        scrollView.snp_makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp_bottom)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        
+        tableView = InsetTableView()
+        tableView.headerView = nil
+        tableView.intercellSpacing = NSSize(width: 0, height: 0)
+        let column = NSTableColumn(identifier: "Col0")
+        column.width = 400
+        column.minWidth = 40
+        column.maxWidth = 1000
+        tableView.addTableColumn(column)
+        
+        scrollView.documentView = tableView
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.horizontalScrollElasticity = .None
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.setDelegate(self)
+        tableView.extendedDelegate = self
+        
+        self.dataSource = TagsDataSource(viewController: self)
+        tableView.setDataSource(dataSource)
+        self.dataSource?.loadNextPageObjects()
+    }
+    
+    // MARK: BaseContentViewController
+    
+    override var analyticsViewName: String {
+        return "MainWindow/Genres"
+    }
+    
+    override func refresh() {
+        addLoaderView()
+        dataSource!.refresh()
+    }
+    
     // MARK: NSTableViewDelegate
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
@@ -248,11 +261,5 @@ class TagsViewController: DataSourceViewController {
         case .SectionHeaderItem:
             return
         }
-    }
-    
-    // MARK: Actions
-    
-    func searchFieldSubmit(sender: NSSearchField) {
-        tagsDataSource!.searchKeywords = sender.stringValue
     }
 }

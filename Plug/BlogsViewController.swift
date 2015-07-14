@@ -13,58 +13,6 @@ class BlogsViewController: DataSourceViewController {
     var blogDataSource: BlogsDataSource? {
         return dataSource as? BlogsDataSource
     }
-    override var analyticsViewName: String {
-        return "MainWindow/BlogDirectory"
-    }
-    
-    override func loadView() {
-        view = NSView()
-        
-        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
-        view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
-            make.height.equalTo(52)
-            make.top.equalTo(self.view)
-            make.left.equalTo(self.view)
-            make.right.equalTo(self.view)
-        }
-        searchHeaderController.searchField.target = self
-        searchHeaderController.searchField.action = "searchFieldSubmit:"
-        
-        scrollView = RefreshScrollView()
-        view.addSubview(scrollView)
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
-            make.left.equalTo(self.view)
-            make.bottom.equalTo(self.view)
-            make.right.equalTo(self.view)
-        }
-        
-        tableView = InsetTableView()
-        tableView.headerView = nil
-        tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
-        column.width = 400
-        column.minWidth = 40
-        column.maxWidth = 1000
-        tableView.addTableColumn(column)
-        
-        scrollView.documentView = tableView
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.setDelegate(self)
-        tableView.extendedDelegate = self
-        
-        dataSource = BlogsDataSource(viewController: self)
-        tableView.setDataSource(dataSource)
-        dataSource!.loadNextPageObjects()
-    }
     
     func itemForRow(row: Int) -> BlogDirectoryItem? {
         if let item: AnyObject = dataSource!.objectForRow(row) {
@@ -85,11 +33,6 @@ class BlogsViewController: DataSourceViewController {
     func loadBlogViewController(blog: HypeMachineAPI.Blog) {
         var viewController = BlogViewController(blog: blog)
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
-    }
-    
-    override func refresh() {
-        addLoaderView()
-        dataSource!.refresh()
     }
     
     func blogCellView(tableView: NSTableView) -> BlogTableCellView {
@@ -178,6 +121,74 @@ class BlogsViewController: DataSourceViewController {
         return rowView!
     }
     
+    // MARK: Actions
+    
+    func searchFieldSubmit(sender: NSSearchField) {
+        blogDataSource!.searchKeywords = sender.stringValue
+    }
+    
+    // MARK: NSViewController
+    
+    override func loadView() {
+        view = NSView()
+        
+        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+        view.addSubview(searchHeaderController.view)
+        searchHeaderController.view.snp_makeConstraints { make in
+            make.height.equalTo(52)
+            make.top.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        searchHeaderController.searchField.target = self
+        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        
+        scrollView = RefreshScrollView()
+        view.addSubview(scrollView)
+        scrollView.snp_makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp_bottom)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+            make.right.equalTo(self.view)
+        }
+        
+        tableView = InsetTableView()
+        tableView.headerView = nil
+        tableView.intercellSpacing = NSSize(width: 0, height: 0)
+        let column = NSTableColumn(identifier: "Col0")
+        column.width = 400
+        column.minWidth = 40
+        column.maxWidth = 1000
+        tableView.addTableColumn(column)
+        
+        scrollView.documentView = tableView
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.horizontalScrollElasticity = .None
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.setDelegate(self)
+        tableView.extendedDelegate = self
+        
+        dataSource = BlogsDataSource(viewController: self)
+        tableView.setDataSource(dataSource)
+        dataSource!.loadNextPageObjects()
+    }
+    
+    // MARK: BaseContentViewController
+    
+    override var analyticsViewName: String {
+        return "MainWindow/BlogDirectory"
+    }
+    
+    override func refresh() {
+        addLoaderView()
+        dataSource!.refresh()
+    }
+    
     // MARK: NSTableViewDelegate
     
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
@@ -234,11 +245,5 @@ class BlogsViewController: DataSourceViewController {
         case .SectionHeaderItem:
             return
         }
-    }
-    
-    // MARK: Actions
-    
-    @IBAction func searchFieldSubmit(sender: NSSearchField) {
-        blogDataSource!.searchKeywords = sender.stringValue
     }
 }

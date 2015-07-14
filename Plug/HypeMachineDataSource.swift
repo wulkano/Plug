@@ -40,30 +40,6 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         self.viewController = viewController
         super.init()
     }
-//    
-//    func loadInitialObjects() {
-//        if requestInProgress { return }
-//        
-//        requestInProgress = true
-//        requestInitialObjects()
-//    }
-//    
-//    func requestInitialObjects() {
-//        fatalError("requestInitialValues() not implemented")
-//    }
-//    
-//    func initialObjectsReceived(contents: [AnyObject]?, error: NSError?) {
-//        if error != nil {
-//            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-//            println(error!)
-//            self.viewController.requestInitialValuesFinished()
-//            return
-//        }
-//        
-//        self.generateTableContents(contents!)
-//        self.requestInProgress = false
-//        self.viewController.requestInitialValuesFinished()
-//    }
     
     func loadNextPageObjects() {
         if singlePage && currentPage >= 1 { return }
@@ -79,6 +55,10 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     }
     
     func nextPageObjectsReceived(objects: [AnyObject]?, error: NSError?) {
+        if currentPage == 0 {
+            self.viewController.firstPageDidLoad()
+        }
+        
         if error != nil {
             Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
             println(error!)

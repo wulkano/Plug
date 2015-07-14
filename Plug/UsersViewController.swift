@@ -13,9 +13,19 @@ class UsersViewController: DataSourceViewController {
     var usersDataSource: UsersDataSource? {
         return dataSource! as? UsersDataSource
     }
-    override var analyticsViewName: String {
-        return "MainWindow/Friends"
+    
+    func loadSingleFriendView(friend: HypeMachineAPI.User) {
+        let viewController = UserViewController(user: friend)
+        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
+    
+    // MARK: Actions
+    
+    func searchFieldSubmit(sender: NSSearchField) {
+        usersDataSource!.searchKeywords = sender.stringValue
+    }
+    
+    // MARK: NSViewController
     
     override func loadView() {
         view = NSView()
@@ -54,21 +64,22 @@ class UsersViewController: DataSourceViewController {
         scrollView.hasHorizontalScroller = false
         scrollView.horizontalScrollElasticity = .None
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.setDelegate(self)
         tableView.extendedDelegate = self
-
+        
         dataSource = UsersDataSource(viewController: self)
         tableView.setDataSource(dataSource)
         dataSource!.loadNextPageObjects()
     }
     
-    func loadSingleFriendView(friend: HypeMachineAPI.User) {
-        let viewController = UserViewController(user: friend)
-        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
+    // MARK: BaseContentViewController
+    
+    override var analyticsViewName: String {
+        return "MainWindow/Friends"
     }
     
     override func refresh() {
@@ -154,16 +165,9 @@ class UsersViewController: DataSourceViewController {
     
     // MARK: ExtendedTableViewDelegate
     
-    
     override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         if let item: AnyObject = dataSource!.objectForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }
-    }
-    
-    // MARK: Actions
-    
-    func searchFieldSubmit(sender: NSSearchField) {
-        usersDataSource!.searchKeywords = sender.stringValue
     }
 }

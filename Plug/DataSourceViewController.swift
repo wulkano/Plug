@@ -15,20 +15,8 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     var scrollView: RefreshScrollView!
     var tableView: ExtendedTableView!
     
-    func requestInitialValuesFinished() {
+    func firstPageDidLoad() {
         removeLoaderView()
-    }
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        
-        tableView.updateVisibleRows()
-    }
-    
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        
-        tableView.visibleRows = []
     }
     
     func sectionHeaderCellView(tableView: NSTableView) -> SectionHeaderTableCellView {
@@ -70,6 +58,22 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     }
     
     func dataSourceChanged() {}
+    
+    // MARK: NSViewController
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        tableView.updateVisibleRows()
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        
+        tableView.visibleRows = []
+    }
+    
+    // MARK: BaseContentViewController
     
     override func refresh() {
         addLoaderView()
