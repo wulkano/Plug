@@ -9,19 +9,21 @@
 import Cocoa
 
 class RefreshScrollView: NSScrollView {
+    let delegate: RefreshScrollViewDelegate
+    
     var refreshHeaderController: RefreshHeaderViewController!
     var refreshClipView: RefreshClipView {
         return contentView as! RefreshClipView
     }
     
-    init() {
+    init(delegate: RefreshScrollViewDelegate) {
+        self.delegate = delegate
         super.init(frame: NSZeroRect)
         setup()
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setup()
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setup() {
@@ -52,7 +54,7 @@ class RefreshScrollView: NSScrollView {
             }
         case NSEventPhase.Ended:
             if refreshHeaderController.state == .ReleaseToRefresh {
-                refreshHeaderController.state = .Updating
+                startRefresh()
             }
         default:
             break
@@ -67,10 +69,17 @@ class RefreshScrollView: NSScrollView {
     
     func startRefresh() {
         refreshHeaderController.state = .Updating
+        delegate.didPullToRefresh()
     }
     
     func finishedRefresh() {
+        documentView!.scrollPoint(NSZeroPoint)
+
         refreshHeaderController.state = .PullToRefresh
         refreshHeaderController.lastUpdated = NSDate()
     }
+}
+
+protocol RefreshScrollViewDelegate {
+    func didPullToRefresh()
 }

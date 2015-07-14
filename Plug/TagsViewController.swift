@@ -159,7 +159,7 @@ class TagsViewController: DataSourceViewController {
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = "searchFieldSubmit:"
         
-        scrollView = RefreshScrollView()
+        scrollView = RefreshScrollView(delegate: self)
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp_bottom)

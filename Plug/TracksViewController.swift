@@ -291,7 +291,7 @@ class TracksViewController: DataSourceViewController {
     override func loadView() {
         view = NSView()
         
-        scrollView = RefreshScrollView()
+        scrollView = RefreshScrollView(delegate: self)
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints { make in
             make.edges.equalTo(self.view)

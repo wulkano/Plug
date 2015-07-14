@@ -21,8 +21,26 @@ class LoaderViewController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func startAnimation() {
+        Animations.RotateClockwise(loaderView)
+    }
+    
+    func stopAnimation() {
+        Animations.RemoveAllAnimations(loaderView)
+    }
+    
+    // MARK: NSViewController
+    
     override func loadView() {
         view = NSView(frame: NSZeroRect)
+        
+        let background = BackgroundBorderView()
+        background.background = true
+        background.backgroundColor = NSColor.whiteColor()
+        view.addSubview(background)
+        background.snp_makeConstraints { make in
+            make.edges.equalTo(view)
+        }
         
         loaderView = NSImageView()
         switch size {
@@ -39,14 +57,6 @@ class LoaderViewController: NSViewController {
     
     override func viewDidAppear() {
         startAnimation()
-    }
-    
-    func startAnimation() {
-        Animations.RotateClockwise(loaderView)
-    }
-    
-    func stopAnimation() {
-        Animations.RemoveAllAnimations(loaderView)
     }
 }
 

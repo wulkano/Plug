@@ -55,9 +55,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     }
     
     func nextPageObjectsReceived(objects: [AnyObject]?, error: NSError?) {
-        if currentPage == 0 {
-            self.viewController.firstPageDidLoad()
-        }
+        self.viewController.nextPageDidLoad(currentPage)
         
         if error != nil {
             Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])

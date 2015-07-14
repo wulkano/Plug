@@ -8,15 +8,18 @@
 
 import Cocoa
 
-class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate {
+class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate, RefreshScrollViewDelegate {
     var dataSource: HypeMachineDataSource? {
         didSet { dataSourceChanged() }
     }
     var scrollView: RefreshScrollView!
     var tableView: ExtendedTableView!
     
-    func firstPageDidLoad() {
-        removeLoaderView()
+    func nextPageDidLoad(pageNumber: Int) {
+        if pageNumber == 0 {
+            removeLoaderView()
+            scrollView.finishedRefresh()
+        }
     }
     
     func sectionHeaderCellView(tableView: NSTableView) -> SectionHeaderTableCellView {
@@ -77,6 +80,12 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     
     override func refresh() {
         addLoaderView()
+        dataSource!.refresh()
+    }
+    
+    // MARK: RefreshScrollViewDelegate
+    
+    func didPullToRefresh() {
         dataSource!.refresh()
     }
     

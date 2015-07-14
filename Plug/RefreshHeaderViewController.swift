@@ -97,7 +97,9 @@ class RefreshHeaderViewController: NSViewController {
         if lastUpdated == nil {
             formattedTimestamp += "N/A"
         } else {
-            formattedTimestamp += lastUpdated!.description
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "h:mm a"
+            formattedTimestamp += formatter.stringFromDate(lastUpdated!)
         }
         
         timestampLabel.stringValue = formattedTimestamp
