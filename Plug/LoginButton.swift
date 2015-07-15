@@ -86,7 +86,7 @@ class LoginButton: SwissArmyButton {
                 titleString = message
             }
             
-            return titleString.uppercaseString
+            return titleString
         }
         
         func image() -> NSImage? {
