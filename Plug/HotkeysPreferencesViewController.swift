@@ -14,5 +14,4 @@ class HotkeysPreferencesViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
     }
-    
 }

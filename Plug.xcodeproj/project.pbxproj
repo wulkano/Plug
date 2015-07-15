@@ -36,7 +36,6 @@
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
 		FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogsViewController.swift */; };
-		FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B319F80378009FCDE3 /* MainMenuController.swift */; };
 		FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */; };
 		FA3241BA19F81579009FCDE3 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */; };
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
@@ -211,7 +210,6 @@
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
 		FA3199AC198247970097B081 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
-		FA3241B319F80378009FCDE3 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HypeMachineDataSource.swift; sourceTree = "<group>"; };
 		FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
@@ -400,7 +398,6 @@
 			children = (
 				FACEEBEC19ABC32E0093A81B /* Login */,
 				FACEEBED19ABC33A0093A81B /* Main */,
-				FA3241B219F80355009FCDE3 /* MainMenu */,
 				FACEEBEB19ABC3210093A81B /* Preferences */,
 				FAEB26A019AD20620024CB0C /* Track Info */,
 			);
@@ -507,14 +504,6 @@
 				FA24EDA11974A9A500A781C8 /* main.swift */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FA3241B219F80355009FCDE3 /* MainMenu */ = {
-			isa = PBXGroup;
-			children = (
-				FA3241B319F80378009FCDE3 /* MainMenuController.swift */,
-			);
-			name = MainMenu;
 			sourceTree = "<group>";
 		};
 		FA3241BB19F815AD009FCDE3 /* DataSourceViewControllers */ = {
@@ -1044,7 +1033,6 @@
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,
 				FA50280319C02EE800E3C84E /* Analytics.swift in Sources */,
 				FA5394F019AF6B0F006A95A5 /* SwissArmyButton.swift in Sources */,
-				FA3241B419F80378009FCDE3 /* MainMenuController.swift in Sources */,
 				FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */,
 				FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */,
 				FA4BF21919F60C4E0078AB82 /* TagTableCellView.swift in Sources */,

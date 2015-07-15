@@ -19,24 +19,6 @@ class PreferencesViewController: NSViewController {
         
         Analytics.trackView("PreferencesWindow/General")
     }
-
-    @IBAction func generalTabClicked(sender: NSButton) {
-        Analytics.trackView("PreferencesWindow/General")
-        toggleAllTabsExcept(sender)
-        switchToTabAtIndex(0)
-    }
-    
-    @IBAction func hotkeysTabClicked(sender: NSButton) {
-        Analytics.trackView("PreferencesWindow/HotKeys")
-        toggleAllTabsExcept(sender)
-        switchToTabAtIndex(1)
-    }
-
-    @IBAction func mutedTabClicked(sender: NSButton) {
-        Analytics.trackView("PreferencesWindow/Muted")
-        toggleAllTabsExcept(sender)
-        switchToTabAtIndex(2)
-    }
     
     func toggleAllTabsExcept(sender: NSButton) {
         let allTabs = [
@@ -66,5 +48,25 @@ class PreferencesViewController: NSViewController {
                 tabViewController = controller as? NSTabViewController
             }
         }
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func generalTabClicked(sender: NSButton) {
+        Analytics.trackView("PreferencesWindow/General")
+        toggleAllTabsExcept(sender)
+        switchToTabAtIndex(0)
+    }
+    
+    @IBAction func hotkeysTabClicked(sender: NSButton) {
+        Analytics.trackView("PreferencesWindow/HotKeys")
+        toggleAllTabsExcept(sender)
+        switchToTabAtIndex(1)
+    }
+    
+    @IBAction func mutedTabClicked(sender: NSButton) {
+        Analytics.trackView("PreferencesWindow/Muted")
+        toggleAllTabsExcept(sender)
+        switchToTabAtIndex(2)
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -163,6 +163,14 @@ DQ
                                             <action selector="loginButtonClicked:" target="kJE-8h-8hu" id="mkc-Hp-7Cc"/>
                                         </connections>
                                     </button>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rKZ-IW-1UY">
+                                        <rect key="frame" x="118" y="310" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="0Oe-r5-6sg"/>
+                                            <constraint firstAttribute="height" constant="64" id="OgI-C8-P5H"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Login-Logo" id="9Eu-YJ-z4t"/>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="430" id="06u-qj-R4O"/>
@@ -171,6 +179,7 @@ DQ
                                     <constraint firstAttribute="width" constant="300" id="5wL-NQ-grR"/>
                                     <constraint firstItem="iqn-dS-QxW" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="7Wd-Ta-ko4"/>
                                     <constraint firstAttribute="trailing" secondItem="GlT-Dp-zTj" secondAttribute="trailing" constant="20" id="CP2-aW-vmq"/>
+                                    <constraint firstAttribute="centerX" secondItem="rKZ-IW-1UY" secondAttribute="centerX" id="Did-0G-un4"/>
                                     <constraint firstItem="KbM-Zi-8EU" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="E8H-D2-lOF"/>
                                     <constraint firstItem="F54-Ih-1Vd" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="GcB-xN-rUc"/>
                                     <constraint firstItem="Q6d-78-yrl" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="HG5-M6-QHa"/>
@@ -181,6 +190,7 @@ DQ
                                     <constraint firstItem="GlT-Dp-zTj" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="Ma4-WH-uej"/>
                                     <constraint firstItem="qvS-9M-X3g" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="64" id="NlQ-19-Tjd"/>
                                     <constraint firstAttribute="trailing" secondItem="F54-Ih-1Vd" secondAttribute="trailing" id="OlC-qt-w8y"/>
+                                    <constraint firstItem="rKZ-IW-1UY" firstAttribute="top" secondItem="zq8-oP-Cmk" secondAttribute="top" constant="56" id="PhD-yf-rDY"/>
                                     <constraint firstItem="JKj-sC-9NM" firstAttribute="top" secondItem="zq8-oP-Cmk" secondAttribute="top" constant="152" id="SVg-mv-s0a"/>
                                     <constraint firstItem="JKj-sC-9NM" firstAttribute="leading" secondItem="zq8-oP-Cmk" secondAttribute="leading" constant="20" id="WEu-xU-kHv"/>
                                     <constraint firstItem="Q6d-78-yrl" firstAttribute="top" secondItem="KbM-Zi-8EU" secondAttribute="bottom" constant="10" id="a8w-7D-LEO"/>
@@ -216,6 +226,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="Login-Logo" width="64" height="64"/>
         <image name="Login-Next" width="9" height="14"/>
     </resources>
 </document>

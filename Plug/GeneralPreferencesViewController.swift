@@ -20,7 +20,14 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
         GeneralPreference(title: "Show notifications when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
         GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
     ]
-
+    
+    func setHeightForPreferences() {
+        var desiredHeight = CGFloat(preferences.count) * 70
+        scrollViewHeightContraint.constant = desiredHeight
+    }
+    
+    // MARK: NSViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -28,22 +35,20 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
         setHeightForPreferences()
     }
     
-    func setHeightForPreferences() {
-        var desiredHeight = CGFloat(preferences.count) * 70
-        scrollViewHeightContraint.constant = desiredHeight
-    }
-    
-    // Disallows row selection
+    // MARK: NSTableViewDelegate
+
     func selectionShouldChangeInTableView(tableView: NSTableView) -> Bool {
-        return false
-    }
-    
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        return preferences[row]
+        return false // Disallows row selection
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return preferences.count
+    }
+    
+    // MARK: NSTableViewDataSource
+    
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+        return preferences[row]
     }
 }
 
