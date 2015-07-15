@@ -21,10 +21,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var signOutMenuItem: NSMenuItem!
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
     
+    deinit {
+        Notifications.unsubscribeAll(observer: self)
+    }
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         Fabric.with([Crashlytics()]) // Crash Reporting
         setupUserDefaults()
         setupUserNotifications()
+        setupNotifications()
         setupMediaKeys()
         setupHypeMachineAPI()
         
@@ -119,6 +124,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         UserNotificationHandler.sharedInstance
     }
     
+    func setupNotifications() {
+        Notifications.subscribe(observer: self, selector: "catchTokenErrors:", name: Notifications.DisplayError, object: nil)
+    }
+    
     func setupMediaKeys() {
         MediaKeyHandler.sharedInstance
     }
@@ -130,13 +139,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    // MARK: Notifications
+    
+    func catchTokenErrors(notification: NSNotification) {
+        let error = notification.userInfo!["error"] as! NSError
+
+        if error.code == HypeMachineAPI.ErrorCodes.InvalidHMToken.rawValue {
+            signOut(nil)
+        }
+    }
+    
     // MARK: Actions
     
     @IBAction func aboutItemClicked(sender: AnyObject) {
         openAboutWindow()
     }
     
-    @IBAction func signOut(sender: AnyObject) {
+    @IBAction func signOut(sender: AnyObject?) {
         Analytics.trackButtonClick("Sign Out")
         closeMainWindow()
         if preferencesWindowController != nil {

@@ -18,16 +18,11 @@ class ColorChangingTextField: NSTextField {
     }
     
     func setColorForStringValue() {
-        Async.DefaultPriority {
-            var numberValue = self.numberValueForStringValue()
-            var gradientLocation = self.gradientLocationForNumberValue(numberValue)
-            var gradient = self.makeGradient()
-            var newColor = gradient.interpolatedColorAtLocation(gradientLocation)
-            
-            Async.MainQueue {
-                self.textColor = newColor
-            }
-        }
+        let numberValue = self.numberValueForStringValue()
+        var gradientLocation = self.gradientLocationForNumberValue(numberValue)
+        var gradient = self.makeGradient()
+        var newColor = gradient.interpolatedColorAtLocation(gradientLocation)
+        self.textColor = newColor
     }
     
     func gradientLocationForNumberValue(numberValue: Int) -> CGFloat {
@@ -40,13 +35,15 @@ class ColorChangingTextField: NSTextField {
     }
     
     func numberValueForStringValue() -> Int {
-        if stringValue.hasSuffix("k") {
+        let escapedStringValue = stringValue.stringByReplacingOccurrencesOfString(",", withString: "", options: .LiteralSearch, range: nil)
+        
+        if escapedStringValue.hasSuffix("k") {
             let numberFormatter = NSNumberFormatter()
             numberFormatter.format = "####k"
-            let numberValue = numberFormatter.numberFromString(stringValue)!.integerValue
+            let numberValue = numberFormatter.numberFromString(escapedStringValue)!.integerValue
             return numberValue * 1000
         } else {
-            return stringValue.toInt()!
+            return escapedStringValue.toInt()!
         }
     }
     

@@ -44,7 +44,7 @@
                                             <constraint firstAttribute="height" constant="20" id="MDf-tD-rCR"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="EMAIL/USERNAME" id="hzk-fT-A6w">
-                                            <font key="font" size="12" name="DINBold"/>
+                                            <font key="font" size="12" name="DINAlternate-Bold"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -78,7 +78,7 @@
                                             <constraint firstAttribute="height" constant="20" id="beu-6A-9Y2"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="PASSWORD" id="Hsm-0g-Eof">
-                                            <font key="font" size="12" name="DINBold"/>
+                                            <font key="font" size="12" name="DINAlternate-Bold"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -116,7 +116,7 @@
                                         </constraints>
                                         <buttonCell key="cell" type="bevel" title="FORGOTTEN PASSWORD?" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9" customClass="ForgotPasswordButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" size="12" name="DINBold"/>
+                                            <font key="font" size="12" name="DINAlternate-Bold"/>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="vibrant" value="YES"/>
@@ -133,7 +133,7 @@
                                         </constraints>
                                         <buttonCell key="cell" type="bevel" title="SIGN UP TO HYPE MACHINE" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ml6-hR-1c7" customClass="SignUpButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" size="12" name="DINBold"/>
+                                            <font key="font" size="12" name="DINAlternate-Bold"/>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="vibrant" value="YES"/>
@@ -150,7 +150,7 @@
                                         </constraints>
                                         <buttonCell key="cell" type="bevel" title="LOG IN" bezelStyle="rounded" image="Login-Next" imagePosition="right" alignment="left" lineBreakMode="truncatingTail" enabled="NO" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn" customClass="LoginButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" size="14" name="DINBold"/>
+                                            <font key="font" size="14" name="DINAlternate-Bold"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>

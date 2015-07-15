@@ -40,7 +40,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
             
             if error != nil {
                 var errorMessage: String
-                if error!.localizedDescription == "Wrong password" {
+                if error!.code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue {
                     errorMessage = "Incorrect username/password"
                 } else {
                     errorMessage = "Network Error"

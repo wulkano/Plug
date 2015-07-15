@@ -8,6 +8,7 @@
 
 import Cocoa
 import SnapKit
+import HypeMachineAPI
 
 class MainViewController: NSViewController, SidebarViewControllerDelegate, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
