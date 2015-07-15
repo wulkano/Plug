@@ -55,18 +55,14 @@ class NavigationBarController: NSViewController {
         if items == nil || items!.count <= 1 { return nil}
         
         var poppedItems: [NavigationItem] = []
-        var pastTargetItem = false
+        var topItemIndex = find(items!, item)
         
-        for (index, i) in enumerate(items!) {
-            if i === item {
-                pastTargetItem = true
-                continue
-            }
-            
-            if pastTargetItem {
-                poppedItems.append(i)
-                items!.removeAtIndex(index)
-            }
+        if topItemIndex == nil {
+            return nil
+        }
+        
+        while items!.count - 1 > topItemIndex {
+            poppedItems.append(items!.removeLast())
         }
         
         updateNavigationBarViews(animated: animated, direction: .RightToLeft)
