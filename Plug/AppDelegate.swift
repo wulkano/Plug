@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var mainWindowController: NSWindowController?
     var loginWindowController: NSWindowController?
     var preferencesWindowController: NSWindowController?
+    var aboutWindowController: AboutWindowController?
     @IBOutlet weak var preferencesMenuItem: NSMenuItem!
     @IBOutlet weak var preferencesMenuSeparator: NSMenuItem!
     @IBOutlet var signOutMenuItem: NSMenuItem!
@@ -61,6 +62,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func closeLoginWindow() {
         loginWindowController!.window!.close()
         loginWindowController = nil
+    }
+    
+    func openAboutWindow() {
+        if aboutWindowController == nil {
+            aboutWindowController = AboutWindowController()
+        }
+        aboutWindowController!.showWindow(self)
     }
     
     func openPreferencesWindow() {
@@ -123,6 +131,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: Actions
+    
+    @IBAction func aboutItemClicked(sender: AnyObject) {
+        openAboutWindow()
+    }
     
     @IBAction func signOut(sender: AnyObject) {
         Analytics.trackButtonClick("Sign Out")

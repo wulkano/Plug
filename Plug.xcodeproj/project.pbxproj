@@ -92,6 +92,8 @@
 		FA7404E51B34868000684ADA /* SimpleGoogleAnalytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EB1B348E8A00684ADA /* Fabric.framework */; };
 		FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EC1B348E8A00684ADA /* Crashlytics.framework */; };
+		FA75E81E1B560F930070FB1D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E81D1B560F930070FB1D /* AboutViewController.swift */; };
+		FA75E8211B5615480070FB1D /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8201B5615480070FB1D /* AboutWindowController.swift */; };
 		FA76FCC519DF414E0022BB09 /* SelectableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */; };
 		FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774993198B46770048863F /* BackgroundBorderView.swift */; };
 		FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */; };
@@ -263,6 +265,8 @@
 		FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		FA7404EB1B348E8A00684ADA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		FA7404EC1B348E8A00684ADA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		FA75E81D1B560F930070FB1D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		FA75E8201B5615480070FB1D /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		FA76FCC419DF414E0022BB09 /* SelectableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectableTextField.swift; sourceTree = "<group>"; };
 		FA774993198B46770048863F /* BackgroundBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundBorderView.swift; sourceTree = "<group>"; };
 		FA774995198B4CF00048863F /* IOSStyleTableRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSStyleTableRowView.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 		FA0B1CF21976D8320030C873 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA75E81F1B560F980070FB1D /* About */,
 				FACEEBEC19ABC32E0093A81B /* Login */,
 				FACEEBED19ABC33A0093A81B /* Main */,
 				FACEEBEB19ABC3210093A81B /* Preferences */,
@@ -603,6 +608,15 @@
 				FA1C5AE719E8981400DD7165 /* SLColorArt */,
 			);
 			name = Plugins;
+			sourceTree = "<group>";
+		};
+		FA75E81F1B560F980070FB1D /* About */ = {
+			isa = PBXGroup;
+			children = (
+				FA75E81D1B560F930070FB1D /* AboutViewController.swift */,
+				FA75E8201B5615480070FB1D /* AboutWindowController.swift */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		FA99EEC619D0210F008C9C4A /* SPInvocationGrabbing */ = {
@@ -1014,6 +1028,7 @@
 				FAAC8DAE19E4A1A300B1231B /* TagContainerView.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */,
+				FA75E8211B5615480070FB1D /* AboutWindowController.swift in Sources */,
 				FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */,
 				FAACE4C419AC2ADD00F8E9E8 /* SignUpButtonCell.swift in Sources */,
 				FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */,
@@ -1056,6 +1071,7 @@
 				FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */,
 				FADC96F21974CA0D009458FA /* LoveCountTrackTableCellView.swift in Sources */,
 				FACFAAE719BAB815006BD52B /* UserTableCellView.swift in Sources */,
+				FA75E81E1B560F930070FB1D /* AboutViewController.swift in Sources */,
 				FA7B3CB9199B626B008E8B01 /* SidebarOverlayView.swift in Sources */,
 				FA6ADCFB19BA8B9600CCD371 /* SingleBlogViewFormatter.swift in Sources */,
 				FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */,

@@ -19,6 +19,7 @@ class HyperlinkButton: NSButton {
         didSet { applyAttributes() }
     }
     @IBInspectable var hoverUnderline: Bool = false
+    @IBInspectable var alwaysUnderlined: Bool = false
     
     override var title: String {
         didSet { applyAttributes() }
@@ -61,10 +62,14 @@ class HyperlinkButton: NSButton {
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
-        if hoverUnderline {
+        if hoverUnderline && !alwaysUnderlined {
             let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
             let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea)
+        }
+        
+        if alwaysUnderlined {
+            addUnderlineToText()
         }
     }
 
