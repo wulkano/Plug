@@ -15,7 +15,7 @@ class UsersViewController: DataSourceViewController {
     }
     
     func loadSingleFriendView(friend: HypeMachineAPI.User) {
-        let viewController = UserViewController(user: friend)
+        let viewController = UserViewController(user: friend)!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     
@@ -28,7 +28,7 @@ class UsersViewController: DataSourceViewController {
     // MARK: NSViewController
     
     override func loadView() {
-        view = NSView()
+        super.loadView()
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
@@ -41,28 +41,13 @@ class UsersViewController: DataSourceViewController {
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = "searchFieldSubmit:"
         
-        scrollView = RefreshScrollView(delegate: self)
-        view.addSubview(scrollView)
+        loadScrollViewAndTableView()
         scrollView.snp_makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp_bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-        
-        tableView = InsetTableView()
-        tableView.headerView = nil
-        tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
-        column.width = 400
-        column.minWidth = 40
-        column.maxWidth = 1000
-        tableView.addTableColumn(column)
-        
-        scrollView.documentView = tableView
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
     }
     
     override func viewDidLoad() {

@@ -23,9 +23,9 @@ class TracksViewController: DataSourceViewController {
     
     var showLoveButton: Bool = true
     
-    init?(type: TracksViewControllerType) {
+    init?(type: TracksViewControllerType, title: String) {
         self.type = type
-        super.init(nibName: nil, bundle: nil)
+        super.init(title: title)
     }
 
     required init?(coder: NSCoder) {
@@ -289,27 +289,12 @@ class TracksViewController: DataSourceViewController {
     // MARK: NSViewController
     
     override func loadView() {
-        view = NSView()
+        super.loadView()
         
-        scrollView = RefreshScrollView(delegate: self)
-        view.addSubview(scrollView)
+        loadScrollViewAndTableView()
         scrollView.snp_makeConstraints { make in
             make.edges.equalTo(self.view)
         }
-        
-        tableView = InsetTableView()
-        tableView.headerView = nil
-        tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
-        column.width = 400
-        column.minWidth = 40
-        column.maxWidth = 1000
-        tableView.addTableColumn(column)
-        
-        scrollView.documentView = tableView
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
     }
     
     override func viewDidLoad() {

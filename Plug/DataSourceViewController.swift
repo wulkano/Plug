@@ -15,6 +15,22 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     var scrollView: RefreshScrollView!
     var tableView: ExtendedTableView!
     
+    func loadScrollViewAndTableView() {
+        scrollView = RefreshScrollView(delegate: self)
+        view.addSubview(scrollView)
+        
+        tableView = InsetTableView()
+        tableView.headerView = nil
+        tableView.intercellSpacing = NSSize(width: 0, height: 0)
+        let column = NSTableColumn(identifier: "Col0")
+        tableView.addTableColumn(column)
+        
+        scrollView.documentView = tableView
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        scrollView.horizontalScrollElasticity = .None
+    }
+    
     func nextPageDidLoad(pageNumber: Int) {
         if pageNumber == 0 {
             removeLoaderView()

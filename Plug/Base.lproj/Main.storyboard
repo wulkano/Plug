@@ -9,12 +9,11 @@
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindow" title="Main Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
+                    <window key="window" identifier="MainWindow" title="Main Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="226" y="48" width="472" height="778"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <value key="minSize" type="size" width="370" height="515"/>
                         <value key="maxSize" type="size" width="700" height="10000"/>
                         <view key="contentView" id="O92-4t-NeX">
                             <rect key="frame" x="0.0" y="0.0" width="472" height="778"/>

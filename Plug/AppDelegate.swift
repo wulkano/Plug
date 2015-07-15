@@ -43,7 +43,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openMainWindow() {
         if mainWindowController == nil {
             mainWindowController = (NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as! NSWindowController)
+            
+                let width: CGFloat = 472
+                let height: CGFloat = 778
+                let x: CGFloat = 100
+                let y: CGFloat = (NSScreen.mainScreen()!.frame.size.height - 778) / 2
+
+                var defaultFrame = NSMakeRect(x, y, width, height)
+                mainWindowController!.window!.setFrame(defaultFrame, display: false)
         }
+        
         mainWindowController!.showWindow(self)
         showSignOutInMenu()
         showPreferencesInMenu()

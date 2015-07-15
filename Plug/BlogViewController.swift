@@ -27,20 +27,15 @@ class BlogViewController: BaseContentViewController {
     
     var tracksViewController: TracksViewController!
     
-    init!(blog: HypeMachineAPI.Blog) {
+    init?(blog: HypeMachineAPI.Blog) {
         self.blog = blog
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        title = self.blog.name
-        loadActionButton()
+        super.init(title: self.blog.name)
+        setup()
     }
     
-    init!(blogID: Int, blogName: String) {
-        super.init(nibName: nil, bundle: nil)
-        
-        title = blogName
-        loadActionButton()
+    init?(blogID: Int, blogName: String) {
+        super.init(title: blogName)
+        setup()
         loadBlog(blogID)
     }
 
@@ -48,8 +43,12 @@ class BlogViewController: BaseContentViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setup() {
+        navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: "followButtonClicked:")
+    }
+    
     override func loadView() {
-        view = NSView()
+        super.loadView()
     
         header = BackgroundBorderView(frame: NSZeroRect)
         header.bottomBorder = true
@@ -77,6 +76,8 @@ class BlogViewController: BaseContentViewController {
         titleButton.hoverUnderline = true
         titleButton.bordered = false
         titleButton.font = NSFont(name: "HelveticaNeue", size: 20)!
+        titleButton.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
+        titleButton.lineBreakMode = .ByTruncatingMiddle
         header.addSubview(titleButton)
         titleButton.snp_makeConstraints { make in
             make.height.equalTo(24)
@@ -107,20 +108,6 @@ class BlogViewController: BaseContentViewController {
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-    }
-    
-    func loadActionButton() {
-        actionButton = ActionButton(frame: NSZeroRect)
-        let actionCell = ActionButtonCell(textCell: "")
-        actionButton!.setCell(actionCell)
-        actionButton!.onStateTitle = "Unfollow"
-        actionButton!.offStateTitle = "Follow"
-        actionButton!.state = NSOffState
-        actionButton!.bezelStyle = .RegularSquareBezelStyle
-        actionButton!.bordered = true
-        actionButton!.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
-        actionButton!.target = self
-        actionButton!.action = "followButtonClicked:"
     }
     
     override func viewDidLoad() {
@@ -195,7 +182,7 @@ class BlogViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        tracksViewController = TracksViewController(type: .LoveCount)!
+        tracksViewController = TracksViewController(type: .LoveCount, title: "")!
         addChildViewController(tracksViewController)
         
         playlistContainer.addSubview(tracksViewController.view)
@@ -221,9 +208,9 @@ class BlogViewController: BaseContentViewController {
     
     func updateActionButton() {
         if blog.following {
-            actionButton!.state = NSOnState
+            navigationItem.rightButton!.state = NSOnState
         } else {
-            actionButton!.state = NSOffState
+            navigationItem.rightButton!.state = NSOffState
         }
     }
     

@@ -28,29 +28,28 @@ class UserViewController: BaseContentViewController {
     
     var tracksViewController: TracksViewController!
     
-    init!(user: HypeMachineAPI.User) {
+    init?(user: HypeMachineAPI.User) {
         self.user = user
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        title = user.username
-        loadActionButton()
+        super.init(title: user.username)
+        setup()
     }
     
-    init!(username: String) {
-        super.init(nibName: nil, bundle: nil)
-        
-        title = username
-        loadActionButton()
+    init?(username: String) {
+        super.init(title: username)
         loadUser(username)
+        setup()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setup() {
+        navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: "followButtonClicked:")
+    }
+    
     override func loadView() {
-        view = NSView()
+        super.loadView()
         
         header = BackgroundBorderView(frame: NSZeroRect)
         header.bottomBorder = true
@@ -155,20 +154,6 @@ class UserViewController: BaseContentViewController {
         }
     }
     
-    func loadActionButton() {
-        actionButton = ActionButton(frame: NSZeroRect)
-        let actionCell = ActionButtonCell(textCell: "")
-        actionButton!.setCell(actionCell)
-        actionButton!.onStateTitle = "Unfollow"
-        actionButton!.offStateTitle = "Follow"
-        actionButton!.state = NSOffState
-        actionButton!.bezelStyle = .RegularSquareBezelStyle
-        actionButton!.bordered = true
-        actionButton!.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
-        actionButton!.target = self
-        actionButton!.action = "followButtonClicked:"
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -228,7 +213,7 @@ class UserViewController: BaseContentViewController {
     
     func loadPlaylist() {
         let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
-        tracksViewController = TracksViewController(type: .LoveCount)
+        tracksViewController = TracksViewController(type: .LoveCount, title: "")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
         tracksViewController.view.snp_makeConstraints { make in
@@ -252,9 +237,9 @@ class UserViewController: BaseContentViewController {
     
     func updateActionButton() {
         if user!.friend! == true {
-            actionButton!.state = NSOnState
+            navigationItem!.rightButton!.state = NSOnState
         } else {
-            actionButton!.state = NSOffState
+            navigationItem!.rightButton!.state = NSOffState
         }
     }
     

@@ -21,19 +21,6 @@ class SidebarViewController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        view = NSView(frame: NSZeroRect)
-        
-        let backgroundView = DraggableVisualEffectsView()
-        backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
-        view.addSubview(backgroundView)
-        backgroundView.snp_makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
-        
-        loadButtons(superview: backgroundView)
-    }
-    
     func loadButtons(#superview: NSView) {
         var n = 0
         while let navigationSection = NavigationSection(rawValue: n) {
@@ -59,6 +46,10 @@ class SidebarViewController: NSViewController {
             n++
         }
         
+        buttons[buttons.count - 1].snp_makeConstraints { make in
+            make.bottom.lessThanOrEqualTo(superview).offset(-30)
+        }
+        
         buttons[0].state = NSOnState
     }
     
@@ -75,6 +66,21 @@ class SidebarViewController: NSViewController {
                 button.state = NSOffState
             }
         }
+    }
+    
+    // MARK: NSViewController
+    
+    override func loadView() {
+        view = NSView(frame: NSZeroRect)
+        
+        let backgroundView = DraggableVisualEffectsView()
+        backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+        view.addSubview(backgroundView)
+        backgroundView.snp_makeConstraints { make in
+            make.edges.equalTo(self.view)
+        }
+        
+        loadButtons(superview: backgroundView)
     }
 }
 

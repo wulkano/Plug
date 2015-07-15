@@ -175,22 +175,22 @@ extension NavigationSection {
         
         switch self {
         case .Popular:
-            targetViewController = TracksViewController(type: .HeatMap)!
+            targetViewController = TracksViewController(type: .HeatMap, title: self.title)!
         case .Favorites:
-            targetViewController = TracksViewController(type: .LoveCount)!
+            targetViewController = TracksViewController(type: .LoveCount, title: self.title)!
             (targetViewController as! TracksViewController).showLoveButton = false
         case .Latest:
-            targetViewController = TracksViewController(type: .LoveCount)!
+            targetViewController = TracksViewController(type: .LoveCount, title: self.title)!
         case .Blogs:
-            targetViewController = BlogsViewController(nibName: nil, bundle: nil)!
+            targetViewController = BlogsViewController(title: self.title)!
         case .Feed:
-            targetViewController = TracksViewController(type: .Feed)!
+            targetViewController = TracksViewController(type: .Feed, title: self.title)!
         case .Genres:
-            targetViewController = TagsViewController(nibName: nil, bundle: nil)!
+            targetViewController = TagsViewController(title: self.title)!
         case .Friends:
-            targetViewController = UsersViewController(nibName: nil, bundle: nil)!
+            targetViewController = UsersViewController(title: self.title)!
         case .Search:
-            targetViewController = SearchViewController(nibName: nil, bundle: nil)!
+            targetViewController = SearchViewController(title: self.title)!
         }
         
         targetViewController.dropdownMenu = self.menu(target)
@@ -209,8 +209,6 @@ extension NavigationSection {
                 break
             }
         }
-        
-        targetViewController.title = self.title
         
         NavigationSection.viewControllers[self.viewControllerIdentifier] = targetViewController
         

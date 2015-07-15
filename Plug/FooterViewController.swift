@@ -9,9 +9,34 @@
 import Cocoa
 
 class FooterViewController: NSViewController {
-    @IBOutlet var volumeIcon: VolumeIconView!
-    @IBOutlet var volumeSlider: NSSlider!
-    @IBOutlet var shuffleButton: SwissArmyButton!
+    var volumeIcon: VolumeIconView!
+    var volumeSlider: NSSlider!
+    var shuffleButton: SwissArmyButton!
+    
+    func toggleShuffle() {
+        let oldShuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
+        let newShuffle = !oldShuffle
+        NSUserDefaults.standardUserDefaults().setValue(newShuffle, forKey: "shuffle")
+    }
+    
+    // MARK: Actions
+    
+    func skipForwardButtonClicked(sender: AnyObject) {
+        Analytics.trackButtonClick("Footer Skip Forward")
+        AudioPlayer.sharedInstance.skipForward()
+    }
+    
+    func skipBackwardButtonClicked(sender: AnyObject) {
+        Analytics.trackButtonClick("Footer Skip Backward")
+        AudioPlayer.sharedInstance.skipBackward()
+    }
+
+    func shuffleButtonClicked(sender: AnyObject) {
+        Analytics.trackButtonClick("Footer Shuffle")
+        toggleShuffle()
+    }
+    
+    // MARK: NSViewController
     
     override func loadView() {
         view = NSView(frame: NSZeroRect)
@@ -106,39 +131,17 @@ class FooterViewController: NSViewController {
         backButton.snp_makeConstraints { make in
             make.width.equalTo(42)
             make.top.equalTo(backgroundView)
+            make.left.greaterThanOrEqualTo(volumeSlider.snp_right).offset(50)
             make.bottom.equalTo(backgroundView)
             make.right.equalTo(forwardButton.snp_left)
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         volumeSlider.bind("value", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
         volumeIcon.bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
         shuffleButton.bind("state", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.shuffle", options: nil)
-    }
-    
-    // MARK: Actions
-    
-    @IBAction func skipForwardButtonClicked(sender: AnyObject) {
-        Analytics.trackButtonClick("Footer Skip Forward")
-        AudioPlayer.sharedInstance.skipForward()
-    }
-    
-    @IBAction func skipBackwardButtonClicked(sender: AnyObject) {
-        Analytics.trackButtonClick("Footer Skip Backward")
-        AudioPlayer.sharedInstance.skipBackward()
-    }
-
-    @IBAction func shuffleButtonClicked(sender: AnyObject) {
-        Analytics.trackButtonClick("Footer Shuffle")
-        toggleShuffle()
-    }
-    
-    func toggleShuffle() {
-        let oldShuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
-        let newShuffle = !oldShuffle
-        NSUserDefaults.standardUserDefaults().setValue(newShuffle, forKey: "shuffle")
     }
 }

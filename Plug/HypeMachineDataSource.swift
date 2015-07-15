@@ -56,11 +56,14 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     
     func nextPageObjectsReceived(objects: [AnyObject]?, error: NSError?) {
         self.viewController.nextPageDidLoad(currentPage)
-        
         if error != nil {
             Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
             println(error!)
             return
+        }
+        
+        if currentPage == 0 {
+            resetTableContents()
         }
         
         currentPage++
@@ -73,7 +76,6 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     func refresh() {
         currentPage = 0
         allObjectsLoaded = false
-        resetTableContents()
         loadNextPageObjects()
     }
     
@@ -82,7 +84,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     }
     
     func objectForRow(row: Int) -> AnyObject? {
-        return tableContents?.optionalAtIndex(row)
+        return tableContents!.optionalAtIndex(row)
     }
     
     func objectAfterRow(row: Int) -> AnyObject? {
@@ -101,7 +103,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
             shouldReloadTableView = true
         }
         
-        let rowIndexSet = rowIndexSetForNewContents(objects)
+        let rowIndexSet = rowIndexSetForNewObjects(objects)
         standardTableContents! += objects
         
         if shouldReloadTableView {
@@ -111,7 +113,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         }
     }
     
-    func rowIndexSetForNewContents(objects: [AnyObject]) -> NSIndexSet {
+    func rowIndexSetForNewObjects(objects: [AnyObject]) -> NSIndexSet {
         let rowRange = NSMakeRange(standardTableContents!.count, objects.count)
         return NSIndexSet(indexesInRange: rowRange)
     }

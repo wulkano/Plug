@@ -22,16 +22,22 @@ class ActionButtonCell: SwissArmyButtonCell {
     let mouseDownMiddleImage = NSImage(named: "Header-Button-Tap-Middle")
     let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
     
-    var offStateTitle: String = ""
-    var onStateTitle: String = ""
+    var offStateTitle: String = "" {
+        didSet { updateTitle() }
+    }
+    var onStateTitle: String = "" {
+        didSet { updateTitle() }
+    }
     
     override var state: Int {
-        didSet {
-            if state == NSOffState {
-                title = offStateTitle
-            } else {
-                title = onStateTitle
-            }
+        didSet { updateTitle() }
+    }
+    
+    func updateTitle() {
+        if state == NSOffState {
+            title = offStateTitle
+        } else {
+            title = onStateTitle
         }
     }
     

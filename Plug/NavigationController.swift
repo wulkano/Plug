@@ -41,10 +41,8 @@ class NavigationController: NSViewController {
     override func loadView() {
         view = NSView(frame: NSZeroRect)
         
-        navigationBarController = NavigationBarController(nibName: nil, bundle: nil)
+        navigationBarController = NavigationBarController(navigationController: self)
         view.addSubview(navigationBarController.view)
-        navigationBarController.backButton.target = self
-        navigationBarController.backButton.action = "backButtonClicked:"
         navigationBarController.view.snp_makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(view)
@@ -75,8 +73,12 @@ class NavigationController: NSViewController {
     }
     
     func setNewRootViewController(viewController: BaseContentViewController) {
-        if rootViewController != nil && viewController == rootViewController {
-            println("Trying to transition to current view controller")
+        if rootViewController === viewController {
+            if rootViewController === topViewController {
+                println("Can't transition to current view controller")
+            } else {
+                popToRootViewController()
+            }
             return
         }
         
@@ -95,7 +97,7 @@ class NavigationController: NSViewController {
         removeAllViewControllersExcept(viewController)
         
         Analytics.trackView(visibleViewController.analyticsViewName)
-        updateNavigationBar()
+        navigationBarController.setNavigationItems([viewController.navigationItem])
     }
     
     func pushViewController(viewController: BaseContentViewController) {
@@ -103,7 +105,7 @@ class NavigationController: NSViewController {
         transitionFromViewController(nextTopViewController, toViewController: topViewController, reversed: false)
         
         Analytics.trackView(visibleViewController.analyticsViewName)
-        updateNavigationBar()
+        navigationBarController.pushNavigationItem(viewController.navigationItem, animated: true)
     }
     
     func popViewController() -> BaseContentViewController? {
@@ -113,7 +115,7 @@ class NavigationController: NSViewController {
         var poppedController = removeTopViewController()
         
         Analytics.trackView(visibleViewController.analyticsViewName)
-        updateNavigationBar()
+        navigationBarController.popNavigationItemAnimated(true)
         
         return poppedController
     }
@@ -130,7 +132,7 @@ class NavigationController: NSViewController {
         var poppedControllers = removeViewControllersAbove(viewController)
         
         Analytics.trackView(visibleViewController.analyticsViewName)
-        updateNavigationBar()
+        navigationBarController.popToNavigationItem(viewController.navigationItem, animated: true)
         
         return poppedControllers
     }
@@ -230,10 +232,5 @@ class NavigationController: NSViewController {
         } else {
             return NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
         }
-    }
-    
-    private func updateNavigationBar() {
-        navigationBarController.previousViewControllerUpdated(nextTopViewController)
-        navigationBarController.currentViewControllerUpdated(topViewController)
     }
 }

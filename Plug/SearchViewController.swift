@@ -27,7 +27,7 @@ class SearchViewController: BaseContentViewController {
     
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
-            tracksViewController = TracksViewController(type: .LoveCount)
+            tracksViewController = TracksViewController(type: .LoveCount, title: "")
             addChildViewController(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
             tracksViewController!.view.snp_makeConstraints { make in
@@ -46,7 +46,7 @@ class SearchViewController: BaseContentViewController {
     // MARK: NSView
     
     override func loadView() {
-        view = NSView()
+        super.loadView()
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)

@@ -18,10 +18,25 @@ class BaseContentViewController: NSViewController {
     var defaultAnalyticsViewName: String = "Oops, this should be overwritten"
     var dropdownMenu: NSMenu?
     
-    var actionButton: ActionButton?
+    var navigationItem: NavigationItem!
+    
+    
+    init?(title: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.title = title
+        navigationItem = NavigationItem(title: self.title!)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     deinit {
         Notifications.unsubscribeAll(observer: self)
+    }
+    
+    override func loadView() {
+        view = NSView()
     }
     
     override func viewDidLoad() {
@@ -72,7 +87,7 @@ class BaseContentViewController: NSViewController {
     }
     
     func setupStickyTrackController() {
-        stickyTrackController = TracksViewController(type: .LoveCount)
+        stickyTrackController = TracksViewController(type: .LoveCount, title: "")
     }
     
     func addStickyTrackAtPosition(position: StickyTrackPosition) {

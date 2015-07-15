@@ -23,7 +23,7 @@ class BlogsViewController: DataSourceViewController {
     }
     
     func itemAfterRow(row: Int) -> BlogDirectoryItem? {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+        if let item: AnyObject = dataSource!.objectAfterRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
             return nil
@@ -31,7 +31,7 @@ class BlogsViewController: DataSourceViewController {
     }
     
     func loadBlogViewController(blog: HypeMachineAPI.Blog) {
-        var viewController = BlogViewController(blog: blog)
+        var viewController = BlogViewController(blog: blog)!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     
@@ -130,7 +130,7 @@ class BlogsViewController: DataSourceViewController {
     // MARK: NSViewController
     
     override func loadView() {
-        view = NSView()
+        super.loadView()
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
@@ -143,28 +143,13 @@ class BlogsViewController: DataSourceViewController {
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = "searchFieldSubmit:"
         
-        scrollView = RefreshScrollView(delegate: self)
-        view.addSubview(scrollView)
+        loadScrollViewAndTableView()
         scrollView.snp_makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp_bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-        
-        tableView = InsetTableView()
-        tableView.headerView = nil
-        tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
-        column.width = 400
-        column.minWidth = 40
-        column.maxWidth = 1000
-        tableView.addTableColumn(column)
-        
-        scrollView.documentView = tableView
-        scrollView.hasVerticalScroller = true
-        scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
     }
     
     override func viewDidLoad() {
