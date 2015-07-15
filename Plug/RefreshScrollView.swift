@@ -60,12 +60,6 @@ class RefreshScrollView: NSScrollView {
             break
         }
         
-        // Make scrolling above the refresh header easier by amplifying
-        // scrolling x 3
-        if scrolledPastTopOfContentView() {
-            super.scrollWheel(theEvent)
-            super.scrollWheel(theEvent)
-        }
         super.scrollWheel(theEvent)
     }
     

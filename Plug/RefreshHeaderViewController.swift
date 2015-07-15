@@ -9,17 +9,16 @@
 import Cocoa
 
 class RefreshHeaderViewController: NSViewController {
-    let viewHeight: CGFloat = 64
+    let viewHeight: CGFloat = 30
     var state: PullToRefreshState = .PullToRefresh {
         didSet { stateChanged() }
     }
     var lastUpdated: NSDate? {
-        didSet { updateTimestampLabel() }
+        didSet { lastUpdatedChanged() }
     }
     
     var loader: NSImageView!
-    var stateLabel: NSTextField!
-    var timestampLabel: NSTextField!
+    var messageLabel: NSTextField!
     
     override func loadView() {
         view = NSView()
@@ -33,50 +32,39 @@ class RefreshHeaderViewController: NSViewController {
         }
         
         loader = NSImageView()
-        loader.image = NSImage(named: "Loader-Small")
+        loader.image = NSImage(named: "Loader-Refresh")
         background.addSubview(loader)
         loader.snp_makeConstraints { make in
             make.centerY.equalTo(background)
-            make.size.equalTo(32)
-            make.left.equalTo(background).offset(20)
+            make.size.equalTo(16)
+            make.left.equalTo(background).offset(85)
         }
         
-        stateLabel = NSTextField()
-        stateLabel.editable = false
-        stateLabel.selectable = false
-        stateLabel.bordered = false
-        stateLabel.drawsBackground = false
-        stateLabel.lineBreakMode = .ByTruncatingTail
-        stateLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
-        background.addSubview(stateLabel)
-        stateLabel.snp_makeConstraints { make in
-            make.top.equalTo(background).offset(10)
-            make.left.equalTo(background).offset(73)
+        messageLabel = NSTextField()
+        messageLabel.editable = false
+        messageLabel.selectable = false
+        messageLabel.bordered = false
+        messageLabel.drawsBackground = false
+        messageLabel.lineBreakMode = .ByTruncatingTail
+        messageLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+        messageLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
+        background.addSubview(messageLabel)
+        messageLabel.snp_makeConstraints { make in
+            make.centerY.equalTo(background).offset(-2)
+            make.left.equalTo(loader.snp_right).offset(5)
             make.right.lessThanOrEqualTo(background).offset(20)
         }
         
-        timestampLabel = NSTextField()
-        timestampLabel.editable = false
-        timestampLabel.selectable = false
-        timestampLabel.bordered = false
-        timestampLabel.drawsBackground = false
-        timestampLabel.lineBreakMode = .ByTruncatingTail
-        timestampLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
-        timestampLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
-        background.addSubview(timestampLabel)
-        timestampLabel.snp_makeConstraints { make in
-            make.top.equalTo(stateLabel.snp_bottom).offset(0)
-            make.left.equalTo(background).offset(73)
-            make.right.lessThanOrEqualTo(background).offset(20)
-        }
-        
-        updateStateLabel()
-        updateTimestampLabel()
+        updateMessageLabel()
     }
     
     func stateChanged() {
         updateLoader()
-        updateStateLabel()
+        updateMessageLabel()
+    }
+    
+    func lastUpdatedChanged() {
+        updateMessageLabel()
     }
     
     func updateLoader() {
@@ -87,11 +75,18 @@ class RefreshHeaderViewController: NSViewController {
         }
     }
     
-    func updateStateLabel() {
-        stateLabel.stringValue = state.label
+    func updateMessageLabel() {
+        switch state {
+        case .PullToRefresh:
+            messageLabel.stringValue = formattedTimestamp()
+        case .ReleaseToRefresh:
+            messageLabel.stringValue = state.label
+        case .Updating:
+            messageLabel.stringValue = state.label
+        }
     }
     
-    func updateTimestampLabel() {
+    func formattedTimestamp() -> String {
         var formattedTimestamp = "Last Updated "
         
         if lastUpdated == nil {
@@ -102,7 +97,7 @@ class RefreshHeaderViewController: NSViewController {
             formattedTimestamp += formatter.stringFromDate(lastUpdated!)
         }
         
-        timestampLabel.stringValue = formattedTimestamp
+        return formattedTimestamp
     }
 
 }
