@@ -61,7 +61,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        var viewController = TracksViewController(type: .LoveCount, title: tag.name)!
+        var viewController = TracksViewController(type: .LoveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
@@ -176,12 +176,6 @@ class TagsViewController: DataSourceViewController {
         self.dataSource = TagsDataSource(viewController: self)
         tableView.setDataSource(dataSource)
         self.dataSource?.loadNextPageObjects()
-    }
-    
-    // MARK: BaseContentViewController
-    
-    override var analyticsViewName: String {
-        return "MainWindow/Genres"
     }
     
     override func refresh() {

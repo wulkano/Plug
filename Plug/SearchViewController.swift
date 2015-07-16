@@ -27,7 +27,7 @@ class SearchViewController: BaseContentViewController {
     
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
-            tracksViewController = TracksViewController(type: .LoveCount, title: "")
+            tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "Search/Tracks")
             addChildViewController(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
             tracksViewController!.view.snp_makeConstraints { make in
@@ -67,12 +67,6 @@ class SearchViewController: BaseContentViewController {
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-    }
-    
-    // MARK: BaseContentViewController
-    
-    override var analyticsViewName: String {
-        return "MainWindow/Search"
     }
     
     override func addLoaderView() {}

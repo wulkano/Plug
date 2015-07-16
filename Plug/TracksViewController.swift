@@ -23,9 +23,9 @@ class TracksViewController: DataSourceViewController {
     
     var showLoveButton: Bool = true
     
-    init?(type: TracksViewControllerType, title: String) {
+    init?(type: TracksViewControllerType, title: String, analyticsViewName: String) {
         self.type = type
-        super.init(title: title)
+        super.init(title: title, analyticsViewName: analyticsViewName)
     }
 
     required init?(coder: NSCoder) {

@@ -38,6 +38,10 @@ enum NavigationSection: Int {
             return "Search"
         }
     }
+    
+    var analyticsViewName: String {
+        return "MainWindow/\(self.title)"
+    }
 }
 
 enum PopularSectionMode: String {

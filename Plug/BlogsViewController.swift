@@ -163,12 +163,6 @@ class BlogsViewController: DataSourceViewController {
         dataSource!.loadNextPageObjects()
     }
     
-    // MARK: BaseContentViewController
-    
-    override var analyticsViewName: String {
-        return "MainWindow/BlogDirectory"
-    }
-    
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()

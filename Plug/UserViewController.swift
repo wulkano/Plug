@@ -22,20 +22,16 @@ class UserViewController: BaseContentViewController {
     var friendsCountTextField: NSTextField!
     var playlistContainer: NSView!
     
-    override var analyticsViewName: String {
-        return "MainWindow/SingleFriend"
-    }
-    
     var tracksViewController: TracksViewController!
     
     init?(user: HypeMachineAPI.User) {
         self.user = user
-        super.init(title: user.username)
+        super.init(title: user.username, analyticsViewName: "MainWindow/SingleUser")
         setup()
     }
     
     init?(username: String) {
-        super.init(title: username)
+        super.init(title: username, analyticsViewName: "MainWindow/SingleUser")
         loadUser(username)
         setup()
     }
@@ -213,7 +209,7 @@ class UserViewController: BaseContentViewController {
     
     func loadPlaylist() {
         let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
-        tracksViewController = TracksViewController(type: .LoveCount, title: "")
+        tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "User/Tracks")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
         tracksViewController.view.snp_makeConstraints { make in

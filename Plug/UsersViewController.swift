@@ -61,12 +61,6 @@ class UsersViewController: DataSourceViewController {
         dataSource!.loadNextPageObjects()
     }
     
-    // MARK: BaseContentViewController
-    
-    override var analyticsViewName: String {
-        return "MainWindow/Friends"
-    }
-    
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()

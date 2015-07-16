@@ -592,6 +592,7 @@
 				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
 				FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */,
 				FAA51A58198084E50057EC34 /* NavigationSections.swift */,
+				FA75E8281B56E6B10070FB1D /* NavigationItem.swift */,
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
 				FAE38D3919E9E521005FD94B /* Rand.swift */,
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
@@ -599,7 +600,6 @@
 				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
 				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
 				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
-				FA75E8281B56E6B10070FB1D /* NavigationItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";

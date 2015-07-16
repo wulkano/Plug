@@ -11,17 +11,12 @@ import HypeMachineAPI
 import SnapKit
 
 class BaseContentViewController: NSViewController {
+    let analyticsViewName: String
     var loaderViewController: LoaderViewController?
-    var analyticsViewName: String {
-        return defaultAnalyticsViewName
-    }
-    var defaultAnalyticsViewName: String = "Oops, this should be overwritten"
-    var dropdownMenu: NSMenu?
-    
     var navigationItem: NavigationItem!
     
-    
-    init?(title: String) {
+    init?(title: String, analyticsViewName: String) {
+        self.analyticsViewName = analyticsViewName
         super.init(nibName: nil, bundle: nil)
         self.title = title
         navigationItem = NavigationItem(title: self.title!)
@@ -87,7 +82,7 @@ class BaseContentViewController: NSViewController {
     }
     
     func setupStickyTrackController() {
-        stickyTrackController = TracksViewController(type: .LoveCount, title: "")
+        stickyTrackController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "Sticky")
     }
     
     func addStickyTrackAtPosition(position: StickyTrackPosition) {

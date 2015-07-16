@@ -165,35 +165,37 @@ extension NavigationSection {
         return savedViewController ?? createViewControllerForTarget(target)
     }
     
-    private var savedViewController: BaseContentViewController? {
+    var savedViewController: BaseContentViewController? {
         return NavigationSection.viewControllers[self.viewControllerIdentifier]
     }
     
-    private func createViewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
+    func createViewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
         
         var targetViewController: BaseContentViewController
         
         switch self {
         case .Popular:
-            targetViewController = TracksViewController(type: .HeatMap, title: self.title)!
+            targetViewController = TracksViewController(type: .HeatMap, title: self.title, analyticsViewName: self.analyticsViewName)!
         case .Favorites:
-            targetViewController = TracksViewController(type: .LoveCount, title: self.title)!
+            targetViewController = TracksViewController(type: .LoveCount, title: self.title, analyticsViewName: self.analyticsViewName)!
             (targetViewController as! TracksViewController).showLoveButton = false
         case .Latest:
-            targetViewController = TracksViewController(type: .LoveCount, title: self.title)!
+            targetViewController = TracksViewController(type: .LoveCount, title: self.title, analyticsViewName: self.analyticsViewName)!
         case .Blogs:
-            targetViewController = BlogsViewController(title: self.title)!
+            targetViewController = BlogsViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
         case .Feed:
-            targetViewController = TracksViewController(type: .Feed, title: self.title)!
+            targetViewController = TracksViewController(type: .Feed, title: self.title, analyticsViewName: self.analyticsViewName)!
         case .Genres:
-            targetViewController = TagsViewController(title: self.title)!
+            targetViewController = TagsViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
         case .Friends:
-            targetViewController = UsersViewController(title: self.title)!
+            targetViewController = UsersViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
         case .Search:
-            targetViewController = SearchViewController(title: self.title)!
+            targetViewController = SearchViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
         }
         
-        targetViewController.dropdownMenu = self.menu(target)
+        if let dropdownMenu = self.menu(target) {
+            targetViewController.navigationItem.titleView = NavigationItem.standardTitleDropdownButtonForMenu(dropdownMenu)
+        }
 
         if let tracksViewController = targetViewController as? TracksViewController {
             switch self {

@@ -45,4 +45,19 @@ class NavigationItem: NSObject {
         
         return button
     }
+    
+    class func standardTitleDropdownButtonForMenu(menu: NSMenu) -> TitleBarPopUpButton {
+        let button = TitleBarPopUpButton(frame: NSZeroRect, pullsDown: true)
+        let buttonCell = TitleBarPopUpButtonCell(textCell: "", pullsDown: true)
+        buttonCell.altersStateOfSelectedItem = true
+        buttonCell.usesItemFromMenu = true
+        buttonCell.arrowPosition = .ArrowAtBottom
+        button.setCell(buttonCell)
+        button.hidden = true
+        button.autoenablesItems = true
+        button.preferredEdge = NSMaxYEdge
+        button.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
+        button.lineBreakMode = .ByTruncatingMiddle
+        return button
+    }
 }
