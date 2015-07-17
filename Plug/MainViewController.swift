@@ -125,27 +125,6 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
 extension NavigationSection {
     static var viewControllers = [String: BaseContentViewController]()
     
-    var viewControllerIdentifier: String {
-        switch self {
-        case .Popular:
-            return "PopularTracksViewController"
-        case .Favorites:
-            return "FavoriteTracksViewController"
-        case .Latest:
-            return "LatestTracksViewController"
-        case .Blogs:
-            return "BlogsViewController"
-        case .Feed:
-            return "FeedTracksViewController"
-        case .Genres:
-            return "TagsViewController"
-        case .Friends:
-            return "FriendsViewController"
-        case .Search:
-            return "SearchViewController"
-        }
-    }
-    
     func menu(target: AnyObject?) -> NSMenu? {
         switch self {
         case .Popular:
@@ -166,7 +145,7 @@ extension NavigationSection {
     }
     
     var savedViewController: BaseContentViewController? {
-        return NavigationSection.viewControllers[self.viewControllerIdentifier]
+        return NavigationSection.viewControllers[self.title]
     }
     
     func createViewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
@@ -212,7 +191,7 @@ extension NavigationSection {
             }
         }
         
-        NavigationSection.viewControllers[self.viewControllerIdentifier] = targetViewController
+        NavigationSection.viewControllers[self.title] = targetViewController
         
         return targetViewController
     }

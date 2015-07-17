@@ -31,13 +31,20 @@ class RefreshHeaderViewController: NSViewController {
             make.edges.equalTo(view)
         }
         
+        let messageContainer = NSView()
+        background.addSubview(messageContainer)
+        messageContainer.snp_makeConstraints { make in
+            make.center.equalTo(background)
+        }
+        
         loader = NSImageView()
         loader.image = NSImage(named: "Loader-Refresh")
-        background.addSubview(loader)
+        messageContainer.addSubview(loader)
         loader.snp_makeConstraints { make in
-            make.centerY.equalTo(background)
             make.size.equalTo(16)
-            make.left.equalTo(background).offset(85)
+            make.top.equalTo(messageContainer)
+            make.left.equalTo(messageContainer)
+            make.bottom.equalTo(messageContainer)
         }
         
         messageLabel = NSTextField()
@@ -48,11 +55,11 @@ class RefreshHeaderViewController: NSViewController {
         messageLabel.lineBreakMode = .ByTruncatingTail
         messageLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
         messageLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
-        background.addSubview(messageLabel)
+        messageContainer.addSubview(messageLabel)
         messageLabel.snp_makeConstraints { make in
-            make.centerY.equalTo(background).offset(-2)
+            make.centerY.equalTo(messageContainer).offset(-2)
             make.left.equalTo(loader.snp_right).offset(5)
-            make.right.lessThanOrEqualTo(background).offset(20)
+            make.right.equalTo(messageContainer)
         }
         
         updateMessageLabel()
@@ -114,7 +121,7 @@ enum PullToRefreshState {
         case .ReleaseToRefresh:
             return "Release To Refresh"
         case .Updating:
-            return "Updating..."
+            return "Updating Playlist"
         }
     }
 }
