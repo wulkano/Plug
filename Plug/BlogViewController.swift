@@ -74,6 +74,8 @@ class BlogViewController: BaseContentViewController {
         titleButton.font = NSFont(name: "HelveticaNeue", size: 20)!
         titleButton.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         titleButton.lineBreakMode = .ByTruncatingMiddle
+        titleButton.target = self
+        titleButton.action = "titleButtonClicked:"
         header.addSubview(titleButton)
         titleButton.snp_makeConstraints { make in
             make.height.equalTo(24)
@@ -173,7 +175,7 @@ class BlogViewController: BaseContentViewController {
         })
     }
     
-    @IBAction func titleButtonClicked(sender: AnyObject) {
+    func titleButtonClicked(sender: AnyObject) {
         NSWorkspace.sharedWorkspace().openURL(blog.url)
     }
     
