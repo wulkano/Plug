@@ -21,11 +21,13 @@ class NavigationItem: NSObject {
     class func standardBackButtonWithTitle(title: String) -> SwissArmyButton {
         let button = SwissArmyButton(frame: NSZeroRect)
         let cell = BackButtonCell(textCell: "")
+        
         button.setCell(cell)
         button.bezelStyle = .RegularSquareBezelStyle
         button.bordered = true
         button.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
         button.title = title
+        
         return button
     }
     
@@ -53,8 +55,8 @@ class NavigationItem: NSObject {
         buttonCell.altersStateOfSelectedItem = true
         buttonCell.usesItemFromMenu = true
         buttonCell.arrowPosition = .ArrowAtBottom
-        button.setCell(buttonCell)
         
+        button.setCell(buttonCell)
         button.autoenablesItems = true
         button.preferredEdge = NSMaxYEdge
         button.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
