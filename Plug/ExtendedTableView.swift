@@ -27,10 +27,16 @@ class ExtendedTableView: NSTableView {
     var clipView: NSClipView {
         return superview as! NSClipView
     }
+    var previousVisibleRect: NSRect = NSZeroRect
     var scrollView: NSScrollView? {
         return clipView.superview as? NSScrollView
     }
-    var visibleRows: [Int] = []
+    var visibleRows: [Int] {
+        return [Int](rowsInRect(visibleRect).toRange()!)
+    }
+    var previousVisibleRows: [Int] = []
+    var previousRowDidStartToHide = -1
+    var previousRowDidStartToShow = -1
     
     deinit {
         Notifications.unsubscribeAll(observer: self)
@@ -140,32 +146,100 @@ class ExtendedTableView: NSTableView {
     }
     
     func scrollViewDidScroll(notification: NSNotification) {
-        updateVisibleRows()
+        let direction = scrollDirection()
+        updateRowDidStartToShow(direction)
+        updateRowDidStartToHide(direction)
+        updateRowDidShow(direction)
+        updateRowDidHide(direction)
+        
         extendedDelegate?.didScrollTableView(self)
+        
+        previousVisibleRect = visibleRect
+        previousVisibleRows = visibleRows
     }
     
-    func updateVisibleRows() {
-        let newVisibleRange = rowsInRect(clipView.visibleRect).toRange()!
-        let newVisibleRows = [Int](newVisibleRange)
+    func scrollDirection() -> ScrollDirection {
+        if visibleRect.origin.y >= previousVisibleRect.origin.y {
+            return .Down
+        } else {
+            return .Up
+        }
+    }
+    
+    func updateRowDidStartToShow(scrollDirection: ScrollDirection) {
+        let point: NSPoint
+        let shownDirection: RowShowHideDirection
         
-        let hiddenRows = visibleRows.filter { !contains(newVisibleRows, $0) }
-        let shownRows = newVisibleRows.filter { !contains(self.visibleRows, $0) }
+        let rowHeight: CGFloat = delegate()!.tableView!(self, heightOfRow: 0)
         
-        if !hiddenRows.isEmpty {
-            let hiddenDirection = (average(hiddenRows) > average(newVisibleRows)) ? RowShowHideDirection.Below : RowShowHideDirection.Above
-            for row in hiddenRows {
-                extendedDelegate?.tableView(self, rowDidHide: row, direction: hiddenDirection)
-            }
+        switch scrollDirection {
+        case .Up:
+            var topPoint = visibleRect.origin
+            topPoint.y = topPoint.y + rowHeight
+            point = topPoint
+            shownDirection = .Above
+        case .Down:
+            var bottomPoint = visibleRect.origin
+            bottomPoint.y = bottomPoint.y + visibleRect.size.height - rowHeight
+            point = bottomPoint
+            shownDirection = .Below
         }
         
-        if !shownRows.isEmpty {
-            let shownDirection = (average(shownRows) > average(newVisibleRows)) ? RowShowHideDirection.Below : RowShowHideDirection.Above
-            for row in shownRows {
-                extendedDelegate?.tableView(self, rowDidShow: row, direction: shownDirection)
-            }
+        let row = rowAtPoint(point)
+        if row != previousRowDidStartToShow {
+            extendedDelegate?.tableView(self, rowDidStartToShow: row, direction: shownDirection)
+            previousRowDidStartToShow = row
+        }
+    }
+    
+    func updateRowDidStartToHide(scrollDirection: ScrollDirection) {
+        let point: NSPoint
+        let hiddenDirection: RowShowHideDirection
+        
+        switch scrollDirection {
+        case .Up:
+            var bottomPoint = visibleRect.origin
+            bottomPoint.y = bottomPoint.y + visibleRect.size.height + 1
+            point = bottomPoint
+            hiddenDirection = .Below
+        case .Down:
+            var topPoint = visibleRect.origin
+            topPoint.y = topPoint.y - 1
+            point = topPoint
+            hiddenDirection = .Above
         }
         
-        visibleRows = newVisibleRows
+        let row = rowAtPoint(point)
+        if row != previousRowDidStartToHide {
+            extendedDelegate?.tableView(self, rowDidStartToHide: row, direction: hiddenDirection)
+            previousRowDidStartToHide = row
+        }
+    }
+    
+    func updateRowDidShow(scrollDirection: ScrollDirection) {
+        let shownDirection = scrollDirection == .Down ? RowShowHideDirection.Below : RowShowHideDirection.Above
+        
+        for row in newVisibleRows() {
+            extendedDelegate?.tableView(self, rowDidShow: row, direction: shownDirection)
+        }
+    }
+    
+    func updateRowDidHide(scrollDirection: ScrollDirection) {
+        let hiddenDirection = scrollDirection == .Down ? RowShowHideDirection.Above : RowShowHideDirection.Below
+        
+        for row in newHiddenRows() {
+            extendedDelegate?.tableView(self, rowDidHide: row, direction: hiddenDirection)
+        }
+    }
+    
+    func newVisibleRows() -> [Int] {
+        let rows = visibleRows.filter { !contains(self.previousVisibleRows, $0) }
+        return rows
+    }
+    
+    func newHiddenRows() -> [Int] {
+        let rows = previousVisibleRows.filter { !contains(self.visibleRows, $0) }
+        return rows
     }
     
     func scrollViewDidEndScrolling(notification: NSNotification) {
@@ -188,6 +262,8 @@ protocol ExtendedTableViewDelegate {
     func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int)
     func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection)
     func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection)
+    func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection)
+    func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection)
     func didEndScrollingTableView(tableView: ExtendedTableView)
     func didScrollTableView(tableView: ExtendedTableView)
 }
@@ -195,4 +271,9 @@ protocol ExtendedTableViewDelegate {
 enum RowShowHideDirection: Int {
     case Above
     case Below
+}
+
+enum ScrollDirection {
+    case Down
+    case Up
 }
