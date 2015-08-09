@@ -83,13 +83,13 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        tableView.updateVisibleRows()
+//        tableView.updateVisibleRows()
     }
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
         
-        tableView.visibleRows = []
+//        tableView.previousVisibleRows = []
     }
     
     // MARK: BaseContentViewController
@@ -113,6 +113,8 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int) {}
     func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {}
     func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
+    func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
+    func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {}
     func didEndScrollingTableView(tableView: ExtendedTableView) {}
     func didScrollTableView(tableView: ExtendedTableView) {}
 }
