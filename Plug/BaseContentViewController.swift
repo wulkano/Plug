@@ -38,7 +38,6 @@ class BaseContentViewController: NSViewController {
         super.viewDidLoad()
         
         addLoaderView()
-        setupStickyTrackController()
     }
 
     func addLoaderView() {
@@ -60,7 +59,6 @@ class BaseContentViewController: NSViewController {
     }
     
     func didBecomeCurrentViewController() {
-        Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
         Notifications.subscribe(observer: self, selector: "updateStickyTrack:", name: Notifications.NewCurrentTrack, object: nil)
     }
     
@@ -68,56 +66,8 @@ class BaseContentViewController: NSViewController {
         Notifications.unsubscribe(observer: self, name: Notifications.RefreshCurrentView, object: nil)
     }
     
-    // MARK: Sticky Track
-    
-    var stickyTrackController: TracksViewController!
-    var stickyTrackTopInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    var stickyTrackBottomInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
-    }
-    var stickyTrackHeight: CGFloat {
-        return 64
-    }
-    
-    func setupStickyTrackController() {
-        stickyTrackController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "Sticky")
-    }
-    
-    func addStickyTrackAtPosition(position: StickyTrackPosition) {
-        view.addSubview(stickyTrackController.view)
-        switch position {
-        case .Top:
-            stickyTrackController.view.snp_makeConstraints { make in
-                make.height.equalTo(stickyTrackHeight)
-                make.top.equalTo(self.view)
-                make.left.equalTo(self.view)
-                make.right.equalTo(self.view)
-            }
-        case .Bottom:
-            stickyTrackController.view.snp_makeConstraints { make in
-                make.height.equalTo(stickyTrackHeight)
-                make.bottom.equalTo(self.view).offset(47)
-                make.left.equalTo(self.view)
-                make.right.equalTo(self.view)
-            }
-        }
-    }
-    
-    func removeStickyTrack() {
-        stickyTrackController.view.removeFromSuperview()
-    }
-    
     func refresh() {
         fatalError("refresh() not implemented")
-    }
-    
-    // MARK: Notifications
-    
-    func updateStickyTrack(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        stickyTrackController.dataSource = SingleTrackDataSource(viewController: stickyTrackController, track: track)
     }
 }
 
