@@ -69,9 +69,13 @@ class SearchViewController: BaseContentViewController {
         }
     }
     
-    override func addLoaderView() {}
+    // MARK: BaseContentViewController
     
+    override func addLoaderView() {}
     override func refresh() {
         tracksViewController?.refresh()
+    }
+    override var shouldShowStickyTrack: Bool {
+        return false
     }
 }

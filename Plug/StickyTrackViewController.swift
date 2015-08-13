@@ -83,14 +83,13 @@ class StickyTrackViewController: TracksViewController {
     
     // MARK: BaseContentViewController
     
-    // Override a bunch of stuff we don't need
     override func addLoaderView() {}
-    override func subscribeToNotifications() {}
-    override func setupStickyTrack() {}
+    
+    override var shouldShowStickyTrack: Bool {
+        return false
+    }
+
     override var stickyTrackController: StickyTrackViewController {
         fatalError("Should not be loading this from here")
     }
-    override func addStickyTrackAtPosition(position: StickyTrackPosition) {}
-    override func removeStickyTrack() {}
-    override func updateStickyTrack(track: HypeMachineAPI.Track) {}
 }

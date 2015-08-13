@@ -30,7 +30,8 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         scrollView.hasHorizontalScroller = false
         scrollView.horizontalScrollElasticity = .None
         
-        tableView.insets = tableViewInsets
+        tableView.contentInsets = tableViewInsets
+        tableView.scrollerInsets = tableViewInsets
     }
     
     func nextPageDidLoad(pageNumber: Int) {
@@ -114,15 +115,18 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         }
         
         if stickyTrackBelongsToUs {
+            tableView.contentInsets = tableViewInsets
             tableView.scrollerInsets = stickyTrackInsets
         } else {
-            tableView.insets = stickyTrackInsets
+            tableView.contentInsets = stickyTrackInsets
+            tableView.scrollerInsets = stickyTrackInsets
         }
     }
     
     override func removeStickyTrack() {
         super.removeStickyTrack()
-        tableView.insets = tableViewInsets
+        tableView.contentInsets = tableViewInsets
+        tableView.scrollerInsets = tableViewInsets
     }
     
     // MARK: RefreshScrollViewDelegate

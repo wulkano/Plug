@@ -47,8 +47,15 @@ class ExtendedTableView: NSTableView {
         Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
         Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
         
-        updateInsets()
+        updateContentInsets()
+        updateScrollerInsets()
         setNewTrackingArea()
+    }
+    
+    override func viewDidMoveToSuperview() {
+        super.viewDidMoveToSuperview()
+        
+        println(self)
     }
     
     override func updateTrackingAreas() {
@@ -351,19 +358,11 @@ class ExtendedTableView: NSTableView {
     
     // MARK: insets
     
-    var insets: NSEdgeInsets = NSEdgeInsetsZero {
-        didSet { updateInsets() }
-    }
     var contentInsets: NSEdgeInsets = NSEdgeInsetsZero {
         didSet { updateContentInsets() }
     }
     var scrollerInsets: NSEdgeInsets = NSEdgeInsetsZero {
         didSet { updateScrollerInsets() }
-    }
-    
-    func updateInsets() {
-        contentInsets = insets
-        scrollerInsets = insets
     }
     
     func updateContentInsets() {

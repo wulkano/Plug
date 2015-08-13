@@ -191,19 +191,6 @@ class BlogViewController: BaseContentViewController {
         tracksViewController.dataSource = BlogTracksDataSource(viewController: tracksViewController, blogID: blog.id)
     }
     
-    override func addLoaderView() {
-        loaderViewController = LoaderViewController(size: .Small)
-        let insets = NSEdgeInsetsMake(0, 0, 1, 0)
-        header.addSubview(loaderViewController!.view)
-        loaderViewController!.view.snp_makeConstraints { make in
-            make.edges.equalTo(header).insets(insets)
-        }
-    }
-    
-    override func refresh() {
-        tracksViewController.refresh()
-    }
-    
     func updateActionButton() {
         if blog.following {
             navigationItem.rightButton!.state = NSOnState
@@ -237,5 +224,24 @@ class BlogViewController: BaseContentViewController {
                 }
             }
         }
+    }
+    
+    // MARK: BaseContentViewController
+    
+    override func addLoaderView() {
+        loaderViewController = LoaderViewController(size: .Small)
+        let insets = NSEdgeInsetsMake(0, 0, 1, 0)
+        header.addSubview(loaderViewController!.view)
+        loaderViewController!.view.snp_makeConstraints { make in
+            make.edges.equalTo(header).insets(insets)
+        }
+    }
+    
+    override func refresh() {
+        tracksViewController.refresh()
+    }
+    
+    override var shouldShowStickyTrack: Bool {
+        return false
     }
 }

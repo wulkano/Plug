@@ -218,19 +218,6 @@ class UserViewController: BaseContentViewController {
         tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: user!.username)
     }
     
-    override func addLoaderView() {
-        loaderViewController = LoaderViewController(size: .Small)
-        let insets = NSEdgeInsetsMake(0, 0, 1, 0)
-        header.addSubview(loaderViewController!.view)
-        loaderViewController!.view.snp_makeConstraints { make in
-            make.edges.equalTo(self.header).insets(insets)
-        }
-    }
-    
-    override func refresh() {
-        tracksViewController.refresh()
-    }
-    
     func updateActionButton() {
         if user!.friend! == true {
             navigationItem!.rightButton!.state = NSOnState
@@ -264,5 +251,24 @@ class UserViewController: BaseContentViewController {
                 }
             }
         }
+    }
+    
+    // MARK: BaseContentViewController
+    
+    override func addLoaderView() {
+        loaderViewController = LoaderViewController(size: .Small)
+        let insets = NSEdgeInsetsMake(0, 0, 1, 0)
+        header.addSubview(loaderViewController!.view)
+        loaderViewController!.view.snp_makeConstraints { make in
+            make.edges.equalTo(self.header).insets(insets)
+        }
+    }
+    
+    override func refresh() {
+        tracksViewController.refresh()
+    }
+    
+    override var shouldShowStickyTrack: Bool {
+        return false
     }
 }

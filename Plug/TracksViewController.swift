@@ -406,7 +406,6 @@ class TracksViewController: DataSourceViewController {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 let position = (direction == .Above ? StickyTrackPosition.Top : StickyTrackPosition.Bottom)
-                stickyTrackBelongsToUs = true
                 addStickyTrackAtPosition(position)
             }
         }
@@ -416,7 +415,6 @@ class TracksViewController: DataSourceViewController {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 removeStickyTrack()
-                stickyTrackBelongsToUs = false
             }
         }
     }

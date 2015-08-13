@@ -42,7 +42,9 @@ class BaseContentViewController: NSViewController {
         super.viewDidLoad()
         
         addLoaderView()
-        setupStickyTrack()
+        if shouldShowStickyTrack {
+            setupStickyTrack()
+        }
         subscribeToNotifications()
     }
 
@@ -69,7 +71,9 @@ class BaseContentViewController: NSViewController {
     }
     
     func subscribeToNotifications() {
-        Notifications.subscribe(observer: self, selector: "newCurrentTrack:", name: Notifications.NewCurrentTrack, object: nil)
+        if shouldShowStickyTrack {
+            Notifications.subscribe(observer: self, selector: "newCurrentTrack:", name: Notifications.NewCurrentTrack, object: nil)
+        }
     }
     
     func didBecomeCurrentViewController() {}
@@ -77,6 +81,9 @@ class BaseContentViewController: NSViewController {
     
     // MARK: Sticky Track
     
+    var shouldShowStickyTrack: Bool {
+        return true
+    }
     var stickyTrackControllerStore: StickyTrackViewController?
     var stickyTrackController: StickyTrackViewController {
         if stickyTrackControllerStore == nil {
@@ -143,9 +150,11 @@ class BaseContentViewController: NSViewController {
         updateStickyTrack(track)
         
         if isTrackVisible(track) {
+            stickyTrackBelongsToUs = true
             removeStickyTrack()
         } else {
-            addStickyTrackAtPosition(stickyTrackController.position)
+            stickyTrackBelongsToUs = false
+            addStickyTrackAtPosition(.Bottom)
         }
     }
 }
