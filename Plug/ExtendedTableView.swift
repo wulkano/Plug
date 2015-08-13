@@ -80,10 +80,10 @@ class ExtendedTableView: NSTableView {
         newRect.size.height -= insets.top
         newRect.size.height -= insets.bottom
         
-        if newRect.origin.x < 0 { fatalError("Oops") }
-        if newRect.origin.y < 0 { fatalError("Oops") }
-        if newRect.size.width < 0 { fatalError("Oops") }
-        if newRect.size.height < 0 { fatalError("Oops") }
+//        if newRect.origin.x < 0 { fatalError("Oops") }
+//        if newRect.origin.y < 0 { fatalError("Oops") }
+//        if newRect.size.width < 0 { fatalError("Oops") }
+//        if newRect.size.height < 0 { fatalError("Oops") }
         
         return newRect
     }
