@@ -9,9 +9,6 @@
 import Cocoa
 
 struct Notifications {
-    static let CurrentTrackDidShow = "Plug.CurrentTrackDidShow"
-    static let CurrentTrackDidHide = "Plug.CurrentTrackDidHide"
-    
     static let DisplayError = "Plug.DisplayErrorNotification"
     
     static let PushViewController = "Plug.PushViewController"

@@ -306,6 +306,8 @@ class TracksViewController: DataSourceViewController {
         if dataSource != nil {
             loadDataSource()
         }
+        
+        Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
     }
     
     // MARK: BaseContentViewController
@@ -315,23 +317,19 @@ class TracksViewController: DataSourceViewController {
         dataSource!.refresh()
     }
     
-    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
-        super.addStickyTrackAtPosition(position)
-        
-        var insets = tableView.defaultExtendedTrackingAreaInsets
-        switch position {
-        case .Top:
-            insets.top += stickyTrackHeight
-        case .Bottom:
-            insets.bottom += stickyTrackHeight
+    override func isTrackVisible(track: HypeMachineAPI.Track) -> Bool {
+        for row in tableView.visibleRows {
+            let rowTrack = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
+            if rowTrack == track {
+                return true
+            }
         }
         
-        tableView.extendedTrackingAreaInsets = insets
+        return false
     }
     
-    override func removeStickyTrack() {
-        super.removeStickyTrack()
-        tableView.extendedTrackingAreaInsets = nil
+    override var stickyTrackControllerType: TracksViewControllerType {
+        return self.type
     }
     
     // MARK: DataSourceViewController
@@ -392,23 +390,28 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
-        let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
-        if track === AudioPlayer.sharedInstance.currentTrack {
-            removeStickyTrack()
-            Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: ["direction": direction.rawValue])
-        }
-    }
+    override func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
     
-    override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {
+    override func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 let position = (direction == .Above ? StickyTrackPosition.Top : StickyTrackPosition.Bottom)
+                stickyTrackBelongsToUs = true
                 addStickyTrackAtPosition(position)
-                Notifications.post(name: Notifications.CurrentTrackDidHide, object: self, userInfo: ["direction": direction.rawValue])
             }
         }
     }
+    
+    override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
+        if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
+            if track === AudioPlayer.sharedInstance.currentTrack {
+                removeStickyTrack()
+                stickyTrackBelongsToUs = false
+            }
+        }
+    }
+    
+    override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
     
     override func didEndScrollingTableView(tableView: ExtendedTableView) {
         if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {

@@ -19,7 +19,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         scrollView = RefreshScrollView(delegate: self)
         view.addSubview(scrollView)
         
-        tableView = InsetTableView()
+        tableView = ExtendedTableView()
         tableView.headerView = nil
         tableView.intercellSpacing = NSSize(width: 0, height: 0)
         let column = NSTableColumn(identifier: "Col0")
@@ -29,6 +29,8 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.horizontalScrollElasticity = .None
+        
+        tableView.insets = tableViewInsets
     }
     
     func nextPageDidLoad(pageNumber: Int) {
@@ -83,13 +85,13 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        tableView.updateVisibleRows()
+//        tableView.updateVisibleRows()
     }
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
         
-        tableView.visibleRows = []
+//        tableView.previousVisibleRows = []
     }
     
     // MARK: BaseContentViewController
@@ -97,6 +99,30 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()
+    }
+    
+    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
+        super.addStickyTrackAtPosition(position)
+        
+        var stickyTrackInsets = tableViewInsets
+        
+        switch position {
+        case .Top:
+            stickyTrackInsets.top += stickyTrackController.trackViewHeight
+        case .Bottom:
+            stickyTrackInsets.bottom += stickyTrackController.trackViewHeight
+        }
+        
+        if stickyTrackBelongsToUs {
+            tableView.scrollerInsets = stickyTrackInsets
+        } else {
+            tableView.insets = stickyTrackInsets
+        }
+    }
+    
+    override func removeStickyTrack() {
+        super.removeStickyTrack()
+        tableView.insets = tableViewInsets
     }
     
     // MARK: RefreshScrollViewDelegate
@@ -113,6 +139,8 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int) {}
     func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {}
     func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
+    func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
+    func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {}
     func didEndScrollingTableView(tableView: ExtendedTableView) {}
     func didScrollTableView(tableView: ExtendedTableView) {}
 }

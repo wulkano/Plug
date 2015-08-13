@@ -19,11 +19,10 @@ extension Array {
     }
     
     func optionalAtIndex(index: Int) -> T? {
-        if self.count > index {
+        if self.count > index && index >= 0 {
             return self[index]
         } else {
             return nil
         }
     }
-
 }
