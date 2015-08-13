@@ -37,11 +37,13 @@ class FlatSlider: NSSlider {
     
     override func mouseDown(theEvent: NSEvent) {
         mouseDown = true
+        super.mouseDown(theEvent)
         mouseUp(theEvent)
     }
     
     override func mouseUp(theEvent: NSEvent) {
         mouseDown = false
+        super.mouseUp(theEvent)
     }
     
     override func mouseEntered(theEvent: NSEvent) {
