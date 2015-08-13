@@ -273,6 +273,13 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
+    // MARK: Unavailable tracks
+    
+    func showHideUnavailableTracks() {
+        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
+        dataSource?.filtering = hideUnavailableTracks
+    }
+    
     // MARK: NSResponder
     
     override func keyDown(theEvent: NSEvent) {
@@ -307,7 +314,10 @@ class TracksViewController: DataSourceViewController {
             loadDataSource()
         }
         
+        showHideUnavailableTracks()
+        
         Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
+        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: HideUnavailableTracks, options: NSKeyValueObservingOptions.New, context: nil)
     }
     
     // MARK: BaseContentViewController
@@ -423,6 +433,17 @@ class TracksViewController: DataSourceViewController {
         let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
         let menuController = TrackContextMenuController(track: track)!
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
+    }
+    
+    // MARK: NSKeyValueObserving
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        switch keyPath {
+        case HideUnavailableTracks:
+            showHideUnavailableTracks()
+        default:
+            return
+        }
     }
 }
 

@@ -56,7 +56,7 @@ class TracksDataSource: HypeMachineDataSource {
         }
     }
     
-    // MARK: PlugDataSource
+    // MARK: HypeMachineDataSource
     
     override func filterTableContents(contents: [AnyObject]) -> [AnyObject] {
         let tracks = contents as! [HypeMachineAPI.Track]
