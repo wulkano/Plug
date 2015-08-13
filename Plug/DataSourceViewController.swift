@@ -19,7 +19,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         scrollView = RefreshScrollView(delegate: self)
         view.addSubview(scrollView)
         
-        tableView = InsetTableView()
+        tableView = ExtendedTableView()
         tableView.headerView = nil
         tableView.intercellSpacing = NSSize(width: 0, height: 0)
         let column = NSTableColumn(identifier: "Col0")
@@ -29,6 +29,8 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.horizontalScrollElasticity = .None
+        
+        tableView.insets = tableViewInsets
     }
     
     func nextPageDidLoad(pageNumber: Int) {
@@ -97,6 +99,30 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()
+    }
+    
+    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
+        super.addStickyTrackAtPosition(position)
+        
+        var stickyTrackInsets = tableViewInsets
+        
+        switch position {
+        case .Top:
+            stickyTrackInsets.top += stickyTrackController.trackViewHeight
+        case .Bottom:
+            stickyTrackInsets.bottom += stickyTrackController.trackViewHeight
+        }
+        
+        if stickyTrackBelongsToUs {
+            tableView.scrollerInsets = stickyTrackInsets
+        } else {
+            tableView.insets = stickyTrackInsets
+        }
+    }
+    
+    override func removeStickyTrack() {
+        super.removeStickyTrack()
+        tableView.insets = tableViewInsets
     }
     
     // MARK: RefreshScrollViewDelegate

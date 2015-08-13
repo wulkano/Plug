@@ -16,6 +16,8 @@ class RefreshScrollView: NSScrollView {
         return contentView as! RefreshClipView
     }
     
+    var scrollEnabled = true
+    
     init(delegate: RefreshScrollViewDelegate) {
         self.delegate = delegate
         super.init(frame: NSZeroRect)
@@ -45,6 +47,8 @@ class RefreshScrollView: NSScrollView {
     }
     
     override func scrollWheel(theEvent: NSEvent) {
+        if !scrollEnabled { return }
+        
         switch theEvent.phase {
         case NSEventPhase.Changed:
             if scrolledPastTopOfRefreshHeader() {

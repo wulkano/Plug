@@ -62,13 +62,4 @@ class HoverToggleButton: NSButton {
     override func mouseExited(theEvent: NSEvent) {
         mouseInside = false
     }
-    
-    override func mouseDown(theEvent: NSEvent) {
-        super.mouseDown(theEvent)
-        mouseUp(theEvent)
-    }
-    
-    override func mouseUp(theEvent: NSEvent) {
-        super.mouseUp(theEvent)
-    }
 }

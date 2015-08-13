@@ -273,59 +273,6 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    
-    // MARK: Sticky Track
-    
-    var stickyTrackController: TracksViewController!
-    var stickyTrackTopInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-    var stickyTrackBottomInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
-    }
-    var stickyTrackHeight: CGFloat {
-        return 64
-    }
-    
-    func setupStickyTrackController() {
-        stickyTrackController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "Sticky")
-    }
-    
-    func addStickyTrackAtPosition(position: StickyTrackPosition) {
-        view.addSubview(stickyTrackController.view)
-        switch position {
-        case .Top:
-            stickyTrackController.view.snp_makeConstraints { make in
-                make.height.equalTo(stickyTrackHeight)
-                make.top.equalTo(self.view)
-                make.left.equalTo(self.view)
-                make.right.equalTo(self.view)
-            }
-        case .Bottom:
-            stickyTrackController.view.snp_makeConstraints { make in
-                make.height.equalTo(stickyTrackHeight)
-                make.bottom.equalTo(self.view).offset(47)
-                make.left.equalTo(self.view)
-                make.right.equalTo(self.view)
-            }
-        }
-        
-        var insets = tableView.defaultExtendedTrackingAreaInsets
-        switch position {
-        case .Top:
-            insets.top += stickyTrackHeight
-        case .Bottom:
-            insets.bottom += stickyTrackHeight
-        }
-        
-        tableView.extendedTrackingAreaInsets = insets
-    }
-    
-    func removeStickyTrack() {
-        stickyTrackController.view.removeFromSuperview()
-        tableView.extendedTrackingAreaInsets = nil
-    }
-    
     // MARK: NSResponder
     
     override func keyDown(theEvent: NSEvent) {
@@ -360,8 +307,6 @@ class TracksViewController: DataSourceViewController {
             loadDataSource()
         }
         
-        setupStickyTrackController()
-        
         Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
     }
     
@@ -370,6 +315,21 @@ class TracksViewController: DataSourceViewController {
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()
+    }
+    
+    override func isTrackVisible(track: HypeMachineAPI.Track) -> Bool {
+        for row in tableView.visibleRows {
+            let rowTrack = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
+            if rowTrack == track {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    override var stickyTrackControllerType: TracksViewControllerType {
+        return self.type
     }
     
     // MARK: DataSourceViewController
@@ -430,33 +390,28 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    override func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {
-        println("StartToShow: \(row)")
-        let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
-        if track === AudioPlayer.sharedInstance.currentTrack {
-            removeStickyTrack()
-            Notifications.post(name: Notifications.CurrentTrackDidShow, object: self, userInfo: ["direction": direction.rawValue])
-        }
-    }
+    override func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
     
     override func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {
-        println("StartToHide: \(row)")
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 let position = (direction == .Above ? StickyTrackPosition.Top : StickyTrackPosition.Bottom)
+                stickyTrackBelongsToUs = true
                 addStickyTrackAtPosition(position)
-                Notifications.post(name: Notifications.CurrentTrackDidHide, object: self, userInfo: ["direction": direction.rawValue])
             }
         }
     }
     
     override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
-        println("Show: \(row)")
+        if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
+            if track === AudioPlayer.sharedInstance.currentTrack {
+                removeStickyTrack()
+                stickyTrackBelongsToUs = false
+            }
+        }
     }
     
-    override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {
-        println("Hide: \(row)")
-    }
+    override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
     
     override func didEndScrollingTableView(tableView: ExtendedTableView) {
         if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
@@ -468,14 +423,6 @@ class TracksViewController: DataSourceViewController {
         let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
         let menuController = TrackContextMenuController(track: track)!
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
-    }
-    
-    
-    // MARK: Notifications
-    
-    func updateStickyTrack(notification: NSNotification) {
-        let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        stickyTrackController.dataSource = SingleTrackDataSource(viewController: stickyTrackController, track: track)
     }
 }
 

@@ -20,7 +20,6 @@
 		FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A881B03F3AE006FA015 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA107A8E1B03F63C006FA015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA91974A9A500A781C8 /* Main.storyboard */; };
 		FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DE71B30B458003F4E54 /* IOSSwitch.swift */; };
-		FA117DEA1B30E4AC003F4E54 /* InsetTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DE91B30E4AC003F4E54 /* InsetTableView.swift */; };
 		FA117DEC1B31120C003F4E54 /* ActionButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */; };
 		FA117DEE1B3115C0003F4E54 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA117DED1B3115C0003F4E54 /* ActionButton.swift */; };
 		FA15319819C23DBD004DB074 /* MediaKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */; };
@@ -72,6 +71,7 @@
 		FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA562EF619E886D600B760A2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */; };
 		FA5927F91B28ED1E00D07176 /* RefreshHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */; };
+		FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */; };
 		FA6127141B051F9700E9F2C9 /* Alamofire+responseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */; };
 		FA64C6A719764FE9003933E3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Globals.swift */; };
 		FA64C6A919765323003933E3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array.swift */; };
@@ -194,7 +194,6 @@
 		FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleGoogleAnalytics.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug/SimpleGoogleAnalytics.framework"; sourceTree = "<group>"; };
 		FA107A881B03F3AE006FA015 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		FA117DE71B30B458003F4E54 /* IOSSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSSwitch.swift; sourceTree = "<group>"; };
-		FA117DE91B30E4AC003F4E54 /* InsetTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetTableView.swift; sourceTree = "<group>"; };
 		FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonCell.swift; sourceTree = "<group>"; };
 		FA117DED1B3115C0003F4E54 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA15319719C23DBD004DB074 /* MediaKeyHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaKeyHandler.swift; sourceTree = "<group>"; };
@@ -248,6 +247,7 @@
 		FA562EF619E886D600B760A2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterBackgroundView.swift; sourceTree = "<group>"; };
 		FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderViewController.swift; sourceTree = "<group>"; };
+		FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyTrackViewController.swift; sourceTree = "<group>"; };
 		FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+responseImage.swift"; sourceTree = "<group>"; };
 		FA64C6A619764FE9003933E3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -520,6 +520,7 @@
 				FA3199AC198247970097B081 /* BlogsViewController.swift */,
 				FA774999198C07110048863F /* TagsViewController.swift */,
 				FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */,
+				FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */,
 				FA77499F198C1CAA0048863F /* UsersViewController.swift */,
 			);
 			name = DataSourceViewControllers;
@@ -735,7 +736,6 @@
 			isa = PBXGroup;
 			children = (
 				FAEE914519BA3A3300D4274C /* ExtendedTableView.swift */,
-				FA117DE91B30E4AC003F4E54 /* InsetTableView.swift */,
 			);
 			name = NSTableView;
 			sourceTree = "<group>";
@@ -854,6 +854,7 @@
 		FA24ED941974A9A500A781C8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Plug;
 				TargetAttributes = {
@@ -1012,7 +1013,6 @@
 				FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */,
 				FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */,
 				FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */,
-				FA117DEA1B30E4AC003F4E54 /* InsetTableView.swift in Sources */,
 				FAF21D9019C128E700615D2F /* TransparentButtonCell.swift in Sources */,
 				FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */,
 				FA77499A198C07110048863F /* TagsViewController.swift in Sources */,
@@ -1063,6 +1063,7 @@
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
+				FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */,
