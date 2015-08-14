@@ -14,8 +14,9 @@ class StickyTrackViewController: TracksViewController {
         return tableView(tableView, heightOfRow: 0)
     }
     let shadowHeight: CGFloat = 7
+    let shadowOverlap: CGFloat = 1
     var viewHeight: CGFloat {
-        return trackViewHeight + shadowHeight
+        return trackViewHeight + shadowHeight - shadowOverlap
     }
     var shadowView: NSImageView?
     var position: StickyTrackPosition = .Bottom {
@@ -39,7 +40,8 @@ class StickyTrackViewController: TracksViewController {
         shadowView?.removeFromSuperview()
         
         scrollView.snp_remakeConstraints { make in
-            make.edges.equalTo(self.view).insets(NSEdgeInsets(top: 0, left: 0, bottom: shadowHeight, right: 0))
+            let insets = NSEdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
+            make.edges.equalTo(self.view).insets(insets)
         }
         
         shadowView = NSImageView()
@@ -58,7 +60,8 @@ class StickyTrackViewController: TracksViewController {
         shadowView?.removeFromSuperview()
         
         scrollView.snp_remakeConstraints { make in
-            make.edges.equalTo(self.view).insets(NSEdgeInsets(top: shadowHeight, left: 0, bottom: 0, right: 0))
+            let insets = NSEdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
+            make.edges.equalTo(self.view).insets(insets)
         }
         
         shadowView = NSImageView()

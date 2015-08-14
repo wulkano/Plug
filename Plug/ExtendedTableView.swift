@@ -43,10 +43,6 @@ class ExtendedTableView: NSTableView {
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
-        Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
-        
         updateContentInsets()
         updateScrollerInsets()
         setNewTrackingArea()
@@ -55,13 +51,19 @@ class ExtendedTableView: NSTableView {
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         
-        println(self)
+        subscribeToScrollingNotifications()
     }
     
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         
         setNewTrackingArea()
+    }
+    
+    func subscribeToScrollingNotifications() {
+        Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
     }
     
     func setNewTrackingArea() {
