@@ -339,7 +339,12 @@ class TracksViewController: DataSourceViewController {
     }
     
     override var stickyTrackControllerType: TracksViewControllerType {
-        return self.type
+        switch self.type {
+        case .HeatMap, .LoveCount:
+            return .LoveCount
+        case .Feed:
+            return .Feed
+        }
     }
     
     // MARK: DataSourceViewController
