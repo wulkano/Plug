@@ -201,7 +201,7 @@ class ExtendedTableView: NSTableView {
             shownDirection = .Above
         case .Down:
             var bottomPoint = visibleRect.origin
-            bottomPoint.y += visibleRect.size.height
+            bottomPoint.y += clipView.frame.size.height
             bottomPoint.y -= contentInsets.bottom
             point = bottomPoint
             shownDirection = .Below
@@ -227,7 +227,7 @@ class ExtendedTableView: NSTableView {
         switch scrollDirection {
         case .Up:
             var bottomPoint = visibleRect.origin
-            bottomPoint.y += visibleRect.size.height
+            bottomPoint.y += clipView.frame.size.height
             bottomPoint.y -= contentInsets.bottom
             bottomPoint.y += 1
             point = bottomPoint
@@ -269,7 +269,7 @@ class ExtendedTableView: NSTableView {
             shownDirection = .Above
         case .Down:
             var bottomPoint = visibleRect.origin
-            bottomPoint.y += visibleRect.size.height
+            bottomPoint.y += clipView.frame.size.height
             bottomPoint.y -= rowHeight
             bottomPoint.y -= contentInsets.bottom
             bottomPoint.y += 1
@@ -299,7 +299,7 @@ class ExtendedTableView: NSTableView {
         switch scrollDirection {
         case .Up:
             var bottomPoint = visibleRect.origin
-            bottomPoint.y += visibleRect.size.height
+            bottomPoint.y += clipView.frame.size.height
             bottomPoint.y += rowHeight
             bottomPoint.y -= contentInsets.bottom
             bottomPoint.y += 1
