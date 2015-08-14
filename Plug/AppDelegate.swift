@@ -146,6 +146,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let hmToken = Authentication.GetToken() {
             HypeMachineAPI.hmToken = hmToken
         }
+        
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let userAgent = "Plug for OSX/\(version)"
+        HypeMachineAPI.userAgent = userAgent
     }
     
     // MARK: Notifications

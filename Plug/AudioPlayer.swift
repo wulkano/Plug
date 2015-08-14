@@ -22,16 +22,16 @@ class AudioPlayer: NSObject {
     var player: AVPlayer!
     var playerItem: AVPlayerItem!
     var currentDataSource: TracksDataSource! {
-        didSet {
-            recentlyPlayedTrackIndexes = []
-        }
+        didSet { recentlyPlayedTrackIndexes = [] }
     }
-    var currentTrack: HypeMachineAPI.Track!
+    var currentTrack: HypeMachineAPI.Track! {
+        didSet { currentTrackChanged() }
+    }
+    var currentTrackListenLogged = false
+    var currentTrackListenScrobbled = false
     var playing: Bool = false
     var volume: Float = 1 {
-        didSet {
-            volumeChanged()
-        }
+        didSet { volumeChanged() }
     }
     var progressObserver: AnyObject?
     var seeking = false
@@ -163,6 +163,11 @@ class AudioPlayer: NSObject {
         recentlyPlayedTrackIndexes.append(currentDataSource.indexOfTrack(currentTrack)!)
     }
     
+    func currentTrackChanged() {
+        currentTrackListenLogged = false
+        currentTrackListenScrobbled = false
+    }
+    
     private func volumeChanged() {
         if player != nil {
             player.volume = volume
@@ -185,6 +190,14 @@ class AudioPlayer: NSObject {
             "track": currentTrack
         ]
         Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
+        
+        if progress > 30 && !currentTrackListenLogged {
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, optionalParams: nil, callback: {error in})
+            currentTrackListenLogged = true
+        } else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), optionalParams: nil, callback: {error in})
+            currentTrackListenScrobbled = true
+        }
     }
     
     private func subscribeToPlayerItem(playerItem: AVPlayerItem) {
