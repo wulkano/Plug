@@ -43,12 +43,11 @@ class TracksViewController: DataSourceViewController {
     }
     
     func cellViewForRow(row: Int) -> TrackTableCellView? {
-        if row < 0 {
-            return nil
-        } else {
-            let cell = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView
-            cell!.dataSource = tracksDataSource
+        if let cell = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView {
+            cell.dataSource = tracksDataSource
             return cell
+        } else {
+            return nil
         }
     }
     

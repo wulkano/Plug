@@ -103,7 +103,15 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
             shouldReloadTableView = true
         }
         
-        let rowIndexSet = rowIndexSetForNewObjects(objects)
+        let objectsToAdd: [AnyObject]
+        if filtering {
+            objectsToAdd = filterTableContents(objects)
+        } else {
+            objectsToAdd = objects
+        }
+        
+        let rowIndexSet = rowIndexSetForNewObjects(objectsToAdd)
+
         standardTableContents! += objects
         
         if shouldReloadTableView {
@@ -114,7 +122,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     }
     
     func rowIndexSetForNewObjects(objects: [AnyObject]) -> NSIndexSet {
-        let rowRange = NSMakeRange(standardTableContents!.count, objects.count)
+        let rowRange = NSMakeRange(tableContents!.count, objects.count)
         return NSIndexSet(indexesInRange: rowRange)
     }
     
