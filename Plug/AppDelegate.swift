@@ -188,6 +188,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
     }
     
+    @IBAction func reportABugItemClicked(sender: AnyObject) {
+        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
+    }
+    
     // MARK: NSApplicationDelegate
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
