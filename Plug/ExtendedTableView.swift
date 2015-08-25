@@ -45,7 +45,7 @@ class ExtendedTableView: NSTableView {
         
         updateContentInsets()
         updateScrollerInsets()
-        setNewTrackingArea()
+        updateTrackingAreas()
     }
     
     override func viewDidMoveToSuperview() {
@@ -57,24 +57,21 @@ class ExtendedTableView: NSTableView {
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
         
-        setNewTrackingArea()
-    }
-    
-    func subscribeToScrollingNotifications() {
-        Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
-    }
-    
-    func setNewTrackingArea() {
         if trackingArea != nil {
             removeTrackingArea(trackingArea!)
+            trackingArea = nil
         }
         
         let options: NSTrackingAreaOptions = (.ActiveAlways | .MouseEnteredAndExited | .MouseMoved | .AssumeInside)
         let trackingRect = insetRect(clipView.documentVisibleRect, insets: scrollerInsets)
         trackingArea = NSTrackingArea(rect: trackingRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
+    }
+    
+    func subscribeToScrollingNotifications() {
+        Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
     }
     
     func insetRect(rect: NSRect, insets: NSEdgeInsets) -> NSRect {
@@ -371,7 +368,7 @@ class ExtendedTableView: NSTableView {
     
     func updateScrollerInsets() {
         scrollView!.scrollerInsets = scrollerInsets
-        setNewTrackingArea()
+        updateTrackingAreas()
     }
 }
 

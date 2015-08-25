@@ -62,14 +62,25 @@ class HyperlinkButton: NSButton {
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
-        if hoverUnderline && !alwaysUnderlined {
-            let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
-            let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
-            addTrackingArea(trackingArea)
-        }
+        updateTrackingAreas()
         
         if alwaysUnderlined {
             addUnderlineToText()
+        }
+    }
+    
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        
+        if hoverUnderline && !alwaysUnderlined {
+            if trackingArea != nil {
+                removeTrackingArea(trackingArea!)
+                trackingArea = nil
+            }
+            
+            let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
+            trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
+            addTrackingArea(trackingArea!)
         }
     }
 

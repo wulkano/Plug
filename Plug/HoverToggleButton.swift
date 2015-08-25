@@ -50,9 +50,20 @@ class HoverToggleButton: NSButton {
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         
+        updateTrackingAreas()
+    }
+    
+    override func updateTrackingAreas() {
+        super.updateTrackingAreas()
+        
+        if trackingArea != nil {
+            removeTrackingArea(trackingArea!)
+            trackingArea = nil
+        }
+        
         let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
-        let trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
-        addTrackingArea(trackingArea)
+        trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
+        addTrackingArea(trackingArea!)
     }
     
     override func mouseEntered(theEvent: NSEvent) {
