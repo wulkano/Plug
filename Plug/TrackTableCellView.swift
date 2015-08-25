@@ -18,8 +18,6 @@ class TrackTableCellView: IOSStyleTableCellView {
     
     var playPauseButton: HoverToggleButton!
     var loveButton: TransparentButton!
-//    var artistTrailingConstraint: NSLayoutConstraint!
-//    var titleTrailingConstraint: NSLayoutConstraint!
     var loveContainerWidthConstraint: Constraint!
     var infoContainerWidthConstraint: Constraint!
     var progressSlider: NSSlider!
@@ -33,7 +31,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     var trackInfoWindowController: NSWindowController?
     
     override var objectValue: AnyObject! {
-        didSet { objectValueChanged() }
+        didSet { if objectValue !== oldValue { objectValueChanged() } }
     }
     var track: HypeMachineAPI.Track {
         return objectValue as! HypeMachineAPI.Track
