@@ -330,7 +330,6 @@ class ExtendedTableView: NSTableView {
     // When you scroll fast sometimes we don't detect all rows being scrolled over
     // so this makes sure to catch any skipped rows
     func rangeBetweenCurrentRow(currentRow: Int, andPreviousRow previousRow: Int) -> Range<Int> {
-//        println(currentRow, previousRow)
         if currentRow > previousRow {
             return (previousRow + 1)...currentRow
         } else {
@@ -350,8 +349,6 @@ class ExtendedTableView: NSTableView {
     
     func scrollViewDidEndScrolling(notification: NSNotification) {
         extendedDelegate?.didEndScrollingTableView(self)
-        
-        setNewTrackingArea()
     }
     
     func average(array: [Int]) -> Double {
