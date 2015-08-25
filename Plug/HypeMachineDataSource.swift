@@ -116,6 +116,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         
         let rowIndexSet = rowIndexSetForNewObjects(objectsToAdd)
 
+        // Need to calc the row index set first so that we can count the number of existing objects
         standardTableContents! += objects
         filteredTableContents! += filteredObjects
         
@@ -134,6 +135,10 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     func filterTableContents(objects: [AnyObject]) -> [AnyObject] {
         println("filterTableContents() not implemented")
         return objects
+    }
+    
+    func refilterTableContents() {
+        filteredTableContents = filterTableContents(standardTableContents!)
     }
     
     // MARK: NSTableViewDelegate

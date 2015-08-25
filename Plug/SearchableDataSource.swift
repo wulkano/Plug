@@ -14,6 +14,8 @@ class SearchableDataSource: HypeMachineDataSource {
     }
     
     func searchKeywordsChanged() {
+        refilterTableContents()
+        
         if searchKeywords == "" || searchKeywords == nil {
             filtering = false
         } else {
@@ -28,6 +30,10 @@ class SearchableDataSource: HypeMachineDataSource {
     // MARK: HypeMachineDataSource
     
     override func filterTableContents(objects: [AnyObject]) -> [AnyObject] {
-        return filterObjectsMatchingSearchKeywords(objects)
+        if searchKeywords == "" || searchKeywords == nil {
+            return objects
+        } else {
+            return filterObjectsMatchingSearchKeywords(objects)
+        }
     }
 }
