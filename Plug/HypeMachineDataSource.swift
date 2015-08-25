@@ -14,11 +14,12 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         didSet { viewController.tableView.reloadData() }
     }
     var standardTableContents: [AnyObject]?
+    var filteredTableContents: [AnyObject]?
     var tableContents: [AnyObject]? {
         if standardTableContents == nil { return nil }
         
         if filtering {
-            return filterTableContents(standardTableContents!)
+            return filteredTableContents!
         } else {
             return standardTableContents!
         }
@@ -93,19 +94,22 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     
     func resetTableContents() {
         standardTableContents = nil
+        filteredTableContents = nil
     }
     
     func appendTableContents(objects: [AnyObject]) {
         var shouldReloadTableView = false
+        var filteredObjects = filterTableContents(objects)
         
         if standardTableContents == nil {
             standardTableContents = []
+            filteredTableContents = []
             shouldReloadTableView = true
         }
         
         let objectsToAdd: [AnyObject]
         if filtering {
-            objectsToAdd = filterTableContents(objects)
+            objectsToAdd = filteredObjects
         } else {
             objectsToAdd = objects
         }
@@ -113,6 +117,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         let rowIndexSet = rowIndexSetForNewObjects(objectsToAdd)
 
         standardTableContents! += objects
+        filteredTableContents! += filteredObjects
         
         if shouldReloadTableView {
             viewController.tableView.reloadData()
