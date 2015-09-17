@@ -161,7 +161,7 @@ class UserViewController: BaseContentViewController {
             (user, error) in
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error)
+                print(error)
                 return
             }
             
@@ -187,7 +187,7 @@ class UserViewController: BaseContentViewController {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 return
             }
             
@@ -208,7 +208,7 @@ class UserViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))!
+        let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))
         tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "User/Tracks")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
@@ -232,7 +232,7 @@ class UserViewController: BaseContentViewController {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 
                 if sender.state == NSOffState {
                     sender.state = NSOnState

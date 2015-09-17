@@ -24,7 +24,7 @@ class TagsDataSource: SearchableDataSource {
     }
     
     func sortTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
-        return tags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+        return tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
     }
     
     func groupTags(tags: [HypeMachineAPI.Tag]) -> [AnyObject] {
@@ -32,11 +32,11 @@ class TagsDataSource: SearchableDataSource {
         
         groupedTags.append(SectionHeader(title: "The Basics"))
         var priorityTags = tags.filter { $0.priority == true }
-        priorityTags = priorityTags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+        priorityTags = priorityTags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
         groupedTags += priorityTags as [AnyObject]
         
         groupedTags.append(SectionHeader(title: "Everything"))
-        var sortedTags = tags.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+        var sortedTags = tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
         groupedTags += sortedTags as [AnyObject]
         
         return groupedTags
@@ -50,7 +50,7 @@ class TagsDataSource: SearchableDataSource {
         let sortedTags = sortTags(uniqueTags)
         
         if searchKeywords == "" || searchKeywords == nil {
-            println("Filtering, but no keywords present")
+            print("Filtering, but no keywords present")
             return sortedTags
         } else {
             return filterTagsMatchingSearchKeywords(sortedTags)

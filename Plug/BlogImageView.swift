@@ -33,7 +33,7 @@ class BlogImageView: NSImageView {
     
     func calulateImageRect() -> NSRect {
         var rect = NSZeroRect
-        var croppedHeight = image!.size.height / 1.33333
+        let croppedHeight = image!.size.height / 1.33333
         
         rect.origin.x = 0
         rect.origin.y = image!.size.height - croppedHeight
@@ -45,7 +45,7 @@ class BlogImageView: NSImageView {
     
     func calculateClippingRect() -> NSRect {
         var rect = NSZeroRect
-        var veritcalOffset = -(frame.size.width - frame.size.height) / 2
+        let veritcalOffset = -(frame.size.width - frame.size.height) / 2
         
         rect.origin.x = 0
         rect.origin.y = veritcalOffset

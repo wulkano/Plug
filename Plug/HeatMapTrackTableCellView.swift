@@ -34,7 +34,7 @@ class HeatMapTrackTableCellView: TrackTableCellView {
             (_, _, JSON, error) in
             
             if error != nil {
-                println(error)
+                print(error)
                 return
             }
             

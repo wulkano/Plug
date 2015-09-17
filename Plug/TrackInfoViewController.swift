@@ -56,7 +56,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
             (favorited, error) in
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 self.changeTrackLovedValueTo(oldLovedValue)
             }
             
@@ -77,7 +77,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil)!.instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
@@ -151,7 +151,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 return
             }
             

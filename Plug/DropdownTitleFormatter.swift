@@ -10,7 +10,7 @@ import Cocoa
 
 class DropdownTitleFormatter: NSFormatter {
     
-    override func attributedStringForObjectValue(obj: AnyObject, withDefaultAttributes attrs: [NSObject : AnyObject]?) -> NSAttributedString? {
+    override func attributedStringForObjectValue(obj: AnyObject, withDefaultAttributes attrs: [String : AnyObject]?) -> NSAttributedString? {
         return attributedDropdownTitle("Popular", optionTitle: "Now")
     }
     
@@ -19,10 +19,10 @@ class DropdownTitleFormatter: NSFormatter {
     }
     
     func attributedDropdownTitle(title: String?, optionTitle: String?) -> NSAttributedString {
-        var formattedViewTitle = formatViewTitle(title ?? "")
-        var formattedOptionTitle = formatOptionTitle(optionTitle ?? "")
+        let formattedViewTitle = formatViewTitle(title ?? "")
+        let formattedOptionTitle = formatOptionTitle(optionTitle ?? "")
         
-        var dropdownTitle = NSMutableAttributedString()
+        let dropdownTitle = NSMutableAttributedString()
         dropdownTitle.appendAttributedString(formattedViewTitle)
         dropdownTitle.appendAttributedString(formattedOptionTitle)
         

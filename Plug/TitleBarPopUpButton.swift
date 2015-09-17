@@ -10,7 +10,7 @@ import Cocoa
 
 class TitleBarPopUpButton: NSPopUpButton {
     var titleBarPopUpButtonCell: TitleBarPopUpButtonCell {
-        return cell() as! TitleBarPopUpButtonCell
+        return cell as! TitleBarPopUpButtonCell
     }
     var formattedTitle: NSAttributedString {
         return titleBarPopUpButtonCell.formattedTitle

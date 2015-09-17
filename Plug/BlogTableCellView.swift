@@ -42,12 +42,12 @@ class BlogTableCellView: IOSStyleTableCellView {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 return
             }
             
             var recentTracks = ""
-            for (index, track) in enumerate(tracks!) {
+            for (index, track) in tracks!.enumerate() {
                 recentTracks = recentTracks + "\(track.artist)"
                 if index < tracks!.count - 1 {
                     recentTracks = recentTracks + ", "

@@ -45,8 +45,8 @@ class TagContainerView: NSView {
         tagButton.title = tag.name.uppercaseString
         tagButton.fillColor = getFillColorForTag(tag)
         var tagSize = tagButton.attributedTitle.size
-        tagSize.width += 16
-        tagButton.frame.size.width = tagSize.width
+        tagSize().width += 16
+        tagButton.frame.size.width = tagSize().width
         return tagButton
     }
     
@@ -69,7 +69,7 @@ class TagContainerView: NSView {
     }
     
     func gradientLocationForTag(tag: HypeMachineAPI.Tag) -> CGFloat {
-        let index = find(tags, tag)!
+        let index = tags.indexOf(tag)!
         return CGFloat(index) / CGFloat((tags.count - 1))
     }
     
@@ -87,7 +87,7 @@ class TagContainerView: NSView {
     }
 
     func tagForButton(button: TagButton) -> HypeMachineAPI.Tag {
-        let index = find(buttons, button)!
+        let index = buttons.indexOf(button)!
         return tags[index]
     }
 }

@@ -59,7 +59,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         self.viewController.nextPageDidLoad(currentPage)
         if error != nil {
             Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-            println(error!)
+            print(error!)
             return
         }
         
@@ -99,7 +99,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     
     func appendTableContents(objects: [AnyObject]) {
         var shouldReloadTableView = false
-        var filteredObjects = filterTableContents(objects)
+        let filteredObjects = filterTableContents(objects)
         
         if standardTableContents == nil {
             standardTableContents = []
@@ -133,7 +133,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     }
     
     func filterTableContents(objects: [AnyObject]) -> [AnyObject] {
-        println("filterTableContents() not implemented")
+        print("filterTableContents() not implemented")
         return objects
     }
     

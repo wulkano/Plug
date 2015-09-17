@@ -16,7 +16,7 @@ struct Analytics {
         sharedTracker.trackPageview(viewName)
     }
     
-    static func trackEvent(#category: String, action: String, label: String?, value: String?) {
+    static func trackEvent(category category: String, action: String, label: String?, value: String?) {
         sharedTracker.trackEvent(category: category, action: action, label: label, value: value)
     }
     

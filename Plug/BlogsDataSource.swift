@@ -32,7 +32,7 @@ class BlogsDataSource: SearchableDataSource {
     }
     
     func sortBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
-        return blogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+        return blogs.sort { $0.name.lowercaseString < $1.name.lowercaseString }
     }
     
     func groupBlogs(blogs: [HypeMachineAPI.Blog]) -> [AnyObject] {
@@ -67,7 +67,7 @@ class BlogsDataSource: SearchableDataSource {
         let sortedBlogs = sortBlogs(blogs)
         
         if searchKeywords == "" || searchKeywords == nil {
-            println("Filtering, but no keywords present")
+            print("Filtering, but no keywords present")
             return sortedBlogs
         } else {
             return filterBlogsMatchingSearchKeywords(sortedBlogs)

@@ -44,7 +44,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
                     errorMessage = "Incorrect Username/Password"
                 } else {
                     errorMessage = "Network Error"
-                    println(error!)
+                    print(error!)
                 }
                 self.loginButton.buttonState = .Error(errorMessage)
                 return

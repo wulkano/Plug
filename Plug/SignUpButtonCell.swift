@@ -26,8 +26,8 @@ class SignUpButtonCell: SwissArmyButtonCell {
         let strokeWidth: CGFloat = 1
         let strokeColor: NSColor = NSColor.whiteColor().colorWithAlphaComponent(alpha)
         
-        var rect = NSMakeRect(0.5, 0.5, frame.size.width - 1, frame.size.height - 1)
-        var roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
+        let rect = NSMakeRect(0.5, 0.5, frame.size.width - 1, frame.size.height - 1)
+        let roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
         roundedRect.lineWidth = strokeWidth
         strokeColor.set()
         roundedRect.stroke()
@@ -45,7 +45,7 @@ class SignUpButtonCell: SwissArmyButtonCell {
             alpha = 0.5
         }
         
-        var mutableTitle = NSMutableAttributedString(attributedString: title)
+        let mutableTitle = NSMutableAttributedString(attributedString: title)
         let color = NSColor.whiteColor().colorWithAlphaComponent(alpha)
         let range = NSMakeRange(0, mutableTitle.length)
         

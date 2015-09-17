@@ -24,7 +24,7 @@ class TagButton: SwissArmyButton {
         }
     }
     var tagButtonCell: TagButtonCell {
-        return cell() as! TagButtonCell
+        return cell as! TagButtonCell
     }
     
     required init?(coder: NSCoder) {
@@ -41,13 +41,13 @@ class TagButton: SwissArmyButton {
     
     override func setupCell() {
         let newCell = TagButtonCell(textCell: "")
-        setCell(newCell)
+        setCell = newCell
     }
     
     func fontAttributes() -> [NSObject: AnyObject] {
         var attributes = [NSObject: AnyObject]()
-        var color = NSColor.blackColor()
-        var font = NSFont(name: "DIN Bold", size: 12)
+        let color = NSColor.blackColor()
+        let font = NSFont(name: "DIN Bold", size: 12)
         attributes[NSForegroundColorAttributeName] = color
         attributes[NSFontAttributeName] = font
         return attributes

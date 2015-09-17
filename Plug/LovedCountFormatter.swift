@@ -12,7 +12,7 @@ class LovedCountFormatter: NSFormatter {
     @IBInspectable var capitalize: Bool = false
     
     override func stringForObjectValue(obj: AnyObject) -> String? {
-        var count = (obj as! NSNumber).integerValue
+        let count = (obj as! NSNumber).integerValue
         var returnString: String?
         
         if count >= 1000 {

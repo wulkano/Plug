@@ -43,7 +43,7 @@ class TracksDataSource: HypeMachineDataSource {
         if tableContents == nil { return nil }
         
         let tracks = tableContents as! [HypeMachineAPI.Track]
-        return find(tracks, track)
+        return tracks.indexOf(track)
     }
     
     func trackAtIndex(index: Int) -> HypeMachineAPI.Track? {

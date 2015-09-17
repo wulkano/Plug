@@ -30,7 +30,7 @@ class SingleBlogViewFormatter: NSFormatter {
     }
     
     func formattedCount(count: NSNumber) -> NSAttributedString {
-        var countString = LovedCountFormatter().stringForObjectValue(count)!
+        let countString = LovedCountFormatter().stringForObjectValue(count)!
         return NSAttributedString(string: countString, attributes: countAttributes())
     }
     

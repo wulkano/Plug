@@ -10,7 +10,7 @@ import Cocoa
 
 class ActionButton: SwissArmyButton {
     var actionButtonCell: ActionButtonCell {
-        return cell() as! ActionButtonCell
+        return cell as! ActionButtonCell
     }
     var horizontalPadding: CGFloat {
         return actionButtonCell.horizontalPadding

@@ -10,9 +10,9 @@ import Foundation
 import HypeMachineAPI
 
 struct UserNotifications {
-    static func deliverNotification(#title: String, informativeText: String?) {
+    static func deliverNotification(title title: String, informativeText: String?) {
         if NSUserDefaults.standardUserDefaults().valueForKey(ShowTrackChangeNotificationsKey) as! Bool {
-            var notification = NSUserNotification()
+            let notification = NSUserNotification()
             notification.title = title
             notification.informativeText = informativeText
             notification.soundName = nil

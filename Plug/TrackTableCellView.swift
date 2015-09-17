@@ -274,7 +274,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     @IBAction func infoButtonClicked(sender: TransparentButton) {
         Analytics.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
-            let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)!
+            let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)
             trackInfoWindowController = trackInfoStoryboard.instantiateInitialController() as? NSWindowController
             var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
             trackInfoViewController.representedObject = objectValue
@@ -293,7 +293,7 @@ class TrackTableCellView: IOSStyleTableCellView {
             (favorited, error) in
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 self.changeTrackLovedValueTo(oldLovedValue)
             }
             
@@ -314,7 +314,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {
-        println("Track title clicked: \(track.title)")
+        Swift.print("Track title clicked: \(track.title)")
     }
     
     func changeTrackLovedValueTo(loved: Bool) {

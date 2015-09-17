@@ -119,7 +119,7 @@ class BlogViewController: BaseContentViewController {
             (blog, error) in
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error)
+                print(error)
                 return
             }
             
@@ -149,7 +149,7 @@ class BlogViewController: BaseContentViewController {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 return
             }
             
@@ -205,7 +205,7 @@ class BlogViewController: BaseContentViewController {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 
                 if sender.state == NSOffState {
                     sender.state = NSOnState

@@ -19,9 +19,9 @@ class ColorChangingTextField: NSTextField {
     
     func setColorForStringValue() {
         let numberValue = self.numberValueForStringValue()
-        var gradientLocation = self.gradientLocationForNumberValue(numberValue)
-        var gradient = self.makeGradient()
-        var newColor = gradient.interpolatedColorAtLocation(gradientLocation)
+        let gradientLocation = self.gradientLocationForNumberValue(numberValue)
+        let gradient = self.makeGradient()
+        let newColor = gradient.interpolatedColorAtLocation(gradientLocation)
         self.textColor = newColor
     }
     
@@ -43,7 +43,7 @@ class ColorChangingTextField: NSTextField {
             let numberValue = numberFormatter.numberFromString(escapedStringValue)!.integerValue
             return numberValue * 1000
         } else {
-            return escapedStringValue.toInt()!
+            return Int(escapedStringValue)!
         }
     }
     

@@ -92,7 +92,7 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
     }
     
     func updateUIForSection(section: NavigationSection) {
-        var newViewController = section.viewControllerForTarget(self)
+        let newViewController = section.viewControllerForTarget(self)
         currentViewController = newViewController
         navigationController.setNewRootViewController(newViewController)
     }
@@ -207,7 +207,7 @@ extension PopularSectionMode {
         menu.addItemWithTitle(self.OnlyRemixes.title, action: "popularSectionModeChanged:", keyEquivalent: "")
         menu.addItemWithTitle(self.LastWeek.title, action: "popularSectionModeChanged:", keyEquivalent: "")
         
-        for item in (menu.itemArray as! [NSMenuItem]) {
+        for item in menu.itemArray {
             item.target = target
         }
         
@@ -229,7 +229,7 @@ extension FavoritesSectionPlaylist {
         menu.addItemWithTitle(self.Two.title, action: "favoritesSectionPlaylistChanged:", keyEquivalent: "")
         menu.addItemWithTitle(self.Three.title, action: "favoritesSectionPlaylistChanged:", keyEquivalent: "")
         
-        for item in (menu.itemArray as! [NSMenuItem]) {
+        for item in menu.itemArray {
             item.target = target
         }
         
@@ -250,7 +250,7 @@ extension FeedSectionMode {
         menu.addItemWithTitle(self.Friends.title, action: "feedSectionModeChanged:", keyEquivalent: "")
         menu.addItemWithTitle(self.Blogs.title, action: "feedSectionModeChanged:", keyEquivalent: "")
         
-        for item in (menu.itemArray as! [NSMenuItem]) {
+        for item in menu.itemArray {
             item.target = target
         }
         
@@ -271,7 +271,7 @@ extension SearchSectionSort {
         menu.addItemWithTitle(self.MostFavorites.title, action: "searchSectionSortChanged:", keyEquivalent: "")
         menu.addItemWithTitle(self.MostReblogged.title, action: "searchSectionSortChanged:", keyEquivalent: "")
         
-        for item in (menu.itemArray as! [NSMenuItem]) {
+        for item in menu.itemArray {
             item.target = target
         }
         

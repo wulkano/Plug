@@ -117,7 +117,7 @@ class AudioPlayer: NSObject {
             
             if !success {
                 // Minor error
-                println("Error seeking")
+                print("Error seeking")
             }
         })
     }
@@ -125,7 +125,7 @@ class AudioPlayer: NSObject {
     // MARK : Notification listeners
     
     func currentTrackFinishedPlayingNotification(notification: NSNotification) {
-        println("currentTrackFinishedPlayingNotification")
+        print("currentTrackFinishedPlayingNotification")
         skipForward()
     }
     
@@ -225,7 +225,7 @@ class AudioPlayer: NSObject {
         
         var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         
-        while find(recentlyPlayedTrackIndexes, nextShuffleTrackIndex) != nil {
+        while recentlyPlayedTrackIndexes.indexOf(nextShuffleTrackIndex) != nil {
             nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         }
         

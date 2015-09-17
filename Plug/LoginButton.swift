@@ -10,7 +10,7 @@ import Cocoa
 
 class LoginButton: SwissArmyButton {
     var loginButtonCell: LoginButtonCell {
-        return cell() as! LoginButtonCell
+        return cell as! LoginButtonCell
     }
     var buttonState: LoginButtonState = .Disabled {
         didSet { buttonStateChanged() }
@@ -52,8 +52,8 @@ class LoginButton: SwissArmyButton {
     
     func setupLoadingImageView() {
         if loadingImageView == nil {
-            var loaderImage = buttonState.image()
-            var imageFrame = NSMakeRect(244.0,8.0,20.0,20.0)
+            let loaderImage = buttonState.image()
+            let imageFrame = NSMakeRect(244.0,8.0,20.0,20.0)
             loadingImageView = NSImageView(frame: imageFrame)
             loadingImageView!.image = loaderImage
             addSubview(loadingImageView!)

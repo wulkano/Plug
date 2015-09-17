@@ -21,7 +21,7 @@ class SidebarViewController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadButtons(#superview: NSView) {
+    func loadButtons(superview superview: NSView) {
         var n = 0
         while let navigationSection = NavigationSection(rawValue: n) {
             let button = NavigationSectionButton(navigationSection: navigationSection)

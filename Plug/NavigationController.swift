@@ -75,7 +75,7 @@ class NavigationController: NSViewController {
     func setNewRootViewController(viewController: BaseContentViewController) {
         if rootViewController === viewController {
             if rootViewController === topViewController {
-                println("Can't transition to current view controller")
+                print("Can't transition to current view controller")
             } else {
                 popToRootViewController()
             }
@@ -112,7 +112,7 @@ class NavigationController: NSViewController {
         if !canPopViewController() { return nil }
         
         transitionFromViewController(visibleViewController, toViewController: nextTopViewController!, reversed: true)
-        var poppedController = removeTopViewController()
+        let poppedController = removeTopViewController()
         
         Analytics.trackView(visibleViewController.analyticsViewName)
         navigationBarController.popNavigationItemAnimated(true)
@@ -129,7 +129,7 @@ class NavigationController: NSViewController {
         if !canPopToViewController(viewController) { return [] }
         
         transitionFromViewController(visibleViewController, toViewController: viewController,  reversed: true)
-        var poppedControllers = removeViewControllersAbove(viewController)
+        let poppedControllers = removeViewControllersAbove(viewController)
         
         Analytics.trackView(visibleViewController.analyticsViewName)
         navigationBarController.popToNavigationItem(viewController.navigationItem, animated: true)
@@ -146,7 +146,7 @@ class NavigationController: NSViewController {
     private func removeViewControllersAbove(viewController: BaseContentViewController) -> [BaseContentViewController] {
         var removedControllers = [BaseContentViewController]()
         while topViewController !== viewController {
-            var controller = topViewController
+            let controller = topViewController
             controller.removeFromParentViewController()
             removedControllers.append(controller)
         }
@@ -165,7 +165,7 @@ class NavigationController: NSViewController {
     }
     
     private func removeTopViewController() -> BaseContentViewController {
-        var poppedController = topViewController
+        let poppedController = topViewController
         poppedController.removeFromParentViewController()
         return poppedController
     }
@@ -228,9 +228,9 @@ class NavigationController: NSViewController {
     
     private func transitionOptions(reversed: Bool) -> NSViewControllerTransitionOptions {
         if reversed {
-            return NSViewControllerTransitionOptions.SlideRight | NSViewControllerTransitionOptions.Crossfade
+            return NSViewControllerTransitionOptions.SlideRight.union(NSViewControllerTransitionOptions.Crossfade)
         } else {
-            return NSViewControllerTransitionOptions.SlideLeft | NSViewControllerTransitionOptions.Crossfade
+            return NSViewControllerTransitionOptions.SlideLeft.union(NSViewControllerTransitionOptions.Crossfade)
         }
     }
 }

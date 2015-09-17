@@ -22,7 +22,7 @@ class UsersDataSource: SearchableDataSource {
     }
     
     func sortUsers(users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
-        return users.sorted { $0.username.lowercaseString < $1.username.lowercaseString }
+        return users.sort { $0.username.lowercaseString < $1.username.lowercaseString }
     }
     
     // MARK: SearchableDataSource

@@ -49,7 +49,7 @@ class UserTableCellView: IOSStyleTableCellView {
             
             if error != nil {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+                print(error!)
                 return
             }
             

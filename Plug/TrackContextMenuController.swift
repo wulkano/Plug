@@ -38,7 +38,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         contextMenu.addItem(NSMenuItem(title: "Share to Twitter", action: "shareToTwitterClicked:", keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Share to Messages", action: "shareToMessagesClicked:", keyEquivalent: ""))
         
-        for item in contextMenu.itemArray as! [NSMenuItem] {
+        for item in contextMenu.itemArray {
             item.target = self
         }
     }
@@ -64,7 +64,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
                 NSPasteboard.generalPasteboard().setString(trackURL.absoluteString!, forType: NSStringPboardType)
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                println(error)
+                print(error)
         })
     }
     
@@ -77,7 +77,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
                 return
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
-                println(error)
+                print(error)
         })
     }
     
@@ -123,7 +123,7 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {
-        println(request.URL!.host!)
+        print(request.URL!.host!)
         
         if request.URL!.host! == "api.soundcloud.com" {
             
@@ -149,7 +149,7 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     func parseTrackIDFromURL(url: NSURL) -> String? {
         let prefix = "http://api.soundcloud.com/tracks/"
         let suffix = "/stream"
-        return url.absoluteString!.getSubstringBetweenPrefix(prefix, andSuffix: suffix)
+        return url.absoluteString.getSubstringBetweenPrefix(prefix, andSuffix: suffix)
     }
     
     func requestPermalinkForTrackID(trackID: String) {

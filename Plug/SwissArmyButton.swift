@@ -20,7 +20,7 @@ class SwissArmyButton: NSButton {
     }
     var trackingArea: NSTrackingArea?
     var swissArmyButtonCell: SwissArmyButtonCell {
-        return cell() as! SwissArmyButtonCell
+        return cell as! SwissArmyButtonCell
     }
     var mouseInside: Bool {
         get { return swissArmyButtonCell.mouseInside }
@@ -46,7 +46,7 @@ class SwissArmyButton: NSButton {
                 trackingArea = nil
             }
             
-            let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
+            let options: NSTrackingAreaOptions = [.InVisibleRect, .ActiveAlways, .MouseEnteredAndExited]
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea!)
         }
@@ -69,7 +69,7 @@ class SwissArmyButton: NSButton {
     
     func setupCell() {
         let newCell = SwissArmyButtonCell(textCell: "")
-        setCell(newCell)
+        setCell = newCell
     }
     
     override func mouseEntered(theEvent: NSEvent) {

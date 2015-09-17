@@ -24,11 +24,11 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
     }
     
     var extraWidthForFormattedTitle: CGFloat {
-        return formattedTitle.size.width - attributedTitle.size.width
+        return formattedTitle.size().width - attributedTitle.size.width
     }
     
     var extraHeightForFormattedTitle: CGFloat {
-        return formattedTitle.size.height - attributedTitle.size.height
+        return formattedTitle.size().height - attributedTitle.size.height
     }
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
@@ -69,10 +69,10 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
     }
     
     private func sortMenuForSelectedItem(item: NSMenuItem?) {
-        let originalMenuItems = (originalMenu!.itemArray as! [NSMenuItem])
+        let originalMenuItems = originalMenu!.itemArray
         let sortedItemArray = originalMenuItems.map { self.menu!.itemWithTitle($0.title)! }
         
-        for sortItem in sortedItemArray.reverse() {
+        for sortItem in Array(sortedItemArray.reverse()) {
             if sortItem === item! { continue }
             
             menu!.removeItem(sortItem)

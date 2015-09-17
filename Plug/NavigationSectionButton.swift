@@ -31,6 +31,6 @@ class NavigationSectionButton: SwissArmyButton {
     override func setupCell() {
         let cell = TransparentButtonCell(textCell: "")
         cell.allowsSelectedState = true
-        setCell(cell)
+        setCell = cell
     }
 }

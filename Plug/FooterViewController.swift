@@ -76,7 +76,7 @@ class FooterViewController: NSViewController {
         cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
         cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
         cell.knobSize = 10
-        volumeSlider.setCell(cell)
+        volumeSlider.setCell = cell
         volumeSlider.controlSize = .MiniControlSize
         backgroundView.addSubview(volumeSlider)
         volumeSlider.snp_makeConstraints { make in
@@ -88,7 +88,7 @@ class FooterViewController: NSViewController {
         shuffleButton = SwissArmyButton(frame: NSZeroRect)
         let shuffleCell = TransparentButtonCell(textCell: "")
         shuffleCell.allowsSelectedState = true
-        shuffleButton.setCell(shuffleCell)
+        shuffleButton.setCell = shuffleCell
         shuffleButton.bordered = false
         shuffleButton.tracksHover = true
         shuffleButton.image = NSImage(named: "Footer-Shuffle-Normal")
@@ -105,7 +105,7 @@ class FooterViewController: NSViewController {
         
         let forwardButton = SwissArmyButton(frame: NSZeroRect)
         let forwardCell = TransparentButtonCell(textCell: "")
-        forwardButton.setCell(forwardCell)
+        forwardButton.setCell = forwardCell
         forwardButton.bordered = false
         forwardButton.tracksHover = true
         forwardButton.image = NSImage(named: "Footer-Forward")
@@ -121,7 +121,7 @@ class FooterViewController: NSViewController {
         
         let backButton = SwissArmyButton(frame: NSZeroRect)
         let backCell = TransparentButtonCell(textCell: "")
-        backButton.setCell(backCell)
+        backButton.setCell = backCell
         backButton.bordered = false
         backButton.tracksHover = true
         backButton.image = NSImage(named: "Footer-Previous")
