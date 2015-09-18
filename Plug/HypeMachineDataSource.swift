@@ -61,7 +61,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         
         switch result {
         case .Success(let value):
-            guard let objects = value as Any as? [AnyObject] else {
+            guard let objects = value as Any as? AnyObject as? [AnyObject] else {
                 fatalError("Must conform to AnyObject")
             }
             
