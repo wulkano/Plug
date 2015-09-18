@@ -48,18 +48,18 @@ class PostInfoTextField: NSTextField {
     
     func updateText() {
         if mouseInside {
-            var contents = NSMutableAttributedString(attributedString: attributedStringValue)
+            let contents = NSMutableAttributedString(attributedString: attributedStringValue)
             contents.enumerateAttribute(NSLinkAttributeName, inRange: NSMakeRange(0, contents.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired , usingBlock: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle, range: range)
+                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
                 }
             })
             attributedStringValue = contents
         } else {
-            var contents = NSMutableAttributedString(attributedString: attributedStringValue)
+            let contents = NSMutableAttributedString(attributedString: attributedStringValue)
             contents.enumerateAttribute(NSLinkAttributeName, inRange: NSMakeRange(0, contents.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired , usingBlock: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleNone, range: range)
+                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleNone.rawValue, range: range)
                 }
             })
             attributedStringValue = contents

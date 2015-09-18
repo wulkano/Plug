@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let x: CGFloat = 100
                 let y: CGFloat = (NSScreen.mainScreen()!.frame.size.height - 778) / 2
 
-                var defaultFrame = NSMakeRect(x, y, width, height)
+                let defaultFrame = NSMakeRect(x, y, width, height)
                 mainWindowController!.window!.setFrame(defaultFrame, display: false)
         }
         
@@ -126,7 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
-        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as [NSObject : AnyObject])
+        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [String : AnyObject])
     }
     
     func setupUserNotifications() {

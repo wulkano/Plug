@@ -11,10 +11,10 @@ import HypeMachineAPI
 
 class PostInfoFormatter: NSFormatter {
     func attributedStringForPostInfo(track: HypeMachineAPI.Track) -> NSAttributedString {
-        var postInfoAttributedString = NSMutableAttributedString()
-        var formattedBlogName = attributedBlogName(track.postedBy)
-        var formattedDescription = attributedDescription(track.postedByDescription)
-        var formattedDatePosted = attributedDatePosted(track.datePosted, url: track.hypeMachineURL())
+        let postInfoAttributedString = NSMutableAttributedString()
+        let formattedBlogName = attributedBlogName(track.postedBy)
+        let formattedDescription = attributedDescription(track.postedByDescription)
+        let formattedDatePosted = attributedDatePosted(track.datePosted, url: track.hypeMachineURL())
         postInfoAttributedString.appendAttributedString(formattedBlogName)
         postInfoAttributedString.appendAttributedString(formattedDescription)
         postInfoAttributedString.appendAttributedString(formattedDatePosted)
@@ -31,7 +31,7 @@ class PostInfoFormatter: NSFormatter {
     }
     
     private func attributedDatePosted(datePosted: NSDate, url: NSURL) -> NSAttributedString {
-        var string = formattedDatePosted(datePosted)
+        let string = formattedDatePosted(datePosted)
         var dateAttributes = boldAttributes()
         dateAttributes[NSLinkAttributeName] = url.absoluteString
         return NSAttributedString(string: string, attributes: dateAttributes)
@@ -54,8 +54,8 @@ class PostInfoFormatter: NSFormatter {
         return dateComponents.year == todayComponents.year
     }
     
-    private func normalAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    private func normalAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         let color = NSColor.whiteColor().colorWithAlphaComponent(0.5)
         let font = NSFont(name: "HelveticaNeue", size: 13)
         attributes[NSForegroundColorAttributeName] = color
@@ -63,8 +63,8 @@ class PostInfoFormatter: NSFormatter {
         return attributes
     }
     
-    private func boldAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    private func boldAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         let color = NSColor.whiteColor()
         let font = NSFont(name: "HelveticaNeue-Medium", size: 13)
         attributes[NSForegroundColorAttributeName] = color

@@ -95,7 +95,7 @@ class LoginButton: SwissArmyButton {
                 return NSImage(named: "Login-Next")
             case .Sending:
                 return NSImage(named: "Loader-Login")
-            case .Error(let message):
+            case .Error:
                 return NSImage(named: "Login-Error")
             }
         }

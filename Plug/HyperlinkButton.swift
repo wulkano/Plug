@@ -45,17 +45,17 @@ class HyperlinkButton: NSButton {
     }
     
     func applyAttributes() {
-        var attributes = [NSObject: AnyObject]()
+        var attributes = [String: AnyObject]()
         if selected {
             attributes[NSForegroundColorAttributeName] = selectedTextColor
         } else {
             attributes[NSForegroundColorAttributeName] = textColor
         }
         attributes[NSFontAttributeName] = (cell as! NSButtonCell).font
-        var paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = (cell as! NSButtonCell).lineBreakMode
         attributes[NSParagraphStyleAttributeName] = paragraphStyle
-        var coloredString = NSMutableAttributedString(string: title, attributes: attributes)
+        let coloredString = NSMutableAttributedString(string: title, attributes: attributes)
         attributedTitle = coloredString
     }
     
@@ -103,14 +103,14 @@ class HyperlinkButton: NSButton {
     func addUnderlineToText() {
         let range = NSMakeRange(0, attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSSingleUnderlineStyle, range: range)
+        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
         attributedTitle = newAttributedTitle
     }
     
     func removeUnderlineFromText() {
         let range = NSMakeRange(0, attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSNoUnderlineStyle, range: range)
+        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleNone.rawValue, range: range)
         attributedTitle = newAttributedTitle
     }
 }

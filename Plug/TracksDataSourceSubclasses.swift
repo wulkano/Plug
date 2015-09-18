@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 import HypeMachineAPI
 
 class PopularTracksDataSource: TracksDataSource {
@@ -172,6 +173,6 @@ class SingleTrackDataSource: TracksDataSource {
     }
     
     override func requestNextPageObjects() {
-        nextPageTracksReceived([track], error: nil)
+        nextPageTracksReceived(result: Result.Success([track]))
     }
 }

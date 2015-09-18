@@ -36,7 +36,7 @@ class TagsDataSource: SearchableDataSource {
         groupedTags += priorityTags as [AnyObject]
         
         groupedTags.append(SectionHeader(title: "Everything"))
-        var sortedTags = tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
+        let sortedTags = tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
         groupedTags += sortedTags as [AnyObject]
         
         return groupedTags
@@ -60,8 +60,8 @@ class TagsDataSource: SearchableDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tags.index { (tags, error) in
-            self.nextPageObjectsReceived(tags, error: error)
+        HypeMachineAPI.Requests.Tags.index { result in
+            self.nextPageObjectsReceived(result as Result<[AnyObject]>)
         }
     }
     

@@ -115,15 +115,14 @@ class BlogViewController: BaseContentViewController {
     }
     
     func loadBlog(blogID: Int) {
-        HypeMachineAPI.Requests.Blogs.show(id: blogID) {
-            (blog, error) in
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+        HypeMachineAPI.Requests.Blogs.show(id: blogID) { result in
+            switch result {
+            case .Success(let blog):
+                self.blog = blog
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
-                return
             }
-            
-            self.blog = blog
         }
     }
     
@@ -164,7 +163,7 @@ class BlogViewController: BaseContentViewController {
             let attributedBlogDetails = SingleBlogViewFormatter().attributedBlogDetails(self.blog, colorArt: colorArt)
             
             Async.MainQueue({
-                var image = colorArt.scaledImage
+                let image = colorArt.scaledImage
                 image.size = NSMakeSize(112, 112)
                 self.imageView.image = image
                 self.header.backgroundColor = colorArt.backgroundColor
@@ -200,28 +199,18 @@ class BlogViewController: BaseContentViewController {
     }
     
     func followButtonClicked(sender: ActionButton) {
-        HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id, optionalParams: nil) { (favorited, error) in
+        HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id, optionalParams: nil) { result in
             let favoritedState = sender.state == NSOnState
             
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
+            switch result {
+            case .Success(let favorited):
+                guard favorited != favoritedState else { return }
+                sender.state = favorited ? NSOnState : NSOffState
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error)
                 
-                if sender.state == NSOffState {
-                    sender.state = NSOnState
-                } else {
-                    sender.state = NSOffState
-                }
-                
-                return
-            }
-            
-            if favorited! != favoritedState {
-                if favorited! {
-                    sender.state = NSOnState
-                } else {
-                    sender.state = NSOffState
-                }
+                sender.state = sender.state == NSOffState ? NSOnState : NSOffState
             }
         }
     }
@@ -233,7 +222,7 @@ class BlogViewController: BaseContentViewController {
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
         loaderViewController!.view.snp_makeConstraints { make in
-            make.edges.equalTo(header).insets(insets)
+            make.edges.equalTo(header).inset(insets)
         }
     }
     

@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
 import Alamofire
+import UIKit
 
 class DetailViewController: UITableViewController {
     enum Sections: Int {
@@ -32,98 +32,146 @@ class DetailViewController: UITableViewController {
         didSet {
             oldValue?.cancel()
 
-            self.title = self.request?.description
-            self.refreshControl?.endRefreshing()
-            self.headers.removeAll()
-            self.body = nil
-            self.elapsedTime = nil
+            title = request?.description
+            refreshControl?.endRefreshing()
+            headers.removeAll()
+            body = nil
+            elapsedTime = nil
         }
     }
 
     var headers: [String: String] = [:]
     var body: String?
     var elapsedTime: NSTimeInterval?
+    var segueIdentifier: String?
+
+    static let numberFormatter: NSNumberFormatter = {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle
+        return formatter
+    }()
+
+    // MARK: View Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 
     }
-
-    // MARK: - UIViewController
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.refresh()
+        refresh()
     }
 
-    // MARK: - IBAction
+    // MARK: IBActions
 
     @IBAction func refresh() {
-        if self.request == nil {
+        guard let request = request else {
             return
         }
 
-        self.refreshControl?.beginRefreshing()
+        refreshControl?.beginRefreshing()
 
         let start = CACurrentMediaTime()
-        self.request?.responseString { (request, response, body, error) in
+        request.responseString { request, response, result in
             let end = CACurrentMediaTime()
             self.elapsedTime = end - start
 
-            for (field, value) in response!.allHeaderFields {
-                self.headers["\(field)"] = "\(value)"
+            if let response = response {
+                for (field, value) in response.allHeaderFields {
+                    self.headers["\(field)"] = "\(value)"
+                }
             }
 
-            self.body = body
+            if let segueIdentifier = self.segueIdentifier {
+                switch segueIdentifier {
+                case "GET", "POST", "PUT", "DELETE":
+                    self.body = result.value
+                case "DOWNLOAD":
+                    self.body = self.downloadedBodyString()
+                default:
+                    break
+                }
+            }
 
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
     }
 
-    // MARK: UITableViewDataSource
+    private func downloadedBodyString() -> String {
+        let fileManager = NSFileManager.defaultManager()
+        let cachesDirectory = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)[0]
 
+        do {
+            let contents = try fileManager.contentsOfDirectoryAtURL(
+                cachesDirectory,
+                includingPropertiesForKeys: nil,
+                options: .SkipsHiddenFiles
+            )
+
+            if let
+                fileURL = contents.first,
+                data = NSData(contentsOfURL: fileURL)
+            {
+                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+                let prettyData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+
+                if let prettyString = NSString(data: prettyData, encoding: NSUTF8StringEncoding) as? String {
+                    try fileManager.removeItemAtURL(fileURL)
+                    return prettyString
+                }
+            }
+        } catch {
+            // No-op
+        }
+
+        return ""
+    }
+}
+
+// MARK: - UITableViewDataSource
+
+extension DetailViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section)! {
         case .Headers:
-            return self.headers.count
+            return headers.count
         case .Body:
-            return self.body == nil ? 0 : 1
-        default:
-            return 0
+            return body == nil ? 0 : 1
         }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         switch Sections(rawValue: indexPath.section)! {
         case .Headers:
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("Header") as! UITableViewCell
-            let field = self.headers.keys.array.sorted(<)[indexPath.row]
-            let value = self.headers[field]
+            let cell = tableView.dequeueReusableCellWithIdentifier("Header")!
+            let field = headers.keys.sort(<)[indexPath.row]
+            let value = headers[field]
 
             cell.textLabel?.text = field
-            cell.detailTextLabel!.text = value
+            cell.detailTextLabel?.text = value
 
             return cell
         case .Body:
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("Body") as! UITableViewCell
-
-            cell.textLabel?.text = self.body
+            let cell = tableView.dequeueReusableCellWithIdentifier("Body")!
+            cell.textLabel?.text = body
 
             return cell
         }
     }
+}
 
-    // MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 
+extension DetailViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.tableView(tableView, numberOfRowsInSection: section) == 0 {
             return ""
         }
@@ -145,15 +193,12 @@ class DetailViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String {
-        if Sections(rawValue: section)! == .Body && self.elapsedTime != nil {
-            let numberFormatter = NSNumberFormatter()
-            numberFormatter.numberStyle = .DecimalStyle
-
-            return "Elapsed Time: \(numberFormatter.stringFromNumber(self.elapsedTime!)) sec"
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if Sections(rawValue: section) == .Body, let elapsedTime = elapsedTime {
+            let elapsedTimeText = DetailViewController.numberFormatter.stringFromNumber(elapsedTime) ?? "???"
+            return "Elapsed Time: \(elapsedTimeText) sec"
         }
 
         return ""
     }
 }
-

@@ -37,23 +37,22 @@ class BlogTableCellView: IOSStyleTableCellView {
         recentArtistsTextField.stringValue = "Loading..."
         
         let params = ["page": 1, "count": 3]
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, optionalParams: params) {
-            (tracks: [HypeMachineAPI.Track]?, error) in
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, optionalParams: params) { result in
             
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
-                return
-            }
-            
-            var recentTracks = ""
-            for (index, track) in tracks!.enumerate() {
-                recentTracks = recentTracks + "\(track.artist)"
-                if index < tracks!.count - 1 {
-                    recentTracks = recentTracks + ", "
+            switch result {
+            case .Success(let tracks):
+                var recentTracks = ""
+                for (index, track) in tracks.enumerate() {
+                    recentTracks = recentTracks + "\(track.artist)"
+                    if index < tracks.count - 1 {
+                        recentTracks = recentTracks + ", "
+                    }
                 }
+                self.recentArtistsTextField.stringValue = recentTracks
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error)
             }
-            self.recentArtistsTextField.stringValue = recentTracks
         }
     }
 }

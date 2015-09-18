@@ -17,7 +17,7 @@ class SwissArmyButtonCell: NSButtonCell {
         highlightsBy = NSCellStyleMask.NoCellMask
     }
     
-    override init(textCell aString: String!) {
+    override init(textCell aString: String) {
         super.init(textCell: aString)
         highlightsBy = NSCellStyleMask.NoCellMask
     }

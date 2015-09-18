@@ -52,6 +52,6 @@ class ColorChangingTextField: NSTextField {
         let purpleColor = NSColor(red256: 183, green256: 101, blue256: 212)
         let darkBlueColor = NSColor(red256: 28, green256: 121, blue256: 219)
         let lightBlueColor = NSColor(red256: 158, green256: 236, blue256: 255)
-        return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))
+        return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))!
     }
 }

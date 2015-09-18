@@ -44,13 +44,13 @@ class AudioPlayer: NSObject {
     
     deinit {
         if progressObserver != nil {
-            player.removeTimeObserver(progressObserver)
+            player.removeTimeObserver(progressObserver!)
         }
     }
     
     func reset() {
         if progressObserver != nil {
-            player.removeTimeObserver(progressObserver)
+            player.removeTimeObserver(progressObserver!)
         }
         player = nil
         playerItem = nil

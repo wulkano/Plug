@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 let ApiKey = "***REMOVED***"
 let PlugErrorDomain = "Plug.ErrorDomain"

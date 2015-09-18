@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Alamofire
 
 class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     var viewController: DataSourceViewController
@@ -55,23 +56,24 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         fatalError("requestNextPage() not implemented")
     }
     
-    func nextPageObjectsReceived(objects: [AnyObject]?, error: NSError?) {
+    func nextPageObjectsReceived(result: Result<[AnyObject]>) {
         self.viewController.nextPageDidLoad(currentPage)
-        if error != nil {
-            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-            print(error!)
-            return
+        
+        switch result {
+        case .Success(let objects):
+            if currentPage == 0 {
+                resetTableContents()
+            }
+            
+            currentPage++
+            allObjectsLoaded = isLastPage(objects)
+            
+            self.appendTableContents(objects)
+            self.requestInProgress = false
+        case .Failure(_, let error):
+            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+            print(error)
         }
-        
-        if currentPage == 0 {
-            resetTableContents()
-        }
-        
-        currentPage++
-        allObjectsLoaded = isLastPage(objects!)
-        
-        self.appendTableContents(objects!)
-        self.requestInProgress = false
     }
     
     func refresh() {

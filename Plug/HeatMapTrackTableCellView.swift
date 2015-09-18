@@ -31,20 +31,20 @@ class HeatMapTrackTableCellView: TrackTableCellView {
     
     func updateHeatMap() {
         Alamofire.request(.GET, "http://www.plugformac.com/data/heatmaps.json").validate().responseJSON {
-            (_, _, JSON, error) in
+            (_, _, result) in
             
-            if error != nil {
+            switch result {
+            case .Success(let JSON):
+                if let trackJSON = (JSON[self.track.id] as? NSDictionary) {
+                    let startPoint = (trackJSON["beginningValue"]! as! NSNumber).doubleValue
+                    let endPoint = (trackJSON["endValue"]! as! NSNumber).doubleValue
+                    let heatMap = HeatMap(track: self.track, start: startPoint, end: endPoint)
+                    self.heatMapView.heatMap = heatMap
+                } else {
+                    //                println("Heatmap missed for track: \(self.trackValue)")
+                }
+            case .Failure(_, let error):
                 print(error)
-                return
-            }
-            
-            if let trackJSON = (JSON?.valueForKeyPath(self.track.id) as? NSDictionary) {
-                let startPoint = (trackJSON["beginningValue"]! as! NSNumber).doubleValue
-                let endPoint = (trackJSON["endValue"]! as! NSNumber).doubleValue
-                let heatMap = HeatMap(track: self.track, start: startPoint, end: endPoint)
-                self.heatMapView.heatMap = heatMap
-            } else {
-//                println("Heatmap missed for track: \(self.trackValue)")
             }
         }
     }

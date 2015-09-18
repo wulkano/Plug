@@ -11,8 +11,8 @@ import HypeMachineAPI
 
 class TracksDataSource: HypeMachineDataSource {
     
-    func nextPageTracksReceived(tracks: [HypeMachineAPI.Track]?, error: NSError?) {
-        nextPageObjectsReceived(tracks, error: error)
+    func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
+        nextPageObjectsReceived(result: result)
     }
     
     func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {

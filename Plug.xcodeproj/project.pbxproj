@@ -44,7 +44,6 @@
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
 		FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */; };
-		FA410CF419A40C2600E71B20 /* Plug.iconset in Resources */ = {isa = PBXBuildFile; fileRef = FA410CF319A40C2600E71B20 /* Plug.iconset */; };
 		FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */; };
 		FA4BA9991B543FA700A983A5 /* RefreshClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */; };
 		FA4BA99C1B5492BE00A983A5 /* TracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */; };
@@ -221,7 +220,6 @@
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutedPreferencesViewController.swift; sourceTree = "<group>"; };
-		FA410CF319A40C2600E71B20 /* Plug.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Plug.iconset; sourceTree = "<group>"; };
 		FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
 		FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshClipView.swift; sourceTree = "<group>"; };
 		FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSource.swift; sourceTree = "<group>"; };
@@ -498,7 +496,6 @@
 				FA666D5919B3948E00AA0AA1 /* Plugins */,
 				FA24EDA71974A9A500A781C8 /* Images.xcassets */,
 				FA24ED9F1974A9A500A781C8 /* Supporting Files */,
-				FA410CF319A40C2600E71B20 /* Plug.iconset */,
 			);
 			path = Plug;
 			sourceTree = "<group>";
@@ -895,7 +892,6 @@
 				FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */,
 				FA4C44F719A6C8BE0052D506 /* Login.storyboard in Resources */,
 				FA107A8E1B03F63C006FA015 /* Main.storyboard in Resources */,
-				FA410CF419A40C2600E71B20 /* Plug.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
