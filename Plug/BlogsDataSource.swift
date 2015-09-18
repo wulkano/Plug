@@ -63,7 +63,7 @@ class BlogsDataSource: SearchableDataSource {
     
     override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
         let blogs = filterBlogs(objects)
-        let uniqueBlogs = filterUniqueBlogs(blogs)
+//        let uniqueBlogs = filterUniqueBlogs(blogs)
         let sortedBlogs = sortBlogs(blogs)
         
         if searchKeywords == "" || searchKeywords == nil {
@@ -81,8 +81,8 @@ class BlogsDataSource: SearchableDataSource {
     }
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) { (blogs, error) in
-            self.nextPageObjectsReceived(blogs, error: error)
+        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) { result in
+            self.nextPageResultReceived(result)
         }
     }
     

@@ -32,7 +32,7 @@ class TagContainerView: NSView {
             button.action = "tagButtonClick:"
             button.target = self
         }
-        let heightConstraint = constraints.last as! NSLayoutConstraint
+        let heightConstraint = constraints.last!
         if let lastButton = buttons.last {
            heightConstraint.constant = lastButton.frame.origin.y + lastButton.frame.size.height
         } else {
@@ -44,9 +44,9 @@ class TagContainerView: NSView {
         let tagButton = TagButton(frame: NSMakeRect(0, 0, 0, buttonHeight))
         tagButton.title = tag.name.uppercaseString
         tagButton.fillColor = getFillColorForTag(tag)
-        var tagSize = tagButton.attributedTitle.size
-        tagSize().width += 16
-        tagButton.frame.size.width = tagSize().width
+        var tagSize = tagButton.attributedTitle.size()
+        tagSize.width += 16
+        tagButton.frame.size.width = tagSize.width
         return tagButton
     }
     
@@ -78,7 +78,7 @@ class TagContainerView: NSView {
         let purpleColor = NSColor(red256: 183, green256: 101, blue256: 212)
         let darkBlueColor = NSColor(red256: 28, green256: 121, blue256: 219)
         let lightBlueColor = NSColor(red256: 158, green256: 236, blue256: 255)
-        return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))
+        return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))!
     }
     
     func tagButtonClick(sender: TagButton) {

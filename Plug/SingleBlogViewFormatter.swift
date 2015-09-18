@@ -15,12 +15,12 @@ class SingleBlogViewFormatter: NSFormatter {
     func attributedBlogDetails(blog: HypeMachineAPI.Blog, colorArt: SLColorArt) -> NSAttributedString {
         self.colorArt = colorArt
         
-        var formattedFollowersCount = formattedCount(blog.followerCountNum)
-        var formattedFollowersLabel = formattedLabel(" Followers  ")
-        var formattedTracksCount = formattedCount(blog.trackCountNum)
-        var formattedTracksLabel = formattedLabel(" Tracks")
+        let formattedFollowersCount = formattedCount(blog.followerCountNum)
+        let formattedFollowersLabel = formattedLabel(" Followers  ")
+        let formattedTracksCount = formattedCount(blog.trackCountNum)
+        let formattedTracksLabel = formattedLabel(" Tracks")
         
-        var blogDetails = NSMutableAttributedString()
+        let blogDetails = NSMutableAttributedString()
         blogDetails.appendAttributedString(formattedFollowersCount)
         blogDetails.appendAttributedString(formattedFollowersLabel)
         blogDetails.appendAttributedString(formattedTracksCount)
@@ -38,15 +38,15 @@ class SingleBlogViewFormatter: NSFormatter {
         return NSAttributedString(string: text, attributes: labelAttributes())
     }
     
-    func countAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    func countAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = getCountColor()
         attributes[NSFontAttributeName] = getFont()
         return attributes
     }
     
-    func labelAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    func labelAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = getLabelColor()
         attributes[NSFontAttributeName] = getFont()
         return attributes

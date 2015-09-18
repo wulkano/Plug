@@ -51,7 +51,7 @@ class BlogTableCellView: IOSStyleTableCellView {
                 self.recentArtistsTextField.stringValue = recentTracks
             case .Failure(_, let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-                print(error)
+                Swift.print(error as NSError)
             }
         }
     }

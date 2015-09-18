@@ -69,7 +69,7 @@ class MediaKeyHandler: NSObject {
     }
     
     func registerWhitelist() {
-        let dictionary: [NSObject: AnyObject] = [
+        let dictionary: [String: AnyObject] = [
             kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers(),
         ]
         NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)

@@ -61,7 +61,7 @@ class TagsDataSource: SearchableDataSource {
     
     override func requestNextPageObjects() {
         HypeMachineAPI.Requests.Tags.index { result in
-            self.nextPageObjectsReceived(result as Result<[AnyObject]>)
+            self.nextPageResultReceived(result)
         }
     }
     

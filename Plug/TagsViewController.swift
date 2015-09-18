@@ -61,7 +61,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        var viewController = TracksViewController(type: .LoveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
+        let viewController = TracksViewController(type: .LoveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }

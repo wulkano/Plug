@@ -157,15 +157,14 @@ class UserViewController: BaseContentViewController {
     }
     
     func loadUser(username: String) {
-        HypeMachineAPI.Requests.Users.show(username: username) {
-            (user, error) in
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
+        HypeMachineAPI.Requests.Users.show(username: username) { result in
+            switch result {
+            case .Success(let user):
+                self.user = user
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
-                return
             }
-            
-            self.user = user
         }
     }
     
@@ -182,16 +181,14 @@ class UserViewController: BaseContentViewController {
     func updateImage() {
         if user!.avatarURL == nil { return }
         
-        Alamofire.request(.GET, user!.avatarURL!).validate().responseImage {
-            (_, _, image, error) in
-            
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
-                return
+        Alamofire.request(.GET, user!.avatarURL!).validate().responseImage { (_, _, result) in
+            switch result {
+            case .Success(let image):
+                self.avatarView.image = image
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error as NSError)
             }
-            
-            self.avatarView.image = image
         }
     }
     
@@ -208,7 +205,6 @@ class UserViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        let mainStoryboard = NSStoryboard(name: "Main", bundle: NSBundle(forClass: self.dynamicType))
         tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "User/Tracks")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
@@ -227,28 +223,19 @@ class UserViewController: BaseContentViewController {
     }
     
     func followButtonClicked(sender: ActionButton) {
-        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username, optionalParams: nil) { (favorited, error) in
+        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username, optionalParams: nil) { result in
             let favoritedState = sender.state == NSOnState
             
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
-                
-                if sender.state == NSOffState {
-                    sender.state = NSOnState
-                } else {
-                    sender.state = NSOffState
+            switch result {
+            case .Success(let favorited):
+                if favorited != favoritedState {
+                    sender.state = favorited ? NSOnState : NSOffState
                 }
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error)
                 
-                return
-            }
-            
-            if favorited! != favoritedState {
-                if favorited! {
-                    sender.state = NSOnState
-                } else {
-                    sender.state = NSOffState
-                }
+                sender.state = sender.state == NSOffState ? NSOnState : NSOffState
             }
         }
     }
@@ -260,7 +247,7 @@ class UserViewController: BaseContentViewController {
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
         loaderViewController!.view.snp_makeConstraints { make in
-            make.edges.equalTo(self.header).insets(insets)
+            make.edges.equalTo(self.header).inset(insets)
         }
     }
     

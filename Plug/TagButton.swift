@@ -41,11 +41,11 @@ class TagButton: SwissArmyButton {
     
     override func setupCell() {
         let newCell = TagButtonCell(textCell: "")
-        setCell = newCell
+        self.cell = newCell
     }
     
-    func fontAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    func fontAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         let color = NSColor.blackColor()
         let font = NSFont(name: "DIN Bold", size: 12)
         attributes[NSForegroundColorAttributeName] = color

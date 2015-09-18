@@ -40,7 +40,7 @@ class UsersDataSource: SearchableDataSource {
     
     override func requestNextPageObjects() {
         HypeMachineAPI.Requests.Me.friends(optionalParams: nil) { result in
-            self.nextPageObjectsReceived(result)
+            self.nextPageResultReceived(result)
         }
     }
     

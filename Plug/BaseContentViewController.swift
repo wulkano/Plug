@@ -54,7 +54,7 @@ class BaseContentViewController: NSViewController {
             let insets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
             view.addSubview(loaderViewController!.view)
             loaderViewController!.view.snp_makeConstraints { make in
-                make.edges.equalTo(self.view).insets(insets)
+                make.edges.equalTo(self.view).inset(insets)
             }
         }
     }

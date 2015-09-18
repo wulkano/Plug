@@ -53,15 +53,16 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         changeTrackLovedValueTo(newLovedValue)
         
         HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id, optionalParams: nil) {
-            (favorited, error) in
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
+            result in
+            switch result {
+            case .Success(let favorited):
+                if favorited != newLovedValue {
+                    self.changeTrackLovedValueTo(favorited)
+                }
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
-            }
-            
-            if favorited! != newLovedValue {
-                self.changeTrackLovedValueTo(favorited!)
             }
         }
     }
@@ -77,7 +78,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        var viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = tag.name
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
@@ -146,16 +147,14 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     func updateAlbumArt() {
         let url = representedTrack.thumbURLWithPreferedSize(.Medium)
         
-        Alamofire.request(.GET, url).validate().responseImage {
-            (_, _, image, error) in
-            
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
-                return
+        Alamofire.request(.GET, url).validate().responseImage { (_, _, result) in
+            switch result {
+            case .Success(let image):
+                self.albumArt.image = image
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error as NSError)
             }
-            
-            self.albumArt.image = image
         }
     }
     
@@ -164,7 +163,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func updatePostInfo() {
-        var postInfoAttributedString = PostInfoFormatter().attributedStringForPostInfo(representedTrack)
+        let postInfoAttributedString = PostInfoFormatter().attributedStringForPostInfo(representedTrack)
         postInfoTextField.attributedStringValue = postInfoAttributedString
     }
     

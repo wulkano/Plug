@@ -12,7 +12,7 @@ import HypeMachineAPI
 class TracksDataSource: HypeMachineDataSource {
     
     func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
-        nextPageObjectsReceived(result: result)
+        nextPageResultReceived(result)
     }
     
     func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {

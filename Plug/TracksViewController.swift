@@ -199,7 +199,7 @@ class TracksViewController: DataSourceViewController {
         sliderCell.barFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
         sliderCell.knobSize = 12
         sliderCell.knobFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
-        cellView.progressSlider.setCell = sliderCell
+        cellView.progressSlider.cell = sliderCell
         cellView.progressSlider.target = cellView
         cellView.progressSlider.action = "progressSliderDragged:"
         cellView.addSubview(cellView.progressSlider)
@@ -216,7 +216,7 @@ class TracksViewController: DataSourceViewController {
         cellView.loveCount.editable = false
         cellView.loveCount.bordered = false
         cellView.loveCount.drawsBackground = false
-        cellView.loveCount.alignment = .CenterTextAlignment
+        cellView.loveCount.alignment = .Center
         cellView.loveCount.font = NSFont(name: "HelveticaNeue-Medium", size: 22)
         cellView.loveCount.objectValue = NSNumber(integer: 2200)
         cellView.loveCount.formatter = LovedCountFormatter()
@@ -440,11 +440,9 @@ class TracksViewController: DataSourceViewController {
     // MARK: NSKeyValueObserving
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        switch keyPath {
-        case HideUnavailableTracks:
+        guard let keyPath = keyPath else { return }
+        if keyPath == HideUnavailableTracks {
             showHideUnavailableTracks()
-        default:
-            return
         }
     }
 }

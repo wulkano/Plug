@@ -143,16 +143,14 @@ class BlogViewController: BaseContentViewController {
     }
     
     func updateImage() {
-        Alamofire.request(.GET, blog.imageURLForSize(.Normal)).validate().responseImage() {
-            (_, _, image, error) in
-            
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                print(error!)
-                return
+        Alamofire.request(.GET, blog.imageURLForSize(.Normal)).validate().responseImage() { (_, _, result) in
+            switch result {
+            case .Success(let image):
+                self.extractColorAndResizeImage(image)
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                print(error as NSError)
             }
-            
-            self.extractColorAndResizeImage(image!)
         }
     }
     

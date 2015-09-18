@@ -10,21 +10,25 @@ import Foundation
 import Alamofire
 
 extension Alamofire.Request {
-    class func imageResponseSerializer() -> Serializer {
-        return { request, response, data in
-            if data == nil {
-                return (nil, nil)
+    public static func ImageResponseSerializer() -> GenericResponseSerializer<NSImage> {
+        return GenericResponseSerializer { request, response, data in
+            guard let validData = data else {
+                let failureReason = "Data could not be serialized. Input data was nil."
+                let error = Error.errorWithCode(.DataSerializationFailed, failureReason: failureReason)
+                return .Failure(data, error)
             }
             
-            let image = NSImage(data: data!)
+            guard let image = NSImage(data: validData) else {
+                let failureReason = "Image could not be serialized."
+                let error = Error.errorWithCode(.DataSerializationFailed, failureReason: failureReason)
+                return .Failure(data, error)
+            }
             
-            return (image, nil)
+            return .Success(image)
         }
     }
     
-    func responseImage(completionHandler: (NSURLRequest, NSHTTPURLResponse?, NSImage?, NSError?) -> Void) -> Self {
-        return response(serializer: Request.imageResponseSerializer(), completionHandler: { (request, response, image, error) in
-            completionHandler(request, response, image as? NSImage, error)
-        })
+    public func responseImage(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, Result<NSImage>) -> Void) -> Self {
+        return response(responseSerializer: Request.ImageResponseSerializer(), completionHandler: completionHandler)
     }
 }

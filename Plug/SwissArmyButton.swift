@@ -69,7 +69,7 @@ class SwissArmyButton: NSButton {
     
     func setupCell() {
         let newCell = SwissArmyButtonCell(textCell: "")
-        setCell = newCell
+        self.cell = newCell
     }
     
     override func mouseEntered(theEvent: NSEvent) {

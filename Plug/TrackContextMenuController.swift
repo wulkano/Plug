@@ -153,14 +153,12 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func requestPermalinkForTrackID(trackID: String) {
-        SoundCloudAPI.Tracks.permalink(trackID) {
-            (permalink, error) in
-            
-            if permalink != nil {
-                self.success(trackURL: permalink!)
-                return
-            } else {
-                self.failure(error: error!)
+        SoundCloudAPI.Tracks.permalink(trackID) { result in
+            switch result {
+            case .Success(let permalink):
+                self.success(trackURL: permalink)
+            case .Failure(_, let error):
+                self.failure(error: error as NSError)
             }
         }
     }

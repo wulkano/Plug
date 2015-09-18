@@ -16,7 +16,7 @@ class AboutViewController: NSViewController {
         textField.selectable = false
         textField.bordered = false
         textField.drawsBackground = false
-        textField.alignment = .CenterTextAlignment
+        textField.alignment = .Center
         
         container.addSubview(textField)
         textField.snp_makeConstraints { make in
@@ -54,7 +54,7 @@ class AboutViewController: NSViewController {
         link.bordered = false
         link.font = NSFont(name: "HelveticaNeue", size: 12)!
         link.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
-        link.alignment = .CenterTextAlignment
+        link.alignment = .Center
         link.title = linkTitle
         link.target = self
         link.action = linkAction

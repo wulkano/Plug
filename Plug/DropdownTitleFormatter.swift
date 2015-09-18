@@ -37,15 +37,15 @@ class DropdownTitleFormatter: NSFormatter {
         return NSAttributedString(string: " (\(optionTitle))", attributes: optionTitleAttributes())
     }
     
-    private func viewTitleAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    private func viewTitleAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor(red256: 0, green256: 0, blue256: 0)
         attributes[NSFontAttributeName] = getFont()
         return attributes
     }
     
-    private func optionTitleAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    private func optionTitleAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor(white: 0, alpha: 0.4)
         attributes[NSFontAttributeName] = getFont()
         return attributes

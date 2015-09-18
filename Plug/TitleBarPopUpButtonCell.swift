@@ -24,11 +24,11 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
     }
     
     var extraWidthForFormattedTitle: CGFloat {
-        return formattedTitle.size().width - attributedTitle.size.width
+        return formattedTitle.size().width - attributedTitle.size().width
     }
     
     var extraHeightForFormattedTitle: CGFloat {
-        return formattedTitle.size().height - attributedTitle.size.height
+        return formattedTitle.size().height - attributedTitle.size().height
     }
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {

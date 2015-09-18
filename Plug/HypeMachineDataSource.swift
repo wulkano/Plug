@@ -56,11 +56,15 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         fatalError("requestNextPage() not implemented")
     }
     
-    func nextPageObjectsReceived(result: Result<[AnyObject]>) {
+    func nextPageResultReceived<T>(result: Result<T>) {
         self.viewController.nextPageDidLoad(currentPage)
         
         switch result {
-        case .Success(let objects):
+        case .Success(let value):
+            guard let objects = value as Any as? [AnyObject] else {
+                fatalError("Must conform to AnyObject")
+            }
+            
             if currentPage == 0 {
                 resetTableContents()
             }

@@ -44,7 +44,7 @@ class HeatMapTrackTableCellView: TrackTableCellView {
                     //                println("Heatmap missed for track: \(self.trackValue)")
                 }
             case .Failure(_, let error):
-                print(error)
+                Swift.print(error as NSError)
             }
         }
     }
