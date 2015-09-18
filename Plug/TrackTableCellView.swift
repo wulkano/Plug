@@ -190,8 +190,8 @@ class TrackTableCellView: IOSStyleTableCellView {
 //    }
     
     func updateLoveContainerSpacing() {
-        var openWidth: CGFloat = 38
-        var closedWidth: CGFloat = 0
+        let openWidth: CGFloat = 38
+        let closedWidth: CGFloat = 0
         
         if mouseInside || (track.loved && showLoveButton) {
             loveContainerWidthConstraint.updateOffset(openWidth)
@@ -203,8 +203,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func updateInfoContainerSpacing() {
-        var openWidth: CGFloat = 30
-        var closedWidth: CGFloat = 0
+        let openWidth: CGFloat = 30
+        let closedWidth: CGFloat = 0
         
         if mouseInside {
             infoContainerWidthConstraint.updateOffset(openWidth)
@@ -274,9 +274,9 @@ class TrackTableCellView: IOSStyleTableCellView {
     @IBAction func infoButtonClicked(sender: TransparentButton) {
         Analytics.trackButtonClick("Playlist Info")
         if trackInfoWindowController == nil {
-            let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)!
+            let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)
             trackInfoWindowController = trackInfoStoryboard.instantiateInitialController() as? NSWindowController
-            var trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
+            let trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
             trackInfoViewController.representedObject = objectValue
         }
         trackInfoWindowController!.showWindow(self)
@@ -289,16 +289,16 @@ class TrackTableCellView: IOSStyleTableCellView {
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id, optionalParams: nil) {
-            (favorited, error) in
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
+        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id, optionalParams: nil) { result in
+            switch result {
+            case .Success(let favorited):
+                if favorited != newLovedValue {
+                    self.changeTrackLovedValueTo(favorited)
+                }
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                Swift.print(error as NSError)
                 self.changeTrackLovedValueTo(oldLovedValue)
-            }
-            
-            if favorited! != newLovedValue {
-                self.changeTrackLovedValueTo(favorited!)
             }
         }
     }
@@ -308,13 +308,13 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func artistButtonClicked(sender: NSButton) {
-        var viewController = TracksViewController(type: .LoveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
+        let viewController = TracksViewController(type: .LoveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
         viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
     }
     
     @IBAction func titleButtonClicked(sender: NSButton) {
-        println("Track title clicked: \(track.title)")
+        Swift.print("Track title clicked: \(track.title)")
     }
     
     func changeTrackLovedValueTo(loved: Bool) {

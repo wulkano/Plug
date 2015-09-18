@@ -24,7 +24,7 @@ class ForgotPasswordButtonCell: SwissArmyButtonCell {
             alpha = 0.2
         }
         
-        var mutableTitle = NSMutableAttributedString(attributedString: title)
+        let mutableTitle = NSMutableAttributedString(attributedString: title)
         let color = NSColor.whiteColor().colorWithAlphaComponent(alpha)
         let range = NSMakeRange(0, mutableTitle.length)
         

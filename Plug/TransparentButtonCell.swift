@@ -18,7 +18,7 @@ class TransparentButtonCell: SwissArmyButtonCell {
     
     override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
         
-        var alpha = getImageAlpha()
+        let alpha = getImageAlpha()
         if let drawImage = getDrawImage() {
             drawImage.drawInRect(frame, fromRect: NSZeroRect, operation: .CompositeSourceOver, fraction: alpha, respectFlipped: true, hints: nil)
         }

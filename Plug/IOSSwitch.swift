@@ -80,7 +80,7 @@ class IOSSwitch: NSControl {
         wantsLayer = true
         
         // Background layer
-        backgroundLayer.autoresizingMask = .LayerWidthSizable | .LayerHeightSizable
+        backgroundLayer.autoresizingMask = [.LayerWidthSizable, .LayerHeightSizable]
         backgroundLayer.bounds = rootLayer.bounds
         backgroundLayer.anchorPoint = CGPoint(x: 0, y: 0)
         backgroundLayer.borderWidth = borderLineWidth
@@ -97,7 +97,7 @@ class IOSSwitch: NSControl {
         rootLayer.addSublayer(knobLayer)
         
         knobInsideLayer.frame = knobLayer.bounds
-        knobInsideLayer.autoresizingMask = .LayerWidthSizable | .LayerHeightSizable
+        knobInsideLayer.autoresizingMask = [.LayerWidthSizable, .LayerHeightSizable]
         knobInsideLayer.shadowColor = NSColor.blackColor().CGColor
         knobInsideLayer.shadowOffset = CGSize(width: 0, height: 0)
         knobInsideLayer.backgroundColor = NSColor.whiteColor().CGColor
@@ -112,7 +112,7 @@ class IOSSwitch: NSControl {
     
     // MARK: NSView
 
-    override func acceptsFirstMouse(theEvent: NSEvent) -> Bool {
+    override func acceptsFirstMouse(theEvent: NSEvent?) -> Bool {
         return true
     }
     

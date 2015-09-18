@@ -63,7 +63,7 @@ extension String {
         
         CCHmac(algorithm.toCCEnum(), keyStr!, keyLen, str!, strLen, result)
         
-        var hash = NSMutableString()
+        let hash = NSMutableString()
         for i in 0..<digestLen {
             hash.appendFormat("%02x", result[i])
         }

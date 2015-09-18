@@ -10,7 +10,7 @@ import Cocoa
 
 class DropdownTitleFormatter: NSFormatter {
     
-    override func attributedStringForObjectValue(obj: AnyObject, withDefaultAttributes attrs: [NSObject : AnyObject]?) -> NSAttributedString? {
+    override func attributedStringForObjectValue(obj: AnyObject, withDefaultAttributes attrs: [String : AnyObject]?) -> NSAttributedString? {
         return attributedDropdownTitle("Popular", optionTitle: "Now")
     }
     
@@ -19,10 +19,10 @@ class DropdownTitleFormatter: NSFormatter {
     }
     
     func attributedDropdownTitle(title: String?, optionTitle: String?) -> NSAttributedString {
-        var formattedViewTitle = formatViewTitle(title ?? "")
-        var formattedOptionTitle = formatOptionTitle(optionTitle ?? "")
+        let formattedViewTitle = formatViewTitle(title ?? "")
+        let formattedOptionTitle = formatOptionTitle(optionTitle ?? "")
         
-        var dropdownTitle = NSMutableAttributedString()
+        let dropdownTitle = NSMutableAttributedString()
         dropdownTitle.appendAttributedString(formattedViewTitle)
         dropdownTitle.appendAttributedString(formattedOptionTitle)
         
@@ -37,15 +37,15 @@ class DropdownTitleFormatter: NSFormatter {
         return NSAttributedString(string: " (\(optionTitle))", attributes: optionTitleAttributes())
     }
     
-    private func viewTitleAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    private func viewTitleAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor(red256: 0, green256: 0, blue256: 0)
         attributes[NSFontAttributeName] = getFont()
         return attributes
     }
     
-    private func optionTitleAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    private func optionTitleAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor(white: 0, alpha: 0.4)
         attributes[NSFontAttributeName] = getFont()
         return attributes

@@ -20,14 +20,14 @@ class VibrantTextField: NSTextField {
     
     func setupStyledPlaceholderString() {
         if placeholderString == nil { return }
-        var newAttributedPlaceholderString = NSMutableAttributedString(string: placeholderString!, attributes: placeholderAttributes())
+        let newAttributedPlaceholderString = NSMutableAttributedString(string: placeholderString!, attributes: placeholderAttributes())
         placeholderAttributedString = newAttributedPlaceholderString
     }
     
-    func placeholderAttributes() -> [NSObject: AnyObject] {
-        var attributes = [NSObject: AnyObject]()
+    func placeholderAttributes() -> [String: AnyObject] {
+        var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor.whiteColor().colorWithAlphaComponent(0.2)
-        attributes[NSFontAttributeName] = (cell() as! NSTextFieldCell).font
+        attributes[NSFontAttributeName] = (cell as! NSTextFieldCell).font
         return attributes
     }
 }

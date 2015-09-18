@@ -42,7 +42,7 @@ class ActionButtonCell: SwissArmyButtonCell {
     }
     
     var formattedTitle: NSAttributedString {
-        var attributes = [NSObject: AnyObject]()
+        var attributes = [String: AnyObject]()
         
         if state == NSOffState {
             attributes[NSForegroundColorAttributeName] = offStateColor

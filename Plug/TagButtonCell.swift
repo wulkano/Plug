@@ -13,7 +13,7 @@ class TagButtonCell: SwissArmyButtonCell {
 
     override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
         let rect = NSInsetRect(frame, 1, 1)
-        var roundedRect = NSBezierPath(roundedRect: rect, xRadius: 3, yRadius: 3)
+        let roundedRect = NSBezierPath(roundedRect: rect, xRadius: 3, yRadius: 3)
         roundedRect.lineWidth = 0
         fillColor.setFill()
         roundedRect.fill()

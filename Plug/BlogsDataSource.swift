@@ -32,7 +32,7 @@ class BlogsDataSource: SearchableDataSource {
     }
     
     func sortBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
-        return blogs.sorted { $0.name.lowercaseString < $1.name.lowercaseString }
+        return blogs.sort { $0.name.lowercaseString < $1.name.lowercaseString }
     }
     
     func groupBlogs(blogs: [HypeMachineAPI.Blog]) -> [AnyObject] {
@@ -63,11 +63,11 @@ class BlogsDataSource: SearchableDataSource {
     
     override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
         let blogs = filterBlogs(objects)
-        let uniqueBlogs = filterUniqueBlogs(blogs)
+//        let uniqueBlogs = filterUniqueBlogs(blogs)
         let sortedBlogs = sortBlogs(blogs)
         
         if searchKeywords == "" || searchKeywords == nil {
-            println("Filtering, but no keywords present")
+            print("Filtering, but no keywords present")
             return sortedBlogs
         } else {
             return filterBlogsMatchingSearchKeywords(sortedBlogs)
@@ -81,8 +81,8 @@ class BlogsDataSource: SearchableDataSource {
     }
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) { (blogs, error) in
-            self.nextPageObjectsReceived(blogs, error: error)
+        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) { result in
+            self.nextPageResultReceived(result)
         }
     }
     

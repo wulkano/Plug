@@ -13,7 +13,7 @@ extension String {
         
         func getSubstringAfterPrefix() -> String? {
             if let prefixRange = self.rangeOfString(prefix) {
-                var substringRange = prefixRange.endIndex..<self.endIndex
+                let substringRange = prefixRange.endIndex..<self.endIndex
                 return self.substringWithRange(substringRange)
             } else {
                 return nil
@@ -22,7 +22,7 @@ extension String {
         
         func getSubstringBeforeSuffix(substring: String) -> String? {
             if let suffixRange = substring.rangeOfString(suffix) {
-                var substringRange = substring.startIndex..<suffixRange.startIndex
+                let substringRange = substring.startIndex..<suffixRange.startIndex
                 return substring.substringWithRange(substringRange)
             } else {
                 return nil

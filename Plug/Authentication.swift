@@ -50,7 +50,7 @@ struct Authentication {
     }
     
     private static func TokenServiceName() -> String {
-        var bundleID = NSBundle.mainBundle().bundleIdentifier!
+        let bundleID = NSBundle.mainBundle().bundleIdentifier!
         return "\(bundleID).AccountToken"
     }
 }

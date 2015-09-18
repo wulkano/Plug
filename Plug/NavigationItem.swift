@@ -22,7 +22,7 @@ class NavigationItem: NSObject {
         let button = SwissArmyButton(frame: NSZeroRect)
         let cell = BackButtonCell(textCell: "")
         
-        button.setCell(cell)
+        button.cell = cell
         button.bezelStyle = .RegularSquareBezelStyle
         button.bordered = true
         button.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
@@ -35,7 +35,7 @@ class NavigationItem: NSObject {
         let button = ActionButton(frame: NSZeroRect)
         let cell = ActionButtonCell(textCell: "")
         
-        button.setCell(cell)
+        button.cell = cell
         button.onStateTitle = onStateTitle
         button.offStateTitle = offStateTitle
         button.state = NSOffState
@@ -56,9 +56,9 @@ class NavigationItem: NSObject {
         buttonCell.usesItemFromMenu = true
         buttonCell.arrowPosition = .ArrowAtBottom
         
-        button.setCell(buttonCell)
+        button.cell = buttonCell
         button.autoenablesItems = true
-        button.preferredEdge = NSMaxYEdge
+        button.preferredEdge = NSRectEdge.MaxY
         button.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         button.lineBreakMode = .ByTruncatingMiddle
         button.menu = menu

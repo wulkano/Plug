@@ -31,7 +31,7 @@ class BlogsViewController: DataSourceViewController {
     }
     
     func loadBlogViewController(blog: HypeMachineAPI.Blog) {
-        var viewController = BlogViewController(blog: blog)!
+        let viewController = BlogViewController(blog: blog)!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     

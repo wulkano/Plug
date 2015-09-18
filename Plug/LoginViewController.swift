@@ -35,24 +35,22 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func loginWithUsernameOrEmail(usernameOrEmail: String, andPassword password: String) {
-        HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) {
-            (username, token, error) in
-            
-            if error != nil {
+        HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) { result in
+            switch result {
+            case .Success(let usernameAndToken):
+                Authentication.SaveUsername(usernameAndToken.username, withToken: usernameAndToken.token)
+                HypeMachineAPI.hmToken = usernameAndToken.token
+                self.signedInSuccessfully()
+            case .Failure(_, let error):
                 var errorMessage: String
-                if error!.code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue {
+                if (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue {
                     errorMessage = "Incorrect Username/Password"
                 } else {
                     errorMessage = "Network Error"
-                    println(error!)
+                    print(error)
                 }
                 self.loginButton.buttonState = .Error(errorMessage)
-                return
             }
-            
-            Authentication.SaveUsername(username!, withToken: token!)
-            HypeMachineAPI.hmToken = token!
-            self.signedInSuccessfully()
         }
     }
     

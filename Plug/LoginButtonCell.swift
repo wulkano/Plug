@@ -15,9 +15,9 @@ class LoginButtonCell: SwissArmyButtonCell {
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         
-        var mutableTitle = NSMutableAttributedString(attributedString: title)
-        var range = NSMakeRange(0, mutableTitle.length)
-        var color = getTextColor()
+        let mutableTitle = NSMutableAttributedString(attributedString: title)
+        let range = NSMakeRange(0, mutableTitle.length)
+        let color = getTextColor()
         
         mutableTitle.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
         
@@ -26,7 +26,7 @@ class LoginButtonCell: SwissArmyButtonCell {
     
     override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
         
-        var alpha = getImageAlpha()
+        let alpha = getImageAlpha()
         
         var newFrame = frame
         newFrame.origin.y += 3

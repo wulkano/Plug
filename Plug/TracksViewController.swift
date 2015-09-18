@@ -52,8 +52,8 @@ class TracksViewController: DataSourceViewController {
     }
     
     func distanceFromBottomOfScrollView() -> CGFloat {
-        var documentViewHeight = (scrollView.documentView as! NSView).frame.height
-        var bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
+        let documentViewHeight = (scrollView.documentView as! NSView).frame.height
+        let bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
         return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }
     
@@ -199,7 +199,7 @@ class TracksViewController: DataSourceViewController {
         sliderCell.barFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
         sliderCell.knobSize = 12
         sliderCell.knobFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
-        cellView.progressSlider.setCell(sliderCell)
+        cellView.progressSlider.cell = sliderCell
         cellView.progressSlider.target = cellView
         cellView.progressSlider.action = "progressSliderDragged:"
         cellView.addSubview(cellView.progressSlider)
@@ -216,7 +216,7 @@ class TracksViewController: DataSourceViewController {
         cellView.loveCount.editable = false
         cellView.loveCount.bordered = false
         cellView.loveCount.drawsBackground = false
-        cellView.loveCount.alignment = .CenterTextAlignment
+        cellView.loveCount.alignment = .Center
         cellView.loveCount.font = NSFont(name: "HelveticaNeue-Medium", size: 22)
         cellView.loveCount.objectValue = NSNumber(integer: 2200)
         cellView.loveCount.formatter = LovedCountFormatter()
@@ -439,12 +439,10 @@ class TracksViewController: DataSourceViewController {
     
     // MARK: NSKeyValueObserving
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-        switch keyPath {
-        case HideUnavailableTracks:
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        guard let keyPath = keyPath else { return }
+        if keyPath == HideUnavailableTracks {
             showHideUnavailableTracks()
-        default:
-            return
         }
     }
 }

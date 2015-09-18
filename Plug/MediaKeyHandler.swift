@@ -32,7 +32,7 @@ class MediaKeyHandler: NSObject {
         if SPMediaKeyTap.usesGlobalMediaKeyTap() {
             keyTap.startWatchingMediaKeys()
         } else {
-            println("Media key monitoring disabled")
+            print("Media key monitoring disabled")
         }
     }
     
@@ -64,12 +64,12 @@ class MediaKeyHandler: NSObject {
                 debugString = "Key \(keyCode) pressed" + debugString
             }
             
-            println(debugString)
+            print(debugString)
         }
     }
     
     func registerWhitelist() {
-        let dictionary: [NSObject: AnyObject] = [
+        let dictionary: [String: AnyObject] = [
             kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers(),
         ]
         NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)

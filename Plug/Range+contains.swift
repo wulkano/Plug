@@ -9,7 +9,7 @@
 import Foundation
 
 extension Range {
-    func contains(thing: T) -> Bool {
+    func contains(thing: Element) -> Bool {
         for obj in self {
             if obj == thing {
                 return true

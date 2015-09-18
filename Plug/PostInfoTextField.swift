@@ -27,7 +27,7 @@ class PostInfoTextField: NSTextField {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = (.InVisibleRect | .ActiveAlways | .MouseEnteredAndExited)
+        let options: NSTrackingAreaOptions = [.InVisibleRect, .ActiveAlways, .MouseEnteredAndExited]
         trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }
@@ -48,18 +48,18 @@ class PostInfoTextField: NSTextField {
     
     func updateText() {
         if mouseInside {
-            var contents = NSMutableAttributedString(attributedString: attributedStringValue)
+            let contents = NSMutableAttributedString(attributedString: attributedStringValue)
             contents.enumerateAttribute(NSLinkAttributeName, inRange: NSMakeRange(0, contents.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired , usingBlock: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyleSingle, range: range)
+                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
                 }
             })
             attributedStringValue = contents
         } else {
-            var contents = NSMutableAttributedString(attributedString: attributedStringValue)
+            let contents = NSMutableAttributedString(attributedString: attributedStringValue)
             contents.enumerateAttribute(NSLinkAttributeName, inRange: NSMakeRange(0, contents.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired , usingBlock: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyleNone, range: range)
+                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleNone.rawValue, range: range)
                 }
             })
             attributedStringValue = contents

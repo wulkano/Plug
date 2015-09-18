@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Alamofire
 
 class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     var viewController: DataSourceViewController
@@ -55,23 +56,28 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         fatalError("requestNextPage() not implemented")
     }
     
-    func nextPageObjectsReceived(objects: [AnyObject]?, error: NSError?) {
+    func nextPageResultReceived<T>(result: Result<T>) {
         self.viewController.nextPageDidLoad(currentPage)
-        if error != nil {
-            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-            println(error!)
-            return
+        
+        switch result {
+        case .Success(let value):
+            guard let objects = value as Any as? AnyObject as? [AnyObject] else {
+                fatalError("Must conform to AnyObject")
+            }
+            
+            if currentPage == 0 {
+                resetTableContents()
+            }
+            
+            currentPage++
+            allObjectsLoaded = isLastPage(objects)
+            
+            self.appendTableContents(objects)
+            self.requestInProgress = false
+        case .Failure(_, let error):
+            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+            print(error)
         }
-        
-        if currentPage == 0 {
-            resetTableContents()
-        }
-        
-        currentPage++
-        allObjectsLoaded = isLastPage(objects!)
-        
-        self.appendTableContents(objects!)
-        self.requestInProgress = false
     }
     
     func refresh() {
@@ -99,7 +105,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     
     func appendTableContents(objects: [AnyObject]) {
         var shouldReloadTableView = false
-        var filteredObjects = filterTableContents(objects)
+        let filteredObjects = filterTableContents(objects)
         
         if standardTableContents == nil {
             standardTableContents = []
@@ -133,7 +139,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     }
     
     func filterTableContents(objects: [AnyObject]) -> [AnyObject] {
-        println("filterTableContents() not implemented")
+        print("filterTableContents() not implemented")
         return objects
     }
     

@@ -55,7 +55,7 @@ class NavigationBarController: NSViewController {
         if items == nil || items!.count <= 1 { return nil}
         
         var poppedItems: [NavigationItem] = []
-        var topItemIndex = find(items!, item)
+        let topItemIndex = items!.indexOf(item)
         
         if topItemIndex == nil {
             return nil
@@ -74,7 +74,7 @@ class NavigationBarController: NSViewController {
         updateNavigationBarViews(animated: false, direction: nil)
     }
     
-    func updateNavigationBarViews(#animated: Bool, direction: TransitionDirection?) {
+    func updateNavigationBarViews(animated animated: Bool, direction: TransitionDirection?) {
         navigationBarView?.removeFromSuperview()
         navigationBarView = nil
         addNavigationBarViewForCurrentItems()

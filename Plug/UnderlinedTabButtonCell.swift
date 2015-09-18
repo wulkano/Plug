@@ -14,14 +14,14 @@ class UnderlinedTabButtonCell: NSButtonCell {
     var fixedTextFrame: NSRect = NSMakeRect(5, 40, 50, 15)
     let maxImageHeight: CGFloat = 36
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         highlightsBy = NSCellStyleMask.ContentsCellMask
     }
     
     override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
         if state == NSOnState {
-            var highlightRect = NSMakeRect(0, frame.size.height - hightlightWidth, frame.size.width, hightlightWidth)
+            let highlightRect = NSMakeRect(0, frame.size.height - hightlightWidth, frame.size.width, hightlightWidth)
             highlightColor.set()
             NSRectFill(highlightRect)
         }

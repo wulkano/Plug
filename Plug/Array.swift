@@ -10,15 +10,15 @@ import Foundation
 
 extension Array {
     
-    func first () -> T? {
+    func first () -> Element? {
         return count > 0 ? self[0] : nil
     }
     
-    func last () -> T? {
+    func last () -> Element? {
         return count > 0 ? self[count - 1] : nil
     }
     
-    func optionalAtIndex(index: Int) -> T? {
+    func optionalAtIndex(index: Int) -> Element? {
         if self.count > index && index >= 0 {
             return self[index]
         } else {

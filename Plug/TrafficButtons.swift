@@ -48,7 +48,7 @@ class TrafficButtons {
     }
     
     private func placeButtonsInWindow(window: NSWindow, origin: NSPoint) {
-        let contentView = window.contentView as! NSView
+        let contentView = window.contentView!
         
         var buttonOrigin = origin
         addButton(closeButton, toView: contentView, origin: buttonOrigin)
@@ -64,13 +64,13 @@ class TrafficButtons {
         button.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(button)
         
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|-\(origin.x)-[button]", options: nil, metrics: nil, views: ["button": button])
+        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|-\(origin.x)-[button]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(origin.y)-[button]", options: nil, metrics: nil, views: ["button": button])
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(origin.y)-[button]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("[button(\(buttonSize.width))]", options: nil, metrics: nil, views: ["button": button])
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("[button(\(buttonSize.width))]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[button(\(buttonSize.height))]", options: nil, metrics: nil, views: ["button": button])
+        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[button(\(buttonSize.height))]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
     }
     

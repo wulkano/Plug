@@ -106,7 +106,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func loadSingleFriendPage() {
-        var viewController = UserViewController(username: track.viaUser!)!
+        let viewController = UserViewController(username: track.viaUser!)!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
     
@@ -116,7 +116,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func loadSingleBlogPage() {
-        var viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)!
+        let viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)!
         Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
     }
 }

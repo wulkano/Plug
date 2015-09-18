@@ -45,15 +45,15 @@ class UserTableCellView: IOSStyleTableCellView {
         if user.avatarURL == nil { return }
         
         Alamofire.request(.GET, user.avatarURL!).validate().responseImage {
-            (_, _, image, error) in
+            (_, _, result) in
             
-            if error != nil {
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error!])
-                println(error!)
-                return
+            switch result {
+            case .Success(let image):
+                self.avatarView.image = image
+            case .Failure(_, let error):
+                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+                Swift.print(error as NSError)
             }
-            
-            self.avatarView.image = image
         }
     }
 }

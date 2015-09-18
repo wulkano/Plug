@@ -11,8 +11,8 @@ import HypeMachineAPI
 
 class TracksDataSource: HypeMachineDataSource {
     
-    func nextPageTracksReceived(tracks: [HypeMachineAPI.Track]?, error: NSError?) {
-        nextPageObjectsReceived(tracks, error: error)
+    func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
+        nextPageResultReceived(result)
     }
     
     func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
@@ -43,7 +43,7 @@ class TracksDataSource: HypeMachineDataSource {
         if tableContents == nil { return nil }
         
         let tracks = tableContents as! [HypeMachineAPI.Track]
-        return find(tracks, track)
+        return tracks.indexOf(track)
     }
     
     func trackAtIndex(index: Int) -> HypeMachineAPI.Track? {

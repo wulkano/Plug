@@ -17,8 +17,8 @@ class RoundedRectOutlineButton: NSButton {
         
         super.drawRect(dirtyRect)
         
-        var rect = NSMakeRect(0.5, 0.5, bounds.size.width - 1, bounds.size.height - 1)
-        var roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
+        let rect = NSMakeRect(0.5, 0.5, bounds.size.width - 1, bounds.size.height - 1)
+        let roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
         roundedRect.lineWidth = strokeWidth
         strokeColor.set()
         roundedRect.stroke()

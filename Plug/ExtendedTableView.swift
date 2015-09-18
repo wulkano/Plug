@@ -62,7 +62,7 @@ class ExtendedTableView: NSTableView {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = (.ActiveAlways | .MouseEnteredAndExited | .MouseMoved | .AssumeInside)
+        let options: NSTrackingAreaOptions = [.ActiveAlways, .MouseEnteredAndExited, .MouseMoved, .AssumeInside]
         let trackingRect = insetRect(clipView.documentVisibleRect, insets: scrollerInsets)
         trackingArea = NSTrackingArea(rect: trackingRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
@@ -335,12 +335,12 @@ class ExtendedTableView: NSTableView {
     }
     
     func newVisibleRows() -> [Int] {
-        let rows = visibleRows.filter { !contains(self.previousVisibleRows, $0) }
+        let rows = visibleRows.filter { !self.previousVisibleRows.contains($0) }
         return rows
     }
     
     func newHiddenRows() -> [Int] {
-        let rows = previousVisibleRows.filter { !contains(self.visibleRows, $0) }
+        let rows = previousVisibleRows.filter { !self.visibleRows.contains($0) }
         return rows
     }
     

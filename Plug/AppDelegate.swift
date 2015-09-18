@@ -42,14 +42,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openMainWindow() {
         if mainWindowController == nil {
-            mainWindowController = (NSStoryboard(name: "Main", bundle: nil)!.instantiateInitialController() as! NSWindowController)
+            mainWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as! NSWindowController)
             
                 let width: CGFloat = 472
                 let height: CGFloat = 778
                 let x: CGFloat = 100
                 let y: CGFloat = (NSScreen.mainScreen()!.frame.size.height - 778) / 2
 
-                var defaultFrame = NSMakeRect(x, y, width, height)
+                let defaultFrame = NSMakeRect(x, y, width, height)
                 mainWindowController!.window!.setFrame(defaultFrame, display: false)
         }
         
@@ -66,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func openLoginWindow() {
         Analytics.trackView("LoginWindow")
         if loginWindowController == nil {
-            loginWindowController = (NSStoryboard(name: "Login", bundle: nil)!.instantiateInitialController() as! NSWindowController)
+            loginWindowController = (NSStoryboard(name: "Login", bundle: nil).instantiateInitialController() as! NSWindowController)
         }
         loginWindowController!.showWindow(self)
         hideSignOutFromMenu()
@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
-            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: NSBundle.mainBundle())!
+            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: NSBundle.mainBundle())
             preferencesWindowController = (preferencesStoryboard.instantiateInitialController() as! NSWindowController)
         }
         preferencesWindowController!.showWindow(self)
@@ -126,7 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setupUserDefaults() {
         let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
-        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [NSObject : AnyObject])
+        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [String : AnyObject])
     }
     
     func setupUserNotifications() {

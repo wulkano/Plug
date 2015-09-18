@@ -21,7 +21,7 @@ class ColoredTitleButton: NSButton {
     }
     
     func applyTextColor() {
-        var textToStyle = NSMutableAttributedString(attributedString: attributedTitle)
+        let textToStyle = NSMutableAttributedString(attributedString: attributedTitle)
         let range = NSMakeRange(0, textToStyle.length)
         textToStyle.addAttribute(NSForegroundColorAttributeName, value: textColor, range: range)
     }

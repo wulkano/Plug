@@ -14,21 +14,28 @@ let ClientID = "2c3c67194673f9968b7c8b5f2b50d486"
 struct SoundCloudAPI {
     struct Tracks {
         
-        static func permalink(trackId: String, callback: (permalink: NSURL?, error: NSError?)->Void) {
+        static func permalink(trackId: String, callback: (Result<NSURL>)->Void) {
             let url = "http://api.soundcloud.com/tracks/\(trackId).json"
             
-            Alamofire.request(.GET, url, parameters: ["client_id": ClientID]).validate().responseJSON {
-                (_, _, JSON, error) in
-                var permalink: NSURL?
-                
-                if error == nil {
-                    if let permalinkString = (JSON?.valueForKeyPath("permalink_url") as? String) {
-                        permalink = NSURL(string: permalinkString)
+            Alamofire.request(.GET, url, parameters: ["client_id": ClientID]).validate().responseJSON { (_, _, result) in
+                switch result {
+                case .Success(let JSON):
+                    guard
+                        let permalinkString = JSON["permalink_url"] as? String,
+                        let permalinkURL = NSURL(string: permalinkString)
+                    else {
+                        callback(Result.Failure(nil, SoundCloudAPI.Errors.CantParseResponse))
+                        break
                     }
+                    callback(Result.Success(permalinkURL))
+                case .Failure(let data, let error):
+                    callback(Result.Failure(data, error))
                 }
-                
-                callback(permalink: permalink, error: error)
             }
         }
+    }
+    
+    enum Errors: ErrorType {
+        case CantParseResponse
     }
 }
