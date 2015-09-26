@@ -78,10 +78,10 @@ enum TagsListItem {
     case TagItem(HypeMachineAPI.Tag)
     
     static func fromObject(object: AnyObject) -> TagsListItem? {
-        if object is HypeMachineAPI.Tag {
-            return TagsListItem.TagItem(object as! HypeMachineAPI.Tag)
-        } else if object is SectionHeader {
-            return TagsListItem.SectionHeaderItem(object as! SectionHeader)
+        if let tag = object as? HypeMachineAPI.Tag {
+            return TagsListItem.TagItem(tag)
+        } else if let sectionHeader = object as? SectionHeader {
+            return TagsListItem.SectionHeaderItem(sectionHeader)
         } else {
             return nil
         }
