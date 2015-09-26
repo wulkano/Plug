@@ -25,7 +25,6 @@ class NavigationController: NSViewController {
         } else {
             return nil
         }
-
     }
     var rootViewController: BaseContentViewController! {
         return viewControllers.first
@@ -228,9 +227,9 @@ class NavigationController: NSViewController {
     
     private func transitionOptions(reversed: Bool) -> NSViewControllerTransitionOptions {
         if reversed {
-            return NSViewControllerTransitionOptions.SlideRight.union(NSViewControllerTransitionOptions.Crossfade)
+            return [NSViewControllerTransitionOptions.SlideRight, NSViewControllerTransitionOptions.Crossfade]
         } else {
-            return NSViewControllerTransitionOptions.SlideLeft.union(NSViewControllerTransitionOptions.Crossfade)
+            return [NSViewControllerTransitionOptions.SlideLeft, NSViewControllerTransitionOptions.Crossfade]
         }
     }
 }
