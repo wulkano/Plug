@@ -122,7 +122,7 @@ class NavigationController: NSViewController {
             return
         }
         
-        self.addViewControllerToView(newVisibleViewController)
+        self.contentView.addSubview(newVisibleViewController.view)
         
         if animated {
             let isPushing = self._viewControllers.indexOf(oldVisibleViewController) != nil
@@ -131,29 +131,25 @@ class NavigationController: NSViewController {
             self.constrainViewControllerToContentView(newVisibleViewController)
             self.constrainViewControllerToSideOfContentView(oldVisibleViewController, side: isPushing ? .Left : .Right)
             self.startAnimation(completionHandler: {
-                self.removeViewControllerFromView(oldVisibleViewController)
+                oldVisibleViewController.view.removeFromSuperview()
             })
         } else {
             self.constrainViewControllerToContentView(newVisibleViewController)
-            self.removeViewControllerFromView(oldVisibleViewController)
+            oldVisibleViewController.view.removeFromSuperview()
         }
         
         self.visibleViewController = newVisibleViewController
     }
     
-    private func addViewControllerToView(viewController: BaseContentViewController) {
-        self.contentView.addSubview(viewController.view)
-    }
-    
     private func constrainViewControllerToContentView(viewController: BaseContentViewController) {
-        let closure: (make: ConstraintMaker) -> Void = { (make) -> Void in
+        let closure = { (make: ConstraintMaker)->Void in
             make.edges.equalTo(self.contentView)
         }
         self.makeOrRemakeConstraints(viewController, closure: closure)
     }
     
     private func constrainViewControllerToSideOfContentView(viewController: BaseContentViewController, side: ContentViewSide) {
-        let closure: (make: ConstraintMaker) -> Void = { (make) -> Void in
+        let closure = { (make: ConstraintMaker)->Void in
             make.top.bottom.width.equalTo(self.contentView)
             switch side {
             case .Left:
@@ -163,10 +159,6 @@ class NavigationController: NSViewController {
             }
         }
         self.makeOrRemakeConstraints(viewController, closure: closure)
-    }
-    
-    private func removeViewControllerFromView(viewController: BaseContentViewController) {
-        viewController.view.removeFromSuperview()
     }
     
     private func startAnimation(completionHandler completionHandler: ()->Void) {
