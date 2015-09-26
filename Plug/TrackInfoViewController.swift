@@ -80,7 +80,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     func loadSingleTagView(tag: HypeMachineAPI.Tag) {
         let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
         viewController.title = tag.name
-        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
+        NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
     

@@ -16,7 +16,7 @@ class UsersViewController: DataSourceViewController {
     
     func loadSingleFriendView(friend: HypeMachineAPI.User) {
         let viewController = UserViewController(user: friend)!
-        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
+        NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
     
     // MARK: Actions

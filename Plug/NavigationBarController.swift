@@ -181,7 +181,7 @@ class NavigationBarController: NSViewController {
     // MARK: Actions
     
     func backButtonClicked(sender: NSButton) {
-        navigationController.popViewController()
+        navigationController.popViewControllerAnimated(true)
     }
 }
 

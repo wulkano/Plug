@@ -309,7 +309,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     
     @IBAction func artistButtonClicked(sender: NSButton) {
         let viewController = TracksViewController(type: .LoveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
-        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
+        NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
         viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
     }
     

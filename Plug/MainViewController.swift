@@ -43,7 +43,8 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
             make.bottom.equalTo(self.view)
         }
         
-        navigationController = NavigationController(nibName: nil, bundle: nil)
+        navigationController = NavigationController(rootViewController: nil)
+        NavigationController.sharedInstance = navigationController
         addChildViewController(navigationController)
         view.addSubview(navigationController.view)
         navigationController.view.snp_makeConstraints { make in
@@ -94,7 +95,7 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
     func updateUIForSection(section: NavigationSection) {
         let newViewController = section.viewControllerForTarget(self)
         currentViewController = newViewController
-        navigationController.setNewRootViewController(newViewController)
+        navigationController.setViewControllers([newViewController], animated: false)
     }
     
     func popularSectionModeChanged(sender: NSMenuItem) {

@@ -32,7 +32,7 @@ class BlogsViewController: DataSourceViewController {
     
     func loadBlogViewController(blog: HypeMachineAPI.Blog) {
         let viewController = BlogViewController(blog: blog)!
-        Notifications.post(name: Notifications.PushViewController, object: self, userInfo: ["viewController": viewController])
+        NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
     
     func blogCellView(tableView: NSTableView) -> BlogTableCellView {
