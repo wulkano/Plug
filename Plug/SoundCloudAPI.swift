@@ -13,7 +13,6 @@ let ClientID = "2c3c67194673f9968b7c8b5f2b50d486"
 
 struct SoundCloudAPI {
     struct Tracks {
-        
         static func permalink(trackId: String, callback: (Result<NSURL>)->Void) {
             let url = "http://api.soundcloud.com/tracks/\(trackId).json"
             
