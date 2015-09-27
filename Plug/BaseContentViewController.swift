@@ -76,9 +76,6 @@ class BaseContentViewController: NSViewController {
         }
     }
     
-    func didBecomeCurrentViewController() {}
-    func didLoseCurrentViewController() {}
-    
     // MARK: Sticky Track
     
     var shouldShowStickyTrack: Bool {
