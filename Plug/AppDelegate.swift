@@ -26,8 +26,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        Fabric.with([Crashlytics()]) // Crash Reporting
         setupUserDefaults()
+        // Load Crashlytics after setting up user defaults because we initialize
+        // the exception handling settings there
+        Fabric.with([Crashlytics()])
         setupUserNotifications()
         setupNotifications()
         setupMediaKeys()
