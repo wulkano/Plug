@@ -136,8 +136,9 @@ class NavigationController: NSViewController {
             oldVisibleViewController.view.removeFromSuperview()
         }
         
-        self.visibleViewController = newVisibleViewController
         Analytics.trackView(newVisibleViewController.analyticsViewName)
+        
+        self.visibleViewController = newVisibleViewController
     }
     
     private func constrainViewControllerToContentView(viewController: BaseContentViewController) {
