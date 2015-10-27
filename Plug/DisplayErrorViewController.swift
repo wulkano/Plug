@@ -114,7 +114,7 @@ class DisplayErrorViewController: NSViewController {
             self.topConstraint!.uninstall()
             
             self.view.snp_makeConstraints { make in
-                make.bottom.equalTo(view.superview!.snp_top)
+                make.bottom.equalTo(self.view.superview!.snp_top)
             }
             
             NSAnimationContext.runAnimationGroup(
