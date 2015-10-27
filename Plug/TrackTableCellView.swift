@@ -228,6 +228,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func trackPlaying(notification: NSNotification) {
+        if objectValue == nil { return }
+        
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             playState = PlayState.Playing
@@ -237,6 +239,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func trackPaused(notification: NSNotification) {
+        if objectValue == nil { return }
+        
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             playState = PlayState.Paused
@@ -244,6 +248,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func trackLoved(notification: NSNotification) {
+        if objectValue == nil { return }
+        
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             track.loved = true
@@ -253,6 +259,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func trackUnLoved(notification: NSNotification) {
+        if objectValue == nil { return }
+        
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if notificationTrack === objectValue {
             track.loved = false
