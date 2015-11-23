@@ -147,9 +147,17 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
     }
     
     func parseTrackIDFromURL(url: NSURL) -> String? {
-        let prefix = "https://api.soundcloud.com/tracks/"
+        let httpsPrefix = "https://api.soundcloud.com/tracks/"
+        let httpPrefix = "http://api.soundcloud.com/tracks/"
         let suffix = "/stream"
-        return url.absoluteString.getSubstringBetweenPrefix(prefix, andSuffix: suffix)
+        
+        if let trackID = url.absoluteString.getSubstringBetweenPrefix(httpsPrefix, andSuffix: suffix) {
+            return trackID
+        } else if let trackID = url.absoluteString.getSubstringBetweenPrefix(httpPrefix, andSuffix: suffix) {
+            return trackID
+        } else {
+            return nil
+        }
     }
     
     func requestPermalinkForTrackID(trackID: String) {

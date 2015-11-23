@@ -30,7 +30,6 @@ extension String {
         }
         
         if let substringWithoutPrefix = getSubstringAfterPrefix() {
-            substringWithoutPrefix
             return getSubstringBeforeSuffix(substringWithoutPrefix)
         } else {
             return nil
