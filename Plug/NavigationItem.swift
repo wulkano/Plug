@@ -21,7 +21,6 @@ class NavigationItem: NSObject {
     class func standardBackButtonWithTitle(title: String) -> SwissArmyButton {
         let button = SwissArmyButton(frame: NSZeroRect)
         let cell = BackButtonCell(textCell: "")
-        
         button.cell = cell
         button.bezelStyle = .RegularSquareBezelStyle
         button.bordered = true

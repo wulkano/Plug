@@ -83,8 +83,9 @@ class NavigationBarController: NSViewController {
     func addNavigationBarViewForCurrentItems(){
         let buttonEdgeSpacing: CGFloat = 6
         let titleSpacing: CGFloat = 10
-        let buttonYOffset: CGFloat = -1
+        let buttonYOffset: CGFloat = 6
         let titleYOffset: CGFloat = -1
+        let buttonHeight: CGFloat = 21
         
         navigationBarView = NSView()
         backgroundView.addSubview(navigationBarView!)
@@ -101,9 +102,9 @@ class NavigationBarController: NSViewController {
             backButton!.action = "backButtonClicked:"
             navigationBarView!.addSubview(backButton!)
             backButton!.snp_makeConstraints{ make in
-                make.centerY.equalTo(navigationBarView!).offset(buttonYOffset)
+                make.top.equalTo(navigationBarView!).offset(buttonYOffset)
                 make.left.equalTo(navigationBarView!).offset(buttonEdgeSpacing)
-                make.height.equalTo(22)
+                make.height.equalTo(buttonHeight)
             }
         }
         
@@ -111,9 +112,9 @@ class NavigationBarController: NSViewController {
         if topItem!.rightButton != nil {
             navigationBarView!.addSubview(topItem!.rightButton!)
             topItem!.rightButton!.snp_makeConstraints { make in
-                make.centerY.equalTo(navigationBarView!).offset(buttonYOffset)
+                make.top.equalTo(navigationBarView!).offset(buttonYOffset)
                 make.right.equalTo(navigationBarView!).offset(-buttonEdgeSpacing)
-                make.height.equalTo(22)
+                make.height.equalTo(buttonHeight)
             }
         }
         
