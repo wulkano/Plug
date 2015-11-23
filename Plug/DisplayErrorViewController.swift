@@ -45,7 +45,7 @@ class DisplayErrorViewController: NSViewController {
         errorTitleTextField.bordered = false
         errorTitleTextField.drawsBackground = false
         errorTitleTextField.lineBreakMode = .ByWordWrapping
-        errorTitleTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)!
+        errorTitleTextField.font = appFont(size: 14, weight: .Medium)
         errorTitleTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         errorTitleTextField.textColor = NSColor.whiteColor()
         view.addSubview(errorTitleTextField)
@@ -62,7 +62,7 @@ class DisplayErrorViewController: NSViewController {
         errorDescriptionTextField.bordered = false
         errorDescriptionTextField.drawsBackground = false
         errorDescriptionTextField.lineBreakMode = .ByWordWrapping
-        errorDescriptionTextField.font = NSFont(name: "HelveticaNeue", size: 13)!
+        errorDescriptionTextField.font = appFont(size: 13)
         errorDescriptionTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         errorDescriptionTextField.textColor = NSColor.whiteColor()
         view.addSubview(errorDescriptionTextField)

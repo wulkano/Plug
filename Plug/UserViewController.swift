@@ -75,7 +75,7 @@ class UserViewController: BaseContentViewController {
         usernameTextField.selectable = false
         usernameTextField.bordered = false
         usernameTextField.drawsBackground = false
-        usernameTextField.font = NSFont(name: "HelveticaNeue", size: 20)!
+        usernameTextField.font = appFont(size: 20)
         header.addSubview(usernameTextField)
         usernameTextField.snp_makeConstraints { make in
             make.height.equalTo(24)
@@ -89,7 +89,7 @@ class UserViewController: BaseContentViewController {
         favoritesCountTextField.selectable = false
         favoritesCountTextField.bordered = false
         favoritesCountTextField.drawsBackground = false
-        favoritesCountTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        favoritesCountTextField.font = appFont(size: 13, weight: .Medium)
         header.addSubview(favoritesCountTextField)
         favoritesCountTextField.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -102,7 +102,7 @@ class UserViewController: BaseContentViewController {
         favoritesLabel.selectable = false
         favoritesLabel.bordered = false
         favoritesLabel.drawsBackground = false
-        favoritesLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        favoritesLabel.font = appFont(size: 13, weight: .Medium)
         favoritesLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         favoritesLabel.stringValue = "Favorites"
         header.addSubview(favoritesLabel)
@@ -117,7 +117,7 @@ class UserViewController: BaseContentViewController {
         friendsCountTextField.selectable = false
         friendsCountTextField.bordered = false
         friendsCountTextField.drawsBackground = false
-        friendsCountTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        friendsCountTextField.font = appFont(size: 13, weight: .Medium)
         header.addSubview(friendsCountTextField)
         friendsCountTextField.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -130,7 +130,7 @@ class UserViewController: BaseContentViewController {
         friendsLabel.selectable = false
         friendsLabel.bordered = false
         friendsLabel.drawsBackground = false
-        friendsLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        friendsLabel.font = appFont(size: 13, weight: .Medium)
         friendsLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         friendsLabel.stringValue = "Friends"
         header.addSubview(friendsLabel)

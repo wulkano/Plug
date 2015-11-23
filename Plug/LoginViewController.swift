@@ -10,9 +10,13 @@ import Cocoa
 import HypeMachineAPI
 
 class LoginViewController: NSViewController, NSTextFieldDelegate {
+    @IBOutlet weak var usernameOrEmailLabel: VibrantTextField!
     @IBOutlet weak var usernameOrEmailTextField: NSTextField!
+    @IBOutlet weak var passwordLabel: VibrantTextField!
     @IBOutlet weak var passwordTextField: NSSecureTextField!
-    @IBOutlet var loginButton: LoginButton!
+    @IBOutlet weak var loginButton: LoginButton!
+    @IBOutlet weak var fogotPasswordButton: SwissArmyButton!
+    @IBOutlet weak var signUpButton: SwissArmyButton!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -43,7 +47,8 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
                 self.signedInSuccessfully()
             case .Failure(_, let error):
                 var errorMessage: String
-                if (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue {
+                if (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue ||
+                    (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongUsername.rawValue {
                     errorMessage = "Incorrect Username/Password"
                 } else {
                     errorMessage = "Network Error"
@@ -102,6 +107,15 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         passwordTextField.delegate = self
         usernameOrEmailTextField.nextKeyView = passwordTextField
         passwordTextField.nextKeyView = usernameOrEmailTextField
+        
+        // Custom fonts
+        usernameOrEmailLabel.font = appFont(size: 12, weight: .Medium)
+        usernameOrEmailTextField.font = appFont(size: 18)
+        passwordLabel.font = appFont(size: 12, weight: .Medium)
+        passwordTextField.font = appFont(size: 18)
+        loginButton.font = appFont(size: 14, weight: .Medium)
+        fogotPasswordButton.font = appFont(size: 13, weight: .Medium)
+        signUpButton.font = appFont(size: 14, weight: .Medium)
     }
     
     override func viewWillAppear() {

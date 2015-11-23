@@ -50,7 +50,7 @@ class ActionButtonCell: SwissArmyButtonCell {
             attributes[NSForegroundColorAttributeName] = onStateColor
         }
         
-        attributes[NSFontAttributeName] = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        attributes[NSFontAttributeName] = appFont(size: 13, weight: .Medium)
         
         return NSAttributedString(string: title, attributes: attributes)
     }

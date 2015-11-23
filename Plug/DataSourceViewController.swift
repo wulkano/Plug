@@ -54,7 +54,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
             cellView!.titleTextField.selectable = false
             cellView!.titleTextField.bordered = false
             cellView!.titleTextField.drawsBackground = false
-            cellView!.titleTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
+            cellView!.titleTextField.font = appFont(size: 14, weight: .Medium)
             cellView!.titleTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.titleTextField)
             cellView!.titleTextField.snp_makeConstraints { make in

@@ -47,7 +47,7 @@ class TagButton: SwissArmyButton {
     func fontAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
         let color = NSColor.blackColor()
-        let font = NSFont(name: "DIN Bold", size: 12)
+        let font = appFont(size: 12, weight: .Bold)
         attributes[NSForegroundColorAttributeName] = color
         attributes[NSFontAttributeName] = font
         return attributes

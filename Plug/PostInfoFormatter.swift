@@ -57,7 +57,7 @@ class PostInfoFormatter: NSFormatter {
     private func normalAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
         let color = NSColor.whiteColor().colorWithAlphaComponent(0.5)
-        let font = NSFont(name: "HelveticaNeue", size: 13)
+        let font = appFont(size: 13)
         attributes[NSForegroundColorAttributeName] = color
         attributes[NSFontAttributeName] = font
         return attributes
@@ -66,7 +66,7 @@ class PostInfoFormatter: NSFormatter {
     private func boldAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
         let color = NSColor.whiteColor()
-        let font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+        let font = appFont(size: 13, weight: .Medium)
         attributes[NSForegroundColorAttributeName] = color
         attributes[NSFontAttributeName] = font
         return attributes

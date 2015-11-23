@@ -168,7 +168,7 @@ class TracksViewController: DataSourceViewController {
         cellView.titleButton = HyperlinkButton()
         cellView.titleButton.bordered = false
         cellView.titleButton.lineBreakMode = .ByTruncatingTail
-        cellView.titleButton.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
+        cellView.titleButton.font = appFont(size: 14, weight: .Medium)
         cellView.addSubview(cellView.titleButton)
         cellView.titleButton.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -181,7 +181,7 @@ class TracksViewController: DataSourceViewController {
         cellView.artistButton.hoverUnderline = true
         cellView.artistButton.bordered = false
         cellView.artistButton.lineBreakMode = .ByTruncatingTail
-        cellView.artistButton.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+        cellView.artistButton.font = appFont(size: 13, weight: .Medium)
         cellView.artistButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         cellView.artistButton.target = cellView
         cellView.artistButton.action = "artistButtonClicked:"
@@ -217,7 +217,7 @@ class TracksViewController: DataSourceViewController {
         cellView.loveCount.bordered = false
         cellView.loveCount.drawsBackground = false
         cellView.loveCount.alignment = .Center
-        cellView.loveCount.font = NSFont(name: "HelveticaNeue-Medium", size: 22)
+        cellView.loveCount.font = appFont(size: 22, weight: .Medium)
         cellView.loveCount.objectValue = NSNumber(integer: 2200)
         cellView.loveCount.formatter = LovedCountFormatter()
         cellView.addSubview(cellView.loveCount)
@@ -246,7 +246,7 @@ class TracksViewController: DataSourceViewController {
         cellView.sourceTypeTextField.selectable = false
         cellView.sourceTypeTextField.bordered = false
         cellView.sourceTypeTextField.drawsBackground = false
-        cellView.sourceTypeTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 12)
+        cellView.sourceTypeTextField.font = appFont(size: 12, weight: .Medium)
         cellView.sourceTypeTextField.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
         cellView.addSubview(cellView.sourceTypeTextField)
         cellView.sourceTypeTextField.snp_makeConstraints { make in
@@ -259,7 +259,7 @@ class TracksViewController: DataSourceViewController {
         cellView.sourceButton.hoverUnderline = true
         cellView.sourceButton.bordered = false
         cellView.sourceButton.lineBreakMode = .ByTruncatingTail
-        cellView.sourceButton.font = NSFont(name: "HelveticaNeue-Medium", size: 12)
+        cellView.sourceButton.font = appFont(size: 12, weight: .Medium)
         cellView.sourceButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         cellView.sourceButton.target = cellView
         cellView.sourceButton.action = "sourceButtonClicked:"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -17,6 +17,7 @@
                         <view key="contentView" id="wQM-2k-D7B">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </view>
                     </window>
                     <connections>
@@ -35,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="zq8-oP-Cmk">
+                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="zq8-oP-Cmk">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="430"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JKj-sC-9NM" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
@@ -43,6 +44,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="MDf-tD-rCR"/>
                                         </constraints>
+                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Email/Username" id="hzk-fT-A6w">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,6 +56,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="GNB-gN-V0h"/>
                                         </constraints>
+                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="Your email or username" id="d1d-t2-2RI">
                                             <font key="font" size="18" name="HelveticaNeue"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -65,6 +68,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ckK-SN-tqV"/>
                                         </constraints>
+                                        <animations/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -77,6 +81,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="beu-6A-9Y2"/>
                                         </constraints>
+                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Password" id="Hsm-0g-Eof">
                                             <font key="font" size="12" name="HelveticaNeue-Medium"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -88,6 +93,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="nVg-gk-V66"/>
                                         </constraints>
+                                        <animations/>
                                         <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" focusRingType="none" placeholderString="Your password" id="A73-eU-Rek">
                                             <font key="font" size="18" name="HelveticaNeue"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -102,6 +108,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="8Sv-Q5-9Ov"/>
                                         </constraints>
+                                        <animations/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="background" value="YES"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -114,6 +121,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="72K-nz-FTx"/>
                                         </constraints>
+                                        <animations/>
                                         <buttonCell key="cell" type="bevel" title="Forgotten Password?" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9" customClass="ForgotPasswordButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="13" name="HelveticaNeue-Medium"/>
@@ -131,6 +139,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="KOI-cl-Hk8"/>
                                         </constraints>
+                                        <animations/>
                                         <buttonCell key="cell" type="bevel" title="Sign up to The Hype Machine" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ml6-hR-1c7" customClass="SignUpButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="HelveticaNeue-Medium"/>
@@ -148,6 +157,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="95w-id-mBH"/>
                                         </constraints>
+                                        <animations/>
                                         <buttonCell key="cell" type="bevel" title="Log In" bezelStyle="rounded" image="Login-Next" imagePosition="right" alignment="left" lineBreakMode="truncatingTail" enabled="NO" imageScaling="proportionallyDown" inset="2" id="sdk-AF-MFn" customClass="LoginButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="14" name="HelveticaNeue-Medium"/>
@@ -169,6 +179,7 @@ DQ
                                             <constraint firstAttribute="width" constant="64" id="0Oe-r5-6sg"/>
                                             <constraint firstAttribute="height" constant="64" id="OgI-C8-P5H"/>
                                         </constraints>
+                                        <animations/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Login-Logo" id="9Eu-YJ-z4t"/>
                                     </imageView>
                                 </subviews>
@@ -205,6 +216,7 @@ DQ
                                     <constraint firstItem="8Z7-dY-C7d" firstAttribute="top" secondItem="GlT-Dp-zTj" secondAttribute="bottom" constant="3" id="wkm-55-8O0"/>
                                     <constraint firstAttribute="trailing" secondItem="JKj-sC-9NM" secondAttribute="trailing" constant="20" id="z0J-pS-xJ0"/>
                                 </constraints>
+                                <animations/>
                             </visualEffectView>
                         </subviews>
                         <constraints>
@@ -213,10 +225,15 @@ DQ
                             <constraint firstItem="zq8-oP-Cmk" firstAttribute="top" secondItem="O2r-Np-OSK" secondAttribute="top" id="fDA-2Q-fb5"/>
                             <constraint firstAttribute="trailing" secondItem="zq8-oP-Cmk" secondAttribute="trailing" id="ooo-Ud-lUL"/>
                         </constraints>
+                        <animations/>
                     </view>
                     <connections>
+                        <outlet property="fogotPasswordButton" destination="qvS-9M-X3g" id="bN4-NW-8Vp"/>
                         <outlet property="loginButton" destination="IMQ-NN-PR5" id="LQe-04-cTH"/>
+                        <outlet property="passwordLabel" destination="GlT-Dp-zTj" id="F77-VJ-GdM"/>
                         <outlet property="passwordTextField" destination="8Z7-dY-C7d" id="kiQ-bm-XQc"/>
+                        <outlet property="signUpButton" destination="iqn-dS-QxW" id="K6W-at-dEd"/>
+                        <outlet property="usernameOrEmailLabel" destination="JKj-sC-9NM" id="cV9-GH-C9Z"/>
                         <outlet property="usernameOrEmailTextField" destination="KbM-Zi-8EU" id="ALT-77-ykb"/>
                     </connections>
                 </viewController>

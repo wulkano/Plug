@@ -71,7 +71,7 @@ class BlogViewController: BaseContentViewController {
         titleButton = HyperlinkButton()
         titleButton.hoverUnderline = true
         titleButton.bordered = false
-        titleButton.font = NSFont(name: "HelveticaNeue", size: 20)!
+        titleButton.font = appFont(size: 20)
         titleButton.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         titleButton.lineBreakMode = .ByTruncatingMiddle
         titleButton.target = self

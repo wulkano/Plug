@@ -52,6 +52,6 @@ class DropdownTitleFormatter: NSFormatter {
     }
     
     private func getFont() -> NSFont {
-        return NSFont(name: "HelveticaNeue-Medium", size: 14)!
+        return appFont(size: 14, weight: .Medium)
     }
 }

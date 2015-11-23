@@ -79,7 +79,7 @@ class TagsViewController: DataSourceViewController {
             cellView!.nameTextField.selectable = false
             cellView!.nameTextField.bordered = false
             cellView!.nameTextField.drawsBackground = false
-            cellView!.nameTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 16)
+            cellView!.nameTextField.font = appFont(size: 16, weight: .Medium)
             cellView!.addSubview(cellView!.nameTextField)
             cellView!.nameTextField.snp_makeConstraints { make in
                 make.centerY.equalTo(cellView!).offset(1)

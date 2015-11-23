@@ -53,7 +53,7 @@ class RefreshHeaderViewController: NSViewController {
         messageLabel.bordered = false
         messageLabel.drawsBackground = false
         messageLabel.lineBreakMode = .ByTruncatingTail
-        messageLabel.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+        messageLabel.font = appFont(size: 13, weight: .Medium)
         messageLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         messageContainer.addSubview(messageLabel)
         messageLabel.snp_makeConstraints { make in

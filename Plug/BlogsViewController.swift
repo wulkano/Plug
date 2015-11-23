@@ -48,7 +48,7 @@ class BlogsViewController: DataSourceViewController {
             cellView!.nameTextField.selectable = false
             cellView!.nameTextField.bordered = false
             cellView!.nameTextField.drawsBackground = false
-            cellView!.nameTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
+            cellView!.nameTextField.font = appFont(size: 14, weight: .Medium)
             cellView!.addSubview(cellView!.nameTextField)
             cellView!.nameTextField.snp_makeConstraints { make in
                 make.top.equalTo(cellView!).offset(9)
@@ -62,7 +62,7 @@ class BlogsViewController: DataSourceViewController {
             recentTitle.selectable = false
             recentTitle.bordered = false
             recentTitle.drawsBackground = false
-            recentTitle.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+            recentTitle.font = appFont(size: 13, weight: .Medium)
             recentTitle.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
             cellView!.addSubview(recentTitle)
             recentTitle.snp_makeConstraints { make in
@@ -76,7 +76,7 @@ class BlogsViewController: DataSourceViewController {
             cellView!.recentArtistsTextField.bordered = false
             cellView!.recentArtistsTextField.drawsBackground = false
             cellView!.recentArtistsTextField.lineBreakMode = .ByTruncatingTail
-            cellView!.recentArtistsTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+            cellView!.recentArtistsTextField.font = appFont(size: 13, weight: .Medium)
             cellView!.recentArtistsTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.recentArtistsTextField)
             cellView!.recentArtistsTextField.snp_makeConstraints { make in

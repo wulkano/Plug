@@ -91,7 +91,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.fullNameTextField.selectable = false
             cellView!.fullNameTextField.bordered = false
             cellView!.fullNameTextField.drawsBackground = false
-            cellView!.fullNameTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)
+            cellView!.fullNameTextField.font = appFont(size: 14, weight: .Medium)
             cellView!.addSubview(cellView!.fullNameTextField)
             cellView!.fullNameTextField.snp_makeConstraints { make in
                 make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
@@ -104,7 +104,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.usernameTextField.selectable = false
             cellView!.usernameTextField.bordered = false
             cellView!.usernameTextField.drawsBackground = false
-            cellView!.usernameTextField.font = NSFont(name: "HelveticaNeue-Medium", size: 13)
+            cellView!.usernameTextField.font = appFont(size: 13, weight: .Medium)
             cellView!.usernameTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.usernameTextField)
             cellView!.usernameTextField.snp_makeConstraints { make in

@@ -151,7 +151,7 @@ class NavigationBarController: NSViewController {
         textField.selectable = false
         textField.bordered = false
         textField.drawsBackground = false
-        textField.font = NSFont(name: "HelveticaNeue-Medium", size: 14)!
+        textField.font = appFont(size: 14, weight: .Medium)
         textField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         textField.lineBreakMode = .ByTruncatingMiddle
         textField.stringValue = title

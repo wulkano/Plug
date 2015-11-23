@@ -34,6 +34,7 @@
 		FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA51974A9A500A781C8 /* AppDelegate.swift */; };
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
+		FA2519471C039E980075FBC6 /* FontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2519461C039E980075FBC6 /* FontHelper.swift */; };
 		FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogsViewController.swift */; };
 		FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */; };
 		FA3241BA19F81579009FCDE3 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */; };
@@ -210,6 +211,7 @@
 		FA24EDA71974A9A500A781C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
+		FA2519461C039E980075FBC6 /* FontHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontHelper.swift; sourceTree = "<group>"; };
 		FA3199AC198247970097B081 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HypeMachineDataSource.swift; sourceTree = "<group>"; };
 		FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
 				FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */,
 				FA64C6A119764DAE003933E3 /* Models */,
+				FA2519451C039E850075FBC6 /* Helpers */,
 				FA9EA043199B0D1500D9AB8A /* Data Sources */,
 				FA0B1CF31976D8420030C873 /* Views */,
 				FA0B1CF21976D8320030C873 /* Controllers */,
@@ -508,6 +511,14 @@
 				FA24EDA11974A9A500A781C8 /* main.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA2519451C039E850075FBC6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FA2519461C039E980075FBC6 /* FontHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		FA3241BB19F815AD009FCDE3 /* DataSourceViewControllers */ = {
@@ -1062,6 +1073,7 @@
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
+				FA2519471C039E980075FBC6 /* FontHelper.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */,
 				FA4BA99E1B54C03900A983A5 /* SearchableDataSource.swift in Sources */,

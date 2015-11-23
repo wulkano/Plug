@@ -36,14 +36,14 @@ class AboutViewController: NSViewController {
         }
         
         let titleLabel = label(container)
-        titleLabel.font = NSFont(name: "HelveticaNeue-Bold", size: 12)
+        titleLabel.font = appFont(size: 12, weight: .Bold)
         titleLabel.stringValue = title
         titleLabel.snp_makeConstraints { make in
             make.top.equalTo(container)
         }
         
         let nameLabel = label(container)
-        nameLabel.font = NSFont(name: "HelveticaNeue", size: 12)
+        nameLabel.font = appFont(size: 12)
         nameLabel.stringValue = name
         nameLabel.snp_makeConstraints { make in
             make.top.equalTo(titleLabel.snp_bottom).offset(-3)
@@ -52,7 +52,7 @@ class AboutViewController: NSViewController {
         let link = HyperlinkButton()
         link.hoverUnderline = true
         link.bordered = false
-        link.font = NSFont(name: "HelveticaNeue", size: 12)!
+        link.font = appFont(size: 12)
         link.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         link.alignment = .Center
         link.title = linkTitle
@@ -97,14 +97,14 @@ class AboutViewController: NSViewController {
         }
         
         let nameLabel = label(view)
-        nameLabel.font = NSFont(name: "HelveticaNeue-Bold", size: 14)
+        nameLabel.font = appFont(size: 14, weight: .Bold)
         nameLabel.stringValue = "Plug"
         nameLabel.snp_makeConstraints { make in
             make.top.equalTo(logo.snp_bottom).offset(20)
         }
         
         let versionLabel = label(view)
-        versionLabel.font = NSFont(name: "HelveticaNeue", size: 11)
+        versionLabel.font = appFont(size: 11)
         let bundleVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         let bundleVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
         versionLabel.stringValue = "Version \(bundleVersionString) (\(bundleVersion))"
@@ -123,7 +123,7 @@ class AboutViewController: NSViewController {
         }
         
         let copyright = label(view)
-        copyright.font = NSFont(name: "HelveticaNeue", size: 11)
+        copyright.font = appFont(size: 11)
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy"
         let year = formatter.stringFromDate(NSDate())
@@ -133,7 +133,7 @@ class AboutViewController: NSViewController {
         }
         
         let allRights = label(view)
-        allRights.font = NSFont(name: "HelveticaNeue", size: 11)
+        allRights.font = appFont(size: 11)
         allRights.stringValue = "All rights reserved."
         allRights.snp_makeConstraints { make in
             make.top.equalTo(copyright.snp_bottom)

@@ -25,7 +25,7 @@ class NavigationItem: NSObject {
         button.cell = cell
         button.bezelStyle = .RegularSquareBezelStyle
         button.bordered = true
-        button.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        button.font = appFont(size: 13, weight: .Medium)
         button.title = title
         
         return button
@@ -41,7 +41,7 @@ class NavigationItem: NSObject {
         button.state = NSOffState
         button.bezelStyle = .RegularSquareBezelStyle
         button.bordered = true
-        button.font = NSFont(name: "HelveticaNeue-Medium", size: 13)!
+        button.font = appFont(size: 13, weight: .Medium)
         button.target = target
         button.action = action
         
