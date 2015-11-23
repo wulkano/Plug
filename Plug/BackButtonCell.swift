@@ -27,7 +27,7 @@ class BackButtonCell: SwissArmyButtonCell {
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         var newFrame = frame
-//        newFrame.origin.y -= 1
+        newFrame.origin.y += 1
         newFrame.origin.x += 3
         return super.drawTitle(title, withFrame: newFrame, inView: controlView)
     }
