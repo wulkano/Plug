@@ -65,6 +65,7 @@ class ActionButtonCell: SwissArmyButtonCell {
     
     override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
         var newFrame = frame
+        newFrame.origin.y += 1
         newFrame.origin.x += horizontalPadding
         return super.drawTitle(formattedTitle, withFrame: newFrame, inView: controlView)
     }
