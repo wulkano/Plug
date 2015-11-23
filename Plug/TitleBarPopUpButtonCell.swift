@@ -49,9 +49,9 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
         let path = NSBezierPath()
         let bounds = controlView.bounds
         
-        let leftPoint = NSMakePoint(bounds.size.width - 14, (bounds.size.height / 2) - 1)
-        let bottomPoint = NSMakePoint(bounds.size.width - 10, (bounds.size.height / 2) + 3.5);
-        let rightPoint = NSMakePoint(bounds.size.width - 6, (bounds.size.height / 2) - 1);
+        let leftPoint = NSMakePoint(bounds.size.width - 14, (bounds.size.height / 2) - 2)
+        let bottomPoint = NSMakePoint(bounds.size.width - 10, (bounds.size.height / 2) + 2.5);
+        let rightPoint = NSMakePoint(bounds.size.width - 6, (bounds.size.height / 2) - 2);
         
         path.moveToPoint(leftPoint)
         path.lineToPoint(bottomPoint)
