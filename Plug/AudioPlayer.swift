@@ -129,6 +129,31 @@ class AudioPlayer: NSObject {
         skipForward()
     }
     
+    func currentTrackCouldNotFinishPlayingNotification(notification: NSNotification) {
+        let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
+        currentTrackPlaybackError(error)
+    }
+    
+    func currentTrackPlaybackStalledNotification(notification: NSNotification) {
+        let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
+        currentTrackPlaybackError(error)
+    }
+    
+    
+    func currentTrackNewAccessLogEntry(notification: NSNotification) {
+//        print((notification.object as! AVPlayerItem).accessLog())
+    }
+    
+    func currentTrackNewErrorLogEntry(notification: NSNotification) {
+        print((notification.object as! AVPlayerItem).errorLog())
+    }
+    
+    func currentTrackPlaybackError(error: NSError) {
+        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+        print(error)
+        skipForward()
+    }
+    
     // MARK: Private methods
     
     private func currentItemDuration() -> Double? {
@@ -148,13 +173,15 @@ class AudioPlayer: NSObject {
         
         subscribeToPlayerItem(playerItem)
         
-        if player == nil {
-            player = AVPlayer(playerItem: playerItem)
-            player.volume = volume
-            observeProgressUpdates()
-        } else {
-            player.replaceCurrentItemWithPlayerItem(playerItem)
+        print(player?.status)
+        print(player?.error)
+        
+        if player != nil && progressObserver != nil {
+            player.removeTimeObserver(progressObserver!)
         }
+        player = AVPlayer(playerItem: playerItem)
+        player.volume = volume
+        observeProgressUpdates()
         
         if currentDataSource != dataSource {
             currentDataSource = dataSource
@@ -202,6 +229,10 @@ class AudioPlayer: NSObject {
     
     private func subscribeToPlayerItem(playerItem: AVPlayerItem) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackFinishedPlayingNotification:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackCouldNotFinishPlayingNotification:", name: AVPlayerItemFailedToPlayToEndTimeNotification, object: playerItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackPlaybackStalledNotification:", name: AVPlayerItemPlaybackStalledNotification, object: playerItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackNewAccessLogEntry:", name: AVPlayerItemNewAccessLogEntryNotification, object: playerItem)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackNewErrorLogEntry:", name: AVPlayerItemNewErrorLogEntryNotification, object: playerItem)
     }
     
     private func unsubscribeFromPlayerItem(playerItem: AVPlayerItem) {
