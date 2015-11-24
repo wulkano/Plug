@@ -36,6 +36,8 @@ class AudioPlayer: NSObject {
     var progressObserver: AnyObject?
     var seeking = false
     var recentlyPlayedTrackIndexes: [Int] = []
+    var timeoutTimer: NSTimer?
+    let timeoutSeconds: Double = 10
     
     override init() {
         super.init()
@@ -154,6 +156,28 @@ class AudioPlayer: NSObject {
         skipForward()
     }
     
+    func didAVPlayerTimeout() {
+        guard player != nil else { return }
+        
+        if let val = player.currentItem?.loadedTimeRanges.optionalAtIndex(0) {
+            var timeRange: CMTimeRange = CMTimeRange()
+            val.getValue(&timeRange)
+            let duration = timeRange.duration
+            let timeLoaded = Float(duration.value) / Float(duration.timescale)
+            
+            if timeLoaded == 0 {
+                avPlayerTimedOut()
+            }
+        } else {
+            avPlayerTimedOut()
+        }
+    }
+    
+    func avPlayerTimedOut() {
+        let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Network error. Track took too long to load, skipping to next track."])
+        currentTrackPlaybackError(error)
+    }
+    
     // MARK: Private methods
     
     private func currentItemDuration() -> Double? {
@@ -173,12 +197,13 @@ class AudioPlayer: NSObject {
         
         subscribeToPlayerItem(playerItem)
         
-        print(player?.status)
-        print(player?.error)
-        
         if player != nil && progressObserver != nil {
             player.removeTimeObserver(progressObserver!)
         }
+
+        timeoutTimer?.invalidate()
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(timeoutSeconds, target: self, selector: "didAVPlayerTimeout", userInfo: nil, repeats: false)
+        
         player = AVPlayer(playerItem: playerItem)
         player.volume = volume
         observeProgressUpdates()
