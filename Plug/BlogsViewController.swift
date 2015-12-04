@@ -51,10 +51,12 @@ class BlogsViewController: DataSourceViewController {
             cellView!.nameTextField.font = appFont(size: 14, weight: .Medium)
             cellView!.addSubview(cellView!.nameTextField)
             cellView!.nameTextField.snp_makeConstraints { make in
-                make.top.equalTo(cellView!).offset(9)
+                make.top.equalTo(cellView!).offset(10)
                 make.left.equalTo(cellView!).offset(21)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
             }
+            
+            let recentTopOffset: CGFloat = 2
             
             let recentTitle = NSTextField()
             recentTitle.stringValue = "Recent: "
@@ -66,7 +68,7 @@ class BlogsViewController: DataSourceViewController {
             recentTitle.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
             cellView!.addSubview(recentTitle)
             recentTitle.snp_makeConstraints { make in
-                make.top.equalTo(cellView!.nameTextField.snp_bottom).offset(1)
+                make.top.equalTo(cellView!.nameTextField.snp_bottom).offset(recentTopOffset)
                 make.left.equalTo(cellView!).offset(21)
             }
             
@@ -80,7 +82,7 @@ class BlogsViewController: DataSourceViewController {
             cellView!.recentArtistsTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.recentArtistsTextField)
             cellView!.recentArtistsTextField.snp_makeConstraints { make in
-                make.top.equalTo(cellView!.nameTextField.snp_bottom).offset(1)
+                make.top.equalTo(cellView!.nameTextField.snp_bottom).offset(recentTopOffset)
                 make.left.equalTo(recentTitle.snp_right).offset(1)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
             }

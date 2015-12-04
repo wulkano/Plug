@@ -251,7 +251,7 @@ class TracksViewController: DataSourceViewController {
         cellView.addSubview(cellView.sourceTypeTextField)
         cellView.sourceTypeTextField.snp_makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(cellView.artistButton.snp_bottom).offset(1)
+            make.top.equalTo(cellView.artistButton.snp_bottom).offset(2)
             make.left.equalTo(cellView).offset(74)
         }
         
@@ -266,7 +266,7 @@ class TracksViewController: DataSourceViewController {
         cellView.addSubview(cellView.sourceButton)
         cellView.sourceButton.snp_makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(cellView.artistButton.snp_bottom).offset(1)
+            make.top.equalTo(cellView.artistButton.snp_bottom).offset(0)
             make.left.equalTo(cellView.sourceTypeTextField.snp_right).offset(1)
             make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
         }

@@ -95,7 +95,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.addSubview(cellView!.fullNameTextField)
             cellView!.fullNameTextField.snp_makeConstraints { make in
                 make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
-                make.top.equalTo(cellView!).offset(9)
+                make.top.equalTo(cellView!).offset(10)
                 make.right.equalTo(cellView!).offset(27)
             }
             
@@ -109,7 +109,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.addSubview(cellView!.usernameTextField)
             cellView!.usernameTextField.snp_makeConstraints { make in
                 make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
-                make.top.equalTo(cellView!.fullNameTextField.snp_bottom).offset(1)
+                make.top.equalTo(cellView!.fullNameTextField.snp_bottom).offset(2)
                 make.right.equalTo(cellView!).offset(27)
             }
             
