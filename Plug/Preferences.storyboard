@@ -60,7 +60,7 @@
                                         <animations/>
                                         <buttonCell key="cell" type="square" title="General" bezelStyle="shadowlessSquare" image="Preferences-General-Off" imagePosition="above" alignment="center" alternateImage="Preferences-General-On" state="on" borderStyle="border" inset="2" id="IMw-7A-qOm" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                            <font key="font" size="11" name="HelveticaNeue"/>
+                                            <font key="font" metaFont="system" size="11"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="generalTabClicked:" target="5IL-x6-7lA" id="Lzo-Pd-mwt"/>
@@ -202,9 +202,9 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
-                                                                    <rect key="frame" x="18" y="27" width="292" height="17"/>
+                                                                    <rect key="frame" x="18" y="24" width="292" height="22"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="17" id="WgU-NV-bLE"/>
+                                                                        <constraint firstAttribute="height" constant="22" id="WgU-NV-bLE"/>
                                                                     </constraints>
                                                                     <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Preference title" id="rlv-qc-0D1">

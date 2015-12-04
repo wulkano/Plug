@@ -23,12 +23,12 @@ class FlatSliderCell: NSSliderCell {
         if verticalSlider() {
             // TODO
         } else {
-            let inset: CGFloat = knobRect.size.width / 2
+            let inset: CGFloat = floor(knobRect.size.width / 2) // Floor so we don't end up on a 0.5 pixel and draw weird
             let knobCenterX = knobRect.origin.x + inset
             
             var barFillRect = aRect
-            barFillRect.size.width = knobCenterX - inset + 0.5
-            barFillRect.origin.x = inset - 0.5
+            barFillRect.size.width = knobCenterX - inset
+            barFillRect.origin.x = inset
             barFillColor.set()
             NSRectFillUsingOperation(barFillRect, NSCompositingOperation.CompositeSourceOver)
             

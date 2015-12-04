@@ -14,14 +14,10 @@ class VolumeIconView: NSView {
     @IBInspectable var twoImage: NSImage?
     @IBInspectable var threeImage: NSImage?
     var volumeState: VolumeState = VolumeState.Three {
-    didSet {
-        needsDisplay = true
-    }
+        didSet { needsDisplay = true }
     }
     var volume: Double = 1 {
-    didSet {
-        setStateForVolume(volume)
-    }
+        didSet { setStateForVolume(volume) }
     }
     var opacity: CGFloat = 0.3
 
@@ -31,7 +27,7 @@ class VolumeIconView: NSView {
         let drawImage = getDrawImage()
         var drawPoint = NSZeroPoint
         if drawImage != nil {
-            drawPoint.y = (bounds.size.height - drawImage!.size.height) / 2
+            drawPoint.y = floor((bounds.size.height - drawImage!.size.height) / 2)
         }
         drawImage?.drawAtPoint(drawPoint, fromRect: dirtyRect, operation: NSCompositingOperation.CompositeDestinationOver, fraction: opacity)
     }
