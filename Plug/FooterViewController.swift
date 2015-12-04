@@ -66,8 +66,8 @@ class FooterViewController: NSViewController {
         backgroundView.addSubview(volumeIcon)
         volumeIcon.snp_makeConstraints { make in
             make.width.equalTo(16)
-            make.height.equalTo(16)
-            make.centerY.equalTo(backgroundView)
+            make.height.equalTo(15)
+            make.centerY.equalTo(backgroundView).offset(-1)
             make.left.equalTo(backgroundView).offset(20)
         }
         
@@ -82,7 +82,7 @@ class FooterViewController: NSViewController {
         volumeSlider.snp_makeConstraints { make in
             make.centerY.equalTo(backgroundView)
             make.width.equalTo(60)
-            make.left.equalTo(backgroundView).offset(48)
+            make.left.equalTo(backgroundView).offset(40)
         }
         
         shuffleButton = SwissArmyButton(frame: NSZeroRect)
