@@ -1,0 +1,11 @@
+ [
+    {
+        "tag_name": "electronic",
+        "priority": true
+    }, {
+        "tag_name": "indie"
+    }, {
+        "tag_name": "hip hop",
+        "priority": true
+    }
+]

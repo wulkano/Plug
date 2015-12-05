@@ -1,0 +1,18 @@
+ [
+    {
+        "artist": "ducktails",
+        "cnt": 26,
+        "thumb_url_artist": "http://static-ak.hypem.net/resizer/thumbs_orig/a3/2028707.jpg",
+        "rank": 1
+    }, {
+        "artist": "made in heights",
+        "cnt": 25,
+        "thumb_url_artist": "http://static-ak.hypem.net/resizer/thumbs_orig/1a/2387994.jpg",
+        "rank": 2
+    }, {
+        "artist": "little boots",
+        "cnt": 21,
+        "thumb_url_artist": "http://static-ak.hypem.net/resizer/thumbs_orig/45/2207045.jpg",
+        "rank": 3
+    }
+]

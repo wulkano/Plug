@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Plug.xcodeproj">
+      location = "group:HypeMachineAPI.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:HypeMachineAPI.playground">
    </FileRef>
 </Workspace>

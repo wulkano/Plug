@@ -35,6 +35,10 @@
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
 		FA24EDC31974ACAA00A781C8 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */; };
 		FA2519471C039E980075FBC6 /* FontHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2519461C039E980075FBC6 /* FontHelper.swift */; };
+		FA2CA6381C13772900D76C65 /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2CA6371C13772900D76C65 /* HypeMachineAPI.framework */; };
+		FA2CA6391C13772900D76C65 /* HypeMachineAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA2CA6371C13772900D76C65 /* HypeMachineAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA2CA63B1C13773100D76C65 /* SimpleGoogleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2CA63A1C13773100D76C65 /* SimpleGoogleAnalytics.framework */; };
+		FA2CA63C1C13773100D76C65 /* SimpleGoogleAnalytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA2CA63A1C13773100D76C65 /* SimpleGoogleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA3199AD198247980097B081 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3199AC198247970097B081 /* BlogsViewController.swift */; };
 		FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */; };
 		FA3241BA19F81579009FCDE3 /* DataSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */; };
@@ -86,10 +90,6 @@
 		FA6ADD0319BAB0E300CCD371 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0219BAB0E300CCD371 /* UserViewController.swift */; };
 		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
-		FA7404E21B34867500684ADA /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; };
-		FA7404E31B34867500684ADA /* HypeMachineAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FA7404E41B34868000684ADA /* SimpleGoogleAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; };
-		FA7404E51B34868000684ADA /* SimpleGoogleAnalytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EB1B348E8A00684ADA /* Fabric.framework */; };
 		FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EC1B348E8A00684ADA /* Crashlytics.framework */; };
 		FA75E81E1B560F930070FB1D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E81D1B560F930070FB1D /* AboutViewController.swift */; };
@@ -169,10 +169,10 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */,
-				FA7404E51B34868000684ADA /* SimpleGoogleAnalytics.framework in CopyFiles */,
-				FA7404E31B34867500684ADA /* HypeMachineAPI.framework in CopyFiles */,
+				FA2CA6391C13772900D76C65 /* HypeMachineAPI.framework in CopyFiles */,
 				FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */,
 				FA0742401B470FBD00AA49D7 /* SnapKit.framework in CopyFiles */,
+				FA2CA63C1C13773100D76C65 /* SimpleGoogleAnalytics.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +212,9 @@
 		FA24EDAA1974A9A500A781C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA24EDC21974ACAA00A781C8 /* TracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
 		FA2519461C039E980075FBC6 /* FontHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontHelper.swift; sourceTree = "<group>"; };
+		FA2CA6371C13772900D76C65 /* HypeMachineAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HypeMachineAPI.framework; path = Carthage/Build/Mac/HypeMachineAPI.framework; sourceTree = "<group>"; };
+		FA2CA63A1C13773100D76C65 /* SimpleGoogleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleGoogleAnalytics.framework; path = Carthage/Build/Mac/SimpleGoogleAnalytics.framework; sourceTree = "<group>"; };
+		FA2CA63D1C13778A00D76C65 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		FA3199AC198247970097B081 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
 		FA3241B719F810F4009FCDE3 /* HypeMachineDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HypeMachineDataSource.swift; sourceTree = "<group>"; };
 		FA3241B919F81579009FCDE3 /* DataSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceViewController.swift; sourceTree = "<group>"; };
@@ -344,10 +347,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */,
-				FA7404E41B34868000684ADA /* SimpleGoogleAnalytics.framework in Frameworks */,
 				FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */,
+				FA2CA63B1C13773100D76C65 /* SimpleGoogleAnalytics.framework in Frameworks */,
+				FA2CA6381C13772900D76C65 /* HypeMachineAPI.framework in Frameworks */,
 				F502BB1D23558470D375E6E0 /* libPods-Plug.a in Frameworks */,
-				FA7404E21B34867500684ADA /* HypeMachineAPI.framework in Frameworks */,
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 				FA07423F1B470FBD00AA49D7 /* SnapKit.framework in Frameworks */,
@@ -360,6 +363,8 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA2CA63A1C13773100D76C65 /* SimpleGoogleAnalytics.framework */,
+				FA2CA6371C13772900D76C65 /* HypeMachineAPI.framework */,
 				FA07423E1B470FBD00AA49D7 /* SnapKit.framework */,
 				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
 				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
@@ -472,6 +477,7 @@
 				8649AE136FF74B02AB61EE0C /* Frameworks */,
 				B5CA9F0DFEEFB525CB06CA32 /* Pods */,
 				FA107A791B03E1BD006FA015 /* Cartfile */,
+				FA2CA63D1C13778A00D76C65 /* readme.md */,
 			);
 			sourceTree = "<group>";
 		};
