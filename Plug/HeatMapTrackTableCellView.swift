@@ -30,8 +30,13 @@ class HeatMapTrackTableCellView: TrackTableCellView {
     }
     
     func updateHeatMap() {
+        self.heatMapView.heatMap = nil
+        let originalTrackID = self.track.id
+        
         Alamofire.request(.GET, "https://www.plugformac.com/data/heatmaps.json").validate().responseJSON {
             (_, _, result) in
+            guard self.objectValue != nil && self.track.id == originalTrackID
+                else { return }
             
             switch result {
             case .Success(let JSON):

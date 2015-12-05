@@ -64,6 +64,8 @@ class TrackTableCellView: IOSStyleTableCellView {
         Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
     }
     
+    // Careful, since these cells are reused any async calls
+    // may return when the cell represents a different track
     func objectValueChanged() {
         if objectValue == nil { return }
 
