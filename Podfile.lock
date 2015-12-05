@@ -22,7 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.4.1)
-  - INAppStoreWindow (~> 1.4.0)
+  - INAppStoreWindow (~> 1.4)
   - SSKeychain (~> 1.2.2)
 
 SPEC CHECKSUMS:
@@ -30,4 +30,4 @@ SPEC CHECKSUMS:
   INAppStoreWindow: 4fd569f7435557239e78316de139e886ccbaec4d
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.39.0
