@@ -13,3 +13,5 @@ pod install
 // Install Carthage packages (make sure you have Carthage install on your machine https://github.com/Carthage/Carthage)
 carthage build
 ```
+
+You should be set up. Open Plug.xcworkspace to get started.
