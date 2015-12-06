@@ -43,7 +43,7 @@ class ColorChangingTextField: NSTextField {
             let numberValue = numberFormatter.numberFromString(escapedStringValue)!.integerValue
             return numberValue * 1000
         } else {
-            return Int(escapedStringValue)!
+            return Int(escapedStringValue) ?? 0
         }
     }
     
