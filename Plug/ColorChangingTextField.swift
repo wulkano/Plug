@@ -35,15 +35,18 @@ class ColorChangingTextField: NSTextField {
     }
     
     func numberValueForStringValue() -> Int {
-        let escapedStringValue = stringValue.stringByReplacingOccurrencesOfString(",", withString: "", options: .LiteralSearch, range: nil)
+        let withoutCommas = stringValue.stringByReplacingOccurrencesOfString(",", withString: "", options: .LiteralSearch, range: nil)
+        let withoutPeriods = withoutCommas.stringByReplacingOccurrencesOfString(".", withString: "", options: .LiteralSearch, range: nil)
+        let withoutSpaces = withoutPeriods.stringByReplacingOccurrencesOfString(" ", withString: "", options: .LiteralSearch, range: nil)
+        let withoutSingleQuotes = withoutSpaces.stringByReplacingOccurrencesOfString("'", withString: "", options: .LiteralSearch, range: nil)
         
-        if escapedStringValue.hasSuffix("k") {
+        if withoutSingleQuotes.hasSuffix("k") {
             let numberFormatter = NSNumberFormatter()
             numberFormatter.format = "####k"
-            let numberValue = numberFormatter.numberFromString(escapedStringValue)!.integerValue
+            let numberValue = numberFormatter.numberFromString(withoutSingleQuotes)!.integerValue
             return numberValue * 1000
         } else {
-            return Int(escapedStringValue) ?? 0
+            return Int(withoutSingleQuotes) ?? 0
         }
     }
     
