@@ -137,9 +137,7 @@ public class Manager: NSObject {
     }
     
     private func userLanguage() -> String {
-        let lang = NSLocale.preferredLanguages()[0] 
-        let identifer = lang == "en" ? "en_US" : lang
-        let locale = NSLocale(localeIdentifier: identifer)
+        let locale = NSLocale.currentLocale()
         return "\(locale.objectForKey(NSLocaleLanguageCode)!)-\(locale.objectForKey(NSLocaleCountryCode)!)"
     }
 }
