@@ -64,8 +64,8 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
         self.trackCountNum = NSNumber(integer: trackCount)
         self.imageURL = imageURL
         self.imageURLSmall = imageURLSmall
-        self.featured = representation["ts_featured"] != nil
-        self.following = representation["ts_loved_me"] != nil
+        self.featured = representation.objectForKey("ts_featured") is Int
+        self.following = representation.objectForKey("ts_loved_me") is Int
         
         super.init()
     }

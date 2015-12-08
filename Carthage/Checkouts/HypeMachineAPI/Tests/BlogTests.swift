@@ -32,5 +32,11 @@ class BlogTests: XCTestCase {
         
         XCTAssertNotNil(blogs)
         XCTAssert(blogs.count == 3)
+        
+        XCTAssert(blogs[0].featured == true)
+        XCTAssert(blogs[0].following == true)
+        
+        XCTAssert(blogs[1].featured == false)
+        XCTAssert(blogs[1].following == false)
     }
 }

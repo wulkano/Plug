@@ -21,12 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 public typealias InterfaceLayoutDirection = UIUserInterfaceLayoutDirection
+public typealias LayoutSupport = UILayoutSupport
 #else
 import AppKit
 public typealias InterfaceLayoutDirection = NSUserInterfaceLayoutDirection
+public class LayoutSupport {}
 #endif
 
 /**

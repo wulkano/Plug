@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 #else
 import AppKit
@@ -44,13 +44,10 @@ public class ConstraintItem {
         return self.object as? View
     }
     
-    #if os(iOS)
-    
-    internal var layoutSupport: UILayoutSupport? {
-        return self.object as? UILayoutSupport
+    @available(iOS 7.0, *)
+    internal var layoutSupport: LayoutSupport? {
+        return self.object as? LayoutSupport
     }
-    
-    #endif
 }
 
 

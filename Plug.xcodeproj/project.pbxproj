@@ -71,8 +71,6 @@
 		FA53950719AFFF01006A95A5 /* TrackTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA53950619AFFF01006A95A5 /* TrackTableCellView.swift */; };
 		FA53950919B01E47006A95A5 /* LovedCountFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA53950819B01E47006A95A5 /* LovedCountFormatter.swift */; };
 		FA53951219B0583D006A95A5 /* PostInfoFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA53951119B0583D006A95A5 /* PostInfoFormatter.swift */; };
-		FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA562EF619E886D600B760A2 /* Sparkle.framework */; };
-		FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA562EF619E886D600B760A2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */; };
 		FA5927F91B28ED1E00D07176 /* RefreshHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */; };
 		FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */; };
@@ -146,6 +144,8 @@
 		FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */; };
 		FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */; };
 		FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */; };
+		FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE3E79B1C17924D002106FE /* Sparkle.framework */; };
+		FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FAE3E79B1C17924D002106FE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */; };
 		FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */; };
@@ -168,7 +168,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FA562EF819E886E400B760A2 /* Sparkle.framework in CopyFiles */,
+				FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */,
 				FA2CA6391C13772900D76C65 /* HypeMachineAPI.framework in CopyFiles */,
 				FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */,
 				FA0742401B470FBD00AA49D7 /* SnapKit.framework in CopyFiles */,
@@ -247,7 +247,6 @@
 		FA53950619AFFF01006A95A5 /* TrackTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TrackTableCellView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA53950819B01E47006A95A5 /* LovedCountFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LovedCountFormatter.swift; sourceTree = "<group>"; };
 		FA53951119B0583D006A95A5 /* PostInfoFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfoFormatter.swift; sourceTree = "<group>"; };
-		FA562EF619E886D600B760A2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FA58FE0719B269F100C16D89 /* FooterBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterBackgroundView.swift; sourceTree = "<group>"; };
 		FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderViewController.swift; sourceTree = "<group>"; };
 		FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyTrackViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +324,7 @@
 		FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficButtons.swift; sourceTree = "<group>"; };
 		FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
+		FAE3E79B1C17924D002106FE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FAE95B7719A2DED7009F9946 /* FlatSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSlider.swift; sourceTree = "<group>"; };
 		FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrackInfo.storyboard; sourceTree = "<group>"; };
 		FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantImageView.swift; sourceTree = "<group>"; };
@@ -346,7 +346,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA562EF719E886D600B760A2 /* Sparkle.framework in Frameworks */,
 				FA107A8C1B03F5B4006FA015 /* Alamofire.framework in Frameworks */,
 				FA2CA63B1C13773100D76C65 /* SimpleGoogleAnalytics.framework in Frameworks */,
 				FA2CA6381C13772900D76C65 /* HypeMachineAPI.framework in Frameworks */,
@@ -354,6 +353,7 @@
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 				FA07423F1B470FBD00AA49D7 /* SnapKit.framework in Frameworks */,
+				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +363,7 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAE3E79B1C17924D002106FE /* Sparkle.framework */,
 				FA2CA63A1C13773100D76C65 /* SimpleGoogleAnalytics.framework */,
 				FA2CA6371C13772900D76C65 /* HypeMachineAPI.framework */,
 				FA07423E1B470FBD00AA49D7 /* SnapKit.framework */,
@@ -371,7 +372,6 @@
 				FA107A881B03F3AE006FA015 /* Alamofire.framework */,
 				FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */,
 				FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */,
-				FA562EF619E886D600B760A2 /* Sparkle.framework */,
 				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
 				DD63B6DF8D6095416CA5EFF6 /* libPods-Plug.a */,
 			);
@@ -1226,7 +1226,7 @@
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
@@ -1257,7 +1257,7 @@
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
