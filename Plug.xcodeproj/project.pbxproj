@@ -190,8 +190,6 @@
 		FA0B1D2719770AEB0030C873 /* HeatMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
 		FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChangingTextField.swift; sourceTree = "<group>"; };
 		FA107A791B03E1BD006FA015 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HypeMachineAPI.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug/HypeMachineAPI.framework"; sourceTree = "<group>"; };
-		FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleGoogleAnalytics.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug/SimpleGoogleAnalytics.framework"; sourceTree = "<group>"; };
 		FA107A881B03F3AE006FA015 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		FA117DE71B30B458003F4E54 /* IOSSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSSwitch.swift; sourceTree = "<group>"; };
 		FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonCell.swift; sourceTree = "<group>"; };
@@ -370,8 +368,6 @@
 				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
 				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
 				FA107A881B03F3AE006FA015 /* Alamofire.framework */,
-				FA107A841B03EEBC006FA015 /* SimpleGoogleAnalytics.framework */,
-				FA107A821B03EEB8006FA015 /* HypeMachineAPI.framework */,
 				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
 				DD63B6DF8D6095416CA5EFF6 /* libPods-Plug.a */,
 			);
