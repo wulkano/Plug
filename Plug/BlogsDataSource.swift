@@ -63,8 +63,8 @@ class BlogsDataSource: SearchableDataSource {
     
     override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
         let blogs = filterBlogs(objects)
-//        let uniqueBlogs = filterUniqueBlogs(blogs)
-        let sortedBlogs = sortBlogs(blogs)
+        let uniqueBlogs = filterUniqueBlogs(blogs)
+        let sortedBlogs = sortBlogs(uniqueBlogs)
         
         if searchKeywords == "" || searchKeywords == nil {
             print("Filtering, but no keywords present")
