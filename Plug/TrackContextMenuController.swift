@@ -58,7 +58,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     func copySoundCloudLinkClicked(sender: AnyObject) {
         let url = track.mediaURL()
         
-        SoundCloudPermalinkFinder(mediaURL: url,
+        _ = SoundCloudPermalinkFinder(mediaURL: url,
             success: { (trackURL: NSURL) in
                 NSPasteboard.generalPasteboard().clearContents()
                 NSPasteboard.generalPasteboard().setString(trackURL.absoluteString, forType: NSStringPboardType)
@@ -71,7 +71,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     func openSoundCloudLinkInBrowser(sender: AnyObject) {
         let url = track.mediaURL()
         
-        SoundCloudPermalinkFinder(mediaURL: url,
+        _ = SoundCloudPermalinkFinder(mediaURL: url,
             success: { (trackURL: NSURL) in
                 NSWorkspace.sharedWorkspace().openURL(trackURL)
                 return
@@ -119,7 +119,7 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
         super.init()
         
         let request = NSURLRequest(URL: mediaURL)
-        NSURLConnection(request: request, delegate: self)
+        _ = NSURLConnection(request: request, delegate: self)
     }
     
     func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {

@@ -119,7 +119,7 @@ class NavigationController: NSViewController {
             print("No need to call updateVisibleViewControllerAnimated here")
             return
         }
-        
+
         self.contentView.addSubview(newVisibleViewController.view)
         
         if animated {
