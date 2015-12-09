@@ -85,7 +85,7 @@ class AudioPlayer: NSObject {
     }
     
     func playPauseToggle() {
-        if currentTrack == nil { return }
+        guard currentTrack != nil else { return }
         
         if playing {
             pause()
@@ -95,7 +95,7 @@ class AudioPlayer: NSObject {
     }
     
     func skipForward() {
-        if currentDataSource == nil { return }
+        guard currentDataSource != nil else { return }
         
         if let nextTrack = findNextTrack() {
             playNewTrack(nextTrack, dataSource: currentDataSource)
@@ -103,7 +103,7 @@ class AudioPlayer: NSObject {
     }
     
     func skipBackward() {
-        if currentDataSource == nil { return }
+        guard currentDataSource != nil else { return }
         
         if let previousTrack = currentDataSource.trackBefore(currentTrack) {
             playNewTrack(previousTrack, dataSource: currentDataSource)
@@ -144,7 +144,6 @@ class AudioPlayer: NSObject {
         currentTrackPlaybackError(error)
     }
     
-    
     func currentTrackNewAccessLogEntry(notification: NSNotification) {
 //        print((notification.object as! AVPlayerItem).accessLog())
     }
@@ -184,7 +183,7 @@ class AudioPlayer: NSObject {
     // MARK: Private methods
     
     private func currentItemDuration() -> Double? {
-        if playerItem == nil { return nil }
+        guard playerItem != nil else { return nil }
 
         return Double(CMTimeGetSeconds(playerItem.duration))
     }
@@ -235,7 +234,7 @@ class AudioPlayer: NSObject {
     }
     
     private func progressUpdated(time: CMTime) {
-        if seeking { return }
+        guard !seeking else { return }
         
         let progress = Double(CMTimeGetSeconds(time))
         let duration = Double(CMTimeGetSeconds(playerItem.duration))
