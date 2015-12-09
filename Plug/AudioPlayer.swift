@@ -116,7 +116,7 @@ class AudioPlayer: NSObject {
         
         seeking = true
         let seconds = percent * currentItemDuration()!
-        let time = CMTimeMakeWithSeconds(seconds, 1)
+        let time = CMTimeMakeWithSeconds(seconds, 1000)
         player.seekToTime(time, completionHandler: {success in
             self.seeking = false
             
