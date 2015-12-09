@@ -111,6 +111,9 @@ class AudioPlayer: NSObject {
     }
     
     func seekToPercent(percent: Double) {
+        guard playerItem != nil && playerItem.status == AVPlayerItemStatus.ReadyToPlay
+            else { return }
+        
         seeking = true
         let seconds = percent * currentItemDuration()!
         let time = CMTimeMakeWithSeconds(seconds, 1)
