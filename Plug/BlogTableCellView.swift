@@ -34,10 +34,13 @@ class BlogTableCellView: IOSStyleTableCellView {
     }
     
     func updateArtists() {
+        let originalBlogID = self.blog.id
         recentArtistsTextField.stringValue = "Loading..."
         
         let params = ["page": 1, "count": 3]
         HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, optionalParams: params) { result in
+            guard self.objectValue != nil && self.blog.id == originalBlogID
+                else { return }
             
             switch result {
             case .Success(let tracks):
