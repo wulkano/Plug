@@ -254,16 +254,26 @@ class AudioPlayer: NSObject {
         }
     }
     
+    private func playerItemNotificationNamesAndSelectors() -> [String: Selector] {
+        return [
+            AVPlayerItemDidPlayToEndTimeNotification: "currentTrackFinishedPlayingNotification:",
+            AVPlayerItemFailedToPlayToEndTimeNotification: "currentTrackCouldNotFinishPlayingNotification:",
+            AVPlayerItemPlaybackStalledNotification: "currentTrackPlaybackStalledNotification:",
+            AVPlayerItemNewAccessLogEntryNotification: "currentTrackNewAccessLogEntry:",
+            AVPlayerItemNewErrorLogEntryNotification: "currentTrackNewErrorLogEntry:",
+        ]
+    }
+    
     private func subscribeToPlayerItem(playerItem: AVPlayerItem) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackFinishedPlayingNotification:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackCouldNotFinishPlayingNotification:", name: AVPlayerItemFailedToPlayToEndTimeNotification, object: playerItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackPlaybackStalledNotification:", name: AVPlayerItemPlaybackStalledNotification, object: playerItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackNewAccessLogEntry:", name: AVPlayerItemNewAccessLogEntryNotification, object: playerItem)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "currentTrackNewErrorLogEntry:", name: AVPlayerItemNewErrorLogEntryNotification, object: playerItem)
+        for (name, selector) in playerItemNotificationNamesAndSelectors() {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: name, object: playerItem)
+        }
     }
     
     private func unsubscribeFromPlayerItem(playerItem: AVPlayerItem) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+        for (name, _) in playerItemNotificationNamesAndSelectors() {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: name, object: playerItem)
+        }
     }
     
     private func findNextTrack() -> HypeMachineAPI.Track? {
