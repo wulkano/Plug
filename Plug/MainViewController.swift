@@ -10,7 +10,7 @@ import Cocoa
 import SnapKit
 import HypeMachineAPI
 
-class MainViewController: NSViewController, SidebarViewControllerDelegate, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget {
+class MainViewController: NSViewController, SidebarViewControllerDelegate, PopularSectionModeMenuTarget, FeedSectionModeMenuTarget, SearchSectionSortMenuTarget, FavoritesSectionPlaylistMenuTarget, LatestSectionModeMenuTarget {
     @IBOutlet weak var mainContentView: NSView!
     
     var navigationController: NavigationController!
@@ -121,6 +121,12 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = FavoriteTracksDataSource(viewController: viewController, playlist: playlist)
     }
+    
+    func latestSectionModeChanged(sender: NSMenuItem) {
+        let mode = LatestSectionMode(rawValue: sender.title)!
+        let viewController = currentViewController as! TracksViewController
+        viewController.dataSource = LatestTracksDataSource(viewController: viewController, mode: mode)
+    }
 }
 
 extension NavigationSection {
@@ -132,6 +138,8 @@ extension NavigationSection {
             return PopularSectionMode.menu(target)
         case .Favorites:
             return FavoritesSectionPlaylist.menu(target)
+        case .Latest:
+            return LatestSectionMode.menu(target)
         case .Feed:
             return FeedSectionMode.menu(target)
         case .Search:
@@ -184,7 +192,7 @@ extension NavigationSection {
             case .Favorites:
                 tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController, playlist: .All)
             case .Latest:
-                tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController)
+                tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController, mode: .All)
             case .Feed:
                 tracksViewController.dataSource = FeedTracksDataSource(viewController: tracksViewController, mode: .All)
             default:
@@ -240,6 +248,28 @@ extension FavoritesSectionPlaylist {
 
 protocol FavoritesSectionPlaylistMenuTarget {
     func favoritesSectionPlaylistChanged(sender: NSMenuItem)
+}
+
+extension LatestSectionMode {
+    static func menu(target: AnyObject?) -> NSMenu {
+        let menu = NSMenu()
+        menu.title = self.navigationSection.title
+        
+        menu.addItemWithTitle(self.All.title, action: "latestSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.Freshest.title, action: "latestSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.NoRemixes.title, action: "latestSectionModeChanged:", keyEquivalent: "")
+        menu.addItemWithTitle(self.OnlyRemixes.title, action: "latestSectionModeChanged:", keyEquivalent: "")
+        
+        for item in menu.itemArray {
+            item.target = target
+        }
+        
+        return menu
+    }
+}
+
+protocol LatestSectionModeMenuTarget {
+    func latestSectionModeChanged(sender: NSMenuItem)
 }
 
 extension FeedSectionMode {

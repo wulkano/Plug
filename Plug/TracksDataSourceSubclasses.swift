@@ -58,11 +58,17 @@ class FavoriteTracksDataSource: TracksDataSource {
 }
 
 class LatestTracksDataSource: TracksDataSource {
+    let mode: LatestSectionMode
+    
+    init(viewController: DataSourceViewController, mode: LatestSectionMode) {
+        self.mode = mode
+        super.init(viewController: viewController)
+    }
     
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: nextPageParams, callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Tracks.index(optionalParams: mode.params.merge(nextPageParams), callback: nextPageTracksReceived)
     }
 }
 

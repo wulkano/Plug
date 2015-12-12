@@ -88,6 +88,36 @@ enum FavoritesSectionPlaylist: String {
     }
 }
 
+enum LatestSectionMode: String {
+    case All = "All"
+    case Freshest = "Freshest"
+    case NoRemixes = "No Remixes"
+    case OnlyRemixes = "Only Remixes"
+    
+    static let navigationSection = NavigationSection.Latest
+    
+    var title: String {
+        return self.rawValue
+    }
+    
+    var params: [String: AnyObject] {
+        return ["mode": self.slug]
+    }
+    
+    var slug: String {
+        switch self {
+        case .All:
+            return "all"
+        case .Freshest:
+            return "fresh"
+        case .NoRemixes:
+            return "noremix"
+        case .OnlyRemixes:
+            return "remix"
+        }
+    }
+}
+
 enum FeedSectionMode: String {
     case All = "All"
     case Friends = "Friends"
