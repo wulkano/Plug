@@ -403,11 +403,11 @@
 		FA0B1CF21976D8320030C873 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA75E81F1B560F980070FB1D /* About */,
-				FACEEBEC19ABC32E0093A81B /* Login */,
-				FACEEBED19ABC33A0093A81B /* Main */,
-				FACEEBEB19ABC3210093A81B /* Preferences */,
-				FAEB26A019AD20620024CB0C /* Track Info */,
+				FA75E81F1B560F980070FB1D /* About Window */,
+				FACEEBEC19ABC32E0093A81B /* Login Window */,
+				FACEEBED19ABC33A0093A81B /* Main Window */,
+				FACEEBEB19ABC3210093A81B /* Preferences Window */,
+				FAEB26A019AD20620024CB0C /* Track Info Window */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -624,13 +624,13 @@
 			name = Plugins;
 			sourceTree = "<group>";
 		};
-		FA75E81F1B560F980070FB1D /* About */ = {
+		FA75E81F1B560F980070FB1D /* About Window */ = {
 			isa = PBXGroup;
 			children = (
 				FA75E81D1B560F930070FB1D /* AboutViewController.swift */,
 				FA75E8201B5615480070FB1D /* AboutWindowController.swift */,
 			);
-			name = About;
+			name = "About Window";
 			sourceTree = "<group>";
 		};
 		FA99EEC619D0210F008C9C4A /* SPInvocationGrabbing */ = {
@@ -786,7 +786,7 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		FACEEBEB19ABC3210093A81B /* Preferences */ = {
+		FACEEBEB19ABC3210093A81B /* Preferences Window */ = {
 			isa = PBXGroup;
 			children = (
 				FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */,
@@ -795,19 +795,19 @@
 				FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */,
 				FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */,
 			);
-			name = Preferences;
+			name = "Preferences Window";
 			sourceTree = "<group>";
 		};
-		FACEEBEC19ABC32E0093A81B /* Login */ = {
+		FACEEBEC19ABC32E0093A81B /* Login Window */ = {
 			isa = PBXGroup;
 			children = (
 				FA4C44F819A6C9B70052D506 /* LoginViewController.swift */,
 				FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */,
 			);
-			name = Login;
+			name = "Login Window";
 			sourceTree = "<group>";
 		};
-		FACEEBED19ABC33A0093A81B /* Main */ = {
+		FACEEBED19ABC33A0093A81B /* Main Window */ = {
 			isa = PBXGroup;
 			children = (
 				FA222A8719BCCA68005A631F /* ContentViewControllers */,
@@ -823,15 +823,15 @@
 				FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */,
 				FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */,
 			);
-			name = Main;
+			name = "Main Window";
 			sourceTree = "<group>";
 		};
-		FAEB26A019AD20620024CB0C /* Track Info */ = {
+		FAEB26A019AD20620024CB0C /* Track Info Window */ = {
 			isa = PBXGroup;
 			children = (
 				FAF13B2B199D4AD6009D9F66 /* TrackInfoViewController.swift */,
 			);
-			name = "Track Info";
+			name = "Track Info Window";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
