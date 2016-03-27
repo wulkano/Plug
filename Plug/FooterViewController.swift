@@ -94,7 +94,7 @@ class FooterViewController: NSViewController {
         shuffleButton.image = NSImage(named: "Footer-Shuffle-Normal")
         shuffleButton.alternateImage = NSImage(named: "Footer-Shuffle-Active")
         shuffleButton.target = self
-        shuffleButton.action = "shuffleButtonClicked:"
+        shuffleButton.action = #selector(FooterViewController.shuffleButtonClicked(_:))
         backgroundView.addSubview(shuffleButton)
         shuffleButton.snp_makeConstraints { make in
             make.width.equalTo(42)
@@ -110,7 +110,7 @@ class FooterViewController: NSViewController {
         forwardButton.tracksHover = true
         forwardButton.image = NSImage(named: "Footer-Forward")
         forwardButton.target = self
-        forwardButton.action = "skipForwardButtonClicked:"
+        forwardButton.action = #selector(FooterViewController.skipForwardButtonClicked(_:))
         backgroundView.addSubview(forwardButton)
         forwardButton.snp_makeConstraints { make in
             make.width.equalTo(42)
@@ -126,7 +126,7 @@ class FooterViewController: NSViewController {
         backButton.tracksHover = true
         backButton.image = NSImage(named: "Footer-Previous")
         backButton.target = self
-        backButton.action = "skipBackwardButtonClicked:"
+        backButton.action = #selector(FooterViewController.skipBackwardButtonClicked(_:))
         backgroundView.addSubview(backButton)
         backButton.snp_makeConstraints { make in
             make.width.equalTo(42)

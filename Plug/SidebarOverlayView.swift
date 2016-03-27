@@ -26,8 +26,8 @@ class SidebarOverlayView: NSView {
     }
     
     func initialSetup() {
-        Notifications.subscribe(observer: self, selector: "windowStatusChanged", name: NSWindowDidBecomeMainNotification, object: nil)
-        Notifications.subscribe(observer: self, selector: "windowStatusChanged", name: NSWindowDidResignMainNotification, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(SidebarOverlayView.windowStatusChanged), name: NSWindowDidBecomeMainNotification, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(SidebarOverlayView.windowStatusChanged), name: NSWindowDidResignMainNotification, object: nil)
     }
 
     override func drawRect(dirtyRect: NSRect) {

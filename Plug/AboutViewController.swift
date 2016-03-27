@@ -112,12 +112,12 @@ class AboutViewController: NSViewController {
             make.top.equalTo(nameLabel.snp_bottom).offset(3)
         }
         
-        let glennSection = attributionSectionTitled("Design", name: "Glenn Hitchcock", linkTitle: "@glennui", linkAction: "glennLinkClicked:")
+        let glennSection = attributionSectionTitled("Design", name: "Glenn Hitchcock", linkTitle: "@glennui", linkAction: #selector(AboutViewController.glennLinkClicked(_:)))
         glennSection.snp_makeConstraints { make in
             make.top.equalTo(versionLabel.snp_bottom).offset(16)
         }
         
-        let alexSection = attributionSectionTitled("Development", name: "Alex Marchant", linkTitle: "@alex_marchant", linkAction: "alexLinkClicked:")
+        let alexSection = attributionSectionTitled("Development", name: "Alex Marchant", linkTitle: "@alex_marchant", linkAction: #selector(AboutViewController.alexLinkClicked(_:)))
         alexSection.snp_makeConstraints { make in
             make.top.equalTo(glennSection.snp_bottom).offset(2)
         }

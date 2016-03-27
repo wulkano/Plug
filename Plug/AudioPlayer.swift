@@ -204,7 +204,7 @@ class AudioPlayer: NSObject {
         }
 
         timeoutTimer?.invalidate()
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(timeoutSeconds, target: self, selector: "didAVPlayerTimeout", userInfo: nil, repeats: false)
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(timeoutSeconds, target: self, selector: #selector(AudioPlayer.didAVPlayerTimeout), userInfo: nil, repeats: false)
         
         player = AVPlayer(playerItem: playerItem)
         player.volume = volume
@@ -256,11 +256,11 @@ class AudioPlayer: NSObject {
     
     private func playerItemNotificationNamesAndSelectors() -> [String: Selector] {
         return [
-            AVPlayerItemDidPlayToEndTimeNotification: "currentTrackFinishedPlayingNotification:",
-            AVPlayerItemFailedToPlayToEndTimeNotification: "currentTrackCouldNotFinishPlayingNotification:",
-            AVPlayerItemPlaybackStalledNotification: "currentTrackPlaybackStalledNotification:",
-            AVPlayerItemNewAccessLogEntryNotification: "currentTrackNewAccessLogEntry:",
-            AVPlayerItemNewErrorLogEntryNotification: "currentTrackNewErrorLogEntry:",
+            AVPlayerItemDidPlayToEndTimeNotification: #selector(AudioPlayer.currentTrackFinishedPlayingNotification(_:)),
+            AVPlayerItemFailedToPlayToEndTimeNotification: #selector(AudioPlayer.currentTrackCouldNotFinishPlayingNotification(_:)),
+            AVPlayerItemPlaybackStalledNotification: #selector(AudioPlayer.currentTrackPlaybackStalledNotification(_:)),
+            AVPlayerItemNewAccessLogEntryNotification: #selector(AudioPlayer.currentTrackNewAccessLogEntry(_:)),
+            AVPlayerItemNewErrorLogEntryNotification: #selector(AudioPlayer.currentTrackNewErrorLogEntry(_:)),
         ]
     }
     

@@ -156,7 +156,7 @@ class TagsViewController: DataSourceViewController {
             make.right.equalTo(self.view)
         }
         searchHeaderController.searchField.target = self
-        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        searchHeaderController.searchField.action = #selector(TagsViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
         scrollView.snp_makeConstraints { make in

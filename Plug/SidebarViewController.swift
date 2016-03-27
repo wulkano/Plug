@@ -26,7 +26,7 @@ class SidebarViewController: NSViewController {
         while let navigationSection = NavigationSection(rawValue: n) {
             let button = NavigationSectionButton(navigationSection: navigationSection)
             button.target = self
-            button.action = "navigationSectionButtonClicked:"
+            button.action = #selector(SidebarViewController.navigationSectionButtonClicked(_:))
             superview.addSubview(button)
             
             button.snp_makeConstraints { make in
@@ -43,7 +43,7 @@ class SidebarViewController: NSViewController {
             }
             
             buttons.append(button)
-            n++
+            n += 1
         }
         
         buttons[buttons.count - 1].snp_makeConstraints { make in

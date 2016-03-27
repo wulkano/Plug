@@ -40,7 +40,7 @@ class BlogViewController: BaseContentViewController {
     }
     
     func setup() {
-        navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: "followButtonClicked:")
+        navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(BlogViewController.followButtonClicked(_:)))
     }
     
     override func loadView() {
@@ -75,7 +75,7 @@ class BlogViewController: BaseContentViewController {
         titleButton.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
         titleButton.lineBreakMode = .ByTruncatingMiddle
         titleButton.target = self
-        titleButton.action = "titleButtonClicked:"
+        titleButton.action = #selector(BlogViewController.titleButtonClicked(_:))
         header.addSubview(titleButton)
         titleButton.snp_makeConstraints { make in
             make.height.equalTo(24)

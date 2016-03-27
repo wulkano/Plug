@@ -39,7 +39,7 @@ class UsersViewController: DataSourceViewController {
             make.right.equalTo(self.view)
         }
         searchHeaderController.searchField.target = self
-        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        searchHeaderController.searchField.action = #selector(UsersViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
         scrollView.snp_makeConstraints { make in

@@ -113,7 +113,7 @@ class TracksViewController: DataSourceViewController {
         cellView.playPauseButton.offImage = NSImage(named: "Track-Play-Normal")!
         cellView.playPauseButton.offHoverImage = NSImage(named: "Track-Play-Hover")!
         cellView.playPauseButton.target = cellView
-        cellView.playPauseButton.action = "playPauseButtonClicked:"
+        cellView.playPauseButton.action = #selector(cellView.playPauseButtonClicked)
         cellView.addSubview(cellView.playPauseButton)
         cellView.playPauseButton.snp_makeConstraints { make in
             make.centerY.equalTo(cellView)
@@ -135,7 +135,7 @@ class TracksViewController: DataSourceViewController {
         cellView.loveButton.selectedImage = NSImage(named: "Track-Loved-On")!
         cellView.loveButton.unselectedImage = NSImage(named: "Track-Loved-Off")!
         cellView.loveButton.target = cellView
-        cellView.loveButton.action = "loveButtonClicked:"
+        cellView.loveButton.action = #selector(cellView.loveButtonClicked)
         loveContainer.addSubview(cellView.loveButton)
         cellView.loveButton.snp_makeConstraints { make in
             make.centerY.equalTo(loveContainer)
@@ -156,7 +156,7 @@ class TracksViewController: DataSourceViewController {
         let infoButton = TransparentButton()
         infoButton.unselectedImage = NSImage(named: "Track-Info")!
         infoButton.target = cellView
-        infoButton.action = "infoButtonClicked:"
+        infoButton.action = #selector(cellView.infoButtonClicked)
         cellView.infoContainer.addSubview(infoButton)
         infoButton.snp_makeConstraints { make in
             make.centerY.equalTo(cellView.infoContainer)
@@ -184,7 +184,7 @@ class TracksViewController: DataSourceViewController {
         cellView.artistButton.font = appFont(size: 13, weight: .Medium)
         cellView.artistButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         cellView.artistButton.target = cellView
-        cellView.artistButton.action = "artistButtonClicked:"
+        cellView.artistButton.action = #selector(cellView.artistButtonClicked)
         cellView.addSubview(cellView.artistButton)
         cellView.artistButton.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -201,7 +201,7 @@ class TracksViewController: DataSourceViewController {
         sliderCell.knobFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
         cellView.progressSlider.cell = sliderCell
         cellView.progressSlider.target = cellView
-        cellView.progressSlider.action = "progressSliderDragged:"
+        cellView.progressSlider.action = #selector(cellView.progressSliderDragged)
         cellView.addSubview(cellView.progressSlider)
         cellView.progressSlider.snp_makeConstraints { make in
             make.left.equalTo(cellView).offset(-8)
@@ -262,7 +262,7 @@ class TracksViewController: DataSourceViewController {
         cellView.sourceButton.font = appFont(size: 12, weight: .Medium)
         cellView.sourceButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         cellView.sourceButton.target = cellView
-        cellView.sourceButton.action = "sourceButtonClicked:"
+        cellView.sourceButton.action = #selector(cellView.sourceButtonClicked)
         cellView.addSubview(cellView.sourceButton)
         cellView.sourceButton.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -315,7 +315,7 @@ class TracksViewController: DataSourceViewController {
         
         showHideUnavailableTracks()
         
-        Notifications.subscribe(observer: self, selector: "refresh", name: Notifications.RefreshCurrentView, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(BaseContentViewController.refresh), name: Notifications.RefreshCurrentView, object: nil)
         NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: HideUnavailableTracks, options: NSKeyValueObservingOptions.New, context: nil)
     }
     

@@ -69,9 +69,9 @@ class ExtendedTableView: NSTableView {
     }
     
     func subscribeToScrollingNotifications() {
-        Notifications.subscribe(observer: self, selector: "scrollViewDidStartScrolling:", name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: "scrollViewDidScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: "scrollViewDidEndScrolling:", name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: #selector(ExtendedTableView.scrollViewDidStartScrolling(_:)), name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: #selector(ExtendedTableView.scrollViewDidScroll(_:)), name: NSScrollViewDidLiveScrollNotification, object: scrollView)
+        Notifications.subscribe(observer: self, selector: #selector(ExtendedTableView.scrollViewDidEndScrolling(_:)), name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
     }
     
     func insetRect(rect: NSRect, insets: NSEdgeInsets) -> NSRect {

@@ -143,7 +143,7 @@ class BlogsViewController: DataSourceViewController {
             make.right.equalTo(self.view)
         }
         searchHeaderController.searchField.target = self
-        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        searchHeaderController.searchField.action = #selector(BlogsViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
         scrollView.snp_makeConstraints { make in

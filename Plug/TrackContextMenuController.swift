@@ -26,17 +26,17 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     func setupViews() {
         contextMenu = NSMenu()
         
-        contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: "copyHypeMachineLinkClicked:", keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: "openHypeMachineLinkInBrowserClicked:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: #selector(TrackContextMenuController.copyHypeMachineLinkClicked(_:)), keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(TrackContextMenuController.openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
         
         contextMenu.addItem(NSMenuItem.separatorItem())
-        contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: "copySoundCloudLinkClicked:", keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: "openSoundCloudLinkInBrowser:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(TrackContextMenuController.copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(TrackContextMenuController.openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
         
         contextMenu.addItem(NSMenuItem.separatorItem())
-        contextMenu.addItem(NSMenuItem(title: "Share to Facebook", action: "shareToFacebookClicked:", keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem(title: "Share to Twitter", action: "shareToTwitterClicked:", keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem(title: "Share to Messages", action: "shareToMessagesClicked:", keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Share to Facebook", action: #selector(TrackContextMenuController.shareToFacebookClicked(_:)), keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Share to Twitter", action: #selector(TrackContextMenuController.shareToTwitterClicked(_:)), keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Share to Messages", action: #selector(TrackContextMenuController.shareToMessagesClicked(_:)), keyEquivalent: ""))
         
         for item in contextMenu.itemArray {
             item.target = self

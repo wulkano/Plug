@@ -76,13 +76,13 @@ class TrafficButtons {
     
     private func setupButtonActionsForWindow(window: NSWindow) {
         closeButton.target = window
-        closeButton.action = "close"
+        closeButton.action = #selector(window.close)
         
         minimizeButton.target = window
-        minimizeButton.action = "miniaturize:"
+        minimizeButton.action = #selector(window.miniaturize)
         
         zoomButton.target = window
-        zoomButton.action = "zoom:"
+        zoomButton.action = #selector(window.zoom)
     }
 }
 

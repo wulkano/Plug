@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kHT-B1-mN4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -17,7 +17,6 @@
                         <view key="contentView" id="XZW-cq-yuJ">
                             <rect key="frame" x="0.0" y="0.0" width="372" height="380"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </view>
                     </window>
                     <connections>
@@ -45,7 +44,6 @@
                                             <constraint firstAttribute="height" constant="14" id="6cH-eU-TcA"/>
                                             <constraint firstAttribute="width" constant="14" id="of1-5C-KPx"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="QxL-bp-WT3" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -72,7 +70,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="254" id="Dxb-6l-CyO"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" title="Title" id="8tg-vr-5lJ">
                                             <font key="font" metaFont="system" size="20"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -84,7 +81,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="254" id="dRz-p0-1ue"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" title="Artist" id="W6Z-95-1ZW">
                                             <font key="font" metaFont="system" size="18"/>
                                             <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,7 +93,6 @@
                                             <constraint firstAttribute="height" constant="52" id="fWW-lU-lmh"/>
                                             <constraint firstAttribute="width" constant="52" id="m2n-fC-okG"/>
                                         </constraints>
-                                        <animations/>
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="SKL-5G-qxI"/>
                                     </imageView>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="FRo-Wa-gmQ" customClass="TransparentButton" customModule="Plug" customModuleProvider="target">
@@ -106,7 +101,6 @@
                                             <constraint firstAttribute="height" constant="18" id="Ri8-Lf-OEr"/>
                                             <constraint firstAttribute="width" constant="18" id="xtR-ls-aPa"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Info-Loved" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="N42-Fa-mQv" customClass="TransparentButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -138,7 +132,6 @@
                                             <constraint firstAttribute="height" constant="20" id="nxf-JM-ppk"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="y3f-xP-bZl"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" id="YgV-66-jKR">
                                             <customFormatter key="formatter" id="RA6-UJ-kM2" customClass="LovedCountFormatter" customModule="Plug" customModuleProvider="target">
                                                 <userDefinedRuntimeAttributes>
@@ -155,7 +148,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="T7t-ba-HYd"/>
                                         </constraints>
-                                        <animations/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="0.0"/>
@@ -172,7 +164,6 @@
                                             <constraint firstAttribute="height" constant="20" id="NOf-vt-KRM"/>
                                             <constraint firstAttribute="width" constant="66" id="zXc-zc-tu7"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Download:" id="HR2-bO-ckn">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -184,7 +175,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="VUW-yd-ydE"/>
                                         </constraints>
-                                        <animations/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Posted by 21 Blogs" id="Qmy-l5-hKL">
                                             <font key="font" metaFont="system" size="18"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -197,7 +187,6 @@
                                             <constraint firstAttribute="height" constant="21" id="LP7-VP-0rC"/>
                                             <constraint firstAttribute="width" constant="98" id="nx6-KB-QTb"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="bevel" title="See More →" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="cbL-eJ-TxP">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemBold" size="14"/>
@@ -214,7 +203,6 @@
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c50-ra-W0O" customClass="PostInfoTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="24" y="60" width="330" height="51"/>
-                                        <animations/>
                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="hhi-vE-Xhv">
                                             <font key="font" metaFont="system"/>
                                             <string key="title">Sunken Sounds  “A new remix from Tycho via Com Truise - we can finally say that it is officially summer. These vibes…” Jun 28th →</string>
@@ -228,7 +216,6 @@
                                             <constraint firstAttribute="height" constant="20" id="30p-XS-EjP"/>
                                             <constraint firstAttribute="width" constant="61" id="R1g-a9-mxe"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" title="iTunes →" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="eDJ-QF-UCD">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -275,7 +262,6 @@
                                     <constraint firstItem="u83-S7-jFD" firstAttribute="top" secondItem="B1q-P6-SHo" secondAttribute="bottom" constant="23" id="spx-fA-rZV"/>
                                     <constraint firstItem="Ept-mv-Wd9" firstAttribute="top" secondItem="30g-H7-OMr" secondAttribute="bottom" constant="21" id="tYO-bD-et3"/>
                                 </constraints>
-                                <animations/>
                             </visualEffectView>
                         </subviews>
                         <constraints>
@@ -284,7 +270,6 @@
                             <constraint firstItem="CG1-Wl-IKB" firstAttribute="leading" secondItem="oK3-mr-SXI" secondAttribute="leading" id="qDb-gq-644"/>
                             <constraint firstAttribute="trailing" secondItem="CG1-Wl-IKB" secondAttribute="trailing" id="wNw-C7-3oU"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="albumArt" destination="yJz-dw-ivo" id="ThC-gJ-3Q2"/>

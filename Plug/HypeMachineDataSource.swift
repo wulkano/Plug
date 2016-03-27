@@ -69,7 +69,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
                 resetTableContents()
             }
             
-            currentPage++
+            currentPage += 1
             allObjectsLoaded = isLastPage(objects)
             
             self.appendTableContents(objects)

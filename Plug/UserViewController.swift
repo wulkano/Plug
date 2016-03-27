@@ -41,7 +41,7 @@ class UserViewController: BaseContentViewController {
     }
     
     func setup() {
-        navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: "followButtonClicked:")
+        navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(UserViewController.followButtonClicked(_:)))
     }
     
     override func loadView() {

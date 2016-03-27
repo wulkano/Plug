@@ -99,7 +99,7 @@ class NavigationBarController: NSViewController {
         if backItem != nil {
             backButton = NavigationItem.standardBackButtonWithTitle(backItem!.title)
             backButton!.target = self
-            backButton!.action = "backButtonClicked:"
+            backButton!.action = #selector(NavigationBarController.backButtonClicked(_:))
             navigationBarView!.addSubview(backButton!)
             backButton!.snp_makeConstraints{ make in
                 make.top.equalTo(navigationBarView!).offset(buttonYOffset)

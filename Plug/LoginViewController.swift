@@ -21,7 +21,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        Notifications.subscribe(observer: self, selector: "displayError:", name: Notifications.DisplayError, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(LoginViewController.displayError(_:)), name: Notifications.DisplayError, object: nil)
     }
     
     deinit {

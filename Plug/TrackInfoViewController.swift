@@ -32,8 +32,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Notifications.subscribe(observer: self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
-        Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(TrackInfoViewController.trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(TrackInfoViewController.trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
 //        tagContainer.delegate = self
         postInfoTextField.postInfoDelegate = self
         

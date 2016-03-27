@@ -57,7 +57,7 @@ class SearchViewController: BaseContentViewController {
             make.right.equalTo(self.view)
         }
         searchHeaderController.searchField.target = self
-        searchHeaderController.searchField.action = "searchFieldSubmit:"
+        searchHeaderController.searchField.action = #selector(SearchViewController.searchFieldSubmit(_:))
         
         searchResultsView = NSView()
         view.addSubview(searchResultsView)

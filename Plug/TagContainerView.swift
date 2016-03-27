@@ -29,7 +29,7 @@ class TagContainerView: NSView {
             button.frame.origin = generateOriginForNewButton(button)
             addSubview(button)
             buttons.append(button)
-            button.action = "tagButtonClick:"
+            button.action = #selector(TagContainerView.tagButtonClick(_:))
             button.target = self
         }
         let heightConstraint = constraints.last!

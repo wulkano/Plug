@@ -58,10 +58,10 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func setup() {
-        Notifications.subscribe(observer: self, selector: "trackPlaying:", name: Notifications.TrackPlaying, object: nil)
-        Notifications.subscribe(observer: self, selector: "trackPaused:", name: Notifications.TrackPaused, object: nil)
-        Notifications.subscribe(observer: self, selector: "trackLoved:", name: Notifications.TrackLoved, object: nil)
-        Notifications.subscribe(observer: self, selector: "trackUnLoved:", name: Notifications.TrackUnLoved, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackPlaying(_:)), name: Notifications.TrackPlaying, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackPaused(_:)), name: Notifications.TrackPaused, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
     }
     
     // Careful, since these cells are reused any async calls
@@ -219,7 +219,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     
     func trackProgress() {
         if trackingProgress == false {
-            Notifications.subscribe(observer: self, selector: "progressUpdated:", name: Notifications.TrackProgressUpdated, object: nil)
+            Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.progressUpdated(_:)), name: Notifications.TrackProgressUpdated, object: nil)
         }
         trackingProgress = true
     }

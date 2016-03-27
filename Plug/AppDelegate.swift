@@ -136,7 +136,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func setupNotifications() {
-        Notifications.subscribe(observer: self, selector: "catchTokenErrors:", name: Notifications.DisplayError, object: nil)
+        Notifications.subscribe(observer: self, selector: #selector(AppDelegate.catchTokenErrors(_:)), name: Notifications.DisplayError, object: nil)
     }
     
     func setupMediaKeys() {

@@ -72,7 +72,7 @@ class BaseContentViewController: NSViewController {
     
     func subscribeToNotifications() {
         if shouldShowStickyTrack {
-            Notifications.subscribe(observer: self, selector: "newCurrentTrack:", name: Notifications.NewCurrentTrack, object: nil)
+            Notifications.subscribe(observer: self, selector: #selector(BaseContentViewController.newCurrentTrack(_:)), name: Notifications.NewCurrentTrack, object: nil)
         }
     }
     
