@@ -22,6 +22,4 @@ You should be set up. Open Plug.xcworkspace to get started.
 
 ## Contributing
 
-Please create a pull request for any code you'd like merged into the master branch. If its a large change or a change to the UI please make talk to Alex/Glenn first (Slack probably).
-
-Alex will need to sign, version, and publish new releases.
+Please create a pull request for any code you'd like merged into the master branch. If its a large change or a change to the UI please discuss first with the group.
