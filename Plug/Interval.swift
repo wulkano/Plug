@@ -23,7 +23,7 @@ class Interval : NSObject {
     init(interval: Double, closure: ()->(), repeats: Bool) {
         self.closure = closure
         super.init()
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: #selector(Interval.runClosure), userInfo: nil, repeats: repeats)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: #selector(runClosure), userInfo: nil, repeats: repeats)
     }
     
     func runClosure() {

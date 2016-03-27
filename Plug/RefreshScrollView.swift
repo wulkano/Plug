@@ -11,9 +11,15 @@ import Cocoa
 class RefreshScrollView: NSScrollView {
     let delegate: RefreshScrollViewDelegate
     
+    var scrolling = false
+    
     var refreshHeaderController: RefreshHeaderViewController!
     var refreshClipView: RefreshClipView {
         return contentView as! RefreshClipView
+    }
+    
+    override var contentView: NSClipView {
+        didSet { contentViewChanged() }
     }
     
     var scrollEnabled = true
@@ -85,6 +91,10 @@ class RefreshScrollView: NSScrollView {
 
         refreshHeaderController.state = .PullToRefresh
         refreshHeaderController.lastUpdated = NSDate()
+    }
+    
+    func contentViewChanged() {
+        contentView.postsFrameChangedNotifications = true
     }
 }
 
