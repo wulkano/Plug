@@ -10,6 +10,7 @@ import Cocoa
 
 class RefreshScrollView: NSScrollView {
     let delegate: RefreshScrollViewDelegate
+    var boundsChangedDelegate: RefreshScrollViewBoundsChangedDelegate?
     
     var scrolling = false
     
@@ -19,6 +20,7 @@ class RefreshScrollView: NSScrollView {
     }
     
     override var contentView: NSClipView {
+        willSet { contentViewWillChange() }
         didSet { contentViewChanged() }
     }
     
@@ -93,11 +95,24 @@ class RefreshScrollView: NSScrollView {
         refreshHeaderController.lastUpdated = NSDate()
     }
     
+    func contentViewWillChange() {
+        Notifications.unsubscribe(observer: self, name: NSViewBoundsDidChangeNotification, object: contentView)
+    }
+    
     func contentViewChanged() {
         contentView.postsFrameChangedNotifications = true
+        Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSViewBoundsDidChangeNotification, object: contentView)
+    }
+    
+    func contentViewBoundsDidChange(notification: NSNotification) {
+        boundsChangedDelegate?.scrollViewBoundsDidChange(notification)
     }
 }
 
 protocol RefreshScrollViewDelegate {
     func didPullToRefresh()
+}
+
+protocol RefreshScrollViewBoundsChangedDelegate {
+    func scrollViewBoundsDidChange(notification: NSNotification)
 }

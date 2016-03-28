@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ExtendedTableView: NSTableView {
+class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     @IBInspectable var tracksMouseEnterExit: Bool = false
     @IBInspectable var pullToRefresh: Bool = false
     
@@ -53,8 +53,10 @@ class ExtendedTableView: NSTableView {
     
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        
-        subscribeToScrollingNotifications()
+    
+        if let refreshScrollView = scrollView as? RefreshScrollView {
+            refreshScrollView.boundsChangedDelegate = self
+        }
     }
     
     override func updateTrackingAreas() {
@@ -69,11 +71,6 @@ class ExtendedTableView: NSTableView {
         let trackingRect = insetRect(clipView.documentVisibleRect, insets: scrollerInsets)
         trackingArea = NSTrackingArea(rect: trackingRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
-    }
-    
-    func subscribeToScrollingNotifications() {
-        scrollView!.contentView.postsFrameChangedNotifications = true
-        Notifications.subscribe(observer: self, selector: #selector(scrollViewBoundsDidChange), name: NSViewBoundsDidChangeNotification, object: scrollView!.contentView)
     }
     
     func insetRect(rect: NSRect, insets: NSEdgeInsets) -> NSRect {
@@ -169,7 +166,6 @@ class ExtendedTableView: NSTableView {
             extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
             mouseInsideRow = -1
         }
-        Swift.print("start")
     }
     
     func scrollViewDidScroll(notification: NSNotification) {
@@ -186,13 +182,11 @@ class ExtendedTableView: NSTableView {
         previousVisibleRows = visibleRows
         
         previousScrollDirection = direction
-        Swift.print("scroll")
     }
     
     
     func scrollViewDidEndScrolling(notification: NSNotification) {
         extendedDelegate?.didEndScrollingTableView(self)
-        Swift.print("end")
     }
     
     func scrollDirection() -> ScrollDirection {
