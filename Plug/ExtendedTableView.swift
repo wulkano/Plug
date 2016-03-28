@@ -8,11 +8,14 @@
 
 import Cocoa
 
-class ExtendedTableView: NSTableView {
+class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     @IBInspectable var tracksMouseEnterExit: Bool = false
     @IBInspectable var pullToRefresh: Bool = false
     
     var scrollEnabled = true
+    
+    var isScrolling = false
+    var isScrollingTimer: Interval?
     
     var trackingArea: NSTrackingArea?
     
@@ -50,8 +53,10 @@ class ExtendedTableView: NSTableView {
     
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
-        
-        subscribeToScrollingNotifications()
+    
+        if let refreshScrollView = scrollView as? RefreshScrollView {
+            refreshScrollView.boundsChangedDelegate = self
+        }
     }
     
     override func updateTrackingAreas() {
@@ -68,12 +73,6 @@ class ExtendedTableView: NSTableView {
         addTrackingArea(trackingArea!)
     }
     
-    func subscribeToScrollingNotifications() {
-        Notifications.subscribe(observer: self, selector: #selector(scrollViewDidStartScrolling), name: NSScrollViewWillStartLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: #selector(scrollViewDidScroll), name: NSScrollViewDidLiveScrollNotification, object: scrollView)
-        Notifications.subscribe(observer: self, selector: #selector(scrollViewDidEndScrolling), name: NSScrollViewDidEndLiveScrollNotification, object: scrollView)
-    }
-    
     func insetRect(rect: NSRect, insets: NSEdgeInsets) -> NSRect {
         if rect == NSZeroRect { return rect }
         
@@ -85,11 +84,6 @@ class ExtendedTableView: NSTableView {
         newRect.size.width -= insets.right
         newRect.size.height -= insets.top
         newRect.size.height -= insets.bottom
-        
-//        if newRect.origin.x < 0 { fatalError("Oops") }
-//        if newRect.origin.y < 0 { fatalError("Oops") }
-//        if newRect.size.width < 0 { fatalError("Oops") }
-//        if newRect.size.height < 0 { fatalError("Oops") }
         
         return newRect
     }
@@ -149,6 +143,24 @@ class ExtendedTableView: NSTableView {
         }
     }
     
+    func scrollViewBoundsDidChange(notification: NSNotification) {
+        if !isScrolling {
+            isScrolling = true
+            scrollViewDidStartScrolling(notification)
+        } else {
+            scrollViewDidScroll(notification)
+            startTimerForEndScrolling()
+        }
+    }
+    
+    func startTimerForEndScrolling() {
+        isScrollingTimer?.invalidate()
+        isScrollingTimer = Interval.single(0.1) {
+            self.isScrolling = false
+            self.scrollViewDidEndScrolling(NSNotification(name: "nil", object: self))
+        }
+    }
+    
     func scrollViewDidStartScrolling(notification: NSNotification) {
         if mouseInsideRow != -1 {
             extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
@@ -170,6 +182,11 @@ class ExtendedTableView: NSTableView {
         previousVisibleRows = visibleRows
         
         previousScrollDirection = direction
+    }
+    
+    
+    func scrollViewDidEndScrolling(notification: NSNotification) {
+        extendedDelegate?.didEndScrollingTableView(self)
     }
     
     func scrollDirection() -> ScrollDirection {
@@ -342,10 +359,6 @@ class ExtendedTableView: NSTableView {
     func newHiddenRows() -> [Int] {
         let rows = previousVisibleRows.filter { !self.visibleRows.contains($0) }
         return rows
-    }
-    
-    func scrollViewDidEndScrolling(notification: NSNotification) {
-        extendedDelegate?.didEndScrollingTableView(self)
     }
     
     func average(array: [Int]) -> Double {
