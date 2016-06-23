@@ -19,7 +19,7 @@ class TracksViewController: DataSourceViewController {
     var anchoredRow: Int?
     var anchoredCellViewViewController: TracksViewController?
     
-    let infiniteScrollTriggerHeight: CGFloat = 40
+    let infiniteScrollCellCountFromLastTriggerCount: Int = 7
     
     var showLoveButton: Bool = true
     
@@ -420,16 +420,16 @@ class TracksViewController: DataSourceViewController {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 removeStickyTrack()
             }
+            
+            if row >= max(0, tableView.numberOfRows-infiniteScrollCellCountFromLastTriggerCount) {
+                tracksDataSource!.loadNextPageObjects()
+            }
         }
     }
     
     override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
     
-    override func didEndScrollingTableView(tableView: ExtendedTableView) {
-        if distanceFromBottomOfScrollView() <= infiniteScrollTriggerHeight {
-            tracksDataSource!.loadNextPageObjects()
-        }
-    }
+    override func didEndScrollingTableView(tableView: ExtendedTableView) {}
     
     override func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
         let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
