@@ -72,7 +72,7 @@ class AudioPlayer: NSObject {
         play()
     }
     
-    func findAndSetCurrentlyPlayingTrackAfterRefresh() {
+    func findAndSetCurrentlyPlayingTrack() {
         if currentDataSource == nil || currentTrack == nil {
             return
         }
