@@ -72,6 +72,20 @@ class AudioPlayer: NSObject {
         play()
     }
     
+    func findAndSetCurrentlyPlayingTrack() {
+        if currentDataSource == nil || currentTrack == nil {
+            return
+        }
+        
+        let foundTracks: [Track]? = currentDataSource.tableContents?.filter{ ($0 as! HypeMachineAPI.Track).id == currentTrack.id } as? [Track]
+        guard let foundTrack = foundTracks?.first else {
+            return;
+        }
+        if currentTrack != foundTrack {
+            currentTrack = foundTrack
+        }
+    }
+    
     func play() {
         player.play()
         playing = true
