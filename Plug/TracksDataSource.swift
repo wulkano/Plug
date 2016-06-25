@@ -13,6 +13,7 @@ class TracksDataSource: HypeMachineDataSource {
     
     func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
         nextPageResultReceived(result)
+        AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
     }
     
     func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {

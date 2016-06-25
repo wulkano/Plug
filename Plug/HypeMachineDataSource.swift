@@ -73,7 +73,6 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
             allObjectsLoaded = isLastPage(objects)
             
             self.appendTableContents(objects)
-            AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
             self.requestInProgress = false
         case .Failure(_, let error):
             Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
