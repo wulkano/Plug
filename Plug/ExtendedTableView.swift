@@ -223,7 +223,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         
         let row = rowAtPoint(point)
         if row != previousRowDidStartToShow {
-            if scrollDirection == previousScrollDirection {
+            if (scrollDirection == previousScrollDirection &&
+                row != -1 &&
+                previousRowDidStartToHide != -1) {
                 for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidStartToShow) {
                     extendedDelegate?.tableView(self, rowDidStartToShow: eachRow, direction: shownDirection)
                 }
@@ -256,7 +258,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         
         let row = rowAtPoint(point)
         if row != previousRowDidStartToHide {
-            if scrollDirection == previousScrollDirection {
+            if (scrollDirection == previousScrollDirection &&
+                row != -1 &&
+                previousRowDidStartToHide != -1) {
                 for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidStartToHide) {
                     extendedDelegate?.tableView(self, rowDidStartToHide: eachRow, direction: hiddenDirection)
                 }
@@ -293,7 +297,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         
         let row = rowAtPoint(point)
         if row != previousRowDidShow {
-            if scrollDirection == previousScrollDirection {
+            if (scrollDirection == previousScrollDirection &&
+                row != -1 &&
+                previousRowDidShow != -1) {
                 for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidShow) {
                     extendedDelegate?.tableView(self, rowDidShow: eachRow, direction: shownDirection)
                 }
@@ -330,7 +336,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         
         let row = rowAtPoint(point)
         if row != previousRowDidHide {
-            if scrollDirection == previousScrollDirection {
+            if (scrollDirection == previousScrollDirection &&
+                row != -1 &&
+                previousRowDidHide != -1) {
                 for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidHide) {
                     extendedDelegate?.tableView(self, rowDidHide: eachRow, direction: hiddenDirection)
                 }
