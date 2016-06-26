@@ -29,7 +29,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     var allObjectsLoaded: Bool = false
     var currentPage: Int = 0
     var objectsPerPage: Int {
-        return 20
+        return 100
     }
     var nextPageParams: [String: AnyObject] {
         return [ "page": currentPage + 1, "count": objectsPerPage]
