@@ -30,7 +30,8 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         return clipView.superview as? NSScrollView
     }
     var visibleRows: [Int] {
-        return [Int](rowsInRect(visibleRect).toRange()!)
+        let trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
+        return [Int](rowsInRect(trueVisibleRect).toRange()!)
     }
     var previousVisibleRows: [Int] = []
     var previousRowDidStartToHide = -1
@@ -141,6 +142,18 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
             extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
             mouseInsideRow = -1
         }
+    }
+    
+    func isRowFullyVisible(row: Int) -> Bool {
+        return isRowFullyVisible(row, additionalVisibleHeight: 0)
+    }
+    
+    func isRowFullyVisible(row: Int, additionalVisibleHeight: CGFloat) -> Bool {
+        var trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
+        trueVisibleRect.size.height += additionalVisibleHeight
+        let rowRect = rectOfRow(row)
+        
+        return CGRectContainsRect(trueVisibleRect, rowRect)
     }
     
     func scrollViewBoundsDidChange(notification: NSNotification) {

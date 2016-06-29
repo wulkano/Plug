@@ -329,12 +329,24 @@ class TracksViewController: DataSourceViewController {
     override func isTrackVisible(track: HypeMachineAPI.Track) -> Bool {
         for row in tableView.visibleRows {
             let rowTrack = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
-            if rowTrack == track {
+            if (rowTrack == track &&
+                isTableViewRowFullyVisible(row)) {
                 return true
             }
         }
         
         return false
+    }
+    
+    func trackAboveOrBelow(track: HypeMachineAPI.Track) -> StickyTrackPosition {
+        let row = tracksDataSource!.indexOfTrack(track)
+        let firstVisibleRow = tableView.visibleRows[0] ?? 0
+        let firstFullyVisibleRow = isTableViewRowFullyVisible(firstVisibleRow) ? firstVisibleRow : firstVisibleRow+1
+        return row < firstFullyVisibleRow ? .Top : .Bottom
+    }
+    
+    func isTableViewRowFullyVisible(row: Int) -> Bool {
+        return tableView.isRowFullyVisible(row, additionalVisibleHeight: stickyTrackController.view.superview != nil ? stickyTrackController.trackViewHeight : 0)
     }
     
     override var stickyTrackControllerType: TracksViewControllerType {
@@ -343,6 +355,17 @@ class TracksViewController: DataSourceViewController {
             return .LoveCount
         case .Feed:
             return .Feed
+        }
+    }
+    
+    // MARK: Notifications
+    
+    override func newCurrentTrack(notification: NSNotification) {
+        super.newCurrentTrack(notification)
+        
+        if !stickyTrackBelongsToUs {
+            let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
+            addStickyTrackAtPosition(trackAboveOrBelow(track))
         }
     }
     
