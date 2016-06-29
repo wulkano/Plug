@@ -67,7 +67,7 @@ class AudioPlayer: NSObject {
         if currentTrack != track {
             setupForNewTrack(track, dataSource: dataSource)
             UserNotifications.deliverNotification(title: track.title, informativeText: track.artist)
-            Notifications.post(name: Notifications.NewCurrentTrack, object: self, userInfo: ["track": track])
+            Notifications.post(name: Notifications.NewCurrentTrack, object: self, userInfo: ["track": track, "tracksDataSource": dataSource])
         }
         play()
     }
