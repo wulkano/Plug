@@ -22,9 +22,6 @@ class StickyTrackViewController: TracksViewController {
     var position: StickyTrackPosition = .Bottom {
         didSet { positionChanged() }
     }
-    var isShown: Bool {
-        return self.view.superview != nil
-    }
     
     override var tableViewInsets: NSEdgeInsets {
         return NSEdgeInsetsZero
