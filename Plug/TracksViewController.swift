@@ -338,8 +338,12 @@ class TracksViewController: DataSourceViewController {
         return false
     }
     
-    func trackAboveOrBelow(track: HypeMachineAPI.Track) -> StickyTrackPosition {
-        let row = tracksDataSource!.indexOfTrack(track)
+    func trackAboveOrBelow(track: HypeMachineAPI.Track, tracksDataSource: TracksDataSource) -> StickyTrackPosition {
+        if tracksDataSource != self.tracksDataSource {
+            return .Bottom
+        }
+        
+        let row = tracksDataSource.indexOfTrack(track)
         let firstVisibleRow = tableView.visibleRows[0] ?? 0
         let firstFullyVisibleRow = isTableViewRowFullyVisible(firstVisibleRow) ? firstVisibleRow : firstVisibleRow+1
         return row < firstFullyVisibleRow ? .Top : .Bottom
@@ -373,7 +377,7 @@ class TracksViewController: DataSourceViewController {
         if (!stickyTrackBelongsToUs ||
             stickyTrackController.isShown) {
             let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-            addStickyTrackAtPosition(trackAboveOrBelow(track))
+            addStickyTrackAtPosition(trackAboveOrBelow(track, tracksDataSource: tracksDataSource))
         }
     }
     
