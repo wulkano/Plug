@@ -346,7 +346,7 @@ class TracksViewController: DataSourceViewController {
     }
     
     func isTableViewRowFullyVisible(row: Int) -> Bool {
-        return tableView.isRowFullyVisible(row, additionalVisibleHeight: stickyTrackController.view.superview != nil ? stickyTrackController.trackViewHeight : 0)
+        return tableView.isRowFullyVisible(row)
     }
     
     override var stickyTrackControllerType: TracksViewControllerType {
@@ -363,7 +363,15 @@ class TracksViewController: DataSourceViewController {
     override func newCurrentTrack(notification: NSNotification) {
         super.newCurrentTrack(notification)
         
-        if !stickyTrackBelongsToUs {
+        let tracksDataSource = notification.userInfo!["tracksDataSource"] as! TracksDataSource
+        if tracksDataSource == self.tracksDataSource {
+            stickyTrackBelongsToUs = true
+        } else {
+            stickyTrackBelongsToUs = false
+        }
+        
+        if (!stickyTrackBelongsToUs ||
+            stickyTrackController.isShown) {
             let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
             addStickyTrackAtPosition(trackAboveOrBelow(track))
         }

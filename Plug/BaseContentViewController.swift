@@ -101,7 +101,7 @@ class BaseContentViewController: NSViewController {
     }
     
     func addStickyTrackAtPosition(position: StickyTrackPosition) {
-        if stickyTrackController.view.superview != nil {
+        if stickyTrackController.isShown {
             if position == stickyTrackController.position {
                 return
             } else {
@@ -147,10 +147,8 @@ class BaseContentViewController: NSViewController {
         updateStickyTrack(track)
         
         if isTrackVisible(track) {
-            stickyTrackBelongsToUs = true
             removeStickyTrack()
         } else {
-            stickyTrackBelongsToUs = false
             addStickyTrackAtPosition(.Bottom)
         }
     }

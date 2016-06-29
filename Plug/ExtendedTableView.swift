@@ -145,12 +145,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     }
     
     func isRowFullyVisible(row: Int) -> Bool {
-        return isRowFullyVisible(row, additionalVisibleHeight: 0)
-    }
-    
-    func isRowFullyVisible(row: Int, additionalVisibleHeight: CGFloat) -> Bool {
-        var trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
-        trueVisibleRect.size.height += additionalVisibleHeight
+        let trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
         let rowRect = rectOfRow(row)
         
         return CGRectContainsRect(trueVisibleRect, rowRect)
