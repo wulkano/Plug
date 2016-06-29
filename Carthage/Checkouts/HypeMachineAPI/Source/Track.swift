@@ -28,6 +28,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let audioUnavailable: Bool
     public let postURL: NSURL
     public let iTunesURL: NSURL
+    public let mediaType: String?
 
     public var loved: Bool
     
@@ -52,29 +53,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
             let iTunesURLStringEscaped = iTunesURLString.stringByAddingPercentEncodingForURLQueryValue(),
             let iTunesURL = NSURL(string: iTunesURLStringEscaped)
         else {
-            // Shouldn't need this, probably a bug, delete later
-            self.id = ""
-            self.artist = ""
-            self.title = ""
-            self.loved = false
-            self.lovedCount = 0
-            self.lovedCountNum = NSNumber()
-            self.thumbURLSmall = nil
-            self.thumbURLMedium = nil
-            self.thumbURLLarge = nil
-            self.rank = 0
-            self.viaUser = ""
-            self.viaQuery = ""
-            self.postedBy = ""
-            self.postedById = 0
-            self.postedCount = 0
-            self.postedByDescription = ""
-            self.datePosted = NSDate()
-            self.audioUnavailable = false
-            self.postURL = NSURL()
-            self.iTunesURL = NSURL()
-            super.init()
-            // Shouldn't need this, probably a bug, delete later
             return nil
         }
         
@@ -105,6 +83,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         self.audioUnavailable = representation["pub_audio_unavail"] as? Bool == true
         self.postURL = postURL
         self.iTunesURL = iTunesURL
+        self.mediaType = representation["media_type"] as? String
         
         super.init()
     }

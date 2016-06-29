@@ -30,20 +30,6 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
             let username = representation["username"] as? String,
             let favoritesCountInfo = representation["favorites_count"] as? NSDictionary
         else {
-            // Shouldn't need this, probably a bug, delete later
-            self.username = ""
-            self.fullName = nil
-            self.avatarURL = nil
-            self.favoritesCount = 0
-            self.favoritesCountNum = NSNumber()
-            self.followersCount = 0
-            self.followersCountNum = NSNumber()
-            self.followingCount = 0
-            self.followingCountNum = NSNumber()
-            self.friend = false
-            self.follower = false
-            super.init()
-            // Shouldn't need this, probably a bug, delete later
             return nil
         }
         

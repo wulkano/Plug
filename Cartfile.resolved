@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire" "2.0.2"
 github "SnapKit/SnapKit" "0.18.0"
-github "PlugForMac/HypeMachineAPI" "0.5.2"
+github "PlugForMac/HypeMachineAPI" "0.5.3"
 github "PlugForMac/SimpleGoogleAnalytics" "0.4.1"

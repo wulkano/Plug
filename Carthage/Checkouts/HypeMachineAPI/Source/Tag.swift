@@ -20,11 +20,6 @@ public final class Tag: NSObject, ResponseObjectSerializable, ResponseCollection
         guard
             let name = representation["tag_name"] as? String
         else {
-            // Shouldn't need this, probably a bug, delete later
-            self.name = ""
-            self.priority = false
-            super.init()
-            // Shouldn't need this, probably a bug, delete later
             return nil
         }
         

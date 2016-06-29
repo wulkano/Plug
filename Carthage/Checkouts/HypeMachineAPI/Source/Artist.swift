@@ -22,13 +22,6 @@ public final class Artist: NSObject, ResponseObjectSerializable, ResponseCollect
         guard
             let name = representation["artist"] as? String
         else {
-            // Shouldn't need this, probably a bug, delete later
-            self.name = ""
-            self.thumbURL = nil
-            self.cnt = nil
-            self.rank = nil
-            super.init()
-            // Shouldn't need this, probably a bug, delete later
             return nil
         }
         

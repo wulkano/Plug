@@ -38,20 +38,6 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
             let imageURLSmallString = representation["blog_image_small"] as? String,
             let imageURLSmall = NSURL(string: imageURLSmallString)
         else {
-            // Shouldn't need this, probably a bug, delete later
-            self.id = 0
-            self.name = ""
-            self.url = NSURL()
-            self.followerCount = 0
-            self.followerCountNum = NSNumber()
-            self.trackCount = 0
-            self.trackCountNum = NSNumber()
-            self.imageURL = NSURL()
-            self.imageURLSmall = NSURL()
-            self.featured = false
-            self.following = false
-            super.init()
-            // Shouldn't need this, probably a bug, delete later
             return nil
         }
         
@@ -64,8 +50,8 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
         self.trackCountNum = NSNumber(integer: trackCount)
         self.imageURL = imageURL
         self.imageURLSmall = imageURLSmall
-        self.featured = representation.objectForKey("ts_featured") is Int
-        self.following = representation.objectForKey("ts_loved_me") is Int
+        self.featured = representation["ts_featured"] is Int
+        self.following = representation["ts_loved_me"] is Int
         
         super.init()
     }
