@@ -29,9 +29,11 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: #selector(TrackContextMenuController.copyHypeMachineLinkClicked(_:)), keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(TrackContextMenuController.openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
         
-        contextMenu.addItem(NSMenuItem.separatorItem())
-        contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(TrackContextMenuController.copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(TrackContextMenuController.openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
+        if track.mediaType == "soundcloud"  {
+            contextMenu.addItem(NSMenuItem.separatorItem())
+            contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(TrackContextMenuController.copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
+            contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(TrackContextMenuController.openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
+        }
         
         contextMenu.addItem(NSMenuItem.separatorItem())
         contextMenu.addItem(NSMenuItem(title: "Share to Facebook", action: #selector(TrackContextMenuController.shareToFacebookClicked(_:)), keyEquivalent: ""))
