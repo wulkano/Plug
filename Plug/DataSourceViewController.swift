@@ -139,6 +139,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     
     func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int) {}
     func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {}
+    func tableView(tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {}
     func tableView(tableView: ExtendedTableView, mouseEnteredRow row: Int) {}
     func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int) {}
     func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {}

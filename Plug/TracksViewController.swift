@@ -462,6 +462,14 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
+    override func tableView(tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {
+        if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
+            if track != AudioPlayer.sharedInstance.currentTrack {
+                AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
+            }
+        }
+    }
+    
     override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
     
     override func didEndScrollingTableView(tableView: ExtendedTableView) {}

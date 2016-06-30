@@ -94,6 +94,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         
         super.mouseDown(theEvent)
         
+        if (theEvent.clickCount == 2) {
+            extendedDelegate?.tableView(self, wasDoubleClicked: theEvent, atRow: clickedRow)
+            return
+        }
+        
         if clickedRow == -1 { return }
 
         extendedDelegate?.tableView(self, wasClicked: theEvent, atRow: clickedRow)
@@ -406,6 +411,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 protocol ExtendedTableViewDelegate {
     func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int)
     func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int)
+    func tableView(tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int)
     func tableView(tableView: ExtendedTableView, mouseEnteredRow row: Int)
     func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int)
     func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection)

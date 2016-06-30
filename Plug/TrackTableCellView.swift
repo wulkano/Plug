@@ -90,6 +90,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         }
     }
     
+    
     func mouseInsideChanged() {
         updatePlayPauseButtonVisibility()
 //        updateTextFieldsSpacing()
