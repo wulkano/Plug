@@ -8,6 +8,7 @@
 
 import Cocoa
 import HypeMachineAPI
+import Swignals
 
 class TracksViewController: DataSourceViewController {
     let type: TracksViewControllerType
@@ -19,13 +20,19 @@ class TracksViewController: DataSourceViewController {
     var anchoredRow: Int?
     var anchoredCellViewViewController: TracksViewController?
     
-    let infiniteScrollCellCountFromLastTriggerCount: Int = 7
-    
     var showLoveButton: Bool = true
     
     init?(type: TracksViewControllerType, title: String, analyticsViewName: String) {
         self.type = type
         super.init(title: title, analyticsViewName: analyticsViewName)
+        
+        AudioPlayer.sharedInstance.onShuffleChanged.addObserver(self) { (weakSelf, shuffle) in
+            if let favoriteTracksDataSource = weakSelf.tracksDataSource as? FavoriteTracksDataSource {
+                weakSelf.addLoaderView()
+                favoriteTracksDataSource.shuffle = shuffle
+                favoriteTracksDataSource.refresh()
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -40,6 +47,14 @@ class TracksViewController: DataSourceViewController {
         addLoaderView()
         tableView.setDataSource(dataSource!)
         dataSource!.loadNextPageObjects()
+    }
+    
+    override func nextPageDidLoad(pageNumber: Int) {
+        if let favoriteTracksDataSource = tracksDataSource as? FavoriteTracksDataSource where favoriteTracksDataSource.shuffle {
+            removeLoaderView()
+        } else {
+            super.nextPageDidLoad(pageNumber)
+        }
     }
     
     func cellViewForRow(row: Int) -> TrackTableCellView? {
@@ -456,7 +471,7 @@ class TracksViewController: DataSourceViewController {
                 removeStickyTrack()
             }
             
-            if row >= max(0, tableView.numberOfRows-infiniteScrollCellCountFromLastTriggerCount) {
+            if row >= max(0, tableView.numberOfRows-tracksDataSource!.infiniteLoadTrackCountFromEnd) {
                 tracksDataSource!.loadNextPageObjects()
             }
         }

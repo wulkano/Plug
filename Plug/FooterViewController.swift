@@ -14,9 +14,7 @@ class FooterViewController: NSViewController {
     var shuffleButton: SwissArmyButton!
     
     func toggleShuffle() {
-        let oldShuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
-        let newShuffle = !oldShuffle
-        NSUserDefaults.standardUserDefaults().setValue(newShuffle, forKey: "shuffle")
+        AudioPlayer.sharedInstance.toggleShuffle();
     }
     
     // MARK: Actions

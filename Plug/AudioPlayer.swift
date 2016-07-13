@@ -10,6 +10,10 @@ import Cocoa
 import AVFoundation
 import CoreMedia
 import HypeMachineAPI
+import Swignals
+
+
+typealias OnShuffleChangedSwignal = Swignal1Arg<Bool>
 
 class AudioPlayer: NSObject {
     class var sharedInstance: AudioPlayer {
@@ -30,6 +34,13 @@ class AudioPlayer: NSObject {
     var currentTrackListenLogged = false
     var currentTrackListenScrobbled = false
     var playing: Bool = false
+    var shuffle: Bool = false {
+        didSet {
+            onShuffleChanged.fire(shuffle)
+            NSUserDefaults.standardUserDefaults().setValue(shuffle, forKey: "shuffle")
+        }
+    }
+    let onShuffleChanged = OnShuffleChangedSwignal()
     var volume: Float = 1 {
         didSet { volumeChanged() }
     }
@@ -40,6 +51,7 @@ class AudioPlayer: NSObject {
     let timeoutSeconds: Double = 10
     
     override init() {
+        self.shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
         super.init()
         bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
     }
@@ -122,6 +134,10 @@ class AudioPlayer: NSObject {
         if let previousTrack = currentDataSource.trackBefore(currentTrack) {
             playNewTrack(previousTrack, dataSource: currentDataSource)
         }
+    }
+    
+    func toggleShuffle() {
+        shuffle = !shuffle
     }
     
     func seekToPercent(percent: Double) {
@@ -291,9 +307,8 @@ class AudioPlayer: NSObject {
     }
     
     private func findNextTrack() -> HypeMachineAPI.Track? {
-        let shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
-        
-        if shuffle {
+        if (shuffle &&
+            !(currentDataSource is FavoriteTracksDataSource)) {
             return nextShuffleTrack()
         } else {
             return currentDataSource.trackAfter(currentTrack)

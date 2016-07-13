@@ -19,15 +19,20 @@ PODS:
   - AFNetworking/Serialization (2.4.1)
   - INAppStoreWindow (1.4)
   - SSKeychain (1.2.3)
+  - Swignals (0.1.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.4.1)
   - INAppStoreWindow (~> 1.4)
   - SSKeychain (~> 1.2.2)
+  - Swignals (~> 0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
   INAppStoreWindow: 4fd569f7435557239e78316de139e886ccbaec4d
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  Swignals: 3a2db159810978f5c9a61a22b2207a20246e1d15
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 0b922fccb1d222181afb6c74d9238aac08a9edb1
+
+COCOAPODS: 1.0.1

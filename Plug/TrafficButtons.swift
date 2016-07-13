@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import INAppStoreWindow
 
 class TrafficButtons {
     var closeButton: INWindowButton!

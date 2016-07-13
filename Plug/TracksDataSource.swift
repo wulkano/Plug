@@ -11,6 +11,8 @@ import HypeMachineAPI
 
 class TracksDataSource: HypeMachineDataSource {
     
+    let infiniteLoadTrackCountFromEnd: Int = 7
+    
     func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
         nextPageResultReceived(result)
         AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
@@ -18,6 +20,10 @@ class TracksDataSource: HypeMachineDataSource {
     
     func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
         if let currentIndex = indexOfTrack(track) {
+            if currentIndex+1 >= max(0, tableContents!.count-infiniteLoadTrackCountFromEnd) {
+                loadNextPageObjects()
+            }
+            
             let track = trackAtIndex(currentIndex + 1)
             if track != nil && track!.audioUnavailable {
                 return trackAfter(track!)
