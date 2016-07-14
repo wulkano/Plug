@@ -89,13 +89,21 @@ class AudioPlayer: NSObject {
             return
         }
         
-        let foundTracks: [Track]? = currentDataSource.tableContents?.filter{ ($0 as! HypeMachineAPI.Track).id == currentTrack.id } as? [Track]
-        guard let foundTrack = foundTracks?.first else {
-            return;
+        guard let foundTracks = findTracksWithTrackId(currentTrack.id) else {
+            return
         }
-        if currentTrack != foundTrack {
-            currentTrack = foundTrack
+        if foundTracks.indexOf(currentTrack) != NSNotFound {
+            // current track is already accurate
+            return
+        } else if let foundTrack = foundTracks.first {
+            if currentTrack != foundTrack {
+                currentTrack = foundTrack
+            }
         }
+    }
+        
+    private func findTracksWithTrackId(trackId: String) -> [Track]? {
+        return currentDataSource.tableContents?.filter{ ($0 as! HypeMachineAPI.Track).id == trackId } as? [Track]
     }
     
     func play() {
