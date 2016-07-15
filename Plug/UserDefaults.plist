@@ -10,6 +10,8 @@
 	<true/>
 	<key>ShowTrackChangeNotifications</key>
 	<true/>
+	<key>PreventIdleSleepWhenPlaying</key>
+	<false/>
 	<key>volume</key>
 	<integer>1</integer>
 	<key>shuffle</key>

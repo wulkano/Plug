@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885CBDFE1D35467D00B46C4F /* PreventSleep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885CBDFD1D35467D00B46C4F /* PreventSleep.framework */; };
+		885CBDFF1D35467D00B46C4F /* PreventSleep.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 885CBDFD1D35467D00B46C4F /* PreventSleep.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */; };
+		A343EA44C93FF1932EC9B7BE /* libPods-Plug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 540AC58B4E2360CD52F0F37C /* libPods-Plug.a */; };
 		F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
 		FA07423F1B470FBD00AA49D7 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA07423E1B470FBD00AA49D7 /* SnapKit.framework */; };
@@ -173,12 +177,16 @@
 				FA107A8D1B03F5B4006FA015 /* Alamofire.framework in CopyFiles */,
 				FA0742401B470FBD00AA49D7 /* SnapKit.framework in CopyFiles */,
 				FA2CA63C1C13773100D76C65 /* SimpleGoogleAnalytics.framework in CopyFiles */,
+				885CBDFF1D35467D00B46C4F /* PreventSleep.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		540AC58B4E2360CD52F0F37C /* libPods-Plug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Plug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		885CBDFD1D35467D00B46C4F /* PreventSleep.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreventSleep.framework; path = Carthage/Build/Mac/PreventSleep.framework; sourceTree = "<group>"; };
+		88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepAwake.swift; sourceTree = "<group>"; };
 		7F4BF4E22ADB52DCD3C33EBE /* Pods-Plug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.release.xcconfig"; sourceTree = "<group>"; };
 		BB3EA63AC6CD980E836036D5 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
 		F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +345,7 @@
 		FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plug-Bridging-Header.h"; sourceTree = "<group>"; };
 		FAF6F0951979F92900F2102B /* FlatSliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSliderCell.swift; sourceTree = "<group>"; };
 		FAF6F097197A05D300F2102B /* HoverToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverToggleButton.swift; sourceTree = "<group>"; };
+		FB6D68EBD326C894DC6A81F5 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,8 +358,10 @@
 				FA2CA6381C13772900D76C65 /* HypeMachineAPI.framework in Frameworks */,
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
+				885CBDFE1D35467D00B46C4F /* PreventSleep.framework in Frameworks */,
 				FA07423F1B470FBD00AA49D7 /* SnapKit.framework in Frameworks */,
 				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
+				A343EA44C93FF1932EC9B7BE /* libPods-Plug.a in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +369,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17174EC32E3F67816D2FFC56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FB6D68EBD326C894DC6A81F5 /* Pods-Plug.debug.xcconfig */,
+				90C5D27B634E251D4690A2F6 /* Pods-Plug.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +389,7 @@
 				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
 				FA107A881B03F3AE006FA015 /* Alamofire.framework */,
 				FA72C15019C0E4DD00FFB002 /* libcommonCrypto.dylib */,
+				540AC58B4E2360CD52F0F37C /* libPods-Plug.a */,
 				F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */,
 			);
 			name = Frameworks;
@@ -619,6 +640,7 @@
 				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
 				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
 				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
+				88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1099,6 +1121,7 @@
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
+				88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */,
 				FA2519471C039E980075FBC6 /* FontHelper.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */,
@@ -1218,7 +1241,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1230,7 +1253,7 @@
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
@@ -1250,7 +1273,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1261,7 +1284,7 @@
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
