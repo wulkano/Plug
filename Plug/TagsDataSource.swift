@@ -46,6 +46,22 @@ class TagsDataSource: SearchableDataSource {
         return groupedTags
     }
     
+    func newTag(searchKeywords: String) -> [HypeMachineAPI.Tag] {
+        let tempTag = [
+            "tag_name": searchKeywords,
+            "priority": false
+        ]
+        //Create a blank NSHTTPURLResponse because Tag class requires it
+        let url = NSHTTPURLResponse()
+        let newTag = Tag(response: url, representation: tempTag)!
+        let array = [newTag]
+        
+        //Add it to the table contents
+        appendTableContents(array)
+        
+        return array
+    }
+    
     // MARK: SearchableDataSource
     
     override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
@@ -57,25 +73,16 @@ class TagsDataSource: SearchableDataSource {
             print("Filtering, but no keywords present")
             return sortedTags
         } else {
-            
             //Has keywords so filter tags using keywords
             let filteredResults = filterTagsMatchingSearchKeywords(sortedTags)
+            
             //If results of filter are zero then try and make a new object using the keywords
             if (filteredResults.count == 0) {
                 //Make a new tag using the search Keyword
-                
-                let tempTag = [
-                    "tag_name": searchKeywords!,
-                    "priority": false
-                ]
-                let url = NSHTTPURLResponse()
-                let tag = Tag(response: url, representation: tempTag)!
-                let array = [tag]
-                appendTableContents(array)
-                return array
+                return newTag(searchKeywords!)
+            } else {
+                return filteredResults
             }
-            
-            return filteredResults
         }
     }
     
