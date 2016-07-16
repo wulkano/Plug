@@ -12,8 +12,11 @@ import CoreMedia
 import HypeMachineAPI
 import Swignals
 
-
 typealias OnShuffleChangedSwignal = Swignal1Arg<Bool>
+typealias OnTrackPlaying = Swignal1Arg<Bool>
+typealias OnTrackPaused  = Swignal1Arg<Bool>
+typealias OnSkipForward  = Swignal1Arg<Bool>
+typealias OnSkipBackward  = Swignal1Arg<Bool>
 
 class AudioPlayer: NSObject {
     class var sharedInstance: AudioPlayer {
@@ -41,6 +44,10 @@ class AudioPlayer: NSObject {
         }
     }
     let onShuffleChanged = OnShuffleChangedSwignal()
+    let onTrackPlaying = OnTrackPlaying()
+    let onTrackPaused = OnTrackPaused()
+    let onSkipForward = OnSkipForward()
+    let onSkipBackward = OnSkipBackward()
     var volume: Float = 1 {
         didSet { volumeChanged() }
     }
@@ -110,12 +117,14 @@ class AudioPlayer: NSObject {
         player.play()
         playing = true
         Notifications.post(name: Notifications.TrackPlaying, object: self, userInfo: ["track": currentTrack!])
+        onTrackPlaying.fire(true)
     }
     
     func pause() {
         player.pause()
         playing = false
         Notifications.post(name: Notifications.TrackPaused, object: self, userInfo: ["track": currentTrack!])
+        onTrackPaused.fire(true)
     }
     
     func playPauseToggle() {
@@ -131,6 +140,8 @@ class AudioPlayer: NSObject {
     func skipForward() {
         guard currentDataSource != nil else { return }
         
+        onSkipForward.fire(true)
+        
         if let nextTrack = findNextTrack() {
             playNewTrack(nextTrack, dataSource: currentDataSource)
         }
@@ -138,6 +149,8 @@ class AudioPlayer: NSObject {
     
     func skipBackward() {
         guard currentDataSource != nil else { return }
+        
+        onSkipBackward.fire(true)
         
         if let previousTrack = currentDataSource.trackBefore(currentTrack) {
             playNewTrack(previousTrack, dataSource: currentDataSource)

@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupNotifications()
         setupMediaKeys()
         setupHypeMachineAPI()
+        setupKeepAwake()
         
         if Authentication.UserSignedIn() {
             openMainWindow()
@@ -152,6 +153,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         let userAgent = "Plug for OSX/\(version)"
         HypeMachineAPI.userAgent = userAgent
+    }
+    
+    func setupKeepAwake() {
+        KeepAwake.sharedInstance
     }
     
     // MARK: Notifications
