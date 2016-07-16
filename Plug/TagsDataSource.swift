@@ -24,7 +24,11 @@ class TagsDataSource: SearchableDataSource {
     }
     
     func sortTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
-        return tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
+        if tags.count > 1 {
+            return tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
+        } else {
+            return tags
+        }
     }
     
     func groupTags(tags: [HypeMachineAPI.Tag]) -> [AnyObject] {
@@ -53,7 +57,25 @@ class TagsDataSource: SearchableDataSource {
             print("Filtering, but no keywords present")
             return sortedTags
         } else {
-            return filterTagsMatchingSearchKeywords(sortedTags)
+            
+            //Has keywords so filter tags using keywords
+            let filteredResults = filterTagsMatchingSearchKeywords(sortedTags)
+            //If results of filter are zero then try and make a new object using the keywords
+            if (filteredResults.count == 0) {
+                //Make a new tag using the search Keyword
+                
+                let tempTag = [
+                    "tag_name": searchKeywords!,
+                    "priority": false
+                ]
+                let url = NSHTTPURLResponse()
+                let tag = Tag(response: url, representation: tempTag)!
+                let array = [tag]
+                appendTableContents(array)
+                return array
+            }
+            
+            return filteredResults
         }
     }
     
