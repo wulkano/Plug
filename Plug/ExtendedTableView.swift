@@ -107,8 +107,6 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     override func rightMouseDown(theEvent: NSEvent) {
         let clickedRow = rowForEvent(theEvent)
         
-        super.rightMouseDown(theEvent)
-        
         if clickedRow == -1 { return }
         
         extendedDelegate?.tableView(self, wasRightClicked: theEvent, atRow: clickedRow)

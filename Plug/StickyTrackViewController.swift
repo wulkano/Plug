@@ -39,6 +39,11 @@ class StickyTrackViewController: TracksViewController {
         }
     }
     
+    override func rightMouseDown(theEvent: NSEvent) {
+        let menuController = TrackContextMenuController(track: AudioPlayer.sharedInstance.currentTrack)!
+        NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: self.view)
+    }
+    
     func addShadowToBottom() {
         shadowView?.removeFromSuperview()
         
