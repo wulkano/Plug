@@ -47,13 +47,7 @@ class TagsDataSource: SearchableDataSource {
     }
     
     func newTag(searchKeywords: String) -> [HypeMachineAPI.Tag] {
-        let tempTag = [
-            "tag_name": searchKeywords,
-            "priority": false
-        ]
-        //Create a blank NSHTTPURLResponse because Tag class requires it
-        let url = NSHTTPURLResponse()
-        let newTag = Tag(response: url, representation: tempTag)!
+        let newTag = Tag(name: searchKeywords, priority: false)
         let array = [newTag]
         
         //Add it to the table contents
