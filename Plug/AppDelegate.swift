@@ -47,6 +47,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if mainWindowController == nil {
             mainWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as! NSWindowController)
             
+            /* If there isn't an autosave name set for the main window, place the
+             * frame at a default position, and then set the autosave name.
+             */
+            if mainWindowController!.windowFrameAutosaveName!.isEmpty {
                 let width: CGFloat = 472
                 let height: CGFloat = 778
                 let x: CGFloat = 100
@@ -54,6 +58,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
                 let defaultFrame = NSMakeRect(x, y, width, height)
                 mainWindowController!.window!.setFrame(defaultFrame, display: false)
+                
+                mainWindowController!.window!.setFrameAutosaveName("MainWindow")
+            }
         }
         
         mainWindowController!.showWindow(self)
