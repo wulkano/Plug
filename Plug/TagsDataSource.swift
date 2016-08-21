@@ -48,12 +48,7 @@ class TagsDataSource: SearchableDataSource {
     
     func newTag(searchKeywords: String) -> [HypeMachineAPI.Tag] {
         let newTag = Tag(name: searchKeywords, priority: false)
-        let array = [newTag]
-        
-        //Add it to the table contents
-        appendTableContents(array)
-        
-        return array
+        return [newTag]
     }
     
     // MARK: SearchableDataSource
