@@ -32,7 +32,7 @@ class UsersViewController: DataSourceViewController {
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
+        searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -42,8 +42,8 @@ class UsersViewController: DataSourceViewController {
         searchHeaderController.searchField.action = #selector(UsersViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -79,7 +79,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.avatarView = CircleMaskImageView()
             cellView!.avatarView.image = NSImage(named: "Avatar-Placeholder")!
             cellView!.addSubview(cellView!.avatarView)
-            cellView!.avatarView.snp_makeConstraints { make in
+            cellView!.avatarView.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.width.equalTo(36)
                 make.height.equalTo(36)
@@ -93,8 +93,8 @@ class UsersViewController: DataSourceViewController {
             cellView!.fullNameTextField.drawsBackground = false
             cellView!.fullNameTextField.font = appFont(size: 14, weight: .medium)
             cellView!.addSubview(cellView!.fullNameTextField)
-            cellView!.fullNameTextField.snp_makeConstraints { make in
-                make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
+            cellView!.fullNameTextField.snp.makeConstraints { make in
+                make.left.equalTo(cellView!.avatarView.snp.right).offset(22)
                 make.top.equalTo(cellView!).offset(12)
                 make.right.equalTo(cellView!).offset(27)
             }
@@ -107,16 +107,16 @@ class UsersViewController: DataSourceViewController {
             cellView!.usernameTextField.font = appFont(size: 13, weight: .medium)
             cellView!.usernameTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.usernameTextField)
-            cellView!.usernameTextField.snp_makeConstraints { make in
-                make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
-                make.top.equalTo(cellView!.fullNameTextField.snp_bottom).offset(4)
+            cellView!.usernameTextField.snp.makeConstraints { make in
+                make.left.equalTo(cellView!.avatarView.snp.right).offset(22)
+                make.top.equalTo(cellView!.fullNameTextField.snp.bottom).offset(4)
                 make.right.equalTo(cellView!).offset(27)
             }
             
             let arrow = NSImageView()
             arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
-            arrow.snp_makeConstraints { make in
+            arrow.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.right.equalTo(cellView!).offset(-15)
             }

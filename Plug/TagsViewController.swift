@@ -81,7 +81,7 @@ class TagsViewController: DataSourceViewController {
             cellView!.nameTextField.drawsBackground = false
             cellView!.nameTextField.font = appFont(size: 16, weight: .medium)
             cellView!.addSubview(cellView!.nameTextField)
-            cellView!.nameTextField.snp_makeConstraints { make in
+            cellView!.nameTextField.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!).offset(1)
                 make.left.equalTo(cellView!).offset(21)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
@@ -90,7 +90,7 @@ class TagsViewController: DataSourceViewController {
             let arrow = NSImageView()
             arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
-            arrow.snp_makeConstraints { make in
+            arrow.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.right.equalTo(cellView!).offset(-15)
             }
@@ -149,7 +149,7 @@ class TagsViewController: DataSourceViewController {
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
+        searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -159,8 +159,8 @@ class TagsViewController: DataSourceViewController {
         searchHeaderController.searchField.action = #selector(TagsViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)

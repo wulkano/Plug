@@ -47,10 +47,10 @@ class RefreshScrollView: NSScrollView {
     func loadRefreshView() {
         refreshHeaderController = RefreshHeaderViewController(nibName: nil, bundle: nil)!
         refreshClipView.addSubview(refreshHeaderController.view)
-        refreshHeaderController.view.snp_makeConstraints { make in
+        refreshHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(refreshHeaderController.viewHeight)
             make.left.right.equalTo(refreshClipView)
-            make.bottom.equalTo(refreshClipView.snp_top)
+            make.bottom.equalTo(refreshClipView.snp.top)
         }
     }
     

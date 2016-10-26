@@ -109,7 +109,7 @@ class NavigationBarController: NSViewController {
         
         navigationBarView = NSView()
         backgroundView.addSubview(navigationBarView!)
-        navigationBarView!.snp_makeConstraints { make in
+        navigationBarView!.snp.makeConstraints { make in
             make.edges.equalTo(backgroundView)
         }
 
@@ -121,7 +121,7 @@ class NavigationBarController: NSViewController {
             backButton!.target = self
             backButton!.action = #selector(NavigationBarController.backButtonClicked(_:))
             navigationBarView!.addSubview(backButton!)
-            backButton!.snp_makeConstraints{ make in
+            backButton!.snp.makeConstraints{ make in
                 make.top.equalTo(navigationBarView!).offset(buttonYOffset)
                 make.left.equalTo(navigationBarView!).offset(buttonEdgeSpacing)
                 make.height.equalTo(buttonHeight)
@@ -131,7 +131,7 @@ class NavigationBarController: NSViewController {
         // Right button section
         if topItem!.rightButton != nil {
             navigationBarView!.addSubview(topItem!.rightButton!)
-            topItem!.rightButton!.snp_makeConstraints { make in
+            topItem!.rightButton!.snp.makeConstraints { make in
                 make.top.equalTo(navigationBarView!).offset(buttonYOffset)
                 make.right.equalTo(navigationBarView!).offset(-buttonEdgeSpacing)
                 make.height.equalTo(buttonHeight)
@@ -148,18 +148,18 @@ class NavigationBarController: NSViewController {
         }
         
         navigationBarView!.addSubview(titleView)
-        titleView.snp_makeConstraints { make in
+        titleView.snp.makeConstraints { make in
             make.centerX.equalTo(backgroundView)
             make.centerY.equalTo(backgroundView).offset(titleYOffset)
             
             if backButton != nil {
-                make.left.greaterThanOrEqualTo(backButton!.snp_right).offset(titleSpacing)
+                make.left.greaterThanOrEqualTo(backButton!.snp.right).offset(titleSpacing)
             } else {
                 make.left.greaterThanOrEqualTo(navigationBarView!).offset(titleSpacing)
             }
             
             if topItem!.rightButton != nil {
-                make.right.lessThanOrEqualTo(topItem!.rightButton!.snp_left).offset(-titleSpacing)
+                make.right.lessThanOrEqualTo(topItem!.rightButton!.snp.left).offset(-titleSpacing)
             } else {
                 make.right.lessThanOrEqualTo(navigationBarView!).offset(-titleSpacing)
             }
@@ -186,7 +186,7 @@ class NavigationBarController: NSViewController {
         
         backgroundView = NSVisualEffectView(frame: NSZeroRect)
         view.addSubview(backgroundView)
-        backgroundView.snp_makeConstraints { make in
+        backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
         
@@ -194,7 +194,7 @@ class NavigationBarController: NSViewController {
         borderView.bottomBorder = true
         borderView.borderColor = NSColor(red256: 194, green256: 195, blue256: 196)
         backgroundView.addSubview(borderView)
-        borderView.snp_makeConstraints { make in
+        borderView.snp.makeConstraints { make in
             make.edges.equalTo(backgroundView)
         }
     }

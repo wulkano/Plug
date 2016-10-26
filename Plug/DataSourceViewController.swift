@@ -57,7 +57,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
             cellView!.titleTextField.font = appFont(size: 14, weight: .medium)
             cellView!.titleTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.titleTextField)
-            cellView!.titleTextField.snp_makeConstraints { make in
+            cellView!.titleTextField.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!).offset(-1)
                 make.left.equalTo(cellView!).offset(9)
                 make.right.equalTo(cellView!).offset(-9)

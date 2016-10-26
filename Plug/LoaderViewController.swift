@@ -38,7 +38,7 @@ class LoaderViewController: NSViewController {
         background.background = true
         background.backgroundColor = NSColor.white
         view.addSubview(background)
-        background.snp_makeConstraints { make in
+        background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
@@ -50,7 +50,7 @@ class LoaderViewController: NSViewController {
             loaderView.image = NSImage(named: "Loader-Large")
         }
         view.addSubview(loaderView)
-        loaderView.snp_makeConstraints { make in
+        loaderView.snp.makeConstraints { make in
             make.center.equalTo(view)
         }
     }

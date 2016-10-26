@@ -30,7 +30,7 @@ class SearchViewController: BaseContentViewController {
             tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Search/Tracks")
             addChildViewController(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
-            tracksViewController!.view.snp_makeConstraints { make in
+            tracksViewController!.view.snp.makeConstraints { make in
                 make.edges.equalTo(searchResultsView)
             }
         }
@@ -50,7 +50,7 @@ class SearchViewController: BaseContentViewController {
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
+        searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -61,8 +61,8 @@ class SearchViewController: BaseContentViewController {
         
         searchResultsView = NSView()
         view.addSubview(searchResultsView)
-        searchResultsView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
+        searchResultsView.snp.makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)

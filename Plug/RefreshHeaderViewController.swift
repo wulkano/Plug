@@ -27,20 +27,20 @@ class RefreshHeaderViewController: NSViewController {
         background.bottomBorder = true
         background.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         view.addSubview(background)
-        background.snp_makeConstraints { make in
+        background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
         let messageContainer = NSView()
         background.addSubview(messageContainer)
-        messageContainer.snp_makeConstraints { make in
+        messageContainer.snp.makeConstraints { make in
             make.center.equalTo(background)
         }
         
         loader = NSImageView()
         loader.image = NSImage(named: "Loader-Refresh")
         messageContainer.addSubview(loader)
-        loader.snp_makeConstraints { make in
+        loader.snp.makeConstraints { make in
             make.size.equalTo(16)
             make.top.equalTo(messageContainer)
             make.left.equalTo(messageContainer)
@@ -56,9 +56,9 @@ class RefreshHeaderViewController: NSViewController {
         messageLabel.font = appFont(size: 13, weight: .medium)
         messageLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         messageContainer.addSubview(messageLabel)
-        messageLabel.snp_makeConstraints { make in
+        messageLabel.snp.makeConstraints { make in
             make.centerY.equalTo(messageContainer).offset(-2)
-            make.left.equalTo(loader.snp_right).offset(5)
+            make.left.equalTo(loader.snp.right).offset(5)
             make.right.equalTo(messageContainer)
         }
         

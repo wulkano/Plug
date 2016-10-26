@@ -50,7 +50,7 @@ class BlogsViewController: DataSourceViewController {
             cellView!.nameTextField.drawsBackground = false
             cellView!.nameTextField.font = appFont(size: 14, weight: .medium)
             cellView!.addSubview(cellView!.nameTextField)
-            cellView!.nameTextField.snp_makeConstraints { make in
+            cellView!.nameTextField.snp.makeConstraints { make in
                 make.top.equalTo(cellView!).offset(10)
                 make.left.equalTo(cellView!).offset(21)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
@@ -67,8 +67,8 @@ class BlogsViewController: DataSourceViewController {
             recentTitle.font = appFont(size: 13, weight: .medium)
             recentTitle.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
             cellView!.addSubview(recentTitle)
-            recentTitle.snp_makeConstraints { make in
-                make.top.equalTo(cellView!.nameTextField.snp_bottom).offset(recentTopOffset)
+            recentTitle.snp.makeConstraints { make in
+                make.top.equalTo(cellView!.nameTextField.snp.bottom).offset(recentTopOffset)
                 make.left.equalTo(cellView!).offset(21)
             }
             
@@ -81,16 +81,16 @@ class BlogsViewController: DataSourceViewController {
             cellView!.recentArtistsTextField.font = appFont(size: 13, weight: .medium)
             cellView!.recentArtistsTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.recentArtistsTextField)
-            cellView!.recentArtistsTextField.snp_makeConstraints { make in
-                make.top.equalTo(cellView!.nameTextField.snp_bottom).offset(recentTopOffset)
-                make.left.equalTo(recentTitle.snp_right).offset(1)
+            cellView!.recentArtistsTextField.snp.makeConstraints { make in
+                make.top.equalTo(cellView!.nameTextField.snp.bottom).offset(recentTopOffset)
+                make.left.equalTo(recentTitle.snp.right).offset(1)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
             }
             
             let arrow = NSImageView()
             arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
-            arrow.snp_makeConstraints { make in
+            arrow.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.right.equalTo(cellView!).offset(-15)
             }
@@ -136,7 +136,7 @@ class BlogsViewController: DataSourceViewController {
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
+        searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -146,8 +146,8 @@ class BlogsViewController: DataSourceViewController {
         searchHeaderController.searchField.action = #selector(BlogsViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)

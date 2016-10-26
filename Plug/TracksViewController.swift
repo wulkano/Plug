@@ -130,7 +130,7 @@ class TracksViewController: DataSourceViewController {
         cellView.playPauseButton.target = cellView
         cellView.playPauseButton.action = #selector(cellView.playPauseButtonClicked)
         cellView.addSubview(cellView.playPauseButton)
-        cellView.playPauseButton.snp_makeConstraints { make in
+        cellView.playPauseButton.snp.makeConstraints { make in
             make.centerY.equalTo(cellView)
             make.size.equalTo(34)
             make.left.equalTo(cellView).offset(19)
@@ -138,7 +138,7 @@ class TracksViewController: DataSourceViewController {
         
         let loveContainer = NSView()
         cellView.addSubview(loveContainer)
-        loveContainer.snp_makeConstraints { make in
+        loveContainer.snp.makeConstraints { make in
             cellView.loveContainerWidthConstraint = make.width.equalTo(38).constraint
             make.top.equalTo(cellView)
             make.bottom.equalTo(cellView)
@@ -152,7 +152,7 @@ class TracksViewController: DataSourceViewController {
         cellView.loveButton.target = cellView
         cellView.loveButton.action = #selector(cellView.loveButtonClicked)
         loveContainer.addSubview(cellView.loveButton)
-        cellView.loveButton.snp_makeConstraints { make in
+        cellView.loveButton.snp.makeConstraints { make in
             make.centerY.equalTo(loveContainer)
             make.width.equalTo(18)
             make.height.equalTo(18)
@@ -161,11 +161,11 @@ class TracksViewController: DataSourceViewController {
         
         cellView.infoContainer = NSView()
         cellView.addSubview(cellView.infoContainer)
-        cellView.infoContainer.snp_makeConstraints { make in
+        cellView.infoContainer.snp.makeConstraints { make in
             cellView.infoContainerWidthConstraint = make.width.equalTo(30).constraint
             make.top.equalTo(cellView)
             make.bottom.equalTo(cellView)
-            make.right.equalTo(loveContainer.snp_left)
+            make.right.equalTo(loveContainer.snp.left)
         }
         
         let infoButton = TransparentButton()
@@ -173,7 +173,7 @@ class TracksViewController: DataSourceViewController {
         infoButton.target = cellView
         infoButton.action = #selector(cellView.infoButtonClicked)
         cellView.infoContainer.addSubview(infoButton)
-        infoButton.snp_makeConstraints { make in
+        infoButton.snp.makeConstraints { make in
             make.centerY.equalTo(cellView.infoContainer)
             make.width.equalTo(18)
             make.height.equalTo(18)
@@ -185,11 +185,11 @@ class TracksViewController: DataSourceViewController {
         cellView.titleButton.lineBreakMode = .byTruncatingTail
         cellView.titleButton.font = appFont(size: 14, weight: .medium)
         cellView.addSubview(cellView.titleButton)
-        cellView.titleButton.snp_makeConstraints { make in
+        cellView.titleButton.snp.makeConstraints { make in
             make.height.equalTo(20)
             make.top.equalTo(cellView).offset(10)
             make.left.equalTo(cellView).offset(73)
-            make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
+            make.right.lessThanOrEqualTo(cellView.infoContainer.snp.left).offset(-20)
         }
         
         cellView.artistButton = HyperlinkButton()
@@ -201,11 +201,11 @@ class TracksViewController: DataSourceViewController {
         cellView.artistButton.target = cellView
         cellView.artistButton.action = #selector(cellView.artistButtonClicked)
         cellView.addSubview(cellView.artistButton)
-        cellView.artistButton.snp_makeConstraints { make in
+        cellView.artistButton.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(cellView.titleButton.snp_bottom).offset(2)
+            make.top.equalTo(cellView.titleButton.snp.bottom).offset(2)
             make.left.equalTo(cellView).offset(73)
-            make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
+            make.right.lessThanOrEqualTo(cellView.infoContainer.snp.left).offset(-20)
         }
         
         cellView.progressSlider = FlatSlider()
@@ -218,7 +218,7 @@ class TracksViewController: DataSourceViewController {
         cellView.progressSlider.target = cellView
         cellView.progressSlider.action = #selector(cellView.progressSliderDragged)
         cellView.addSubview(cellView.progressSlider)
-        cellView.progressSlider.snp_makeConstraints { make in
+        cellView.progressSlider.snp.makeConstraints { make in
             make.left.equalTo(cellView).offset(-8)
             make.bottom.equalTo(cellView).offset(6)
             make.right.equalTo(cellView).offset(14)
@@ -236,7 +236,7 @@ class TracksViewController: DataSourceViewController {
         cellView.loveCount.objectValue = NSNumber(value: 2200 as Int)
         cellView.loveCount.formatter = LovedCountFormatter()
         cellView.addSubview(cellView.loveCount)
-        cellView.loveCount.snp_makeConstraints { make in
+        cellView.loveCount.snp.makeConstraints { make in
             make.centerY.equalTo(cellView)
             make.left.equalTo(cellView)
             make.width.equalTo(72)
@@ -247,7 +247,7 @@ class TracksViewController: DataSourceViewController {
     func setupHeatMapCellView(_ cellView: HeatMapTrackTableCellView) {
         cellView.heatMapView = HeatMapView()
         cellView.addSubview(cellView.heatMapView)
-        cellView.heatMapView.snp_makeConstraints { make in
+        cellView.heatMapView.snp.makeConstraints { make in
             make.centerY.equalTo(cellView)
             make.width.equalTo(32)
             make.height.equalTo(32)
@@ -264,9 +264,9 @@ class TracksViewController: DataSourceViewController {
         cellView.sourceTypeTextField.font = appFont(size: 12, weight: .medium)
         cellView.sourceTypeTextField.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
         cellView.addSubview(cellView.sourceTypeTextField)
-        cellView.sourceTypeTextField.snp_makeConstraints { make in
+        cellView.sourceTypeTextField.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(cellView.artistButton.snp_bottom).offset(2)
+            make.top.equalTo(cellView.artistButton.snp.bottom).offset(2)
             make.left.equalTo(cellView).offset(74)
         }
         
@@ -279,11 +279,11 @@ class TracksViewController: DataSourceViewController {
         cellView.sourceButton.target = cellView
         cellView.sourceButton.action = #selector(cellView.sourceButtonClicked)
         cellView.addSubview(cellView.sourceButton)
-        cellView.sourceButton.snp_makeConstraints { make in
+        cellView.sourceButton.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(cellView.artistButton.snp_bottom).offset(0)
-            make.left.equalTo(cellView.sourceTypeTextField.snp_right).offset(1)
-            make.right.lessThanOrEqualTo(cellView.infoContainer.snp_left).offset(-20)
+            make.top.equalTo(cellView.artistButton.snp.bottom).offset(0)
+            make.left.equalTo(cellView.sourceTypeTextField.snp.right).offset(1)
+            make.right.lessThanOrEqualTo(cellView.infoContainer.snp.left).offset(-20)
         }
     }
     
@@ -313,7 +313,7 @@ class TracksViewController: DataSourceViewController {
         super.loadView()
         
         loadScrollViewAndTableView()
-        scrollView.snp_makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
     }

@@ -49,7 +49,7 @@ class NavigationController: NSViewController {
         
         self.navigationBarController = NavigationBarController(navigationController: self)
         self.view.addSubview(navigationBarController.view)
-        self.navigationBarController.view.snp_makeConstraints { make in
+        self.navigationBarController.view.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -58,8 +58,8 @@ class NavigationController: NSViewController {
         
         self.contentView = NSView(frame: NSZeroRect)
         self.view.addSubview(self.contentView)
-        self.contentView.snp_makeConstraints { make in
-            make.top.equalTo(self.navigationBarController.view.snp_bottom)
+        self.contentView.snp.makeConstraints { make in
+            make.top.equalTo(self.navigationBarController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -153,9 +153,9 @@ class NavigationController: NSViewController {
             make.top.bottom.width.equalTo(self.contentView)
             switch side {
             case .Left:
-                make.right.equalTo(self.contentView.snp_left)
+                make.right.equalTo(self.contentView.snp.left)
             case .Right:
-                make.left.equalTo(self.contentView.snp_right)
+                make.left.equalTo(self.contentView.snp.right)
             }
         }
         self.makeOrRemakeConstraints(viewController, closure: closure)
@@ -174,9 +174,9 @@ class NavigationController: NSViewController {
     
     fileprivate func makeOrRemakeConstraints(_ viewController: BaseContentViewController, closure:(_ make: ConstraintMaker) -> Void) {
         if viewController.view.constraints.count > 0 {
-            viewController.view.snp_remakeConstraints(closure: closure)
+            viewController.view.snp.remakeConstraints(closure: closure)
         } else {
-            viewController.view.snp_makeConstraints(closure: closure)
+            viewController.view.snp.makeConstraints(closure: closure)
         }
     }
     

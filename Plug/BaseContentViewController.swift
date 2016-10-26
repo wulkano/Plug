@@ -53,7 +53,7 @@ class BaseContentViewController: NSViewController {
             loaderViewController = LoaderViewController(size: .large)
             let insets = EdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
             view.addSubview(loaderViewController!.view)
-            loaderViewController!.view.snp_makeConstraints { make in
+            loaderViewController!.view.snp.makeConstraints { make in
                 make.edges.equalTo(self.view).inset(insets)
             }
         }
@@ -112,13 +112,13 @@ class BaseContentViewController: NSViewController {
         view.addSubview(stickyTrackController.view)
         switch position {
         case .top:
-            stickyTrackController.view.snp_makeConstraints { make in
+            stickyTrackController.view.snp.makeConstraints { make in
                 make.height.equalTo(stickyTrackController.viewHeight)
                 make.left.right.equalTo(self.view)
                 make.top.equalTo(self.view).offset(tableViewInsets.top)
             }
         case .bottom:
-            stickyTrackController.view.snp_makeConstraints { make in
+            stickyTrackController.view.snp.makeConstraints { make in
                 make.height.equalTo(stickyTrackController.viewHeight)
                 make.left.right.equalTo(self.view)
                 make.bottom.equalTo(self.view).offset(-tableViewInsets.bottom)

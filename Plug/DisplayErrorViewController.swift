@@ -34,7 +34,7 @@ class DisplayErrorViewController: NSViewController {
         background.background = true
         background.backgroundColor = NSColor(red256: 255, green256: 95, blue256: 82)
         view.addSubview(background)
-        background.snp_makeConstraints { make in
+        background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
@@ -49,7 +49,7 @@ class DisplayErrorViewController: NSViewController {
         errorTitleTextField.setContentCompressionResistancePriority(490, for: .horizontal)
         errorTitleTextField.textColor = NSColor.white
         view.addSubview(errorTitleTextField)
-        errorTitleTextField.snp_makeConstraints { make in
+        errorTitleTextField.snp.makeConstraints { make in
             make.top.equalTo(view).offset(6)
             make.left.equalTo(view).offset(14)
             make.right.equalTo(view).offset(-14)
@@ -66,8 +66,8 @@ class DisplayErrorViewController: NSViewController {
         errorDescriptionTextField.setContentCompressionResistancePriority(490, for: .horizontal)
         errorDescriptionTextField.textColor = NSColor.white
         view.addSubview(errorDescriptionTextField)
-        errorDescriptionTextField.snp_makeConstraints { make in
-            make.top.equalTo(errorTitleTextField.snp_bottom)
+        errorDescriptionTextField.snp.makeConstraints { make in
+            make.top.equalTo(errorTitleTextField.snp.bottom)
             make.left.equalTo(view).offset(14)
             make.right.equalTo(view).offset(-14)
             make.bottom.equalTo(view).offset(-14)
@@ -82,8 +82,8 @@ class DisplayErrorViewController: NSViewController {
     }
     
     func setupLayoutInSuperview() {
-        view.snp_makeConstraints { make in
-            bottomConstraint = make.bottom.equalTo(view.superview!.snp_top).constraint
+        view.snp.makeConstraints { make in
+            bottomConstraint = make.bottom.equalTo(view.superview!.snp.top).constraint
             make.left.equalTo(view.superview!)
             make.right.equalTo(view.superview!)
         }
@@ -94,7 +94,7 @@ class DisplayErrorViewController: NSViewController {
         
         bottomConstraint!.uninstall()
         
-        view.snp_makeConstraints { make in
+        view.snp.makeConstraints { make in
             topConstraint = make.top.equalTo(view.superview!).constraint
         }
         
@@ -113,8 +113,8 @@ class DisplayErrorViewController: NSViewController {
             
             self.topConstraint!.uninstall()
             
-            self.view.snp_makeConstraints { make in
-                make.bottom.equalTo(self.view.superview!.snp_top)
+            self.view.snp.makeConstraints { make in
+                make.bottom.equalTo(self.view.superview!.snp.top)
             }
             
             NSAnimationContext.runAnimationGroup(

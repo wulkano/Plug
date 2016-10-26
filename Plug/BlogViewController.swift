@@ -52,7 +52,7 @@ class BlogViewController: BaseContentViewController {
         header.background = true
         header.backgroundColor = NSColor.white
         view.addSubview(header)
-        header.snp_makeConstraints { make in
+        header.snp.makeConstraints { make in
             make.height.greaterThanOrEqualTo(86)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -61,7 +61,7 @@ class BlogViewController: BaseContentViewController {
         
         imageView = BlogImageView()
         header.addSubview(imageView)
-        imageView.snp_makeConstraints { make in
+        imageView.snp.makeConstraints { make in
             make.width.equalTo(113)
             make.top.equalTo(self.header)
             make.bottom.equalTo(self.header).offset(-1)
@@ -77,11 +77,11 @@ class BlogViewController: BaseContentViewController {
         titleButton.target = self
         titleButton.action = #selector(BlogViewController.titleButtonClicked(_:))
         header.addSubview(titleButton)
-        titleButton.snp_makeConstraints { make in
+        titleButton.snp.makeConstraints { make in
             make.height.equalTo(24)
             make.top.equalTo(self.header).offset(17)
             make.left.equalTo(self.header).offset(19)
-            make.right.lessThanOrEqualTo(self.imageView.snp_left).offset(-10)
+            make.right.lessThanOrEqualTo(self.imageView.snp.left).offset(-10)
         }
         
         detailsTextField = NSTextField()
@@ -90,18 +90,18 @@ class BlogViewController: BaseContentViewController {
         detailsTextField.isBordered = false
         detailsTextField.drawsBackground = false
         header.addSubview(detailsTextField)
-        detailsTextField.snp_makeConstraints { make in
+        detailsTextField.snp.makeConstraints { make in
             make.height.equalTo(24)
-            make.top.equalTo(self.titleButton.snp_bottom).offset(8)
+            make.top.equalTo(self.titleButton.snp.bottom).offset(8)
             make.left.equalTo(self.header).offset(19)
             make.bottom.equalTo(self.header).offset(-17)
-            make.right.lessThanOrEqualTo(self.imageView.snp_left).offset(-10)
+            make.right.lessThanOrEqualTo(self.imageView.snp.left).offset(-10)
         }
         
         playlistContainer = NSView()
         view.addSubview(playlistContainer)
-        playlistContainer.snp_makeConstraints { make in
-            make.top.equalTo(self.header.snp_bottom)
+        playlistContainer.snp.makeConstraints { make in
+            make.top.equalTo(self.header.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -181,7 +181,7 @@ class BlogViewController: BaseContentViewController {
         addChildViewController(tracksViewController)
         
         playlistContainer.addSubview(tracksViewController.view)
-        tracksViewController.view.snp_makeConstraints { make in
+        tracksViewController.view.snp.makeConstraints { make in
             make.edges.equalTo(playlistContainer)
         }
 
@@ -219,7 +219,7 @@ class BlogViewController: BaseContentViewController {
         loaderViewController = LoaderViewController(size: .small)
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
-        loaderViewController!.view.snp_makeConstraints { make in
+        loaderViewController!.view.snp.makeConstraints { make in
             make.edges.equalTo(header).inset(insets)
         }
     }

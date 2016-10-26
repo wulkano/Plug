@@ -43,7 +43,7 @@ class FooterViewController: NSViewController {
         backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         backgroundView.blendingMode = .withinWindow
         view.addSubview(backgroundView)
-        backgroundView.snp_makeConstraints { make in
+        backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
@@ -52,7 +52,7 @@ class FooterViewController: NSViewController {
         borderBox.borderColor = NSColor(red256: 225, green256: 226, blue256: 226)
         borderBox.topBorder = true
         backgroundView.addSubview(borderBox)
-        borderBox.snp_makeConstraints { make in
+        borderBox.snp.makeConstraints { make in
             make.edges.equalTo(backgroundView)
         }
         
@@ -62,7 +62,7 @@ class FooterViewController: NSViewController {
         volumeIcon.twoImage = NSImage(named: "Footer-Volume-2")
         volumeIcon.threeImage = NSImage(named: "Footer-Volume-3")
         backgroundView.addSubview(volumeIcon)
-        volumeIcon.snp_makeConstraints { make in
+        volumeIcon.snp.makeConstraints { make in
             make.width.equalTo(16)
             make.height.equalTo(15)
             make.centerY.equalTo(backgroundView).offset(-1)
@@ -77,7 +77,7 @@ class FooterViewController: NSViewController {
         volumeSlider.cell = cell
         volumeSlider.controlSize = .mini
         backgroundView.addSubview(volumeSlider)
-        volumeSlider.snp_makeConstraints { make in
+        volumeSlider.snp.makeConstraints { make in
             make.centerY.equalTo(backgroundView)
             make.width.equalTo(60)
             make.left.equalTo(backgroundView).offset(40)
@@ -94,7 +94,7 @@ class FooterViewController: NSViewController {
         shuffleButton.target = self
         shuffleButton.action = #selector(FooterViewController.shuffleButtonClicked(_:))
         backgroundView.addSubview(shuffleButton)
-        shuffleButton.snp_makeConstraints { make in
+        shuffleButton.snp.makeConstraints { make in
             make.width.equalTo(42)
             make.top.equalTo(backgroundView)
             make.bottom.equalTo(backgroundView)
@@ -110,11 +110,11 @@ class FooterViewController: NSViewController {
         forwardButton.target = self
         forwardButton.action = #selector(FooterViewController.skipForwardButtonClicked(_:))
         backgroundView.addSubview(forwardButton)
-        forwardButton.snp_makeConstraints { make in
+        forwardButton.snp.makeConstraints { make in
             make.width.equalTo(42)
             make.top.equalTo(backgroundView)
             make.bottom.equalTo(backgroundView)
-            make.right.equalTo(shuffleButton.snp_left)
+            make.right.equalTo(shuffleButton.snp.left)
         }
         
         let backButton = SwissArmyButton(frame: NSZeroRect)
@@ -126,12 +126,12 @@ class FooterViewController: NSViewController {
         backButton.target = self
         backButton.action = #selector(FooterViewController.skipBackwardButtonClicked(_:))
         backgroundView.addSubview(backButton)
-        backButton.snp_makeConstraints { make in
+        backButton.snp.makeConstraints { make in
             make.width.equalTo(42)
             make.top.equalTo(backgroundView)
-            make.left.greaterThanOrEqualTo(volumeSlider.snp_right).offset(50)
+            make.left.greaterThanOrEqualTo(volumeSlider.snp.right).offset(50)
             make.bottom.equalTo(backgroundView)
-            make.right.equalTo(forwardButton.snp_left)
+            make.right.equalTo(forwardButton.snp.left)
         }
     }
     

@@ -53,7 +53,7 @@ class UserViewController: BaseContentViewController {
         header.background = true
         header.backgroundColor = NSColor.white
         view.addSubview(header)
-        header.snp_makeConstraints { make in
+        header.snp.makeConstraints { make in
             make.height.equalTo(86)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -63,7 +63,7 @@ class UserViewController: BaseContentViewController {
         avatarView = CircleMaskImageView()
         avatarView.image = NSImage(named: "Avatar-Placeholder")!
         header.addSubview(avatarView)
-        avatarView.snp_makeConstraints { make in
+        avatarView.snp.makeConstraints { make in
             make.centerY.equalTo(self.header)
             make.width.equalTo(36)
             make.height.equalTo(36)
@@ -77,10 +77,10 @@ class UserViewController: BaseContentViewController {
         usernameTextField.drawsBackground = false
         usernameTextField.font = appFont(size: 20)
         header.addSubview(usernameTextField)
-        usernameTextField.snp_makeConstraints { make in
+        usernameTextField.snp.makeConstraints { make in
             make.height.equalTo(24)
             make.top.equalTo(self.header).offset(17)
-            make.left.equalTo(self.avatarView.snp_right).offset(22)
+            make.left.equalTo(self.avatarView.snp.right).offset(22)
             make.right.equalTo(self.header).offset(-20)
         }
         
@@ -91,10 +91,10 @@ class UserViewController: BaseContentViewController {
         favoritesCountTextField.drawsBackground = false
         favoritesCountTextField.font = appFont(size: 13, weight: .medium)
         header.addSubview(favoritesCountTextField)
-        favoritesCountTextField.snp_makeConstraints { make in
+        favoritesCountTextField.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(self.avatarView.snp_right).offset(22)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(self.avatarView.snp.right).offset(22)
         }
         
         let favoritesLabel = NSTextField()
@@ -106,10 +106,10 @@ class UserViewController: BaseContentViewController {
         favoritesLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         favoritesLabel.stringValue = "Favorites"
         header.addSubview(favoritesLabel)
-        favoritesLabel.snp_makeConstraints { make in
+        favoritesLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(self.favoritesCountTextField.snp_right).offset(3)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(self.favoritesCountTextField.snp.right).offset(3)
         }
         
         friendsCountTextField = NSTextField()
@@ -119,10 +119,10 @@ class UserViewController: BaseContentViewController {
         friendsCountTextField.drawsBackground = false
         friendsCountTextField.font = appFont(size: 13, weight: .medium)
         header.addSubview(friendsCountTextField)
-        friendsCountTextField.snp_makeConstraints { make in
+        friendsCountTextField.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(favoritesLabel.snp_right).offset(13)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(favoritesLabel.snp.right).offset(13)
         }
         
         let friendsLabel = NSTextField()
@@ -134,16 +134,16 @@ class UserViewController: BaseContentViewController {
         friendsLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         friendsLabel.stringValue = "Friends"
         header.addSubview(friendsLabel)
-        friendsLabel.snp_makeConstraints { make in
+        friendsLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(self.friendsCountTextField.snp_right).offset(3)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(self.friendsCountTextField.snp.right).offset(3)
         }
         
         playlistContainer = NSView()
         view.addSubview(playlistContainer)
-        playlistContainer.snp_makeConstraints { make in
-            make.top.equalTo(self.header.snp_bottom)
+        playlistContainer.snp.makeConstraints { make in
+            make.top.equalTo(self.header.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -208,7 +208,7 @@ class UserViewController: BaseContentViewController {
         tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "User/Tracks")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
-        tracksViewController.view.snp_makeConstraints { make in
+        tracksViewController.view.snp.makeConstraints { make in
             make.edges.equalTo(playlistContainer)
         }
         tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: user!.username)
@@ -246,7 +246,7 @@ class UserViewController: BaseContentViewController {
         loaderViewController = LoaderViewController(size: .small)
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
-        loaderViewController!.view.snp_makeConstraints { make in
+        loaderViewController!.view.snp.makeConstraints { make in
             make.edges.equalTo(self.header).inset(insets)
         }
     }

@@ -36,7 +36,7 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         let sidebarViewController = SidebarViewController(delegate: self)!
         addChildViewController(sidebarViewController)
         view.addSubview(sidebarViewController.view)
-        sidebarViewController.view.snp_makeConstraints { make in
+        sidebarViewController.view.snp.makeConstraints { make in
             make.width.equalTo(69)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -47,9 +47,9 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         NavigationController.sharedInstance = navigationController
         addChildViewController(navigationController)
         view.addSubview(navigationController.view)
-        navigationController.view.snp_makeConstraints { make in
+        navigationController.view.snp.makeConstraints { make in
             make.top.equalTo(self.view)
-            make.left.equalTo(sidebarViewController.view.snp_right)
+            make.left.equalTo(sidebarViewController.view.snp.right)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
         }
@@ -57,9 +57,9 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         let footerViewController = FooterViewController()
         addChildViewController(footerViewController)
         view.addSubview(footerViewController.view)
-        footerViewController.view.snp_makeConstraints { make in
+        footerViewController.view.snp.makeConstraints { make in
             make.height.equalTo(47)
-            make.left.equalTo(sidebarViewController.view.snp_right)
+            make.left.equalTo(sidebarViewController.view.snp.right)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
         }
