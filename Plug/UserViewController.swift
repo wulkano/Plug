@@ -51,7 +51,7 @@ class UserViewController: BaseContentViewController {
         header.bottomBorder = true
         header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         header.background = true
-        header.backgroundColor = NSColor.whiteColor()
+        header.backgroundColor = NSColor.white
         view.addSubview(header)
         header.snp_makeConstraints { make in
             make.height.equalTo(86)
@@ -71,9 +71,9 @@ class UserViewController: BaseContentViewController {
         }
         
         usernameTextField = NSTextField()
-        usernameTextField.editable = false
-        usernameTextField.selectable = false
-        usernameTextField.bordered = false
+        usernameTextField.isEditable = false
+        usernameTextField.isSelectable = false
+        usernameTextField.isBordered = false
         usernameTextField.drawsBackground = false
         usernameTextField.font = appFont(size: 20)
         header.addSubview(usernameTextField)
@@ -85,11 +85,11 @@ class UserViewController: BaseContentViewController {
         }
         
         favoritesCountTextField = NSTextField()
-        favoritesCountTextField.editable = false
-        favoritesCountTextField.selectable = false
-        favoritesCountTextField.bordered = false
+        favoritesCountTextField.isEditable = false
+        favoritesCountTextField.isSelectable = false
+        favoritesCountTextField.isBordered = false
         favoritesCountTextField.drawsBackground = false
-        favoritesCountTextField.font = appFont(size: 13, weight: .Medium)
+        favoritesCountTextField.font = appFont(size: 13, weight: .medium)
         header.addSubview(favoritesCountTextField)
         favoritesCountTextField.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -98,11 +98,11 @@ class UserViewController: BaseContentViewController {
         }
         
         let favoritesLabel = NSTextField()
-        favoritesLabel.editable = false
-        favoritesLabel.selectable = false
-        favoritesLabel.bordered = false
+        favoritesLabel.isEditable = false
+        favoritesLabel.isSelectable = false
+        favoritesLabel.isBordered = false
         favoritesLabel.drawsBackground = false
-        favoritesLabel.font = appFont(size: 13, weight: .Medium)
+        favoritesLabel.font = appFont(size: 13, weight: .medium)
         favoritesLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         favoritesLabel.stringValue = "Favorites"
         header.addSubview(favoritesLabel)
@@ -113,11 +113,11 @@ class UserViewController: BaseContentViewController {
         }
         
         friendsCountTextField = NSTextField()
-        friendsCountTextField.editable = false
-        friendsCountTextField.selectable = false
-        friendsCountTextField.bordered = false
+        friendsCountTextField.isEditable = false
+        friendsCountTextField.isSelectable = false
+        friendsCountTextField.isBordered = false
         friendsCountTextField.drawsBackground = false
-        friendsCountTextField.font = appFont(size: 13, weight: .Medium)
+        friendsCountTextField.font = appFont(size: 13, weight: .medium)
         header.addSubview(friendsCountTextField)
         friendsCountTextField.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -126,11 +126,11 @@ class UserViewController: BaseContentViewController {
         }
         
         let friendsLabel = NSTextField()
-        friendsLabel.editable = false
-        friendsLabel.selectable = false
-        friendsLabel.bordered = false
+        friendsLabel.isEditable = false
+        friendsLabel.isSelectable = false
+        friendsLabel.isBordered = false
         friendsLabel.drawsBackground = false
-        friendsLabel.font = appFont(size: 13, weight: .Medium)
+        friendsLabel.font = appFont(size: 13, weight: .medium)
         friendsLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         friendsLabel.stringValue = "Friends"
         header.addSubview(friendsLabel)
@@ -156,7 +156,7 @@ class UserViewController: BaseContentViewController {
         if user != nil { userChanged() }
     }
     
-    func loadUser(username: String) {
+    func loadUser(_ username: String) {
         HypeMachineAPI.Requests.Users.show(username: username) { result in
             switch result {
             case .Success(let user):
@@ -205,7 +205,7 @@ class UserViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "User/Tracks")
+        tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "User/Tracks")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
         tracksViewController.view.snp_makeConstraints { make in
@@ -222,7 +222,7 @@ class UserViewController: BaseContentViewController {
         }
     }
     
-    func followButtonClicked(sender: ActionButton) {
+    func followButtonClicked(_ sender: ActionButton) {
         HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username, optionalParams: nil) { result in
             let favoritedState = sender.state == NSOnState
             
@@ -243,7 +243,7 @@ class UserViewController: BaseContentViewController {
     // MARK: BaseContentViewController
     
     override func addLoaderView() {
-        loaderViewController = LoaderViewController(size: .Small)
+        loaderViewController = LoaderViewController(size: .small)
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
         loaderViewController!.view.snp_makeConstraints { make in

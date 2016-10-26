@@ -9,7 +9,7 @@
 import Cocoa
 
 class HyperlinkButton: NSButton {
-    @IBInspectable var textColor: NSColor = NSColor.blackColor() {
+    @IBInspectable var textColor: NSColor = NSColor.black {
         didSet { applyAttributes() }
     }
     @IBInspectable var selectedTextColor: NSColor = NSColor(red256: 255, green256: 95, blue256: 82) {
@@ -40,8 +40,8 @@ class HyperlinkButton: NSButton {
     }
     
     func setup() {
-        setButtonType(NSButtonType.MomentaryPushInButton)
-        bezelStyle = NSBezelStyle.RoundedBezelStyle
+        setButtonType(NSButtonType.momentaryPushIn)
+        bezelStyle = NSBezelStyle.rounded
     }
     
     func applyAttributes() {
@@ -52,7 +52,7 @@ class HyperlinkButton: NSButton {
             attributes[NSForegroundColorAttributeName] = textColor
         }
         attributes[NSFontAttributeName] = (cell as! NSButtonCell).font
-        let paragraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = (cell as! NSButtonCell).lineBreakMode
         attributes[NSParagraphStyleAttributeName] = paragraphStyle
         let coloredString = NSMutableAttributedString(string: title, attributes: attributes)
@@ -78,17 +78,17 @@ class HyperlinkButton: NSButton {
                 trackingArea = nil
             }
             
-            let options: NSTrackingAreaOptions = [.InVisibleRect, .ActiveAlways, .MouseEnteredAndExited]
+            let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea!)
         }
     }
 
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
     }
     
@@ -103,14 +103,14 @@ class HyperlinkButton: NSButton {
     func addUnderlineToText() {
         let range = NSMakeRange(0, attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
+        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
         attributedTitle = newAttributedTitle
     }
     
     func removeUnderlineFromText() {
         let range = NSMakeRange(0, attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleNone.rawValue, range: range)
+        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleNone.rawValue, range: range)
         attributedTitle = newAttributedTitle
     }
 }

@@ -26,7 +26,7 @@ class VibrantTextField: NSTextField {
     
     func placeholderAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = NSColor.whiteColor().colorWithAlphaComponent(0.2)
+        attributes[NSForegroundColorAttributeName] = NSColor.white.withAlphaComponent(0.2)
         attributes[NSFontAttributeName] = (cell as! NSTextFieldCell).font
         return attributes
     }

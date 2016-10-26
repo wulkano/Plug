@@ -17,8 +17,8 @@ class FlatSliderCell: NSSliderCell {
     var mouseDown: Bool = false
     var mouseInside: Bool = false
     
-    override func drawBarInside(aRect: NSRect, flipped: Bool) {
-        let knobRect = knobRectFlipped(flipped)
+    override func drawBar(inside aRect: NSRect, flipped: Bool) {
+        let knobRect = self.knobRect(flipped: flipped)
         
         if verticalSlider() {
             // TODO
@@ -30,17 +30,17 @@ class FlatSliderCell: NSSliderCell {
             barFillRect.size.width = knobCenterX - inset
             barFillRect.origin.x = inset
             barFillColor.set()
-            NSRectFillUsingOperation(barFillRect, NSCompositingOperation.CompositeSourceOver)
+            NSRectFillUsingOperation(barFillRect, NSCompositingOperation.sourceOver)
             
             var barRect = aRect
             barRect.origin.x = knobCenterX
             barRect.size.width = barRect.size.width - knobCenterX - inset + 2.5
             barColor.set()
-            NSRectFillUsingOperation(barRect, NSCompositingOperation.CompositeSourceOver)
+            NSRectFillUsingOperation(barRect, NSCompositingOperation.sourceOver)
         }
     }
     
-    override func drawKnob(knobRect: NSRect) {
+    override func drawKnob(_ knobRect: NSRect) {
 //        TODO fix this drawing so it's not overlapping on the bar
 //        if mouseInside {
 //            var vInset = (knobRect.size.height - knobSize) / 2
@@ -53,6 +53,6 @@ class FlatSliderCell: NSSliderCell {
     }
     
     func verticalSlider() -> Bool {
-        return (controlView as! NSSlider).vertical == 1
+        return (controlView as! NSSlider).isVertical == 1
     }
 }

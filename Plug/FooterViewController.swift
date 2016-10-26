@@ -19,17 +19,17 @@ class FooterViewController: NSViewController {
     
     // MARK: Actions
     
-    func skipForwardButtonClicked(sender: AnyObject) {
+    func skipForwardButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Forward")
         AudioPlayer.sharedInstance.skipForward()
     }
     
-    func skipBackwardButtonClicked(sender: AnyObject) {
+    func skipBackwardButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Backward")
         AudioPlayer.sharedInstance.skipBackward()
     }
 
-    func shuffleButtonClicked(sender: AnyObject) {
+    func shuffleButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Shuffle")
         toggleShuffle()
     }
@@ -41,7 +41,7 @@ class FooterViewController: NSViewController {
         
         let backgroundView = DraggableVisualEffectsView()
         backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
-        backgroundView.blendingMode = .WithinWindow
+        backgroundView.blendingMode = .withinWindow
         view.addSubview(backgroundView)
         backgroundView.snp_makeConstraints { make in
             make.edges.equalTo(view)
@@ -75,7 +75,7 @@ class FooterViewController: NSViewController {
         cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
         cell.knobSize = 10
         volumeSlider.cell = cell
-        volumeSlider.controlSize = .MiniControlSize
+        volumeSlider.controlSize = .mini
         backgroundView.addSubview(volumeSlider)
         volumeSlider.snp_makeConstraints { make in
             make.centerY.equalTo(backgroundView)
@@ -87,7 +87,7 @@ class FooterViewController: NSViewController {
         let shuffleCell = TransparentButtonCell(textCell: "")
         shuffleCell.allowsSelectedState = true
         shuffleButton.cell = shuffleCell
-        shuffleButton.bordered = false
+        shuffleButton.isBordered = false
         shuffleButton.tracksHover = true
         shuffleButton.image = NSImage(named: "Footer-Shuffle-Normal")
         shuffleButton.alternateImage = NSImage(named: "Footer-Shuffle-Active")
@@ -104,7 +104,7 @@ class FooterViewController: NSViewController {
         let forwardButton = SwissArmyButton(frame: NSZeroRect)
         let forwardCell = TransparentButtonCell(textCell: "")
         forwardButton.cell = forwardCell
-        forwardButton.bordered = false
+        forwardButton.isBordered = false
         forwardButton.tracksHover = true
         forwardButton.image = NSImage(named: "Footer-Forward")
         forwardButton.target = self
@@ -120,7 +120,7 @@ class FooterViewController: NSViewController {
         let backButton = SwissArmyButton(frame: NSZeroRect)
         let backCell = TransparentButtonCell(textCell: "")
         backButton.cell = backCell
-        backButton.bordered = false
+        backButton.isBordered = false
         backButton.tracksHover = true
         backButton.image = NSImage(named: "Footer-Previous")
         backButton.target = self
@@ -138,8 +138,8 @@ class FooterViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        volumeSlider.bind("value", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
-        volumeIcon.bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
-        shuffleButton.bind("state", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.shuffle", options: nil)
+        volumeSlider.bind("value", to: NSUserDefaultsController.shared(), withKeyPath: "values.volume", options: nil)
+        volumeIcon.bind("volume", to: NSUserDefaultsController.shared(), withKeyPath: "values.volume", options: nil)
+        shuffleButton.bind("state", to: NSUserDefaultsController.shared(), withKeyPath: "values.shuffle", options: nil)
     }
 }

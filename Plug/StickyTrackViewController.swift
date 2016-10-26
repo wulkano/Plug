@@ -19,28 +19,28 @@ class StickyTrackViewController: TracksViewController {
         return trackViewHeight + shadowHeight - shadowOverlap
     }
     var shadowView: NSImageView?
-    var position: StickyTrackPosition = .Bottom {
+    var position: StickyTrackPosition = .bottom {
         didSet { positionChanged() }
     }
     var isShown: Bool {
         return self.view.superview != nil
     }
     
-    override var tableViewInsets: NSEdgeInsets {
+    override var tableViewInsets: EdgeInsets {
         return NSEdgeInsetsZero
     }
     
     func positionChanged() {
         switch position {
-        case .Top:
+        case .top:
             addShadowToBottom()
-        case .Bottom:
+        case .bottom:
             addShadowToTop()
         }
     }
     
-    override func rightMouseDown(theEvent: NSEvent) {
-        let menuController = TrackContextMenuController(track: AudioPlayer.sharedInstance.currentTrack)!
+    override func rightMouseDown(with theEvent: NSEvent) {
+        let menuController = TrackContextMenuController(coder: AudioPlayer.sharedInstance.currentTrack)!
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: self.view)
     }
     
@@ -53,7 +53,7 @@ class StickyTrackViewController: TracksViewController {
         }
         
         shadowView = NSImageView()
-        shadowView!.imageScaling = NSImageScaling.ScaleAxesIndependently
+        shadowView!.imageScaling = NSImageScaling.scaleAxesIndependently
         shadowView!.image = NSImage(named: "Sticky Track Shadow Bottom")
         view.addSubview(shadowView!)
         shadowView!.snp_makeConstraints { make in
@@ -73,7 +73,7 @@ class StickyTrackViewController: TracksViewController {
         }
         
         shadowView = NSImageView()
-        shadowView!.imageScaling = NSImageScaling.ScaleAxesIndependently
+        shadowView!.imageScaling = NSImageScaling.scaleAxesIndependently
         shadowView!.image = NSImage(named: "Sticky Track Shadow Top")
         view.addSubview(shadowView!)
         shadowView!.snp_makeConstraints { make in

@@ -8,50 +8,50 @@
 
 import Cocoa
 
-class DropdownTitleFormatter: NSFormatter {
+class DropdownTitleFormatter: Formatter {
     
-    override func attributedStringForObjectValue(obj: AnyObject, withDefaultAttributes attrs: [String : AnyObject]?) -> NSAttributedString? {
+    override func attributedString(for obj: Any, withDefaultAttributes attrs: [String : Any]?) -> NSAttributedString? {
         return attributedDropdownTitle("Popular", optionTitle: "Now")
     }
     
-    override func stringForObjectValue(obj: AnyObject) -> String? {
+    override func string(for obj: Any?) -> String? {
         return attributedDropdownTitle("Popular", optionTitle: "Now").string
     }
     
-    func attributedDropdownTitle(title: String?, optionTitle: String?) -> NSAttributedString {
+    func attributedDropdownTitle(_ title: String?, optionTitle: String?) -> NSAttributedString {
         let formattedViewTitle = formatViewTitle(title ?? "")
         let formattedOptionTitle = formatOptionTitle(optionTitle ?? "")
         
         let dropdownTitle = NSMutableAttributedString()
-        dropdownTitle.appendAttributedString(formattedViewTitle)
-        dropdownTitle.appendAttributedString(formattedOptionTitle)
+        dropdownTitle.append(formattedViewTitle)
+        dropdownTitle.append(formattedOptionTitle)
         
         return dropdownTitle
     }
     
-    private func formatViewTitle(viewTitle: String) -> NSAttributedString {
+    fileprivate func formatViewTitle(_ viewTitle: String) -> NSAttributedString {
         return NSAttributedString(string: viewTitle, attributes: viewTitleAttributes())
     }
     
-    private func formatOptionTitle(optionTitle: String) -> NSAttributedString {
+    fileprivate func formatOptionTitle(_ optionTitle: String) -> NSAttributedString {
         return NSAttributedString(string: " (\(optionTitle))", attributes: optionTitleAttributes())
     }
     
-    private func viewTitleAttributes() -> [String: AnyObject] {
+    fileprivate func viewTitleAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor(red256: 0, green256: 0, blue256: 0)
         attributes[NSFontAttributeName] = getFont()
         return attributes
     }
     
-    private func optionTitleAttributes() -> [String: AnyObject] {
+    fileprivate func optionTitleAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
         attributes[NSForegroundColorAttributeName] = NSColor(white: 0, alpha: 0.4)
         attributes[NSFontAttributeName] = getFont()
         return attributes
     }
     
-    private func getFont() -> NSFont {
-        return appFont(size: 14, weight: .Medium)
+    fileprivate func getFont() -> NSFont {
+        return appFont(size: 14, weight: .medium)
     }
 }

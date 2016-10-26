@@ -9,13 +9,13 @@
 import Foundation
 
 
-func appFont(size size: CGFloat) -> NSFont {
-    return NSFont.systemFontOfSize(size)
+func appFont(size: CGFloat) -> NSFont {
+    return NSFont.systemFont(ofSize: size)
 }
 
-func appFont(size size: CGFloat, weight: AppFontWeight) -> NSFont {
+func appFont(size: CGFloat, weight: AppFontWeight) -> NSFont {
     if #available(OSX 10.11, *) {
-        return NSFont.systemFontOfSize(size, weight: weight.NSFontWeight)
+        return NSFont.systemFont(ofSize: size, weight: weight.NSFontWeight)
     } else {
         var fontName = "HelveticaNeue"
         
@@ -28,18 +28,18 @@ func appFont(size size: CGFloat, weight: AppFontWeight) -> NSFont {
 }
 
 enum AppFontWeight {
-    case Regular
-    case Medium
-    case Bold
+    case regular
+    case medium
+    case bold
     
     var NSFontWeight: CGFloat {
         if #available(OSX 10.11, *) {
             switch self {
-            case .Regular:
+            case .regular:
                 return NSFontWeightRegular
-            case .Medium:
+            case .medium:
                 return NSFontWeightMedium
-            case .Bold:
+            case .bold:
                 return NSFontWeightBold
             }
         } else {
@@ -49,11 +49,11 @@ enum AppFontWeight {
     
     var stringSuffix: String? {
         switch self {
-        case .Regular:
+        case .regular:
             return nil
-        case .Medium:
+        case .medium:
             return "Medium"
-        case .Bold:
+        case .bold:
             return "Bold"
         }
     }

@@ -9,32 +9,32 @@
 import Foundation
 
 enum NavigationSection: Int {
-    case Popular = 0
-    case Favorites
-    case Latest
-    case Blogs
-    case Feed
-    case Genres
-    case Friends
-    case Search
+    case popular = 0
+    case favorites
+    case latest
+    case blogs
+    case feed
+    case genres
+    case friends
+    case search
     
     var title: String {
         switch self {
-        case .Popular:
+        case .popular:
             return "Popular"
-        case .Favorites:
+        case .favorites:
             return "Favorites"
-        case .Latest:
+        case .latest:
             return "Latest"
-        case .Blogs:
+        case .blogs:
             return "Blogs"
-        case .Feed:
+        case .feed:
             return "Feed"
-        case .Genres:
+        case .genres:
             return "Genres"
-        case .Friends:
+        case .friends:
             return "Friends"
-        case .Search:
+        case .search:
             return "Search"
         }
     }
@@ -50,14 +50,14 @@ enum PopularSectionMode: String {
     case OnlyRemixes = "Only Remixes"
     case LastWeek = "Last Week"
     
-    static let navigationSection = NavigationSection.Popular
+    static let navigationSection = NavigationSection.popular
     
     var title: String {
         return self.rawValue
     }
     
     var params: [String: AnyObject] {
-        return ["mode": self.slug]
+        return ["mode": self.slug as AnyObject]
     }
     
     var slug: String {
@@ -81,7 +81,7 @@ enum FavoritesSectionPlaylist: String {
     case Two = "Down"
     case Three = "Weird"
     
-    static let navigationSection = NavigationSection.Favorites
+    static let navigationSection = NavigationSection.favorites
     
     var title: String {
         return self.rawValue
@@ -94,14 +94,14 @@ enum LatestSectionMode: String {
     case NoRemixes = "No Remixes"
     case OnlyRemixes = "Only Remixes"
     
-    static let navigationSection = NavigationSection.Latest
+    static let navigationSection = NavigationSection.latest
     
     var title: String {
         return self.rawValue
     }
     
     var params: [String: AnyObject] {
-        return ["mode": self.slug]
+        return ["mode": self.slug as AnyObject]
     }
     
     var slug: String {
@@ -123,14 +123,14 @@ enum FeedSectionMode: String {
     case Friends = "Friends"
     case Blogs = "Blogs"
     
-    static let navigationSection = NavigationSection.Feed
+    static let navigationSection = NavigationSection.feed
     
     var title: String {
         return self.rawValue
     }
     
     var params: [String: AnyObject] {
-        return ["mode": self.slug]
+        return ["mode": self.slug as AnyObject]
     }
     
     var slug: String {
@@ -150,14 +150,14 @@ enum SearchSectionSort: String {
     case MostFavorites = "Most Favorites"
     case MostReblogged = "Most Reblogged"
     
-    static let navigationSection = NavigationSection.Search
+    static let navigationSection = NavigationSection.search
     
     var title: String {
         return self.rawValue
     }
     
     var params: [String: AnyObject] {
-        return ["sort": self.slug]
+        return ["sort": self.slug as AnyObject]
     }
     
     var slug: String {

@@ -10,13 +10,13 @@ import Cocoa
 
 class AboutViewController: NSViewController {
     
-    func label(container: NSView) -> NSTextField {
+    func label(_ container: NSView) -> NSTextField {
         let textField = NSTextField()
-        textField.editable = false
-        textField.selectable = false
-        textField.bordered = false
+        textField.isEditable = false
+        textField.isSelectable = false
+        textField.isBordered = false
         textField.drawsBackground = false
-        textField.alignment = .Center
+        textField.alignment = .center
         
         container.addSubview(textField)
         textField.snp_makeConstraints { make in
@@ -27,7 +27,7 @@ class AboutViewController: NSViewController {
         return textField
     }
     
-    func attributionSectionTitled(title: String, name: String, linkTitle: String, linkAction: Selector) -> NSView {
+    func attributionSectionTitled(_ title: String, name: String, linkTitle: String, linkAction: Selector) -> NSView {
         let container = NSView()
         view.addSubview(container)
         container.snp_makeConstraints { make in
@@ -36,7 +36,7 @@ class AboutViewController: NSViewController {
         }
         
         let titleLabel = label(container)
-        titleLabel.font = appFont(size: 12, weight: .Bold)
+        titleLabel.font = appFont(size: 12, weight: .bold)
         titleLabel.stringValue = title
         titleLabel.snp_makeConstraints { make in
             make.top.equalTo(container)
@@ -51,10 +51,10 @@ class AboutViewController: NSViewController {
         
         let link = HyperlinkButton()
         link.hoverUnderline = true
-        link.bordered = false
+        link.isBordered = false
         link.font = appFont(size: 12)
         link.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
-        link.alignment = .Center
+        link.alignment = .center
         link.title = linkTitle
         link.target = self
         link.action = linkAction
@@ -71,12 +71,12 @@ class AboutViewController: NSViewController {
     
     // MARK: Actions
     
-    func glennLinkClicked(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.twitter.com/glennui")!)
+    func glennLinkClicked(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "http://www.twitter.com/glennui")!)
     }
 
-    func alexLinkClicked(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.twitter.com/alex_marchant")!)
+    func alexLinkClicked(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "http://www.twitter.com/alex_marchant")!)
     }
 
     // MARK: NSViewController
@@ -97,7 +97,7 @@ class AboutViewController: NSViewController {
         }
         
         let nameLabel = label(view)
-        nameLabel.font = appFont(size: 14, weight: .Bold)
+        nameLabel.font = appFont(size: 14, weight: .bold)
         nameLabel.stringValue = "Plug"
         nameLabel.snp_makeConstraints { make in
             make.top.equalTo(logo.snp_bottom).offset(20)
@@ -105,8 +105,8 @@ class AboutViewController: NSViewController {
         
         let versionLabel = label(view)
         versionLabel.font = appFont(size: 11)
-        let bundleVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let bundleVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+        let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         versionLabel.stringValue = "Version \(bundleVersionString) (\(bundleVersion))"
         versionLabel.snp_makeConstraints { make in
             make.top.equalTo(nameLabel.snp_bottom).offset(3)
@@ -124,9 +124,9 @@ class AboutViewController: NSViewController {
         
         let copyright = label(view)
         copyright.font = appFont(size: 11)
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
-        let year = formatter.stringFromDate(NSDate())
+        let year = formatter.string(from: Date())
         copyright.stringValue = "Copyright © \(year) Alex Marchant & Glenn Hitchcock."
         copyright.snp_makeConstraints { make in
             make.top.equalTo(alexSection.snp_bottom).offset(10)

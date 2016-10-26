@@ -18,19 +18,19 @@ class NavigationItem: NSObject {
         super.init()
     }
     
-    class func standardBackButtonWithTitle(title: String) -> SwissArmyButton {
+    class func standardBackButtonWithTitle(_ title: String) -> SwissArmyButton {
         let button = SwissArmyButton(frame: NSZeroRect)
         let cell = BackButtonCell(textCell: "")
         button.cell = cell
-        button.bezelStyle = .RegularSquareBezelStyle
-        button.bordered = true
-        button.font = appFont(size: 13, weight: .Medium)
+        button.bezelStyle = .regularSquare
+        button.isBordered = true
+        button.font = appFont(size: 13, weight: .medium)
         button.title = title
         
         return button
     }
     
-    class func standardRightButtonWithOnStateTitle(onStateTitle: String, offStateTitle: String, target: AnyObject, action: Selector) -> ActionButton {
+    class func standardRightButtonWithOnStateTitle(_ onStateTitle: String, offStateTitle: String, target: AnyObject, action: Selector) -> ActionButton {
         let button = ActionButton(frame: NSZeroRect)
         let cell = ActionButtonCell(textCell: "")
         
@@ -38,28 +38,28 @@ class NavigationItem: NSObject {
         button.onStateTitle = onStateTitle
         button.offStateTitle = offStateTitle
         button.state = NSOffState
-        button.bezelStyle = .RegularSquareBezelStyle
-        button.bordered = true
-        button.font = appFont(size: 13, weight: .Medium)
+        button.bezelStyle = .regularSquare
+        button.isBordered = true
+        button.font = appFont(size: 13, weight: .medium)
         button.target = target
         button.action = action
         
         return button
     }
     
-    class func standardTitleDropdownButtonForMenu(menu: NSMenu) -> TitleBarPopUpButton {
+    class func standardTitleDropdownButtonForMenu(_ menu: NSMenu) -> TitleBarPopUpButton {
         let button = TitleBarPopUpButton(frame: NSZeroRect, pullsDown: true)
         let buttonCell = TitleBarPopUpButtonCell(textCell: "", pullsDown: true)
         
         buttonCell.altersStateOfSelectedItem = true
         buttonCell.usesItemFromMenu = true
-        buttonCell.arrowPosition = .ArrowAtBottom
+        buttonCell.arrowPosition = .arrowAtBottom
         
         button.cell = buttonCell
         button.autoenablesItems = true
-        button.preferredEdge = NSRectEdge.MaxY
-        button.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        button.lineBreakMode = .ByTruncatingMiddle
+        button.preferredEdge = NSRectEdge.maxY
+        button.setContentCompressionResistancePriority(490, for: .horizontal)
+        button.lineBreakMode = .byTruncatingMiddle
         button.menu = menu
         
         return button

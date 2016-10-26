@@ -28,7 +28,7 @@ class TransparentButton: NSButton {
         didSet { needsDisplay = true }
     }
 
-    override func drawRect(dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         var drawPosition = bounds
         let drawImage = getDrawImage()
         let drawOpacity = getDrawOpacity()
@@ -38,7 +38,7 @@ class TransparentButton: NSButton {
             drawPosition.origin.y = -(bounds.size.height - drawImage!.size.height) / 2
         }
         
-        drawImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:drawOpacity, respectFlipped:true, hints:nil)
+        drawImage?.draw(in: drawPosition, from:dirtyRect, operation:NSCompositingOperation.sourceOver, fraction:drawOpacity, respectFlipped:true, hints:nil)
     }
     
     override func viewDidMoveToWindow() {
@@ -73,22 +73,22 @@ class TransparentButton: NSButton {
         }
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         mouseDown = true
-        super.mouseDown(theEvent)
-        mouseUp(theEvent)
+        super.mouseDown(with: theEvent)
+        mouseUp(with: theEvent)
     }
     
-    override func mouseUp(theEvent: NSEvent) {
+    override func mouseUp(with theEvent: NSEvent) {
         mouseDown = false
-        super.mouseUp(theEvent)
+        super.mouseUp(with: theEvent)
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
     }
 }

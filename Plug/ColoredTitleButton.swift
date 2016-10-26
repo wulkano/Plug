@@ -9,7 +9,7 @@
 import Cocoa
 
 class ColoredTitleButton: NSButton {
-    @IBInspectable var textColor: NSColor = NSColor.whiteColor() {
+    @IBInspectable var textColor: NSColor = NSColor.white {
         didSet {
             applyTextColor()
         }

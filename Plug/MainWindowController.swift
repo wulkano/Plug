@@ -14,11 +14,11 @@ class MainWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     
-        trafficButtons = TrafficButtons(style: .Dark, groupIdentifier: "MainWindow")
+        trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "MainWindow")
         trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(8, 10))
     }
     
-    override func keyDown(theEvent: NSEvent) {
+    override func keyDown(with theEvent: NSEvent) {
         // 49 is the key for the space bar
         if (theEvent.keyCode == 49) {
             AudioPlayer.sharedInstance.playPauseToggle()

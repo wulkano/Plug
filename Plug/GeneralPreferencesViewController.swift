@@ -39,17 +39,17 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
     
     // MARK: NSTableViewDelegate
 
-    func selectionShouldChangeInTableView(tableView: NSTableView) -> Bool {
+    func selectionShouldChange(in tableView: NSTableView) -> Bool {
         return false // Disallows row selection
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return preferences.count
     }
     
     // MARK: NSTableViewDataSource
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         return preferences[row]
     }
 }
@@ -65,10 +65,10 @@ class GeneralPreference {
     }
 
     func getUserDefaultsValue() -> Bool {
-        return NSUserDefaults.standardUserDefaults().valueForKey(settingsKey) as! Bool
+        return UserDefaults.standard.value(forKey: settingsKey) as! Bool
     }
 
-    func setUserDefaultsValue(value: Bool) {
-        NSUserDefaults.standardUserDefaults().setValue(value, forKey: settingsKey)
+    func setUserDefaultsValue(_ value: Bool) {
+        UserDefaults.standard.setValue(value, forKey: settingsKey)
     }
 }

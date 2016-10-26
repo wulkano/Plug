@@ -45,20 +45,20 @@ class TracksViewController: DataSourceViewController {
     
     func loadDataSource() {
         addLoaderView()
-        tableView.setDataSource(dataSource!)
+        tableView.dataSource = dataSource!
         dataSource!.loadNextPageObjects()
     }
     
-    override func nextPageDidLoad(pageNumber: Int) {
-        if let favoriteTracksDataSource = tracksDataSource as? FavoriteTracksDataSource where favoriteTracksDataSource.shuffle {
+    override func nextPageDidLoad(_ pageNumber: Int) {
+        if let favoriteTracksDataSource = tracksDataSource as? FavoriteTracksDataSource , favoriteTracksDataSource.shuffle {
             removeLoaderView()
         } else {
             super.nextPageDidLoad(pageNumber)
         }
     }
     
-    func cellViewForRow(row: Int) -> TrackTableCellView? {
-        if let cell = tableView.viewAtColumn(0, row: row, makeIfNecessary: false) as? TrackTableCellView {
+    func cellViewForRow(_ row: Int) -> TrackTableCellView? {
+        if let cell = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? TrackTableCellView {
             cell.dataSource = tracksDataSource
             return cell
         } else {
@@ -72,9 +72,9 @@ class TracksViewController: DataSourceViewController {
         return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }
     
-    func heatMapCellView(tableView: NSTableView) -> HeatMapTrackTableCellView {
+    func heatMapCellView(_ tableView: NSTableView) -> HeatMapTrackTableCellView {
         let id = "HeatMapTrackTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? HeatMapTrackTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? HeatMapTrackTableCellView
         
         if cellView == nil {
             cellView = HeatMapTrackTableCellView()
@@ -87,9 +87,9 @@ class TracksViewController: DataSourceViewController {
         return cellView!
     }
     
-    func loveCountCellView(tableView: NSTableView) -> LoveCountTrackTableCellView {
+    func loveCountCellView(_ tableView: NSTableView) -> LoveCountTrackTableCellView {
         let id = "LoveCountTrackTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? LoveCountTrackTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? LoveCountTrackTableCellView
         
         if cellView == nil {
             cellView = LoveCountTrackTableCellView()
@@ -102,9 +102,9 @@ class TracksViewController: DataSourceViewController {
         return cellView!
     }
     
-    func feedCellView(tableView: NSTableView) -> FeedTrackTableCellView {
+    func feedCellView(_ tableView: NSTableView) -> FeedTrackTableCellView {
         let id = "FeedTrackTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? FeedTrackTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? FeedTrackTableCellView
         
         if cellView == nil {
             cellView = FeedTrackTableCellView()
@@ -118,11 +118,11 @@ class TracksViewController: DataSourceViewController {
         return cellView!
     }
     
-    func setupTrackCellView(cellView: TrackTableCellView) {
+    func setupTrackCellView(_ cellView: TrackTableCellView) {
         cellView.showLoveButton = showLoveButton
         
         cellView.playPauseButton = HoverToggleButton()
-        cellView.playPauseButton.hidden = true
+        cellView.playPauseButton.isHidden = true
         cellView.playPauseButton.onImage = NSImage(named: "Track-Pause-Normal")!
         cellView.playPauseButton.onHoverImage = NSImage(named: "Track-Pause-Hover")!
         cellView.playPauseButton.offImage = NSImage(named: "Track-Play-Normal")!
@@ -181,9 +181,9 @@ class TracksViewController: DataSourceViewController {
         }
         
         cellView.titleButton = HyperlinkButton()
-        cellView.titleButton.bordered = false
-        cellView.titleButton.lineBreakMode = .ByTruncatingTail
-        cellView.titleButton.font = appFont(size: 14, weight: .Medium)
+        cellView.titleButton.isBordered = false
+        cellView.titleButton.lineBreakMode = .byTruncatingTail
+        cellView.titleButton.font = appFont(size: 14, weight: .medium)
         cellView.addSubview(cellView.titleButton)
         cellView.titleButton.snp_makeConstraints { make in
             make.height.equalTo(20)
@@ -194,9 +194,9 @@ class TracksViewController: DataSourceViewController {
         
         cellView.artistButton = HyperlinkButton()
         cellView.artistButton.hoverUnderline = true
-        cellView.artistButton.bordered = false
-        cellView.artistButton.lineBreakMode = .ByTruncatingTail
-        cellView.artistButton.font = appFont(size: 13, weight: .Medium)
+        cellView.artistButton.isBordered = false
+        cellView.artistButton.lineBreakMode = .byTruncatingTail
+        cellView.artistButton.font = appFont(size: 13, weight: .medium)
         cellView.artistButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         cellView.artistButton.target = cellView
         cellView.artistButton.action = #selector(cellView.artistButtonClicked)
@@ -225,15 +225,15 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    func setupLoveCountCellView(cellView: LoveCountTrackTableCellView) {
+    func setupLoveCountCellView(_ cellView: LoveCountTrackTableCellView) {
         cellView.loveCount = ColorChangingTextField()
-        cellView.loveCount.selectable = false
-        cellView.loveCount.editable = false
-        cellView.loveCount.bordered = false
+        cellView.loveCount.isSelectable = false
+        cellView.loveCount.isEditable = false
+        cellView.loveCount.isBordered = false
         cellView.loveCount.drawsBackground = false
-        cellView.loveCount.alignment = .Center
-        cellView.loveCount.font = appFont(size: 22, weight: .Medium)
-        cellView.loveCount.objectValue = NSNumber(integer: 2200)
+        cellView.loveCount.alignment = .center
+        cellView.loveCount.font = appFont(size: 22, weight: .medium)
+        cellView.loveCount.objectValue = NSNumber(value: 2200 as Int)
         cellView.loveCount.formatter = LovedCountFormatter()
         cellView.addSubview(cellView.loveCount)
         cellView.loveCount.snp_makeConstraints { make in
@@ -244,7 +244,7 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    func setupHeatMapCellView(cellView: HeatMapTrackTableCellView) {
+    func setupHeatMapCellView(_ cellView: HeatMapTrackTableCellView) {
         cellView.heatMapView = HeatMapView()
         cellView.addSubview(cellView.heatMapView)
         cellView.heatMapView.snp_makeConstraints { make in
@@ -255,13 +255,13 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    func setupFeedCellView(cellView: FeedTrackTableCellView) {
+    func setupFeedCellView(_ cellView: FeedTrackTableCellView) {
         cellView.sourceTypeTextField = SelectableTextField()
-        cellView.sourceTypeTextField.editable = false
-        cellView.sourceTypeTextField.selectable = false
-        cellView.sourceTypeTextField.bordered = false
+        cellView.sourceTypeTextField.isEditable = false
+        cellView.sourceTypeTextField.isSelectable = false
+        cellView.sourceTypeTextField.isBordered = false
         cellView.sourceTypeTextField.drawsBackground = false
-        cellView.sourceTypeTextField.font = appFont(size: 12, weight: .Medium)
+        cellView.sourceTypeTextField.font = appFont(size: 12, weight: .medium)
         cellView.sourceTypeTextField.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
         cellView.addSubview(cellView.sourceTypeTextField)
         cellView.sourceTypeTextField.snp_makeConstraints { make in
@@ -272,9 +272,9 @@ class TracksViewController: DataSourceViewController {
         
         cellView.sourceButton = HyperlinkButton()
         cellView.sourceButton.hoverUnderline = true
-        cellView.sourceButton.bordered = false
-        cellView.sourceButton.lineBreakMode = .ByTruncatingTail
-        cellView.sourceButton.font = appFont(size: 12, weight: .Medium)
+        cellView.sourceButton.isBordered = false
+        cellView.sourceButton.lineBreakMode = .byTruncatingTail
+        cellView.sourceButton.font = appFont(size: 12, weight: .medium)
         cellView.sourceButton.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         cellView.sourceButton.target = cellView
         cellView.sourceButton.action = #selector(cellView.sourceButtonClicked)
@@ -290,20 +290,20 @@ class TracksViewController: DataSourceViewController {
     // MARK: Unavailable tracks
     
     func showHideUnavailableTracks() {
-        let hideUnavailableTracks = NSUserDefaults.standardUserDefaults().valueForKey(HideUnavailableTracks) as! Bool
+        let hideUnavailableTracks = UserDefaults.standard.value(forKey: HideUnavailableTracks) as! Bool
         dataSource?.filtering = hideUnavailableTracks
     }
     
     // MARK: NSResponder
     
-    override func keyDown(theEvent: NSEvent) {
+    override func keyDown(with theEvent: NSEvent) {
         switch theEvent.keyCode {
         case 36: // Enter
             let row = tableView.selectedRow
             let track = tracksDataSource!.objectForRow(row)! as! HypeMachineAPI.Track
             AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
         default:
-            super.keyDown(theEvent)
+            super.keyDown(with: theEvent)
         }
     }
     
@@ -321,7 +321,7 @@ class TracksViewController: DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.setDelegate(self)
+        tableView.delegate = self
         tableView.extendedDelegate = self
         
         if dataSource != nil {
@@ -331,7 +331,7 @@ class TracksViewController: DataSourceViewController {
         showHideUnavailableTracks()
         
         Notifications.subscribe(observer: self, selector: #selector(BaseContentViewController.refresh), name: Notifications.RefreshCurrentView, object: nil)
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: HideUnavailableTracks, options: NSKeyValueObservingOptions.New, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: HideUnavailableTracks, options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     // MARK: BaseContentViewController
@@ -341,7 +341,7 @@ class TracksViewController: DataSourceViewController {
         dataSource!.refresh()
     }
     
-    override func isTrackVisible(track: HypeMachineAPI.Track) -> Bool {
+    override func isTrackVisible(_ track: HypeMachineAPI.Track) -> Bool {
         for row in tableView.visibleRows {
             let rowTrack = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
             if (rowTrack == track &&
@@ -353,7 +353,7 @@ class TracksViewController: DataSourceViewController {
         return false
     }
     
-    func trackAboveOrBelow(track: HypeMachineAPI.Track, tracksDataSource: TracksDataSource) -> StickyTrackPosition {
+    func trackAboveOrBelow(_ track: HypeMachineAPI.Track, tracksDataSource: TracksDataSource) -> StickyTrackPosition {
         if tracksDataSource != self.tracksDataSource {
             return .Bottom
         }
@@ -364,25 +364,25 @@ class TracksViewController: DataSourceViewController {
         return row < firstFullyVisibleRow ? .Top : .Bottom
     }
     
-    func isTableViewRowFullyVisible(row: Int) -> Bool {
+    func isTableViewRowFullyVisible(_ row: Int) -> Bool {
         return tableView.isRowFullyVisible(row)
     }
     
     override var stickyTrackControllerType: TracksViewControllerType {
         switch self.type {
-        case .HeatMap, .LoveCount:
-            return .LoveCount
-        case .Feed:
-            return .Feed
+        case .heatMap, .loveCount:
+            return .loveCount
+        case .feed:
+            return .feed
         }
     }
     
     // MARK: Notifications
     
-    override func newCurrentTrack(notification: NSNotification) {
+    override func newCurrentTrack(_ notification: Notification) {
         super.newCurrentTrack(notification)
         
-        let tracksDataSource = notification.userInfo!["tracksDataSource"] as! TracksDataSource
+        let tracksDataSource = (notification as NSNotification).userInfo!["tracksDataSource"] as! TracksDataSource
         if tracksDataSource == self.tracksDataSource {
             stickyTrackBelongsToUs = true
         } else {
@@ -399,27 +399,27 @@ class TracksViewController: DataSourceViewController {
     // MARK: DataSourceViewController
     
     override func dataSourceChanged() {
-        if viewLoaded {
+        if isViewLoaded {
             loadDataSource()
         }
     }
     
     // MARK: NSTableViewDelegate
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         switch type {
-        case .HeatMap:
+        case .heatMap:
             return heatMapCellView(tableView)
-        case .LoveCount:
+        case .loveCount:
             return loveCountCellView(tableView)
-        case .Feed:
+        case .feed:
             return feedCellView(tableView)
         }
     }
     
-    func tableView(tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? IOSStyleTableRowView
+        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
@@ -430,9 +430,9 @@ class TracksViewController: DataSourceViewController {
         return rowView!
     }
     
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         switch type {
-        case .Feed:
+        case .feed:
             return 84
         default:
             return 64
@@ -441,31 +441,31 @@ class TracksViewController: DataSourceViewController {
     
     // MARK: ExtendedTableViewDelegate
     
-    override func tableView(tableView: NSTableView, mouseEnteredRow row: Int) {
+    override func tableView(_ tableView: NSTableView, mouseEnteredRow row: Int) {
         if let cellView = cellViewForRow(row) {
             cellView.mouseInside = true
         }
         previousMouseInsideRow = row
     }
     
-    override func tableView(tableView: NSTableView, mouseExitedRow row: Int) {
+    override func tableView(_ tableView: NSTableView, mouseExitedRow row: Int) {
         if let cellView = cellViewForRow(row) {
             cellView.mouseInside = false
         }
     }
     
-    override func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
+    override func tableView(_ tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
     
-    override func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {
+    override func tableView(_ tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
-                let position = (direction == .Above ? StickyTrackPosition.Top : StickyTrackPosition.Bottom)
+                let position = (direction == .above ? StickyTrackPosition.top : StickyTrackPosition.bottom)
                 addStickyTrackAtPosition(position)
             }
         }
     }
     
-    override func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
+    override func tableView(_ tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track === AudioPlayer.sharedInstance.currentTrack {
                 removeStickyTrack()
@@ -477,7 +477,7 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    override func tableView(tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(_ tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
             if track != AudioPlayer.sharedInstance.currentTrack {
                 AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
@@ -485,11 +485,11 @@ class TracksViewController: DataSourceViewController {
         }
     }
     
-    override func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
+    override func tableView(_ tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
     
-    override func didEndScrollingTableView(tableView: ExtendedTableView) {}
+    override func didEndScrollingTableView(_ tableView: ExtendedTableView) {}
     
-    override func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(_ tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
         let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
         let menuController = TrackContextMenuController(track: track)!
         NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
@@ -497,7 +497,7 @@ class TracksViewController: DataSourceViewController {
     
     // MARK: NSKeyValueObserving
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath else { return }
         if keyPath == HideUnavailableTracks {
             showHideUnavailableTracks()
@@ -506,7 +506,7 @@ class TracksViewController: DataSourceViewController {
 }
 
 enum TracksViewControllerType {
-    case HeatMap
-    case LoveCount
-    case Feed
+    case heatMap
+    case loveCount
+    case feed
 }

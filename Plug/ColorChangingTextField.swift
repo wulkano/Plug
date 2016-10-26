@@ -21,11 +21,11 @@ class ColorChangingTextField: NSTextField {
         let numberValue = self.numberValueForStringValue()
         let gradientLocation = self.gradientLocationForNumberValue(numberValue)
         let gradient = self.makeGradient()
-        let newColor = gradient.interpolatedColorAtLocation(gradientLocation)
+        let newColor = gradient.interpolatedColor(atLocation: gradientLocation)
         self.textColor = newColor
     }
     
-    func gradientLocationForNumberValue(numberValue: Int) -> CGFloat {
+    func gradientLocationForNumberValue(_ numberValue: Int) -> CGFloat {
         let highEnd: CGFloat = 8000
         var location = CGFloat(numberValue) / highEnd
         if location > 1 {
@@ -35,15 +35,15 @@ class ColorChangingTextField: NSTextField {
     }
     
     func numberValueForStringValue() -> Int {
-        let withoutCommas = stringValue.stringByReplacingOccurrencesOfString(",", withString: "", options: .LiteralSearch, range: nil)
-        let withoutPeriods = withoutCommas.stringByReplacingOccurrencesOfString(".", withString: "", options: .LiteralSearch, range: nil)
-        let withoutSpaces = withoutPeriods.stringByReplacingOccurrencesOfString(" ", withString: "", options: .LiteralSearch, range: nil)
-        let withoutSingleQuotes = withoutSpaces.stringByReplacingOccurrencesOfString("'", withString: "", options: .LiteralSearch, range: nil)
+        let withoutCommas = stringValue.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
+        let withoutPeriods = withoutCommas.replacingOccurrences(of: ".", with: "", options: .literal, range: nil)
+        let withoutSpaces = withoutPeriods.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+        let withoutSingleQuotes = withoutSpaces.replacingOccurrences(of: "'", with: "", options: .literal, range: nil)
         
         if withoutSingleQuotes.hasSuffix("k") {
-            let numberFormatter = NSNumberFormatter()
+            let numberFormatter = NumberFormatter()
             numberFormatter.format = "####k"
-            let numberValue = numberFormatter.numberFromString(withoutSingleQuotes)!.integerValue
+            let numberValue = numberFormatter.number(from: withoutSingleQuotes)!.intValue
             return numberValue * 1000
         } else {
             return Int(withoutSingleQuotes) ?? 0

@@ -40,11 +40,11 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         Analytics.trackView("TrackInfoWindow")
     }
     
-    @IBAction func closeButtonClicked(sender: NSButton) {
+    @IBAction func closeButtonClicked(_ sender: NSButton) {
         view.window!.close()
     }
     
-    @IBAction func loveButtonClicked(sender: NSButton) {
+    @IBAction func loveButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info Heart")
         
         let oldLovedValue = representedTrack.loved
@@ -67,36 +67,36 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         }
     }
     
-    func postInfoTextFieldClicked(sender: AnyObject) {
+    func postInfoTextFieldClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Track Info Blog Description")
         
         NSWorkspace.sharedWorkspace().openURL(representedTrack.postURL)
     }
     
-    func tagButtonClicked(tag: HypeMachineAPI.Tag) {
+    func tagButtonClicked(_ tag: HypeMachineAPI.Tag) {
         loadSingleTagView(tag)
     }
     
-    func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+    func loadSingleTagView(_ tag: HypeMachineAPI.Tag) {
+        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "TracksViewController") as! TracksViewController
         viewController.title = tag.name
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
     
-    @IBAction func downloadITunesButtonClicked(sender: NSButton) {
+    @IBAction func downloadITunesButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info Download iTunes")
 
         NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
     }
     
-    @IBAction func seeMoreButtonClicked(sender: NSButton) {
+    @IBAction func seeMoreButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info See More")
         
         NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
     }
     
-    func trackLoved(notification: NSNotification) {
+    func trackLoved(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track === representedObject {
             representedTrack.loved = track.loved
@@ -104,7 +104,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         }
     }
     
-    func trackUnLoved(notification: NSNotification) {
+    func trackUnLoved(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         if track === representedTrack {
             representedTrack.loved = track.loved
@@ -112,12 +112,12 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         }
     }
     
-    func changeTrackLovedValueTo(loved: Bool) {
+    func changeTrackLovedValueTo(_ loved: Bool) {
         representedTrack.loved = loved
         if loved {
-            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track": representedTrack])
+            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
         } else {
-            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track": representedTrack])
+            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
         }
     }
 

@@ -9,8 +9,8 @@
 import Cocoa
 import HypeMachineAPI
 
-class PostInfoFormatter: NSFormatter {
-    func attributedStringForPostInfo(track: HypeMachineAPI.Track) -> NSAttributedString {
+class PostInfoFormatter: Formatter {
+    func attributedStringForPostInfo(_ track: HypeMachineAPI.Track) -> NSAttributedString {
         let postInfoAttributedString = NSMutableAttributedString()
         let formattedBlogName = attributedBlogName(track.postedBy)
         let formattedDescription = attributedDescription(track.postedByDescription)
@@ -21,52 +21,52 @@ class PostInfoFormatter: NSFormatter {
         return postInfoAttributedString
     }
     
-    private func attributedBlogName(blogName: String) -> NSAttributedString {
+    fileprivate func attributedBlogName(_ blogName: String) -> NSAttributedString {
         return NSAttributedString(string: blogName, attributes: boldAttributes())
     }
     
-    private func attributedDescription(description: String) -> NSAttributedString {
+    fileprivate func attributedDescription(_ description: String) -> NSAttributedString {
         let string = "  “\(description)...”  "
         return NSAttributedString(string: string, attributes: normalAttributes())
     }
     
-    private func attributedDatePosted(datePosted: NSDate, url: NSURL) -> NSAttributedString {
+    fileprivate func attributedDatePosted(_ datePosted: Date, url: URL) -> NSAttributedString {
         let string = formattedDatePosted(datePosted)
         var dateAttributes = boldAttributes()
-        dateAttributes[NSLinkAttributeName] = url.absoluteString
+        dateAttributes[NSLinkAttributeName] = url.absoluteString as AnyObject?
         return NSAttributedString(string: string, attributes: dateAttributes)
     }
     
-    private func formattedDatePosted(datePosted: NSDate) -> String {
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale.currentLocale()
+    fileprivate func formattedDatePosted(_ datePosted: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
         if dateFromCurrentYear(datePosted) {
             formatter.dateFormat = "MMM d"
         } else {
             formatter.dateFormat = "MMM d yyyy"
         }
-        return formatter.stringFromDate(datePosted) + " →"
+        return formatter.string(from: datePosted) + " →"
     }
     
-    private func dateFromCurrentYear(date: NSDate) -> Bool {
-        let dateComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: date)
-        let todayComponents = NSCalendar.currentCalendar().components(NSCalendarUnit.Year, fromDate: NSDate())
+    fileprivate func dateFromCurrentYear(_ date: Date) -> Bool {
+        let dateComponents = (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: date)
+        let todayComponents = (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: Date())
         return dateComponents.year == todayComponents.year
     }
     
-    private func normalAttributes() -> [String: AnyObject] {
+    fileprivate func normalAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
-        let color = NSColor.whiteColor().colorWithAlphaComponent(0.5)
+        let color = NSColor.white.withAlphaComponent(0.5)
         let font = appFont(size: 13)
         attributes[NSForegroundColorAttributeName] = color
         attributes[NSFontAttributeName] = font
         return attributes
     }
     
-    private func boldAttributes() -> [String: AnyObject] {
+    fileprivate func boldAttributes() -> [String: AnyObject] {
         var attributes = [String: AnyObject]()
-        let color = NSColor.whiteColor()
-        let font = appFont(size: 13, weight: .Medium)
+        let color = NSColor.white
+        let font = appFont(size: 13, weight: .medium)
         attributes[NSForegroundColorAttributeName] = color
         attributes[NSFontAttributeName] = font
         return attributes

@@ -9,7 +9,7 @@
 import Foundation
 
 extension Dictionary /* <KeyType, ValueType> */ {
-    func merge(dictionary: Dictionary<Key, Value>?) -> Dictionary {
+    func merge(_ dictionary: Dictionary<Key, Value>?) -> Dictionary {
         if dictionary == nil { return self }
         
         var newDictionary = self

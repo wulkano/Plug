@@ -27,13 +27,13 @@ class KeepAwake: NSObject {
         sleepAssertionType: kIOPMAssertionTypeNoIdleSleep
     )!
     
-    private override init() {
+    fileprivate override init() {
         super.init()
         
         self.initialSetup()
     }
     
-    private func initialSetup() {
+    fileprivate func initialSetup() {
         AudioPlayer.sharedInstance.onTrackPlaying.addObserver(self, callback: { (observer, arg1) in
             if self.getUserPreference() {
                 self.preventSleep.preventSleep()
@@ -52,7 +52,7 @@ class KeepAwake: NSObject {
             })
         }
         
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: PreventIdleSleepWhenPlaying, options: NSKeyValueObservingOptions.New, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: PreventIdleSleepWhenPlaying, options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     deinit {
@@ -61,11 +61,11 @@ class KeepAwake: NSObject {
     
     // MARK: NSKeyValueObserving
     
-    private func getUserPreference() -> Bool {
-        return NSUserDefaults.standardUserDefaults().valueForKey(PreventIdleSleepWhenPlaying) as! Bool
+    fileprivate func getUserPreference() -> Bool {
+        return UserDefaults.standard.value(forKey: PreventIdleSleepWhenPlaying) as! Bool
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath else { return }
         if keyPath == PreventIdleSleepWhenPlaying {
             /* As the signal observers have already been set up, all we need to

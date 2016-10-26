@@ -14,7 +14,7 @@ import SnapKit
 class NavigationController: NSViewController {
     static var sharedInstance: NavigationController?
     
-    private var _viewControllers: [BaseContentViewController]
+    fileprivate var _viewControllers: [BaseContentViewController]
     var viewControllers: [BaseContentViewController] {
         get { return _viewControllers }
         set { setViewControllers(newValue, animated: false) }
@@ -66,8 +66,8 @@ class NavigationController: NSViewController {
         }
     }
     
-    func pushViewController(viewController: BaseContentViewController, animated: Bool) {
-        guard viewController.parentViewController == nil else {
+    func pushViewController(_ viewController: BaseContentViewController, animated: Bool) {
+        guard viewController.parent == nil else {
             fatalError("Pushed view controller already has parent view controller")
         }
         
@@ -78,7 +78,7 @@ class NavigationController: NSViewController {
         self.navigationBarController.pushNavigationItem(viewController.navigationItem, animated: animated)
     }
     
-    func popViewControllerAnimated(animated: Bool) -> BaseContentViewController? {
+    func popViewControllerAnimated(_ animated: Bool) -> BaseContentViewController? {
         guard self.viewControllers.count > 1 else {
             print("Can't pop last view controller")
             return nil
@@ -86,7 +86,7 @@ class NavigationController: NSViewController {
         
         let poppedViewControllerIndex = self._viewControllers.count - 1
         let poppedViewController = self._viewControllers[poppedViewControllerIndex]
-        self._viewControllers.removeAtIndex(poppedViewControllerIndex)
+        self._viewControllers.remove(at: poppedViewControllerIndex)
         poppedViewController.removeFromParentViewController()
         self.updateVisibleViewControllerAnimated(animated)
         
@@ -95,7 +95,7 @@ class NavigationController: NSViewController {
         return poppedViewController
     }
     
-    func setViewControllers(newViewControllers: [BaseContentViewController], animated: Bool) {
+    func setViewControllers(_ newViewControllers: [BaseContentViewController], animated: Bool) {
         guard newViewControllers.count > 0 else {
             fatalError("Can't set viewControllers to empty array")
         }
@@ -111,7 +111,7 @@ class NavigationController: NSViewController {
     
     // MARK: Private
     
-    private func updateVisibleViewControllerAnimated(animated: Bool) {
+    fileprivate func updateVisibleViewControllerAnimated(_ animated: Bool) {
         let newVisibleViewController = self.topViewController
         let oldVisibleViewController = self.visibleViewController
         
@@ -123,11 +123,11 @@ class NavigationController: NSViewController {
         self.contentView.addSubview(newVisibleViewController.view)
         
         if animated {
-            let isPushing = self._viewControllers.indexOf(oldVisibleViewController) != nil
-            self.constrainViewControllerToSideOfContentView(newVisibleViewController, side: isPushing ? .Right : .Left)
+            let isPushing = self._viewControllers.index(of: oldVisibleViewController) != nil
+            self.constrainViewControllerToSideOfContentView(newVisibleViewController, side: isPushing ? .right : .left)
             self.contentView.layoutSubtreeIfNeeded()
             self.constrainViewControllerToContentView(newVisibleViewController)
-            self.constrainViewControllerToSideOfContentView(oldVisibleViewController, side: isPushing ? .Left : .Right)
+            self.constrainViewControllerToSideOfContentView(oldVisibleViewController, side: isPushing ? .left : .right)
             self.startAnimation(completionHandler: {
                 oldVisibleViewController.view.removeFromSuperview()
             })
@@ -141,14 +141,14 @@ class NavigationController: NSViewController {
         self.visibleViewController = newVisibleViewController
     }
     
-    private func constrainViewControllerToContentView(viewController: BaseContentViewController) {
+    fileprivate func constrainViewControllerToContentView(_ viewController: BaseContentViewController) {
         let closure = { (make: ConstraintMaker)->Void in
             make.edges.equalTo(self.contentView)
         }
         self.makeOrRemakeConstraints(viewController, closure: closure)
     }
     
-    private func constrainViewControllerToSideOfContentView(viewController: BaseContentViewController, side: ContentViewSide) {
+    fileprivate func constrainViewControllerToSideOfContentView(_ viewController: BaseContentViewController, side: ContentViewSide) {
         let closure = { (make: ConstraintMaker)->Void in
             make.top.bottom.width.equalTo(self.contentView)
             switch side {
@@ -161,7 +161,7 @@ class NavigationController: NSViewController {
         self.makeOrRemakeConstraints(viewController, closure: closure)
     }
     
-    private func startAnimation(completionHandler completionHandler: ()->Void) {
+    fileprivate func startAnimation(completionHandler: @escaping ()->Void) {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.25
             context.allowsImplicitAnimation = true
@@ -172,7 +172,7 @@ class NavigationController: NSViewController {
         })
     }
     
-    private func makeOrRemakeConstraints(viewController: BaseContentViewController, closure:(make: ConstraintMaker) -> Void) {
+    fileprivate func makeOrRemakeConstraints(_ viewController: BaseContentViewController, closure:(_ make: ConstraintMaker) -> Void) {
         if viewController.view.constraints.count > 0 {
             viewController.view.snp_remakeConstraints(closure: closure)
         } else {
@@ -180,7 +180,7 @@ class NavigationController: NSViewController {
         }
     }
     
-    private enum ContentViewSide {
-        case Left, Right
+    fileprivate enum ContentViewSide {
+        case left, right
     }
 }

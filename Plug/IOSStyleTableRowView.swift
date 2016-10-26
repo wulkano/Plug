@@ -9,7 +9,7 @@
 import Cocoa
 
 class IOSStyleTableRowView: NSTableRowView {
-    override var nextRowSelected: Bool {
+    override var isNextRowSelected: Bool {
         didSet { needsDisplay = true }
     }
     
@@ -20,8 +20,8 @@ class IOSStyleTableRowView: NSTableRowView {
     var separatorWidth: CGFloat = 1
     var nextRowIsGroupRow: Bool = false
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         if shouldDrawSeparator() {
             let separatorRect = makeSeparatorRect(dirtyRect)
             customSeparatorColor.set()
@@ -42,12 +42,12 @@ class IOSStyleTableRowView: NSTableRowView {
     
     func shouldDrawSeparator() -> Bool {
         if nextRowIsGroupRow { return true }
-        if selected { return false }
-        if nextRowSelected { return false }
+        if isSelected { return false }
+        if isNextRowSelected { return false }
         return true
     }
     
-    func makeSeparatorRect(dirtyRect: NSRect) -> NSRect {
+    func makeSeparatorRect(_ dirtyRect: NSRect) -> NSRect {
         var separatorRect = bounds
         separatorRect.size.height = separatorWidth
         if !nextRowIsGroupRow {
@@ -60,7 +60,7 @@ class IOSStyleTableRowView: NSTableRowView {
     
     // MARK: Selection
     
-    override func drawSelectionInRect(dirtyRect: NSRect) {
+    override func drawSelection(in dirtyRect: NSRect) {
         let selectionRect = bounds
         selectionColor.set()
         NSRectFill(selectionRect)

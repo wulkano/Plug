@@ -10,21 +10,21 @@ import Cocoa
 import SimpleGoogleAnalytics
 
 struct Analytics {
-    static let sharedTracker = SimpleGoogleAnalytics.Manager(trackingID: "UA-42119014-6", appBundle: NSBundle.mainBundle(), userID: Authentication.GetUsernameHash())
+    static let sharedTracker = SimpleGoogleAnalytics.Manager(trackingID: "UA-42119014-6", appBundle: Bundle.mainBundle(), userID: Authentication.GetUsernameHash())
     
-    static func trackView(viewName: String) {
+    static func trackView(_ viewName: String) {
         sharedTracker.trackPageview(viewName)
     }
     
-    static func trackEvent(category category: String, action: String, label: String?, value: String?) {
+    static func trackEvent(category: String, action: String, label: String?, value: String?) {
         sharedTracker.trackEvent(category: category, action: action, label: label, value: value)
     }
     
-    static func trackButtonClick(buttonName: String) {
+    static func trackButtonClick(_ buttonName: String) {
         trackEvent(category: "Button", action: "Click", label: buttonName, value: nil)
     }
     
-    static func trackAudioPlaybackEvent(actionName: String) {
+    static func trackAudioPlaybackEvent(_ actionName: String) {
         trackEvent(category: "AudioPlayback", action: actionName, label: nil, value: nil)
     }
 }

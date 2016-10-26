@@ -46,7 +46,7 @@ class FavoriteTracksDataSource: TracksDataSource {
     
     override var nextPageParams: [String: AnyObject] {
         if shuffle {
-            return [ "page": 1, "count": objectsPerPage, "shuffle": "1" ]
+            return [ "page": 1 as AnyObject, "count": objectsPerPage as AnyObject, "shuffle": "1" as AnyObject ]
         } else {
             return super.nextPageParams
         }
@@ -66,7 +66,7 @@ class FavoriteTracksDataSource: TracksDataSource {
         }
     }
     
-    override func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
+    override func nextPageTracksReceived(result: Result<[HypeMachineAPI.Track]>) {
         nextPageResultReceived(result)
         if shuffle {
             allObjectsLoaded = false
@@ -75,10 +75,10 @@ class FavoriteTracksDataSource: TracksDataSource {
                 currentPage == 1) {
                 if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
                     if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).indexOf(currentTrack) {
-                        standardTableContents?.removeAtIndex(indexOfCurrentlyPlayingTrack)
+                        standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
                     }
-                    standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, atIndex: 0)
-                    viewController.tableView.insertRowsAtIndexes(NSIndexSet(indexesInRange: NSMakeRange(0, 1)), withAnimation: .EffectNone)
+                    standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, at: 0)
+                    viewController.tableView.insertRows(at: IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), withAnimation: NSTableViewAnimationOptions())
                 }
             }
         }

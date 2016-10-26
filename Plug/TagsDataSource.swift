@@ -11,19 +11,19 @@ import HypeMachineAPI
 
 class TagsDataSource: SearchableDataSource {
     
-    func filterTags(contents: [AnyObject]) -> [HypeMachineAPI.Tag] {
+    func filterTags(_ contents: [AnyObject]) -> [HypeMachineAPI.Tag] {
         return contents.filter({ $0 is HypeMachineAPI.Tag }) as! [HypeMachineAPI.Tag]
     }
     
-    func filterUniqueTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+    func filterUniqueTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
         return Array(Set(tags))
     }
     
-    func filterTagsMatchingSearchKeywords(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+    func filterTagsMatchingSearchKeywords(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
         return tags.filter { $0.name =~ self.searchKeywords! }
     }
     
-    func sortTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+    func sortTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
         if tags.count > 1 {
             return tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
         } else {
@@ -31,7 +31,7 @@ class TagsDataSource: SearchableDataSource {
         }
     }
     
-    func groupTags(tags: [HypeMachineAPI.Tag]) -> [AnyObject] {
+    func groupTags(_ tags: [HypeMachineAPI.Tag]) -> [AnyObject] {
         var groupedTags: [AnyObject] = []
         
         groupedTags.append(SectionHeader(title: "The Basics"))
@@ -46,14 +46,14 @@ class TagsDataSource: SearchableDataSource {
         return groupedTags
     }
     
-    func newTag(searchKeywords: String) -> [HypeMachineAPI.Tag] {
+    func newTag(_ searchKeywords: String) -> [HypeMachineAPI.Tag] {
         let newTag = Tag(name: searchKeywords, priority: false)
         return [newTag]
     }
     
     // MARK: SearchableDataSource
     
-    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+    override func filterObjectsMatchingSearchKeywords(_ objects: [AnyObject]) -> [AnyObject] {
         let tags = filterTags(objects)
         let uniqueTags = filterUniqueTags(tags)
         let sortedTags = sortTags(uniqueTags)
@@ -83,7 +83,7 @@ class TagsDataSource: SearchableDataSource {
         }
     }
     
-    override func appendTableContents(contents: [AnyObject]) {
+    override func appendTableContents(_ contents: [AnyObject]) {
         let tags = contents as! [HypeMachineAPI.Tag]
         let groupedTags = groupTags(tags)
         super.appendTableContents(groupedTags)
@@ -92,14 +92,14 @@ class TagsDataSource: SearchableDataSource {
 
 
 enum TagsListItem {
-    case SectionHeaderItem(SectionHeader)
-    case TagItem(HypeMachineAPI.Tag)
+    case sectionHeaderItem(SectionHeader)
+    case tagItem(HypeMachineAPI.Tag)
     
-    static func fromObject(object: AnyObject) -> TagsListItem? {
+    static func fromObject(_ object: AnyObject) -> TagsListItem? {
         if let tag = object as? HypeMachineAPI.Tag {
             return TagsListItem.TagItem(tag)
         } else if let sectionHeader = object as? SectionHeader {
-            return TagsListItem.SectionHeaderItem(sectionHeader)
+            return TagsListItem.sectionHeaderItem(sectionHeader)
         } else {
             return nil
         }

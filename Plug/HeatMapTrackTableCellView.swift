@@ -55,6 +55,6 @@ class HeatMapTrackTableCellView: TrackTableCellView {
     }
     
     func updateHeatMapVisibility() {
-        heatMapView.hidden = !playPauseButton.hidden
+        heatMapView.isHidden = !playPauseButton.isHidden
     }
 }

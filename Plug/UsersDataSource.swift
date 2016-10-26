@@ -11,7 +11,7 @@ import HypeMachineAPI
 
 class UsersDataSource: SearchableDataSource {
     
-    func filterUsersMatchingSearchKeywords(users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
+    func filterUsersMatchingSearchKeywords(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
         return users.filter { user in
             if user.fullName != nil {
                 return (user.username =~ self.searchKeywords!) || (user.fullName! =~ self.searchKeywords!)
@@ -21,13 +21,13 @@ class UsersDataSource: SearchableDataSource {
         }
     }
     
-    func sortUsers(users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
+    func sortUsers(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
         return users.sort { $0.username.lowercaseString < $1.username.lowercaseString }
     }
     
     // MARK: SearchableDataSource
     
-    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+    override func filterObjectsMatchingSearchKeywords(_ objects: [AnyObject]) -> [AnyObject] {
         let users = objects as! [HypeMachineAPI.User]
         return filterUsersMatchingSearchKeywords(users)
     }
@@ -44,7 +44,7 @@ class UsersDataSource: SearchableDataSource {
         }
     }
     
-    override func appendTableContents(contents: [AnyObject]) {
+    override func appendTableContents(_ contents: [AnyObject]) {
         let users = contents as! [HypeMachineAPI.User]
         let sortedUsers = sortUsers(users)
         super.appendTableContents(sortedUsers)

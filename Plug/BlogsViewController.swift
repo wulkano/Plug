@@ -14,7 +14,7 @@ class BlogsViewController: DataSourceViewController {
         return dataSource as? BlogsDataSource
     }
     
-    func itemForRow(row: Int) -> BlogDirectoryItem? {
+    func itemForRow(_ row: Int) -> BlogDirectoryItem? {
         if let item: AnyObject = dataSource!.objectForRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
@@ -22,7 +22,7 @@ class BlogsViewController: DataSourceViewController {
         }
     }
     
-    func itemAfterRow(row: Int) -> BlogDirectoryItem? {
+    func itemAfterRow(_ row: Int) -> BlogDirectoryItem? {
         if let item: AnyObject = dataSource!.objectAfterRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
@@ -30,25 +30,25 @@ class BlogsViewController: DataSourceViewController {
         }
     }
     
-    func loadBlogViewController(blog: HypeMachineAPI.Blog) {
+    func loadBlogViewController(_ blog: HypeMachineAPI.Blog) {
         let viewController = BlogViewController(blog: blog)!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
     
-    func blogCellView(tableView: NSTableView) -> BlogTableCellView {
+    func blogCellView(_ tableView: NSTableView) -> BlogTableCellView {
         let id = "BlogTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? BlogTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? BlogTableCellView
         
         if cellView == nil {
             cellView = BlogTableCellView()
             cellView!.identifier = id
             
             cellView!.nameTextField = NSTextField()
-            cellView!.nameTextField.editable = false
-            cellView!.nameTextField.selectable = false
-            cellView!.nameTextField.bordered = false
+            cellView!.nameTextField.isEditable = false
+            cellView!.nameTextField.isSelectable = false
+            cellView!.nameTextField.isBordered = false
             cellView!.nameTextField.drawsBackground = false
-            cellView!.nameTextField.font = appFont(size: 14, weight: .Medium)
+            cellView!.nameTextField.font = appFont(size: 14, weight: .medium)
             cellView!.addSubview(cellView!.nameTextField)
             cellView!.nameTextField.snp_makeConstraints { make in
                 make.top.equalTo(cellView!).offset(10)
@@ -60,11 +60,11 @@ class BlogsViewController: DataSourceViewController {
             
             let recentTitle = NSTextField()
             recentTitle.stringValue = "Recent: "
-            recentTitle.editable = false
-            recentTitle.selectable = false
-            recentTitle.bordered = false
+            recentTitle.isEditable = false
+            recentTitle.isSelectable = false
+            recentTitle.isBordered = false
             recentTitle.drawsBackground = false
-            recentTitle.font = appFont(size: 13, weight: .Medium)
+            recentTitle.font = appFont(size: 13, weight: .medium)
             recentTitle.textColor = NSColor(red256: 175, green256: 179, blue256: 181)
             cellView!.addSubview(recentTitle)
             recentTitle.snp_makeConstraints { make in
@@ -73,12 +73,12 @@ class BlogsViewController: DataSourceViewController {
             }
             
             cellView!.recentArtistsTextField = NSTextField()
-            cellView!.recentArtistsTextField.editable = false
-            cellView!.recentArtistsTextField.selectable = false
-            cellView!.recentArtistsTextField.bordered = false
+            cellView!.recentArtistsTextField.isEditable = false
+            cellView!.recentArtistsTextField.isSelectable = false
+            cellView!.recentArtistsTextField.isBordered = false
             cellView!.recentArtistsTextField.drawsBackground = false
-            cellView!.recentArtistsTextField.lineBreakMode = .ByTruncatingTail
-            cellView!.recentArtistsTextField.font = appFont(size: 13, weight: .Medium)
+            cellView!.recentArtistsTextField.lineBreakMode = .byTruncatingTail
+            cellView!.recentArtistsTextField.font = appFont(size: 13, weight: .medium)
             cellView!.recentArtistsTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.recentArtistsTextField)
             cellView!.recentArtistsTextField.snp_makeConstraints { make in
@@ -99,9 +99,9 @@ class BlogsViewController: DataSourceViewController {
         return cellView!
     }
     
-    func blogRowView(tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
+    func blogRowView(_ tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? IOSStyleTableRowView
+        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
@@ -110,7 +110,7 @@ class BlogsViewController: DataSourceViewController {
             
             if let nextItem = itemAfterRow(row) {
                 switch nextItem {
-                case .SectionHeaderItem:
+                case .sectionHeaderItem:
                     rowView!.nextRowIsGroupRow = true
                 case .BlogItem:
                     rowView!.nextRowIsGroupRow = false
@@ -125,7 +125,7 @@ class BlogsViewController: DataSourceViewController {
     
     // MARK: Actions
     
-    func searchFieldSubmit(sender: NSSearchField) {
+    func searchFieldSubmit(_ sender: NSSearchField) {
         blogDataSource!.searchKeywords = sender.stringValue
     }
     
@@ -157,11 +157,11 @@ class BlogsViewController: DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.setDelegate(self)
+        tableView.delegate = self
         tableView.extendedDelegate = self
         
         dataSource = BlogsDataSource(viewController: self)
-        tableView.setDataSource(dataSource)
+        tableView.dataSource = dataSource
         dataSource!.loadNextPageObjects()
     }
     
@@ -172,45 +172,45 @@ class BlogsViewController: DataSourceViewController {
     
     // MARK: NSTableViewDelegate
     
-    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+    func tableView(_ tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return sectionHeaderCellView(tableView)
         case .BlogItem:
             return blogCellView(tableView)
         }
     }
     
-    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
+    func tableView(_ tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return groupRowView(tableView)
         case .BlogItem:
             return blogRowView(tableView, row: row)
         }
     }
     
-    func tableView(tableView: NSTableView!, isGroupRow row: Int) -> Bool {
+    func tableView(_ tableView: NSTableView!, isGroupRow row: Int) -> Bool {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return  true
         case .BlogItem:
             return false
         }
     }
     
-    func tableView(tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
+    func tableView(_ tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return  32
         case .BlogItem:
             return 64
         }
     }
     
-    func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
+    func tableView(_ tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return false
         case .BlogItem:
             return true
@@ -219,11 +219,11 @@ class BlogsViewController: DataSourceViewController {
     
     // MARK: ExtendedTableViewDelegate
     
-    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
         case .BlogItem(let blog):
             loadBlogViewController(blog)
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return
         }
     }

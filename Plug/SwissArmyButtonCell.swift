@@ -14,11 +14,11 @@ class SwissArmyButtonCell: NSButtonCell {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        highlightsBy = NSCellStyleMask.NoCellMask
+        highlightsBy = NSCellStyleMask()
     }
     
     override init(textCell aString: String) {
         super.init(textCell: aString)
-        highlightsBy = NSCellStyleMask.NoCellMask
+        highlightsBy = NSCellStyleMask()
     }
 }

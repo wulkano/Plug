@@ -14,14 +14,14 @@ class UsersViewController: DataSourceViewController {
         return dataSource! as? UsersDataSource
     }
     
-    func loadSingleFriendView(friend: HypeMachineAPI.User) {
+    func loadSingleFriendView(_ friend: HypeMachineAPI.User) {
         let viewController = UserViewController(user: friend)!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
     
     // MARK: Actions
     
-    func searchFieldSubmit(sender: NSSearchField) {
+    func searchFieldSubmit(_ sender: NSSearchField) {
         usersDataSource!.searchKeywords = sender.stringValue
     }
     
@@ -53,11 +53,11 @@ class UsersViewController: DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.setDelegate(self)
+        tableView.delegate = self
         tableView.extendedDelegate = self
         
         dataSource = UsersDataSource(viewController: self)
-        tableView.setDataSource(dataSource)
+        tableView.dataSource = dataSource
         dataSource!.loadNextPageObjects()
     }
     
@@ -68,9 +68,9 @@ class UsersViewController: DataSourceViewController {
     
     // MARK: NSTableViewDelegate
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let id = "UserTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? UserTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? UserTableCellView
         
         if cellView == nil {
             cellView = UserTableCellView()
@@ -87,11 +87,11 @@ class UsersViewController: DataSourceViewController {
             }
             
             cellView!.fullNameTextField = NSTextField()
-            cellView!.fullNameTextField.editable = false
-            cellView!.fullNameTextField.selectable = false
-            cellView!.fullNameTextField.bordered = false
+            cellView!.fullNameTextField.isEditable = false
+            cellView!.fullNameTextField.isSelectable = false
+            cellView!.fullNameTextField.isBordered = false
             cellView!.fullNameTextField.drawsBackground = false
-            cellView!.fullNameTextField.font = appFont(size: 14, weight: .Medium)
+            cellView!.fullNameTextField.font = appFont(size: 14, weight: .medium)
             cellView!.addSubview(cellView!.fullNameTextField)
             cellView!.fullNameTextField.snp_makeConstraints { make in
                 make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
@@ -100,11 +100,11 @@ class UsersViewController: DataSourceViewController {
             }
             
             cellView!.usernameTextField = NSTextField()
-            cellView!.usernameTextField.editable = false
-            cellView!.usernameTextField.selectable = false
-            cellView!.usernameTextField.bordered = false
+            cellView!.usernameTextField.isEditable = false
+            cellView!.usernameTextField.isSelectable = false
+            cellView!.usernameTextField.isBordered = false
             cellView!.usernameTextField.drawsBackground = false
-            cellView!.usernameTextField.font = appFont(size: 13, weight: .Medium)
+            cellView!.usernameTextField.font = appFont(size: 13, weight: .medium)
             cellView!.usernameTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.usernameTextField)
             cellView!.usernameTextField.snp_makeConstraints { make in
@@ -125,9 +125,9 @@ class UsersViewController: DataSourceViewController {
         return cellView
     }
     
-    func tableView(tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? IOSStyleTableRowView
+        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
@@ -138,13 +138,13 @@ class UsersViewController: DataSourceViewController {
         return rowView
     }
     
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 64
     }
     
     // MARK: ExtendedTableViewDelegate
     
-    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         if let item: AnyObject = dataSource!.objectForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }

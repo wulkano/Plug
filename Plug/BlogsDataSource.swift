@@ -11,31 +11,31 @@ import HypeMachineAPI
 
 class BlogsDataSource: SearchableDataSource {
     
-    func filterBlogs(contents: [AnyObject]) -> [HypeMachineAPI.Blog] {
+    func filterBlogs(_ contents: [AnyObject]) -> [HypeMachineAPI.Blog] {
         return contents.filter({ $0 is HypeMachineAPI.Blog }) as! [HypeMachineAPI.Blog]
     }
     
-    func filterUniqueBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+    func filterUniqueBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
         return Array(Set(blogs))
     }
     
-    func filterBlogsMatchingSearchKeywords(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+    func filterBlogsMatchingSearchKeywords(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
         return blogs.filter { $0.name =~ self.searchKeywords! }
     }
     
-    func filterFollowingBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+    func filterFollowingBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
         return blogs.filter { $0.following == true }
     }
     
-    func filterFeaturedBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+    func filterFeaturedBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
         return blogs.filter { $0.featured == true }
     }
     
-    func sortBlogs(blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
+    func sortBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
         return blogs.sort { $0.name.lowercaseString < $1.name.lowercaseString }
     }
     
-    func groupBlogs(blogs: [HypeMachineAPI.Blog]) -> [AnyObject] {
+    func groupBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [AnyObject] {
         var groupedBlogs: [AnyObject] = []
         
         let followingBlogs = filterFollowingBlogs(blogs)
@@ -61,7 +61,7 @@ class BlogsDataSource: SearchableDataSource {
     
     // MARK: SearchableDataSource
     
-    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+    override func filterObjectsMatchingSearchKeywords(_ objects: [AnyObject]) -> [AnyObject] {
         let blogs = filterBlogs(objects)
         let uniqueBlogs = filterUniqueBlogs(blogs)
         let sortedBlogs = sortBlogs(uniqueBlogs)
@@ -86,7 +86,7 @@ class BlogsDataSource: SearchableDataSource {
         }
     }
     
-    override func appendTableContents(contents: [AnyObject]) {
+    override func appendTableContents(_ contents: [AnyObject]) {
         let blogs = contents as! [HypeMachineAPI.Blog]
         let groupedBlogs = groupBlogs(blogs)
         super.appendTableContents(groupedBlogs)
@@ -94,14 +94,14 @@ class BlogsDataSource: SearchableDataSource {
 }
 
 enum BlogDirectoryItem {
-    case SectionHeaderItem(SectionHeader)
-    case BlogItem(HypeMachineAPI.Blog)
+    case sectionHeaderItem(SectionHeader)
+    case blogItem(HypeMachineAPI.Blog)
     
-    static func fromObject(object: AnyObject) -> BlogDirectoryItem? {
+    static func fromObject(_ object: AnyObject) -> BlogDirectoryItem? {
         if object is HypeMachineAPI.Blog {
             return BlogDirectoryItem.BlogItem(object as! HypeMachineAPI.Blog)
         } else if object is SectionHeader {
-            return BlogDirectoryItem.SectionHeaderItem(object as! SectionHeader)
+            return BlogDirectoryItem.sectionHeaderItem(object as! SectionHeader)
         } else {
             return nil
         }

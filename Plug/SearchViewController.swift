@@ -17,7 +17,7 @@ class SearchViewController: BaseContentViewController {
     var tracksViewController: TracksViewController?
     var dataSource: TracksDataSource?
     
-    func searchFieldSubmit(sender: NSSearchField) {
+    func searchFieldSubmit(_ sender: NSSearchField) {
         let keywords = sender.stringValue
         if keywords == "" { return }
 
@@ -27,7 +27,7 @@ class SearchViewController: BaseContentViewController {
     
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
-            tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "Search/Tracks")
+            tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Search/Tracks")
             addChildViewController(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
             tracksViewController!.view.snp_makeConstraints { make in

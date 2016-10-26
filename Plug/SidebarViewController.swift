@@ -21,7 +21,7 @@ class SidebarViewController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadButtons(superview superview: NSView) {
+    func loadButtons(superview: NSView) {
         var n = 0
         while let navigationSection = NavigationSection(rawValue: n) {
             let button = NavigationSectionButton(navigationSection: navigationSection)
@@ -53,12 +53,12 @@ class SidebarViewController: NSViewController {
         buttons[0].state = NSOnState
     }
     
-    func navigationSectionButtonClicked(sender: NavigationSectionButton) {
+    func navigationSectionButtonClicked(_ sender: NavigationSectionButton) {
         delegate.changeNavigationSection(sender.navigationSection)
         toggleAllButtonsOffExcept(sender)
     }
     
-    func toggleAllButtonsOffExcept(sender: AnyObject) {
+    func toggleAllButtonsOffExcept(_ sender: AnyObject) {
         for button in buttons {
             if button === sender {
                 button.state = NSOnState
@@ -85,5 +85,5 @@ class SidebarViewController: NSViewController {
 }
 
 protocol SidebarViewControllerDelegate {
-    func changeNavigationSection(section: NavigationSection)
+    func changeNavigationSection(_ section: NavigationSection)
 }

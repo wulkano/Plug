@@ -28,17 +28,17 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    func displayError(notification: NSNotification) {
-        let error = notification.userInfo!["error"] as! NSError
+    func displayError(_ notification: Notification) {
+        let error = (notification as NSNotification).userInfo!["error"] as! NSError
         NSAlert(error: error).runModal()
     }
     
     func signedInSuccessfully() {
-        let appDelegate = NSApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
         appDelegate.finishedSigningIn()
     }
     
-    func loginWithUsernameOrEmail(usernameOrEmail: String, andPassword password: String) {
+    func loginWithUsernameOrEmail(_ usernameOrEmail: String, andPassword password: String) {
         HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) { result in
             switch result {
             case .Success(let usernameAndToken):
@@ -61,9 +61,9 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     
     func formFieldsChanged() {
         if formFieldsValid() {
-            loginButton.buttonState = .Enabled
+            loginButton.buttonState = .enabled
         } else {
-            loginButton.buttonState = .Disabled
+            loginButton.buttonState = .disabled
         }
     }
     
@@ -79,23 +79,23 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     
     // MARK: Actions
     
-    @IBAction func loginButtonClicked(sender: AnyObject) {
+    @IBAction func loginButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Log In")
         let usernameOrEmail = usernameOrEmailTextField.stringValue
         let password = passwordTextField.stringValue
         
-        loginButton.buttonState = .Sending
+        loginButton.buttonState = .sending
         loginWithUsernameOrEmail(usernameOrEmail, andPassword: password)
     }
     
-    @IBAction func forgotPasswordButtonClicked(sender: AnyObject) {
+    @IBAction func forgotPasswordButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Forgot Password")
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://hypem.com/inc/lb_forgot.php")!)
+        NSWorkspace.shared().open(URL(string: "https://hypem.com/inc/lb_forgot.php")!)
     }
     
-    @IBAction func signUpButtonClicked(sender: AnyObject) {
+    @IBAction func signUpButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Sign Up")
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://hypem.com/?signup=1")!)
+        NSWorkspace.shared().open(URL(string: "http://hypem.com/?signup=1")!)
     }
     
     // MARK: NSViewController
@@ -109,13 +109,13 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         passwordTextField.nextKeyView = usernameOrEmailTextField
         
         // Custom fonts
-        usernameOrEmailLabel.font = appFont(size: 12, weight: .Medium)
+        usernameOrEmailLabel.font = appFont(size: 12, weight: .medium)
         usernameOrEmailTextField.font = appFont(size: 18)
-        passwordLabel.font = appFont(size: 12, weight: .Medium)
+        passwordLabel.font = appFont(size: 12, weight: .medium)
         passwordTextField.font = appFont(size: 18)
-        loginButton.font = appFont(size: 14, weight: .Medium)
-        fogotPasswordButton.font = appFont(size: 13, weight: .Medium)
-        signUpButton.font = appFont(size: 14, weight: .Medium)
+        loginButton.font = appFont(size: 14, weight: .medium)
+        fogotPasswordButton.font = appFont(size: 13, weight: .medium)
+        signUpButton.font = appFont(size: 14, weight: .medium)
     }
     
     override func viewWillAppear() {
@@ -126,7 +126,7 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     
     // MARK: NSTextFieldDelegate
     
-    override func controlTextDidChange(notification: NSNotification) {
+    override func controlTextDidChange(_ notification: Notification) {
         formFieldsChanged()
     }
 }

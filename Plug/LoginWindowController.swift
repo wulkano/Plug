@@ -14,8 +14,8 @@ class LoginWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        trafficButtons = TrafficButtons(style: .Dark, groupIdentifier: "LoginWindow")
+        trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "LoginWindow")
         trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(20, 20))
-        trafficButtons.zoomButton.enabled = false
+        trafficButtons.zoomButton.isEnabled = false
     }
 }

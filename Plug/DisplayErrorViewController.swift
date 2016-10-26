@@ -40,14 +40,14 @@ class DisplayErrorViewController: NSViewController {
         
         errorTitleTextField = NSTextField(frame: NSZeroRect)
         errorTitleTextField.stringValue = "Error"
-        errorTitleTextField.editable = false
-        errorTitleTextField.selectable = false
-        errorTitleTextField.bordered = false
+        errorTitleTextField.isEditable = false
+        errorTitleTextField.isSelectable = false
+        errorTitleTextField.isBordered = false
         errorTitleTextField.drawsBackground = false
-        errorTitleTextField.lineBreakMode = .ByWordWrapping
-        errorTitleTextField.font = appFont(size: 14, weight: .Medium)
-        errorTitleTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        errorTitleTextField.textColor = NSColor.whiteColor()
+        errorTitleTextField.lineBreakMode = .byWordWrapping
+        errorTitleTextField.font = appFont(size: 14, weight: .medium)
+        errorTitleTextField.setContentCompressionResistancePriority(490, for: .horizontal)
+        errorTitleTextField.textColor = NSColor.white
         view.addSubview(errorTitleTextField)
         errorTitleTextField.snp_makeConstraints { make in
             make.top.equalTo(view).offset(6)
@@ -57,14 +57,14 @@ class DisplayErrorViewController: NSViewController {
         
         errorDescriptionTextField = NSTextField(frame: NSZeroRect)
         errorDescriptionTextField.stringValue = error.localizedDescription
-        errorDescriptionTextField.editable = false
-        errorDescriptionTextField.selectable = false
-        errorDescriptionTextField.bordered = false
+        errorDescriptionTextField.isEditable = false
+        errorDescriptionTextField.isSelectable = false
+        errorDescriptionTextField.isBordered = false
         errorDescriptionTextField.drawsBackground = false
-        errorDescriptionTextField.lineBreakMode = .ByWordWrapping
+        errorDescriptionTextField.lineBreakMode = .byWordWrapping
         errorDescriptionTextField.font = appFont(size: 13)
-        errorDescriptionTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        errorDescriptionTextField.textColor = NSColor.whiteColor()
+        errorDescriptionTextField.setContentCompressionResistancePriority(490, for: .horizontal)
+        errorDescriptionTextField.textColor = NSColor.white
         view.addSubview(errorDescriptionTextField)
         errorDescriptionTextField.snp_makeConstraints { make in
             make.top.equalTo(errorTitleTextField.snp_bottom)
@@ -107,7 +107,7 @@ class DisplayErrorViewController: NSViewController {
             }, completionHandler: nil)
     }
     
-    func animateOutWithDelay(delay: Double, completionHandler: ()->Void) {
+    func animateOutWithDelay(_ delay: Double, completionHandler: @escaping ()->Void) {
         Interval.single(delay) {
             self.view.superview!.layoutSubtreeIfNeeded()
             

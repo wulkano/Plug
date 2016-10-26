@@ -9,7 +9,7 @@
 import Cocoa
 
 class HiddenTitlebarWindow: NSWindow {
-    override init(contentRect: NSRect, styleMask aStyle: Int, backing bufferingType: NSBackingStoreType, `defer` flag: Bool) {
+    override init(contentRect: NSRect, styleMask aStyle: NSWindowStyleMask, backing bufferingType: NSBackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
         
         setup()
@@ -24,8 +24,8 @@ class HiddenTitlebarWindow: NSWindow {
     func setup() {
         appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         styleMask |= NSFullSizeContentViewWindowMask
-        titleVisibility = NSWindowTitleVisibility.Hidden
+        titleVisibility = NSWindowTitleVisibility.hidden
         titlebarAppearsTransparent = true
-        movableByWindowBackground = true
+        isMovableByWindowBackground = true
     }
 }

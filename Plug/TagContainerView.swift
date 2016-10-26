@@ -10,7 +10,7 @@ import Cocoa
 import HypeMachineAPI
 
 class TagContainerView: NSView {
-    override var flipped: Bool {
+    override var isFlipped: Bool {
         return true
     }
     let buttonSpacing: CGFloat = 4
@@ -40,7 +40,7 @@ class TagContainerView: NSView {
         }
     }
     
-    func generateTagButtonForTag(tag: HypeMachineAPI.Tag) -> TagButton {
+    func generateTagButtonForTag(_ tag: HypeMachineAPI.Tag) -> TagButton {
         let tagButton = TagButton(frame: NSMakeRect(0, 0, 0, buttonHeight))
         tagButton.title = tag.name.uppercaseString
         tagButton.fillColor = getFillColorForTag(tag)
@@ -50,7 +50,7 @@ class TagContainerView: NSView {
         return tagButton
     }
     
-    func generateOriginForNewButton(button: TagButton) -> NSPoint {
+    func generateOriginForNewButton(_ button: TagButton) -> NSPoint {
         if let lastButton = buttons.last {
             if lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing + button.frame.size.width > frame.size.width {
                 return NSMakePoint(0, lastButton.frame.origin.y + buttonSpacing + buttonHeight)
@@ -62,13 +62,13 @@ class TagContainerView: NSView {
         }
     }
     
-    func getFillColorForTag(tag: HypeMachineAPI.Tag) -> NSColor {
+    func getFillColorForTag(_ tag: HypeMachineAPI.Tag) -> NSColor {
         let gradient = makeGradient()
         let gradientLocation = gradientLocationForTag(tag)
         return gradient.interpolatedColorAtLocation(gradientLocation)
     }
     
-    func gradientLocationForTag(tag: HypeMachineAPI.Tag) -> CGFloat {
+    func gradientLocationForTag(_ tag: HypeMachineAPI.Tag) -> CGFloat {
         let index = tags.indexOf(tag)!
         return CGFloat(index) / CGFloat((tags.count - 1))
     }
@@ -81,17 +81,17 @@ class TagContainerView: NSView {
         return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))!
     }
     
-    func tagButtonClick(sender: TagButton) {
+    func tagButtonClick(_ sender: TagButton) {
         let tag = tagForButton(sender)
         delegate.tagButtonClicked(tag)
     }
 
-    func tagForButton(button: TagButton) -> HypeMachineAPI.Tag {
+    func tagForButton(_ button: TagButton) -> HypeMachineAPI.Tag {
         let index = buttons.indexOf(button)!
         return tags[index]
     }
 }
 
 protocol TagContainerViewDelegate {
-    func tagButtonClicked(tag: HypeMachineAPI.Tag)
+    func tagButtonClicked(_ tag: HypeMachineAPI.Tag)
 }

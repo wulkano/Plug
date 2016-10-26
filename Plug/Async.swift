@@ -9,30 +9,30 @@
 import Foundation
 
 class Async {
-    class func LowPriority(closure: ()->()) {
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)
-        dispatch_async(queue, {
+    class func LowPriority(_ closure: @escaping ()->()) {
+        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low)
+        queue.async(execute: {
             closure()
         })
     }
     
-    class func DefaultPriority(closure: ()->()) {
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        dispatch_async(queue, {
+    class func DefaultPriority(_ closure: @escaping ()->()) {
+        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
+        queue.async(execute: {
             closure()
         })
     }
     
-    class func HighPriority(closure: ()->()) {
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
-        dispatch_async(queue, {
+    class func HighPriority(_ closure: @escaping ()->()) {
+        let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high)
+        queue.async(execute: {
             closure()
         })
     }
     
-    class func MainQueue(closure: ()->()) {
-        let queue = dispatch_get_main_queue()
-        dispatch_async(queue, {
+    class func MainQueue(_ closure: @escaping ()->()) {
+        let queue = DispatchQueue.main
+        queue.async(execute: {
             closure()
         })
     }

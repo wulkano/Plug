@@ -21,19 +21,19 @@ struct Notifications {
     
     static let RefreshCurrentView = "Plug.RefreshCurrentView"
 
-    static func post(name name: String, object: AnyObject!, userInfo: [NSObject: AnyObject]!) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: object, userInfo: userInfo)
+    static func post(name: String, object: AnyObject!, userInfo: [AnyHashable: Any]!) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: object, userInfo: userInfo)
     }
     
-    static func subscribe(observer observer: AnyObject!, selector: Selector, name: String!, object: AnyObject!) {
-        NSNotificationCenter.defaultCenter().addObserver(observer, selector: selector, name: name, object: object)
+    static func subscribe(observer: AnyObject!, selector: Selector, name: String!, object: AnyObject!) {
+        NotificationCenter.default.addObserver(observer, selector: selector, name: name.map { NSNotification.Name(rawValue: $0) }, object: object)
     }
     
-    static func unsubscribe(observer observer: AnyObject!, name: String!, object: AnyObject!) {
-        NSNotificationCenter.defaultCenter().removeObserver(observer, name: name, object: object)
+    static func unsubscribe(observer: AnyObject!, name: String!, object: AnyObject!) {
+        NotificationCenter.default.removeObserver(observer, name: name.map { NSNotification.Name(rawValue: $0) }, object: object)
     }
     
-    static func unsubscribeAll(observer observer: AnyObject!) {
-        NSNotificationCenter.defaultCenter().removeObserver(observer)
+    static func unsubscribeAll(observer: AnyObject!) {
+        NotificationCenter.default.removeObserver(observer)
     }
 }

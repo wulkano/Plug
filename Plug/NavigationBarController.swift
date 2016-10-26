@@ -8,6 +8,26 @@
 
 import Cocoa
 import SnapKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class NavigationBarController: NSViewController {
     let navigationController: NavigationController
@@ -34,28 +54,28 @@ class NavigationBarController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func pushNavigationItem(item: NavigationItem, animated: Bool) {
+    func pushNavigationItem(_ item: NavigationItem, animated: Bool) {
         if items == nil {
             items = []
         }
         
         items!.append(item)
-        updateNavigationBarViews(animated: animated, direction: .RightToLeft)
+        updateNavigationBarViews(animated: animated, direction: .rightToLeft)
     }
     
-    func popNavigationItemAnimated(animated: Bool) -> NavigationItem? {
+    func popNavigationItemAnimated(_ animated: Bool) -> NavigationItem? {
         if items == nil || items!.count <= 1 { return nil}
         
-        let poppedItem = items!.removeAtIndex(items!.count - 1)
-        updateNavigationBarViews(animated: animated, direction: .RightToLeft)
+        let poppedItem = items!.remove(at: items!.count - 1)
+        updateNavigationBarViews(animated: animated, direction: .rightToLeft)
         return poppedItem
     }
     
-    func popToNavigationItem(item: NavigationItem, animated: Bool) -> [NavigationItem]? {
+    func popToNavigationItem(_ item: NavigationItem, animated: Bool) -> [NavigationItem]? {
         if items == nil || items!.count <= 1 { return nil}
         
         var poppedItems: [NavigationItem] = []
-        let topItemIndex = items!.indexOf(item)
+        let topItemIndex = items!.index(of: item)
         
         if topItemIndex == nil {
             return nil
@@ -65,16 +85,16 @@ class NavigationBarController: NSViewController {
             poppedItems.append(items!.removeLast())
         }
         
-        updateNavigationBarViews(animated: animated, direction: .RightToLeft)
+        updateNavigationBarViews(animated: animated, direction: .rightToLeft)
         return poppedItems
     }
     
-    func setNavigationItems(items: [NavigationItem]) {
+    func setNavigationItems(_ items: [NavigationItem]) {
         self.items = items
         updateNavigationBarViews(animated: false, direction: nil)
     }
     
-    func updateNavigationBarViews(animated animated: Bool, direction: TransitionDirection?) {
+    func updateNavigationBarViews(animated: Bool, direction: TransitionDirection?) {
         navigationBarView?.removeFromSuperview()
         navigationBarView = nil
         addNavigationBarViewForCurrentItems()
@@ -146,15 +166,15 @@ class NavigationBarController: NSViewController {
         }
     }
     
-    func textFieldForTitle(title: String) -> NSTextField {
+    func textFieldForTitle(_ title: String) -> NSTextField {
         let textField = NSTextField()
-        textField.editable = false
-        textField.selectable = false
-        textField.bordered = false
+        textField.isEditable = false
+        textField.isSelectable = false
+        textField.isBordered = false
         textField.drawsBackground = false
-        textField.font = appFont(size: 14, weight: .Medium)
-        textField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        textField.lineBreakMode = .ByTruncatingMiddle
+        textField.font = appFont(size: 14, weight: .medium)
+        textField.setContentCompressionResistancePriority(490, for: .horizontal)
+        textField.lineBreakMode = .byTruncatingMiddle
         textField.stringValue = title
         return textField
     }
@@ -181,12 +201,12 @@ class NavigationBarController: NSViewController {
     
     // MARK: Actions
     
-    func backButtonClicked(sender: NSButton) {
+    func backButtonClicked(_ sender: NSButton) {
         navigationController.popViewControllerAnimated(true)
     }
 }
 
 enum TransitionDirection {
-    case LeftToRight
-    case RightToLeft
+    case leftToRight
+    case rightToLeft
 }

@@ -13,12 +13,12 @@ class TracksDataSource: HypeMachineDataSource {
     
     let infiniteLoadTrackCountFromEnd: Int = 7
     
-    func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
+    func nextPageTracksReceived(result: Result<[HypeMachineAPI.Track]>) {
         nextPageResultReceived(result)
         AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
     }
     
-    func trackAfter(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
+    func trackAfter(_ track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
         if let currentIndex = indexOfTrack(track) {
             if currentIndex+1 >= max(0, tableContents!.count-infiniteLoadTrackCountFromEnd) {
                 loadNextPageObjects()
@@ -34,7 +34,7 @@ class TracksDataSource: HypeMachineDataSource {
         }
     }
     
-    func trackBefore(track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
+    func trackBefore(_ track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
         if let currentIndex = indexOfTrack(track) {
             let track = trackAtIndex(currentIndex - 1)
             if track != nil && track!.audioUnavailable {
@@ -46,14 +46,14 @@ class TracksDataSource: HypeMachineDataSource {
         }
     }
     
-    func indexOfTrack(track: HypeMachineAPI.Track) -> Int? {
+    func indexOfTrack(_ track: HypeMachineAPI.Track) -> Int? {
         if tableContents == nil { return nil }
         
         let tracks = tableContents as! [HypeMachineAPI.Track]
         return tracks.indexOf(track)
     }
     
-    func trackAtIndex(index: Int) -> HypeMachineAPI.Track? {
+    func trackAtIndex(_ index: Int) -> HypeMachineAPI.Track? {
         if tableContents == nil { return nil }
         
         if index >= 0 && index <= tableContents!.count - 1 {
@@ -65,7 +65,7 @@ class TracksDataSource: HypeMachineDataSource {
     
     // MARK: HypeMachineDataSource
     
-    override func filterTableContents(contents: [AnyObject]) -> [AnyObject] {
+    override func filterTableContents(_ contents: [AnyObject]) -> [AnyObject] {
         let tracks = contents as! [HypeMachineAPI.Track]
         return tracks.filter({ $0.audioUnavailable == false })
     }

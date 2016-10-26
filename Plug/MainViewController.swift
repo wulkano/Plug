@@ -69,60 +69,60 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         super.viewDidAppear()
         
         if currentViewController == nil {
-            changeNavigationSection(NavigationSection.Popular)
+            changeNavigationSection(NavigationSection.popular)
         }
     }
     
-    func changeNavigationSection(section: NavigationSection) {
+    func changeNavigationSection(_ section: NavigationSection) {
         updateUIForSection(section)
     }
     
-    func displayError(notification: NSNotification) {
-        let error = notification.userInfo!["error"] as! NSError
+    func displayError(_ notification: Notification) {
+        let error = (notification as NSNotification).userInfo!["error"] as! NSError
         let displayErrorViewController = DisplayErrorViewController(error: error)
         
-        addChildViewController(displayErrorViewController)
-        navigationController.contentView.addSubview(displayErrorViewController.view)
+        addChildViewController(displayErrorViewController!)
+        navigationController.contentView.addSubview((displayErrorViewController?.view)!)
         
-        displayErrorViewController.setupLayoutInSuperview()
-        displayErrorViewController.animateIn()
-        displayErrorViewController.animateOutWithDelay(4, completionHandler: {
+        displayErrorViewController?.setupLayoutInSuperview()
+        displayErrorViewController?.animateIn()
+        displayErrorViewController?.animateOutWithDelay(4, completionHandler: {
             displayErrorViewController.view.removeFromSuperview()
             displayErrorViewController.removeFromParentViewController()
         })
     }
     
-    func updateUIForSection(section: NavigationSection) {
+    func updateUIForSection(_ section: NavigationSection) {
         let newViewController = section.viewControllerForTarget(self)
         currentViewController = newViewController
         navigationController.setViewControllers([newViewController], animated: false)
     }
     
-    func popularSectionModeChanged(sender: NSMenuItem) {
+    func popularSectionModeChanged(_ sender: NSMenuItem) {
         let mode = PopularSectionMode(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = PopularTracksDataSource(viewController: viewController, mode: mode)
     }
     
-    func feedSectionModeChanged(sender: NSMenuItem) {
+    func feedSectionModeChanged(_ sender: NSMenuItem) {
         let mode = FeedSectionMode(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = FeedTracksDataSource(viewController: viewController, mode: mode)
     }
     
-    func searchSectionSortChanged(sender: NSMenuItem) {
+    func searchSectionSortChanged(_ sender: NSMenuItem) {
         let sort = SearchSectionSort(rawValue: sender.title)!
         let viewController = currentViewController as! SearchViewController
         viewController.sort = sort
     }
     
-    func favoritesSectionPlaylistChanged(sender: NSMenuItem) {
+    func favoritesSectionPlaylistChanged(_ sender: NSMenuItem) {
         let playlist = FavoritesSectionPlaylist(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = FavoriteTracksDataSource(viewController: viewController, playlist: playlist)
     }
     
-    func latestSectionModeChanged(sender: NSMenuItem) {
+    func latestSectionModeChanged(_ sender: NSMenuItem) {
         let mode = LatestSectionMode(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = LatestTracksDataSource(viewController: viewController, mode: mode)
@@ -132,24 +132,24 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
 extension NavigationSection {
     static var viewControllers = [String: BaseContentViewController]()
     
-    func menu(target: AnyObject?) -> NSMenu? {
+    func menu(_ target: AnyObject?) -> NSMenu? {
         switch self {
-        case .Popular:
+        case .popular:
             return PopularSectionMode.menu(target)
-        case .Favorites:
+        case .favorites:
             return FavoritesSectionPlaylist.menu(target)
-        case .Latest:
+        case .latest:
             return LatestSectionMode.menu(target)
-        case .Feed:
+        case .feed:
             return FeedSectionMode.menu(target)
-        case .Search:
+        case .search:
             return SearchSectionSort.menu(target)
         default:
             return nil
         }
     }
     
-    func viewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
+    func viewControllerForTarget(_ target: AnyObject?) -> BaseContentViewController {
         return savedViewController ?? createViewControllerForTarget(target)
     }
     
@@ -157,27 +157,27 @@ extension NavigationSection {
         return NavigationSection.viewControllers[self.title]
     }
     
-    func createViewControllerForTarget(target: AnyObject?) -> BaseContentViewController {
+    func createViewControllerForTarget(_ target: AnyObject?) -> BaseContentViewController {
         
         var targetViewController: BaseContentViewController
         
         switch self {
-        case .Popular:
-            targetViewController = TracksViewController(type: .HeatMap, title: self.title, analyticsViewName: self.analyticsViewName)!
-        case .Favorites:
-            targetViewController = TracksViewController(type: .LoveCount, title: self.title, analyticsViewName: self.analyticsViewName)!
+        case .popular:
+            targetViewController = TracksViewController(type: .heatMap, title: self.title, analyticsViewName: self.analyticsViewName)!
+        case .favorites:
+            targetViewController = TracksViewController(type: .loveCount, title: self.title, analyticsViewName: self.analyticsViewName)!
             (targetViewController as! TracksViewController).showLoveButton = false
-        case .Latest:
-            targetViewController = TracksViewController(type: .LoveCount, title: self.title, analyticsViewName: self.analyticsViewName)!
-        case .Blogs:
+        case .latest:
+            targetViewController = TracksViewController(type: .loveCount, title: self.title, analyticsViewName: self.analyticsViewName)!
+        case .blogs:
             targetViewController = BlogsViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
-        case .Feed:
-            targetViewController = TracksViewController(type: .Feed, title: self.title, analyticsViewName: self.analyticsViewName)!
-        case .Genres:
+        case .feed:
+            targetViewController = TracksViewController(type: .feed, title: self.title, analyticsViewName: self.analyticsViewName)!
+        case .genres:
             targetViewController = TagsViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
-        case .Friends:
+        case .friends:
             targetViewController = UsersViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
-        case .Search:
+        case .search:
             targetViewController = SearchViewController(title: self.title, analyticsViewName: self.analyticsViewName)!
         }
         
@@ -187,13 +187,13 @@ extension NavigationSection {
 
         if let tracksViewController = targetViewController as? TracksViewController {
             switch self {
-            case .Popular:
+            case .popular:
                 tracksViewController.dataSource = PopularTracksDataSource(viewController: tracksViewController, mode: .Now)
-            case .Favorites:
+            case .favorites:
                 tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController, playlist: .All)
-            case .Latest:
+            case .latest:
                 tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController, mode: .All)
-            case .Feed:
+            case .feed:
                 tracksViewController.dataSource = FeedTracksDataSource(viewController: tracksViewController, mode: .All)
             default:
                 break
@@ -207,16 +207,16 @@ extension NavigationSection {
 }
 
 extension PopularSectionMode {
-    static func menu(target: AnyObject?) -> NSMenu {
+    static func menu(_ target: AnyObject?) -> NSMenu {
         let menu = NSMenu()
         menu.title = self.navigationSection.title
         
-        menu.addItemWithTitle(self.Now.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.NoRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.OnlyRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.LastWeek.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Now.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.NoRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.OnlyRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.LastWeek.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
         
-        for item in menu.itemArray {
+        for item in menu.items {
             item.target = target
         }
         
@@ -225,20 +225,20 @@ extension PopularSectionMode {
 }
 
 protocol PopularSectionModeMenuTarget {
-    func popularSectionModeChanged(sender: NSMenuItem)
+    func popularSectionModeChanged(_ sender: NSMenuItem)
 }
 
 extension FavoritesSectionPlaylist {
-    static func menu(target: AnyObject?) -> NSMenu {
+    static func menu(_ target: AnyObject?) -> NSMenu {
         let menu = NSMenu()
         menu.title = self.navigationSection.title
         
-        menu.addItemWithTitle(self.All.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.One.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.Two.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.Three.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.All.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.One.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Two.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Three.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
         
-        for item in menu.itemArray {
+        for item in menu.items {
             item.target = target
         }
         
@@ -247,20 +247,20 @@ extension FavoritesSectionPlaylist {
 }
 
 protocol FavoritesSectionPlaylistMenuTarget {
-    func favoritesSectionPlaylistChanged(sender: NSMenuItem)
+    func favoritesSectionPlaylistChanged(_ sender: NSMenuItem)
 }
 
 extension LatestSectionMode {
-    static func menu(target: AnyObject?) -> NSMenu {
+    static func menu(_ target: AnyObject?) -> NSMenu {
         let menu = NSMenu()
         menu.title = self.navigationSection.title
         
-        menu.addItemWithTitle(self.All.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.Freshest.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.NoRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.OnlyRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.All.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Freshest.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.NoRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.OnlyRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
         
-        for item in menu.itemArray {
+        for item in menu.items {
             item.target = target
         }
         
@@ -269,19 +269,19 @@ extension LatestSectionMode {
 }
 
 protocol LatestSectionModeMenuTarget {
-    func latestSectionModeChanged(sender: NSMenuItem)
+    func latestSectionModeChanged(_ sender: NSMenuItem)
 }
 
 extension FeedSectionMode {
-    static func menu(target: AnyObject?) -> NSMenu {
+    static func menu(_ target: AnyObject?) -> NSMenu {
         let menu = NSMenu()
         menu.title = self.navigationSection.title
         
-        menu.addItemWithTitle(self.All.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.Friends.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.Blogs.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.All.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Friends.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Blogs.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
         
-        for item in menu.itemArray {
+        for item in menu.items {
             item.target = target
         }
         
@@ -290,19 +290,19 @@ extension FeedSectionMode {
 }
 
 protocol FeedSectionModeMenuTarget {
-    func feedSectionModeChanged(sender: NSMenuItem)
+    func feedSectionModeChanged(_ sender: NSMenuItem)
 }
 
 extension SearchSectionSort {
-    static func menu(target: AnyObject?) -> NSMenu {
+    static func menu(_ target: AnyObject?) -> NSMenu {
         let menu = NSMenu()
         menu.title = self.navigationSection.title
         
-        menu.addItemWithTitle(self.Newest.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.MostFavorites.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
-        menu.addItemWithTitle(self.MostReblogged.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.Newest.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.MostFavorites.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: self.MostReblogged.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
         
-        for item in menu.itemArray {
+        for item in menu.items {
             item.target = target
         }
         
@@ -311,5 +311,5 @@ extension SearchSectionSort {
 }
 
 protocol SearchSectionSortMenuTarget {
-    func searchSectionSortChanged(sender: NSMenuItem)
+    func searchSectionSortChanged(_ sender: NSMenuItem)
 }

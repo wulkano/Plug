@@ -50,7 +50,7 @@ class BlogViewController: BaseContentViewController {
         header.bottomBorder = true
         header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         header.background = true
-        header.backgroundColor = NSColor.whiteColor()
+        header.backgroundColor = NSColor.white
         view.addSubview(header)
         header.snp_makeConstraints { make in
             make.height.greaterThanOrEqualTo(86)
@@ -70,10 +70,10 @@ class BlogViewController: BaseContentViewController {
         
         titleButton = HyperlinkButton()
         titleButton.hoverUnderline = true
-        titleButton.bordered = false
+        titleButton.isBordered = false
         titleButton.font = appFont(size: 20)
-        titleButton.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        titleButton.lineBreakMode = .ByTruncatingMiddle
+        titleButton.setContentCompressionResistancePriority(490, for: .horizontal)
+        titleButton.lineBreakMode = .byTruncatingMiddle
         titleButton.target = self
         titleButton.action = #selector(BlogViewController.titleButtonClicked(_:))
         header.addSubview(titleButton)
@@ -85,9 +85,9 @@ class BlogViewController: BaseContentViewController {
         }
         
         detailsTextField = NSTextField()
-        detailsTextField.editable = false
-        detailsTextField.selectable = false
-        detailsTextField.bordered = false
+        detailsTextField.isEditable = false
+        detailsTextField.isSelectable = false
+        detailsTextField.isBordered = false
         detailsTextField.drawsBackground = false
         header.addSubview(detailsTextField)
         detailsTextField.snp_makeConstraints { make in
@@ -114,7 +114,7 @@ class BlogViewController: BaseContentViewController {
         if blog != nil { blogChanged() }
     }
     
-    func loadBlog(blogID: Int) {
+    func loadBlog(_ blogID: Int) {
         HypeMachineAPI.Requests.Blogs.show(id: blogID) { result in
             switch result {
             case .Success(let blog):
@@ -154,7 +154,7 @@ class BlogViewController: BaseContentViewController {
         }
     }
     
-    func extractColorAndResizeImage(image: NSImage) {
+    func extractColorAndResizeImage(_ image: NSImage) {
         Async.DefaultPriority({
             let imageSize = NSMakeSize(224, 224)
             let colorArt = SLColorArt(image: image, scaledSize: imageSize)
@@ -172,12 +172,12 @@ class BlogViewController: BaseContentViewController {
         })
     }
     
-    func titleButtonClicked(sender: AnyObject) {
+    func titleButtonClicked(_ sender: AnyObject) {
         NSWorkspace.sharedWorkspace().openURL(blog.url)
     }
     
     func loadPlaylist() {
-        tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "Blog/Tracks")!
+        tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Blog/Tracks")!
         addChildViewController(tracksViewController)
         
         playlistContainer.addSubview(tracksViewController.view)
@@ -196,7 +196,7 @@ class BlogViewController: BaseContentViewController {
         }
     }
     
-    func followButtonClicked(sender: ActionButton) {
+    func followButtonClicked(_ sender: ActionButton) {
         HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id, optionalParams: nil) { result in
             let favoritedState = sender.state == NSOnState
             
@@ -216,7 +216,7 @@ class BlogViewController: BaseContentViewController {
     // MARK: BaseContentViewController
     
     override func addLoaderView() {
-        loaderViewController = LoaderViewController(size: .Small)
+        loaderViewController = LoaderViewController(size: .small)
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
         loaderViewController!.view.snp_makeConstraints { make in

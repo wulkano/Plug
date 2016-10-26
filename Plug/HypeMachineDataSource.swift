@@ -56,7 +56,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         fatalError("requestNextPage() not implemented")
     }
     
-    func nextPageResultReceived<T>(result: Result<T>) {
+    func nextPageResultReceived<T>(_ result: Result<T>) {
         self.viewController.nextPageDidLoad(currentPage)
         
         switch result {
@@ -86,15 +86,15 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         loadNextPageObjects()
     }
     
-    func isLastPage(objects: [AnyObject]) -> Bool {
+    func isLastPage(_ objects: [AnyObject]) -> Bool {
         return objects.count < objectsPerPage
     }
     
-    func objectForRow(row: Int) -> AnyObject? {
+    func objectForRow(_ row: Int) -> AnyObject? {
         return tableContents!.optionalAtIndex(row)
     }
     
-    func objectAfterRow(row: Int) -> AnyObject? {
+    func objectAfterRow(_ row: Int) -> AnyObject? {
         return objectForRow(row + 1)
     }
     
@@ -103,7 +103,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         filteredTableContents = nil
     }
     
-    func appendTableContents(objects: [AnyObject]) {
+    func appendTableContents(_ objects: [AnyObject]) {
         var shouldReloadTableView = false
         let filteredObjects = filterTableContents(objects)
         
@@ -129,16 +129,16 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         if shouldReloadTableView {
             viewController.tableView.reloadData()
         } else {
-            viewController.tableView.insertRowsAtIndexes(rowIndexSet, withAnimation: .EffectNone)
+            viewController.tableView.insertRows(at: rowIndexSet, withAnimation: NSTableViewAnimationOptions())
         }
     }
     
-    func rowIndexSetForNewObjects(objects: [AnyObject]) -> NSIndexSet {
+    func rowIndexSetForNewObjects(_ objects: [AnyObject]) -> IndexSet {
         let rowRange = NSMakeRange(tableContents!.count, objects.count)
-        return NSIndexSet(indexesInRange: rowRange)
+        return IndexSet(integersIn: rowRange.toRange() ?? 0..<0)
     }
     
-    func filterTableContents(objects: [AnyObject]) -> [AnyObject] {
+    func filterTableContents(_ objects: [AnyObject]) -> [AnyObject] {
         print("filterTableContents() not implemented")
         return objects
     }
@@ -149,11 +149,11 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     
     // MARK: NSTableViewDelegate
     
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         return objectForRow(row)
     }
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return tableContents?.count ?? 0
     }
 }

@@ -9,10 +9,10 @@
 import Cocoa
 import HypeMachineAPI
 
-class SingleBlogViewFormatter: NSFormatter {
+class SingleBlogViewFormatter: Formatter {
     var colorArt: SLColorArt!
 
-    func attributedBlogDetails(blog: HypeMachineAPI.Blog, colorArt: SLColorArt) -> NSAttributedString {
+    func attributedBlogDetails(_ blog: HypeMachineAPI.Blog, colorArt: SLColorArt) -> NSAttributedString {
         self.colorArt = colorArt
         
         let formattedFollowersCount = formattedCount(blog.followerCountNum)
@@ -22,19 +22,19 @@ class SingleBlogViewFormatter: NSFormatter {
         
         let blogDetails = NSMutableAttributedString()
         blogDetails.appendAttributedString(formattedFollowersCount)
-        blogDetails.appendAttributedString(formattedFollowersLabel)
+        blogDetails.append(formattedFollowersLabel)
         blogDetails.appendAttributedString(formattedTracksCount)
-        blogDetails.appendAttributedString(formattedTracksLabel)
+        blogDetails.append(formattedTracksLabel)
         
         return blogDetails
     }
     
-    func formattedCount(count: NSNumber) -> NSAttributedString {
-        let countString = LovedCountFormatter().stringForObjectValue(count)!
+    func formattedCount(_ count: NSNumber) -> NSAttributedString {
+        let countString = LovedCountFormatter().string(for: count)!
         return NSAttributedString(string: countString, attributes: countAttributes())
     }
     
-    func formattedLabel(text: String) -> NSAttributedString {
+    func formattedLabel(_ text: String) -> NSAttributedString {
         return NSAttributedString(string: text, attributes: labelAttributes())
     }
     
@@ -61,7 +61,7 @@ class SingleBlogViewFormatter: NSFormatter {
         } else if colorArt.detailColor != nil {
             return colorArt.detailColor
         } else {
-            return NSColor.blackColor()
+            return NSColor.black
         }
     }
     
@@ -74,11 +74,11 @@ class SingleBlogViewFormatter: NSFormatter {
         } else if colorArt.primaryColor != nil {
             return colorArt.primaryColor
         } else {
-            return NSColor.blackColor()
+            return NSColor.black
         }
     }
     
     func getFont() -> NSFont {
-        return appFont(size: 13, weight: .Medium)
+        return appFont(size: 13, weight: .medium)
     }
 }

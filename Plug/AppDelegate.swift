@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupUserDefaults()
         // Load Crashlytics after setting up user defaults because we initialize
         // the exception handling settings there
@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let width: CGFloat = 472
                 let height: CGFloat = 778
                 let x: CGFloat = 100
-                let y: CGFloat = (NSScreen.mainScreen()!.frame.size.height - 778) / 2
+                let y: CGFloat = (NSScreen.main()!.frame.size.height - 778) / 2
 
                 let defaultFrame = NSMakeRect(x, y, width, height)
                 mainWindowController!.window!.setFrame(defaultFrame, display: false)
@@ -97,7 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
-            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: NSBundle.mainBundle())
+            let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: Bundle.main)
             preferencesWindowController = (preferencesStoryboard.instantiateInitialController() as! NSWindowController)
         }
         preferencesWindowController!.showWindow(self)
@@ -114,29 +114,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func showPreferencesInMenu() {
-        preferencesMenuItem.hidden = false
-        preferencesMenuSeparator.hidden = false
+        preferencesMenuItem.isHidden = false
+        preferencesMenuSeparator.isHidden = false
     }
     
     func hidePreferencesFromMenu() {
-        preferencesMenuItem.hidden = true
-        preferencesMenuSeparator.hidden = true
+        preferencesMenuItem.isHidden = true
+        preferencesMenuSeparator.isHidden = true
     }
     
     func showSignOutInMenu() {
-        signOutMenuItem.hidden = false
-        signOutMenuSeparator.hidden = false
+        signOutMenuItem.isHidden = false
+        signOutMenuSeparator.isHidden = false
     }
     
     func hideSignOutFromMenu() {
-        signOutMenuItem.hidden = true
-        signOutMenuSeparator.hidden = true
+        signOutMenuItem.isHidden = true
+        signOutMenuSeparator.isHidden = true
     }
     
     func setupUserDefaults() {
-        let userDefaultsValuesPath = NSBundle.mainBundle().pathForResource("UserDefaults", ofType: "plist")!
+        let userDefaultsValuesPath = Bundle.main.path(forResource: "UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
-        NSUserDefaults.standardUserDefaults().registerDefaults(userDefaultsValuesDict as! [String : AnyObject])
+        UserDefaults.standard.register(defaults: userDefaultsValuesDict as! [String : AnyObject])
     }
     
     func setupUserNotifications() {
@@ -157,7 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             HypeMachineAPI.hmToken = hmToken
         }
         
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let userAgent = "Plug for OSX/\(version)"
         HypeMachineAPI.userAgent = userAgent
     }
@@ -168,8 +168,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Notifications
     
-    func catchTokenErrors(notification: NSNotification) {
-        let error = notification.userInfo!["error"] as! NSError
+    func catchTokenErrors(_ notification: Notification) {
+        let error = (notification as NSNotification).userInfo!["error"] as! NSError
 
         if error.code == HypeMachineAPI.ErrorCodes.InvalidHMToken.rawValue {
             signOut(nil)
@@ -178,11 +178,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Actions
     
-    @IBAction func aboutItemClicked(sender: AnyObject) {
+    @IBAction func aboutItemClicked(_ sender: AnyObject) {
         openAboutWindow()
     }
     
-    @IBAction func signOut(sender: AnyObject?) {
+    @IBAction func signOut(_ sender: AnyObject?) {
         Analytics.trackButtonClick("Sign Out")
         closeMainWindow()
         if preferencesWindowController != nil {
@@ -194,21 +194,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openLoginWindow()
     }
     
-    @IBAction func preferencesItemClicked(sender: AnyObject) {
+    @IBAction func preferencesItemClicked(_ sender: AnyObject) {
         openPreferencesWindow()
     }
     
-    @IBAction func refreshItemClicked(sender: AnyObject) {
+    @IBAction func refreshItemClicked(_ sender: AnyObject) {
         Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
     }
     
-    @IBAction func reportABugItemClicked(sender: AnyObject) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
+    @IBAction func reportABugItemClicked(_ sender: AnyObject) {
+        NSWorkspace.shared().open(URL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
     }
     
     // MARK: NSApplicationDelegate
     
-    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         if Authentication.UserSignedIn() {
             return false
         } else {
@@ -216,7 +216,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if flag == false {
             openMainWindow()
         }

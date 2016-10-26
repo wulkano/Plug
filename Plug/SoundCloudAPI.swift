@@ -13,7 +13,7 @@ let ClientID = "2c3c67194673f9968b7c8b5f2b50d486"
 
 struct SoundCloudAPI {
     struct Tracks {
-        static func permalink(trackId: String, callback: (Result<NSURL>)->Void) {
+        static func permalink(_ trackId: String, callback: (Result<NSURL>)->Void) {
             let url = "https://api.soundcloud.com/tracks/\(trackId).json"
             
             Alamofire.request(.GET, url, parameters: ["client_id": ClientID]).validate().responseJSON { (_, _, result) in
@@ -34,7 +34,7 @@ struct SoundCloudAPI {
         }
     }
     
-    enum Errors: ErrorType {
-        case CantParseResponse
+    enum Errors: Error {
+        case cantParseResponse
     }
 }

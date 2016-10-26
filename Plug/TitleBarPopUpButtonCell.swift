@@ -31,19 +31,19 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
         return formattedTitle.size().height - attributedTitle.size().height
     }
     
-    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
+    override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
         var newFrame = frame
         newFrame.size.width += trimPaddingBetweenArrowAndTitle
         newFrame.size.height += 4
         newFrame.origin.y -= 1
-        return super.drawTitle(formattedTitle, withFrame: newFrame, inView: controlView)
+        return super.drawTitle(formattedTitle, withFrame: newFrame, in: controlView)
     }
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
+    override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
         drawArrow(frame, inView: controlView)
     }
     
-    private func drawArrow(frame: NSRect, inView controlView: NSView) {
+    fileprivate func drawArrow(_ frame: NSRect, inView controlView: NSView) {
         let arrowColor = NSColor(white: 0, alpha: 0.4)
         
         let path = NSBezierPath()
@@ -53,9 +53,9 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
         let bottomPoint = NSMakePoint(bounds.size.width - 10, (bounds.size.height / 2) + 2.5);
         let rightPoint = NSMakePoint(bounds.size.width - 6, (bounds.size.height / 2) - 2);
         
-        path.moveToPoint(leftPoint)
-        path.lineToPoint(bottomPoint)
-        path.lineToPoint(rightPoint)
+        path.move(to: leftPoint)
+        path.line(to: bottomPoint)
+        path.line(to: rightPoint)
         
         arrowColor.set()
         path.lineWidth = 2
@@ -63,23 +63,23 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
     }
     
     
-    override func selectItem(item: NSMenuItem?) {
-        super.selectItem(item)
+    override func select(_ item: NSMenuItem?) {
+        super.select(item)
         sortMenuForSelectedItem(item)
     }
     
-    private func sortMenuForSelectedItem(item: NSMenuItem?) {
-        let originalMenuItems = originalMenu!.itemArray
-        let sortedItemArray = originalMenuItems.map { self.menu!.itemWithTitle($0.title)! }
+    fileprivate func sortMenuForSelectedItem(_ item: NSMenuItem?) {
+        let originalMenuItems = originalMenu!.items
+        let sortedItemArray = originalMenuItems.map { self.menu!.item(withTitle: $0.title)! }
         
-        for sortItem in Array(sortedItemArray.reverse()) {
+        for sortItem in Array(sortedItemArray.reversed()) {
             if sortItem === item! { continue }
             
             menu!.removeItem(sortItem)
-            menu!.insertItem(sortItem, atIndex: 0)
+            menu!.insertItem(sortItem, at: 0)
         }
         
         menu!.removeItem(item!)
-        menu!.insertItem(item!, atIndex: 0)
+        menu!.insertItem(item!, at: 0)
     }
 }

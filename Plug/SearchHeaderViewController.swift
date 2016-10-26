@@ -16,7 +16,7 @@ class SearchHeaderViewController: NSViewController {
         
         let background = BackgroundBorderView()
         background.background = true
-        background.backgroundColor = NSColor.whiteColor()
+        background.backgroundColor = NSColor.white
         background.bottomBorder = true
         background.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         view.addSubview(background)
