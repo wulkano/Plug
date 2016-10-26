@@ -38,12 +38,12 @@ class BlogTableCellView: IOSStyleTableCellView {
         recentArtistsTextField.stringValue = "Loading..."
         
         let params = ["page": 1, "count": 3]
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, optionalParams: params) { result in
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, params: params) { response in
             guard self.objectValue != nil && self.blog.id == originalBlogID
                 else { return }
             
-            switch result {
-            case .Success(let tracks):
+            switch response.result {
+            case .success(let tracks):
                 var recentTracks = ""
                 for (index, track) in tracks.enumerate() {
                     recentTracks = recentTracks + "\(track.artist)"
@@ -52,7 +52,7 @@ class BlogTableCellView: IOSStyleTableCellView {
                     }
                 }
                 self.recentArtistsTextField.stringValue = recentTracks
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 Swift.print(error as NSError)
             }

@@ -52,14 +52,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id, optionalParams: nil) {
-            result in
-            switch result {
-            case .Success(let favorited):
+        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { response in
+            switch response.result {
+            case .success(let favorited):
                 if favorited != newLovedValue {
                     self.changeTrackLovedValueTo(favorited)
                 }
-            case .Failure(_, let error):
+            case .failure(_, let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 self.changeTrackLovedValueTo(oldLovedValue)

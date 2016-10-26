@@ -4,7 +4,6 @@ use_frameworks!
 target 'Plug' do
   pod 'INAppStoreWindow',      '~> 1.4'
   pod 'SSKeychain',            '~> 1.2.2'
-  pod 'Swignals',              '~> 0.1'
   pod 'Alamofire',             '~> 4.0.1'
   pod 'SnapKit',               '~> 3.0.2'
   pod 'HypeMachineAPI',        '~> 1.0.0'

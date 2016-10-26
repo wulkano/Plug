@@ -39,13 +39,13 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     }
     
     func loginWithUsernameOrEmail(_ usernameOrEmail: String, andPassword password: String) {
-        HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) { result in
-            switch result {
-            case .Success(let usernameAndToken):
+        HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) { response in
+            switch response.result {
+            case .success(let usernameAndToken):
                 Authentication.SaveUsername(usernameAndToken.username, withToken: usernameAndToken.token)
                 HypeMachineAPI.hmToken = usernameAndToken.token
                 self.signedInSuccessfully()
-            case .Failure(_, let error):
+            case .failure(let error):
                 var errorMessage: String
                 if (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue ||
                     (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongUsername.rawValue {

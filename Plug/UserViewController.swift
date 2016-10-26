@@ -157,11 +157,11 @@ class UserViewController: BaseContentViewController {
     }
     
     func loadUser(_ username: String) {
-        HypeMachineAPI.Requests.Users.show(username: username) { result in
-            switch result {
-            case .Success(let user):
+        HypeMachineAPI.Requests.Users.show(username: username) { response in
+            switch response.result {
+            case .success(let user):
                 self.user = user
-            case .Failure(_, let error):
+            case .failure(_, let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
             }
@@ -223,15 +223,15 @@ class UserViewController: BaseContentViewController {
     }
     
     func followButtonClicked(_ sender: ActionButton) {
-        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username, optionalParams: nil) { result in
+        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username) { response in
             let favoritedState = sender.state == NSOnState
             
-            switch result {
-            case .Success(let favorited):
+            switch response.result {
+            case .success(let favorited):
                 if favorited != favoritedState {
                     sender.state = favorited ? NSOnState : NSOffState
                 }
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 

@@ -115,11 +115,11 @@ class BlogViewController: BaseContentViewController {
     }
     
     func loadBlog(_ blogID: Int) {
-        HypeMachineAPI.Requests.Blogs.show(id: blogID) { result in
-            switch result {
-            case .Success(let blog):
+        HypeMachineAPI.Requests.Blogs.show(id: blogID) { response in
+            switch response.result {
+            case .success(let blog):
                 self.blog = blog
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
             }
@@ -197,14 +197,14 @@ class BlogViewController: BaseContentViewController {
     }
     
     func followButtonClicked(_ sender: ActionButton) {
-        HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id, optionalParams: nil) { result in
+        HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id) { response in
             let favoritedState = sender.state == NSOnState
             
-            switch result {
-            case .Success(let favorited):
+            switch response.result {
+            case .success(let favorited):
                 guard favorited != favoritedState else { return }
                 sender.state = favorited ? NSOnState : NSOffState
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 

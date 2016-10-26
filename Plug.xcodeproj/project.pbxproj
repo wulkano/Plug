@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		885CBDFE1D35467D00B46C4F /* PreventSleep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 885CBDFD1D35467D00B46C4F /* PreventSleep.framework */; };
-		885CBDFF1D35467D00B46C4F /* PreventSleep.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 885CBDFD1D35467D00B46C4F /* PreventSleep.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */; };
 		F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
@@ -44,6 +42,8 @@
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
 		FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */; };
+		FA4037CD1DC1603B00AEDEE3 /* PreventSleep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */; };
+		FA4037CE1DC1603B00AEDEE3 /* PreventSleep.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */; };
 		FA4BA9991B543FA700A983A5 /* RefreshClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */; };
 		FA4BA99C1B5492BE00A983A5 /* TracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */; };
@@ -101,6 +101,9 @@
 		FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */; };
 		FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */; };
 		FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */; };
+		FA8F0E741DC163F400E9ABF2 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; };
+		FA8F0E751DC163FC00E9ABF2 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; };
+		FA8F0E761DC163FC00E9ABF2 /* Swignals.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
 		FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */; };
 		FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -164,7 +167,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */,
-				885CBDFF1D35467D00B46C4F /* PreventSleep.framework in CopyFiles */,
+				FA4037CE1DC1603B00AEDEE3 /* PreventSleep.framework in CopyFiles */,
+				FA8F0E761DC163FC00E9ABF2 /* Swignals.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +176,6 @@
 
 /* Begin PBXFileReference section */
 		7F4BF4E22ADB52DCD3C33EBE /* Pods-Plug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.release.xcconfig"; sourceTree = "<group>"; };
-		885CBDFD1D35467D00B46C4F /* PreventSleep.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreventSleep.framework; path = Carthage/Build/Mac/PreventSleep.framework; sourceTree = "<group>"; };
 		88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepAwake.swift; sourceTree = "<group>"; };
 		BB3EA63AC6CD980E836036D5 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
 		F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +216,7 @@
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutedPreferencesViewController.swift; sourceTree = "<group>"; };
+		FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PreventSleep.framework; sourceTree = "<group>"; };
 		FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
 		FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshClipView.swift; sourceTree = "<group>"; };
 		FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSource.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 		FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+getSubstringBetweenPrefix.swift"; sourceTree = "<group>"; };
 		FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayErrorViewController.swift; sourceTree = "<group>"; };
 		FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+contains.swift"; sourceTree = "<group>"; };
+		FA8F0E731DC163F400E9ABF2 /* Swignals.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Swignals.framework; sourceTree = "<group>"; };
 		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
 		FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarPopUpButtonCell.swift; sourceTree = "<group>"; };
 		FA99EECA19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
@@ -333,9 +338,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA8F0E751DC163FC00E9ABF2 /* Swignals.framework in Frameworks */,
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
-				885CBDFE1D35467D00B46C4F /* PreventSleep.framework in Frameworks */,
+				FA8F0E741DC163F400E9ABF2 /* Swignals.framework in Frameworks */,
+				FA4037CD1DC1603B00AEDEE3 /* PreventSleep.framework in Frameworks */,
 				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
 			);
@@ -347,6 +354,8 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA8F0E731DC163F400E9ABF2 /* Swignals.framework */,
+				FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */,
 				FAE3E79B1C17924D002106FE /* Sparkle.framework */,
 				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
 				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,

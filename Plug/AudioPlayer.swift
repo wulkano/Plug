@@ -297,10 +297,10 @@ class AudioPlayer: NSObject {
         Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
         
         if progress > 30 && !currentTrackListenLogged {
-            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, optionalParams: nil, callback: {error in})
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, callback: {})
             currentTrackListenLogged = true
         } else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
-            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), optionalParams: nil, callback: {error in})
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), callback: {})
             currentTrackListenScrobbled = true
         }
     }

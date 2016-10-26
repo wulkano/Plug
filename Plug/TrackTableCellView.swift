@@ -300,13 +300,13 @@ class TrackTableCellView: IOSStyleTableCellView {
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id, optionalParams: nil) { result in
-            switch result {
-            case .Success(let favorited):
+        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id) { response in
+            switch response.result {
+            case .success(let favorited):
                 if favorited != newLovedValue {
                     self.changeTrackLovedValueTo(favorited)
                 }
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 Swift.print(error as NSError)
                 self.changeTrackLovedValueTo(oldLovedValue)

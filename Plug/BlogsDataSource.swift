@@ -81,8 +81,8 @@ class BlogsDataSource: SearchableDataSource {
     }
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Blogs.index(optionalParams: nil) { result in
-            self.nextPageResultReceived(result)
+        HypeMachineAPI.Requests.Blogs.index { response in
+            self.nextPageResultReceived(response.result)
         }
     }
     
