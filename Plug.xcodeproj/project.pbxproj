@@ -100,7 +100,6 @@
 		FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */; };
 		FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */; };
 		FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */; };
-		FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */; };
 		FA8F0E741DC163F400E9ABF2 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; };
 		FA8F0E751DC163FC00E9ABF2 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; };
 		FA8F0E761DC163FC00E9ABF2 /* Swignals.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -274,7 +273,6 @@
 		FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundCloudAPI.swift; sourceTree = "<group>"; };
 		FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+getSubstringBetweenPrefix.swift"; sourceTree = "<group>"; };
 		FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayErrorViewController.swift; sourceTree = "<group>"; };
-		FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Range+contains.swift"; sourceTree = "<group>"; };
 		FA8F0E731DC163F400E9ABF2 /* Swignals.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Swignals.framework; sourceTree = "<group>"; };
 		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
 		FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarPopUpButtonCell.swift; sourceTree = "<group>"; };
@@ -563,7 +561,6 @@
 			children = (
 				FA64C6A819765323003933E3 /* Array.swift */,
 				FA51263519761436004D0776 /* NSColor+256ColorValues.swift */,
-				FA8EC5D819C4F70B0092FC49 /* Range+contains.swift */,
 				FABB112E19C10DD8000DB1BC /* String+digest.swift */,
 				FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */,
 				FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */,
@@ -983,7 +980,6 @@
 				FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */,
 				FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
-				FA8EC5D919C4F70B0092FC49 /* Range+contains.swift in Sources */,
 				FA4BF21519F601090078AB82 /* BlogTableCellView.swift in Sources */,
 				FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */,
 				FA53951219B0583D006A95A5 /* PostInfoFormatter.swift in Sources */,
