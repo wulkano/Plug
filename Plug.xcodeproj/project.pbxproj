@@ -125,7 +125,6 @@
 		FABAA8911B2F57A80090D773 /* TitleBarPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */; };
 		FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */; };
 		FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB112E19C10DD8000DB1BC /* String+digest.swift */; };
-		FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */; };
 		FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACEEBE719ABB9440093A81B /* Preferences.storyboard */; };
 		FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */; };
 		FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */; };
@@ -298,7 +297,6 @@
 		FABAA8901B2F57A80090D773 /* TitleBarPopUpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarPopUpButton.swift; sourceTree = "<group>"; };
 		FABAA8921B2F59530090D773 /* DropdownTitleFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownTitleFormatter.swift; sourceTree = "<group>"; };
 		FABB112E19C10DD8000DB1BC /* String+digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+digest.swift"; sourceTree = "<group>"; };
-		FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Plug-Bridging-Header.m"; sourceTree = "<group>"; };
 		FACEEBE719ABB9440093A81B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		FACEEBE919ABC3160093A81B /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PreferencesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FACEEBEE19ABDA130093A81B /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
 				FA64C6A619764FE9003933E3 /* Globals.swift */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
-				FACB370D19E3B0C100432CE8 /* Plug-Bridging-Header.m */,
 				FA64C6A119764DAE003933E3 /* Models */,
 				FA2519451C039E850075FBC6 /* Helpers */,
 				FA9EA043199B0D1500D9AB8A /* Data Sources */,
@@ -1071,7 +1068,6 @@
 				FA53950719AFFF01006A95A5 /* TrackTableCellView.swift in Sources */,
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
-				FACB370E19E3B0C100432CE8 /* Plug-Bridging-Header.m in Sources */,
 				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
