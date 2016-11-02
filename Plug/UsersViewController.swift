@@ -145,7 +145,7 @@ class UsersViewController: DataSourceViewController {
     // MARK: ExtendedTableViewDelegate
     
     override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+        if let item: Any = dataSource!.objectForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }
     }

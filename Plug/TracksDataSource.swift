@@ -7,14 +7,15 @@
 //
 
 import Cocoa
+import Alamofire
 import HypeMachineAPI
 
 class TracksDataSource: HypeMachineDataSource {
     
     let infiniteLoadTrackCountFromEnd: Int = 7
     
-    func nextPageTracksReceived(result: Result<[HypeMachineAPI.Track]>) {
-        nextPageResultReceived(result)
+    func nextPageTracksReceived(response: DataResponse<[HypeMachineAPI.Track]>) {
+        nextPageResponseReceived(response)
         AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
     }
     

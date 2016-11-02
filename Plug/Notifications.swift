@@ -9,28 +9,31 @@
 import Cocoa
 
 struct Notifications {
-    static let DisplayError = "Plug.DisplayErrorNotification"
+    static let DisplayError = Notification.Name("Plug.DisplayErrorNotification")
 
-    static let NewCurrentTrack = "Plug.NewCurrentTrack"
+    static let NewCurrentTrack = Notification.Name("Plug.NewCurrentTrack")
     
-    static let TrackLoved = "Plug.TrackLovedNotification"
-    static let TrackUnLoved = "Plug.TrackUnLovedNotification"
-    static let TrackPaused = "Plug.TrackPausedNotification"
-    static let TrackPlaying = "Plug.TrackPlayingNotification"
-    static let TrackProgressUpdated = "Plug.TrackProgressUpdatedNotification"
+    static let TrackLoved = Notification.Name("Plug.TrackLovedNotification")
+    static let TrackUnLoved = Notification.Name("Plug.TrackUnLovedNotification")
+    static let TrackPaused = Notification.Name("Plug.TrackPausedNotification")
+    static let TrackPlaying = Notification.Name("Plug.TrackPlayingNotification")
+    static let TrackProgressUpdated = Notification.Name("Plug.TrackProgressUpdatedNotification")
     
-    static let RefreshCurrentView = "Plug.RefreshCurrentView"
+    static let RefreshCurrentView = Notification.Name("Plug.RefreshCurrentView")
+}
 
+
+extension Notifications {
     static func post(name: String, object: AnyObject!, userInfo: [AnyHashable: Any]!) {
         NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: object, userInfo: userInfo)
     }
     
-    static func subscribe(observer: AnyObject!, selector: Selector, name: String!, object: AnyObject!) {
-        NotificationCenter.default.addObserver(observer, selector: selector, name: name.map { NSNotification.Name(rawValue: $0) }, object: object)
+    static func subscribe(observer: AnyObject!, selector: Selector, name: Notification.Name, object: AnyObject!) {
+        NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: object)
     }
     
-    static func unsubscribe(observer: AnyObject!, name: String!, object: AnyObject!) {
-        NotificationCenter.default.removeObserver(observer, name: name.map { NSNotification.Name(rawValue: $0) }, object: object)
+    static func unsubscribe(observer: AnyObject!, name: Notification.Name, object: AnyObject!) {
+        NotificationCenter.default.removeObserver(observer, name: name, object: object)
     }
     
     static func unsubscribeAll(observer: AnyObject!) {

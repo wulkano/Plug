@@ -98,9 +98,8 @@
 		FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */; };
 		FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */; };
 		FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */; };
-		FA8F0E751DC163FC00E9ABF2 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; };
-		FA8F0E761DC163FC00E9ABF2 /* Swignals.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA8F0E731DC163F400E9ABF2 /* Swignals.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
+		FA9966BD1DCA297E00EA4BC1 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9966BC1DCA297E00EA4BC1 /* Swignals.framework */; };
 		FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */; };
 		FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FA99EED219D0210F008C9C4A /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -163,7 +162,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */,
-				FA8F0E761DC163FC00E9ABF2 /* Swignals.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +267,7 @@
 		FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayErrorViewController.swift; sourceTree = "<group>"; };
 		FA8F0E731DC163F400E9ABF2 /* Swignals.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Swignals.framework; sourceTree = "<group>"; };
 		FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperlinkButton.swift; sourceTree = "<group>"; };
+		FA9966BC1DCA297E00EA4BC1 /* Swignals.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swignals.framework; path = "../../../Library/Developer/Xcode/DerivedData/Plug-cwjxonnydhwrixawpfprnizfpkgn/Build/Products/Debug/Swignals.framework"; sourceTree = "<group>"; };
 		FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBarPopUpButtonCell.swift; sourceTree = "<group>"; };
 		FA99EECA19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
@@ -330,11 +329,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA8F0E751DC163FC00E9ABF2 /* Swignals.framework in Frameworks */,
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
+				FA9966BD1DCA297E00EA4BC1 /* Swignals.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +343,7 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA9966BC1DCA297E00EA4BC1 /* Swignals.framework */,
 				FA8F0E731DC163F400E9ABF2 /* Swignals.framework */,
 				FAE3E79B1C17924D002106FE /* Sparkle.framework */,
 				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
@@ -1193,7 +1193,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BB3EA63AC6CD980E836036D5 /* Pods-Plug.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -1226,7 +1225,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F4BF4E22ADB52DCD3C33EBE /* Pods-Plug.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application";

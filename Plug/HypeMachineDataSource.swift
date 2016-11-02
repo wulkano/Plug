@@ -14,9 +14,9 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     var filtering: Bool = false {
         didSet { viewController.tableView.reloadData() }
     }
-    var standardTableContents: [AnyObject]?
-    var filteredTableContents: [AnyObject]?
-    var tableContents: [AnyObject]? {
+    var standardTableContents: [Any]?
+    var filteredTableContents: [Any]?
+    var tableContents: [Any]? {
         if standardTableContents == nil { return nil }
         
         if filtering {
@@ -31,7 +31,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
     var objectsPerPage: Int {
         return 100
     }
-    var nextPageParams: [String: AnyObject] {
+    var nextPageParams: [String: Any] {
         return [ "page": currentPage + 1, "count": objectsPerPage]
     }
     var singlePage: Bool {
@@ -56,13 +56,13 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         fatalError("requestNextPage() not implemented")
     }
     
-    func nextPageResultReceived<T>(_ result: Result<T>) {
+    func nextPageResponseReceived<T>(_ response: DataResponse<T>) {
         self.viewController.nextPageDidLoad(currentPage)
         
-        switch result {
-        case .Success(let value):
-            guard let objects = value as Any as? AnyObject as? [AnyObject] else {
-                fatalError("Must be of type [AnyObject]")
+        switch response.result {
+        case .success(let value):
+            guard let objects = value as Any as? [Any] else {
+                fatalError("Must be of type [Any]")
             }
             
             if currentPage == 0 {
@@ -74,8 +74,8 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
             
             self.appendTableContents(objects)
             self.requestInProgress = false
-        case .Failure(_, let error):
-            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+        case .failure(let error):
+            Notifications.post(name: Notifications.DisplayError.rawValue, object: self, userInfo: ["error": error as NSError])
             print(error)
         }
     }
@@ -86,15 +86,15 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         loadNextPageObjects()
     }
     
-    func isLastPage(_ objects: [AnyObject]) -> Bool {
+    func isLastPage(_ objects: [Any]) -> Bool {
         return objects.count < objectsPerPage
     }
     
-    func objectForRow(_ row: Int) -> AnyObject? {
+    func objectForRow(_ row: Int) -> Any? {
         return tableContents!.optionalAtIndex(row)
     }
     
-    func objectAfterRow(_ row: Int) -> AnyObject? {
+    func objectAfterRow(_ row: Int) -> Any? {
         return objectForRow(row + 1)
     }
     
@@ -103,7 +103,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         filteredTableContents = nil
     }
     
-    func appendTableContents(_ objects: [AnyObject]) {
+    func appendTableContents(_ objects: [Any]) {
         var shouldReloadTableView = false
         let filteredObjects = filterTableContents(objects)
         
@@ -113,7 +113,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
             shouldReloadTableView = true
         }
         
-        let objectsToAdd: [AnyObject]
+        let objectsToAdd: [Any]
         if filtering {
             objectsToAdd = filteredObjects
         } else {
@@ -133,12 +133,12 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         }
     }
     
-    func rowIndexSetForNewObjects(_ objects: [AnyObject]) -> IndexSet {
+    func rowIndexSetForNewObjects(_ objects: [Any]) -> IndexSet {
         let rowRange = NSMakeRange(tableContents!.count, objects.count)
         return IndexSet(integersIn: rowRange.toRange() ?? 0..<0)
     }
     
-    func filterTableContents(_ objects: [AnyObject]) -> [AnyObject] {
+    func filterTableContents(_ objects: [Any]) -> [Any] {
         print("filterTableContents() not implemented")
         return objects
     }

@@ -30,8 +30,8 @@ class TrackTableCellView: IOSStyleTableCellView {
     var dataSource: TracksDataSource!
     var trackInfoWindowController: NSWindowController?
     
-    override var objectValue: AnyObject! {
-        didSet { if objectValue !== oldValue { objectValueChanged() } }
+    override var objectValue: Any! {
+        didSet { if objectValue as AnyObject !== oldValue as AnyObject { objectValueChanged() } }
     }
     var track: HypeMachineAPI.Track {
         return objectValue as! HypeMachineAPI.Track

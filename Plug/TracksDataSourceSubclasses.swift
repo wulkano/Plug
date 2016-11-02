@@ -55,7 +55,7 @@ class FavoriteTracksDataSource: TracksDataSource {
     override func requestNextPageObjects() {
         switch playlist {
         case .All:
-            HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, completionHandler: nextPageTracksReceived)
+            HypeMachineAPI.Requests.Me.favorites(params: nextPageParams, completionHandler: nextPageTracksReceived)
         case .One:
             HypeMachineAPI.Requests.Me.showPlaylist(id: 1, params: nextPageParams, completionHandler: nextPageTracksReceived)
         case .Two:
@@ -67,7 +67,7 @@ class FavoriteTracksDataSource: TracksDataSource {
     }
     
     override func nextPageTracksReceived(response: DataResponse<[HypeMachineAPI.Track]>) {
-        nextPageResultReceived(result)
+        nextPageResponseReceived(response)
         if shuffle {
             allObjectsLoaded = false
             

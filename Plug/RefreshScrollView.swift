@@ -96,12 +96,12 @@ class RefreshScrollView: NSScrollView {
     }
     
     func contentViewWillChange() {
-        Notifications.unsubscribe(observer: self, name: NSNotification.Name.NSViewBoundsDidChange.rawValue, object: contentView)
+        Notifications.unsubscribe(observer: self, name: NSNotification.Name.NSViewBoundsDidChange, object: contentView)
     }
     
     func contentViewChanged() {
         contentView.postsFrameChangedNotifications = true
-        Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSNotification.Name.NSViewBoundsDidChange.rawValue, object: contentView)
+        Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSNotification.Name.NSViewBoundsDidChange, object: contentView)
     }
     
     func contentViewBoundsDidChange(_ notification: Notification) {

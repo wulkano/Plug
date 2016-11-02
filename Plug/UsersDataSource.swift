@@ -44,7 +44,7 @@ class UsersDataSource: SearchableDataSource {
         }
     }
     
-    override func appendTableContents(_ contents: [AnyObject]) {
+    override func appendTableContents(_ contents: [Any]) {
         let users = contents as! [HypeMachineAPI.User]
         let sortedUsers = sortUsers(users)
         super.appendTableContents(sortedUsers)

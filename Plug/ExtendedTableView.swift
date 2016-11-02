@@ -168,7 +168,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
         isScrollingTimer?.invalidate()
         isScrollingTimer = Interval.single(0.1) {
             self.isScrolling = false
-            self.scrollViewDidEndScrolling(Notification(name: "nil", object: self))
+            self.scrollViewDidEndScrolling(Notification(name: Notification.Name("nil"), object: self))
         }
     }
     
