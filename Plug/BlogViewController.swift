@@ -143,11 +143,14 @@ class BlogViewController: BaseContentViewController {
     }
     
     func updateImage() {
-        Alamofire.request(.GET, blog.imageURLForSize(.Normal)).validate().responseImage() { (_, _, result) in
-            switch result {
-            case .Success(let image):
+        Alamofire
+            .request(blog.imageURLForSize(.Normal), method: .get)
+            .validate()
+            .responseImage() { response in
+            switch response.result {
+            case .success(let image):
                 self.extractColorAndResizeImage(image)
-            case .Failure(_, let error):
+            case .failure(_, let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error as NSError)
             }
@@ -157,11 +160,11 @@ class BlogViewController: BaseContentViewController {
     func extractColorAndResizeImage(_ image: NSImage) {
         Async.DefaultPriority({
             let imageSize = NSMakeSize(224, 224)
-            let colorArt = SLColorArt(image: image, scaledSize: imageSize)
+            let colorArt = SLColorArt(image: image, scaledSize: imageSize)!
             let attributedBlogDetails = SingleBlogViewFormatter().attributedBlogDetails(self.blog, colorArt: colorArt)
             
             Async.MainQueue({
-                let image = colorArt.scaledImage
+                let image = colorArt.scaledImage!
                 image.size = NSMakeSize(112, 112)
                 self.imageView.image = image
                 self.header.backgroundColor = colorArt.backgroundColor
@@ -173,7 +176,7 @@ class BlogViewController: BaseContentViewController {
     }
     
     func titleButtonClicked(_ sender: AnyObject) {
-        NSWorkspace.sharedWorkspace().openURL(blog.url)
+        NSWorkspace.shared().open(blog.url)
     }
     
     func loadPlaylist() {

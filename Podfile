@@ -8,4 +8,5 @@ target 'Plug' do
   pod 'SnapKit',               '~> 3.0.2'
   pod 'HypeMachineAPI',        '~> 1.0.0'
   pod 'SimpleGoogleAnalytics', '~> 1.0.0'
+  pod 'PreventSleep',          '~> 0.3.0'
 end

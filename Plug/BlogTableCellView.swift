@@ -13,7 +13,7 @@ class BlogTableCellView: IOSStyleTableCellView {
     var nameTextField: NSTextField!
     var recentArtistsTextField: NSTextField!
     
-    override var objectValue: AnyObject! {
+    override var objectValue: Any! {
         didSet {
             objectValueChanged()
         }
@@ -45,7 +45,7 @@ class BlogTableCellView: IOSStyleTableCellView {
             switch response.result {
             case .success(let tracks):
                 var recentTracks = ""
-                for (index, track) in tracks.enumerate() {
+                for (index, track) in tracks.enumerated() {
                     recentTracks = recentTracks + "\(track.artist)"
                     if index < tracks.count - 1 {
                         recentTracks = recentTracks + ", "

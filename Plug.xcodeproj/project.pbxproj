@@ -42,8 +42,6 @@
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */; };
 		FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */; };
-		FA4037CD1DC1603B00AEDEE3 /* PreventSleep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */; };
-		FA4037CE1DC1603B00AEDEE3 /* PreventSleep.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */; };
 		FA4BA9991B543FA700A983A5 /* RefreshClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */; };
 		FA4BA99C1B5492BE00A983A5 /* TracksDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */; };
@@ -166,7 +164,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */,
-				FA4037CE1DC1603B00AEDEE3 /* PreventSleep.framework in CopyFiles */,
 				FA8F0E761DC163FC00E9ABF2 /* Swignals.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,7 +181,6 @@
 		FA0B1CF61976ECF60030C873 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FA0B1D2719770AEB0030C873 /* HeatMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatMapView.swift; sourceTree = "<group>"; };
 		FA0B1D3D1977355B0030C873 /* ColorChangingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChangingTextField.swift; sourceTree = "<group>"; };
-		FA107A791B03E1BD006FA015 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		FA117DE71B30B458003F4E54 /* IOSSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSSwitch.swift; sourceTree = "<group>"; };
 		FA117DEB1B31120C003F4E54 /* ActionButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonCell.swift; sourceTree = "<group>"; };
 		FA117DED1B3115C0003F4E54 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
@@ -215,7 +211,6 @@
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E319AB13F8001B216E /* HotkeysPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeysPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA3986E519AB140D001B216E /* MutedPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutedPreferencesViewController.swift; sourceTree = "<group>"; };
-		FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PreventSleep.framework; sourceTree = "<group>"; };
 		FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
 		FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshClipView.swift; sourceTree = "<group>"; };
 		FA4BA99B1B5492BE00A983A5 /* TracksDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksDataSource.swift; sourceTree = "<group>"; };
@@ -340,7 +335,6 @@
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 				FA8F0E741DC163F400E9ABF2 /* Swignals.framework in Frameworks */,
-				FA4037CD1DC1603B00AEDEE3 /* PreventSleep.framework in Frameworks */,
 				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
 			);
@@ -353,7 +347,6 @@
 			isa = PBXGroup;
 			children = (
 				FA8F0E731DC163F400E9ABF2 /* Swignals.framework */,
-				FA4037C91DC15FCA00AEDEE3 /* PreventSleep.framework */,
 				FAE3E79B1C17924D002106FE /* Sparkle.framework */,
 				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
 				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
@@ -459,7 +452,6 @@
 				FA24ED9E1974A9A500A781C8 /* Plug */,
 				FA24ED9D1974A9A500A781C8 /* Products */,
 				8649AE136FF74B02AB61EE0C /* Frameworks */,
-				FA107A791B03E1BD006FA015 /* Cartfile */,
 				FA50F43E1DC13CE00062D70E /* Podfile */,
 				FA2CA63D1C13778A00D76C65 /* readme.md */,
 				910B3EDDAFADE5E60CE1BB80 /* Pods */,
@@ -829,12 +821,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA24EDBA1974A9A500A781C8 /* Build configuration list for PBXNativeTarget "Plug" */;
 			buildPhases = (
-				56E3DDB3D2109542B2F3441F /* [CP] Check Pods Manifest.lock */,
 				FA24ED981974A9A500A781C8 /* Sources */,
 				FA24ED991974A9A500A781C8 /* Frameworks */,
 				FA24ED9A1974A9A500A781C8 /* Resources */,
 				FA562EF319E8810E00B760A2 /* CopyFiles */,
 				FA7404EA1B348E6E00684ADA /* ShellScript */,
+				56E3DDB3D2109542B2F3441F /* [CP] Check Pods Manifest.lock */,
 				BFE161847B3FC2D578E585A8 /* [CP] Embed Pods Frameworks */,
 				7D2DB70967753A144AD64521 /* [CP] Copy Pods Resources */,
 			);
@@ -1206,7 +1198,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
 					"$(PROJECT_DIR)/Plug",
 				);
@@ -1238,7 +1229,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Plug-dfdfruqlfksttsftcydunfxgrukm/Build/Products/Debug",
 					"$(PROJECT_DIR)/Plug",
 				);

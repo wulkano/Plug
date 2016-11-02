@@ -87,8 +87,8 @@ class MainViewController: NSViewController, SidebarViewControllerDelegate, Popul
         displayErrorViewController?.setupLayoutInSuperview()
         displayErrorViewController?.animateIn()
         displayErrorViewController?.animateOutWithDelay(4, completionHandler: {
-            displayErrorViewController.view.removeFromSuperview()
-            displayErrorViewController.removeFromParentViewController()
+            displayErrorViewController?.view.removeFromSuperview()
+            displayErrorViewController?.removeFromParentViewController()
         })
     }
     

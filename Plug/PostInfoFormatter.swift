@@ -15,9 +15,9 @@ class PostInfoFormatter: Formatter {
         let formattedBlogName = attributedBlogName(track.postedBy)
         let formattedDescription = attributedDescription(track.postedByDescription)
         let formattedDatePosted = attributedDatePosted(track.datePosted, url: track.hypeMachineURL())
-        postInfoAttributedString.appendAttributedString(formattedBlogName)
-        postInfoAttributedString.appendAttributedString(formattedDescription)
-        postInfoAttributedString.appendAttributedString(formattedDatePosted)
+        postInfoAttributedString.append(formattedBlogName)
+        postInfoAttributedString.append(formattedDescription)
+        postInfoAttributedString.append(formattedDatePosted)
         return postInfoAttributedString
     }
     

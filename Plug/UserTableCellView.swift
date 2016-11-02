@@ -15,7 +15,7 @@ class UserTableCellView: IOSStyleTableCellView {
     var fullNameTextField: NSTextField!
     var usernameTextField: NSTextField!
 
-    override var objectValue: AnyObject! {
+    override var objectValue: Any! {
         didSet {
             objectValueChanged()
         }
@@ -44,13 +44,14 @@ class UserTableCellView: IOSStyleTableCellView {
         avatarView.image = NSImage(named: "Avatar-Placeholder")
         if user.avatarURL == nil { return }
         
-        Alamofire.request(.GET, user.avatarURL!).validate().responseImage {
-            (_, _, result) in
+        Alamofire
+            .request(user.avatarURL!, method: .get).validate()
+            .responseImage { reponse in
             
-            switch result {
-            case .Success(let image):
+            switch response.result {
+            case .success(let image):
                 self.avatarView.image = image
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 Swift.print(error as NSError)
             }

@@ -92,7 +92,7 @@ class DisplayErrorViewController: NSViewController {
     func animateIn() {
         view.superview!.layoutSubtreeIfNeeded()
         
-        bottomConstraint!.uninstall()
+        bottomConstraint!.deactivate()
         
         view.snp.makeConstraints { make in
             topConstraint = make.top.equalTo(view.superview!).constraint
@@ -111,7 +111,7 @@ class DisplayErrorViewController: NSViewController {
         Interval.single(delay) {
             self.view.superview!.layoutSubtreeIfNeeded()
             
-            self.topConstraint!.uninstall()
+            self.topConstraint!.deactivate()
             
             self.view.snp.makeConstraints { make in
                 make.bottom.equalTo(self.view.superview!.snp.top)

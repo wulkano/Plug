@@ -9,7 +9,7 @@
 import Cocoa
 
 class ColorChangingTextField: NSTextField {
-    override var objectValue: AnyObject! {
+    override var objectValue: Any! {
         didSet { objectValueChanged() }
     }
     

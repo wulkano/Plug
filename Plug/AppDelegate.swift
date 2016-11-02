@@ -171,7 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func catchTokenErrors(_ notification: Notification) {
         let error = (notification as NSNotification).userInfo!["error"] as! NSError
 
-        if error.code == HypeMachineAPI.ErrorCodes.InvalidHMToken.rawValue {
+        if error.code == HypeMachineAPI.APIError.invalidHMToken {
             signOut(nil)
         }
     }
