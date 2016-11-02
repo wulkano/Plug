@@ -13,9 +13,6 @@ cd Plug2
 
 # Install CocoaPods (make sure you have CocoaPods installed on you machine https://cocoapods.org/)
 pod install
-
-# Install Carthage packages (make sure you have Carthage installed on your machine https://github.com/Carthage/Carthage)
-carthage build
 ```
 
 You should be set up. Open Plug.xcworkspace to get started.
