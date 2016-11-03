@@ -31,7 +31,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     var trackInfoWindowController: NSWindowController?
     
     override var objectValue: Any! {
-        didSet { if objectValue as AnyObject !== oldValue as AnyObject { objectValueChanged() } }
+        didSet { objectValueChanged() }
     }
     var track: HypeMachineAPI.Track {
         get { return objectValue as! HypeMachineAPI.Track }
