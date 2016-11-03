@@ -10,7 +10,7 @@ import Cocoa
 import SimpleGoogleAnalytics
 
 struct Analytics {
-    static let sharedTracker = SimpleGoogleAnalytics.Manager(trackingID: "UA-42119014-6", appBundle: Bundle.mainBundle(), userID: Authentication.GetUsernameHash())
+    static let sharedTracker = SimpleGoogleAnalytics.Manager(trackingID: "UA-42119014-6", appBundle: Bundle.main, userID: Authentication.GetUsernameHash())
     
     static func trackView(_ viewName: String) {
         sharedTracker.trackPageview(viewName)

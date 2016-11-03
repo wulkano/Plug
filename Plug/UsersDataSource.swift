@@ -22,12 +22,12 @@ class UsersDataSource: SearchableDataSource {
     }
     
     func sortUsers(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
-        return users.sort { $0.username.lowercaseString < $1.username.lowercaseString }
+        return users.sorted { $0.username.lowercased() < $1.username.lowercased() }
     }
     
     // MARK: SearchableDataSource
     
-    override func filterObjectsMatchingSearchKeywords(_ objects: [AnyObject]) -> [AnyObject] {
+    override func filterObjectsMatchingSearchKeywords(_ objects: [Any]) -> [Any] {
         let users = objects as! [HypeMachineAPI.User]
         return filterUsersMatchingSearchKeywords(users)
     }
@@ -40,7 +40,7 @@ class UsersDataSource: SearchableDataSource {
     
     override func requestNextPageObjects() {
         HypeMachineAPI.Requests.Me.friends { response in
-            self.nextPageResultReceived(response)
+            self.nextPageResponseReceived(response)
         }
     }
     

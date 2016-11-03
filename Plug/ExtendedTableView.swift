@@ -31,7 +31,8 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     }
     var visibleRows: [Int] {
         let trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
-        return [Int](rows(in: trueVisibleRect).toRange()!)
+        let rowRange = rows(in: trueVisibleRect).toRange()!
+        return Array(rowRange.lowerBound..<rowRange.upperBound)
     }
     var previousVisibleRows: [Int] = []
     var previousRowDidStartToHide = -1
@@ -364,9 +365,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     // so this makes sure to catch any skipped rows
     func rangeBetweenCurrentRow(_ currentRow: Int, andPreviousRow previousRow: Int) -> CountableRange<Int> {
         if currentRow > previousRow {
-            return (previousRow + 1)...currentRow
+            return CountableRange(uncheckedBounds: (lower: previousRow + 1, upper: currentRow + 1))
         } else {
-            return currentRow...(previousRow - 1)
+            return CountableRange(uncheckedBounds: (lower: currentRow, upper: previousRow))
         }
     }
     

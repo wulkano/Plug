@@ -51,7 +51,7 @@ class TracksDataSource: HypeMachineDataSource {
         if tableContents == nil { return nil }
         
         let tracks = tableContents as! [HypeMachineAPI.Track]
-        return tracks.indexOf(track)
+        return tracks.index(of: track)
     }
     
     func trackAtIndex(_ index: Int) -> HypeMachineAPI.Track? {
@@ -66,7 +66,7 @@ class TracksDataSource: HypeMachineDataSource {
     
     // MARK: HypeMachineDataSource
     
-    override func filterTableContents(_ contents: [AnyObject]) -> [AnyObject] {
+    override func filterTableContents(_ contents: [Any]) -> [Any] {
         let tracks = contents as! [HypeMachineAPI.Track]
         return tracks.filter({ $0.audioUnavailable == false })
     }

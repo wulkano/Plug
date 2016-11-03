@@ -15,7 +15,7 @@ class BlogsViewController: DataSourceViewController {
     }
     
     func itemForRow(_ row: Int) -> BlogDirectoryItem? {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+        if let item: Any = dataSource!.objectForRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
             return nil
@@ -23,7 +23,7 @@ class BlogsViewController: DataSourceViewController {
     }
     
     func itemAfterRow(_ row: Int) -> BlogDirectoryItem? {
-        if let item: AnyObject = dataSource!.objectAfterRow(row) {
+        if let item: Any = dataSource!.objectAfterRow(row) {
             return BlogDirectoryItem.fromObject(item)
         } else {
             return nil
@@ -112,7 +112,7 @@ class BlogsViewController: DataSourceViewController {
                 switch nextItem {
                 case .sectionHeaderItem:
                     rowView!.nextRowIsGroupRow = true
-                case .BlogItem:
+                case .blogItem:
                     rowView!.nextRowIsGroupRow = false
                 }
             } else {
@@ -176,7 +176,7 @@ class BlogsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return sectionHeaderCellView(tableView)
-        case .BlogItem:
+        case .blogItem:
             return blogCellView(tableView)
         }
     }
@@ -185,7 +185,7 @@ class BlogsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return groupRowView(tableView)
-        case .BlogItem:
+        case .blogItem:
             return blogRowView(tableView, row: row)
         }
     }
@@ -194,7 +194,7 @@ class BlogsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return  true
-        case .BlogItem:
+        case .blogItem:
             return false
         }
     }
@@ -203,7 +203,7 @@ class BlogsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return  32
-        case .BlogItem:
+        case .blogItem:
             return 64
         }
     }
@@ -212,7 +212,7 @@ class BlogsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return false
-        case .BlogItem:
+        case .blogItem:
             return true
         }
     }
@@ -221,7 +221,7 @@ class BlogsViewController: DataSourceViewController {
     
     override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
-        case .BlogItem(let blog):
+        case .blogItem(let blog):
             loadBlogViewController(blog)
         case .sectionHeaderItem:
             return

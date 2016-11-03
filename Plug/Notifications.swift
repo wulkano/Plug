@@ -24,8 +24,8 @@ struct Notifications {
 
 
 extension Notifications {
-    static func post(name: String, object: AnyObject!, userInfo: [AnyHashable: Any]!) {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: object, userInfo: userInfo)
+    static func post(name: Notification.Name, object: AnyObject!, userInfo: [AnyHashable: Any]!) {
+        NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
     }
     
     static func subscribe(observer: AnyObject!, selector: Selector, name: Notification.Name, object: AnyObject!) {

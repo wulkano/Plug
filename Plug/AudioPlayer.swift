@@ -99,7 +99,7 @@ class AudioPlayer: NSObject {
         guard let foundTracks = findTracksWithTrackId(currentTrack.id) else {
             return
         }
-        if foundTracks.indexOf(currentTrack) != NSNotFound {
+        if foundTracks.index(of: currentTrack) != NSNotFound {
             // current track is already accurate
             return
         } else if let foundTrack = foundTracks.first {
@@ -246,7 +246,7 @@ class AudioPlayer: NSObject {
             unsubscribeFromPlayerItem(playerItem)
         }
         
-        playerItem = AVPlayerItem(URL: track.mediaURL())
+        playerItem = AVPlayerItem(url: track.mediaURL())
         
         subscribeToPlayerItem(playerItem)
         
@@ -289,7 +289,7 @@ class AudioPlayer: NSObject {
         
         let progress = Double(CMTimeGetSeconds(time))
         let duration = Double(CMTimeGetSeconds(playerItem.duration))
-        let userInfo = [
+        let userInfo: [String : Any] = [
             "progress": progress,
             "duration": duration,
             "track": currentTrack
@@ -297,10 +297,10 @@ class AudioPlayer: NSObject {
         Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
         
         if progress > 30 && !currentTrackListenLogged {
-            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, callback: {})
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, completionHandler: {_ in })
             currentTrackListenLogged = true
         } else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
-            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), callback: {})
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), completionHandler: {_ in })
             currentTrackListenScrobbled = true
         }
     }

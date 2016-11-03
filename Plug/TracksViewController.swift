@@ -67,7 +67,7 @@ class TracksViewController: DataSourceViewController {
     }
     
     func distanceFromBottomOfScrollView() -> CGFloat {
-        let documentViewHeight = (scrollView.documentView as! NSView).frame.height
+        let documentViewHeight = scrollView.documentView!.frame.height
         let bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
         return documentViewHeight - bottomPositionOfDocumentVisibleRect
     }
@@ -355,13 +355,13 @@ class TracksViewController: DataSourceViewController {
     
     func trackAboveOrBelow(_ track: HypeMachineAPI.Track, tracksDataSource: TracksDataSource) -> StickyTrackPosition {
         if tracksDataSource != self.tracksDataSource {
-            return .Bottom
+            return .bottom
         }
         
-        let row = tracksDataSource.indexOfTrack(track)
+        let row = tracksDataSource.indexOfTrack(track)!
         let firstVisibleRow = tableView.visibleRows[0] ?? 0
         let firstFullyVisibleRow = isTableViewRowFullyVisible(firstVisibleRow) ? firstVisibleRow : firstVisibleRow+1
-        return row < firstFullyVisibleRow ? .Top : .Bottom
+        return row < firstFullyVisibleRow ? .top : .bottom
     }
     
     func isTableViewRowFullyVisible(_ row: Int) -> Bool {
@@ -458,7 +458,7 @@ class TracksViewController: DataSourceViewController {
     
     override func tableView(_ tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
-            if track === AudioPlayer.sharedInstance.currentTrack {
+            if track == AudioPlayer.sharedInstance.currentTrack {
                 let position = (direction == .above ? StickyTrackPosition.top : StickyTrackPosition.bottom)
                 addStickyTrackAtPosition(position)
             }
@@ -467,7 +467,7 @@ class TracksViewController: DataSourceViewController {
     
     override func tableView(_ tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
         if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
-            if track === AudioPlayer.sharedInstance.currentTrack {
+            if track == AudioPlayer.sharedInstance.currentTrack {
                 removeStickyTrack()
             }
             
@@ -492,7 +492,7 @@ class TracksViewController: DataSourceViewController {
     override func tableView(_ tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
         let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
         let menuController = TrackContextMenuController(track: track)!
-        NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: view)
+        NSMenu.popUpContextMenu(menuController.contextMenu, with: theEvent, for: view)
     }
     
     // MARK: NSKeyValueObserving

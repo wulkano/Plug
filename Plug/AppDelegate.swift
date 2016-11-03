@@ -169,10 +169,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Notifications
     
     func catchTokenErrors(_ notification: Notification) {
-        let error = (notification as NSNotification).userInfo!["error"] as! NSError
-
-        if error.code == HypeMachineAPI.APIError.invalidHMToken {
-            signOut(nil)
+        if let error = (notification as NSNotification).userInfo!["error"] as? HypeMachineAPI.APIError {
+            switch error {
+            case .invalidHMToken:
+                signOut(nil)
+            default:
+                break
+            }
         }
     }
     

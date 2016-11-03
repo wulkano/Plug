@@ -20,10 +20,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     @IBOutlet weak var loveButton: TransparentButton!
 //    @IBOutlet weak var tagContainer: TagContainerView!
     
-    override var representedObject: AnyObject! {
-        didSet {
-            representedObjectChanged()
-        }
+    override var representedObject: Any! {
+        didSet { representedObjectChanged() }
     }
     var representedTrack: HypeMachineAPI.Track {
         return representedObject as! HypeMachineAPI.Track
@@ -58,7 +56,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
                 if favorited != newLovedValue {
                     self.changeTrackLovedValueTo(favorited)
                 }
-            case .failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
@@ -69,7 +67,7 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     func postInfoTextFieldClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Track Info Blog Description")
         
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.postURL)
+        NSWorkspace.shared().open(representedTrack.postURL)
     }
     
     func tagButtonClicked(_ tag: HypeMachineAPI.Tag) {
@@ -86,33 +84,35 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     @IBAction func downloadITunesButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info Download iTunes")
 
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
+        NSWorkspace.shared().open(representedTrack.iTunesURL)
     }
     
     @IBAction func seeMoreButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info See More")
         
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
+        NSWorkspace.shared().open(representedTrack.hypeMachineURL())
     }
     
     func trackLoved(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track === representedObject {
-            representedTrack.loved = track.loved
+        if track == representedObject as? HypeMachineAPI.Track {
+            representedObject = track
             updateLoveButton()
         }
     }
     
     func trackUnLoved(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track === representedTrack {
-            representedTrack.loved = track.loved
+        if track == representedTrack {
+            representedObject = track
             updateLoveButton()
         }
     }
     
     func changeTrackLovedValueTo(_ loved: Bool) {
-        representedTrack.loved = loved
+        var newTrack = representedTrack
+        newTrack.loved = loved
+        representedObject = newTrack
         if loved {
             Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
         } else {
@@ -144,13 +144,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func updateAlbumArt() {
-        let url = representedTrack.thumbURLWithPreferedSize(.Medium)
+        let url = representedTrack.thumbURL(preferedSize: .medium)
         
-        Alamofire.request(.GET, url).validate().responseImage { (_, _, result) in
-            switch result {
-            case .Success(let image):
+        Alamofire.request(url).validate().responseImage { response in
+            switch response.result {
+            case .success(let image):
                 self.albumArt.image = image
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error as NSError)
             }

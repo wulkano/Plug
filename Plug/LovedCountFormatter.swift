@@ -19,7 +19,7 @@ class LovedCountFormatter: Formatter {
             let numberFormatter = NumberFormatter()
             numberFormatter.format = "####k"
             let abbrLovedCount = Double(count) / 1000
-            returnString = numberFormatter.string(from: NSNumber(abbrLovedCount))
+            returnString = numberFormatter.string(from: NSNumber(value: abbrLovedCount))
         } else {
             returnString = "\(count)"
         }

@@ -152,9 +152,9 @@ class NavigationController: NSViewController {
         let closure = { (make: ConstraintMaker)->Void in
             make.top.bottom.width.equalTo(self.contentView)
             switch side {
-            case .Left:
+            case .left:
                 make.right.equalTo(self.contentView.snp.left)
-            case .Right:
+            case .right:
                 make.left.equalTo(self.contentView.snp.right)
             }
         }
@@ -174,9 +174,9 @@ class NavigationController: NSViewController {
     
     fileprivate func makeOrRemakeConstraints(_ viewController: BaseContentViewController, closure:(_ make: ConstraintMaker) -> Void) {
         if viewController.view.constraints.count > 0 {
-            viewController.view.snp.remakeConstraints(closure: closure)
+            viewController.view.snp.remakeConstraints(closure)
         } else {
-            viewController.view.snp.makeConstraints(closure: closure)
+            viewController.view.snp.makeConstraints(closure)
         }
     }
     

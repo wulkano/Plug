@@ -12,10 +12,8 @@ class GeneralPreferencesTableCellView: NSTableCellView {
     @IBOutlet var preferenceTitle: NSTextField!
     @IBOutlet var switchButton: IOSSwitch!
     
-    override var objectValue: AnyObject! {
-        didSet {
-            objectValueChanged()
-        }
+    override var objectValue: Any! {
+        didSet { objectValueChanged() }
     }
     var generalPreferenceValue: GeneralPreference {
         return objectValue as! GeneralPreference

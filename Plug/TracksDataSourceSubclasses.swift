@@ -44,7 +44,7 @@ class FavoriteTracksDataSource: TracksDataSource {
     
     // MARK: HypeMachineDataSource
     
-    override var nextPageParams: [String: AnyObject] {
+    override var nextPageParams: [String: Any] {
         if shuffle {
             return [ "page": 1 as AnyObject, "count": objectsPerPage as AnyObject, "shuffle": "1" as AnyObject ]
         } else {
@@ -74,7 +74,7 @@ class FavoriteTracksDataSource: TracksDataSource {
             if (response.result.isSuccess &&
                 currentPage == 1) {
                 if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
-                    if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).indexOf(currentTrack) {
+                    if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).index(of: currentTrack) {
                         standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
                     }
                     standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, at: 0)
@@ -208,6 +208,7 @@ class SingleTrackDataSource: TracksDataSource {
     }
     
     override func requestNextPageObjects() {
-        nextPageTracksReceived(result: Result.Success([track]))
+        let response = DataResponse(request: nil, response: nil, data: nil, result: Alamofire.Result.success([track]))
+        nextPageTracksReceived(response: response)
     }
 }

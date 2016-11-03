@@ -14,7 +14,7 @@ class UnderlinedTabButtonCell: NSButtonCell {
     var fixedTextFrame: NSRect = NSMakeRect(5, 40, 50, 15)
     let maxImageHeight: CGFloat = 36
     
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         highlightsBy = NSCellStyleMask.contentsCellMask
     }

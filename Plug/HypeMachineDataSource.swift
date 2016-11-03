@@ -75,7 +75,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
             self.appendTableContents(objects)
             self.requestInProgress = false
         case .failure(let error):
-            Notifications.post(name: Notifications.DisplayError.rawValue, object: self, userInfo: ["error": error as NSError])
+            Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
             print(error)
         }
     }

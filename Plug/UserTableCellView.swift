@@ -46,7 +46,7 @@ class UserTableCellView: IOSStyleTableCellView {
         
         Alamofire
             .request(user.avatarURL!, method: .get).validate()
-            .responseImage { reponse in
+            .responseImage { response in
             
             switch response.result {
             case .success(let image):

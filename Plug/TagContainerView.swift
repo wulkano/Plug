@@ -42,7 +42,7 @@ class TagContainerView: NSView {
     
     func generateTagButtonForTag(_ tag: HypeMachineAPI.Tag) -> TagButton {
         let tagButton = TagButton(frame: NSMakeRect(0, 0, 0, buttonHeight))
-        tagButton.title = tag.name.uppercaseString
+        tagButton.title = tag.name.uppercased()
         tagButton.fillColor = getFillColorForTag(tag)
         var tagSize = tagButton.attributedTitle.size()
         tagSize.width += 16
@@ -65,11 +65,11 @@ class TagContainerView: NSView {
     func getFillColorForTag(_ tag: HypeMachineAPI.Tag) -> NSColor {
         let gradient = makeGradient()
         let gradientLocation = gradientLocationForTag(tag)
-        return gradient.interpolatedColorAtLocation(gradientLocation)
+        return gradient.interpolatedColor(atLocation: gradientLocation)
     }
     
     func gradientLocationForTag(_ tag: HypeMachineAPI.Tag) -> CGFloat {
-        let index = tags.indexOf(tag)!
+        let index = tags.index(of: tag)!
         return CGFloat(index) / CGFloat((tags.count - 1))
     }
     
@@ -87,7 +87,7 @@ class TagContainerView: NSView {
     }
 
     func tagForButton(_ button: TagButton) -> HypeMachineAPI.Tag {
-        let index = buttons.indexOf(button)!
+        let index = buttons.index(of: button)!
         return tags[index]
     }
 }

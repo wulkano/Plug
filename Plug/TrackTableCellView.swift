@@ -34,7 +34,8 @@ class TrackTableCellView: IOSStyleTableCellView {
         didSet { if objectValue as AnyObject !== oldValue as AnyObject { objectValueChanged() } }
     }
     var track: HypeMachineAPI.Track {
-        return objectValue as! HypeMachineAPI.Track
+        get { return objectValue as! HypeMachineAPI.Track }
+        set(newTrack) { objectValue = newTrack }
     }
     var mouseInside: Bool = false {
         didSet{ mouseInsideChanged() }
@@ -79,7 +80,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     func currentPlayState() -> PlayState {
-        if AudioPlayer.sharedInstance.currentTrack === objectValue {
+        if AudioPlayer.sharedInstance.currentTrack == objectValue as? HypeMachineAPI.Track {
             if AudioPlayer.sharedInstance.playing {
                 return PlayState.playing
             } else {
@@ -197,10 +198,10 @@ class TrackTableCellView: IOSStyleTableCellView {
         let closedWidth: CGFloat = 0
         
         if mouseInside || (track.loved && showLoveButton) {
-            loveContainerWidthConstraint.updateOffset(openWidth)
+            loveContainerWidthConstraint.updateOffset(amount: openWidth)
 //            loveContainerWidthConstraint.constant = openWidth
         } else {
-            loveContainerWidthConstraint.updateOffset(closedWidth)
+            loveContainerWidthConstraint.updateOffset(amount: closedWidth)
 //            loveContainerWidthConstraint.constant = closedWidth
         }
     }
@@ -210,10 +211,10 @@ class TrackTableCellView: IOSStyleTableCellView {
         let closedWidth: CGFloat = 0
         
         if mouseInside {
-            infoContainerWidthConstraint.updateOffset(openWidth)
+            infoContainerWidthConstraint.updateOffset(amount: openWidth)
 //            infoContainerWidthConstraint.constant = openWidth
         } else {
-            infoContainerWidthConstraint.updateOffset(closedWidth)
+            infoContainerWidthConstraint.updateOffset(amount: closedWidth)
 //            infoContainerWidthConstraint.constant = closedWidth
         }
     }
@@ -234,7 +235,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if notificationTrack === objectValue {
+        if notificationTrack == objectValue as? HypeMachineAPI.Track {
             playState = PlayState.playing
         } else {
             playState = PlayState.notPlaying
@@ -245,7 +246,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if notificationTrack === objectValue {
+        if notificationTrack == objectValue as? HypeMachineAPI.Track {
             playState = PlayState.paused
         }
     }
@@ -254,7 +255,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if notificationTrack === objectValue {
+        if notificationTrack == objectValue as? HypeMachineAPI.Track {
             track.loved = true
             loveButton.selected = true
         }
@@ -265,7 +266,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if notificationTrack === objectValue {
+        if notificationTrack == objectValue as? HypeMachineAPI.Track {
             track.loved = false
             loveButton.selected = false
         }
@@ -319,7 +320,7 @@ class TrackTableCellView: IOSStyleTableCellView {
     }
     
     @IBAction func artistButtonClicked(_ sender: NSButton) {
-        let viewController = TracksViewController(type: .LoveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
+        let viewController = TracksViewController(type: .loveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
         viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }

@@ -11,7 +11,7 @@ import Cocoa
 class SectionHeaderTableCellView: NSTableCellView {
     var titleTextField: NSTextField!
     
-    override var objectValue: AnyObject! {
+    override var objectValue: Any! {
         didSet {
             objectValueChanged()
         }

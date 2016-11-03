@@ -56,8 +56,8 @@ enum PopularSectionMode: String {
         return self.rawValue
     }
     
-    var params: [String: AnyObject] {
-        return ["mode": self.slug as AnyObject]
+    var params: [String: Any] {
+        return ["mode": self.slug]
     }
     
     var slug: String {
@@ -100,8 +100,8 @@ enum LatestSectionMode: String {
         return self.rawValue
     }
     
-    var params: [String: AnyObject] {
-        return ["mode": self.slug as AnyObject]
+    var params: [String: Any] {
+        return ["mode": self.slug]
     }
     
     var slug: String {
@@ -129,8 +129,8 @@ enum FeedSectionMode: String {
         return self.rawValue
     }
     
-    var params: [String: AnyObject] {
-        return ["mode": self.slug as AnyObject]
+    var params: [String: Any] {
+        return ["mode": self.slug]
     }
     
     var slug: String {
@@ -156,8 +156,8 @@ enum SearchSectionSort: String {
         return self.rawValue
     }
     
-    var params: [String: AnyObject] {
-        return ["sort": self.slug as AnyObject]
+    var params: [String: Any] {
+        return ["sort": self.slug]
     }
     
     var slug: String {

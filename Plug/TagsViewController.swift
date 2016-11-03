@@ -15,7 +15,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func itemForRow(_ row: Int) -> TagsListItem? {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+        if let item: Any = dataSource!.objectForRow(row) {
             return TagsListItem.fromObject(item)
         } else {
             return nil
@@ -23,7 +23,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func itemAfterRow(_ row: Int) -> TagsListItem? {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+        if let item: Any = dataSource!.objectForRow(row) {
             return TagsListItem.fromObject(item)
         } else {
             return nil
@@ -34,7 +34,7 @@ class TagsViewController: DataSourceViewController {
         let row = tableView.selectedRow
         if let item = itemForRow(row) {
             switch item {
-            case .TagItem(let tag):
+            case .tagItem(let tag):
                 return tag
             default:
                 return nil
@@ -61,7 +61,7 @@ class TagsViewController: DataSourceViewController {
     }
     
     func loadSingleTagView(_ tag: HypeMachineAPI.Tag) {
-        let viewController = TracksViewController(type: .LoveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
+        let viewController = TracksViewController(type: .loveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
@@ -112,7 +112,7 @@ class TagsViewController: DataSourceViewController {
                 switch nextItem {
                 case .sectionHeaderItem:
                     rowView!.nextRowIsGroupRow = true
-                case .TagItem:
+                case .tagItem:
                     rowView!.nextRowIsGroupRow = false
                 }
             } else {
@@ -189,7 +189,7 @@ class TagsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return sectionHeaderCellView(tableView)
-        case .TagItem:
+        case .tagItem:
             return tagCellView(tableView)
         }
     }
@@ -198,7 +198,7 @@ class TagsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return groupRowView(tableView)
-        case .TagItem:
+        case .tagItem:
             return tagRowView(tableView, row: row)
         }
     }
@@ -207,7 +207,7 @@ class TagsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return  true
-        case .TagItem:
+        case .tagItem:
             return false
         }
     }
@@ -216,7 +216,7 @@ class TagsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return 32
-        case .TagItem:
+        case .tagItem:
             return 48
         }
     }
@@ -225,7 +225,7 @@ class TagsViewController: DataSourceViewController {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
             return false
-        case .TagItem:
+        case .tagItem:
             return true
         }
     }
@@ -234,7 +234,7 @@ class TagsViewController: DataSourceViewController {
     
     override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
-        case .TagItem(let tag):
+        case .tagItem(let tag):
             loadSingleTagView(tag)
         case .sectionHeaderItem:
             return

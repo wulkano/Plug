@@ -47,14 +47,20 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
                 self.signedInSuccessfully()
             case .failure(let error):
                 var errorMessage: String
-                if (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongPassword.rawValue ||
-                    (error as NSError).code == HypeMachineAPI.ErrorCodes.WrongUsername.rawValue {
-                    errorMessage = "Incorrect Username/Password"
+                
+                if let apiError = error as? HypeMachineAPI.APIError {
+                    switch apiError {
+                    case HypeMachineAPI.APIError.incorrectUsername,
+                         HypeMachineAPI.APIError.incorrectPassword:
+                        errorMessage = "Incorrect Username/Password"
+                    default:
+                        errorMessage = "Network Error"
+                    }
                 } else {
                     errorMessage = "Network Error"
-                    print(error)
                 }
-                self.loginButton.buttonState = .Error(errorMessage)
+                
+                self.loginButton.buttonState = .error(errorMessage)
             }
         }
     }

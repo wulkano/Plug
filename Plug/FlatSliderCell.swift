@@ -20,24 +20,20 @@ class FlatSliderCell: NSSliderCell {
     override func drawBar(inside aRect: NSRect, flipped: Bool) {
         let knobRect = self.knobRect(flipped: flipped)
         
-        if verticalSlider() {
-            // TODO
-        } else {
-            let inset: CGFloat = floor(knobRect.size.width / 2) // Floor so we don't end up on a 0.5 pixel and draw weird
-            let knobCenterX = knobRect.origin.x + inset
-            
-            var barFillRect = aRect
-            barFillRect.size.width = knobCenterX - inset
-            barFillRect.origin.x = inset
-            barFillColor.set()
-            NSRectFillUsingOperation(barFillRect, NSCompositingOperation.sourceOver)
-            
-            var barRect = aRect
-            barRect.origin.x = knobCenterX
-            barRect.size.width = barRect.size.width - knobCenterX - inset + 2.5
-            barColor.set()
-            NSRectFillUsingOperation(barRect, NSCompositingOperation.sourceOver)
-        }
+        let inset: CGFloat = floor(knobRect.size.width / 2) // Floor so we don't end up on a 0.5 pixel and draw weird
+        let knobCenterX = knobRect.origin.x + inset
+        
+        var barFillRect = aRect
+        barFillRect.size.width = knobCenterX - inset
+        barFillRect.origin.x = inset
+        barFillColor.set()
+        NSRectFillUsingOperation(barFillRect, NSCompositingOperation.sourceOver)
+        
+        var barRect = aRect
+        barRect.origin.x = knobCenterX
+        barRect.size.width = barRect.size.width - knobCenterX - inset + 2.5
+        barColor.set()
+        NSRectFillUsingOperation(barRect, NSCompositingOperation.sourceOver)
     }
     
     override func drawKnob(_ knobRect: NSRect) {
@@ -50,9 +46,5 @@ class FlatSliderCell: NSSliderCell {
 //            let circlePath = NSBezierPath(ovalInRect: insetRect)
 //            circlePath.fill()
 //        }
-    }
-    
-    func verticalSlider() -> Bool {
-        return (controlView as! NSSlider).isVertical == 1
     }
 }

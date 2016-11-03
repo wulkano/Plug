@@ -21,9 +21,9 @@ class SingleBlogViewFormatter: Formatter {
         let formattedTracksLabel = formattedLabel(" Tracks")
         
         let blogDetails = NSMutableAttributedString()
-        blogDetails.appendAttributedString(formattedFollowersCount)
+        blogDetails.append(formattedFollowersCount)
         blogDetails.append(formattedFollowersLabel)
-        blogDetails.appendAttributedString(formattedTracksCount)
+        blogDetails.append(formattedTracksCount)
         blogDetails.append(formattedTracksLabel)
         
         return blogDetails

@@ -161,7 +161,7 @@ class UserViewController: BaseContentViewController {
             switch response.result {
             case .success(let user):
                 self.user = user
-            case .failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
             }
@@ -181,11 +181,14 @@ class UserViewController: BaseContentViewController {
     func updateImage() {
         if user!.avatarURL == nil { return }
         
-        Alamofire.request(.GET, user!.avatarURL!).validate().responseImage { (_, _, result) in
-            switch result {
-            case .Success(let image):
+        Alamofire.request(user!.avatarURL!, method: .get)
+            .validate()
+            .responseImage
+        { response in
+            switch response.result {
+            case .success(let image):
                 self.avatarView.image = image
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error as NSError)
             }

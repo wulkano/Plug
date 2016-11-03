@@ -15,15 +15,9 @@ class HiddenTitlebarWindow: NSWindow {
         setup()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setup()
-    }
-    
     func setup() {
         appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
-        styleMask |= NSFullSizeContentViewWindowMask
+        styleMask = [styleMask, NSWindowStyleMask.fullSizeContentView]
         titleVisibility = NSWindowTitleVisibility.hidden
         titlebarAppearsTransparent = true
         isMovableByWindowBackground = true

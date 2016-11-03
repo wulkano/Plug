@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
-  - HypeMachineAPI (1.0.0):
+  - HypeMachineAPI (1.0.1):
     - Alamofire (~> 4.0.1)
   - INAppStoreWindow (1.4)
   - PreventSleep (0.3.0)
@@ -20,7 +20,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  HypeMachineAPI: 2aff8f7201776d4af839bc536d975b64cbebb876
+  HypeMachineAPI: d89512f16856da3b5ac0123bc7ade721ca2c0503
   INAppStoreWindow: 4fd569f7435557239e78316de139e886ccbaec4d
   PreventSleep: 193d807857956665f3e7f523d41d517752c8fe82
   SimpleGoogleAnalytics: 392d599b78504aae0abbc4d29d31e77363d56e94

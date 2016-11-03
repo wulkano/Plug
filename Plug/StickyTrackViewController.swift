@@ -40,15 +40,15 @@ class StickyTrackViewController: TracksViewController {
     }
     
     override func rightMouseDown(with theEvent: NSEvent) {
-        let menuController = TrackContextMenuController(coder: AudioPlayer.sharedInstance.currentTrack)!
-        NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: self.view)
+        let menuController = TrackContextMenuController(track: AudioPlayer.sharedInstance.currentTrack)!
+        NSMenu.popUpContextMenu(menuController.contextMenu, with: theEvent, for: self.view)
     }
     
     func addShadowToBottom() {
         shadowView?.removeFromSuperview()
         
         scrollView.snp.remakeConstraints { make in
-            let insets = NSEdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
+            let insets = EdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
             make.edges.equalTo(self.view).inset(insets)
         }
         
@@ -68,7 +68,7 @@ class StickyTrackViewController: TracksViewController {
         shadowView?.removeFromSuperview()
         
         scrollView.snp.remakeConstraints { make in
-            let insets = NSEdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
+            let insets = EdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
             make.edges.equalTo(self.view).inset(insets)
         }
         

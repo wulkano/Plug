@@ -14,9 +14,7 @@ class BlogTableCellView: IOSStyleTableCellView {
     var recentArtistsTextField: NSTextField!
     
     override var objectValue: Any! {
-        didSet {
-            objectValueChanged()
-        }
+        didSet { objectValueChanged() }
     }
     var blog: HypeMachineAPI.Blog {
         return objectValue as! HypeMachineAPI.Blog
