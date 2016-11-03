@@ -10,20 +10,20 @@ import Foundation
 
 class Interval : NSObject {
     var closure: ()->()
-    var timer: NSTimer!
+    var timer: Timer!
     
-    class func single(interval: Double, closure: ()->()) -> Interval {
+    class func single(_ interval: Double, closure: @escaping ()->()) -> Interval {
         return Interval(interval: interval, closure: closure, repeats: false)
     }
     
-    class func repeating(interval: Double, closure: ()->()) -> Interval {
+    class func repeating(_ interval: Double, closure: @escaping ()->()) -> Interval {
         return Interval(interval: interval, closure: closure, repeats: true)
     }
     
-    init(interval: Double, closure: ()->(), repeats: Bool) {
+    init(interval: Double, closure: @escaping ()->(), repeats: Bool) {
         self.closure = closure
         super.init()
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: #selector(runClosure), userInfo: nil, repeats: repeats)
+        self.timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(runClosure), userInfo: nil, repeats: repeats)
     }
     
     func runClosure() {

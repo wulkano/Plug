@@ -19,44 +19,44 @@ class StickyTrackViewController: TracksViewController {
         return trackViewHeight + shadowHeight - shadowOverlap
     }
     var shadowView: NSImageView?
-    var position: StickyTrackPosition = .Bottom {
+    var position: StickyTrackPosition = .bottom {
         didSet { positionChanged() }
     }
     var isShown: Bool {
         return self.view.superview != nil
     }
     
-    override var tableViewInsets: NSEdgeInsets {
+    override var tableViewInsets: EdgeInsets {
         return NSEdgeInsetsZero
     }
     
     func positionChanged() {
         switch position {
-        case .Top:
+        case .top:
             addShadowToBottom()
-        case .Bottom:
+        case .bottom:
             addShadowToTop()
         }
     }
     
-    override func rightMouseDown(theEvent: NSEvent) {
+    override func rightMouseDown(with theEvent: NSEvent) {
         let menuController = TrackContextMenuController(track: AudioPlayer.sharedInstance.currentTrack)!
-        NSMenu.popUpContextMenu(menuController.contextMenu, withEvent: theEvent, forView: self.view)
+        NSMenu.popUpContextMenu(menuController.contextMenu, with: theEvent, for: self.view)
     }
     
     func addShadowToBottom() {
         shadowView?.removeFromSuperview()
         
-        scrollView.snp_remakeConstraints { make in
-            let insets = NSEdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
+        scrollView.snp.remakeConstraints { make in
+            let insets = EdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
             make.edges.equalTo(self.view).inset(insets)
         }
         
         shadowView = NSImageView()
-        shadowView!.imageScaling = NSImageScaling.ScaleAxesIndependently
+        shadowView!.imageScaling = NSImageScaling.scaleAxesIndependently
         shadowView!.image = NSImage(named: "Sticky Track Shadow Bottom")
         view.addSubview(shadowView!)
-        shadowView!.snp_makeConstraints { make in
+        shadowView!.snp.makeConstraints { make in
             make.height.equalTo(shadowHeight)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
@@ -67,16 +67,16 @@ class StickyTrackViewController: TracksViewController {
     func addShadowToTop() {
         shadowView?.removeFromSuperview()
         
-        scrollView.snp_remakeConstraints { make in
-            let insets = NSEdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
+        scrollView.snp.remakeConstraints { make in
+            let insets = EdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
             make.edges.equalTo(self.view).inset(insets)
         }
         
         shadowView = NSImageView()
-        shadowView!.imageScaling = NSImageScaling.ScaleAxesIndependently
+        shadowView!.imageScaling = NSImageScaling.scaleAxesIndependently
         shadowView!.image = NSImage(named: "Sticky Track Shadow Top")
         view.addSubview(shadowView!)
-        shadowView!.snp_makeConstraints { make in
+        shadowView!.snp.makeConstraints { make in
             make.height.equalTo(shadowHeight)
             make.left.equalTo(self.view)
             make.top.equalTo(self.view)

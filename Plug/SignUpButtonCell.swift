@@ -10,7 +10,7 @@ import Cocoa
 
 class SignUpButtonCell: SwissArmyButtonCell {
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
+    override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
         
         var alpha: CGFloat
         
@@ -24,7 +24,7 @@ class SignUpButtonCell: SwissArmyButtonCell {
         
         let radius: CGFloat = 3
         let strokeWidth: CGFloat = 1
-        let strokeColor: NSColor = NSColor.whiteColor().colorWithAlphaComponent(alpha)
+        let strokeColor: NSColor = NSColor.white.withAlphaComponent(alpha)
         
         let rect = NSMakeRect(0.5, 0.5, frame.size.width - 1, frame.size.height - 1)
         let roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
@@ -33,7 +33,7 @@ class SignUpButtonCell: SwissArmyButtonCell {
         roundedRect.stroke()
     }
     
-    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
+    override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
         
         var alpha: CGFloat
         
@@ -46,11 +46,11 @@ class SignUpButtonCell: SwissArmyButtonCell {
         }
         
         let mutableTitle = NSMutableAttributedString(attributedString: title)
-        let color = NSColor.whiteColor().colorWithAlphaComponent(alpha)
+        let color = NSColor.white.withAlphaComponent(alpha)
         let range = NSMakeRange(0, mutableTitle.length)
         
         mutableTitle.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
         
-        return super.drawTitle(mutableTitle, withFrame: frame, inView: controlView)
+        return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
     }
 }

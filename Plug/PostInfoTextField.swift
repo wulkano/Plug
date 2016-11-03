@@ -27,21 +27,21 @@ class PostInfoTextField: NSTextField {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = [.InVisibleRect, .ActiveAlways, .MouseEnteredAndExited]
+        let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
         trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         postInfoDelegate?.postInfoTextFieldClicked(self)
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
         updateText()
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
         updateText()
     }
@@ -49,17 +49,17 @@ class PostInfoTextField: NSTextField {
     func updateText() {
         if mouseInside {
             let contents = NSMutableAttributedString(attributedString: attributedStringValue)
-            contents.enumerateAttribute(NSLinkAttributeName, inRange: NSMakeRange(0, contents.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired , usingBlock: { value, range, stop in
+            contents.enumerateAttribute(NSLinkAttributeName, in: NSMakeRange(0, contents.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired , using: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
+                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
                 }
             })
             attributedStringValue = contents
         } else {
             let contents = NSMutableAttributedString(attributedString: attributedStringValue)
-            contents.enumerateAttribute(NSLinkAttributeName, inRange: NSMakeRange(0, contents.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired , usingBlock: { value, range, stop in
+            contents.enumerateAttribute(NSLinkAttributeName, in: NSMakeRange(0, contents.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired , using: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleNone.rawValue, range: range)
+                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleNone.rawValue, range: range)
                 }
             })
             attributedStringValue = contents
@@ -68,5 +68,5 @@ class PostInfoTextField: NSTextField {
 }
 
 protocol PostInfoTextFieldDelegate {
-    func postInfoTextFieldClicked(sender: AnyObject)
+    func postInfoTextFieldClicked(_ sender: AnyObject)
 }

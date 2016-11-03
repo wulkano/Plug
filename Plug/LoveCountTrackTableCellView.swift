@@ -33,6 +33,6 @@ class LoveCountTrackTableCellView: TrackTableCellView {
     }
     
     func updateLoveCountVisibility() {
-        loveCount.hidden = !playPauseButton.hidden
+        loveCount.isHidden = !playPauseButton.isHidden
     }
 }

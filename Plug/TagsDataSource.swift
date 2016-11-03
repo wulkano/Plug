@@ -11,49 +11,49 @@ import HypeMachineAPI
 
 class TagsDataSource: SearchableDataSource {
     
-    func filterTags(contents: [AnyObject]) -> [HypeMachineAPI.Tag] {
+    func filterTags(_ contents: [Any]) -> [HypeMachineAPI.Tag] {
         return contents.filter({ $0 is HypeMachineAPI.Tag }) as! [HypeMachineAPI.Tag]
     }
     
-    func filterUniqueTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+    func filterUniqueTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
         return Array(Set(tags))
     }
     
-    func filterTagsMatchingSearchKeywords(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+    func filterTagsMatchingSearchKeywords(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
         return tags.filter { $0.name =~ self.searchKeywords! }
     }
     
-    func sortTags(tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
+    func sortTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
         if tags.count > 1 {
-            return tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
+            return tags.sorted { $0.name.lowercased() < $1.name.lowercased() }
         } else {
             return tags
         }
     }
     
-    func groupTags(tags: [HypeMachineAPI.Tag]) -> [AnyObject] {
+    func groupTags(_ tags: [HypeMachineAPI.Tag]) -> [Any] {
         var groupedTags: [AnyObject] = []
         
         groupedTags.append(SectionHeader(title: "The Basics"))
         var priorityTags = tags.filter { $0.priority == true }
-        priorityTags = priorityTags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
+        priorityTags = priorityTags.sorted { $0.name.lowercased() < $1.name.lowercased() }
         groupedTags += priorityTags as [AnyObject]
         
         groupedTags.append(SectionHeader(title: "Everything"))
-        let sortedTags = tags.sort { $0.name.lowercaseString < $1.name.lowercaseString }
+        let sortedTags = tags.sorted { $0.name.lowercased() < $1.name.lowercased() }
         groupedTags += sortedTags as [AnyObject]
         
         return groupedTags
     }
     
-    func newTag(searchKeywords: String) -> [HypeMachineAPI.Tag] {
+    func newTag(_ searchKeywords: String) -> [HypeMachineAPI.Tag] {
         let newTag = Tag(name: searchKeywords, priority: false)
         return [newTag]
     }
     
     // MARK: SearchableDataSource
     
-    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+    override func filterObjectsMatchingSearchKeywords(_ objects: [Any]) -> [Any] {
         let tags = filterTags(objects)
         let uniqueTags = filterUniqueTags(tags)
         let sortedTags = sortTags(uniqueTags)
@@ -78,12 +78,12 @@ class TagsDataSource: SearchableDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tags.index { result in
-            self.nextPageResultReceived(result)
+        HypeMachineAPI.Requests.Tags.index { response in
+            self.nextPageResponseReceived(response)
         }
     }
     
-    override func appendTableContents(contents: [AnyObject]) {
+    override func appendTableContents(_ contents: [Any]) {
         let tags = contents as! [HypeMachineAPI.Tag]
         let groupedTags = groupTags(tags)
         super.appendTableContents(groupedTags)
@@ -92,14 +92,14 @@ class TagsDataSource: SearchableDataSource {
 
 
 enum TagsListItem {
-    case SectionHeaderItem(SectionHeader)
-    case TagItem(HypeMachineAPI.Tag)
+    case sectionHeaderItem(SectionHeader)
+    case tagItem(HypeMachineAPI.Tag)
     
-    static func fromObject(object: AnyObject) -> TagsListItem? {
+    static func fromObject(_ object: Any) -> TagsListItem? {
         if let tag = object as? HypeMachineAPI.Tag {
-            return TagsListItem.TagItem(tag)
+            return TagsListItem.tagItem(tag)
         } else if let sectionHeader = object as? SectionHeader {
-            return TagsListItem.SectionHeaderItem(sectionHeader)
+            return TagsListItem.sectionHeaderItem(sectionHeader)
         } else {
             return nil
         }

@@ -34,22 +34,22 @@ class DisplayErrorViewController: NSViewController {
         background.background = true
         background.backgroundColor = NSColor(red256: 255, green256: 95, blue256: 82)
         view.addSubview(background)
-        background.snp_makeConstraints { make in
+        background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
         errorTitleTextField = NSTextField(frame: NSZeroRect)
         errorTitleTextField.stringValue = "Error"
-        errorTitleTextField.editable = false
-        errorTitleTextField.selectable = false
-        errorTitleTextField.bordered = false
+        errorTitleTextField.isEditable = false
+        errorTitleTextField.isSelectable = false
+        errorTitleTextField.isBordered = false
         errorTitleTextField.drawsBackground = false
-        errorTitleTextField.lineBreakMode = .ByWordWrapping
-        errorTitleTextField.font = appFont(size: 14, weight: .Medium)
-        errorTitleTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        errorTitleTextField.textColor = NSColor.whiteColor()
+        errorTitleTextField.lineBreakMode = .byWordWrapping
+        errorTitleTextField.font = appFont(size: 14, weight: .medium)
+        errorTitleTextField.setContentCompressionResistancePriority(490, for: .horizontal)
+        errorTitleTextField.textColor = NSColor.white
         view.addSubview(errorTitleTextField)
-        errorTitleTextField.snp_makeConstraints { make in
+        errorTitleTextField.snp.makeConstraints { make in
             make.top.equalTo(view).offset(6)
             make.left.equalTo(view).offset(14)
             make.right.equalTo(view).offset(-14)
@@ -57,17 +57,17 @@ class DisplayErrorViewController: NSViewController {
         
         errorDescriptionTextField = NSTextField(frame: NSZeroRect)
         errorDescriptionTextField.stringValue = error.localizedDescription
-        errorDescriptionTextField.editable = false
-        errorDescriptionTextField.selectable = false
-        errorDescriptionTextField.bordered = false
+        errorDescriptionTextField.isEditable = false
+        errorDescriptionTextField.isSelectable = false
+        errorDescriptionTextField.isBordered = false
         errorDescriptionTextField.drawsBackground = false
-        errorDescriptionTextField.lineBreakMode = .ByWordWrapping
+        errorDescriptionTextField.lineBreakMode = .byWordWrapping
         errorDescriptionTextField.font = appFont(size: 13)
-        errorDescriptionTextField.setContentCompressionResistancePriority(490, forOrientation: .Horizontal)
-        errorDescriptionTextField.textColor = NSColor.whiteColor()
+        errorDescriptionTextField.setContentCompressionResistancePriority(490, for: .horizontal)
+        errorDescriptionTextField.textColor = NSColor.white
         view.addSubview(errorDescriptionTextField)
-        errorDescriptionTextField.snp_makeConstraints { make in
-            make.top.equalTo(errorTitleTextField.snp_bottom)
+        errorDescriptionTextField.snp.makeConstraints { make in
+            make.top.equalTo(errorTitleTextField.snp.bottom)
             make.left.equalTo(view).offset(14)
             make.right.equalTo(view).offset(-14)
             make.bottom.equalTo(view).offset(-14)
@@ -82,8 +82,8 @@ class DisplayErrorViewController: NSViewController {
     }
     
     func setupLayoutInSuperview() {
-        view.snp_makeConstraints { make in
-            bottomConstraint = make.bottom.equalTo(view.superview!.snp_top).constraint
+        view.snp.makeConstraints { make in
+            bottomConstraint = make.bottom.equalTo(view.superview!.snp.top).constraint
             make.left.equalTo(view.superview!)
             make.right.equalTo(view.superview!)
         }
@@ -92,9 +92,9 @@ class DisplayErrorViewController: NSViewController {
     func animateIn() {
         view.superview!.layoutSubtreeIfNeeded()
         
-        bottomConstraint!.uninstall()
+        bottomConstraint!.deactivate()
         
-        view.snp_makeConstraints { make in
+        view.snp.makeConstraints { make in
             topConstraint = make.top.equalTo(view.superview!).constraint
         }
         
@@ -107,14 +107,14 @@ class DisplayErrorViewController: NSViewController {
             }, completionHandler: nil)
     }
     
-    func animateOutWithDelay(delay: Double, completionHandler: ()->Void) {
+    func animateOutWithDelay(_ delay: Double, completionHandler: @escaping ()->Void) {
         Interval.single(delay) {
             self.view.superview!.layoutSubtreeIfNeeded()
             
-            self.topConstraint!.uninstall()
+            self.topConstraint!.deactivate()
             
-            self.view.snp_makeConstraints { make in
-                make.bottom.equalTo(self.view.superview!.snp_top)
+            self.view.snp.makeConstraints { make in
+                make.bottom.equalTo(self.view.superview!.snp.top)
             }
             
             NSAnimationContext.runAnimationGroup(

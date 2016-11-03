@@ -36,9 +36,9 @@ class MediaKeyHandler: NSObject {
         }
     }
     
-    override func mediaKeyTap(keyTap: SPMediaKeyTap!, receivedMediaKeyEvent event: NSEvent!) {
+    override func mediaKeyTap(_ keyTap: SPMediaKeyTap!, receivedMediaKeyEvent event: NSEvent!) {
         
-        assert((event.type == NSEventType.SystemDefined && event.subtype.rawValue == Int16(SPSystemDefinedEventMediaKeys)), "Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:")
+        assert((event.type == NSEventType.systemDefined && event.subtype.rawValue == Int16(SPSystemDefinedEventMediaKeys)), "Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:")
 
         // here be dragons...
         
@@ -70,8 +70,8 @@ class MediaKeyHandler: NSObject {
     
     func registerWhitelist() {
         let dictionary: [String: AnyObject] = [
-            kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers(),
+            kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers() as AnyObject,
         ]
-        NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)
+        UserDefaults.standard.register(defaults: dictionary)
     }
 }

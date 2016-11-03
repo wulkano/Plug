@@ -28,13 +28,13 @@ class TrafficButtons {
         setupImagesForButton(&zoomButton, buttonName: "zoom", style: style)
     }
     
-    func addButtonsToWindow(window: NSWindow, origin: NSPoint) {
+    func addButtonsToWindow(_ window: NSWindow, origin: NSPoint) {
         hideDefaultButtons(window)
         placeButtonsInWindow(window, origin: origin)
         setupButtonActionsForWindow(window)
     }
     
-    private func setupImagesForButton(inout button: INWindowButton!, buttonName: String, style: TrafficButtonStyle) {
+    fileprivate func setupImagesForButton(_ button: inout INWindowButton!, buttonName: String, style: TrafficButtonStyle) {
         button.activeImage = NSImage(named: "traffic-\(buttonName)-\(style.stringValue())")
         button.activeNotKeyWindowImage = NSImage(named: "traffic-disabled-\(style.stringValue())")
         button.inactiveImage = NSImage(named: "traffic-disabled-\(style.stringValue())")
@@ -42,13 +42,13 @@ class TrafficButtons {
         button.pressedImage = NSImage(named: "traffic-\(buttonName)-down-\(style.stringValue())")
     }
     
-    private func hideDefaultButtons(window: NSWindow) {
-        window.standardWindowButton(NSWindowButton.CloseButton)!.hidden = true
-        window.standardWindowButton(NSWindowButton.MiniaturizeButton)!.hidden = true
-        window.standardWindowButton(NSWindowButton.ZoomButton)!.hidden = true
+    fileprivate func hideDefaultButtons(_ window: NSWindow) {
+        window.standardWindowButton(NSWindowButton.closeButton)!.isHidden = true
+        window.standardWindowButton(NSWindowButton.miniaturizeButton)!.isHidden = true
+        window.standardWindowButton(NSWindowButton.zoomButton)!.isHidden = true
     }
     
-    private func placeButtonsInWindow(window: NSWindow, origin: NSPoint) {
+    fileprivate func placeButtonsInWindow(_ window: NSWindow, origin: NSPoint) {
         let contentView = window.contentView!
         
         var buttonOrigin = origin
@@ -61,21 +61,21 @@ class TrafficButtons {
         addButton(zoomButton, toView: contentView, origin: buttonOrigin)
     }
     
-    private func addButton(button: INWindowButton, toView superview: NSView, origin: NSPoint) {
+    fileprivate func addButton(_ button: INWindowButton, toView superview: NSView, origin: NSPoint) {
         button.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(button)
         
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("|-\(origin.x)-[button]", options: [], metrics: nil, views: ["button": button])
+        var constraints = NSLayoutConstraint.constraints(withVisualFormat: "|-\(origin.x)-[button]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(origin.y)-[button]", options: [], metrics: nil, views: ["button": button])
+        constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(origin.y)-[button]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("[button(\(buttonSize.width))]", options: [], metrics: nil, views: ["button": button])
+        constraints = NSLayoutConstraint.constraints(withVisualFormat: "[button(\(buttonSize.width))]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
-        constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[button(\(buttonSize.height))]", options: [], metrics: nil, views: ["button": button])
+        constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[button(\(buttonSize.height))]", options: [], metrics: nil, views: ["button": button])
         superview.addConstraints(constraints)
     }
     
-    private func setupButtonActionsForWindow(window: NSWindow) {
+    fileprivate func setupButtonActionsForWindow(_ window: NSWindow) {
         closeButton.target = window
         closeButton.action = #selector(window.close)
         
@@ -88,14 +88,14 @@ class TrafficButtons {
 }
 
 enum TrafficButtonStyle {
-    case Dark
-    case Light
+    case dark
+    case light
     
     func stringValue() -> String {
         switch self {
-        case .Dark:
+        case .dark:
             return "dark"
-        case .Light:
+        case .light:
             return "light"
         }
     }

@@ -28,7 +28,7 @@ class PopularTracksDataSource: TracksDataSource {
     }
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tracks.popular(optionalParams: mode.params.merge(nextPageParams), callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Tracks.popular(params: mode.params.merge(nextPageParams), completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -44,9 +44,9 @@ class FavoriteTracksDataSource: TracksDataSource {
     
     // MARK: HypeMachineDataSource
     
-    override var nextPageParams: [String: AnyObject] {
+    override var nextPageParams: [String: Any] {
         if shuffle {
-            return [ "page": 1, "count": objectsPerPage, "shuffle": "1" ]
+            return [ "page": 1 as AnyObject, "count": objectsPerPage as AnyObject, "shuffle": "1" as AnyObject ]
         } else {
             return super.nextPageParams
         }
@@ -55,30 +55,30 @@ class FavoriteTracksDataSource: TracksDataSource {
     override func requestNextPageObjects() {
         switch playlist {
         case .All:
-            HypeMachineAPI.Requests.Me.favorites(optionalParams: nextPageParams, callback: nextPageTracksReceived)
+            HypeMachineAPI.Requests.Me.favorites(params: nextPageParams, completionHandler: nextPageTracksReceived)
         case .One:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 1, params: nextPageParams, completionHandler: nextPageTracksReceived)
         case .Two:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 2, params: nextPageParams, completionHandler: nextPageTracksReceived)
         case .Three:
-            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+            HypeMachineAPI.Requests.Me.showPlaylist(id: 3, params: nextPageParams, completionHandler: nextPageTracksReceived)
             
         }
     }
     
-    override func nextPageTracksReceived(result result: Result<[HypeMachineAPI.Track]>) {
-        nextPageResultReceived(result)
+    override func nextPageTracksReceived(response: DataResponse<[HypeMachineAPI.Track]>) {
+        nextPageResponseReceived(response)
         if shuffle {
             allObjectsLoaded = false
             
-            if (result.isSuccess &&
+            if (response.result.isSuccess &&
                 currentPage == 1) {
                 if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
-                    if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).indexOf(currentTrack) {
-                        standardTableContents?.removeAtIndex(indexOfCurrentlyPlayingTrack)
+                    if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).index(of: currentTrack) {
+                        standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
                     }
-                    standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, atIndex: 0)
-                    viewController.tableView.insertRowsAtIndexes(NSIndexSet(indexesInRange: NSMakeRange(0, 1)), withAnimation: .EffectNone)
+                    standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, at: 0)
+                    viewController.tableView.insertRows(at: IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), withAnimation: NSTableViewAnimationOptions())
                 }
             }
         }
@@ -97,7 +97,7 @@ class LatestTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: mode.params.merge(nextPageParams), callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Tracks.index(params: mode.params.merge(nextPageParams), completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -112,7 +112,7 @@ class FeedTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Me.feed(optionalParams: mode.params.merge(nextPageParams), callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Me.feed(params: mode.params.merge(nextPageParams), completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -127,7 +127,7 @@ class BlogTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blogID, params: nextPageParams, completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -142,7 +142,7 @@ class UserTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Users.showFavorites(username: username, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Users.showFavorites(username: username, params: nextPageParams, completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -157,7 +157,7 @@ class ArtistTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Artists.showTracks(name: artistName, params: nextPageParams, completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -172,7 +172,7 @@ class TagTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tags.showTracks(name: tagName, optionalParams: nextPageParams, callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Tags.showTracks(name: tagName, params: nextPageParams, completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -189,7 +189,7 @@ class SearchTracksDataSource: TracksDataSource {
     // MARK: HypeMachineDataSource
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Tracks.index(optionalParams: sort.params.merge(nextPageParams).merge(["q": searchQuery]), callback: nextPageTracksReceived)
+        HypeMachineAPI.Requests.Tracks.index(params: sort.params.merge(nextPageParams).merge(["q": searchQuery]), completionHandler: nextPageTracksReceived)
     }
 }
 
@@ -208,6 +208,7 @@ class SingleTrackDataSource: TracksDataSource {
     }
     
     override func requestNextPageObjects() {
-        nextPageTracksReceived(result: Result.Success([track]))
+        let response = DataResponse(request: nil, response: nil, data: nil, result: Alamofire.Result.success([track]))
+        nextPageTracksReceived(response: response)
     }
 }

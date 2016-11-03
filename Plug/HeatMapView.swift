@@ -13,15 +13,15 @@ class HeatMapView: NSView {
         didSet { needsDisplay = true }
     }
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         if heatMap != nil {
             drawHeatMap(dirtyRect)
         }
     }
     
-    func drawHeatMap(dirtyRect: NSRect) {
+    func drawHeatMap(_ dirtyRect: NSRect) {
         
         let bottomLeftPoint = NSZeroPoint
         let topLeftPoint = NSMakePoint(0, frame.height * CGFloat(heatMap!.start))
@@ -29,11 +29,11 @@ class HeatMapView: NSView {
         let bottomRightPoint = NSMakePoint(frame.width, 0)
         
         let path = NSBezierPath()
-        path.moveToPoint(bottomLeftPoint)
-        path.lineToPoint(topLeftPoint)
-        path.lineToPoint(topRightPoint)
-        path.lineToPoint(bottomRightPoint)
-        path.closePath()
+        path.move(to: bottomLeftPoint)
+        path.line(to: topLeftPoint)
+        path.line(to: topRightPoint)
+        path.line(to: bottomRightPoint)
+        path.close()
         
         fillColor().set()
         path.fill()
@@ -42,7 +42,7 @@ class HeatMapView: NSView {
     func fillColor() -> NSColor {
         let gradient = makeGradient()
         let gradientLocation = gradientLocationForRank()
-        return gradient.interpolatedColorAtLocation(gradientLocation)
+        return gradient.interpolatedColor(atLocation: gradientLocation)
     }
     
     func gradientLocationForRank() -> CGFloat {

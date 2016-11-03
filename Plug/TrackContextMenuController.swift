@@ -30,52 +30,52 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(TrackContextMenuController.openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
         
         if track.mediaType == "soundcloud"  {
-            contextMenu.addItem(NSMenuItem.separatorItem())
+            contextMenu.addItem(NSMenuItem.separator())
             contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(TrackContextMenuController.copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
             contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(TrackContextMenuController.openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
         }
         
-        contextMenu.addItem(NSMenuItem.separatorItem())
+        contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Share to Facebook", action: #selector(TrackContextMenuController.shareToFacebookClicked(_:)), keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Share to Twitter", action: #selector(TrackContextMenuController.shareToTwitterClicked(_:)), keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Share to Messages", action: #selector(TrackContextMenuController.shareToMessagesClicked(_:)), keyEquivalent: ""))
         
-        for item in contextMenu.itemArray {
+        for item in contextMenu.items {
             item.target = self
         }
     }
     
     // MARK: Actions
     
-    func copyHypeMachineLinkClicked(sender: AnyObject) {
+    func copyHypeMachineLinkClicked(_ sender: AnyObject) {
         let hypeMachineURL = track.hypeMachineURL().absoluteString
-        NSPasteboard.generalPasteboard().clearContents()
-        NSPasteboard.generalPasteboard().setString(hypeMachineURL, forType: NSStringPboardType)
+        NSPasteboard.general().clearContents()
+        NSPasteboard.general().setString(hypeMachineURL, forType: NSStringPboardType)
     }
     
-    func openHypeMachineLinkInBrowserClicked(sender: AnyObject) {
-        NSWorkspace.sharedWorkspace().openURL(track.hypeMachineURL())
+    func openHypeMachineLinkInBrowserClicked(_ sender: AnyObject) {
+        NSWorkspace.shared().open(track.hypeMachineURL())
     }
     
-    func copySoundCloudLinkClicked(sender: AnyObject) {
+    func copySoundCloudLinkClicked(_ sender: AnyObject) {
         let url = track.mediaURL()
         
         _ = SoundCloudPermalinkFinder(mediaURL: url,
-            success: { (trackURL: NSURL) in
-                NSPasteboard.generalPasteboard().clearContents()
-                NSPasteboard.generalPasteboard().setString(trackURL.absoluteString, forType: NSStringPboardType)
+            success: { (trackURL: URL) in
+                NSPasteboard.general().clearContents()
+                NSPasteboard.general().setString(trackURL.absoluteString, forType: NSStringPboardType)
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 print(error)
         })
     }
     
-    func openSoundCloudLinkInBrowser(sender: AnyObject) {
+    func openSoundCloudLinkInBrowser(_ sender: AnyObject) {
         let url = track.mediaURL()
         
         _ = SoundCloudPermalinkFinder(mediaURL: url,
-            success: { (trackURL: NSURL) in
-                NSWorkspace.sharedWorkspace().openURL(trackURL)
+            success: { (trackURL: URL) in
+                NSWorkspace.shared().open(trackURL)
                 return
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
@@ -83,28 +83,28 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         })
     }
     
-    func shareToFacebookClicked(sender: AnyObject) {
+    func shareToFacebookClicked(_ sender: AnyObject) {
         shareTrackWithServiceNamed(NSSharingServiceNamePostOnFacebook)
     }
     
-    func shareToTwitterClicked(sender: AnyObject) {
+    func shareToTwitterClicked(_ sender: AnyObject) {
         shareTrackWithServiceNamed(NSSharingServiceNamePostOnTwitter)
     }
     
-    func shareToMessagesClicked(sender: AnyObject) {
+    func shareToMessagesClicked(_ sender: AnyObject) {
         shareTrackWithServiceNamed(NSSharingServiceNameComposeMessage)
     }
     
     // MARK: Private
     
-    private func shareTrackWithServiceNamed(name: String) {
+    fileprivate func shareTrackWithServiceNamed(_ name: String) {
         let shareContents = [shareMessage()]
         let sharingService = NSSharingService(named: name)!
         sharingService.delegate = self
-        sharingService.performWithItems(shareContents)
+        sharingService.perform(withItems: shareContents)
     }
     
-    private func shareMessage() -> String {
+    fileprivate func shareMessage() -> String {
         return "\(track.title) - \(track.artist) \(track.hypeMachineURL())\nvia @plugformac"
     }
     
@@ -112,43 +112,43 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
 }
 
 class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
-    var success: (trackURL: NSURL)->()
-    var failure: (error: NSError)->()
+    var success: (_ trackURL: URL)->()
+    var failure: (_ error: NSError)->()
     
-    init(mediaURL: NSURL, success: (trackURL: NSURL)->(), failure: (error: NSError)->()) {
+    init(mediaURL: URL, success: @escaping (_ trackURL: URL)->(), failure: @escaping (_ error: NSError)->()) {
         self.success = success
         self.failure = failure
         super.init()
         
-        let request = NSURLRequest(URL: mediaURL)
+        let request = URLRequest(url: mediaURL)
         _ = NSURLConnection(request: request, delegate: self)
     }
     
-    func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {
-        print(request.URL!.host!)
+    func connection(_ connection: NSURLConnection, willSend request: URLRequest, redirectResponse response: URLResponse?) -> URLRequest? {
+        print(request.url!.host!)
         
-        if request.URL!.host! == "api.soundcloud.com" {
+        if request.url!.host! == "api.soundcloud.com" {
             
             connection.cancel()
             
-            if let trackID = parseTrackIDFromURL(request.URL!) {
+            if let trackID = parseTrackIDFromURL(request.url!) {
                 requestPermalinkForTrackID(trackID)
             } else {
                 let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])
-                failure(error: error)
+                failure(error)
             }
         }
         
         return request
     }
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
         connection.cancel()
         let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])
-        failure(error: error)
+        failure(error)
     }
     
-    func parseTrackIDFromURL(url: NSURL) -> String? {
+    func parseTrackIDFromURL(_ url: URL) -> String? {
         let httpsPrefix = "https://api.soundcloud.com/tracks/"
         let httpPrefix = "http://api.soundcloud.com/tracks/"
         let suffix = "/stream"
@@ -162,13 +162,13 @@ class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
         }
     }
     
-    func requestPermalinkForTrackID(trackID: String) {
-        SoundCloudAPI.Tracks.permalink(trackID) { result in
-            switch result {
-            case .Success(let permalink):
-                self.success(trackURL: permalink)
-            case .Failure(_, let error):
-                self.failure(error: error as NSError)
+    func requestPermalinkForTrackID(_ trackID: String) {
+        SoundCloudAPI.Tracks.permalink(trackID) { response in
+            switch response.result {
+            case .success(let permalink):
+                self.success(permalink)
+            case .failure(let error):
+                self.failure(error as NSError)
             }
         }
     }

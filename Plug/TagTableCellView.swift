@@ -12,7 +12,7 @@ import HypeMachineAPI
 class TagTableCellView: IOSStyleTableCellView {
     var nameTextField: NSTextField!
     
-    override var objectValue: AnyObject! {
+    override var objectValue: Any! {
         didSet {
             objectValueChanged()
         }

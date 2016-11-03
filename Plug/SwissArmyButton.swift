@@ -46,7 +46,7 @@ class SwissArmyButton: NSButton {
                 trackingArea = nil
             }
             
-            let options: NSTrackingAreaOptions = [.InVisibleRect, .ActiveAlways, .MouseEnteredAndExited]
+            let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea!)
         }
@@ -64,7 +64,7 @@ class SwissArmyButton: NSButton {
     func setup() {
         setupCell()
         
-        bordered = false
+        isBordered = false
     }
     
     func setupCell() {
@@ -72,26 +72,26 @@ class SwissArmyButton: NSButton {
         self.cell = newCell
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
         needsDisplay = true
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
         needsDisplay = true
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         mouseDown = true
         needsDisplay = true
-        super.mouseDown(theEvent)
-        mouseUp(theEvent)
+        super.mouseDown(with: theEvent)
+        mouseUp(with: theEvent)
     }
     
-    override func mouseUp(theEvent: NSEvent) {
+    override func mouseUp(with theEvent: NSEvent) {
         mouseDown = false
         needsDisplay = true
-        super.mouseUp(theEvent)
+        super.mouseUp(with: theEvent)
     }
 }

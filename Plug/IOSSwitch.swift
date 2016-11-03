@@ -46,7 +46,7 @@ class IOSSwitch: NSControl {
     var tintColorStore: NSColor? {
         didSet { reloadLayer() }
     }
-    override var enabled: Bool {
+    override var isEnabled: Bool {
         didSet { reloadLayer() }
     }
 
@@ -67,7 +67,7 @@ class IOSSwitch: NSControl {
     
     func setup() {
         // The Switch is enabled per default
-        enabled = true
+        isEnabled = true
     
         // Set up the layer hierarchy
         setUpLayers()
@@ -80,7 +80,7 @@ class IOSSwitch: NSControl {
         wantsLayer = true
         
         // Background layer
-        backgroundLayer.autoresizingMask = [.LayerWidthSizable, .LayerHeightSizable]
+        backgroundLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
         backgroundLayer.bounds = rootLayer.bounds
         backgroundLayer.anchorPoint = CGPoint(x: 0, y: 0)
         backgroundLayer.borderWidth = borderLineWidth
@@ -88,19 +88,19 @@ class IOSSwitch: NSControl {
         
         // Knob layer
         knobLayer.frame = rectForKnob()
-        knobLayer.autoresizingMask = .LayerHeightSizable
-        knobLayer.backgroundColor = knobBackgroundColor.CGColor
-        knobLayer.shadowColor = NSColor.blackColor().CGColor
+        knobLayer.autoresizingMask = .layerHeightSizable
+        knobLayer.backgroundColor = knobBackgroundColor.cgColor
+        knobLayer.shadowColor = NSColor.black.cgColor
         knobLayer.shadowOffset = CGSize(width: 0, height: -2)
         knobLayer.shadowRadius = 1
         knobLayer.shadowOpacity = 0.3
         rootLayer.addSublayer(knobLayer)
         
         knobInsideLayer.frame = knobLayer.bounds
-        knobInsideLayer.autoresizingMask = [.LayerWidthSizable, .LayerHeightSizable]
-        knobInsideLayer.shadowColor = NSColor.blackColor().CGColor
+        knobInsideLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
+        knobInsideLayer.shadowColor = NSColor.black.cgColor
         knobInsideLayer.shadowOffset = CGSize(width: 0, height: 0)
-        knobInsideLayer.backgroundColor = NSColor.whiteColor().CGColor
+        knobInsideLayer.backgroundColor = NSColor.white.cgColor
         knobInsideLayer.shadowRadius = 1
         knobInsideLayer.shadowOpacity = 0.35
         knobLayer.addSublayer(knobInsideLayer)
@@ -112,7 +112,7 @@ class IOSSwitch: NSControl {
     
     // MARK: NSView
 
-    override func acceptsFirstMouse(theEvent: NSEvent?) -> Bool {
+    override func acceptsFirstMouse(for theEvent: NSEvent?) -> Bool {
         return true
     }
     
@@ -137,15 +137,15 @@ class IOSSwitch: NSControl {
             
             // ------------------------------- Animate Colors
             if (hasDragged && isDraggingTowardsOn) || (!hasDragged && on) {
-                backgroundLayer.borderColor = tintColor.CGColor
-                backgroundLayer.backgroundColor = tintColor.CGColor
+                backgroundLayer.borderColor = tintColor.cgColor
+                backgroundLayer.backgroundColor = tintColor.cgColor
             } else {
-                backgroundLayer.borderColor = disabledBorderColor.CGColor
-                backgroundLayer.backgroundColor = disabledBackgroundColor.CGColor
+                backgroundLayer.borderColor = disabledBorderColor.cgColor
+                backgroundLayer.backgroundColor = disabledBackgroundColor.cgColor
             }
             
             // ------------------------------- Animate Enabled-Disabled state
-            if enabled {
+            if isEnabled {
                 rootLayer.opacity = enabledOpacity
             } else {
                 rootLayer.opacity = disabledOpacity
@@ -187,11 +187,11 @@ class IOSSwitch: NSControl {
     }
     
     
-    func knobHeightForSize(size: NSSize) -> CGFloat {
+    func knobHeightForSize(_ size: NSSize) -> CGFloat {
         return size.height - (borderLineWidth * 2)
     }
     
-    func knobWidthForSize(size: NSSize) -> CGFloat {
+    func knobWidthForSize(_ size: NSSize) -> CGFloat {
         if isActive {
             return (size.width - (2 * borderLineWidth)) * (1 / decreasedGoldenRatio)
         } else {
@@ -199,7 +199,7 @@ class IOSSwitch: NSControl {
         }
     }
     
-    func knobXForSize(size: NSSize, knobWidth: CGFloat) -> CGFloat {
+    func knobXForSize(_ size: NSSize, knobWidth: CGFloat) -> CGFloat {
         if (!hasDragged && !on) || (hasDragged && !isDraggingTowardsOn) {
             return borderLineWidth
         } else {
@@ -213,27 +213,27 @@ class IOSSwitch: NSControl {
         return true
     }
 
-    override func mouseDown(theEvent: NSEvent) {
-        if !enabled { return }
+    override func mouseDown(with theEvent: NSEvent) {
+        if !isEnabled { return }
         
         isActive = true
         
         reloadLayer()
     }
 
-    override func mouseDragged(theEvent: NSEvent) {
-        if !enabled { return }
+    override func mouseDragged(with theEvent: NSEvent) {
+        if !isEnabled { return }
         
         hasDragged = true
         
-        let draggingPoint = convertPoint(theEvent.locationInWindow, fromView: nil)
+        let draggingPoint = convert(theEvent.locationInWindow, from: nil)
         isDraggingTowardsOn = draggingPoint.x >= bounds.size.width / 2
         
         reloadLayer()
     }
     
-    override func mouseUp(theEvent: NSEvent) {
-        if !enabled { return }
+    override func mouseUp(with theEvent: NSEvent) {
+        if !isEnabled { return }
         
         isActive = false
         

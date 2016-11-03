@@ -14,16 +14,16 @@ class TagsViewController: DataSourceViewController {
         return dataSource as? TagsDataSource
     }
     
-    func itemForRow(row: Int) -> TagsListItem? {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+    func itemForRow(_ row: Int) -> TagsListItem? {
+        if let item: Any = dataSource!.objectForRow(row) {
             return TagsListItem.fromObject(item)
         } else {
             return nil
         }
     }
     
-    func itemAfterRow(row: Int) -> TagsListItem? {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+    func itemAfterRow(_ row: Int) -> TagsListItem? {
+        if let item: Any = dataSource!.objectForRow(row) {
             return TagsListItem.fromObject(item)
         } else {
             return nil
@@ -34,7 +34,7 @@ class TagsViewController: DataSourceViewController {
         let row = tableView.selectedRow
         if let item = itemForRow(row) {
             switch item {
-            case .TagItem(let tag):
+            case .tagItem(let tag):
                 return tag
             default:
                 return nil
@@ -44,44 +44,44 @@ class TagsViewController: DataSourceViewController {
         }
     }
     
-    func enterKeyPressed(theEvent: NSEvent) {
+    func enterKeyPressed(_ theEvent: NSEvent) {
         if let tag = selectedTag() {
             loadSingleTagView(tag)
         } else {
-            super.keyDown(theEvent)
+            super.keyDown(with: theEvent)
         }
     }
     
-    func rightArrowKeyPressed(theEvent: NSEvent) {
+    func rightArrowKeyPressed(_ theEvent: NSEvent) {
         if let tag = selectedTag() {
             loadSingleTagView(tag)
         } else {
-            super.keyDown(theEvent)
+            super.keyDown(with: theEvent)
         }
     }
     
-    func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        let viewController = TracksViewController(type: .LoveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
+    func loadSingleTagView(_ tag: HypeMachineAPI.Tag) {
+        let viewController = TracksViewController(type: .loveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
     
-    func tagCellView(tableView: NSTableView) -> TagTableCellView {
+    func tagCellView(_ tableView: NSTableView) -> TagTableCellView {
         let id = "TagTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? TagTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? TagTableCellView
         
         if cellView == nil {
             cellView = TagTableCellView()
             cellView!.identifier = id
             
             cellView!.nameTextField = NSTextField()
-            cellView!.nameTextField.editable = false
-            cellView!.nameTextField.selectable = false
-            cellView!.nameTextField.bordered = false
+            cellView!.nameTextField.isEditable = false
+            cellView!.nameTextField.isSelectable = false
+            cellView!.nameTextField.isBordered = false
             cellView!.nameTextField.drawsBackground = false
-            cellView!.nameTextField.font = appFont(size: 16, weight: .Medium)
+            cellView!.nameTextField.font = appFont(size: 16, weight: .medium)
             cellView!.addSubview(cellView!.nameTextField)
-            cellView!.nameTextField.snp_makeConstraints { make in
+            cellView!.nameTextField.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!).offset(1)
                 make.left.equalTo(cellView!).offset(21)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
@@ -90,7 +90,7 @@ class TagsViewController: DataSourceViewController {
             let arrow = NSImageView()
             arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
-            arrow.snp_makeConstraints { make in
+            arrow.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.right.equalTo(cellView!).offset(-15)
             }
@@ -99,9 +99,9 @@ class TagsViewController: DataSourceViewController {
         return cellView!
     }
     
-    func tagRowView(tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
+    func tagRowView(_ tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? IOSStyleTableRowView
+        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
@@ -110,9 +110,9 @@ class TagsViewController: DataSourceViewController {
             
             if let nextItem = itemAfterRow(row) {
                 switch nextItem {
-                case .SectionHeaderItem:
+                case .sectionHeaderItem:
                     rowView!.nextRowIsGroupRow = true
-                case .TagItem:
+                case .tagItem:
                     rowView!.nextRowIsGroupRow = false
                 }
             } else {
@@ -125,20 +125,20 @@ class TagsViewController: DataSourceViewController {
     
     // MARK: Actions
     
-    func searchFieldSubmit(sender: NSSearchField) {
+    func searchFieldSubmit(_ sender: NSSearchField) {
         tagsDataSource!.searchKeywords = sender.stringValue
     }
     
     // MARK: NSResponder
     
-    override func keyDown(theEvent: NSEvent) {
+    override func keyDown(with theEvent: NSEvent) {
         switch theEvent.keyCode {
         case 36:
             enterKeyPressed(theEvent)
         case 124:
             rightArrowKeyPressed(theEvent)
         default:
-            super.keyDown(theEvent)
+            super.keyDown(with: theEvent)
         }
     }
     
@@ -149,7 +149,7 @@ class TagsViewController: DataSourceViewController {
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
+        searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -159,8 +159,8 @@ class TagsViewController: DataSourceViewController {
         searchHeaderController.searchField.action = #selector(TagsViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -170,11 +170,11 @@ class TagsViewController: DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.setDelegate(self)
+        tableView.delegate = self
         tableView.extendedDelegate = self
         
         self.dataSource = TagsDataSource(viewController: self)
-        tableView.setDataSource(dataSource)
+        tableView.dataSource = dataSource
         self.dataSource?.loadNextPageObjects()
     }
     
@@ -185,58 +185,58 @@ class TagsViewController: DataSourceViewController {
     
     // MARK: NSTableViewDelegate
     
-    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+    func tableView(_ tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return sectionHeaderCellView(tableView)
-        case .TagItem:
+        case .tagItem:
             return tagCellView(tableView)
         }
     }
     
-    func tableView(tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
+    func tableView(_ tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return groupRowView(tableView)
-        case .TagItem:
+        case .tagItem:
             return tagRowView(tableView, row: row)
         }
     }
     
-    func tableView(tableView: NSTableView!, isGroupRow row: Int) -> Bool {
+    func tableView(_ tableView: NSTableView!, isGroupRow row: Int) -> Bool {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return  true
-        case .TagItem:
+        case .tagItem:
             return false
         }
     }
     
-    func tableView(tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
+    func tableView(_ tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return 32
-        case .TagItem:
+        case .tagItem:
             return 48
         }
     }
     
-    func tableView(tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
+    func tableView(_ tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
         switch itemForRow(row)! {
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return false
-        case .TagItem:
+        case .tagItem:
             return true
         }
     }
     
     // MARK: ExtendedTableViewDelegate
     
-    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+    override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
-        case .TagItem(let tag):
+        case .tagItem(let tag):
             loadSingleTagView(tag)
-        case .SectionHeaderItem:
+        case .sectionHeaderItem:
             return
         }
     }

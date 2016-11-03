@@ -40,7 +40,7 @@ class AudioPlayer: NSObject {
     var shuffle: Bool = false {
         didSet {
             onShuffleChanged.fire(shuffle)
-            NSUserDefaults.standardUserDefaults().setValue(shuffle, forKey: "shuffle")
+            UserDefaults.standard.setValue(shuffle, forKey: "shuffle")
         }
     }
     let onShuffleChanged = OnShuffleChangedSwignal()
@@ -54,13 +54,13 @@ class AudioPlayer: NSObject {
     var progressObserver: AnyObject?
     var seeking = false
     var recentlyPlayedTrackIndexes: [Int] = []
-    var timeoutTimer: NSTimer?
+    var timeoutTimer: Timer?
     let timeoutSeconds: Double = 10
     
     override init() {
-        self.shuffle = NSUserDefaults.standardUserDefaults().valueForKey("shuffle") as! Bool
+        self.shuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
         super.init()
-        bind("volume", toObject: NSUserDefaultsController.sharedUserDefaultsController(), withKeyPath: "values.volume", options: nil)
+        bind("volume", to: NSUserDefaultsController.shared(), withKeyPath: "values.volume", options: nil)
     }
     
     deinit {
@@ -82,7 +82,7 @@ class AudioPlayer: NSObject {
         seeking = false
     }
     
-    func playNewTrack(track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
+    func playNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
         if currentTrack != track {
             setupForNewTrack(track, dataSource: dataSource)
             UserNotifications.deliverNotification(title: track.title, informativeText: track.artist)
@@ -99,7 +99,7 @@ class AudioPlayer: NSObject {
         guard let foundTracks = findTracksWithTrackId(currentTrack.id) else {
             return
         }
-        if foundTracks.indexOf(currentTrack) != NSNotFound {
+        if foundTracks.index(of: currentTrack) != NSNotFound {
             // current track is already accurate
             return
         } else if let foundTrack = foundTracks.first {
@@ -109,21 +109,21 @@ class AudioPlayer: NSObject {
         }
     }
         
-    private func findTracksWithTrackId(trackId: String) -> [Track]? {
+    fileprivate func findTracksWithTrackId(_ trackId: String) -> [Track]? {
         return currentDataSource.tableContents?.filter{ ($0 as! HypeMachineAPI.Track).id == trackId } as? [Track]
     }
     
     func play() {
         player.play()
         playing = true
-        Notifications.post(name: Notifications.TrackPlaying, object: self, userInfo: ["track": currentTrack!])
+        Notifications.post(name: Notifications.TrackPlaying, object: self, userInfo: ["track" as NSObject: currentTrack!])
         onTrackPlaying.fire(true)
     }
     
     func pause() {
         player.pause()
         playing = false
-        Notifications.post(name: Notifications.TrackPaused, object: self, userInfo: ["track": currentTrack!])
+        Notifications.post(name: Notifications.TrackPaused, object: self, userInfo: ["track" as NSObject: currentTrack!])
         onTrackPaused.fire(true)
     }
     
@@ -161,14 +161,14 @@ class AudioPlayer: NSObject {
         shuffle = !shuffle
     }
     
-    func seekToPercent(percent: Double) {
-        guard playerItem != nil && playerItem.status == AVPlayerItemStatus.ReadyToPlay
+    func seekToPercent(_ percent: Double) {
+        guard playerItem != nil && playerItem.status == AVPlayerItemStatus.readyToPlay
             else { return }
         
         seeking = true
         let seconds = percent * currentItemDuration()!
         let time = CMTimeMakeWithSeconds(seconds, 1000)
-        player.seekToTime(time, completionHandler: {success in
+        player.seek(to: time, completionHandler: {success in
             self.seeking = false
             
             if !success {
@@ -180,31 +180,31 @@ class AudioPlayer: NSObject {
     
     // MARK : Notification listeners
     
-    func currentTrackFinishedPlayingNotification(notification: NSNotification) {
+    func currentTrackFinishedPlayingNotification(_ notification: Notification) {
         print("currentTrackFinishedPlayingNotification")
         skipForward()
     }
     
-    func currentTrackCouldNotFinishPlayingNotification(notification: NSNotification) {
+    func currentTrackCouldNotFinishPlayingNotification(_ notification: Notification) {
         let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
         currentTrackPlaybackError(error)
     }
     
-    func currentTrackPlaybackStalledNotification(notification: NSNotification) {
+    func currentTrackPlaybackStalledNotification(_ notification: Notification) {
         let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
         currentTrackPlaybackError(error)
     }
     
-    func currentTrackNewAccessLogEntry(notification: NSNotification) {
+    func currentTrackNewAccessLogEntry(_ notification: Notification) {
 //        print((notification.object as! AVPlayerItem).accessLog())
     }
     
-    func currentTrackNewErrorLogEntry(notification: NSNotification) {
+    func currentTrackNewErrorLogEntry(_ notification: Notification) {
         print((notification.object as! AVPlayerItem).errorLog())
     }
     
-    func currentTrackPlaybackError(error: NSError) {
-        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+    func currentTrackPlaybackError(_ error: NSError) {
+        Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error" as NSObject: error])
         print(error)
         skipForward()
     }
@@ -233,20 +233,20 @@ class AudioPlayer: NSObject {
     
     // MARK: Private methods
     
-    private func currentItemDuration() -> Double? {
+    fileprivate func currentItemDuration() -> Double? {
         guard playerItem != nil else { return nil }
 
         return Double(CMTimeGetSeconds(playerItem.duration))
     }
     
-    private func setupForNewTrack(track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
+    fileprivate func setupForNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
         Analytics.trackAudioPlaybackEvent("Play New Track")
         
         if playerItem != nil {
             unsubscribeFromPlayerItem(playerItem)
         }
         
-        playerItem = AVPlayerItem(URL: track.mediaURL())
+        playerItem = AVPlayerItem(url: track.mediaURL())
         
         subscribeToPlayerItem(playerItem)
         
@@ -255,7 +255,7 @@ class AudioPlayer: NSObject {
         }
 
         timeoutTimer?.invalidate()
-        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(timeoutSeconds, target: self, selector: #selector(AudioPlayer.didAVPlayerTimeout), userInfo: nil, repeats: false)
+        timeoutTimer = Timer.scheduledTimer(timeInterval: timeoutSeconds, target: self, selector: #selector(AudioPlayer.didAVPlayerTimeout), userInfo: nil, repeats: false)
         
         player = AVPlayer(playerItem: playerItem)
         player.volume = volume
@@ -273,23 +273,23 @@ class AudioPlayer: NSObject {
         currentTrackListenScrobbled = false
     }
     
-    private func volumeChanged() {
+    fileprivate func volumeChanged() {
         if player != nil {
             player.volume = volume
         }
     }
     
-    private func observeProgressUpdates() {
+    fileprivate func observeProgressUpdates() {
         let thirdOfSecond = CMTimeMake(1, 3)
-        progressObserver = player.addPeriodicTimeObserverForInterval(thirdOfSecond, queue: nil, usingBlock: progressUpdated)
+        progressObserver = player.addPeriodicTimeObserver(forInterval: thirdOfSecond, queue: nil, using: progressUpdated) as AnyObject?
     }
     
-    private func progressUpdated(time: CMTime) {
+    fileprivate func progressUpdated(_ time: CMTime) {
         guard !seeking else { return }
         
         let progress = Double(CMTimeGetSeconds(time))
         let duration = Double(CMTimeGetSeconds(playerItem.duration))
-        let userInfo = [
+        let userInfo: [String : Any] = [
             "progress": progress,
             "duration": duration,
             "track": currentTrack
@@ -297,37 +297,37 @@ class AudioPlayer: NSObject {
         Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
         
         if progress > 30 && !currentTrackListenLogged {
-            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, optionalParams: nil, callback: {error in})
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: 30, completionHandler: {_ in })
             currentTrackListenLogged = true
         } else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
-            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), optionalParams: nil, callback: {error in})
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack.id, position: Int(progress), completionHandler: {_ in })
             currentTrackListenScrobbled = true
         }
     }
     
-    private func playerItemNotificationNamesAndSelectors() -> [String: Selector] {
+    fileprivate func playerItemNotificationNamesAndSelectors() -> [String: Selector] {
         return [
-            AVPlayerItemDidPlayToEndTimeNotification: #selector(AudioPlayer.currentTrackFinishedPlayingNotification(_:)),
-            AVPlayerItemFailedToPlayToEndTimeNotification: #selector(AudioPlayer.currentTrackCouldNotFinishPlayingNotification(_:)),
-            AVPlayerItemPlaybackStalledNotification: #selector(AudioPlayer.currentTrackPlaybackStalledNotification(_:)),
-            AVPlayerItemNewAccessLogEntryNotification: #selector(AudioPlayer.currentTrackNewAccessLogEntry(_:)),
-            AVPlayerItemNewErrorLogEntryNotification: #selector(AudioPlayer.currentTrackNewErrorLogEntry(_:)),
+            NSNotification.Name.AVPlayerItemDidPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackFinishedPlayingNotification(_:)),
+            NSNotification.Name.AVPlayerItemFailedToPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackCouldNotFinishPlayingNotification(_:)),
+            NSNotification.Name.AVPlayerItemPlaybackStalled.rawValue: #selector(AudioPlayer.currentTrackPlaybackStalledNotification(_:)),
+            NSNotification.Name.AVPlayerItemNewAccessLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewAccessLogEntry(_:)),
+            NSNotification.Name.AVPlayerItemNewErrorLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewErrorLogEntry(_:)),
         ]
     }
     
-    private func subscribeToPlayerItem(playerItem: AVPlayerItem) {
+    fileprivate func subscribeToPlayerItem(_ playerItem: AVPlayerItem) {
         for (name, selector) in playerItemNotificationNamesAndSelectors() {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: name, object: playerItem)
+            NotificationCenter.default.addObserver(self, selector: selector, name: NSNotification.Name(rawValue: name), object: playerItem)
         }
     }
     
-    private func unsubscribeFromPlayerItem(playerItem: AVPlayerItem) {
+    fileprivate func unsubscribeFromPlayerItem(_ playerItem: AVPlayerItem) {
         for (name, _) in playerItemNotificationNamesAndSelectors() {
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: name, object: playerItem)
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: name), object: playerItem)
         }
     }
     
-    private func findNextTrack() -> HypeMachineAPI.Track? {
+    fileprivate func findNextTrack() -> HypeMachineAPI.Track? {
         if (shuffle &&
             !(currentDataSource is FavoriteTracksDataSource)) {
             return nextShuffleTrack()
@@ -336,14 +336,14 @@ class AudioPlayer: NSObject {
         }
     }
     
-    private func nextShuffleTrack() -> HypeMachineAPI.Track? {
+    fileprivate func nextShuffleTrack() -> HypeMachineAPI.Track? {
         if recentlyPlayedTrackIndexes.count >= currentDataSource.tableContents!.count {
             recentlyPlayedTrackIndexes = []
         }
         
         var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         
-        while recentlyPlayedTrackIndexes.indexOf(nextShuffleTrackIndex) != nil {
+        while recentlyPlayedTrackIndexes.index(of: nextShuffleTrackIndex) != nil {
             nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         }
         

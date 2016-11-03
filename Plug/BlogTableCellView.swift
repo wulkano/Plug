@@ -13,10 +13,8 @@ class BlogTableCellView: IOSStyleTableCellView {
     var nameTextField: NSTextField!
     var recentArtistsTextField: NSTextField!
     
-    override var objectValue: AnyObject! {
-        didSet {
-            objectValueChanged()
-        }
+    override var objectValue: Any! {
+        didSet { objectValueChanged() }
     }
     var blog: HypeMachineAPI.Blog {
         return objectValue as! HypeMachineAPI.Blog
@@ -38,21 +36,21 @@ class BlogTableCellView: IOSStyleTableCellView {
         recentArtistsTextField.stringValue = "Loading..."
         
         let params = ["page": 1, "count": 3]
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, optionalParams: params) { result in
+        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, params: params) { response in
             guard self.objectValue != nil && self.blog.id == originalBlogID
                 else { return }
             
-            switch result {
-            case .Success(let tracks):
+            switch response.result {
+            case .success(let tracks):
                 var recentTracks = ""
-                for (index, track) in tracks.enumerate() {
+                for (index, track) in tracks.enumerated() {
                     recentTracks = recentTracks + "\(track.artist)"
                     if index < tracks.count - 1 {
                         recentTracks = recentTracks + ", "
                     }
                 }
                 self.recentArtistsTextField.stringValue = recentTracks
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 Swift.print(error as NSError)
             }

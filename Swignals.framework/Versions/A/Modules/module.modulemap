@@ -1,0 +1,10 @@
+framework module Swignals {
+  umbrella header "Swignals.h"
+
+  export *
+  module * { export * }
+}
+
+module Swignals.Swift {
+    header "Swignals-Swift.h"
+}

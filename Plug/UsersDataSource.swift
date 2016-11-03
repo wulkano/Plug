@@ -11,7 +11,7 @@ import HypeMachineAPI
 
 class UsersDataSource: SearchableDataSource {
     
-    func filterUsersMatchingSearchKeywords(users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
+    func filterUsersMatchingSearchKeywords(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
         return users.filter { user in
             if user.fullName != nil {
                 return (user.username =~ self.searchKeywords!) || (user.fullName! =~ self.searchKeywords!)
@@ -21,13 +21,13 @@ class UsersDataSource: SearchableDataSource {
         }
     }
     
-    func sortUsers(users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
-        return users.sort { $0.username.lowercaseString < $1.username.lowercaseString }
+    func sortUsers(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
+        return users.sorted { $0.username.lowercased() < $1.username.lowercased() }
     }
     
     // MARK: SearchableDataSource
     
-    override func filterObjectsMatchingSearchKeywords(objects: [AnyObject]) -> [AnyObject] {
+    override func filterObjectsMatchingSearchKeywords(_ objects: [Any]) -> [Any] {
         let users = objects as! [HypeMachineAPI.User]
         return filterUsersMatchingSearchKeywords(users)
     }
@@ -39,12 +39,12 @@ class UsersDataSource: SearchableDataSource {
     }
     
     override func requestNextPageObjects() {
-        HypeMachineAPI.Requests.Me.friends(optionalParams: nil) { result in
-            self.nextPageResultReceived(result)
+        HypeMachineAPI.Requests.Me.friends { response in
+            self.nextPageResponseReceived(response)
         }
     }
     
-    override func appendTableContents(contents: [AnyObject]) {
+    override func appendTableContents(_ contents: [Any]) {
         let users = contents as! [HypeMachineAPI.User]
         let sortedUsers = sortUsers(users)
         super.appendTableContents(sortedUsers)

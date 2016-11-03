@@ -21,7 +21,7 @@ class RefreshClipView: NSClipView {
         
         // If refreshing expand the rect to fit the refresh header
         // in the frame (without scroll elaticity)
-        if refreshHeaderController.state == .Updating {
+        if refreshHeaderController.state == .updating {
             newRect.size.height += refreshHeaderController.viewHeight
             newRect.origin.y -= refreshHeaderController.viewHeight
         }

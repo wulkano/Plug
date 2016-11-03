@@ -14,12 +14,12 @@ class UnderlinedTabButtonCell: NSButtonCell {
     var fixedTextFrame: NSRect = NSMakeRect(5, 40, 50, 15)
     let maxImageHeight: CGFloat = 36
     
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        highlightsBy = NSCellStyleMask.ContentsCellMask
+        highlightsBy = NSCellStyleMask.contentsCellMask
     }
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
+    override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
         if state == NSOnState {
             let highlightRect = NSMakeRect(0, frame.size.height - hightlightWidth, frame.size.width, hightlightWidth)
             highlightColor.set()
@@ -27,13 +27,13 @@ class UnderlinedTabButtonCell: NSButtonCell {
         }
     }
     
-    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
+    override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
         
         // Consistent vertical placement
-        return super.drawTitle(title, withFrame: fixedTextFrame, inView: controlView)
+        return super.drawTitle(title, withFrame: fixedTextFrame, in: controlView)
     }
     
-    override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
+    override func drawImage(_ image: NSImage, withFrame frame: NSRect, in controlView: NSView) {
         
         // Center image vertically
         var newFrame = frame
@@ -42,6 +42,6 @@ class UnderlinedTabButtonCell: NSButtonCell {
             newFrame.origin.y += spacer
             newFrame.size.height += spacer
         }
-        image.drawInRect(newFrame)
+        image.draw(in: newFrame)
     }
 }

@@ -14,14 +14,14 @@ class UsersViewController: DataSourceViewController {
         return dataSource! as? UsersDataSource
     }
     
-    func loadSingleFriendView(friend: HypeMachineAPI.User) {
+    func loadSingleFriendView(_ friend: HypeMachineAPI.User) {
         let viewController = UserViewController(user: friend)!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
     
     // MARK: Actions
     
-    func searchFieldSubmit(sender: NSSearchField) {
+    func searchFieldSubmit(_ sender: NSSearchField) {
         usersDataSource!.searchKeywords = sender.stringValue
     }
     
@@ -32,7 +32,7 @@ class UsersViewController: DataSourceViewController {
         
         let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
         view.addSubview(searchHeaderController.view)
-        searchHeaderController.view.snp_makeConstraints { make in
+        searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -42,8 +42,8 @@ class UsersViewController: DataSourceViewController {
         searchHeaderController.searchField.action = #selector(UsersViewController.searchFieldSubmit(_:))
         
         loadScrollViewAndTableView()
-        scrollView.snp_makeConstraints { make in
-            make.top.equalTo(searchHeaderController.view.snp_bottom)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(searchHeaderController.view.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -53,11 +53,11 @@ class UsersViewController: DataSourceViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.setDelegate(self)
+        tableView.delegate = self
         tableView.extendedDelegate = self
         
         dataSource = UsersDataSource(viewController: self)
-        tableView.setDataSource(dataSource)
+        tableView.dataSource = dataSource
         dataSource!.loadNextPageObjects()
     }
     
@@ -68,9 +68,9 @@ class UsersViewController: DataSourceViewController {
     
     // MARK: NSTableViewDelegate
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let id = "UserTableCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? UserTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? UserTableCellView
         
         if cellView == nil {
             cellView = UserTableCellView()
@@ -79,7 +79,7 @@ class UsersViewController: DataSourceViewController {
             cellView!.avatarView = CircleMaskImageView()
             cellView!.avatarView.image = NSImage(named: "Avatar-Placeholder")!
             cellView!.addSubview(cellView!.avatarView)
-            cellView!.avatarView.snp_makeConstraints { make in
+            cellView!.avatarView.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.width.equalTo(36)
                 make.height.equalTo(36)
@@ -87,36 +87,36 @@ class UsersViewController: DataSourceViewController {
             }
             
             cellView!.fullNameTextField = NSTextField()
-            cellView!.fullNameTextField.editable = false
-            cellView!.fullNameTextField.selectable = false
-            cellView!.fullNameTextField.bordered = false
+            cellView!.fullNameTextField.isEditable = false
+            cellView!.fullNameTextField.isSelectable = false
+            cellView!.fullNameTextField.isBordered = false
             cellView!.fullNameTextField.drawsBackground = false
-            cellView!.fullNameTextField.font = appFont(size: 14, weight: .Medium)
+            cellView!.fullNameTextField.font = appFont(size: 14, weight: .medium)
             cellView!.addSubview(cellView!.fullNameTextField)
-            cellView!.fullNameTextField.snp_makeConstraints { make in
-                make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
+            cellView!.fullNameTextField.snp.makeConstraints { make in
+                make.left.equalTo(cellView!.avatarView.snp.right).offset(22)
                 make.top.equalTo(cellView!).offset(12)
                 make.right.equalTo(cellView!).offset(27)
             }
             
             cellView!.usernameTextField = NSTextField()
-            cellView!.usernameTextField.editable = false
-            cellView!.usernameTextField.selectable = false
-            cellView!.usernameTextField.bordered = false
+            cellView!.usernameTextField.isEditable = false
+            cellView!.usernameTextField.isSelectable = false
+            cellView!.usernameTextField.isBordered = false
             cellView!.usernameTextField.drawsBackground = false
-            cellView!.usernameTextField.font = appFont(size: 13, weight: .Medium)
+            cellView!.usernameTextField.font = appFont(size: 13, weight: .medium)
             cellView!.usernameTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.usernameTextField)
-            cellView!.usernameTextField.snp_makeConstraints { make in
-                make.left.equalTo(cellView!.avatarView.snp_right).offset(22)
-                make.top.equalTo(cellView!.fullNameTextField.snp_bottom).offset(4)
+            cellView!.usernameTextField.snp.makeConstraints { make in
+                make.left.equalTo(cellView!.avatarView.snp.right).offset(22)
+                make.top.equalTo(cellView!.fullNameTextField.snp.bottom).offset(4)
                 make.right.equalTo(cellView!).offset(27)
             }
             
             let arrow = NSImageView()
             arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
-            arrow.snp_makeConstraints { make in
+            arrow.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!)
                 make.right.equalTo(cellView!).offset(-15)
             }
@@ -125,9 +125,9 @@ class UsersViewController: DataSourceViewController {
         return cellView
     }
     
-    func tableView(tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? IOSStyleTableRowView
+        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
@@ -138,14 +138,14 @@ class UsersViewController: DataSourceViewController {
         return rowView
     }
     
-    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 64
     }
     
     // MARK: ExtendedTableViewDelegate
     
-    override func tableView(tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-        if let item: AnyObject = dataSource!.objectForRow(row) {
+    override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
+        if let item: Any = dataSource!.objectForRow(row) {
             loadSingleFriendView(item as! HypeMachineAPI.User)
         }
     }

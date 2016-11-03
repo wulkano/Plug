@@ -58,9 +58,9 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
 //        sourceTypeTextFieldWidthConstraint.updateOffset(sourceTypeTextField.attributedStringValue.size.width + 1.5)
         
         switch playState {
-        case .Playing, .Paused:
+        case .playing, .paused:
             sourceTypeTextField.selected = true
-        case .NotPlaying:
+        case .notPlaying:
             sourceTypeTextField.selected = false
         }
     }
@@ -75,9 +75,9 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         }
         
         switch playState {
-        case .Playing, .Paused:
+        case .playing, .paused:
             sourceButton.selected = true
-        case .NotPlaying:
+        case .notPlaying:
             sourceButton.selected = false
         }
     }
@@ -95,7 +95,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
 //        }
 //    }
     
-    @IBAction func sourceButtonClicked(sender: NSButton) {
+    @IBAction func sourceButtonClicked(_ sender: NSButton) {
         if track.viaUser != nil {
             loadSingleFriendPage()
         } else if track.viaQuery != nil {
@@ -111,8 +111,8 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
     }
     
     func loadQuery() {
-        let url = NSURL(string: "http://hypem.com/search/\(track.viaQuery!)")!
-        NSWorkspace.sharedWorkspace().openURL(url)
+        let url = URL(string: "http://hypem.com/search/\(track.viaQuery!)")!
+        NSWorkspace.shared().open(url)
     }
     
     func loadSingleBlogPage() {

@@ -14,8 +14,8 @@ class BaseContentViewController: NSViewController {
     let analyticsViewName: String
     var loaderViewController: LoaderViewController?
     var navigationItem: NavigationItem!
-    var tableViewInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0) // Play controls
+    var tableViewInsets: EdgeInsets {
+        return EdgeInsets(top: 0, left: 0, bottom: 47, right: 0) // Play controls
     }
     
     init?(title: String, analyticsViewName: String) {
@@ -50,10 +50,10 @@ class BaseContentViewController: NSViewController {
 
     func addLoaderView() {
         if loaderViewController == nil {
-            loaderViewController = LoaderViewController(size: .Large)
-            let insets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
+            loaderViewController = LoaderViewController(size: .large)
+            let insets = EdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
             view.addSubview(loaderViewController!.view)
-            loaderViewController!.view.snp_makeConstraints { make in
+            loaderViewController!.view.snp.makeConstraints { make in
                 make.edges.equalTo(self.view).inset(insets)
             }
         }
@@ -89,18 +89,18 @@ class BaseContentViewController: NSViewController {
         return stickyTrackControllerStore!
     }
     var stickyTrackControllerType: TracksViewControllerType {
-        return .LoveCount
+        return .loveCount
     }
     var stickyTrackBelongsToUs = false
     
     func setupStickyTrack() {
         if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
-            addStickyTrackAtPosition(.Bottom)
+            addStickyTrackAtPosition(.bottom)
             updateStickyTrack(currentTrack)
         }
     }
     
-    func addStickyTrackAtPosition(position: StickyTrackPosition) {
+    func addStickyTrackAtPosition(_ position: StickyTrackPosition) {
         if stickyTrackController.isShown {
             if position == stickyTrackController.position {
                 return
@@ -111,14 +111,14 @@ class BaseContentViewController: NSViewController {
         
         view.addSubview(stickyTrackController.view)
         switch position {
-        case .Top:
-            stickyTrackController.view.snp_makeConstraints { make in
+        case .top:
+            stickyTrackController.view.snp.makeConstraints { make in
                 make.height.equalTo(stickyTrackController.viewHeight)
                 make.left.right.equalTo(self.view)
                 make.top.equalTo(self.view).offset(tableViewInsets.top)
             }
-        case .Bottom:
-            stickyTrackController.view.snp_makeConstraints { make in
+        case .bottom:
+            stickyTrackController.view.snp.makeConstraints { make in
                 make.height.equalTo(stickyTrackController.viewHeight)
                 make.left.right.equalTo(self.view)
                 make.bottom.equalTo(self.view).offset(-tableViewInsets.bottom)
@@ -132,29 +132,29 @@ class BaseContentViewController: NSViewController {
         stickyTrackController.view.removeFromSuperview()
     }
     
-    func updateStickyTrack(track: HypeMachineAPI.Track) {
+    func updateStickyTrack(_ track: HypeMachineAPI.Track) {
         stickyTrackController.dataSource = SingleTrackDataSource(viewController: stickyTrackController, track: track)
     }
     
-    func isTrackVisible(track: HypeMachineAPI.Track) -> Bool {
+    func isTrackVisible(_ track: HypeMachineAPI.Track) -> Bool {
         return false
     }
     
     // MARK: Notifications
     
-    func newCurrentTrack(notification: NSNotification) {
+    func newCurrentTrack(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         updateStickyTrack(track)
         
         if isTrackVisible(track) {
             removeStickyTrack()
         } else {
-            addStickyTrackAtPosition(.Bottom)
+            addStickyTrackAtPosition(.bottom)
         }
     }
 }
 
 enum StickyTrackPosition: Int {
-    case Top
-    case Bottom
+    case top
+    case bottom
 }

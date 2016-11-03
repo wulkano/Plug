@@ -10,16 +10,16 @@ import Cocoa
 
 class AboutViewController: NSViewController {
     
-    func label(container: NSView) -> NSTextField {
+    func label(_ container: NSView) -> NSTextField {
         let textField = NSTextField()
-        textField.editable = false
-        textField.selectable = false
-        textField.bordered = false
+        textField.isEditable = false
+        textField.isSelectable = false
+        textField.isBordered = false
         textField.drawsBackground = false
-        textField.alignment = .Center
+        textField.alignment = .center
         
         container.addSubview(textField)
-        textField.snp_makeConstraints { make in
+        textField.snp.makeConstraints { make in
             make.left.equalTo(container).offset(5)
             make.right.equalTo(container).offset(-5)
         }
@@ -27,42 +27,42 @@ class AboutViewController: NSViewController {
         return textField
     }
     
-    func attributionSectionTitled(title: String, name: String, linkTitle: String, linkAction: Selector) -> NSView {
+    func attributionSectionTitled(_ title: String, name: String, linkTitle: String, linkAction: Selector) -> NSView {
         let container = NSView()
         view.addSubview(container)
-        container.snp_makeConstraints { make in
+        container.snp.makeConstraints { make in
             make.left.equalTo(view)
             make.right.equalTo(view)
         }
         
         let titleLabel = label(container)
-        titleLabel.font = appFont(size: 12, weight: .Bold)
+        titleLabel.font = appFont(size: 12, weight: .bold)
         titleLabel.stringValue = title
-        titleLabel.snp_makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalTo(container)
         }
         
         let nameLabel = label(container)
         nameLabel.font = appFont(size: 12)
         nameLabel.stringValue = name
-        nameLabel.snp_makeConstraints { make in
-            make.top.equalTo(titleLabel.snp_bottom).offset(-3)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(-3)
         }
         
         let link = HyperlinkButton()
         link.hoverUnderline = true
-        link.bordered = false
+        link.isBordered = false
         link.font = appFont(size: 12)
         link.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
-        link.alignment = .Center
+        link.alignment = .center
         link.title = linkTitle
         link.target = self
         link.action = linkAction
         container.addSubview(link)
-        link.snp_makeConstraints { make in
+        link.snp.makeConstraints { make in
             make.height.equalTo(17)
             make.centerX.equalTo(container)
-            make.top.equalTo(nameLabel.snp_bottom).offset(-2)
+            make.top.equalTo(nameLabel.snp.bottom).offset(-2)
             make.bottom.equalTo(container)
         }
         
@@ -71,72 +71,72 @@ class AboutViewController: NSViewController {
     
     // MARK: Actions
     
-    func glennLinkClicked(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.twitter.com/glennui")!)
+    func glennLinkClicked(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "http://www.twitter.com/glennui")!)
     }
 
-    func alexLinkClicked(sender: NSButton) {
-        NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.twitter.com/alex_marchant")!)
+    func alexLinkClicked(_ sender: NSButton) {
+        NSWorkspace.shared().open(URL(string: "http://www.twitter.com/alex_marchant")!)
     }
 
     // MARK: NSViewController
 
     override func loadView() {
         view = NSView()
-        view.snp_makeConstraints { make in
+        view.snp.makeConstraints { make in
             make.width.equalTo(285)
         }
         
         let logo = NSImageView()
         logo.image = NSImage(named: "Login-Logo")
         view.addSubview(logo)
-        logo.snp_makeConstraints { make in
+        logo.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.size.equalTo(64)
             make.top.equalTo(view).offset(12)
         }
         
         let nameLabel = label(view)
-        nameLabel.font = appFont(size: 14, weight: .Bold)
+        nameLabel.font = appFont(size: 14, weight: .bold)
         nameLabel.stringValue = "Plug"
-        nameLabel.snp_makeConstraints { make in
-            make.top.equalTo(logo.snp_bottom).offset(20)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(logo.snp.bottom).offset(20)
         }
         
         let versionLabel = label(view)
         versionLabel.font = appFont(size: 11)
-        let bundleVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let bundleVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+        let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         versionLabel.stringValue = "Version \(bundleVersionString) (\(bundleVersion))"
-        versionLabel.snp_makeConstraints { make in
-            make.top.equalTo(nameLabel.snp_bottom).offset(3)
+        versionLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(3)
         }
         
         let glennSection = attributionSectionTitled("Design", name: "Glenn Hitchcock", linkTitle: "@glennui", linkAction: #selector(AboutViewController.glennLinkClicked(_:)))
-        glennSection.snp_makeConstraints { make in
-            make.top.equalTo(versionLabel.snp_bottom).offset(16)
+        glennSection.snp.makeConstraints { make in
+            make.top.equalTo(versionLabel.snp.bottom).offset(16)
         }
         
         let alexSection = attributionSectionTitled("Development", name: "Alex Marchant", linkTitle: "@alex_marchant", linkAction: #selector(AboutViewController.alexLinkClicked(_:)))
-        alexSection.snp_makeConstraints { make in
-            make.top.equalTo(glennSection.snp_bottom).offset(2)
+        alexSection.snp.makeConstraints { make in
+            make.top.equalTo(glennSection.snp.bottom).offset(2)
         }
         
         let copyright = label(view)
         copyright.font = appFont(size: 11)
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
-        let year = formatter.stringFromDate(NSDate())
+        let year = formatter.string(from: Date())
         copyright.stringValue = "Copyright © \(year) Alex Marchant & Glenn Hitchcock."
-        copyright.snp_makeConstraints { make in
-            make.top.equalTo(alexSection.snp_bottom).offset(10)
+        copyright.snp.makeConstraints { make in
+            make.top.equalTo(alexSection.snp.bottom).offset(10)
         }
         
         let allRights = label(view)
         allRights.font = appFont(size: 11)
         allRights.stringValue = "All rights reserved."
-        allRights.snp_makeConstraints { make in
-            make.top.equalTo(copyright.snp_bottom)
+        allRights.snp.makeConstraints { make in
+            make.top.equalTo(copyright.snp.bottom)
             make.bottom.equalTo(view).offset(-17)
         }
     }

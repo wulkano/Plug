@@ -1,38 +1,32 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection (= 2.4.1)
-    - AFNetworking/NSURLSession (= 2.4.1)
-    - AFNetworking/Reachability (= 2.4.1)
-    - AFNetworking/Security (= 2.4.1)
-    - AFNetworking/Serialization (= 2.4.1)
-    - AFNetworking/UIKit (= 2.4.1)
-  - AFNetworking/NSURLConnection (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
+  - Alamofire (4.0.1)
+  - HypeMachineAPI (1.0.1):
+    - Alamofire (~> 4.0.1)
   - INAppStoreWindow (1.4)
+  - PreventSleep (0.3.0)
+  - SimpleGoogleAnalytics (1.0.0):
+    - Alamofire (~> 4.0.1)
+  - SnapKit (3.0.2)
   - SSKeychain (1.2.3)
-  - Swignals (0.1.4)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.4.1)
+  - Alamofire (~> 4.0.1)
+  - HypeMachineAPI (~> 1.0.0)
   - INAppStoreWindow (~> 1.4)
+  - PreventSleep (~> 0.3.0)
+  - SimpleGoogleAnalytics (~> 1.0.0)
+  - SnapKit (~> 3.0.2)
   - SSKeychain (~> 1.2.2)
-  - Swignals (~> 0.1)
 
 SPEC CHECKSUMS:
-  AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  HypeMachineAPI: d89512f16856da3b5ac0123bc7ade721ca2c0503
   INAppStoreWindow: 4fd569f7435557239e78316de139e886ccbaec4d
+  PreventSleep: 193d807857956665f3e7f523d41d517752c8fe82
+  SimpleGoogleAnalytics: 392d599b78504aae0abbc4d29d31e77363d56e94
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
-  Swignals: 3a2db159810978f5c9a61a22b2207a20246e1d15
 
-PODFILE CHECKSUM: 0b922fccb1d222181afb6c74d9238aac08a9edb1
+PODFILE CHECKSUM: 4c6a739365821ba141aa9d78807dcecdbc20b95f
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

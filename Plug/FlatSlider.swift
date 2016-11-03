@@ -35,23 +35,23 @@ class FlatSlider: NSSlider {
         addTrackingRect(bounds, owner: self, userData: nil, assumeInside: false)
     }
     
-    override func mouseDown(theEvent: NSEvent) {
+    override func mouseDown(with theEvent: NSEvent) {
         mouseDown = true
-        super.mouseDown(theEvent)
-        mouseUp(theEvent)
+        super.mouseDown(with: theEvent)
+        mouseUp(with: theEvent)
     }
     
-    override func mouseUp(theEvent: NSEvent) {
+    override func mouseUp(with theEvent: NSEvent) {
         mouseDown = false
-        super.mouseUp(theEvent)
+        super.mouseUp(with: theEvent)
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
         needsDisplay = true
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
         needsDisplay = true
     }

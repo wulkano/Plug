@@ -16,7 +16,7 @@ class BlogImageView: NSImageView {
         return sideLength / 2
     }
 
-    override func drawRect(dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         if image != nil {
             NSGraphicsContext.saveGraphicsState()
             
@@ -25,7 +25,7 @@ class BlogImageView: NSImageView {
             let path = NSBezierPath(roundedRect: clippingRect, xRadius: halfSideLength, yRadius: halfSideLength)
             path.addClip()
             
-            image!.drawInRect(bounds, fromRect: imageRect, operation: .CompositeSourceOver, fraction: 1)
+            image!.draw(in: bounds, from: imageRect, operation: .sourceOver, fraction: 1)
             
             NSGraphicsContext.restoreGraphicsState()
         }

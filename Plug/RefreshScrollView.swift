@@ -47,32 +47,32 @@ class RefreshScrollView: NSScrollView {
     func loadRefreshView() {
         refreshHeaderController = RefreshHeaderViewController(nibName: nil, bundle: nil)!
         refreshClipView.addSubview(refreshHeaderController.view)
-        refreshHeaderController.view.snp_makeConstraints { make in
+        refreshHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(refreshHeaderController.viewHeight)
             make.left.right.equalTo(refreshClipView)
-            make.bottom.equalTo(refreshClipView.snp_top)
+            make.bottom.equalTo(refreshClipView.snp.top)
         }
     }
     
-    override func scrollWheel(theEvent: NSEvent) {
+    override func scrollWheel(with theEvent: NSEvent) {
         if !scrollEnabled { return }
         
         switch theEvent.phase {
-        case NSEventPhase.Changed:
+        case NSEventPhase.changed:
             if scrolledPastTopOfRefreshHeader() {
-                refreshHeaderController.state = .ReleaseToRefresh
+                refreshHeaderController.state = .releaseToRefresh
             } else {
-                refreshHeaderController.state = .PullToRefresh
+                refreshHeaderController.state = .pullToRefresh
             }
-        case NSEventPhase.Ended:
-            if refreshHeaderController.state == .ReleaseToRefresh {
+        case NSEventPhase.ended:
+            if refreshHeaderController.state == .releaseToRefresh {
                 startRefresh()
             }
         default:
             break
         }
         
-        super.scrollWheel(theEvent)
+        super.scrollWheel(with: theEvent)
     }
     
     func scrolledPastTopOfRefreshHeader() -> Bool {
@@ -84,27 +84,27 @@ class RefreshScrollView: NSScrollView {
     }
     
     func startRefresh() {
-        refreshHeaderController.state = .Updating
+        refreshHeaderController.state = .updating
         delegate.didPullToRefresh()
     }
     
     func finishedRefresh() {
-        documentView!.scrollPoint(NSZeroPoint)
+        documentView!.scroll(NSZeroPoint)
 
-        refreshHeaderController.state = .PullToRefresh
-        refreshHeaderController.lastUpdated = NSDate()
+        refreshHeaderController.state = .pullToRefresh
+        refreshHeaderController.lastUpdated = Date()
     }
     
     func contentViewWillChange() {
-        Notifications.unsubscribe(observer: self, name: NSViewBoundsDidChangeNotification, object: contentView)
+        Notifications.unsubscribe(observer: self, name: NSNotification.Name.NSViewBoundsDidChange, object: contentView)
     }
     
     func contentViewChanged() {
         contentView.postsFrameChangedNotifications = true
-        Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSViewBoundsDidChangeNotification, object: contentView)
+        Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSNotification.Name.NSViewBoundsDidChange, object: contentView)
     }
     
-    func contentViewBoundsDidChange(notification: NSNotification) {
+    func contentViewBoundsDidChange(_ notification: Notification) {
         boundsChangedDelegate?.scrollViewBoundsDidChange(notification)
     }
 }
@@ -114,5 +114,5 @@ protocol RefreshScrollViewDelegate {
 }
 
 protocol RefreshScrollViewBoundsChangedDelegate {
-    func scrollViewBoundsDidChange(notification: NSNotification)
+    func scrollViewBoundsDidChange(_ notification: Notification)
 }

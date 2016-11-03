@@ -21,7 +21,7 @@ class SidebarViewController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func loadButtons(superview superview: NSView) {
+    func loadButtons(superview: NSView) {
         var n = 0
         while let navigationSection = NavigationSection(rawValue: n) {
             let button = NavigationSectionButton(navigationSection: navigationSection)
@@ -29,7 +29,7 @@ class SidebarViewController: NSViewController {
             button.action = #selector(SidebarViewController.navigationSectionButtonClicked(_:))
             superview.addSubview(button)
             
-            button.snp_makeConstraints { make in
+            button.snp.makeConstraints { make in
                 make.centerX.equalTo(superview)
                 make.width.equalTo(30)
                 make.height.equalTo(30)
@@ -38,7 +38,7 @@ class SidebarViewController: NSViewController {
                     make.top.equalTo(superview).offset(53)
                 } else {
                     let previousButton = buttons[n - 1]
-                    make.top.equalTo(previousButton.snp_bottom).offset(28)
+                    make.top.equalTo(previousButton.snp.bottom).offset(28)
                 }
             }
             
@@ -46,19 +46,19 @@ class SidebarViewController: NSViewController {
             n += 1
         }
         
-        buttons[buttons.count - 1].snp_makeConstraints { make in
+        buttons[buttons.count - 1].snp.makeConstraints { make in
             make.bottom.lessThanOrEqualTo(superview).offset(-30)
         }
         
         buttons[0].state = NSOnState
     }
     
-    func navigationSectionButtonClicked(sender: NavigationSectionButton) {
+    func navigationSectionButtonClicked(_ sender: NavigationSectionButton) {
         delegate.changeNavigationSection(sender.navigationSection)
         toggleAllButtonsOffExcept(sender)
     }
     
-    func toggleAllButtonsOffExcept(sender: AnyObject) {
+    func toggleAllButtonsOffExcept(_ sender: AnyObject) {
         for button in buttons {
             if button === sender {
                 button.state = NSOnState
@@ -76,7 +76,7 @@ class SidebarViewController: NSViewController {
         let backgroundView = DraggableVisualEffectsView()
         backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
         view.addSubview(backgroundView)
-        backgroundView.snp_makeConstraints { make in
+        backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
         
@@ -85,5 +85,5 @@ class SidebarViewController: NSViewController {
 }
 
 protocol SidebarViewControllerDelegate {
-    func changeNavigationSection(section: NavigationSection)
+    func changeNavigationSection(_ section: NavigationSection)
 }

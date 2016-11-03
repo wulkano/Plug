@@ -9,21 +9,21 @@
 import Cocoa
 
 extension String {
-    func getSubstringBetweenPrefix(prefix: String, andSuffix suffix: String) -> String? {
+    func getSubstringBetweenPrefix(_ prefix: String, andSuffix suffix: String) -> String? {
         
         func getSubstringAfterPrefix() -> String? {
-            if let prefixRange = self.rangeOfString(prefix) {
-                let substringRange = prefixRange.endIndex..<self.endIndex
-                return self.substringWithRange(substringRange)
+            if let prefixRange = self.range(of: prefix) {
+                let substringRange = prefixRange.upperBound..<self.endIndex
+                return self.substring(with: substringRange)
             } else {
                 return nil
             }
         }
         
-        func getSubstringBeforeSuffix(substring: String) -> String? {
-            if let suffixRange = substring.rangeOfString(suffix) {
-                let substringRange = substring.startIndex..<suffixRange.startIndex
-                return substring.substringWithRange(substringRange)
+        func getSubstringBeforeSuffix(_ substring: String) -> String? {
+            if let suffixRange = substring.range(of: suffix) {
+                let substringRange = substring.startIndex..<suffixRange.lowerBound
+                return substring.substring(with: substringRange)
             } else {
                 return nil
             }

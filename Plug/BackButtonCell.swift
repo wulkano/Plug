@@ -17,23 +17,23 @@ class BackButtonCell: SwissArmyButtonCell {
     let mouseDownMiddleImage = NSImage(named: "Header-Button-Tap-Middle")
     let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
     
-    override func drawBezelWithFrame(frame: NSRect, inView controlView: NSView) {
+    override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
         if mouseDown {
-            NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.CompositeSourceOver, 1, true)
+            NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.sourceOver, 1, true)
         } else {
-            NSDrawThreePartImage(frame, normalLeftImage, normalMiddleImage, normalRightImage, false, NSCompositingOperation.CompositeSourceOver, 1, true)
+            NSDrawThreePartImage(frame, normalLeftImage, normalMiddleImage, normalRightImage, false, NSCompositingOperation.sourceOver, 1, true)
         }
     }
     
-    override func drawTitle(title: NSAttributedString, withFrame frame: NSRect, inView controlView: NSView) -> NSRect {
+    override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
         var newFrame = frame
         newFrame.origin.y += 1
         newFrame.origin.x += 3
-        return super.drawTitle(title, withFrame: newFrame, inView: controlView)
+        return super.drawTitle(title, withFrame: newFrame, in: controlView)
     }
     
-    override func cellSizeForBounds(aRect: NSRect) -> NSSize {
-        var size = super.cellSizeForBounds(aRect)
+    override func cellSize(forBounds aRect: NSRect) -> NSSize {
+        var size = super.cellSize(forBounds: aRect)
         size.width += 2
         return size
     }

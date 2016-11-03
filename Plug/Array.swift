@@ -18,7 +18,7 @@ extension Array {
         return count > 0 ? self[count - 1] : nil
     }
     
-    func optionalAtIndex(index: Int) -> Element? {
+    func optionalAtIndex(_ index: Int) -> Element? {
         if self.count > index && index >= 0 {
             return self[index]
         } else {

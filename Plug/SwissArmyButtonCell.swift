@@ -12,13 +12,13 @@ class SwissArmyButtonCell: NSButtonCell {
     var mouseInside: Bool = false
     var mouseDown: Bool = false
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        highlightsBy = NSCellStyleMask.NoCellMask
+        highlightsBy = NSCellStyleMask()
     }
     
     override init(textCell aString: String) {
         super.init(textCell: aString)
-        highlightsBy = NSCellStyleMask.NoCellMask
+        highlightsBy = NSCellStyleMask()
     }
 }

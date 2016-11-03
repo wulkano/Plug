@@ -10,10 +10,10 @@ import Cocoa
 
 class RefreshHeaderViewController: NSViewController {
     let viewHeight: CGFloat = 30
-    var state: PullToRefreshState = .PullToRefresh {
+    var state: PullToRefreshState = .pullToRefresh {
         didSet { stateChanged() }
     }
-    var lastUpdated: NSDate? {
+    var lastUpdated: Date? {
         didSet { lastUpdatedChanged() }
     }
     
@@ -27,20 +27,20 @@ class RefreshHeaderViewController: NSViewController {
         background.bottomBorder = true
         background.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         view.addSubview(background)
-        background.snp_makeConstraints { make in
+        background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
         let messageContainer = NSView()
         background.addSubview(messageContainer)
-        messageContainer.snp_makeConstraints { make in
+        messageContainer.snp.makeConstraints { make in
             make.center.equalTo(background)
         }
         
         loader = NSImageView()
         loader.image = NSImage(named: "Loader-Refresh")
         messageContainer.addSubview(loader)
-        loader.snp_makeConstraints { make in
+        loader.snp.makeConstraints { make in
             make.size.equalTo(16)
             make.top.equalTo(messageContainer)
             make.left.equalTo(messageContainer)
@@ -48,17 +48,17 @@ class RefreshHeaderViewController: NSViewController {
         }
         
         messageLabel = NSTextField()
-        messageLabel.editable = false
-        messageLabel.selectable = false
-        messageLabel.bordered = false
+        messageLabel.isEditable = false
+        messageLabel.isSelectable = false
+        messageLabel.isBordered = false
         messageLabel.drawsBackground = false
-        messageLabel.lineBreakMode = .ByTruncatingTail
-        messageLabel.font = appFont(size: 13, weight: .Medium)
+        messageLabel.lineBreakMode = .byTruncatingTail
+        messageLabel.font = appFont(size: 13, weight: .medium)
         messageLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         messageContainer.addSubview(messageLabel)
-        messageLabel.snp_makeConstraints { make in
+        messageLabel.snp.makeConstraints { make in
             make.centerY.equalTo(messageContainer).offset(-2)
-            make.left.equalTo(loader.snp_right).offset(5)
+            make.left.equalTo(loader.snp.right).offset(5)
             make.right.equalTo(messageContainer)
         }
         
@@ -75,7 +75,7 @@ class RefreshHeaderViewController: NSViewController {
     }
     
     func updateLoader() {
-        if self.state == .Updating {
+        if self.state == .updating {
             Animations.RotateClockwise(self.loader)
         } else {
             Animations.RemoveAllAnimations(self.loader)
@@ -84,11 +84,11 @@ class RefreshHeaderViewController: NSViewController {
     
     func updateMessageLabel() {
         switch state {
-        case .PullToRefresh:
+        case .pullToRefresh:
             messageLabel.stringValue = formattedTimestamp()
-        case .ReleaseToRefresh:
+        case .releaseToRefresh:
             messageLabel.stringValue = state.label
-        case .Updating:
+        case .updating:
             messageLabel.stringValue = state.label
         }
     }
@@ -99,9 +99,9 @@ class RefreshHeaderViewController: NSViewController {
         if lastUpdated == nil {
             formattedTimestamp += "N/A"
         } else {
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "h:mm a"
-            formattedTimestamp += formatter.stringFromDate(lastUpdated!)
+            formattedTimestamp += formatter.string(from: lastUpdated!)
         }
         
         return formattedTimestamp
@@ -110,17 +110,17 @@ class RefreshHeaderViewController: NSViewController {
 }
 
 enum PullToRefreshState {
-    case PullToRefresh
-    case ReleaseToRefresh
-    case Updating
+    case pullToRefresh
+    case releaseToRefresh
+    case updating
     
     var label: String {
         switch self {
-        case .PullToRefresh:
+        case .pullToRefresh:
             return "Pull To Refresh"
-        case .ReleaseToRefresh:
+        case .releaseToRefresh:
             return "Release To Refresh"
-        case .Updating:
+        case .updating:
             return "Updating Playlist"
         }
     }

@@ -36,21 +36,21 @@ class LoaderViewController: NSViewController {
         
         let background = BackgroundBorderView()
         background.background = true
-        background.backgroundColor = NSColor.whiteColor()
+        background.backgroundColor = NSColor.white
         view.addSubview(background)
-        background.snp_makeConstraints { make in
+        background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
         loaderView = NSImageView()
         switch size {
-        case .Small:
+        case .small:
             loaderView.image = NSImage(named: "Loader-Small")
-        case .Large:
+        case .large:
             loaderView.image = NSImage(named: "Loader-Large")
         }
         view.addSubview(loaderView)
-        loaderView.snp_makeConstraints { make in
+        loaderView.snp.makeConstraints { make in
             make.center.equalTo(view)
         }
     }
@@ -61,6 +61,6 @@ class LoaderViewController: NSViewController {
 }
 
 enum LoaderViewSize {
-    case Small
-    case Large
+    case small
+    case large
 }

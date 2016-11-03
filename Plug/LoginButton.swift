@@ -12,7 +12,7 @@ class LoginButton: SwissArmyButton {
     var loginButtonCell: LoginButtonCell {
         return cell as! LoginButtonCell
     }
-    var buttonState: LoginButtonState = .Disabled {
+    var buttonState: LoginButtonState = .disabled {
         didSet { buttonStateChanged() }
     }
     var loadingImageView: NSImageView?
@@ -30,10 +30,10 @@ class LoginButton: SwissArmyButton {
     
     func updateEnabled() {
         switch buttonState {
-        case .Disabled, .Sending:
-            enabled = false
-        case .Enabled, .Error:
-            enabled = true
+        case .disabled, .sending:
+            isEnabled = false
+        case .enabled, .error:
+            isEnabled = true
         }
     }
     
@@ -43,7 +43,7 @@ class LoginButton: SwissArmyButton {
     
     func updateLoadingImageView() {
         switch buttonState {
-        case .Sending:
+        case .sending:
             setupLoadingImageView()
         default:
             destroyLoadingImageView()
@@ -69,20 +69,20 @@ class LoginButton: SwissArmyButton {
     }
     
     enum LoginButtonState {
-        case Disabled
-        case Enabled
-        case Sending
-        case Error(String)
+        case disabled
+        case enabled
+        case sending
+        case error(String)
         
         func title() -> String {
             var titleString: String
             
             switch self {
-            case .Disabled, .Enabled:
+            case .disabled, .enabled:
                 titleString = "Log in"
-            case .Sending:
+            case .sending:
                 titleString = "Logging in..."
-            case .Error(let message):
+            case .error(let message):
                 titleString = message
             }
             
@@ -91,11 +91,11 @@ class LoginButton: SwissArmyButton {
         
         func image() -> NSImage? {
             switch self {
-            case .Disabled, .Enabled:
+            case .disabled, .enabled:
                 return NSImage(named: "Login-Next")
-            case .Sending:
+            case .sending:
                 return NSImage(named: "Loader-Login")
-            case .Error:
+            case .error:
                 return NSImage(named: "Login-Error")
             }
         }

@@ -22,7 +22,7 @@ class HoverToggleButton: NSButton {
         didSet { needsDisplay = true }
     }
     
-    override func drawRect(dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         
         let drawImage = getDrawImage()
         
@@ -32,7 +32,7 @@ class HoverToggleButton: NSButton {
             drawPosition.origin.y = -(bounds.size.height - drawImage!.size.height) / 2
         }
         
-        drawImage?.drawInRect(drawPosition, fromRect:dirtyRect, operation:NSCompositingOperation.CompositeSourceOver, fraction:1, respectFlipped:true, hints:nil)
+        drawImage?.draw(in: drawPosition, from:dirtyRect, operation:NSCompositingOperation.sourceOver, fraction:1, respectFlipped:true, hints:nil)
     }
     
     func getDrawImage() -> NSImage? {
@@ -61,16 +61,16 @@ class HoverToggleButton: NSButton {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = [.InVisibleRect, .ActiveAlways, .MouseEnteredAndExited]
+        let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
         trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
     }
 }

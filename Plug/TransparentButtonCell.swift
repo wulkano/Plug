@@ -16,11 +16,11 @@ class TransparentButtonCell: SwissArmyButtonCell {
     let mouseInsideOpacity: CGFloat = 0.7
     let inactiveOpacity: CGFloat = 0.3
     
-    override func drawImage(image: NSImage, withFrame frame: NSRect, inView controlView: NSView) {
+    override func drawImage(_ image: NSImage, withFrame frame: NSRect, in controlView: NSView) {
         
         let alpha = getImageAlpha()
         if let drawImage = getDrawImage() {
-            drawImage.drawInRect(frame, fromRect: NSZeroRect, operation: .CompositeSourceOver, fraction: alpha, respectFlipped: true, hints: nil)
+            drawImage.draw(in: frame, from: NSZeroRect, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
         }
     }
     

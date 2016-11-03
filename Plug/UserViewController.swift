@@ -51,9 +51,9 @@ class UserViewController: BaseContentViewController {
         header.bottomBorder = true
         header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         header.background = true
-        header.backgroundColor = NSColor.whiteColor()
+        header.backgroundColor = NSColor.white
         view.addSubview(header)
-        header.snp_makeConstraints { make in
+        header.snp.makeConstraints { make in
             make.height.equalTo(86)
             make.top.equalTo(self.view)
             make.left.equalTo(self.view)
@@ -63,7 +63,7 @@ class UserViewController: BaseContentViewController {
         avatarView = CircleMaskImageView()
         avatarView.image = NSImage(named: "Avatar-Placeholder")!
         header.addSubview(avatarView)
-        avatarView.snp_makeConstraints { make in
+        avatarView.snp.makeConstraints { make in
             make.centerY.equalTo(self.header)
             make.width.equalTo(36)
             make.height.equalTo(36)
@@ -71,79 +71,79 @@ class UserViewController: BaseContentViewController {
         }
         
         usernameTextField = NSTextField()
-        usernameTextField.editable = false
-        usernameTextField.selectable = false
-        usernameTextField.bordered = false
+        usernameTextField.isEditable = false
+        usernameTextField.isSelectable = false
+        usernameTextField.isBordered = false
         usernameTextField.drawsBackground = false
         usernameTextField.font = appFont(size: 20)
         header.addSubview(usernameTextField)
-        usernameTextField.snp_makeConstraints { make in
+        usernameTextField.snp.makeConstraints { make in
             make.height.equalTo(24)
             make.top.equalTo(self.header).offset(17)
-            make.left.equalTo(self.avatarView.snp_right).offset(22)
+            make.left.equalTo(self.avatarView.snp.right).offset(22)
             make.right.equalTo(self.header).offset(-20)
         }
         
         favoritesCountTextField = NSTextField()
-        favoritesCountTextField.editable = false
-        favoritesCountTextField.selectable = false
-        favoritesCountTextField.bordered = false
+        favoritesCountTextField.isEditable = false
+        favoritesCountTextField.isSelectable = false
+        favoritesCountTextField.isBordered = false
         favoritesCountTextField.drawsBackground = false
-        favoritesCountTextField.font = appFont(size: 13, weight: .Medium)
+        favoritesCountTextField.font = appFont(size: 13, weight: .medium)
         header.addSubview(favoritesCountTextField)
-        favoritesCountTextField.snp_makeConstraints { make in
+        favoritesCountTextField.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(self.avatarView.snp_right).offset(22)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(self.avatarView.snp.right).offset(22)
         }
         
         let favoritesLabel = NSTextField()
-        favoritesLabel.editable = false
-        favoritesLabel.selectable = false
-        favoritesLabel.bordered = false
+        favoritesLabel.isEditable = false
+        favoritesLabel.isSelectable = false
+        favoritesLabel.isBordered = false
         favoritesLabel.drawsBackground = false
-        favoritesLabel.font = appFont(size: 13, weight: .Medium)
+        favoritesLabel.font = appFont(size: 13, weight: .medium)
         favoritesLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         favoritesLabel.stringValue = "Favorites"
         header.addSubview(favoritesLabel)
-        favoritesLabel.snp_makeConstraints { make in
+        favoritesLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(self.favoritesCountTextField.snp_right).offset(3)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(self.favoritesCountTextField.snp.right).offset(3)
         }
         
         friendsCountTextField = NSTextField()
-        friendsCountTextField.editable = false
-        friendsCountTextField.selectable = false
-        friendsCountTextField.bordered = false
+        friendsCountTextField.isEditable = false
+        friendsCountTextField.isSelectable = false
+        friendsCountTextField.isBordered = false
         friendsCountTextField.drawsBackground = false
-        friendsCountTextField.font = appFont(size: 13, weight: .Medium)
+        friendsCountTextField.font = appFont(size: 13, weight: .medium)
         header.addSubview(friendsCountTextField)
-        friendsCountTextField.snp_makeConstraints { make in
+        friendsCountTextField.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(favoritesLabel.snp_right).offset(13)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(favoritesLabel.snp.right).offset(13)
         }
         
         let friendsLabel = NSTextField()
-        friendsLabel.editable = false
-        friendsLabel.selectable = false
-        friendsLabel.bordered = false
+        friendsLabel.isEditable = false
+        friendsLabel.isSelectable = false
+        friendsLabel.isBordered = false
         friendsLabel.drawsBackground = false
-        friendsLabel.font = appFont(size: 13, weight: .Medium)
+        friendsLabel.font = appFont(size: 13, weight: .medium)
         friendsLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
         friendsLabel.stringValue = "Friends"
         header.addSubview(friendsLabel)
-        friendsLabel.snp_makeConstraints { make in
+        friendsLabel.snp.makeConstraints { make in
             make.height.equalTo(20)
-            make.top.equalTo(self.usernameTextField.snp_bottom).offset(8)
-            make.left.equalTo(self.friendsCountTextField.snp_right).offset(3)
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+            make.left.equalTo(self.friendsCountTextField.snp.right).offset(3)
         }
         
         playlistContainer = NSView()
         view.addSubview(playlistContainer)
-        playlistContainer.snp_makeConstraints { make in
-            make.top.equalTo(self.header.snp_bottom)
+        playlistContainer.snp.makeConstraints { make in
+            make.top.equalTo(self.header.snp.bottom)
             make.left.equalTo(self.view)
             make.bottom.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -156,12 +156,12 @@ class UserViewController: BaseContentViewController {
         if user != nil { userChanged() }
     }
     
-    func loadUser(username: String) {
-        HypeMachineAPI.Requests.Users.show(username: username) { result in
-            switch result {
-            case .Success(let user):
+    func loadUser(_ username: String) {
+        HypeMachineAPI.Requests.Users.show(username: username) { response in
+            switch response.result {
+            case .success(let user):
                 self.user = user
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
             }
@@ -181,11 +181,14 @@ class UserViewController: BaseContentViewController {
     func updateImage() {
         if user!.avatarURL == nil { return }
         
-        Alamofire.request(.GET, user!.avatarURL!).validate().responseImage { (_, _, result) in
-            switch result {
-            case .Success(let image):
+        Alamofire.request(user!.avatarURL!, method: .get)
+            .validate()
+            .responseImage
+        { response in
+            switch response.result {
+            case .success(let image):
                 self.avatarView.image = image
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error as NSError)
             }
@@ -205,10 +208,10 @@ class UserViewController: BaseContentViewController {
     }
     
     func loadPlaylist() {
-        tracksViewController = TracksViewController(type: .LoveCount, title: "", analyticsViewName: "User/Tracks")
+        tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "User/Tracks")
         addChildViewController(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
-        tracksViewController.view.snp_makeConstraints { make in
+        tracksViewController.view.snp.makeConstraints { make in
             make.edges.equalTo(playlistContainer)
         }
         tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: user!.username)
@@ -222,16 +225,16 @@ class UserViewController: BaseContentViewController {
         }
     }
     
-    func followButtonClicked(sender: ActionButton) {
-        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username, optionalParams: nil) { result in
+    func followButtonClicked(_ sender: ActionButton) {
+        HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username) { response in
             let favoritedState = sender.state == NSOnState
             
-            switch result {
-            case .Success(let favorited):
+            switch response.result {
+            case .success(let favorited):
                 if favorited != favoritedState {
                     sender.state = favorited ? NSOnState : NSOffState
                 }
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 
@@ -243,10 +246,10 @@ class UserViewController: BaseContentViewController {
     // MARK: BaseContentViewController
     
     override func addLoaderView() {
-        loaderViewController = LoaderViewController(size: .Small)
+        loaderViewController = LoaderViewController(size: .small)
         let insets = NSEdgeInsetsMake(0, 0, 1, 0)
         header.addSubview(loaderViewController!.view)
-        loaderViewController!.view.snp_makeConstraints { make in
+        loaderViewController!.view.snp.makeConstraints { make in
             make.edges.equalTo(self.header).inset(insets)
         }
     }

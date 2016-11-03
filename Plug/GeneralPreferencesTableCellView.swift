@@ -12,10 +12,8 @@ class GeneralPreferencesTableCellView: NSTableCellView {
     @IBOutlet var preferenceTitle: NSTextField!
     @IBOutlet var switchButton: IOSSwitch!
     
-    override var objectValue: AnyObject! {
-        didSet {
-            objectValueChanged()
-        }
+    override var objectValue: Any! {
+        didSet { objectValueChanged() }
     }
     var generalPreferenceValue: GeneralPreference {
         return objectValue as! GeneralPreference
@@ -36,7 +34,7 @@ class GeneralPreferencesTableCellView: NSTableCellView {
         switchButton.on = generalPreferenceValue.getUserDefaultsValue()
     }
     
-    @IBAction func switchButtonClicked(sender: IOSSwitch) {
+    @IBAction func switchButtonClicked(_ sender: IOSSwitch) {
         let oldValue = generalPreferenceValue.getUserDefaultsValue()
         let newValue = !oldValue
         generalPreferenceValue.setUserDefaultsValue(newValue)

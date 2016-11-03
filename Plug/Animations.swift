@@ -9,12 +9,12 @@
 import Cocoa
 
 struct Animations {
-    static func RotateClockwise(view: NSView) {
+    static func RotateClockwise(_ view: NSView) {
         view.wantsLayer = true
         
         let duration: Double = 0.8
         let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotate.removedOnCompletion = false
+        rotate.isRemovedOnCompletion = false
         rotate.fillMode = kCAFillModeForwards
         
         //Do a series of 5 quarter turns for a total of a 1.25 turns
@@ -24,21 +24,21 @@ struct Animations {
         
         rotate.duration = duration / M_PI
         rotate.beginTime = 0
-        rotate.cumulative = true
+        rotate.isCumulative = true
         rotate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
-        let center = CGPointMake(CGRectGetMidX(view.frame), CGRectGetMidY(view.frame));
+        let center = CGPoint(x: view.frame.midX, y: view.frame.midY);
         view.layer!.position = center
-        view.layer!.anchorPoint = CGPointMake(0.5, 0.5)
-        view.layer!.addAnimation(rotate, forKey: "rotateAnimation")
+        view.layer!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        view.layer!.add(rotate, forKey: "rotateAnimation")
     }
     
-    static func RotateCounterClockwise(view: NSView) {
+    static func RotateCounterClockwise(_ view: NSView) {
         view.wantsLayer = true
         
         let duration: Double = 0.8
         let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotate.removedOnCompletion = false
+        rotate.isRemovedOnCompletion = false
         rotate.fillMode = kCAFillModeForwards
         
         //Do a series of 5 quarter turns for a total of a 1.25 turns
@@ -48,16 +48,16 @@ struct Animations {
         
         rotate.duration = duration / M_PI
         rotate.beginTime = 0
-        rotate.cumulative = true
+        rotate.isCumulative = true
         rotate.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
-        let center = CGPointMake(CGRectGetMidX(view.frame), CGRectGetMidY(view.frame));
+        let center = CGPoint(x: view.frame.midX, y: view.frame.midY);
         view.layer!.position = center
-        view.layer!.anchorPoint = CGPointMake(0.5, 0.5)
-        view.layer!.addAnimation(rotate, forKey: "rotateAnimation")
+        view.layer!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        view.layer!.add(rotate, forKey: "rotateAnimation")
     }
     
-    static func RemoveAllAnimations(view: NSView) {
+    static func RemoveAllAnimations(_ view: NSView) {
         view.layer?.removeAllAnimations()
     }
 }

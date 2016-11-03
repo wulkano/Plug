@@ -13,7 +13,7 @@ class VolumeIconView: NSView {
     @IBInspectable var oneImage: NSImage?
     @IBInspectable var twoImage: NSImage?
     @IBInspectable var threeImage: NSImage?
-    var volumeState: VolumeState = VolumeState.Three {
+    var volumeState: VolumeState = VolumeState.three {
         didSet { needsDisplay = true }
     }
     var volume: Double = 1 {
@@ -21,28 +21,28 @@ class VolumeIconView: NSView {
     }
     var opacity: CGFloat = 0.3
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
         let drawImage = getDrawImage()
         var drawPoint = NSZeroPoint
         if drawImage != nil {
             drawPoint.y = floor((bounds.size.height - drawImage!.size.height) / 2)
         }
-        drawImage?.drawAtPoint(drawPoint, fromRect: dirtyRect, operation: NSCompositingOperation.CompositeDestinationOver, fraction: opacity)
+        drawImage?.draw(at: drawPoint, from: dirtyRect, operation: NSCompositingOperation.destinationOver, fraction: opacity)
     }
     
-    func setStateForVolume(volume: Double) {
+    func setStateForVolume(_ volume: Double) {
         var newVolumeState: VolumeState
         
         if volume <= 0 {
-            newVolumeState = VolumeState.Off
+            newVolumeState = VolumeState.off
         } else if volume <= (1 / 3) {
-            newVolumeState = VolumeState.One
+            newVolumeState = VolumeState.one
         } else if volume <= (2 / 3) {
-            newVolumeState = VolumeState.Two
+            newVolumeState = VolumeState.two
         } else {
-            newVolumeState = VolumeState.Three
+            newVolumeState = VolumeState.three
         }
 
         // Avoid redraws if no change
@@ -53,21 +53,21 @@ class VolumeIconView: NSView {
     
     func getDrawImage() -> NSImage? {
         switch volumeState {
-        case .Off:
+        case .off:
             return offImage
-        case .One:
+        case .one:
             return oneImage
-        case .Two:
+        case .two:
             return twoImage
-        case .Three:
+        case .three:
             return threeImage
         }
     }
     
     enum VolumeState {
-        case Off
-        case One
-        case Two
-        case Three
+        case off
+        case one
+        case two
+        case three
     }
 }

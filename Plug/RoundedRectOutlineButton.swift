@@ -11,11 +11,11 @@ import Cocoa
 class RoundedRectOutlineButton: NSButton {
     @IBInspectable var radius: CGFloat = 3
     @IBInspectable var strokeWidth: CGFloat = 1
-    @IBInspectable var strokeColor: NSColor = NSColor.whiteColor()
+    @IBInspectable var strokeColor: NSColor = NSColor.white
 
-    override func drawRect(dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         
-        super.drawRect(dirtyRect)
+        super.draw(dirtyRect)
         
         let rect = NSMakeRect(0.5, 0.5, bounds.size.width - 1, bounds.size.height - 1)
         let roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)

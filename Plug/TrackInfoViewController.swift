@@ -20,10 +20,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     @IBOutlet weak var loveButton: TransparentButton!
 //    @IBOutlet weak var tagContainer: TagContainerView!
     
-    override var representedObject: AnyObject! {
-        didSet {
-            representedObjectChanged()
-        }
+    override var representedObject: Any! {
+        didSet { representedObjectChanged() }
     }
     var representedTrack: HypeMachineAPI.Track {
         return representedObject as! HypeMachineAPI.Track
@@ -40,11 +38,11 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         Analytics.trackView("TrackInfoWindow")
     }
     
-    @IBAction func closeButtonClicked(sender: NSButton) {
+    @IBAction func closeButtonClicked(_ sender: NSButton) {
         view.window!.close()
     }
     
-    @IBAction func loveButtonClicked(sender: NSButton) {
+    @IBAction func loveButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info Heart")
         
         let oldLovedValue = representedTrack.loved
@@ -52,14 +50,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         
         changeTrackLovedValueTo(newLovedValue)
         
-        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id, optionalParams: nil) {
-            result in
-            switch result {
-            case .Success(let favorited):
+        HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { response in
+            switch response.result {
+            case .success(let favorited):
                 if favorited != newLovedValue {
                     self.changeTrackLovedValueTo(favorited)
                 }
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 self.changeTrackLovedValueTo(oldLovedValue)
@@ -67,57 +64,59 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
         }
     }
     
-    func postInfoTextFieldClicked(sender: AnyObject) {
+    func postInfoTextFieldClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Track Info Blog Description")
         
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.postURL)
+        NSWorkspace.shared().open(representedTrack.postURL)
     }
     
-    func tagButtonClicked(tag: HypeMachineAPI.Tag) {
+    func tagButtonClicked(_ tag: HypeMachineAPI.Tag) {
         loadSingleTagView(tag)
     }
     
-    func loadSingleTagView(tag: HypeMachineAPI.Tag) {
-        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateControllerWithIdentifier("TracksViewController") as! TracksViewController
+    func loadSingleTagView(_ tag: HypeMachineAPI.Tag) {
+        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "TracksViewController") as! TracksViewController
         viewController.title = tag.name
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
         viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
     }
     
-    @IBAction func downloadITunesButtonClicked(sender: NSButton) {
+    @IBAction func downloadITunesButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info Download iTunes")
 
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.iTunesURL)
+        NSWorkspace.shared().open(representedTrack.iTunesURL)
     }
     
-    @IBAction func seeMoreButtonClicked(sender: NSButton) {
+    @IBAction func seeMoreButtonClicked(_ sender: NSButton) {
         Analytics.trackButtonClick("Track Info See More")
         
-        NSWorkspace.sharedWorkspace().openURL(representedTrack.hypeMachineURL())
+        NSWorkspace.shared().open(representedTrack.hypeMachineURL())
     }
     
-    func trackLoved(notification: NSNotification) {
+    func trackLoved(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track === representedObject {
-            representedTrack.loved = track.loved
+        if track == representedObject as? HypeMachineAPI.Track {
+            representedObject = track
             updateLoveButton()
         }
     }
     
-    func trackUnLoved(notification: NSNotification) {
+    func trackUnLoved(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-        if track === representedTrack {
-            representedTrack.loved = track.loved
+        if track == representedTrack {
+            representedObject = track
             updateLoveButton()
         }
     }
     
-    func changeTrackLovedValueTo(loved: Bool) {
-        representedTrack.loved = loved
+    func changeTrackLovedValueTo(_ loved: Bool) {
+        var newTrack = representedTrack
+        newTrack.loved = loved
+        representedObject = newTrack
         if loved {
-            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track": representedTrack])
+            Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
         } else {
-            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track": representedTrack])
+            Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
         }
     }
 
@@ -145,13 +144,13 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
     }
     
     func updateAlbumArt() {
-        let url = representedTrack.thumbURLWithPreferedSize(.Medium)
+        let url = representedTrack.thumbURL(preferedSize: .medium)
         
-        Alamofire.request(.GET, url).validate().responseImage { (_, _, result) in
-            switch result {
-            case .Success(let image):
+        Alamofire.request(url).validate().responseImage { response in
+            switch response.result {
+            case .success(let image):
                 self.albumArt.image = image
-            case .Failure(_, let error):
+            case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error as NSError)
             }

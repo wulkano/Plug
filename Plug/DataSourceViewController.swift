@@ -28,36 +28,36 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         scrollView.documentView = tableView
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
-        scrollView.horizontalScrollElasticity = .None
+        scrollView.horizontalScrollElasticity = .none
         
         tableView.contentInsets = tableViewInsets
         tableView.scrollerInsets = tableViewInsets
     }
     
-    func nextPageDidLoad(pageNumber: Int) {
+    func nextPageDidLoad(_ pageNumber: Int) {
         if pageNumber == 0 {
             removeLoaderView()
             scrollView.finishedRefresh()
         }
     }
     
-    func sectionHeaderCellView(tableView: NSTableView) -> SectionHeaderTableCellView {
+    func sectionHeaderCellView(_ tableView: NSTableView) -> SectionHeaderTableCellView {
         let id = "SectionHeaderCellViewID"
-        var cellView = tableView.makeViewWithIdentifier(id, owner: self) as? SectionHeaderTableCellView
+        var cellView = tableView.make(withIdentifier: id, owner: self) as? SectionHeaderTableCellView
         
         if cellView == nil {
             cellView = SectionHeaderTableCellView()
             cellView!.identifier = id
             
             cellView!.titleTextField = NSTextField()
-            cellView!.titleTextField.editable = false
-            cellView!.titleTextField.selectable = false
-            cellView!.titleTextField.bordered = false
+            cellView!.titleTextField.isEditable = false
+            cellView!.titleTextField.isSelectable = false
+            cellView!.titleTextField.isBordered = false
             cellView!.titleTextField.drawsBackground = false
-            cellView!.titleTextField.font = appFont(size: 14, weight: .Medium)
+            cellView!.titleTextField.font = appFont(size: 14, weight: .medium)
             cellView!.titleTextField.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
             cellView!.addSubview(cellView!.titleTextField)
-            cellView!.titleTextField.snp_makeConstraints { make in
+            cellView!.titleTextField.snp.makeConstraints { make in
                 make.centerY.equalTo(cellView!).offset(-1)
                 make.left.equalTo(cellView!).offset(9)
                 make.right.equalTo(cellView!).offset(-9)
@@ -67,9 +67,9 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         return cellView!
     }
     
-    func groupRowView(tableView: NSTableView) -> GroupRowView {
+    func groupRowView(_ tableView: NSTableView) -> GroupRowView {
         let id = "GroupRowID"
-        var rowView = tableView.makeViewWithIdentifier(id, owner: self) as? GroupRowView
+        var rowView = tableView.make(withIdentifier: id, owner: self) as? GroupRowView
         
         if rowView == nil {
             rowView = GroupRowView()
@@ -102,15 +102,15 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         dataSource!.refresh()
     }
     
-    override func addStickyTrackAtPosition(position: StickyTrackPosition) {
+    override func addStickyTrackAtPosition(_ position: StickyTrackPosition) {
         super.addStickyTrackAtPosition(position)
         
         var stickyTrackInsets = tableViewInsets
         
         switch position {
-        case .Top:
+        case .top:
             stickyTrackInsets.top += stickyTrackController.trackViewHeight
-        case .Bottom:
+        case .bottom:
             stickyTrackInsets.bottom += stickyTrackController.trackViewHeight
         }
         
@@ -137,15 +137,15 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     
     // MARK: ExtendedTableViewDelegate default implementations
     
-    func tableView(tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int) {}
-    func tableView(tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {}
-    func tableView(tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {}
-    func tableView(tableView: ExtendedTableView, mouseEnteredRow row: Int) {}
-    func tableView(tableView: ExtendedTableView, mouseExitedRow row: Int) {}
-    func tableView(tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {}
-    func tableView(tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
-    func tableView(tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
-    func tableView(tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {}
-    func didEndScrollingTableView(tableView: ExtendedTableView) {}
-    func didScrollTableView(tableView: ExtendedTableView) {}
+    func tableView(_ tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int) {}
+    func tableView(_ tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {}
+    func tableView(_ tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {}
+    func tableView(_ tableView: ExtendedTableView, mouseEnteredRow row: Int) {}
+    func tableView(_ tableView: ExtendedTableView, mouseExitedRow row: Int) {}
+    func tableView(_ tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {}
+    func tableView(_ tableView: ExtendedTableView, rowDidHide row: Int, direction: RowShowHideDirection) {}
+    func tableView(_ tableView: ExtendedTableView, rowDidStartToShow row: Int, direction: RowShowHideDirection) {}
+    func tableView(_ tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {}
+    func didEndScrollingTableView(_ tableView: ExtendedTableView) {}
+    func didScrollTableView(_ tableView: ExtendedTableView) {}
 }

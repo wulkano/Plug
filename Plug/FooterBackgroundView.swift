@@ -13,11 +13,11 @@ class FooterBackgroundView: DraggableVisualEffectsView {
         addTrackingRect(bounds, owner: self, userData: nil, assumeInside: false)
     }
     
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
 
     }
 }

@@ -8,24 +8,24 @@
 
 import Cocoa
 
-class LovedCountFormatter: NSFormatter {
+class LovedCountFormatter: Formatter {
     @IBInspectable var capitalize: Bool = false
     
-    override func stringForObjectValue(obj: AnyObject) -> String? {
-        let count = (obj as! NSNumber).integerValue
+    override func string(for obj: Any?) -> String? {
+        let count = (obj as! NSNumber).intValue
         var returnString: String?
         
         if count >= 1000 {
-            let numberFormatter = NSNumberFormatter()
+            let numberFormatter = NumberFormatter()
             numberFormatter.format = "####k"
             let abbrLovedCount = Double(count) / 1000
-            returnString = numberFormatter.stringFromNumber(abbrLovedCount)
+            returnString = numberFormatter.string(from: NSNumber(value: abbrLovedCount))
         } else {
             returnString = "\(count)"
         }
         
         if capitalize {
-            returnString = returnString!.uppercaseString
+            returnString = returnString!.uppercased()
         }
         
         return returnString

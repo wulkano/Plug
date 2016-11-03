@@ -11,7 +11,12 @@ import Cocoa
 class AboutWindowController: NSWindowController {
     
     convenience init() {
-        let aboutWindow = NSWindow(contentRect: NSZeroRect, styleMask: NSTitledWindowMask|NSMiniaturizableWindowMask|NSClosableWindowMask, backing: NSBackingStoreType.Buffered, defer: false)
+        let aboutWindow = NSWindow(
+            contentRect: NSZeroRect,
+            styleMask: [NSWindowStyleMask.titled, NSWindowStyleMask.miniaturizable, NSWindowStyleMask.closable],
+            backing: NSBackingStoreType.buffered,
+            defer: false
+        )
         aboutWindow.contentViewController = AboutViewController(nibName: nil, bundle: nil)
         aboutWindow.center()
         
