@@ -99,7 +99,6 @@
 		FA7C5CD119BD5724002239AB /* String+getSubstringBetweenPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7C5CD019BD5724002239AB /* String+getSubstringBetweenPrefix.swift */; };
 		FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7CC30C19F8884E0092B254 /* DisplayErrorViewController.swift */; };
 		FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA933F9619ACE69A00085E75 /* HyperlinkButton.swift */; };
-		FA9966BD1DCA297E00EA4BC1 /* Swignals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9966BC1DCA297E00EA4BC1 /* Swignals.framework */; };
 		FA99A19E1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99A19D1B28BC7300B60493 /* TitleBarPopUpButtonCell.swift */; };
 		FA99EED119D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECB19D0210F008C9C4A /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FA99EED219D0210F008C9C4A /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = FA99EECD19D0210F008C9C4A /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -333,7 +332,6 @@
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
-				FA9966BD1DCA297E00EA4BC1 /* Swignals.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

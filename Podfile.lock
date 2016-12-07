@@ -8,6 +8,7 @@ PODS:
     - Alamofire (~> 4.0.1)
   - SnapKit (3.0.2)
   - SSKeychain (1.2.3)
+  - Swignals (1.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - SimpleGoogleAnalytics (~> 1.0.0)
   - SnapKit (~> 3.0.2)
   - SSKeychain (~> 1.2.2)
+  - Swignals (~> 1.0.0)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -26,7 +28,8 @@ SPEC CHECKSUMS:
   SimpleGoogleAnalytics: 392d599b78504aae0abbc4d29d31e77363d56e94
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  Swignals: 39f10b774f4cb4ec67aa2e9947379ca0742d7275
 
-PODFILE CHECKSUM: 4c6a739365821ba141aa9d78807dcecdbc20b95f
+PODFILE CHECKSUM: 2b9ae92820965ed3fbb8e512dd10dc43fbad2bde
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.1

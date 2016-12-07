@@ -9,4 +9,5 @@ target 'Plug' do
   pod 'HypeMachineAPI',        '~> 1.0.0'
   pod 'SimpleGoogleAnalytics', '~> 1.0.0'
   pod 'PreventSleep',          '~> 0.3.0'
+  pod 'Swignals',              '~> 1.0.0'
 end
