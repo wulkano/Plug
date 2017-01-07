@@ -154,6 +154,8 @@ class AudioPlayer: NSObject {
         
         if let previousTrack = currentDataSource.trackBefore(currentTrack) {
             playNewTrack(previousTrack, dataSource: currentDataSource)
+        } else {
+            seekToPercent(0)
         }
     }
     
