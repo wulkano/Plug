@@ -19,5 +19,4 @@ extension MPRemoteCommand {
         
         self.addTarget(target, action: action)
     }
-    
 }

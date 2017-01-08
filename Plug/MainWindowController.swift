@@ -136,7 +136,7 @@ extension MainWindowController {
             MPMediaItemPropertyTitle: track.title,
             MPMediaItemPropertyArtist: track.artist,
             MPNowPlayingInfoPropertyElapsedPlaybackTime: 0.0,
-            MPMediaItemPropertyPlaybackDuration: 200.0,
+            MPMediaItemPropertyPlaybackDuration: 200.0, // Set aribitrary value that looks about until update received
             MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue
         ]
         
