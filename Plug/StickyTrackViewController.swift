@@ -40,7 +40,7 @@ class StickyTrackViewController: TracksViewController {
     }
     
     override func rightMouseDown(with theEvent: NSEvent) {
-        let menuController = TrackContextMenuController(track: AudioPlayer.sharedInstance.currentTrack)!
+        let menuController = TrackContextMenuController(track: AudioPlayer.sharedInstance.currentTrack!)!
         NSMenu.popUpContextMenu(menuController.contextMenu, with: theEvent, for: self.view)
     }
     
