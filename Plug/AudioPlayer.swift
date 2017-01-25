@@ -94,11 +94,11 @@ class AudioPlayer: NSObject {
     func findAndSetCurrentlyPlayingTrack() {
         guard
             currentDataSource != nil,
-            let track = currentTrack,
-            let foundTracks = findTracksWithTrackId(track.id)
+            currentTrack != nil,
+            let foundTracks = findTracksWithTrackId(currentTrack!.id)
         else { return }
         
-        if foundTracks.index(of: track) != NSNotFound {
+        if foundTracks.index(of: currentTrack!) != NSNotFound {
             // current track is already accurate
             return
         } else if let foundTrack = foundTracks.first {
@@ -149,12 +149,12 @@ class AudioPlayer: NSObject {
     func skipBackward() {
         guard
             currentDataSource != nil,
-            let track = currentTrack
+            currentTrack != nil
         else { return }
         
         onSkipBackward.fire(true)
         
-        if let previousTrack = currentDataSource.trackBefore(track) {
+        if let previousTrack = currentDataSource.trackBefore(currentTrack!) {
             playNewTrack(previousTrack, dataSource: currentDataSource)
         } else {
             seekToPercent(0)
@@ -291,7 +291,7 @@ class AudioPlayer: NSObject {
     fileprivate func progressUpdated(_ time: CMTime) {
         guard
             !seeking,
-            let track = currentTrack
+            currentTrack != nil
         else { return }
         
         let progress = Double(CMTimeGetSeconds(time))
@@ -299,15 +299,15 @@ class AudioPlayer: NSObject {
         let userInfo: [String : Any] = [
             "progress": progress,
             "duration": duration,
-            "track": track
+            "track": currentTrack!
         ]
         Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
         
         if progress > 30 && !currentTrackListenLogged {
-            HypeMachineAPI.Requests.Me.postHistory(id: track.id, position: 30, completionHandler: {_ in })
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: 30, completionHandler: {_ in })
             currentTrackListenLogged = true
         } else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
-            HypeMachineAPI.Requests.Me.postHistory(id: track.id, position: Int(progress), completionHandler: {_ in })
+            HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: Int(progress), completionHandler: {_ in })
             currentTrackListenScrobbled = true
         }
     }
@@ -335,13 +335,14 @@ class AudioPlayer: NSObject {
     }
     
     fileprivate func findNextTrack() -> HypeMachineAPI.Track? {
-        guard let track = currentTrack else { return nil }
+        guard currentTrack != nil
+        else { return nil }
         
         if (shuffle &&
             !(currentDataSource is FavoriteTracksDataSource)) {
             return nextShuffleTrack()
         } else {
-            return currentDataSource.trackAfter(track)
+            return currentDataSource.trackAfter(currentTrack!)
         }
     }
     
