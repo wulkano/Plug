@@ -6,8 +6,8 @@ target 'Plug' do
   pod 'SSKeychain',            '~> 1.2.2'
   pod 'Alamofire',             '~> 4.0.1'
   pod 'SnapKit',               '~> 3.0.2'
-  pod 'HypeMachineAPI',        '~> 1.0.0'
-  pod 'SimpleGoogleAnalytics', '~> 1.0.0'
+  pod 'HypeMachineAPI',        path: '../HypeMachineAPI'
+  pod 'SimpleGoogleAnalytics', path: '../SimpleGoogleAnalytics'
   pod 'PreventSleep',          '~> 0.3.0'
   pod 'Swignals',              '~> 1.0.0'
 end

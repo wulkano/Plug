@@ -1,7 +1,9 @@
 PODS:
   - Alamofire (4.0.1)
-  - HypeMachineAPI (1.0.1):
+  - CryptoSwift (0.10.0)
+  - HypeMachineAPI (1.1.0):
     - Alamofire (~> 4.0.1)
+    - CryptoSwift (~> 0.10.0)
   - INAppStoreWindow (1.4)
   - PreventSleep (0.3.0)
   - SimpleGoogleAnalytics (1.0.0):
@@ -12,10 +14,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0.1)
-  - HypeMachineAPI (~> 1.0.0)
+  - HypeMachineAPI (from `../HypeMachineAPI`)
   - INAppStoreWindow (~> 1.4)
   - PreventSleep (~> 0.3.0)
-  - SimpleGoogleAnalytics (~> 1.0.0)
+  - SimpleGoogleAnalytics (from `../SimpleGoogleAnalytics`)
   - SnapKit (~> 3.0.2)
   - SSKeychain (~> 1.2.2)
   - Swignals (~> 1.0.0)
@@ -23,24 +25,30 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - HypeMachineAPI
+    - CryptoSwift
     - INAppStoreWindow
     - PreventSleep
-    - SimpleGoogleAnalytics
     - SnapKit
     - SSKeychain
     - Swignals
 
+EXTERNAL SOURCES:
+  HypeMachineAPI:
+    :path: "../HypeMachineAPI"
+  SimpleGoogleAnalytics:
+    :path: "../SimpleGoogleAnalytics"
+
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  HypeMachineAPI: d89512f16856da3b5ac0123bc7ade721ca2c0503
+  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
+  HypeMachineAPI: 2ed761bff441dfa6a7c2859fc58c7ab96173d9f8
   INAppStoreWindow: 4fd569f7435557239e78316de139e886ccbaec4d
   PreventSleep: 193d807857956665f3e7f523d41d517752c8fe82
-  SimpleGoogleAnalytics: 392d599b78504aae0abbc4d29d31e77363d56e94
+  SimpleGoogleAnalytics: 771f20f100b042f04747e945d003a2ca1c083568
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   Swignals: 39f10b774f4cb4ec67aa2e9947379ca0742d7275
 
-PODFILE CHECKSUM: 2b9ae92820965ed3fbb8e512dd10dc43fbad2bde
+PODFILE CHECKSUM: 00e4137a093abbe2862235f83456c470ef2ebbed
 
 COCOAPODS: 1.5.3
