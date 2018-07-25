@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -16,8 +18,10 @@
                         <view key="contentView" id="rub-ix-Yha">
                             <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </view>
+                        <connections>
+                            <outlet property="delegate" destination="W2t-17-F3D" id="Tgw-kj-OOj"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="5IL-x6-7lA" kind="relationship" relationship="window.shadowedContentViewController" id="x2a-al-c0k"/>
@@ -35,12 +39,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nz2-n0-mWO" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
+                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nz2-n0-mWO" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="352" width="400" height="92"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="ba4-BZ-Gks" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="92"/>
-                                        <animations/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
@@ -57,10 +60,9 @@
                                             <constraint firstAttribute="height" constant="62" id="Btw-uV-Fn1"/>
                                             <constraint firstAttribute="width" constant="60" id="Mgy-a6-gfV"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" title="General" bezelStyle="shadowlessSquare" image="Preferences-General-Off" imagePosition="above" alignment="center" alternateImage="Preferences-General-On" state="on" borderStyle="border" inset="2" id="IMw-7A-qOm" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="generalTabClicked:" target="5IL-x6-7lA" id="Lzo-Pd-mwt"/>
@@ -72,7 +74,6 @@
                                             <constraint firstAttribute="width" constant="60" id="HA2-8n-jzy"/>
                                             <constraint firstAttribute="height" constant="62" id="NkX-Sg-uSd"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" title="Hotkeys" bezelStyle="shadowlessSquare" image="Preferences-Hotkeys-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Hotkeys-On" state="on" borderStyle="border" inset="2" id="q3g-72-SgQ" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" size="11" name="HelveticaNeue"/>
@@ -87,7 +88,6 @@
                                             <constraint firstAttribute="width" constant="60" id="UMZ-cV-zqN"/>
                                             <constraint firstAttribute="height" constant="62" id="f0d-ZX-WAe"/>
                                         </constraints>
-                                        <animations/>
                                         <buttonCell key="cell" type="square" title="Muted" bezelStyle="shadowlessSquare" image="Preferences-Muted-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Muted-On" borderStyle="border" inset="2" id="kLp-v2-rvI" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" size="11" name="HelveticaNeue"/>
@@ -110,13 +110,11 @@
                                     <constraint firstItem="QYj-8M-NyU" firstAttribute="leading" secondItem="nz2-n0-mWO" secondAttribute="leading" id="ofE-Kh-mOl"/>
                                     <constraint firstAttribute="bottom" secondItem="fFB-I6-T8t" secondAttribute="bottom" id="zhu-5j-5D4"/>
                                 </constraints>
-                                <animations/>
                             </visualEffectView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-IR-ILH">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="352"/>
-                                <animations/>
                                 <connections>
-                                    <segue destination="1Vu-97-aLL" kind="embed" id="nTm-n5-eI0"/>
+                                    <segue destination="Vh4-yZ-5HB" kind="embed" id="3JR-re-rJI"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -129,7 +127,6 @@
                             <constraint firstAttribute="trailing" secondItem="fjZ-IR-ILH" secondAttribute="trailing" id="deG-yO-Xcc"/>
                             <constraint firstItem="fjZ-IR-ILH" firstAttribute="leading" secondItem="YyQ-Gb-QOF" secondAttribute="leading" id="lMt-Nv-ddu"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="generalTab" destination="QYj-8M-NyU" id="mr6-oe-BHZ"/>
@@ -142,24 +139,26 @@
             <point key="canvasLocation" x="634" y="416"/>
         </scene>
         <!--Tab View Controller-->
-        <scene sceneID="bT4-Fi-q2f">
+        <scene sceneID="uxt-4h-tHh">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="1Vu-97-aLL" sceneMemberID="viewController">
-                    <tabView key="view" type="noTabsNoBorder" id="YQn-LH-X2O">
+                <tabViewController id="Vh4-yZ-5HB" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem id="rCn-8o-RbM"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="dzb-82-yJx">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <font key="font" metaFont="message"/>
-                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="Vh4-yZ-5HB" id="ImU-cp-K1s"/>
+                        </connections>
                     </tabView>
-                    <tabViewItems>
-                        <tabViewItem id="K8b-E0-NDp"/>
-                    </tabViewItems>
                     <connections>
-                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItems" id="LuI-Uf-MVg"/>
+                        <outlet property="tabView" destination="dzb-82-yJx" id="deC-FY-d0A"/>
+                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItems" id="uhT-wY-Zpb"/>
                     </connections>
                 </tabViewController>
-                <customObject id="sNG-BB-J3A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="aHl-GV-hLc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1189" y="416"/>
         </scene>
@@ -174,17 +173,16 @@
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="hR5-44-L2h">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
                                 <clipView key="contentView" id="Lfl-6Y-N7f">
-                                    <rect key="frame" x="1" y="17" width="238" height="117"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" viewBased="YES" id="eJY-Z3-ivM">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="400" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
+                                                <tableColumn identifier="" width="400" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -198,7 +196,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="sSJ-Ca-gwb" customClass="GeneralPreferencesTableCellView" customModule="Plug" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="397" height="70"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
@@ -206,7 +204,6 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="WgU-NV-bLE"/>
                                                                     </constraints>
-                                                                    <animations/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Preference title" id="rlv-qc-0D1">
                                                                         <font key="font" metaFont="system" size="15"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -219,7 +216,6 @@
                                                                         <constraint firstAttribute="width" constant="52" id="Yss-ke-dQB"/>
                                                                         <constraint firstAttribute="height" constant="32" id="f1K-vT-hFC"/>
                                                                     </constraints>
-                                                                    <animations/>
                                                                     <connections>
                                                                         <action selector="switchButtonClicked:" target="sSJ-Ca-gwb" id="RBF-UU-eIF"/>
                                                                     </connections>
@@ -232,7 +228,6 @@
                                                                 <constraint firstAttribute="centerY" secondItem="aip-oN-OkS" secondAttribute="centerY" id="ngA-8e-mJU"/>
                                                                 <constraint firstAttribute="centerY" secondItem="pmI-yL-LF8" secondAttribute="centerY" id="tTV-pX-2qt"/>
                                                             </constraints>
-                                                            <animations/>
                                                             <connections>
                                                                 <outlet property="preferenceTitle" destination="pmI-yL-LF8" id="nmY-Dx-jGP"/>
                                                                 <outlet property="switchButton" destination="aip-oN-OkS" id="6of-MB-ABW"/>
@@ -240,9 +235,8 @@
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="40S-sW-9gn" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="73" width="397" height="70"/>
+                                                            <rect key="frame" x="0.0" y="70" width="400" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                            <animations/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="separatorSpacing">
                                                                     <real key="value" value="20"/>
@@ -258,23 +252,18 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
-                                    <animations/>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="8AI-hZ-DtJ"/>
                                     <constraint firstAttribute="height" constant="225" id="zBT-9D-E7s"/>
                                 </constraints>
-                                <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="LxI-aR-Fje">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="rvh-eb-yN5">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                             </scrollView>
                         </subviews>
@@ -284,7 +273,6 @@
                             <constraint firstAttribute="trailing" secondItem="hR5-44-L2h" secondAttribute="trailing" id="LJx-eJ-eUB"/>
                             <constraint firstAttribute="bottom" secondItem="hR5-44-L2h" secondAttribute="bottom" id="wKa-Wi-IK8"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="scrollViewHeightContraint" destination="zBT-9D-E7s" id="q1T-63-2lt"/>

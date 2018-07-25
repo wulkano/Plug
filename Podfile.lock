@@ -20,6 +20,17 @@ DEPENDENCIES:
   - SSKeychain (~> 1.2.2)
   - Swignals (~> 1.0.0)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - HypeMachineAPI
+    - INAppStoreWindow
+    - PreventSleep
+    - SimpleGoogleAnalytics
+    - SnapKit
+    - SSKeychain
+    - Swignals
+
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   HypeMachineAPI: d89512f16856da3b5ac0123bc7ade721ca2c0503
@@ -32,4 +43,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2b9ae92820965ed3fbb8e512dd10dc43fbad2bde
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.5.3
