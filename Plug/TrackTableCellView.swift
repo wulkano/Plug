@@ -11,10 +11,10 @@ import HypeMachineAPI
 import SnapKit
 
 class TrackTableCellView: IOSStyleTableCellView {
-    let titleColor = NSColor(red256: 0, green256: 0, blue256: 0)
-    let artistColor = NSColor(red256: 138, green256: 146, blue256: 150)
-    let disabledTitleColor = NSColor(red256: 138, green256: 146, blue256: 150)
-    let disabledArtistColor = NSColor(red256: 184, green256: 192, blue256: 196)
+    let titleColor = NSColor.labelColor
+    let artistColor = NSColor.secondaryLabelColor
+    let disabledTitleColor = NSColor.tertiaryLabelColor
+    let disabledArtistColor = NSColor.quaternaryLabelColor
     
     var playPauseButton: HoverToggleButton!
     var loveButton: TransparentButton!

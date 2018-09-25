@@ -36,7 +36,7 @@ class LoaderViewController: NSViewController {
         
         let background = BackgroundBorderView()
         background.background = true
-        background.backgroundColor = NSColor.white
+        background.backgroundColor = NSColor.controlBackgroundColor
         view.addSubview(background)
         background.snp.makeConstraints { make in
             make.edges.equalTo(view)
