@@ -4,5 +4,3 @@
 
 #import "CommonCrypto/CommonCrypto.h"
 #import "SLColorArt.h"
-#import "NSObject+SPInvocationGrabbing.h"
-#import "SPMediaKeyTap.h"
