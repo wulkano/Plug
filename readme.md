@@ -9,7 +9,7 @@ Our Hype Machine API codes are embedded in the source. If those codes get out it
 ```sh
 # Get the code
 git clone git@github.com:wulkano/plug.git
-cd Plug2
+cd plug
 
 # Install CocoaPods (make sure you have CocoaPods installed on you machine https://cocoapods.org/)
 pod install
