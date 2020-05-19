@@ -51,7 +51,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUFeedURL</key>
-	<string>https://www.plugformac.com/updates/plug2/sparklecast.xml</string>
 </dict>
 </plist>

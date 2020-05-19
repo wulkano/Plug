@@ -37,7 +37,6 @@
 		FA222A8419BCBC07005A631F /* CircleMaskImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */; };
 		FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8519BCC947005A631F /* BaseContentViewController.swift */; };
 		FA222A8A19BCEFE0005A631F /* TrackContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */; };
-		FA24B6D11E22C7220032A1C5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA24B6D01E22C7220032A1C5 /* MediaPlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FA24EDA21974A9A500A781C8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA11974A9A500A781C8 /* main.swift */; };
 		FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA24EDA51974A9A500A781C8 /* AppDelegate.swift */; };
 		FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA24EDA71974A9A500A781C8 /* Images.xcassets */; };
@@ -146,8 +145,6 @@
 		FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */; };
 		FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */; };
 		FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */; };
-		FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE3E79B1C17924D002106FE /* Sparkle.framework */; };
-		FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FAE3E79B1C17924D002106FE /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */; };
 		FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */; };
@@ -170,7 +167,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FAE3E79D1C17926D002106FE /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +207,6 @@
 		FA222A8319BCBC07005A631F /* CircleMaskImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMaskImageView.swift; sourceTree = "<group>"; };
 		FA222A8519BCC947005A631F /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseContentViewController.swift; sourceTree = "<group>"; };
 		FA222A8819BCEFE0005A631F /* TrackContextMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackContextMenuController.swift; sourceTree = "<group>"; };
-		FA24B6D01E22C7220032A1C5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FA24ED9C1974A9A500A781C8 /* Plug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA24EDA01974A9A500A781C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA24EDA11974A9A500A781C8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -325,7 +320,6 @@
 		FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficButtons.swift; sourceTree = "<group>"; };
 		FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
-		FAE3E79B1C17924D002106FE /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		FAE95B7719A2DED7009F9946 /* FlatSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSlider.swift; sourceTree = "<group>"; };
 		FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrackInfo.storyboard; sourceTree = "<group>"; };
 		FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantImageView.swift; sourceTree = "<group>"; };
@@ -347,10 +341,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA24B6D11E22C7220032A1C5 /* MediaPlayer.framework in Frameworks */,
 				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
 				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
-				FAE3E79C1C17924D002106FE /* Sparkle.framework in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,8 +353,6 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA24B6D01E22C7220032A1C5 /* MediaPlayer.framework */,
-				FAE3E79B1C17924D002106FE /* Sparkle.framework */,
 				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
 				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
 				F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */,
@@ -529,7 +519,6 @@
 		FA24ED9E1974A9A500A781C8 /* Plug */ = {
 			isa = PBXGroup;
 			children = (
-				E3C1BDA324742F8100F5E403 /* Plug.entitlements */,
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
 				FA64C6A619764FE9003933E3 /* Globals.swift */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
@@ -551,6 +540,7 @@
 			children = (
 				FAD4C211197CA3F2004606B5 /* UserDefaults.plist */,
 				FA24EDA01974A9A500A781C8 /* Info.plist */,
+				E3C1BDA324742F8100F5E403 /* Plug.entitlements */,
 				FA24EDA11974A9A500A781C8 /* main.swift */,
 			);
 			name = "Supporting Files";
