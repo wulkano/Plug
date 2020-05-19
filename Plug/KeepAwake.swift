@@ -19,20 +19,20 @@ class KeepAwake: NSObject {
         }
         return Singleton.instance
     }
-    
+
     let preventSleep = PreventSleep(
         sleepAssertionMsg: "Prevent idle sleep when playing audio.",
         sleepAssertionType: kIOPMAssertionTypeNoIdleSleep
     )!
-    
-    fileprivate override init() {
+
+    override fileprivate init() {
         super.init()
-        
+
         self.initialSetup()
     }
-    
+
     fileprivate func initialSetup() {
-        AudioPlayer.sharedInstance.onTrackPlaying.addObserver(self, callback: { (observer, arg1) in
+        AudioPlayer.sharedInstance.onTrackPlaying.addObserver(self, callback: { _, _ in
             if self.getUserPreference() {
                 self.preventSleep.preventSleep()
             }
@@ -43,27 +43,27 @@ class KeepAwake: NSObject {
             AudioPlayer.sharedInstance.onSkipForward,
             AudioPlayer.sharedInstance.onSkipBackward
         ]
-        
+
         for aSignal in whenToAllowSleep {
-            aSignal.addObserver(self, callback: { (observer, arg1) in
+            aSignal.addObserver(self, callback: { _, _ in
                 self.preventSleep.allowSleep()
             })
         }
-        
+
         UserDefaults.standard.addObserver(self, forKeyPath: PreventIdleSleepWhenPlaying, options: NSKeyValueObservingOptions.new, context: nil)
     }
-    
+
     deinit {
         self.preventSleep.allowSleep()
     }
-    
+
     // MARK: NSKeyValueObserving
-    
+
     fileprivate func getUserPreference() -> Bool {
-        return UserDefaults.standard.value(forKey: PreventIdleSleepWhenPlaying) as! Bool
+        UserDefaults.standard.value(forKey: PreventIdleSleepWhenPlaying) as! Bool
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard let keyPath = keyPath else { return }
         if keyPath == PreventIdleSleepWhenPlaying {
             /* As the signal observers have already been set up, all we need to

@@ -10,47 +10,47 @@ import Foundation
 import SSKeychain
 
 struct Authentication {
-    fileprivate static let UsernameHashKey = "WGmV6YEF9VFZBjcx"
-    
-    static func UserSignedIn() -> Bool {
-        if GetUsername() == nil || GetToken() == nil {
+    fileprivate static let usernameHashKey = "WGmV6YEF9VFZBjcx"
+
+    static func userSignedIn() -> Bool {
+        if getUsername() == nil || getToken() == nil {
             return false
         } else {
             return true
         }
     }
-    
-    static func GetUsername() -> String? {
-        return UserDefaults.standard.value(forKey: "username") as? String
+
+    static func getUsername() -> String? {
+        UserDefaults.standard.value(forKey: "username") as? String
     }
-    
-    static func GetToken() -> String? {
+
+    static func getToken() -> String? {
         let username = UserDefaults.standard.value(forKey: "username") as? String
         if username == nil { return nil }
-        
-        return SSKeychain.password(forService: TokenServiceName(), account: username!)
+
+        return SSKeychain.password(forService: tokenServiceName(), account: username!)
     }
-    
-    static func SaveUsername(_ username: String, withToken token: String) {
+
+    static func saveUsername(_ username: String, withToken token: String) {
         UserDefaults.standard.setValue(username, forKey: "username")
-        SSKeychain.setPassword(token, forService: TokenServiceName(), account: username)
+        SSKeychain.setPassword(token, forService: tokenServiceName(), account: username)
     }
-    
-    static func DeleteUsernameAndToken() {
-        let username = GetUsername()
-        SSKeychain.deletePassword(forService: TokenServiceName(), account: username!)
+
+    static func deleteUsernameAndToken() {
+        let username = getUsername()
+        SSKeychain.deletePassword(forService: tokenServiceName(), account: username!)
         UserDefaults.standard.removeObject(forKey: "username")
     }
-    
-    static func GetUsernameHash() -> String? {
-        if let username = GetUsername() {
-            return username.digest(.sha1, key: UsernameHashKey)
+
+    static func getUsernameHash() -> String? {
+        if let username = getUsername() {
+            return username.digest(.sha1, key: usernameHashKey)
         } else {
             return nil
         }
     }
-    
-    fileprivate static func TokenServiceName() -> String {
+
+    fileprivate static func tokenServiceName() -> String {
         let bundleID = Bundle.main.bundleIdentifier!
         return "\(bundleID).AccountToken"
     }

@@ -11,29 +11,29 @@ import Cocoa
 class GeneralPreferencesTableCellView: NSTableCellView {
     @IBOutlet var preferenceTitle: NSTextField!
     @IBOutlet var switchButton: IOSSwitch!
-    
+
     override var objectValue: Any! {
         didSet { objectValueChanged() }
     }
     var generalPreferenceValue: GeneralPreference {
-        return objectValue as! GeneralPreference
+        objectValue as! GeneralPreference
     }
 
     func objectValueChanged() {
         if objectValue == nil { return }
-        
+
         updatePreferenceTitle()
         updateSwitchButton()
     }
-    
+
     func updatePreferenceTitle() {
         preferenceTitle.stringValue = generalPreferenceValue.title
     }
-    
+
     func updateSwitchButton() {
         switchButton.on = generalPreferenceValue.getUserDefaultsValue()
     }
-    
+
     @IBAction func switchButtonClicked(_ sender: IOSSwitch) {
         let oldValue = generalPreferenceValue.getUserDefaultsValue()
         let newValue = !oldValue

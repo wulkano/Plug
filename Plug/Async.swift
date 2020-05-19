@@ -9,28 +9,28 @@
 import Foundation
 
 class Async {
-    class func LowPriority(_ closure: @escaping ()->()) {
+    class func lowPriority(_ closure: @escaping () -> Void) {
         let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.low)
         queue.async(execute: {
             closure()
         })
     }
-    
-    class func DefaultPriority(_ closure: @escaping ()->()) {
+
+    class func defaultPriority(_ closure: @escaping () -> Void) {
         let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
         queue.async(execute: {
             closure()
         })
     }
-    
-    class func HighPriority(_ closure: @escaping ()->()) {
+
+    class func highPriority(_ closure: @escaping () -> Void) {
         let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high)
         queue.async(execute: {
             closure()
         })
     }
-    
-    class func MainQueue(_ closure: @escaping ()->()) {
+
+    class func mainQueue(_ closure: @escaping () -> Void) {
         let queue = DispatchQueue.main
         queue.async(execute: {
             closure()

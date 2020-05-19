@@ -8,16 +8,15 @@
 
 import Foundation
 
-open class Swignal4Args<A,B,C,D>: SwignalBase {
-    
-    public override init() {
+open class Swignal4Args<A, B, C, D>: SwignalBase {
+    override public init() {
     }
-    
-    open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> ()) {
+
+    open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> Void) {
         let observer = Observer4Args(swignal: self, observer: observer, callback: callback)
         addSwignalObserver(observer)
     }
-    
+
     open func fire(_ arg1: A, arg2: B, arg3: C, arg4: D) {
         synced(self) {
             for watcher in self.swignalObservers {
@@ -27,14 +26,14 @@ open class Swignal4Args<A,B,C,D>: SwignalBase {
     }
 }
 
-private class Observer4Args<L: AnyObject,A,B,C,D>: ObserverGenericBase<L> {
-    let callback: (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> ()
-    
-    init(swignal: SwignalBase, observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> ()) {
+private class Observer4Args<L: AnyObject, A, B, C, D>: ObserverGenericBase<L> {
+    let callback: (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> Void
+
+    init(swignal: SwignalBase, observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> Void) {
         self.callback = callback
         super.init(swignal: swignal, observer: observer)
     }
-    
+
     override func fire(_ args: Any...) {
         if let arg1 = args[0] as? A,
             let arg2 = args[1] as? B,
@@ -45,7 +44,7 @@ private class Observer4Args<L: AnyObject,A,B,C,D>: ObserverGenericBase<L> {
             assert(false, "Types incorrect")
         }
     }
-    
+
     fileprivate func fire(arg1: A, arg2: B, arg3: C, arg4: D) {
         if let observer = observer {
             callback(observer, arg1, arg2, arg3, arg4)

@@ -10,20 +10,20 @@ import Cocoa
 
 class VibrantSecureTextField: NSSecureTextField {
     override var allowsVibrancy: Bool {
-        return true
+        true
     }
-    
+
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         setupStyledPlaceholderString()
     }
-    
+
     func setupStyledPlaceholderString() {
         if placeholderString == nil { return }
         let newAttributedPlaceholderString = NSMutableAttributedString(string: placeholderString!, attributes: placeholderAttributes())
         placeholderAttributedString = newAttributedPlaceholderString
     }
-    
+
 	func placeholderAttributes() -> [NSAttributedString.Key: Any] {
         var attributes = [NSAttributedString.Key: Any]()
 		attributes[.foregroundColor] = NSColor.white.withAlphaComponent(0.2)

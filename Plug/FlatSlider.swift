@@ -11,7 +11,7 @@ import Cocoa
 class FlatSlider: NSSlider {
     override var doubleValue: Double {
         get {
-            return super.doubleValue
+            super.doubleValue
         }
         set {
             if !mouseDown {
@@ -20,37 +20,37 @@ class FlatSlider: NSSlider {
         }
     }
     var flatSliderCell: FlatSliderCell {
-        return cell as! FlatSliderCell
+        cell as! FlatSliderCell
     }
     var mouseDown: Bool {
-        get { return flatSliderCell.mouseDown }
+        get { flatSliderCell.mouseDown }
         set { flatSliderCell.mouseDown = newValue }
     }
     var mouseInside: Bool {
-        get { return flatSliderCell.mouseInside }
+        get { flatSliderCell.mouseInside }
         set { flatSliderCell.mouseInside = newValue }
     }
-    
+
     override func viewDidMoveToWindow() {
         addTrackingRect(bounds, owner: self, userData: nil, assumeInside: false)
     }
-    
+
     override func mouseDown(with theEvent: NSEvent) {
         mouseDown = true
         super.mouseDown(with: theEvent)
         mouseUp(with: theEvent)
     }
-    
+
     override func mouseUp(with theEvent: NSEvent) {
         mouseDown = false
         super.mouseUp(with: theEvent)
     }
-    
+
     override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
         needsDisplay = true
     }
-    
+
     override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
         needsDisplay = true

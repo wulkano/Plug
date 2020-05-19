@@ -13,7 +13,7 @@ class SearchHeaderViewController: NSViewController {
 
     override func loadView() {
         view = NSView()
-        
+
         let background = BackgroundBorderView()
         background.background = true
         background.backgroundColor = NSColor.white
@@ -23,7 +23,7 @@ class SearchHeaderViewController: NSViewController {
         background.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
-        
+
         searchField = NSSearchField()
         searchField.sendsWholeSearchString = true
         background.addSubview(searchField)

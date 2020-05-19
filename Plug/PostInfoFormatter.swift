@@ -20,23 +20,23 @@ class PostInfoFormatter: Formatter {
         postInfoAttributedString.append(formattedDatePosted)
         return postInfoAttributedString
     }
-    
+
     fileprivate func attributedBlogName(_ blogName: String) -> NSAttributedString {
-        return NSAttributedString(string: blogName, attributes: boldAttributes())
+        NSAttributedString(string: blogName, attributes: boldAttributes())
     }
-    
+
     fileprivate func attributedDescription(_ description: String) -> NSAttributedString {
         let string = "  “\(description)...”  "
         return NSAttributedString(string: string, attributes: normalAttributes())
     }
-    
+
     fileprivate func attributedDatePosted(_ datePosted: Date, url: URL) -> NSAttributedString {
         let string = formattedDatePosted(datePosted)
         var dateAttributes = boldAttributes()
 		dateAttributes[.link] = url.absoluteString as AnyObject?
         return NSAttributedString(string: string, attributes: dateAttributes)
     }
-    
+
     fileprivate func formattedDatePosted(_ datePosted: Date) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale.current
@@ -47,13 +47,13 @@ class PostInfoFormatter: Formatter {
         }
         return formatter.string(from: datePosted) + " →"
     }
-    
+
     fileprivate func dateFromCurrentYear(_ date: Date) -> Bool {
         let dateComponents = (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: date)
         let todayComponents = (Calendar.current as NSCalendar).components(NSCalendar.Unit.year, from: Date())
         return dateComponents.year == todayComponents.year
     }
-    
+
     fileprivate func normalAttributes() -> [NSAttributedString.Key: Any] {
         var attributes = [NSAttributedString.Key: Any]()
         let color = NSColor.white.withAlphaComponent(0.5)
@@ -62,7 +62,7 @@ class PostInfoFormatter: Formatter {
 		attributes[.font] = font
         return attributes
     }
-    
+
     fileprivate func boldAttributes() -> [NSAttributedString.Key: Any] {
         var attributes = [NSAttributedString.Key: Any]()
         let color = NSColor.white

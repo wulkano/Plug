@@ -9,17 +9,16 @@
 import Cocoa
 
 class AboutWindowController: NSWindowController {
-    
     convenience init() {
         let aboutWindow = NSWindow(
-            contentRect: NSZeroRect,
+            contentRect: NSRect.zero,
 			styleMask: [NSWindow.StyleMask.titled, NSWindow.StyleMask.miniaturizable, NSWindow.StyleMask.closable],
 			backing: NSWindow.BackingStoreType.buffered,
             defer: false
         )
         aboutWindow.contentViewController = AboutViewController(nibName: nil, bundle: nil)
         aboutWindow.center()
-        
+
         self.init(window: aboutWindow)
     }
 }

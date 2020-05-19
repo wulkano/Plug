@@ -11,7 +11,7 @@ import Cocoa
 class LoaderViewController: NSViewController {
     let size: LoaderViewSize
     var loaderView: NSImageView!
-    
+
     init?(size: LoaderViewSize) {
         self.size = size
         super.init(nibName: nil, bundle: nil)
@@ -20,20 +20,20 @@ class LoaderViewController: NSViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func startAnimation() {
-        Animations.RotateClockwise(loaderView)
+        Animations.rotateClockwise(loaderView)
     }
-    
+
     func stopAnimation() {
-        Animations.RemoveAllAnimations(loaderView)
+        Animations.removeAllAnimations(loaderView)
     }
-    
+
     // MARK: NSViewController
-    
+
     override func loadView() {
-        view = NSView(frame: NSZeroRect)
-        
+        view = NSView(frame: NSRect.zero)
+
         let background = BackgroundBorderView()
         background.background = true
         background.backgroundColor = NSColor.controlBackgroundColor
@@ -41,7 +41,7 @@ class LoaderViewController: NSViewController {
         background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
-        
+
         loaderView = NSImageView()
         switch size {
         case .small:
@@ -54,7 +54,7 @@ class LoaderViewController: NSViewController {
             make.center.equalTo(view)
         }
     }
-    
+
     override func viewDidAppear() {
         startAnimation()
     }

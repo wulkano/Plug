@@ -11,9 +11,9 @@ import HypeMachineAPI
 
 class BlogsViewController: DataSourceViewController {
     var blogDataSource: BlogsDataSource? {
-        return dataSource as? BlogsDataSource
+        dataSource as? BlogsDataSource
     }
-    
+
     func itemForRow(_ row: Int) -> BlogDirectoryItem? {
         if let item: Any = dataSource!.objectForRow(row) {
             return BlogDirectoryItem.fromObject(item)
@@ -21,7 +21,7 @@ class BlogsViewController: DataSourceViewController {
             return nil
         }
     }
-    
+
     func itemAfterRow(_ row: Int) -> BlogDirectoryItem? {
         if let item: Any = dataSource!.objectAfterRow(row) {
             return BlogDirectoryItem.fromObject(item)
@@ -29,20 +29,20 @@ class BlogsViewController: DataSourceViewController {
             return nil
         }
     }
-    
+
     func loadBlogViewController(_ blog: HypeMachineAPI.Blog) {
         let viewController = BlogViewController(blog: blog)!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
-    
+
     func blogCellView(_ tableView: NSTableView) -> BlogTableCellView {
         let id = "BlogTableCellViewID"
 		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? BlogTableCellView
-        
+
         if cellView == nil {
             cellView = BlogTableCellView()
 			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
-            
+
             cellView!.nameTextField = NSTextField()
             cellView!.nameTextField.isEditable = false
             cellView!.nameTextField.isSelectable = false
@@ -55,9 +55,9 @@ class BlogsViewController: DataSourceViewController {
                 make.left.equalTo(cellView!).offset(21)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
             }
-            
+
             let recentTopOffset: CGFloat = 2
-            
+
             let recentTitle = NSTextField()
             recentTitle.stringValue = "Recent: "
             recentTitle.isEditable = false
@@ -71,7 +71,7 @@ class BlogsViewController: DataSourceViewController {
                 make.top.equalTo(cellView!.nameTextField.snp.bottom).offset(recentTopOffset)
                 make.left.equalTo(cellView!).offset(21)
             }
-            
+
             cellView!.recentArtistsTextField = NSTextField()
             cellView!.recentArtistsTextField.isEditable = false
             cellView!.recentArtistsTextField.isSelectable = false
@@ -86,7 +86,7 @@ class BlogsViewController: DataSourceViewController {
                 make.left.equalTo(recentTitle.snp.right).offset(1)
                 make.right.lessThanOrEqualTo(cellView!).offset(-53)
             }
-            
+
             let arrow = NSImageView()
             arrow.image = NSImage(named: "List-Arrow")!
             cellView!.addSubview(arrow)
@@ -95,19 +95,19 @@ class BlogsViewController: DataSourceViewController {
                 make.right.equalTo(cellView!).offset(-15)
             }
         }
-        
+
         return cellView!
     }
-    
+
     func blogRowView(_ tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
         let id = "IOSStyleTableRowViewID"
 		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? IOSStyleTableRowView
-        
+
         if rowView == nil {
             rowView = IOSStyleTableRowView()
 			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             rowView!.separatorSpacing = 21
-            
+
             if let nextItem = itemAfterRow(row) {
                 switch nextItem {
                 case .sectionHeaderItem:
@@ -119,21 +119,21 @@ class BlogsViewController: DataSourceViewController {
                 rowView!.nextRowIsGroupRow = false
             }
         }
-        
+
         return rowView!
     }
-    
+
     // MARK: Actions
-    
+
 	@objc func searchFieldSubmit(_ sender: NSSearchField) {
         blogDataSource!.searchKeywords = sender.stringValue
     }
-    
+
     // MARK: NSViewController
-    
+
     override func loadView() {
         super.loadView()
-        
+
 		let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)
         view.addSubview(searchHeaderController.view)
         searchHeaderController.view.snp.makeConstraints { make in
@@ -144,7 +144,7 @@ class BlogsViewController: DataSourceViewController {
         }
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = #selector(BlogsViewController.searchFieldSubmit(_:))
-        
+
         loadScrollViewAndTableView()
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(searchHeaderController.view.snp.bottom)
@@ -153,25 +153,25 @@ class BlogsViewController: DataSourceViewController {
             make.right.equalTo(self.view)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.delegate = self
         tableView.extendedDelegate = self
-        
+
         dataSource = BlogsDataSource(viewController: self)
         tableView.dataSource = dataSource
         dataSource!.loadNextPageObjects()
     }
-    
+
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()
     }
-    
+
     // MARK: NSTableViewDelegate
-    
+
     func tableView(_ tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
@@ -180,7 +180,7 @@ class BlogsViewController: DataSourceViewController {
             return blogCellView(tableView)
         }
     }
-    
+
     func tableView(_ tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
@@ -189,7 +189,7 @@ class BlogsViewController: DataSourceViewController {
             return blogRowView(tableView, row: row)
         }
     }
-    
+
     func tableView(_ tableView: NSTableView!, isGroupRow row: Int) -> Bool {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
@@ -198,7 +198,7 @@ class BlogsViewController: DataSourceViewController {
             return false
         }
     }
-    
+
     func tableView(_ tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
@@ -207,7 +207,7 @@ class BlogsViewController: DataSourceViewController {
             return 64
         }
     }
-    
+
     func tableView(_ tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
         switch itemForRow(row)! {
         case .sectionHeaderItem:
@@ -216,9 +216,9 @@ class BlogsViewController: DataSourceViewController {
             return true
         }
     }
-    
+
     // MARK: ExtendedTableViewDelegate
-    
+
     override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
         switch itemForRow(row)! {
         case .blogItem(let blog):

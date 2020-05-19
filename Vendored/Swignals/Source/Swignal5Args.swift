@@ -8,16 +8,15 @@
 
 import Foundation
 
-open class Swignal5Args<A,B,C,D,E>: SwignalBase {
-    
-    public override init() {
+open class Swignal5Args<A, B, C, D, E>: SwignalBase {
+    override public init() {
     }
-    
-    open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D, _ arg5: E) -> ()) {
+
+    open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D, _ arg5: E) -> Void) {
         let observer = Observer5Args(swignal: self, observer: observer, callback: callback)
         addSwignalObserver(observer)
     }
-    
+
     open func fire(_ arg1: A, arg2: B, arg3: C, arg4: D, arg5: E) {
         synced(self) {
             for watcher in self.swignalObservers {
@@ -27,14 +26,14 @@ open class Swignal5Args<A,B,C,D,E>: SwignalBase {
     }
 }
 
-private class Observer5Args<L: AnyObject,A,B,C,D,E>: ObserverGenericBase<L> {
-    let callback: (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D, _ arg5: E) -> ()
-    
-    init(swignal: SwignalBase, observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D, _ arg5: E) -> ()) {
+private class Observer5Args<L: AnyObject, A, B, C, D, E>: ObserverGenericBase<L> {
+    let callback: (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D, _ arg5: E) -> Void
+
+    init(swignal: SwignalBase, observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D, _ arg5: E) -> Void) {
         self.callback = callback
         super.init(swignal: swignal, observer: observer)
     }
-    
+
     override func fire(_ args: Any...) {
         if let arg1 = args[0] as? A,
             let arg2 = args[1] as? B,
@@ -46,7 +45,7 @@ private class Observer5Args<L: AnyObject,A,B,C,D,E>: ObserverGenericBase<L> {
             assert(false, "Types incorrect")
         }
     }
-    
+
     fileprivate func fire(arg1: A, arg2: B, arg3: C, arg4: D, arg5: E) {
         if let observer = observer {
             callback(observer, arg1, arg2, arg3, arg4, arg5)

@@ -13,30 +13,30 @@ import SnapKit
 class FeedTrackTableCellView: LoveCountTrackTableCellView {
     let sourceTypeColor = NSColor(red256: 175, green256: 179, blue256: 181)
     let sourceColor = NSColor(red256: 138, green256: 146, blue256: 150)
-    
+
     var sourceTypeTextField: SelectableTextField!
 //    @IBOutlet var sourceButtonTrailingConstraint: NSLayoutConstraint!
     var sourceButton: HyperlinkButton!
 //    var sourceTypeTextFieldWidthConstraint: Constraint!
-    
+
     override func objectValueChanged() {
         super.objectValueChanged()
         if objectValue == nil { return }
-        
+
         updateSourceType()
         updateSource()
     }
-    
+
     override func playStateChanged() {
         super.playStateChanged()
-        
+
         updateSourceType()
         updateSource()
     }
-    
+
     override func updateTrackAvailability() {
         super.updateTrackAvailability()
-        
+
         if track.audioUnavailable {
             sourceTypeTextField.textColor = disabledArtistColor
             sourceButton.textColor = disabledArtistColor
@@ -45,7 +45,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
             sourceButton.textColor = sourceColor
         }
     }
-    
+
     func updateSourceType() {
         if track.viaUser != nil {
             sourceTypeTextField.stringValue = "Loved by"
@@ -54,9 +54,9 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         } else {
             sourceTypeTextField.stringValue = "Posted by"
         }
-        
+
 //        sourceTypeTextFieldWidthConstraint.updateOffset(sourceTypeTextField.attributedStringValue.size.width + 1.5)
-        
+
         switch playState {
         case .playing, .paused:
             sourceTypeTextField.selected = true
@@ -64,7 +64,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
             sourceTypeTextField.selected = false
         }
     }
-    
+
     func updateSource() {
         if track.viaUser != nil {
             sourceButton.title = track.viaUser!
@@ -73,7 +73,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
         } else {
             sourceButton.title = track.postedBy
         }
-        
+
         switch playState {
         case .playing, .paused:
             sourceButton.selected = true
@@ -94,7 +94,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
 //            sourceButtonTrailingConstraint.constant = mouseOutSpacing
 //        }
 //    }
-    
+
     @IBAction func sourceButtonClicked(_ sender: NSButton) {
         if track.viaUser != nil {
             loadSingleFriendPage()
@@ -104,17 +104,17 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
             loadSingleBlogPage()
         }
     }
-    
+
     func loadSingleFriendPage() {
         let viewController = UserViewController(username: track.viaUser!)!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
     }
-    
+
     func loadQuery() {
         let url = URL(string: "http://hypem.com/search/\(track.viaQuery!)")!
 		NSWorkspace.shared.open(url)
     }
-    
+
     func loadSingleBlogPage() {
         let viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)!
         NavigationController.sharedInstance!.pushViewController(viewController, animated: true)

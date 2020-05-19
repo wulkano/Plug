@@ -8,10 +8,11 @@
 
 import Cocoa
 import SnapKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+
+fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
+  case let (left?, right?):
+    return left < right
   case (nil, _?):
     return true
   default:
@@ -19,10 +20,10 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
+  case let (left?, right?):
+    return left > right
   default:
     return rhs < lhs
   }
@@ -31,20 +32,20 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class NavigationBarController: NSViewController {
     let navigationController: NavigationController
-    
+
     var items: [NavigationItem]?
     var topItem: NavigationItem? {
-        return items?.last
+        items?.last
     }
     var backItem: NavigationItem? {
         if items == nil || items!.count < 2 { return nil }
-        
+
         return items![items!.count - 2]
     }
-    
+
     var backgroundView: NSView!
     var navigationBarView: NSView?
-    
+
     init?(navigationController: NavigationController) {
         self.navigationController = navigationController
         super.init(nibName: nil, bundle: nil)
@@ -53,60 +54,60 @@ class NavigationBarController: NSViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func pushNavigationItem(_ item: NavigationItem, animated: Bool) {
         if items == nil {
             items = []
         }
-        
+
         items!.append(item)
         updateNavigationBarViews(animated: animated, direction: .rightToLeft)
     }
-    
+
     func popNavigationItemAnimated(_ animated: Bool) -> NavigationItem? {
-        if items == nil || items!.count <= 1 { return nil}
-        
+        if items == nil || items!.count <= 1 { return nil }
+
         let poppedItem = items!.remove(at: items!.count - 1)
         updateNavigationBarViews(animated: animated, direction: .rightToLeft)
         return poppedItem
     }
-    
+
     func popToNavigationItem(_ item: NavigationItem, animated: Bool) -> [NavigationItem]? {
-        if items == nil || items!.count <= 1 { return nil}
-        
+        if items == nil || items!.count <= 1 { return nil }
+
         var poppedItems: [NavigationItem] = []
 		let topItemIndex = items!.firstIndex(of: item)
-        
+
         if topItemIndex == nil {
             return nil
         }
-        
+
         while items!.count - 1 > topItemIndex {
             poppedItems.append(items!.removeLast())
         }
-        
+
         updateNavigationBarViews(animated: animated, direction: .rightToLeft)
         return poppedItems
     }
-    
+
     func setNavigationItems(_ items: [NavigationItem]) {
         self.items = items
         updateNavigationBarViews(animated: false, direction: nil)
     }
-    
+
     func updateNavigationBarViews(animated: Bool, direction: TransitionDirection?) {
         navigationBarView?.removeFromSuperview()
         navigationBarView = nil
         addNavigationBarViewForCurrentItems()
     }
-    
-    func addNavigationBarViewForCurrentItems(){
+
+    func addNavigationBarViewForCurrentItems() {
         let buttonEdgeSpacing: CGFloat = 6
         let titleSpacing: CGFloat = 10
         let buttonYOffset: CGFloat = 6
         let titleYOffset: CGFloat = -1
         let buttonHeight: CGFloat = 21
-        
+
         navigationBarView = NSView()
         backgroundView.addSubview(navigationBarView!)
         navigationBarView!.snp.makeConstraints { make in
@@ -115,19 +116,19 @@ class NavigationBarController: NSViewController {
 
         // Back button section
         var backButton: NSButton?
-        
+
         if backItem != nil {
             backButton = NavigationItem.standardBackButtonWithTitle(backItem!.title)
             backButton!.target = self
             backButton!.action = #selector(NavigationBarController.backButtonClicked(_:))
             navigationBarView!.addSubview(backButton!)
-            backButton!.snp.makeConstraints{ make in
+            backButton!.snp.makeConstraints { make in
                 make.top.equalTo(navigationBarView!).offset(buttonYOffset)
                 make.left.equalTo(navigationBarView!).offset(buttonEdgeSpacing)
                 make.height.equalTo(buttonHeight)
             }
         }
-        
+
         // Right button section
         if topItem!.rightButton != nil {
             navigationBarView!.addSubview(topItem!.rightButton!)
@@ -137,27 +138,27 @@ class NavigationBarController: NSViewController {
                 make.height.equalTo(buttonHeight)
             }
         }
-        
+
         // Title section
         var titleView: NSView
-        
+
         if topItem!.titleView != nil {
             titleView = topItem!.titleView!
         } else {
             titleView = textFieldForTitle(topItem!.title)
         }
-        
+
         navigationBarView!.addSubview(titleView)
         titleView.snp.makeConstraints { make in
             make.centerX.equalTo(backgroundView)
             make.centerY.equalTo(backgroundView).offset(titleYOffset)
-            
+
             if backButton != nil {
                 make.left.greaterThanOrEqualTo(backButton!.snp.right).offset(titleSpacing)
             } else {
                 make.left.greaterThanOrEqualTo(navigationBarView!).offset(titleSpacing)
             }
-            
+
             if topItem!.rightButton != nil {
                 make.right.lessThanOrEqualTo(topItem!.rightButton!.snp.left).offset(-titleSpacing)
             } else {
@@ -165,7 +166,7 @@ class NavigationBarController: NSViewController {
             }
         }
     }
-    
+
     func textFieldForTitle(_ title: String) -> NSTextField {
         let textField = NSTextField()
         textField.isEditable = false
@@ -178,18 +179,18 @@ class NavigationBarController: NSViewController {
         textField.stringValue = title
         return textField
     }
-    
+
     // MARK: NSViewController
-    
+
     override func loadView() {
-        view = NSView(frame: NSZeroRect)
-        
-        backgroundView = NSVisualEffectView(frame: NSZeroRect)
+        view = NSView(frame: NSRect.zero)
+
+        backgroundView = NSVisualEffectView(frame: NSRect.zero)
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
-        
+
         let borderView = BackgroundBorderView()
         borderView.bottomBorder = true
         borderView.borderColor = NSColor(red256: 194, green256: 195, blue256: 196)
@@ -198,9 +199,9 @@ class NavigationBarController: NSViewController {
             make.edges.equalTo(backgroundView)
         }
     }
-    
+
     // MARK: Actions
-    
+
 	@objc func backButtonClicked(_ sender: NSButton) {
         navigationController.popViewControllerAnimated(true)
     }

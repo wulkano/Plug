@@ -13,18 +13,18 @@ class PreferencesViewController: NSViewController {
     @IBOutlet weak var hotkeysTab: NSButton!
     @IBOutlet weak var mutedTab: NSButton!
     var tabViewController: NSTabViewController!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         Analytics.trackView("PreferencesWindow/General")
     }
-    
+
     func toggleAllTabsExcept(_ sender: NSButton) {
         let allTabs = [
             generalTab,
             hotkeysTab,
-            mutedTab,
+            mutedTab
         ]
         for tab in allTabs {
             if tab === sender {
@@ -34,36 +34,36 @@ class PreferencesViewController: NSViewController {
             }
         }
     }
-    
+
     func switchToTabAtIndex(_ index: Int) {
         ensureTabViewController()
         tabViewController.selectedTabViewItemIndex = index
     }
-    
+
     func ensureTabViewController() {
         if tabViewController != nil { return }
-        
+
 		for controller in children {
             if controller is NSTabViewController {
                 tabViewController = controller as? NSTabViewController
             }
         }
     }
-    
+
     // MARK: Actions
-    
+
     @IBAction func generalTabClicked(_ sender: NSButton) {
         Analytics.trackView("PreferencesWindow/General")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(0)
     }
-    
+
     @IBAction func hotkeysTabClicked(_ sender: NSButton) {
         Analytics.trackView("PreferencesWindow/HotKeys")
         toggleAllTabsExcept(sender)
         switchToTabAtIndex(1)
     }
-    
+
     @IBAction func mutedTabClicked(_ sender: NSButton) {
         Analytics.trackView("PreferencesWindow/Muted")
         toggleAllTabsExcept(sender)

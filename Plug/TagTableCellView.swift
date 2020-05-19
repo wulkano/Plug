@@ -11,22 +11,22 @@ import HypeMachineAPI
 
 class TagTableCellView: IOSStyleTableCellView {
     var nameTextField: NSTextField!
-    
+
     override var objectValue: Any! {
         didSet {
             objectValueChanged()
         }
     }
     var tagValue: HypeMachineAPI.Tag {
-        return objectValue as! HypeMachineAPI.Tag
+        objectValue as! HypeMachineAPI.Tag
     }
-    
+
     func objectValueChanged() {
         if objectValue == nil { return }
-        
+
         updateName()
     }
-    
+
     func updateName() {
         nameTextField.stringValue = tagValue.name
     }

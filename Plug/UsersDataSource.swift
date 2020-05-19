@@ -10,9 +10,8 @@ import Cocoa
 import HypeMachineAPI
 
 class UsersDataSource: SearchableDataSource {
-    
     func filterUsersMatchingSearchKeywords(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
-        return users.filter { user in
+        users.filter { user in
             if user.fullName != nil {
                 return (user.username =~ self.searchKeywords!) || (user.fullName! =~ self.searchKeywords!)
             } else {
@@ -20,30 +19,30 @@ class UsersDataSource: SearchableDataSource {
             }
         }
     }
-    
+
     func sortUsers(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
-        return users.sorted { $0.username.lowercased() < $1.username.lowercased() }
+        users.sorted { $0.username.lowercased() < $1.username.lowercased() }
     }
-    
+
     // MARK: SearchableDataSource
-    
+
     override func filterObjectsMatchingSearchKeywords(_ objects: [Any]) -> [Any] {
         let users = objects as! [HypeMachineAPI.User]
         return filterUsersMatchingSearchKeywords(users)
     }
-    
+
     // MARK: HypeMachineDataSource
-    
+
     override var singlePage: Bool {
-        return true
+        true
     }
-    
+
     override func requestNextPageObjects() {
         HypeMachineAPI.Requests.Me.friends { response in
             self.nextPageResponseReceived(response)
         }
     }
-    
+
     override func appendTableContents(_ contents: [Any]) {
         let users = contents as! [HypeMachineAPI.User]
         let sortedUsers = sortUsers(users)

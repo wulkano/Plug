@@ -16,7 +16,7 @@ struct UserNotifications {
             notification.title = title
             notification.informativeText = informativeText
             notification.soundName = nil
-            
+
             NSUserNotificationCenter.default.deliver(notification)
         }
     }

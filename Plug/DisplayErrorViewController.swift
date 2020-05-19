@@ -11,13 +11,13 @@ import SnapKit
 
 class DisplayErrorViewController: NSViewController {
     let error: NSError
-    
+
     var errorTitleTextField: NSTextField!
     var errorDescriptionTextField: NSTextField!
-    
+
     var bottomConstraint: Constraint?
     var topConstraint: Constraint?
-    
+
     init!(error: NSError) {
         self.error = error
         super.init(nibName: nil, bundle: nil)
@@ -26,10 +26,10 @@ class DisplayErrorViewController: NSViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func loadView() {
-        view = NSView(frame: NSZeroRect)
-        
+        view = NSView(frame: NSRect.zero)
+
         let background = BackgroundBorderView()
         background.background = true
         background.backgroundColor = NSColor(red256: 255, green256: 95, blue256: 82)
@@ -37,8 +37,8 @@ class DisplayErrorViewController: NSViewController {
         background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
-        
-        errorTitleTextField = NSTextField(frame: NSZeroRect)
+
+        errorTitleTextField = NSTextField(frame: NSRect.zero)
         errorTitleTextField.stringValue = "Error"
         errorTitleTextField.isEditable = false
         errorTitleTextField.isSelectable = false
@@ -54,8 +54,8 @@ class DisplayErrorViewController: NSViewController {
             make.left.equalTo(view).offset(14)
             make.right.equalTo(view).offset(-14)
         }
-        
-        errorDescriptionTextField = NSTextField(frame: NSZeroRect)
+
+        errorDescriptionTextField = NSTextField(frame: NSRect.zero)
         errorDescriptionTextField.stringValue = error.localizedDescription
         errorDescriptionTextField.isEditable = false
         errorDescriptionTextField.isSelectable = false
@@ -73,14 +73,14 @@ class DisplayErrorViewController: NSViewController {
             make.bottom.equalTo(view).offset(-14)
         }
     }
-    
+
     override func viewDidLayout() {
         super.viewDidLayout()
         errorTitleTextField.preferredMaxLayoutWidth = errorTitleTextField.frame.size.width
         errorDescriptionTextField.preferredMaxLayoutWidth = errorDescriptionTextField.frame.size.width
         view.layoutSubtreeIfNeeded()
     }
-    
+
     func setupLayoutInSuperview() {
         view.snp.makeConstraints { make in
             bottomConstraint = make.bottom.equalTo(view.superview!.snp.top).constraint
@@ -88,44 +88,42 @@ class DisplayErrorViewController: NSViewController {
             make.right.equalTo(view.superview!)
         }
     }
-    
+
     func animateIn() {
         view.superview!.layoutSubtreeIfNeeded()
-        
+
         bottomConstraint!.deactivate()
-        
+
         view.snp.makeConstraints { make in
             topConstraint = make.top.equalTo(view.superview!).constraint
         }
-        
-        NSAnimationContext.runAnimationGroup(
-            { context in
+
+        NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.25
                 context.allowsImplicitAnimation = true
 				context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
                 self.view.superview!.layoutSubtreeIfNeeded()
             }, completionHandler: nil)
     }
-    
-    func animateOutWithDelay(_ delay: Double, completionHandler: @escaping ()->Void) {
+
+    func animateOutWithDelay(_ delay: Double, completionHandler: @escaping () -> Void) {
         Interval.single(delay) {
             self.view.superview!.layoutSubtreeIfNeeded()
-            
+
             self.topConstraint!.deactivate()
-            
+
             self.view.snp.makeConstraints { make in
                 make.bottom.equalTo(self.view.superview!.snp.top)
             }
-            
-            NSAnimationContext.runAnimationGroup(
-                { context in
+
+            NSAnimationContext.runAnimationGroup({ context in
                     context.duration = 0.25
                     context.allowsImplicitAnimation = true
 					context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
                     self.view.superview!.layoutSubtreeIfNeeded()
                 }, completionHandler: {
                     completionHandler()
-            })
+                })
         }
     }
 }

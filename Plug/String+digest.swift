@@ -11,7 +11,7 @@ import Foundation
 
 enum HMACAlgorithm {
     case md5, sha1, sha224, sha256, sha384, sha512
-    
+
     func toCCEnum() -> CCHmacAlgorithm {
         var result: Int = 0
         switch self {
@@ -30,7 +30,7 @@ enum HMACAlgorithm {
         }
         return CCHmacAlgorithm(result)
     }
-    
+
     func digestLength() -> Int {
         var result: CInt = 0
         switch self {
@@ -52,7 +52,6 @@ enum HMACAlgorithm {
 }
 
 extension String {
-    
     func digest(_ algorithm: HMACAlgorithm, key: String) -> String! {
         let str = self.cString(using: String.Encoding.utf8)
         let strLen = Int(self.lengthOfBytes(using: String.Encoding.utf8))
@@ -60,12 +59,12 @@ extension String {
         let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         let keyStr = key.cString(using: String.Encoding.utf8)
         let keyLen = Int(key.lengthOfBytes(using: String.Encoding.utf8))
-        
+
         CCHmac(algorithm.toCCEnum(), keyStr!, keyLen, str!, strLen, result)
-        
+
         let hash = NSMutableString()
-        for i in 0..<digestLen {
-            hash.appendFormat("%02x", result[i])
+        for index in 0..<digestLen {
+            hash.appendFormat("%02x", result[index])
         }
 
 		// FIXME: Error: `'deinitialize()' is unavailable: the default argument to deinitialize(count:) has been removed, please specify the count explicitly`

@@ -10,22 +10,22 @@ import Cocoa
 
 class SectionHeaderTableCellView: NSTableCellView {
     var titleTextField: NSTextField!
-    
+
     override var objectValue: Any! {
         didSet {
             objectValueChanged()
         }
     }
     var sectionHeader: SectionHeader {
-        return objectValue as! SectionHeader
+        objectValue as! SectionHeader
     }
-    
+
     func objectValueChanged() {
         if objectValue == nil { return }
-        
+
         updateTitle()
     }
-    
+
     func updateTitle() {
         titleTextField!.stringValue = sectionHeader.title
     }

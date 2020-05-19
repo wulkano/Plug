@@ -10,15 +10,15 @@ import Foundation
 
 open class SwignalBase {
     internal var swignalObservers: [ObserverBase] = []
-    
+
     internal func addSwignalObserver(_ swignalObserver: ObserverBase) {
         purgeDeallocatedListeners()
-        
+
         synced(self) {
             self.swignalObservers.append(swignalObserver)
         }
     }
-    
+
     open func removeObserver(_ observer: AnyObject) {
         synced(self) {
             for swignalObserver in self.swignalObservers {
@@ -28,13 +28,13 @@ open class SwignalBase {
             }
         }
     }
-    
+
     open func removeAllObservers() {
         synced(self) {
             self.swignalObservers.removeAll()
         }
     }
-    
+
     fileprivate func purgeDeallocatedListeners() {
         synced(self) {
             for swignalObserver in self.swignalObservers {
@@ -49,11 +49,11 @@ open class SwignalBase {
 internal class ObserverBase: Equatable {
     let swignal: SwignalBase!
     weak var genericObserver: AnyObject?
-    
+
     init(swignal: SwignalBase) {
         self.swignal = swignal
     }
-    
+
     func fire(_ args: Any...) {
         assert(false, "This method must be overriden by the subclass")
     }
@@ -65,7 +65,7 @@ internal class ObserverGenericBase<L: AnyObject>: ObserverBase {
             genericObserver = observer
         }
     }
-    
+
     init(swignal: SwignalBase, observer: L) {
         defer {
             // This is defered so that the didSet is called. didSet is normally not called when a ar is set within an init.
@@ -76,21 +76,20 @@ internal class ObserverGenericBase<L: AnyObject>: ObserverBase {
 }
 
 func ==(lhs: ObserverBase, rhs: ObserverBase) -> Bool {
-    return lhs === rhs
+    lhs === rhs
 }
 
 
 
 // MARK: Helpers
-internal func synced(_ lock: AnyObject, closure: () -> ()) {
+internal func synced(_ lock: AnyObject, closure: () -> Void) {
     objc_sync_enter(lock)
     closure()
     objc_sync_exit(lock)
 }
 
-private extension Array {
-    mutating func removeObject<T>(_ obj: T) where T : Equatable {
-        self = self.filter({$0 as? T != obj})
+extension Array {
+    fileprivate mutating func removeObject<T>(_ obj: T) where T: Equatable {
+        self = self.filter({ $0 as? T != obj })
     }
-    
 }

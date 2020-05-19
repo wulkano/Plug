@@ -9,10 +9,8 @@
 import Cocoa
 
 class MutedPreferencesViewController: NSViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
-    
 }

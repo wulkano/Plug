@@ -16,7 +16,7 @@ class SwissArmyButtonCell: NSButtonCell {
         super.init(coder: aDecoder)
 		highlightsBy = NSCell.StyleMask()
     }
-    
+
     override init(textCell aString: String) {
         super.init(textCell: aString)
 		highlightsBy = NSCell.StyleMask()

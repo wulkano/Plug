@@ -10,11 +10,11 @@ import Cocoa
 
 class LovedCountFormatter: Formatter {
     @IBInspectable var capitalize: Bool = false
-    
+
     override func string(for obj: Any?) -> String? {
         let count = (obj as! NSNumber).intValue
         var returnString: String?
-        
+
         if count >= 1000 {
             let numberFormatter = NumberFormatter()
             numberFormatter.format = "####k"
@@ -23,11 +23,11 @@ class LovedCountFormatter: Formatter {
         } else {
             returnString = "\(count)"
         }
-        
+
         if capitalize {
             returnString = returnString!.uppercased()
         }
-        
+
         return returnString
     }
 }

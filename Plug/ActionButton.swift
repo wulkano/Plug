@@ -10,20 +10,20 @@ import Cocoa
 
 class ActionButton: SwissArmyButton {
     var actionButtonCell: ActionButtonCell {
-        return cell as! ActionButtonCell
+        cell as! ActionButtonCell
     }
     var horizontalPadding: CGFloat {
-        return actionButtonCell.horizontalPadding
+        actionButtonCell.horizontalPadding
     }
     var offStateTitle: String {
         set { actionButtonCell.offStateTitle = newValue }
-        get { return actionButtonCell.offStateTitle }
+        get { actionButtonCell.offStateTitle }
     }
     var onStateTitle: String {
         set { actionButtonCell.onStateTitle = newValue }
-        get { return actionButtonCell.onStateTitle }
+        get { actionButtonCell.onStateTitle }
     }
-    
+
     override var intrinsicContentSize: NSSize {
         var newSize = super.intrinsicContentSize
         newSize.width += horizontalPadding

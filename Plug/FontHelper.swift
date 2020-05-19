@@ -10,7 +10,7 @@ import Foundation
 
 
 func appFont(size: CGFloat) -> NSFont {
-    return NSFont.systemFont(ofSize: size)
+    NSFont.systemFont(ofSize: size)
 }
 
 func appFont(size: CGFloat, weight: AppFontWeight) -> NSFont {
@@ -18,11 +18,11 @@ func appFont(size: CGFloat, weight: AppFontWeight) -> NSFont {
 		return NSFont.systemFont(ofSize: size, weight: NSFont.Weight(rawValue: weight.NSFontWeight))
     } else {
         var fontName = "HelveticaNeue"
-        
+
         if let suffix = weight.stringSuffix {
             fontName += "-" + suffix
         }
-        
+
         return NSFont(name: fontName, size: size)!
     }
 }
@@ -31,7 +31,7 @@ enum AppFontWeight {
     case regular
     case medium
     case bold
-    
+
     var NSFontWeight: CGFloat {
         if #available(OSX 10.11, *) {
             switch self {
@@ -46,7 +46,7 @@ enum AppFontWeight {
             fatalError("This function is not available on your platform")
         }
     }
-    
+
     var stringSuffix: String? {
         switch self {
         case .regular:

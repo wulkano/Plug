@@ -12,18 +12,18 @@ class FooterViewController: NSViewController {
     var volumeIcon: VolumeIconView!
     var volumeSlider: NSSlider!
     var shuffleButton: SwissArmyButton!
-    
+
     func toggleShuffle() {
-        AudioPlayer.sharedInstance.toggleShuffle();
+        AudioPlayer.sharedInstance.toggleShuffle()
     }
-    
+
     // MARK: Actions
-    
+
 	@objc func skipForwardButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Forward")
         AudioPlayer.sharedInstance.skipForward()
     }
-    
+
 	@objc func skipBackwardButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Backward")
         AudioPlayer.sharedInstance.skipBackward()
@@ -33,12 +33,12 @@ class FooterViewController: NSViewController {
         Analytics.trackButtonClick("Footer Shuffle")
         toggleShuffle()
     }
-    
+
     // MARK: NSViewController
-    
+
     override func loadView() {
-        view = NSView(frame: NSZeroRect)
-        
+        view = NSView(frame: NSRect.zero)
+
         let backgroundView = DraggableVisualEffectsView()
 		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
         backgroundView.blendingMode = .withinWindow
@@ -46,7 +46,7 @@ class FooterViewController: NSViewController {
         backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
-        
+
         let borderBox = BackgroundBorderView()
         borderBox.borderWidth = 1
         borderBox.borderColor = NSColor(red256: 225, green256: 226, blue256: 226)
@@ -55,8 +55,8 @@ class FooterViewController: NSViewController {
         borderBox.snp.makeConstraints { make in
             make.edges.equalTo(backgroundView)
         }
-        
-        volumeIcon = VolumeIconView(frame: NSZeroRect)
+
+        volumeIcon = VolumeIconView(frame: NSRect.zero)
         volumeIcon.offImage = NSImage(named: "Footer-Volume-Off")
         volumeIcon.oneImage = NSImage(named: "Footer-Volume-1")
         volumeIcon.twoImage = NSImage(named: "Footer-Volume-2")
@@ -68,8 +68,8 @@ class FooterViewController: NSViewController {
             make.centerY.equalTo(backgroundView).offset(-1)
             make.left.equalTo(backgroundView).offset(20)
         }
-        
-        volumeSlider = NSSlider(frame: NSZeroRect)
+
+        volumeSlider = NSSlider(frame: NSRect.zero)
         let cell = FlatSliderCell()
         cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
         cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
@@ -82,8 +82,8 @@ class FooterViewController: NSViewController {
             make.width.equalTo(60)
             make.left.equalTo(backgroundView).offset(40)
         }
-        
-        shuffleButton = SwissArmyButton(frame: NSZeroRect)
+
+        shuffleButton = SwissArmyButton(frame: NSRect.zero)
         let shuffleCell = TransparentButtonCell(textCell: "")
         shuffleCell.allowsSelectedState = true
         shuffleButton.cell = shuffleCell
@@ -100,8 +100,8 @@ class FooterViewController: NSViewController {
             make.bottom.equalTo(backgroundView)
             make.right.equalTo(backgroundView).offset(-8)
         }
-        
-        let forwardButton = SwissArmyButton(frame: NSZeroRect)
+
+        let forwardButton = SwissArmyButton(frame: NSRect.zero)
         let forwardCell = TransparentButtonCell(textCell: "")
         forwardButton.cell = forwardCell
         forwardButton.isBordered = false
@@ -116,8 +116,8 @@ class FooterViewController: NSViewController {
             make.bottom.equalTo(backgroundView)
             make.right.equalTo(shuffleButton.snp.left)
         }
-        
-        let backButton = SwissArmyButton(frame: NSZeroRect)
+
+        let backButton = SwissArmyButton(frame: NSRect.zero)
         let backCell = TransparentButtonCell(textCell: "")
         backButton.cell = backCell
         backButton.isBordered = false
@@ -134,7 +134,7 @@ class FooterViewController: NSViewController {
             make.right.equalTo(forwardButton.snp.left)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

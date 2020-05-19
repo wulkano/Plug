@@ -10,27 +10,27 @@ import Cocoa
 
 class TagButton: SwissArmyButton {
     var fillColor: NSColor {
-        get { return tagButtonCell.fillColor }
+        get { tagButtonCell.fillColor }
         set { tagButtonCell.fillColor = newValue }
     }
     override var title: String {
-        get { return attributedTitle.string }
+        get { attributedTitle.string }
         set { attributedTitle = NSAttributedString(string: newValue) }
     }
     override var attributedTitle: NSAttributedString {
-        get { return super.attributedTitle }
+        get { super.attributedTitle }
         set {
             super.attributedTitle = NSAttributedString(string: newValue.string, attributes: fontAttributes())
         }
     }
     var tagButtonCell: TagButtonCell {
-        return cell as! TagButtonCell
+        cell as! TagButtonCell
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setupCell()
@@ -38,12 +38,12 @@ class TagButton: SwissArmyButton {
 //        buttonType =
 		bezelStyle = NSButton.BezelStyle.regularSquare
     }
-    
+
     override func setupCell() {
         let newCell = TagButtonCell(textCell: "")
         self.cell = newCell
     }
-    
+
     func fontAttributes() -> [NSAttributedString.Key: Any] {
         var attributes = [NSAttributedString.Key: Any]()
         let color = NSColor.black

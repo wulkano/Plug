@@ -12,11 +12,11 @@ class ColorChangingTextField: NSTextField {
     override var objectValue: Any! {
         didSet { objectValueChanged() }
     }
-    
+
     func objectValueChanged() {
         setColorForStringValue()
     }
-    
+
     func setColorForStringValue() {
         let numberValue = self.numberValueForStringValue()
         let gradientLocation = self.gradientLocationForNumberValue(numberValue)
@@ -24,7 +24,7 @@ class ColorChangingTextField: NSTextField {
         let newColor = gradient.interpolatedColor(atLocation: gradientLocation)
         self.textColor = newColor
     }
-    
+
     func gradientLocationForNumberValue(_ numberValue: Int) -> CGFloat {
         let highEnd: CGFloat = 8000
         var location = CGFloat(numberValue) / highEnd
@@ -33,13 +33,13 @@ class ColorChangingTextField: NSTextField {
         }
         return 1.0 - location
     }
-    
+
     func numberValueForStringValue() -> Int {
         let withoutCommas = stringValue.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
         let withoutPeriods = withoutCommas.replacingOccurrences(of: ".", with: "", options: .literal, range: nil)
         let withoutSpaces = withoutPeriods.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
         let withoutSingleQuotes = withoutSpaces.replacingOccurrences(of: "'", with: "", options: .literal, range: nil)
-        
+
         if withoutSingleQuotes.hasSuffix("k") {
             let numberFormatter = NumberFormatter()
             numberFormatter.format = "####k"
@@ -49,7 +49,7 @@ class ColorChangingTextField: NSTextField {
             return Int(withoutSingleQuotes) ?? 0
         }
     }
-    
+
     func makeGradient() -> NSGradient {
         let redColor = NSColor(red256: 255, green256: 95, blue256: 82)
         let purpleColor = NSColor(red256: 183, green256: 101, blue256: 212)

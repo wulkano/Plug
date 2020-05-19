@@ -10,30 +10,28 @@ import Cocoa
 
 class LoginButtonCell: SwissArmyButtonCell {
     var loginButton: LoginButton {
-        return controlView as! LoginButton
+        controlView as! LoginButton
     }
-    
+
     override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
-        
         let mutableTitle = NSMutableAttributedString(attributedString: title)
-        let range = NSMakeRange(0, mutableTitle.length)
+        let range = NSRange(location: 0, length: mutableTitle.length)
         let color = getTextColor()
-        
+
 		mutableTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
-        
+
         return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
     }
-    
+
     override func drawImage(_ image: NSImage, withFrame frame: NSRect, in controlView: NSView) {
-        
         let alpha = getImageAlpha()
-        
+
         var newFrame = frame
         newFrame.origin.y += 3
-        
-        image.draw(in: newFrame, from: NSZeroRect, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
+
+        image.draw(in: newFrame, from: NSRect.zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
     }
-    
+
     func getTextColor() -> NSColor {
         switch loginButton.buttonState {
         case .error:
@@ -42,7 +40,7 @@ class LoginButtonCell: SwissArmyButtonCell {
             return NSColor.white.withAlphaComponent(getAlpha())
         }
     }
-    
+
     func getAlpha() -> CGFloat {
         switch loginButton.buttonState {
         case .enabled, .error:
@@ -59,7 +57,7 @@ class LoginButtonCell: SwissArmyButtonCell {
             return 1
         }
     }
-    
+
     func getImageAlpha() -> CGFloat {
         switch loginButton.buttonState {
         case .sending, .disabled:

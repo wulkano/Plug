@@ -10,13 +10,13 @@ import Cocoa
 
 class SearchViewController: BaseContentViewController {
     var searchResultsView: NSView!
-    
+
     var sort: SearchSectionSort = .Newest {
         didSet { sortChanged() }
     }
     var tracksViewController: TracksViewController?
     var dataSource: TracksDataSource?
-    
+
 	@objc func searchFieldSubmit(_ sender: NSSearchField) {
         let keywords = sender.stringValue
         if keywords == "" { return }
@@ -24,7 +24,7 @@ class SearchViewController: BaseContentViewController {
         ensurePlaylistViewController()
         tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: keywords)
     }
-    
+
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
             tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Search/Tracks")
@@ -35,19 +35,19 @@ class SearchViewController: BaseContentViewController {
             }
         }
     }
-    
+
     func sortChanged() {
         if tracksViewController == nil || tracksViewController!.dataSource == nil { return }
-        
+
         let searchDataSource = tracksViewController!.dataSource! as! SearchTracksDataSource
         tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: searchDataSource.searchQuery)
     }
-    
+
     // MARK: NSView
-    
+
     override func loadView() {
         super.loadView()
-        
+
 		let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)
         view.addSubview(searchHeaderController.view)
         searchHeaderController.view.snp.makeConstraints { make in
@@ -58,7 +58,7 @@ class SearchViewController: BaseContentViewController {
         }
         searchHeaderController.searchField.target = self
         searchHeaderController.searchField.action = #selector(SearchViewController.searchFieldSubmit(_:))
-        
+
         searchResultsView = NSView()
         view.addSubview(searchResultsView)
         searchResultsView.snp.makeConstraints { make in
@@ -68,14 +68,14 @@ class SearchViewController: BaseContentViewController {
             make.right.equalTo(self.view)
         }
     }
-    
+
     // MARK: BaseContentViewController
-    
+
     override func addLoaderView() {}
     override func refresh() {
         tracksViewController?.refresh()
     }
     override var shouldShowStickyTrack: Bool {
-        return false
+        false
     }
 }

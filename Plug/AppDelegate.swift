@@ -20,11 +20,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var preferencesMenuSeparator: NSMenuItem!
     @IBOutlet var signOutMenuItem: NSMenuItem!
     @IBOutlet var signOutMenuSeparator: NSMenuItem!
-    
+
     deinit {
         Notifications.unsubscribeAll(observer: self)
     }
-    
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupUserDefaults()
         // Load Crashlytics after setting up user defaults because we initialize
@@ -34,18 +34,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupNotifications()
         setupHypeMachineAPI()
         setupKeepAwake()
-        
-        if Authentication.UserSignedIn() {
+
+        if Authentication.userSignedIn() {
             openMainWindow()
         } else {
             openLoginWindow()
         }
     }
-    
+
     func openMainWindow() {
         if mainWindowController == nil {
             mainWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as! NSWindowController)
-            
+
             /* If there isn't an autosave name set for the main window, place the
              * frame at a default position, and then set the autosave name.
              */
@@ -55,23 +55,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let x: CGFloat = 100
 				let y: CGFloat = (NSScreen.main!.frame.size.height - 778) / 2
 
-                let defaultFrame = NSMakeRect(x, y, width, height)
+                let defaultFrame = NSRect(x: x, y: y, width: width, height: height)
                 mainWindowController!.window!.setFrame(defaultFrame, display: false)
-                
+
                 mainWindowController!.window!.setFrameAutosaveName("MainWindow")
             }
         }
-        
+
         mainWindowController!.showWindow(self)
         showSignOutInMenu()
         showPreferencesInMenu()
     }
-    
+
     func closeMainWindow() {
         mainWindowController!.window!.close()
         mainWindowController = nil
     }
-    
+
     func openLoginWindow() {
         Analytics.trackView("LoginWindow")
         if loginWindowController == nil {
@@ -81,19 +81,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         hideSignOutFromMenu()
         hidePreferencesFromMenu()
     }
-    
+
     func closeLoginWindow() {
         loginWindowController!.window!.close()
         loginWindowController = nil
     }
-    
+
     func openAboutWindow() {
         if aboutWindowController == nil {
             aboutWindowController = AboutWindowController()
         }
         aboutWindowController!.showWindow(self)
     }
-    
+
     func openPreferencesWindow() {
         if preferencesWindowController == nil {
             let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: Bundle.main)
@@ -101,68 +101,68 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         preferencesWindowController!.showWindow(self)
     }
-    
+
     func closePreferencesWindow() {
         preferencesWindowController!.window!.close()
         preferencesWindowController = nil
     }
-    
+
     func finishedSigningIn() {
         closeLoginWindow()
         openMainWindow()
     }
-    
+
     func showPreferencesInMenu() {
         preferencesMenuItem.isHidden = false
         preferencesMenuSeparator.isHidden = false
     }
-    
+
     func hidePreferencesFromMenu() {
         preferencesMenuItem.isHidden = true
         preferencesMenuSeparator.isHidden = true
     }
-    
+
     func showSignOutInMenu() {
         signOutMenuItem.isHidden = false
         signOutMenuSeparator.isHidden = false
     }
-    
+
     func hideSignOutFromMenu() {
         signOutMenuItem.isHidden = true
         signOutMenuSeparator.isHidden = true
     }
-    
+
     func setupUserDefaults() {
         let userDefaultsValuesPath = Bundle.main.path(forResource: "UserDefaults", ofType: "plist")!
         let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
-        UserDefaults.standard.register(defaults: userDefaultsValuesDict as! [String : AnyObject])
+        UserDefaults.standard.register(defaults: userDefaultsValuesDict as! [String: AnyObject])
     }
-    
+
     func setupUserNotifications() {
         UserNotificationHandler.sharedInstance
     }
-    
+
     func setupNotifications() {
         Notifications.subscribe(observer: self, selector: #selector(AppDelegate.catchTokenErrors(_:)), name: Notifications.DisplayError, object: nil)
     }
-    
+
     func setupHypeMachineAPI() {
         HypeMachineAPI.apiKey = ApiKey
-        if let hmToken = Authentication.GetToken() {
+        if let hmToken = Authentication.getToken() {
             HypeMachineAPI.hmToken = hmToken
         }
-        
+
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let userAgent = "Plug for OSX/\(version)"
         HypeMachineAPI.userAgent = userAgent
     }
-    
+
     func setupKeepAwake() {
         KeepAwake.sharedInstance
     }
-    
+
     // MARK: Notifications
-    
+
 	@objc func catchTokenErrors(_ notification: Notification) {
         if let error = (notification as NSNotification).userInfo!["error"] as? HypeMachineAPI.APIError {
             switch error {
@@ -173,13 +173,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    
+
     // MARK: Actions
-    
+
     @IBAction func aboutItemClicked(_ sender: AnyObject) {
         openAboutWindow()
     }
-    
+
     @IBAction func signOut(_ sender: AnyObject?) {
         Analytics.trackButtonClick("Sign Out")
         closeMainWindow()
@@ -187,33 +187,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             closePreferencesWindow()
         }
         AudioPlayer.sharedInstance.reset()
-        Authentication.DeleteUsernameAndToken()
+        Authentication.deleteUsernameAndToken()
         HypeMachineAPI.hmToken = nil
         openLoginWindow()
     }
-    
+
     @IBAction func preferencesItemClicked(_ sender: AnyObject) {
         openPreferencesWindow()
     }
-    
+
     @IBAction func refreshItemClicked(_ sender: AnyObject) {
         Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
     }
-    
+
     @IBAction func reportABugItemClicked(_ sender: AnyObject) {
 		NSWorkspace.shared.open(URL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
     }
-    
+
     // MARK: NSApplicationDelegate
-    
+
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        if Authentication.UserSignedIn() {
+        if Authentication.userSignedIn() {
             return false
         } else {
             return true
         }
     }
-    
+
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if flag == false {
             openMainWindow()

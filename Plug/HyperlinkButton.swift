@@ -20,7 +20,7 @@ class HyperlinkButton: NSButton {
     }
     @IBInspectable var hoverUnderline: Bool = false
     @IBInspectable var alwaysUnderlined: Bool = false
-    
+
     override var title: String {
         didSet { applyAttributes() }
     }
@@ -28,9 +28,9 @@ class HyperlinkButton: NSButton {
     var mouseInside: Bool = false {
         didSet { mouseInsideChanged() }
     }
-    
+
     init() {
-        super.init(frame: NSZeroRect)
+        super.init(frame: NSRect.zero)
         setup()
     }
 
@@ -38,12 +38,12 @@ class HyperlinkButton: NSButton {
         super.init(coder: coder)
         setup()
     }
-    
+
     func setup() {
 		setButtonType(NSButton.ButtonType.momentaryPushIn)
 		bezelStyle = NSButton.BezelStyle.rounded
     }
-    
+
     func applyAttributes() {
         var attributes = [NSAttributedString.Key: Any]()
         if selected {
@@ -58,28 +58,28 @@ class HyperlinkButton: NSButton {
         let coloredString = NSMutableAttributedString(string: title, attributes: attributes)
         attributedTitle = coloredString
     }
-    
+
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
-        
+
         updateTrackingAreas()
-        
+
         if alwaysUnderlined {
             addUnderlineToText()
         }
     }
-    
+
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
-        
+
         if hoverUnderline && !alwaysUnderlined {
             if trackingArea != nil {
                 removeTrackingArea(trackingArea!)
                 trackingArea = nil
             }
-            
+
 			let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-            trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
+            trackingArea = NSTrackingArea(rect: NSRect.zero, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea!)
         }
     }
@@ -87,11 +87,11 @@ class HyperlinkButton: NSButton {
     override func mouseEntered(with theEvent: NSEvent) {
         mouseInside = true
     }
-    
+
     override func mouseExited(with theEvent: NSEvent) {
         mouseInside = false
     }
-    
+
     func mouseInsideChanged() {
         if mouseInside {
             addUnderlineToText()
@@ -99,16 +99,16 @@ class HyperlinkButton: NSButton {
             removeUnderlineFromText()
         }
     }
-    
+
     func addUnderlineToText() {
-        let range = NSMakeRange(0, attributedTitle.length)
+        let range = NSRange(location: 0, length: attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
 		newAttributedTitle.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
         attributedTitle = newAttributedTitle
     }
-    
+
     func removeUnderlineFromText() {
-        let range = NSMakeRange(0, attributedTitle.length)
+        let range = NSRange(location: 0, length: attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
 		newAttributedTitle.addAttribute(NSAttributedString.Key.underlineStyle, value: 0, range: range)
         attributedTitle = newAttributedTitle

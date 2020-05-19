@@ -14,10 +14,9 @@ class RoundedRectOutlineButton: NSButton {
     @IBInspectable var strokeColor: NSColor = NSColor.white
 
     override func draw(_ dirtyRect: NSRect) {
-        
         super.draw(dirtyRect)
-        
-        let rect = NSMakeRect(0.5, 0.5, bounds.size.width - 1, bounds.size.height - 1)
+
+        let rect = NSRect(x: 0.5, y: 0.5, width: bounds.size.width - 1, height: bounds.size.height - 1)
         let roundedRect = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
         roundedRect.lineWidth = strokeWidth
         strokeColor.set()

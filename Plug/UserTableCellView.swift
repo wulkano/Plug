@@ -21,33 +21,32 @@ class UserTableCellView: IOSStyleTableCellView {
         }
     }
     var user: HypeMachineAPI.User {
-        return objectValue as! HypeMachineAPI.User
+        objectValue as! HypeMachineAPI.User
     }
-    
+
     func objectValueChanged() {
         if objectValue == nil { return }
-        
+
         updateFullName()
         updateUsername()
         updateImage()
     }
-    
+
     func updateFullName() {
         fullNameTextField.stringValue = user.fullName ?? user.username
     }
-    
+
     func updateUsername() {
         usernameTextField.stringValue = user.username
     }
-    
+
     func updateImage() {
         avatarView.image = NSImage(named: "Avatar-Placeholder")
         if user.avatarURL == nil { return }
-        
+
         Alamofire
             .request(user.avatarURL!, method: .get).validate()
             .responseImage { response in
-            
             switch response.result {
             case .success(let image):
                 self.avatarView.image = image
@@ -55,6 +54,6 @@ class UserTableCellView: IOSStyleTableCellView {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 Swift.print(error as NSError)
             }
-        }
+            }
     }
 }

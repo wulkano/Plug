@@ -10,14 +10,14 @@ import Cocoa
 
 class PreferencesWindowController: NSWindowController {
     var trafficButtons: TrafficButtons!
-    
+
     override func windowDidLoad() {
         super.windowDidLoad()
-    
+
 		window!.titleVisibility = NSWindow.TitleVisibility.visible
-        
+
         trafficButtons = TrafficButtons(style: .light, groupIdentifier: "PreferencesWindow")
-        trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(10, 8))
+        trafficButtons.addButtonsToWindow(window!, origin: NSPoint(x: 10, y: 8))
         trafficButtons.zoomButton.isEnabled = false
     }
 }

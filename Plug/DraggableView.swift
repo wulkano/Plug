@@ -9,7 +9,7 @@
 import Cocoa
 
 class DraggableView: NSView {
-    override var mouseDownCanMoveWindow : Bool {
-        return true
+    override var mouseDownCanMoveWindow: Bool {
+        true
     }
 }

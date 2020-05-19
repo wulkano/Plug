@@ -14,41 +14,41 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     }
     var scrollView: RefreshScrollView!
     var tableView: ExtendedTableView!
-    
+
     func loadScrollViewAndTableView() {
         scrollView = RefreshScrollView(delegate: self)
         view.addSubview(scrollView)
-        
+
         tableView = ExtendedTableView()
         tableView.headerView = nil
         tableView.intercellSpacing = NSSize(width: 0, height: 0)
 		let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "Col0"))
         tableView.addTableColumn(column)
-        
+
         scrollView.documentView = tableView
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.horizontalScrollElasticity = .none
-        
+
         tableView.contentInsets = tableViewInsets
         tableView.scrollerInsets = tableViewInsets
     }
-    
+
     func nextPageDidLoad(_ pageNumber: Int) {
         if pageNumber == 0 {
             removeLoaderView()
             scrollView.finishedRefresh()
         }
     }
-    
+
     func sectionHeaderCellView(_ tableView: NSTableView) -> SectionHeaderTableCellView {
         let id = "SectionHeaderCellViewID"
 		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? SectionHeaderTableCellView
-        
+
         if cellView == nil {
             cellView = SectionHeaderTableCellView()
 			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
-            
+
             cellView!.titleTextField = NSTextField()
             cellView!.titleTextField.isEditable = false
             cellView!.titleTextField.isSelectable = false
@@ -63,57 +63,57 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
                 make.right.equalTo(cellView!).offset(-9)
             }
         }
-        
+
         return cellView!
     }
-    
+
     func groupRowView(_ tableView: NSTableView) -> GroupRowView {
         let id = "GroupRowID"
 		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? GroupRowView
-        
+
         if rowView == nil {
             rowView = GroupRowView()
 			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
         }
-        
+
         return rowView!
     }
-    
+
     func dataSourceChanged() {}
-    
+
     // MARK: NSViewController
-    
+
     override func viewDidAppear() {
         super.viewDidAppear()
-        
+
 //        tableView.updateVisibleRows()
     }
-    
+
     override func viewDidDisappear() {
         super.viewDidDisappear()
-        
+
 //        tableView.previousVisibleRows = []
     }
-    
+
     // MARK: BaseContentViewController
-    
+
     override func refresh() {
         addLoaderView()
         dataSource!.refresh()
     }
-    
+
     override func addStickyTrackAtPosition(_ position: StickyTrackPosition) {
         super.addStickyTrackAtPosition(position)
-        
+
         var stickyTrackInsets = tableViewInsets
-        
+
         switch position {
         case .top:
             stickyTrackInsets.top += stickyTrackController.trackViewHeight
         case .bottom:
             stickyTrackInsets.bottom += stickyTrackController.trackViewHeight
         }
-        
+
         if stickyTrackBelongsToUs {
             tableView.contentInsets = tableViewInsets
             tableView.scrollerInsets = stickyTrackInsets
@@ -122,21 +122,21 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
             tableView.scrollerInsets = stickyTrackInsets
         }
     }
-    
+
     override func removeStickyTrack() {
         super.removeStickyTrack()
         tableView.contentInsets = tableViewInsets
         tableView.scrollerInsets = tableViewInsets
     }
-    
+
     // MARK: RefreshScrollViewDelegate
-    
+
     func didPullToRefresh() {
         dataSource!.refresh()
     }
-    
+
     // MARK: ExtendedTableViewDelegate default implementations
-    
+
     func tableView(_ tableView: ExtendedTableView, wasClicked theEvent: NSEvent, atRow row: Int) {}
     func tableView(_ tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {}
     func tableView(_ tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {}

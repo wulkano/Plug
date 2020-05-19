@@ -8,28 +8,28 @@
 
 import Foundation
 
-class Interval : NSObject {
-    var closure: ()->()
+class Interval: NSObject {
+    var closure: () -> Void
     var timer: Timer!
-    
-    class func single(_ interval: Double, closure: @escaping ()->()) -> Interval {
-        return Interval(interval: interval, closure: closure, repeats: false)
+
+    class func single(_ interval: Double, closure: @escaping () -> Void) -> Interval {
+        Interval(interval: interval, closure: closure, repeats: false)
     }
-    
-    class func repeating(_ interval: Double, closure: @escaping ()->()) -> Interval {
-        return Interval(interval: interval, closure: closure, repeats: true)
+
+    class func repeating(_ interval: Double, closure: @escaping () -> Void) -> Interval {
+        Interval(interval: interval, closure: closure, repeats: true)
     }
-    
-    init(interval: Double, closure: @escaping ()->(), repeats: Bool) {
+
+    init(interval: Double, closure: @escaping () -> Void, repeats: Bool) {
         self.closure = closure
         super.init()
         self.timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(runClosure), userInfo: nil, repeats: repeats)
     }
-    
+
 	@objc func runClosure() {
         closure()
     }
-    
+
     func invalidate() {
         timer.invalidate()
     }

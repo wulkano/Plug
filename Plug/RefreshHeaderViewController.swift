@@ -16,13 +16,13 @@ class RefreshHeaderViewController: NSViewController {
     var lastUpdated: Date? {
         didSet { lastUpdatedChanged() }
     }
-    
+
     var loader: NSImageView!
     var messageLabel: NSTextField!
-    
+
     override func loadView() {
         view = NSView()
-        
+
         let background = BackgroundBorderView()
         background.bottomBorder = true
         background.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
@@ -30,13 +30,13 @@ class RefreshHeaderViewController: NSViewController {
         background.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
-        
+
         let messageContainer = NSView()
         background.addSubview(messageContainer)
         messageContainer.snp.makeConstraints { make in
             make.center.equalTo(background)
         }
-        
+
         loader = NSImageView()
         loader.image = NSImage(named: "Loader-Refresh")
         messageContainer.addSubview(loader)
@@ -46,7 +46,7 @@ class RefreshHeaderViewController: NSViewController {
             make.left.equalTo(messageContainer)
             make.bottom.equalTo(messageContainer)
         }
-        
+
         messageLabel = NSTextField()
         messageLabel.isEditable = false
         messageLabel.isSelectable = false
@@ -61,27 +61,27 @@ class RefreshHeaderViewController: NSViewController {
             make.left.equalTo(loader.snp.right).offset(5)
             make.right.equalTo(messageContainer)
         }
-        
+
         updateMessageLabel()
     }
-    
+
     func stateChanged() {
         updateLoader()
         updateMessageLabel()
     }
-    
+
     func lastUpdatedChanged() {
         updateMessageLabel()
     }
-    
+
     func updateLoader() {
         if self.state == .updating {
-            Animations.RotateClockwise(self.loader)
+            Animations.rotateClockwise(self.loader)
         } else {
-            Animations.RemoveAllAnimations(self.loader)
+            Animations.removeAllAnimations(self.loader)
         }
     }
-    
+
     func updateMessageLabel() {
         switch state {
         case .pullToRefresh:
@@ -92,10 +92,10 @@ class RefreshHeaderViewController: NSViewController {
             messageLabel.stringValue = state.label
         }
     }
-    
+
     func formattedTimestamp() -> String {
         var formattedTimestamp = "Last Updated "
-        
+
         if lastUpdated == nil {
             formattedTimestamp += "N/A"
         } else {
@@ -103,17 +103,16 @@ class RefreshHeaderViewController: NSViewController {
             formatter.dateFormat = "h:mm a"
             formattedTimestamp += formatter.string(from: lastUpdated!)
         }
-        
+
         return formattedTimestamp
     }
-
 }
 
 enum PullToRefreshState {
     case pullToRefresh
     case releaseToRefresh
     case updating
-    
+
     var label: String {
         switch self {
         case .pullToRefresh:

@@ -10,25 +10,25 @@ import Cocoa
 
 class RefreshClipView: NSClipView {
     var refreshScrollView: RefreshScrollView {
-        return superview! as! RefreshScrollView
+        superview! as! RefreshScrollView
     }
     var refreshHeaderController: RefreshHeaderViewController {
-        return refreshScrollView.refreshHeaderController
+        refreshScrollView.refreshHeaderController
     }
-    
+
     override var documentRect: NSRect {
         var newRect = super.documentRect
-        
+
         // If refreshing expand the rect to fit the refresh header
         // in the frame (without scroll elaticity)
         if refreshHeaderController.state == .updating {
             newRect.size.height += refreshHeaderController.viewHeight
             newRect.origin.y -= refreshHeaderController.viewHeight
         }
-        
+
         return newRect
     }
-    
+
 //    override func constrainBoundsRect(proposedBounds: NSRect) -> NSRect {
 //        var constrainedBounds = super.constrainBoundsRect(proposedBounds)
 //        println("proposed    \(proposedBounds)")

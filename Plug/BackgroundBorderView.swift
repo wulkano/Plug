@@ -15,7 +15,7 @@ class BackgroundBorderView: NSView {
     @IBInspectable var bottomBorder: Bool = false
     @IBInspectable var leftBorder: Bool = false
     @IBInspectable var borderColor: NSColor = NSColor.black
-    
+
     @IBInspectable var background: Bool = false
     @IBInspectable var backgroundColor: NSColor = NSColor.white {
         didSet { needsDisplay = true }
@@ -26,41 +26,41 @@ class BackgroundBorderView: NSView {
         drawBackground(dirtyRect)
         drawBorder(dirtyRect)
     }
-    
+
     func drawBackground(_ dirtyRect: NSRect) {
         if background {
             backgroundColor.set()
 			dirtyRect.fill(using: .sourceOver)
         }
     }
-    
+
     func drawBorder(_ dirtyRect: NSRect) {
         borderColor.set()
-        
+
         if topBorder {
             var topRect = bounds
             topRect.size.height = borderWidth
             topRect.origin.y = bounds.size.height - borderWidth
-            NSIntersectionRect(topRect, dirtyRect).fill(using: .sourceOver)
+            topRect.intersection(dirtyRect).fill(using: .sourceOver)
         }
-        
+
         if rightBorder {
             var rightRect = bounds
             rightRect.size.width = borderWidth
             rightRect.origin.x = bounds.size.width - borderWidth
-            NSIntersectionRect(rightRect, dirtyRect).fill(using: .sourceOver)
+            rightRect.intersection(dirtyRect).fill(using: .sourceOver)
         }
-        
+
         if bottomBorder {
             var bottomRect = bounds
             bottomRect.size.height = borderWidth
-            NSIntersectionRect(bottomRect, dirtyRect).fill(using: .sourceOver)
+            bottomRect.intersection(dirtyRect).fill(using: .sourceOver)
         }
-        
+
         if leftBorder {
             var leftRect = bounds
             leftRect.size.width = borderWidth
-            NSIntersectionRect(leftRect, dirtyRect).fill(using: .sourceOver)
+            leftRect.intersection(dirtyRect).fill(using: .sourceOver)
         }
     }
 }

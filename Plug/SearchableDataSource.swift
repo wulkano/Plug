@@ -12,23 +12,23 @@ class SearchableDataSource: HypeMachineDataSource {
     var searchKeywords: String? {
         didSet { searchKeywordsChanged() }
     }
-    
+
     func searchKeywordsChanged() {
         refilterTableContents()
-        
+
         if searchKeywords == "" || searchKeywords == nil {
             filtering = false
         } else {
             filtering = true
         }
     }
-    
+
     func filterObjectsMatchingSearchKeywords(_ objects: [Any]) -> [Any] {
         fatalError("filterObjectsMatchingKeywords: not implemented")
     }
-    
+
     // MARK: HypeMachineDataSource
-    
+
     override func filterTableContents(_ objects: [Any]) -> [Any] {
         if searchKeywords == "" || searchKeywords == nil {
             return objects

@@ -11,11 +11,10 @@ import Cocoa
 class ForgotPasswordButtonCell: SwissArmyButtonCell {
     override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
     }
-    
+
     override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
-        
         var alpha: CGFloat
-        
+
         if mouseDown {
             alpha = 1
         } else if mouseInside {
@@ -23,13 +22,13 @@ class ForgotPasswordButtonCell: SwissArmyButtonCell {
         } else {
             alpha = 0.2
         }
-        
+
         let mutableTitle = NSMutableAttributedString(attributedString: title)
         let color = NSColor.white.withAlphaComponent(alpha)
-        let range = NSMakeRange(0, mutableTitle.length)
-        
+        let range = NSRange(location: 0, length: mutableTitle.length)
+
 		mutableTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
-        
+
         return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
     }
 }

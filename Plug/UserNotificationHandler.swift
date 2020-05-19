@@ -15,18 +15,18 @@ class UserNotificationHandler: NSObject, NSUserNotificationCenterDelegate {
         }
         return Singleton.instance
     }
-    
+
     override init() {
         super.init()
-        
+
         initialSetup()
     }
-    
+
     func initialSetup() {
         NSUserNotificationCenter.default.delegate = self
     }
-    
+
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
-        return true
+        true
     }
 }

@@ -13,7 +13,7 @@ class VolumeIconView: NSView {
     @IBInspectable var oneImage: NSImage?
     @IBInspectable var twoImage: NSImage?
     @IBInspectable var threeImage: NSImage?
-    var volumeState: VolumeState = VolumeState.three {
+    var volumeState = VolumeState.three {
         didSet { needsDisplay = true }
     }
     var volume: Double = 1 {
@@ -23,18 +23,18 @@ class VolumeIconView: NSView {
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
+
         let drawImage = getDrawImage()
-        var drawPoint = NSZeroPoint
+        var drawPoint = NSPoint.zero
         if drawImage != nil {
             drawPoint.y = floor((bounds.size.height - drawImage!.size.height) / 2)
         }
         drawImage?.draw(at: drawPoint, from: dirtyRect, operation: NSCompositingOperation.destinationOver, fraction: opacity)
     }
-    
+
     func setStateForVolume(_ volume: Double) {
         var newVolumeState: VolumeState
-        
+
         if volume <= 0 {
             newVolumeState = VolumeState.off
         } else if volume <= (1 / 3) {
@@ -50,7 +50,7 @@ class VolumeIconView: NSView {
             volumeState = newVolumeState
         }
     }
-    
+
     func getDrawImage() -> NSImage? {
         switch volumeState {
         case .off:
@@ -63,7 +63,7 @@ class VolumeIconView: NSView {
             return threeImage
         }
     }
-    
+
     enum VolumeState {
         case off
         case one

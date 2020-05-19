@@ -14,22 +14,22 @@ class UserViewController: BaseContentViewController {
     var user: HypeMachineAPI.User? {
         didSet { userChanged() }
     }
-    
+
     var header: BackgroundBorderView!
     var avatarView: NSImageView!
     var usernameTextField: NSTextField!
     var favoritesCountTextField: NSTextField!
     var friendsCountTextField: NSTextField!
     var playlistContainer: NSView!
-    
+
     var tracksViewController: TracksViewController!
-    
+
     init?(user: HypeMachineAPI.User) {
         self.user = user
         super.init(title: user.username, analyticsViewName: "MainWindow/SingleUser")
         setup()
     }
-    
+
     init?(username: String) {
         super.init(title: username, analyticsViewName: "MainWindow/SingleUser")
         loadUser(username)
@@ -39,15 +39,15 @@ class UserViewController: BaseContentViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setup() {
         navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(UserViewController.followButtonClicked(_:)))
     }
-    
+
     override func loadView() {
         super.loadView()
-        
-        header = BackgroundBorderView(frame: NSZeroRect)
+
+        header = BackgroundBorderView(frame: NSRect.zero)
         header.bottomBorder = true
         header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
         header.background = true
@@ -59,7 +59,7 @@ class UserViewController: BaseContentViewController {
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
         }
-        
+
         avatarView = CircleMaskImageView()
         avatarView.image = NSImage(named: "Avatar-Placeholder")!
         header.addSubview(avatarView)
@@ -69,7 +69,7 @@ class UserViewController: BaseContentViewController {
             make.height.equalTo(36)
             make.left.equalTo(self.header).offset(17)
         }
-        
+
         usernameTextField = NSTextField()
         usernameTextField.isEditable = false
         usernameTextField.isSelectable = false
@@ -83,7 +83,7 @@ class UserViewController: BaseContentViewController {
             make.left.equalTo(self.avatarView.snp.right).offset(22)
             make.right.equalTo(self.header).offset(-20)
         }
-        
+
         favoritesCountTextField = NSTextField()
         favoritesCountTextField.isEditable = false
         favoritesCountTextField.isSelectable = false
@@ -96,7 +96,7 @@ class UserViewController: BaseContentViewController {
             make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
             make.left.equalTo(self.avatarView.snp.right).offset(22)
         }
-        
+
         let favoritesLabel = NSTextField()
         favoritesLabel.isEditable = false
         favoritesLabel.isSelectable = false
@@ -111,7 +111,7 @@ class UserViewController: BaseContentViewController {
             make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
             make.left.equalTo(self.favoritesCountTextField.snp.right).offset(3)
         }
-        
+
         friendsCountTextField = NSTextField()
         friendsCountTextField.isEditable = false
         friendsCountTextField.isSelectable = false
@@ -124,7 +124,7 @@ class UserViewController: BaseContentViewController {
             make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
             make.left.equalTo(favoritesLabel.snp.right).offset(13)
         }
-        
+
         let friendsLabel = NSTextField()
         friendsLabel.isEditable = false
         friendsLabel.isSelectable = false
@@ -139,7 +139,7 @@ class UserViewController: BaseContentViewController {
             make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
             make.left.equalTo(self.friendsCountTextField.snp.right).offset(3)
         }
-        
+
         playlistContainer = NSView()
         view.addSubview(playlistContainer)
         playlistContainer.snp.makeConstraints { make in
@@ -149,13 +149,13 @@ class UserViewController: BaseContentViewController {
             make.right.equalTo(self.view)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if user != nil { userChanged() }
     }
-    
+
     func loadUser(_ username: String) {
         HypeMachineAPI.Requests.Users.show(username: username) { response in
             switch response.result {
@@ -167,7 +167,7 @@ class UserViewController: BaseContentViewController {
             }
         }
     }
-    
+
     func userChanged() {
         updateImage()
         updateUsername()
@@ -177,14 +177,13 @@ class UserViewController: BaseContentViewController {
         removeLoaderView()
         updateActionButton()
     }
-    
+
     func updateImage() {
         if user!.avatarURL == nil { return }
-        
+
         Alamofire.request(user!.avatarURL!, method: .get)
             .validate()
-            .responseImage
-        { response in
+            .responseImage { response in
             switch response.result {
             case .success(let image):
                 self.avatarView.image = image
@@ -192,21 +191,21 @@ class UserViewController: BaseContentViewController {
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error as NSError)
             }
-        }
+            }
     }
-    
+
     func updateUsername() {
         usernameTextField.stringValue = user!.username
     }
-    
+
     func updateFavoritesCount() {
         favoritesCountTextField.integerValue = user!.favoritesCount
     }
-    
+
     func updateFriendsCount() {
         friendsCountTextField.integerValue = user!.followersCount
     }
-    
+
     func loadPlaylist() {
         tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "User/Tracks")
 		addChild(tracksViewController)
@@ -216,7 +215,7 @@ class UserViewController: BaseContentViewController {
         }
         tracksViewController.dataSource = UserTracksDataSource(viewController: tracksViewController, username: user!.username)
     }
-    
+
     func updateActionButton() {
         if user!.friend! == true {
 			navigationItem!.rightButton!.state = .on
@@ -224,11 +223,11 @@ class UserViewController: BaseContentViewController {
 			navigationItem!.rightButton!.state = .off
         }
     }
-    
+
 	@objc func followButtonClicked(_ sender: ActionButton) {
         HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username) { response in
 			let favoritedState = sender.state == .on
-            
+
             switch response.result {
             case .success(let favorited):
                 if favorited != favoritedState {
@@ -237,28 +236,28 @@ class UserViewController: BaseContentViewController {
             case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
-                
+
 				sender.state = sender.state == .off ? .on : .off
             }
         }
     }
-    
+
     // MARK: BaseContentViewController
-    
+
     override func addLoaderView() {
         loaderViewController = LoaderViewController(size: .small)
-        let insets = NSEdgeInsetsMake(0, 0, 1, 0)
+        let insets = NSEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
         header.addSubview(loaderViewController!.view)
         loaderViewController!.view.snp.makeConstraints { make in
             make.edges.equalTo(self.header).inset(insets)
         }
     }
-    
+
     override func refresh() {
         tracksViewController.refresh()
     }
-    
+
     override var shouldShowStickyTrack: Bool {
-        return false
+        false
     }
 }
