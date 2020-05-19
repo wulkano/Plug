@@ -14,7 +14,7 @@ class PreferencesWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     
-        window!.titleVisibility = NSWindowTitleVisibility.visible
+		window!.titleVisibility = NSWindow.TitleVisibility.visible
         
         trafficButtons = TrafficButtons(style: .light, groupIdentifier: "PreferencesWindow")
         trafficButtons.addButtonsToWindow(window!, origin: NSMakePoint(10, 8))

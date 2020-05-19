@@ -15,7 +15,7 @@ func appFont(size: CGFloat) -> NSFont {
 
 func appFont(size: CGFloat, weight: AppFontWeight) -> NSFont {
     if #available(OSX 10.11, *) {
-        return NSFont.systemFont(ofSize: size, weight: weight.NSFontWeight)
+		return NSFont.systemFont(ofSize: size, weight: NSFont.Weight(rawValue: weight.NSFontWeight))
     } else {
         var fontName = "HelveticaNeue"
         
@@ -36,11 +36,11 @@ enum AppFontWeight {
         if #available(OSX 10.11, *) {
             switch self {
             case .regular:
-                return NSFontWeightRegular
+				return NSFont.Weight.regular.rawValue
             case .medium:
-                return NSFontWeightMedium
+				return NSFont.Weight.medium.rawValue
             case .bold:
-                return NSFontWeightBold
+				return NSFont.Weight.bold.rawValue
             }
         } else {
             fatalError("This function is not available on your platform")

@@ -42,7 +42,7 @@ class MainViewController:
         view = NSView(frame: NSZeroRect)
         
         let sidebarViewController = SidebarViewController(delegate: self)!
-        addChildViewController(sidebarViewController)
+		addChild(sidebarViewController)
         view.addSubview(sidebarViewController.view)
         sidebarViewController.view.snp.makeConstraints { make in
             make.width.equalTo(69)
@@ -53,7 +53,7 @@ class MainViewController:
         
         navigationController = NavigationController(rootViewController: nil)
         NavigationController.sharedInstance = navigationController
-        addChildViewController(navigationController)
+		addChild(navigationController)
         view.addSubview(navigationController.view)
         navigationController.view.snp.makeConstraints { make in
             make.top.equalTo(self.view)
@@ -63,7 +63,7 @@ class MainViewController:
         }
         
         let footerViewController = FooterViewController()
-        addChildViewController(footerViewController)
+		addChild(footerViewController)
         view.addSubview(footerViewController.view)
         footerViewController.view.snp.makeConstraints { make in
             make.height.equalTo(47)
@@ -85,18 +85,18 @@ class MainViewController:
         updateUIForSection(section)
     }
     
-    func displayError(_ notification: Notification) {
+	@objc func displayError(_ notification: Notification) {
         let error = (notification as NSNotification).userInfo!["error"] as! NSError
         let displayErrorViewController = DisplayErrorViewController(error: error)
         
-        addChildViewController(displayErrorViewController!)
+		addChild(displayErrorViewController!)
         navigationController.contentView.addSubview((displayErrorViewController?.view)!)
         
         displayErrorViewController?.setupLayoutInSuperview()
         displayErrorViewController?.animateIn()
         displayErrorViewController?.animateOutWithDelay(4, completionHandler: {
             displayErrorViewController?.view.removeFromSuperview()
-            displayErrorViewController?.removeFromParentViewController()
+			displayErrorViewController?.removeFromParent()
         })
     }
     
@@ -106,31 +106,31 @@ class MainViewController:
         navigationController.setViewControllers([newViewController], animated: false)
     }
     
-    func popularSectionModeChanged(_ sender: NSMenuItem) {
+	@objc func popularSectionModeChanged(_ sender: NSMenuItem) {
         let mode = PopularSectionMode(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = PopularTracksDataSource(viewController: viewController, mode: mode)
     }
     
-    func feedSectionModeChanged(_ sender: NSMenuItem) {
+	@objc func feedSectionModeChanged(_ sender: NSMenuItem) {
         let mode = FeedSectionMode(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = FeedTracksDataSource(viewController: viewController, mode: mode)
     }
     
-    func searchSectionSortChanged(_ sender: NSMenuItem) {
+	@objc func searchSectionSortChanged(_ sender: NSMenuItem) {
         let sort = SearchSectionSort(rawValue: sender.title)!
         let viewController = currentViewController as! SearchViewController
         viewController.sort = sort
     }
     
-    func favoritesSectionPlaylistChanged(_ sender: NSMenuItem) {
+	@objc func favoritesSectionPlaylistChanged(_ sender: NSMenuItem) {
         let playlist = FavoritesSectionPlaylist(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = FavoriteTracksDataSource(viewController: viewController, playlist: playlist)
     }
     
-    func latestSectionModeChanged(_ sender: NSMenuItem) {
+	@objc func latestSectionModeChanged(_ sender: NSMenuItem) {
         let mode = LatestSectionMode(rawValue: sender.title)!
         let viewController = currentViewController as! TracksViewController
         viewController.dataSource = LatestTracksDataSource(viewController: viewController, mode: mode)

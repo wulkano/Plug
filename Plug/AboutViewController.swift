@@ -71,12 +71,12 @@ class AboutViewController: NSViewController {
     
     // MARK: Actions
     
-    func glennLinkClicked(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "http://www.twitter.com/glennui")!)
+	@objc func glennLinkClicked(_ sender: NSButton) {
+		NSWorkspace.shared.open(URL(string: "http://www.twitter.com/glennui")!)
     }
 
-    func alexLinkClicked(_ sender: NSButton) {
-        NSWorkspace.shared().open(URL(string: "http://www.twitter.com/alex_marchant")!)
+	@objc func alexLinkClicked(_ sender: NSButton) {
+		NSWorkspace.shared.open(URL(string: "http://www.twitter.com/alex_marchant")!)
     }
 
     // MARK: NSViewController

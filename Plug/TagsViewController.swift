@@ -68,11 +68,11 @@ class TagsViewController: DataSourceViewController {
     
     func tagCellView(_ tableView: NSTableView) -> TagTableCellView {
         let id = "TagTableCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? TagTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? TagTableCellView
         
         if cellView == nil {
             cellView = TagTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             cellView!.nameTextField = NSTextField()
             cellView!.nameTextField.isEditable = false
@@ -101,11 +101,11 @@ class TagsViewController: DataSourceViewController {
     
     func tagRowView(_ tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
+		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
-            rowView!.identifier = id
+			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             rowView!.separatorSpacing = 21
             
             if let nextItem = itemAfterRow(row) {
@@ -125,7 +125,7 @@ class TagsViewController: DataSourceViewController {
     
     // MARK: Actions
     
-    func searchFieldSubmit(_ sender: NSSearchField) {
+	@objc func searchFieldSubmit(_ sender: NSSearchField) {
         tagsDataSource!.searchKeywords = sender.stringValue
     }
     
@@ -147,7 +147,7 @@ class TagsViewController: DataSourceViewController {
     override func loadView() {
         super.loadView()
         
-        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+		let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)
         view.addSubview(searchHeaderController.view)
         searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)

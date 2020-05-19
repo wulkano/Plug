@@ -11,8 +11,6 @@
 
 import Foundation
 import IOKit.pwr_mgt
-import PreventSleep
-import Swignals
 
 class KeepAwake: NSObject {
     class var sharedInstance: KeepAwake {

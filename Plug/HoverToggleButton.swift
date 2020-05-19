@@ -61,7 +61,7 @@ class HoverToggleButton: NSButton {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
+		let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
         trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }

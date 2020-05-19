@@ -46,7 +46,7 @@ class DisplayErrorViewController: NSViewController {
         errorTitleTextField.drawsBackground = false
         errorTitleTextField.lineBreakMode = .byWordWrapping
         errorTitleTextField.font = appFont(size: 14, weight: .medium)
-        errorTitleTextField.setContentCompressionResistancePriority(490, for: .horizontal)
+		errorTitleTextField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
         errorTitleTextField.textColor = NSColor.white
         view.addSubview(errorTitleTextField)
         errorTitleTextField.snp.makeConstraints { make in
@@ -63,7 +63,7 @@ class DisplayErrorViewController: NSViewController {
         errorDescriptionTextField.drawsBackground = false
         errorDescriptionTextField.lineBreakMode = .byWordWrapping
         errorDescriptionTextField.font = appFont(size: 13)
-        errorDescriptionTextField.setContentCompressionResistancePriority(490, for: .horizontal)
+		errorDescriptionTextField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
         errorDescriptionTextField.textColor = NSColor.white
         view.addSubview(errorDescriptionTextField)
         errorDescriptionTextField.snp.makeConstraints { make in
@@ -102,7 +102,7 @@ class DisplayErrorViewController: NSViewController {
             { context in
                 context.duration = 0.25
                 context.allowsImplicitAnimation = true
-                context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+				context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
                 self.view.superview!.layoutSubtreeIfNeeded()
             }, completionHandler: nil)
     }
@@ -121,7 +121,7 @@ class DisplayErrorViewController: NSViewController {
                 { context in
                     context.duration = 0.25
                     context.allowsImplicitAnimation = true
-                    context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+					context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
                     self.view.superview!.layoutSubtreeIfNeeded()
                 }, completionHandler: {
                     completionHandler()

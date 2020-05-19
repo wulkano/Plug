@@ -38,17 +38,17 @@ class SingleBlogViewFormatter: Formatter {
         return NSAttributedString(string: text, attributes: labelAttributes())
     }
     
-    func countAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = getCountColor()
-        attributes[NSFontAttributeName] = getFont()
+    func countAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
+		attributes[.foregroundColor] = getCountColor()
+		attributes[.font] = getFont()
         return attributes
     }
     
-    func labelAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = getLabelColor()
-        attributes[NSFontAttributeName] = getFont()
+    func labelAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
+		attributes[.foregroundColor] = getLabelColor()
+		attributes[.font] = getFont()
         return attributes
     }
     

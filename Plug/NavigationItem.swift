@@ -37,7 +37,7 @@ class NavigationItem: NSObject {
         button.cell = cell
         button.onStateTitle = onStateTitle
         button.offStateTitle = offStateTitle
-        button.state = NSOffState
+		button.state = .off
         button.bezelStyle = .regularSquare
         button.isBordered = true
         button.font = appFont(size: 13, weight: .medium)
@@ -58,7 +58,7 @@ class NavigationItem: NSObject {
         button.cell = buttonCell
         button.autoenablesItems = true
         button.preferredEdge = NSRectEdge.maxY
-        button.setContentCompressionResistancePriority(490, for: .horizontal)
+		button.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
         button.lineBreakMode = .byTruncatingMiddle
         button.menu = menu
         

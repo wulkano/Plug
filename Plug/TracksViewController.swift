@@ -8,7 +8,6 @@
 
 import Cocoa
 import HypeMachineAPI
-import Swignals
 
 class TracksViewController: DataSourceViewController {
     let type: TracksViewControllerType
@@ -74,11 +73,11 @@ class TracksViewController: DataSourceViewController {
     
     func heatMapCellView(_ tableView: NSTableView) -> HeatMapTrackTableCellView {
         let id = "HeatMapTrackTableCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? HeatMapTrackTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? HeatMapTrackTableCellView
         
         if cellView == nil {
             cellView = HeatMapTrackTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             setupTrackCellView(cellView!)
             setupHeatMapCellView(cellView!)
@@ -89,11 +88,11 @@ class TracksViewController: DataSourceViewController {
     
     func loveCountCellView(_ tableView: NSTableView) -> LoveCountTrackTableCellView {
         let id = "LoveCountTrackTableCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? LoveCountTrackTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? LoveCountTrackTableCellView
         
         if cellView == nil {
             cellView = LoveCountTrackTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             setupTrackCellView(cellView!)
             setupLoveCountCellView(cellView!)
@@ -104,11 +103,11 @@ class TracksViewController: DataSourceViewController {
     
     func feedCellView(_ tableView: NSTableView) -> FeedTrackTableCellView {
         let id = "FeedTrackTableCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? FeedTrackTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? FeedTrackTableCellView
         
         if cellView == nil {
             cellView = FeedTrackTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             setupTrackCellView(cellView!)
             setupLoveCountCellView(cellView!)
@@ -359,7 +358,7 @@ class TracksViewController: DataSourceViewController {
         }
         
         let row = tracksDataSource.indexOfTrack(track)!
-        let firstVisibleRow = tableView.visibleRows[0] ?? 0
+		let firstVisibleRow = tableView.visibleRows[0] 
         let firstFullyVisibleRow = isTableViewRowFullyVisible(firstVisibleRow) ? firstVisibleRow : firstVisibleRow+1
         return row < firstFullyVisibleRow ? .top : .bottom
     }
@@ -406,7 +405,7 @@ class TracksViewController: DataSourceViewController {
     
     // MARK: NSTableViewDelegate
     
-    func tableView(_ tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         switch type {
         case .heatMap:
             return heatMapCellView(tableView)
@@ -419,11 +418,11 @@ class TracksViewController: DataSourceViewController {
     
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
+		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
-            rowView!.identifier = id
+			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             rowView!.separatorSpacing = 74
         }
         

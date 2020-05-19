@@ -28,9 +28,9 @@ class PreferencesViewController: NSViewController {
         ]
         for tab in allTabs {
             if tab === sender {
-                tab?.state = NSOnState
+				tab?.state = .on
             } else {
-                tab?.state = NSOffState
+				tab?.state = .off
             }
         }
     }
@@ -43,7 +43,7 @@ class PreferencesViewController: NSViewController {
     func ensureTabViewController() {
         if tabViewController != nil { return }
         
-        for controller in childViewControllers {
+		for controller in children {
             if controller is NSTabViewController {
                 tabViewController = controller as? NSTabViewController
             }

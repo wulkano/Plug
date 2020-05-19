@@ -17,7 +17,7 @@ class SearchViewController: BaseContentViewController {
     var tracksViewController: TracksViewController?
     var dataSource: TracksDataSource?
     
-    func searchFieldSubmit(_ sender: NSSearchField) {
+	@objc func searchFieldSubmit(_ sender: NSSearchField) {
         let keywords = sender.stringValue
         if keywords == "" { return }
 
@@ -28,7 +28,7 @@ class SearchViewController: BaseContentViewController {
     func ensurePlaylistViewController() {
         if tracksViewController == nil {
             tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Search/Tracks")
-            addChildViewController(tracksViewController!)
+			addChild(tracksViewController!)
             searchResultsView.addSubview(tracksViewController!.view)
             tracksViewController!.view.snp.makeConstraints { make in
                 make.edges.equalTo(searchResultsView)
@@ -48,7 +48,7 @@ class SearchViewController: BaseContentViewController {
     override func loadView() {
         super.loadView()
         
-        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+		let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)
         view.addSubview(searchHeaderController.view)
         searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)

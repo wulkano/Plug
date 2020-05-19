@@ -24,10 +24,10 @@ class VibrantSecureTextField: NSSecureTextField {
         placeholderAttributedString = newAttributedPlaceholderString
     }
     
-    func placeholderAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = NSColor.white.withAlphaComponent(0.2)
-        attributes[NSFontAttributeName] = (cell as! NSSecureTextFieldCell).font
+	func placeholderAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
+		attributes[.foregroundColor] = NSColor.white.withAlphaComponent(0.2)
+		attributes[.font] = (cell as! NSSecureTextFieldCell).font
         return attributes
     }
 }

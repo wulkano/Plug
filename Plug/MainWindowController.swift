@@ -93,14 +93,14 @@ extension MainWindowController {
     
     // MARK: TouchBar playback controls
     
-    func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+	@objc func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         AudioPlayer.sharedInstance.playPauseToggle()
         nowPlayingInfoCenter.playbackState = AudioPlayer.sharedInstance.playing ? .playing : .paused
         
         return .success
     }
     
-    func changePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
+	@objc func changePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
         guard
             let duration = self.nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] as? Double
             else { return .noActionableNowPlayingItem }
@@ -111,13 +111,13 @@ extension MainWindowController {
         return .success
     }
     
-    func previousTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+	@objc func previousTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         AudioPlayer.sharedInstance.skipBackward()
         
         return .success
     }
     
-    func nextTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+	@objc func nextTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         AudioPlayer.sharedInstance.skipForward()
         
         return .success
@@ -125,7 +125,7 @@ extension MainWindowController {
     
     // MARK: TouchBar info refresh
     
-    func updateNowPlayingInfo(_ notification: Notification) {
+	@objc func updateNowPlayingInfo(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         
         // First reset the playback state
@@ -144,15 +144,15 @@ extension MainWindowController {
         nowPlayingInfoCenter.playbackState = AudioPlayer.sharedInstance.playing ? .playing : .paused
     }
     
-    func updateNowPlayingInfoCenterPlaybackStatePlaying(_ notification: Notification) {
+	@objc func updateNowPlayingInfoCenterPlaybackStatePlaying(_ notification: Notification) {
         nowPlayingInfoCenter.playbackState = .playing
     }
     
-    func updateNowPlayingInfoCenterPlaybackStatePaused(_ notification: Notification) {
+	@objc func updateNowPlayingInfoCenterPlaybackStatePaused(_ notification: Notification) {
         nowPlayingInfoCenter.playbackState = .paused
     }
     
-    func updateNowPlayingInfoElapsedPlaybackTime(_ notification: Notification) {
+	@objc func updateNowPlayingInfoElapsedPlaybackTime(_ notification: Notification) {
         let progress = ((notification as NSNotification).userInfo!["progress"] as! NSNumber).doubleValue
         let duration = ((notification as NSNotification).userInfo!["duration"] as! NSNumber).doubleValue
         self.nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progress

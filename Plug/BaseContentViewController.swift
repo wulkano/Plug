@@ -14,8 +14,8 @@ class BaseContentViewController: NSViewController {
     let analyticsViewName: String
     var loaderViewController: LoaderViewController?
     var navigationItem: NavigationItem!
-    var tableViewInsets: EdgeInsets {
-        return EdgeInsets(top: 0, left: 0, bottom: 47, right: 0) // Play controls
+	var tableViewInsets: NSEdgeInsets {
+		return NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0) // Play controls
     }
     
     init?(title: String, analyticsViewName: String) {
@@ -51,7 +51,7 @@ class BaseContentViewController: NSViewController {
     func addLoaderView() {
         if loaderViewController == nil {
             loaderViewController = LoaderViewController(size: .large)
-            let insets = EdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
+			let insets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
             view.addSubview(loaderViewController!.view)
             loaderViewController!.view.snp.makeConstraints { make in
                 make.edges.equalTo(self.view).inset(insets)
@@ -66,7 +66,7 @@ class BaseContentViewController: NSViewController {
         }
     }
     
-    func refresh() {
+	@objc func refresh() {
         fatalError("refresh() not implemented")
     }
     
@@ -142,7 +142,7 @@ class BaseContentViewController: NSViewController {
     
     // MARK: Notifications
     
-    func newCurrentTrack(_ notification: Notification) {
+	@objc func newCurrentTrack(_ notification: Notification) {
         let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
         updateStickyTrack(track)
         

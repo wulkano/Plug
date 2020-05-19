@@ -27,7 +27,7 @@ class PostInfoTextField: NSTextField {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
+		let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
         trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }
@@ -49,17 +49,17 @@ class PostInfoTextField: NSTextField {
     func updateText() {
         if mouseInside {
             let contents = NSMutableAttributedString(attributedString: attributedStringValue)
-            contents.enumerateAttribute(NSLinkAttributeName, in: NSMakeRange(0, contents.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired , using: { value, range, stop in
+			contents.enumerateAttribute(NSAttributedString.Key.link, in: NSMakeRange(0, contents.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired , using: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+					contents.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
                 }
             })
             attributedStringValue = contents
         } else {
             let contents = NSMutableAttributedString(attributedString: attributedStringValue)
-            contents.enumerateAttribute(NSLinkAttributeName, in: NSMakeRange(0, contents.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired , using: { value, range, stop in
+			contents.enumerateAttribute(NSAttributedString.Key.link, in: NSMakeRange(0, contents.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired , using: { value, range, stop in
                 if value != nil {
-                    contents.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleNone.rawValue, range: range)
+					contents.addAttribute(NSAttributedString.Key.underlineStyle, value: 0, range: range)
                 }
             })
             attributedStringValue = contents

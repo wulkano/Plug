@@ -33,7 +33,7 @@ class PostInfoFormatter: Formatter {
     fileprivate func attributedDatePosted(_ datePosted: Date, url: URL) -> NSAttributedString {
         let string = formattedDatePosted(datePosted)
         var dateAttributes = boldAttributes()
-        dateAttributes[NSLinkAttributeName] = url.absoluteString as AnyObject?
+		dateAttributes[.link] = url.absoluteString as AnyObject?
         return NSAttributedString(string: string, attributes: dateAttributes)
     }
     
@@ -54,21 +54,21 @@ class PostInfoFormatter: Formatter {
         return dateComponents.year == todayComponents.year
     }
     
-    fileprivate func normalAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
+    fileprivate func normalAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
         let color = NSColor.white.withAlphaComponent(0.5)
         let font = appFont(size: 13)
-        attributes[NSForegroundColorAttributeName] = color
-        attributes[NSFontAttributeName] = font
+		attributes[.foregroundColor] = color
+		attributes[.font] = font
         return attributes
     }
     
-    fileprivate func boldAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
+    fileprivate func boldAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
         let color = NSColor.white
         let font = appFont(size: 13, weight: .medium)
-        attributes[NSForegroundColorAttributeName] = color
-        attributes[NSFontAttributeName] = font
+		attributes[.foregroundColor] = color
+		attributes[.font] = font
         return attributes
     }
 }

@@ -22,7 +22,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
         tableView = ExtendedTableView()
         tableView.headerView = nil
         tableView.intercellSpacing = NSSize(width: 0, height: 0)
-        let column = NSTableColumn(identifier: "Col0")
+		let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "Col0"))
         tableView.addTableColumn(column)
         
         scrollView.documentView = tableView
@@ -43,11 +43,11 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     
     func sectionHeaderCellView(_ tableView: NSTableView) -> SectionHeaderTableCellView {
         let id = "SectionHeaderCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? SectionHeaderTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? SectionHeaderTableCellView
         
         if cellView == nil {
             cellView = SectionHeaderTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             cellView!.titleTextField = NSTextField()
             cellView!.titleTextField.isEditable = false
@@ -69,11 +69,11 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
     
     func groupRowView(_ tableView: NSTableView) -> GroupRowView {
         let id = "GroupRowID"
-        var rowView = tableView.make(withIdentifier: id, owner: self) as? GroupRowView
+		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? GroupRowView
         
         if rowView == nil {
             rowView = GroupRowView()
-            rowView!.identifier = id
+			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
         }
         
         return rowView!

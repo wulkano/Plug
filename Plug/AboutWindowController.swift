@@ -13,8 +13,8 @@ class AboutWindowController: NSWindowController {
     convenience init() {
         let aboutWindow = NSWindow(
             contentRect: NSZeroRect,
-            styleMask: [NSWindowStyleMask.titled, NSWindowStyleMask.miniaturizable, NSWindowStyleMask.closable],
-            backing: NSBackingStoreType.buffered,
+			styleMask: [NSWindow.StyleMask.titled, NSWindow.StyleMask.miniaturizable, NSWindow.StyleMask.closable],
+			backing: NSWindow.BackingStoreType.buffered,
             defer: false
         )
         aboutWindow.contentViewController = AboutViewController(nibName: nil, bundle: nil)

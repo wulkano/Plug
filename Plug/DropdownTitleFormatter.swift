@@ -10,7 +10,7 @@ import Cocoa
 
 class DropdownTitleFormatter: Formatter {
     
-    override func attributedString(for obj: Any, withDefaultAttributes attrs: [String : Any]?) -> NSAttributedString? {
+    override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]?) -> NSAttributedString? {
         return attributedDropdownTitle("Popular", optionTitle: "Now")
     }
     
@@ -37,17 +37,17 @@ class DropdownTitleFormatter: Formatter {
         return NSAttributedString(string: " (\(optionTitle))", attributes: optionTitleAttributes())
     }
     
-    fileprivate func viewTitleAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = NSColor(red256: 0, green256: 0, blue256: 0)
-        attributes[NSFontAttributeName] = getFont()
+    fileprivate func viewTitleAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
+		attributes[.foregroundColor] = NSColor(red256: 0, green256: 0, blue256: 0)
+		attributes[.font] = getFont()
         return attributes
     }
     
-    fileprivate func optionTitleAttributes() -> [String: AnyObject] {
-        var attributes = [String: AnyObject]()
-        attributes[NSForegroundColorAttributeName] = NSColor(white: 0, alpha: 0.4)
-        attributes[NSFontAttributeName] = getFont()
+    fileprivate func optionTitleAttributes() -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
+		attributes[.foregroundColor] = NSColor(white: 0, alpha: 0.4)
+		attributes[.font] = getFont()
         return attributes
     }
     

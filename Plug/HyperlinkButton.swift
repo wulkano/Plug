@@ -40,21 +40,21 @@ class HyperlinkButton: NSButton {
     }
     
     func setup() {
-        setButtonType(NSButtonType.momentaryPushIn)
-        bezelStyle = NSBezelStyle.rounded
+		setButtonType(NSButton.ButtonType.momentaryPushIn)
+		bezelStyle = NSButton.BezelStyle.rounded
     }
     
     func applyAttributes() {
-        var attributes = [String: AnyObject]()
+        var attributes = [NSAttributedString.Key: Any]()
         if selected {
-            attributes[NSForegroundColorAttributeName] = selectedTextColor
+			attributes[.foregroundColor] = selectedTextColor
         } else {
-            attributes[NSForegroundColorAttributeName] = textColor
+			attributes[.foregroundColor] = textColor
         }
-        attributes[NSFontAttributeName] = (cell as! NSButtonCell).font
-        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+		attributes[.font] = (cell as! NSButtonCell).font
+		let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.lineBreakMode = (cell as! NSButtonCell).lineBreakMode
-        attributes[NSParagraphStyleAttributeName] = paragraphStyle
+		attributes[.paragraphStyle] = paragraphStyle
         let coloredString = NSMutableAttributedString(string: title, attributes: attributes)
         attributedTitle = coloredString
     }
@@ -78,7 +78,7 @@ class HyperlinkButton: NSButton {
                 trackingArea = nil
             }
             
-            let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
+			let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea!)
         }
@@ -103,14 +103,14 @@ class HyperlinkButton: NSButton {
     func addUnderlineToText() {
         let range = NSMakeRange(0, attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
+		newAttributedTitle.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
         attributedTitle = newAttributedTitle
     }
     
     func removeUnderlineFromText() {
         let range = NSMakeRange(0, attributedTitle.length)
         let newAttributedTitle = NSMutableAttributedString(attributedString: attributedTitle)
-        newAttributedTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleNone.rawValue, range: range)
+		newAttributedTitle.addAttribute(NSAttributedString.Key.underlineStyle, value: 0, range: range)
         attributedTitle = newAttributedTitle
     }
 }

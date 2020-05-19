@@ -27,13 +27,13 @@ class FlatSliderCell: NSSliderCell {
         barFillRect.size.width = knobCenterX - inset
         barFillRect.origin.x = inset
         barFillColor.set()
-        NSRectFillUsingOperation(barFillRect, NSCompositingOperation.sourceOver)
+        barFillRect.fill(using: .sourceOver)
         
         var barRect = aRect
         barRect.origin.x = knobCenterX
         barRect.size.width = barRect.size.width - knobCenterX - inset + 2.5
         barColor.set()
-        NSRectFillUsingOperation(barRect, NSCompositingOperation.sourceOver)
+        barRect.fill(using: .sourceOver)
     }
     
     override func drawKnob(_ knobRect: NSRect) {

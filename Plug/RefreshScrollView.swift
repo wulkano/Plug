@@ -45,7 +45,7 @@ class RefreshScrollView: NSScrollView {
     }
     
     func loadRefreshView() {
-        refreshHeaderController = RefreshHeaderViewController(nibName: nil, bundle: nil)!
+		refreshHeaderController = RefreshHeaderViewController(nibName: nil, bundle: nil)
         refreshClipView.addSubview(refreshHeaderController.view)
         refreshHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(refreshHeaderController.viewHeight)
@@ -58,13 +58,13 @@ class RefreshScrollView: NSScrollView {
         if !scrollEnabled { return }
         
         switch theEvent.phase {
-        case NSEventPhase.changed:
+		case NSEvent.Phase.changed:
             if scrolledPastTopOfRefreshHeader() {
                 refreshHeaderController.state = .releaseToRefresh
             } else {
                 refreshHeaderController.state = .pullToRefresh
             }
-        case NSEventPhase.ended:
+		case NSEvent.Phase.ended:
             if refreshHeaderController.state == .releaseToRefresh {
                 startRefresh()
             }
@@ -96,15 +96,15 @@ class RefreshScrollView: NSScrollView {
     }
     
     func contentViewWillChange() {
-        Notifications.unsubscribe(observer: self, name: NSNotification.Name.NSViewBoundsDidChange, object: contentView)
+		Notifications.unsubscribe(observer: self, name: NSView.boundsDidChangeNotification, object: contentView)
     }
     
     func contentViewChanged() {
         contentView.postsFrameChangedNotifications = true
-        Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSNotification.Name.NSViewBoundsDidChange, object: contentView)
+		Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSView.boundsDidChangeNotification, object: contentView)
     }
     
-    func contentViewBoundsDidChange(_ notification: Notification) {
+	@objc func contentViewBoundsDidChange(_ notification: Notification) {
         boundsChangedDelegate?.scrollViewBoundsDidChange(notification)
     }
 }

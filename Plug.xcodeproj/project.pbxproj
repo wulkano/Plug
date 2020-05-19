@@ -3,11 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */; };
+		E34A8F6A2473D52A00233A68 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = E34A8F482473D52900233A68 /* LICENSE.md */; };
+		E34A8F732473D52A00233A68 /* Swignal3Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5A2473D52900233A68 /* Swignal3Args.swift */; };
+		E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */; };
+		E34A8F752473D52A00233A68 /* Swignal5Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5C2473D52900233A68 /* Swignal5Args.swift */; };
+		E34A8F762473D52A00233A68 /* Swignal2Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5D2473D52900233A68 /* Swignal2Args.swift */; };
+		E34A8F772473D52A00233A68 /* Swignal4Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5E2473D52900233A68 /* Swignal4Args.swift */; };
+		E34A8F782473D52A00233A68 /* Swignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5F2473D52900233A68 /* Swignal.swift */; };
+		E34A8F792473D52A00233A68 /* Swignal0Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F602473D52900233A68 /* Swignal0Args.swift */; };
+		E34A8F7B2473D52A00233A68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E34A8F622473D52A00233A68 /* README.md */; };
+		E34A8F7C2473D52A00233A68 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E34A8F632473D52A00233A68 /* .gitignore */; };
+		E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8FAD2473D66B00233A68 /* PreventSleep.swift */; };
 		F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
 		FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */; };
@@ -169,6 +180,20 @@
 		7F4BF4E22ADB52DCD3C33EBE /* Pods-Plug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.release.xcconfig"; sourceTree = "<group>"; };
 		88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepAwake.swift; sourceTree = "<group>"; };
 		BB3EA63AC6CD980E836036D5 /* Pods-Plug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plug/Pods-Plug.debug.xcconfig"; sourceTree = "<group>"; };
+		E34A8F482473D52900233A68 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		E34A8F5A2473D52900233A68 /* Swignal3Args.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal3Args.swift; sourceTree = "<group>"; };
+		E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal1Arg.swift; sourceTree = "<group>"; };
+		E34A8F5C2473D52900233A68 /* Swignal5Args.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal5Args.swift; sourceTree = "<group>"; };
+		E34A8F5D2473D52900233A68 /* Swignal2Args.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal2Args.swift; sourceTree = "<group>"; };
+		E34A8F5E2473D52900233A68 /* Swignal4Args.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal4Args.swift; sourceTree = "<group>"; };
+		E34A8F5F2473D52900233A68 /* Swignal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal.swift; sourceTree = "<group>"; };
+		E34A8F602473D52900233A68 /* Swignal0Args.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swignal0Args.swift; sourceTree = "<group>"; };
+		E34A8F622473D52A00233A68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E34A8F632473D52A00233A68 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E34A8FA12473D66B00233A68 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		E34A8FAA2473D66B00233A68 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E34A8FAD2473D66B00233A68 /* PreventSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventSleep.swift; sourceTree = "<group>"; };
+		E3C1BDA324742F8100F5E403 /* Plug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plug.entitlements; sourceTree = "<group>"; };
 		F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderViewController.swift; sourceTree = "<group>"; };
 		FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSectionButton.swift; sourceTree = "<group>"; };
@@ -354,6 +379,58 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E34A8F462473D51800233A68 /* Vendored */ = {
+			isa = PBXGroup;
+			children = (
+				E34A8F9F2473D66B00233A68 /* PreventSleep */,
+				E34A8F472473D52900233A68 /* Swignals */,
+			);
+			path = Vendored;
+			sourceTree = "<group>";
+		};
+		E34A8F472473D52900233A68 /* Swignals */ = {
+			isa = PBXGroup;
+			children = (
+				E34A8F482473D52900233A68 /* LICENSE.md */,
+				E34A8F592473D52900233A68 /* Source */,
+				E34A8F622473D52A00233A68 /* README.md */,
+				E34A8F632473D52A00233A68 /* .gitignore */,
+			);
+			path = Swignals;
+			sourceTree = "<group>";
+		};
+		E34A8F592473D52900233A68 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E34A8F5A2473D52900233A68 /* Swignal3Args.swift */,
+				E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */,
+				E34A8F5C2473D52900233A68 /* Swignal5Args.swift */,
+				E34A8F5D2473D52900233A68 /* Swignal2Args.swift */,
+				E34A8F5E2473D52900233A68 /* Swignal4Args.swift */,
+				E34A8F5F2473D52900233A68 /* Swignal.swift */,
+				E34A8F602473D52900233A68 /* Swignal0Args.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		E34A8F9F2473D66B00233A68 /* PreventSleep */ = {
+			isa = PBXGroup;
+			children = (
+				E34A8FA12473D66B00233A68 /* LICENSE.md */,
+				E34A8FAA2473D66B00233A68 /* README.md */,
+				E34A8FAC2473D66B00233A68 /* Sources */,
+			);
+			path = PreventSleep;
+			sourceTree = "<group>";
+		};
+		E34A8FAC2473D66B00233A68 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E34A8FAD2473D66B00233A68 /* PreventSleep.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		FA0742431B4BAFD700AA49D7 /* NSButtonCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +508,7 @@
 			children = (
 				FA24ED9E1974A9A500A781C8 /* Plug */,
 				FA24ED9D1974A9A500A781C8 /* Products */,
+				E34A8F462473D51800233A68 /* Vendored */,
 				8649AE136FF74B02AB61EE0C /* Frameworks */,
 				FA50F43E1DC13CE00062D70E /* Podfile */,
 				FA2CA63D1C13778A00D76C65 /* readme.md */,
@@ -449,6 +527,7 @@
 		FA24ED9E1974A9A500A781C8 /* Plug */ = {
 			isa = PBXGroup;
 			children = (
+				E3C1BDA324742F8100F5E403 /* Plug.entitlements */,
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
 				FA64C6A619764FE9003933E3 /* Globals.swift */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
@@ -816,19 +895,18 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Plug;
 				TargetAttributes = {
 					FA24ED9B1974A9A500A781C8 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = XM22JRGFT9;
 						LastSwiftMigration = 0800;
 					};
 				};
 			};
 			buildConfigurationList = FA24ED971974A9A500A781C8 /* Build configuration list for PBXProject "Plug" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 11.4";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -850,8 +928,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */,
+				E34A8F6A2473D52A00233A68 /* LICENSE.md in Resources */,
+				E34A8F7C2473D52A00233A68 /* .gitignore in Resources */,
 				FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */,
 				FA50F43F1DC13CE00062D70E /* Podfile in Resources */,
+				E34A8F7B2473D52A00233A68 /* README.md in Resources */,
 				FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */,
 				FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */,
 				FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */,
@@ -886,33 +967,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Plug/Pods-Plug-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/HypeMachineAPI/HypeMachineAPI.framework",
-				"${BUILT_PRODUCTS_DIR}/INAppStoreWindow/INAppStoreWindow.framework",
-				"${BUILT_PRODUCTS_DIR}/PreventSleep/PreventSleep.framework",
-				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
-				"${BUILT_PRODUCTS_DIR}/SimpleGoogleAnalytics/SimpleGoogleAnalytics.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swignals/Swignals.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plug/Pods-Plug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HypeMachineAPI.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/INAppStoreWindow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PreventSleep.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleGoogleAnalytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swignals.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plug/Pods-Plug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Plug/Pods-Plug-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plug/Pods-Plug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FA7404EA1B348E6E00684ADA /* ShellScript */ = {
@@ -950,7 +1014,9 @@
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FA4BF21519F601090078AB82 /* BlogTableCellView.swift in Sources */,
 				FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */,
+				E34A8F792473D52A00233A68 /* Swignal0Args.swift in Sources */,
 				FA53951219B0583D006A95A5 /* PostInfoFormatter.swift in Sources */,
+				E34A8F762473D52A00233A68 /* Swignal2Args.swift in Sources */,
 				FA5394FC19AFA903006A95A5 /* LoginButtonImageView.swift in Sources */,
 				FAACE4C619AC30C500F8E9E8 /* ForgotPasswordButtonCell.swift in Sources */,
 				FAEE914619BA3A3300D4274C /* ExtendedTableView.swift in Sources */,
@@ -976,6 +1042,7 @@
 				FA6ADCF719BA705300CCD371 /* SLColorArt.m in Sources */,
 				FA9A2F3319B66C760057080C /* NavigationBarController.swift in Sources */,
 				FA3986E419AB13F8001B216E /* HotkeysPreferencesViewController.swift in Sources */,
+				E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */,
 				FA5394FE19AFB24C006A95A5 /* LoginButton.swift in Sources */,
 				FA5394F419AF7339006A95A5 /* SwissArmyButtonCell.swift in Sources */,
 				FAA34A9519B2F0450038868A /* Async.swift in Sources */,
@@ -984,6 +1051,7 @@
 				FA53950419AFFE31006A95A5 /* HeatMapTrackTableCellView.swift in Sources */,
 				FA0B1D3E1977355B0030C873 /* ColorChangingTextField.swift in Sources */,
 				FA4BA99C1B5492BE00A983A5 /* TracksDataSource.swift in Sources */,
+				E34A8F732473D52A00233A68 /* Swignal3Args.swift in Sources */,
 				FA75E8291B56E6B10070FB1D /* NavigationItem.swift in Sources */,
 				FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */,
 				FA9EA045199B0F4200D9AB8A /* UsersDataSource.swift in Sources */,
@@ -1012,6 +1080,7 @@
 				FA117DEC1B31120C003F4E54 /* ActionButtonCell.swift in Sources */,
 				FA222A8619BCC947005A631F /* BaseContentViewController.swift in Sources */,
 				FAAC8DAE19E4A1A300B1231B /* TagContainerView.swift in Sources */,
+				E34A8F772473D52A00233A68 /* Swignal4Args.swift in Sources */,
 				FAF6F0961979F92900F2102B /* FlatSliderCell.swift in Sources */,
 				FAF13B2C199D4AD6009D9F66 /* TrackInfoViewController.swift in Sources */,
 				FA75E8211B5615480070FB1D /* AboutWindowController.swift in Sources */,
@@ -1021,6 +1090,7 @@
 				FABB112F19C10DD8000DB1BC /* String+digest.swift in Sources */,
 				FA4BF21719F609AE0078AB82 /* SectionHeaderTableCellView.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
+				E34A8F782473D52A00233A68 /* Swignal.swift in Sources */,
 				FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */,
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
 				FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */,
@@ -1028,6 +1098,7 @@
 				FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
 				FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */,
+				E34A8F752473D52A00233A68 /* Swignal5Args.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,
 				FA50280319C02EE800E3C84E /* Analytics.swift in Sources */,
@@ -1043,6 +1114,7 @@
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */,
+				E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */,
 				FA2519471C039E980075FBC6 /* FontHelper.swift in Sources */,
@@ -1085,18 +1157,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1119,11 +1200,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1131,18 +1213,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1159,9 +1250,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1171,10 +1263,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = Plug/Plug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2KEEHXF6R6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1182,18 +1278,21 @@
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.plug.$(PRODUCT_NAME:rfc1034identifier)2";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wulkano.Plug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Plug/Plug-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1203,9 +1302,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = Plug/Plug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2KEEHXF6R6;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1213,18 +1316,22 @@
 					"$(PROJECT_DIR)/Plug",
 				);
 				INFOPLIST_FILE = Plug/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.plug.$(PRODUCT_NAME:rfc1034identifier)2";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wulkano.Plug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "Plug/Plug-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};

@@ -67,8 +67,10 @@ extension String {
         for i in 0..<digestLen {
             hash.appendFormat("%02x", result[i])
         }
-        
-        result.deinitialize()
+
+		// FIXME: Error: `'deinitialize()' is unavailable: the default argument to deinitialize(count:) has been removed, please specify the count explicitly`
+        // result.deinitialize()
+
         return String(hash)
     }
 }

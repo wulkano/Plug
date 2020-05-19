@@ -21,7 +21,7 @@ class UsersViewController: DataSourceViewController {
     
     // MARK: Actions
     
-    func searchFieldSubmit(_ sender: NSSearchField) {
+	@objc func searchFieldSubmit(_ sender: NSSearchField) {
         usersDataSource!.searchKeywords = sender.stringValue
     }
     
@@ -30,7 +30,7 @@ class UsersViewController: DataSourceViewController {
     override func loadView() {
         super.loadView()
         
-        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+		let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)
         view.addSubview(searchHeaderController.view)
         searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)
@@ -70,11 +70,11 @@ class UsersViewController: DataSourceViewController {
     
     func tableView(_ tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let id = "UserTableCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? UserTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? UserTableCellView
         
         if cellView == nil {
             cellView = UserTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             cellView!.avatarView = CircleMaskImageView()
             cellView!.avatarView.image = NSImage(named: "Avatar-Placeholder")!
@@ -127,11 +127,11 @@ class UsersViewController: DataSourceViewController {
     
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
+		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
-            rowView!.identifier = id
+			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             rowView!.separatorSpacing = 73
         }
         

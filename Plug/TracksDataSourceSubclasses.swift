@@ -74,11 +74,11 @@ class FavoriteTracksDataSource: TracksDataSource {
             if (response.result.isSuccess &&
                 currentPage == 1) {
                 if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
-                    if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).index(of: currentTrack) {
+					if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).firstIndex(of: currentTrack) {
                         standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
                     }
                     standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, at: 0)
-                    viewController.tableView.insertRows(at: IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), withAnimation: NSTableViewAnimationOptions())
+					viewController.tableView.insertRows(at: IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), withAnimation: NSTableView.AnimationOptions())
                 }
             }
         }

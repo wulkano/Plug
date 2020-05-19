@@ -10,7 +10,6 @@ import Cocoa
 import AVFoundation
 import CoreMedia
 import HypeMachineAPI
-import Swignals
 
 typealias OnShuffleChangedSwignal = Swignal1Arg<Bool>
 typealias OnTrackPlaying = Swignal1Arg<Bool>
@@ -60,7 +59,9 @@ class AudioPlayer: NSObject {
     override init() {
         self.shuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
         super.init()
-        bind("volume", to: NSUserDefaultsController.shared(), withKeyPath: "values.volume", options: nil)
+
+		// FIXME: This crashes the app
+		//bind(NSBindingName(rawValue: "volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
     }
     
     deinit {
@@ -98,7 +99,7 @@ class AudioPlayer: NSObject {
             let foundTracks = findTracksWithTrackId(currentTrack!.id)
         else { return }
         
-        if foundTracks.index(of: currentTrack!) != NSNotFound {
+		if foundTracks.firstIndex(of: currentTrack!) != NSNotFound {
             // current track is already accurate
             return
         } else if let foundTrack = foundTracks.first {
@@ -166,12 +167,12 @@ class AudioPlayer: NSObject {
     }
     
     func seekToPercent(_ percent: Double) {
-        guard playerItem != nil && playerItem.status == AVPlayerItemStatus.readyToPlay
+		guard playerItem != nil && playerItem.status == AVPlayerItem.Status.readyToPlay
             else { return }
         
         seeking = true
         let seconds = percent * currentItemDuration()!
-        let time = CMTimeMakeWithSeconds(seconds, 1000)
+		let time = CMTimeMakeWithSeconds(seconds, preferredTimescale: 1000)
         player.seek(to: time, completionHandler: {success in
             self.seeking = false
             
@@ -184,26 +185,26 @@ class AudioPlayer: NSObject {
     
     // MARK : Notification listeners
     
-    func currentTrackFinishedPlayingNotification(_ notification: Notification) {
+	@objc func currentTrackFinishedPlayingNotification(_ notification: Notification) {
         print("currentTrackFinishedPlayingNotification")
         skipForward()
     }
     
-    func currentTrackCouldNotFinishPlayingNotification(_ notification: Notification) {
+	@objc func currentTrackCouldNotFinishPlayingNotification(_ notification: Notification) {
         let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
         currentTrackPlaybackError(error)
     }
     
-    func currentTrackPlaybackStalledNotification(_ notification: Notification) {
+	@objc func currentTrackPlaybackStalledNotification(_ notification: Notification) {
         let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
         currentTrackPlaybackError(error)
     }
     
-    func currentTrackNewAccessLogEntry(_ notification: Notification) {
+	@objc func currentTrackNewAccessLogEntry(_ notification: Notification) {
 //        print((notification.object as! AVPlayerItem).accessLog())
     }
     
-    func currentTrackNewErrorLogEntry(_ notification: Notification) {
+	@objc func currentTrackNewErrorLogEntry(_ notification: Notification) {
         print((notification.object as! AVPlayerItem).errorLog())
     }
     
@@ -213,7 +214,7 @@ class AudioPlayer: NSObject {
         skipForward()
     }
     
-    func didAVPlayerTimeout() {
+	@objc func didAVPlayerTimeout() {
         guard player != nil else { return }
         
         if let val = player.currentItem?.loadedTimeRanges.optionalAtIndex(0) {
@@ -284,7 +285,7 @@ class AudioPlayer: NSObject {
     }
     
     fileprivate func observeProgressUpdates() {
-        let thirdOfSecond = CMTimeMake(1, 3)
+		let thirdOfSecond = CMTimeMake(value: 1, timescale: 3)
         progressObserver = player.addPeriodicTimeObserver(forInterval: thirdOfSecond, queue: nil, using: progressUpdated) as AnyObject?
     }
     
@@ -353,7 +354,7 @@ class AudioPlayer: NSObject {
         
         var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         
-        while recentlyPlayedTrackIndexes.index(of: nextShuffleTrackIndex) != nil {
+		while recentlyPlayedTrackIndexes.firstIndex(of: nextShuffleTrackIndex) != nil {
             nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
         }
         

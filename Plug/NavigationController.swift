@@ -72,7 +72,7 @@ class NavigationController: NSViewController {
         }
         
         self._viewControllers.append(viewController)
-        self.addChildViewController(viewController)
+		self.addChild(viewController)
         self.updateVisibleViewControllerAnimated(animated)
         
         self.navigationBarController.pushNavigationItem(viewController.navigationItem, animated: animated)
@@ -87,7 +87,7 @@ class NavigationController: NSViewController {
         let poppedViewControllerIndex = self._viewControllers.count - 1
         let poppedViewController = self._viewControllers[poppedViewControllerIndex]
         self._viewControllers.remove(at: poppedViewControllerIndex)
-        poppedViewController.removeFromParentViewController()
+		poppedViewController.removeFromParent()
         self.updateVisibleViewControllerAnimated(animated)
         
         self.navigationBarController.popNavigationItemAnimated(animated)
@@ -100,9 +100,9 @@ class NavigationController: NSViewController {
             fatalError("Can't set viewControllers to empty array")
         }
         
-        self._viewControllers.forEach { $0.removeFromParentViewController() }
+		self._viewControllers.forEach { $0.removeFromParent() }
         self._viewControllers = newViewControllers
-        self._viewControllers.forEach { self.addChildViewController($0) }
+		self._viewControllers.forEach { self.addChild($0) }
         
         self.updateVisibleViewControllerAnimated(animated)
         
@@ -123,7 +123,7 @@ class NavigationController: NSViewController {
         self.contentView.addSubview(newVisibleViewController.view)
         
         if animated {
-            let isPushing = self._viewControllers.index(of: oldVisibleViewController) != nil
+			let isPushing = self._viewControllers.firstIndex(of: oldVisibleViewController) != nil
             self.constrainViewControllerToSideOfContentView(newVisibleViewController, side: isPushing ? .right : .left)
             self.contentView.layoutSubtreeIfNeeded()
             self.constrainViewControllerToContentView(newVisibleViewController)
@@ -165,7 +165,7 @@ class NavigationController: NSViewController {
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.25
             context.allowsImplicitAnimation = true
-            context.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+			context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             self.contentView.layoutSubtreeIfNeeded()
         }, completionHandler: {
             completionHandler()

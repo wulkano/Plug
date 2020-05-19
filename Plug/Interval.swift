@@ -26,7 +26,7 @@ class Interval : NSObject {
         self.timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(runClosure), userInfo: nil, repeats: repeats)
     }
     
-    func runClosure() {
+	@objc func runClosure() {
         closure()
     }
     

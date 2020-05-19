@@ -16,14 +16,14 @@ class UnderlinedTabButtonCell: NSButtonCell {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        highlightsBy = NSCellStyleMask.contentsCellMask
+		highlightsBy = NSCell.StyleMask.contentsCellMask
     }
     
     override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
-        if state == NSOnState {
+        if state == .on {
             let highlightRect = NSMakeRect(0, frame.size.height - hightlightWidth, frame.size.width, hightlightWidth)
             highlightColor.set()
-            NSRectFill(highlightRect)
+			highlightRect.fill()
         }
     }
     

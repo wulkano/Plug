@@ -75,7 +75,7 @@ class NavigationBarController: NSViewController {
         if items == nil || items!.count <= 1 { return nil}
         
         var poppedItems: [NavigationItem] = []
-        let topItemIndex = items!.index(of: item)
+		let topItemIndex = items!.firstIndex(of: item)
         
         if topItemIndex == nil {
             return nil
@@ -173,7 +173,7 @@ class NavigationBarController: NSViewController {
         textField.isBordered = false
         textField.drawsBackground = false
         textField.font = appFont(size: 14, weight: .medium)
-        textField.setContentCompressionResistancePriority(490, for: .horizontal)
+		textField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
         textField.lineBreakMode = .byTruncatingMiddle
         textField.stringValue = title
         return textField
@@ -201,7 +201,7 @@ class NavigationBarController: NSViewController {
     
     // MARK: Actions
     
-    func backButtonClicked(_ sender: NSButton) {
+	@objc func backButtonClicked(_ sender: NSButton) {
         navigationController.popViewControllerAnimated(true)
     }
 }

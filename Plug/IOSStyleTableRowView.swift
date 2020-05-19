@@ -25,7 +25,7 @@ class IOSStyleTableRowView: NSTableRowView {
         if shouldDrawSeparator() {
             let separatorRect = makeSeparatorRect(dirtyRect)
             customSeparatorColor.set()
-            NSRectFill(separatorRect)
+			separatorRect.fill()
         }
     }
 
@@ -63,6 +63,6 @@ class IOSStyleTableRowView: NSTableRowView {
     override func drawSelection(in dirtyRect: NSRect) {
         let selectionRect = bounds
         selectionColor.set()
-        NSRectFill(selectionRect)
+		selectionRect.fill()
     }
 }

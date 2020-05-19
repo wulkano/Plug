@@ -26,7 +26,7 @@ class StickyTrackViewController: TracksViewController {
         return self.view.superview != nil
     }
     
-    override var tableViewInsets: EdgeInsets {
+	override var tableViewInsets: NSEdgeInsets {
         return NSEdgeInsetsZero
     }
     
@@ -48,7 +48,7 @@ class StickyTrackViewController: TracksViewController {
         shadowView?.removeFromSuperview()
         
         scrollView.snp.remakeConstraints { make in
-            let insets = EdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
+			let insets = NSEdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
             make.edges.equalTo(self.view).inset(insets)
         }
         
@@ -68,7 +68,7 @@ class StickyTrackViewController: TracksViewController {
         shadowView?.removeFromSuperview()
         
         scrollView.snp.remakeConstraints { make in
-            let insets = EdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
+			let insets = NSEdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
             make.edges.equalTo(self.view).inset(insets)
         }
         

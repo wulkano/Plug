@@ -37,11 +37,11 @@ class BlogsViewController: DataSourceViewController {
     
     func blogCellView(_ tableView: NSTableView) -> BlogTableCellView {
         let id = "BlogTableCellViewID"
-        var cellView = tableView.make(withIdentifier: id, owner: self) as? BlogTableCellView
+		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? BlogTableCellView
         
         if cellView == nil {
             cellView = BlogTableCellView()
-            cellView!.identifier = id
+			cellView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             
             cellView!.nameTextField = NSTextField()
             cellView!.nameTextField.isEditable = false
@@ -101,11 +101,11 @@ class BlogsViewController: DataSourceViewController {
     
     func blogRowView(_ tableView: NSTableView, row: Int) -> IOSStyleTableRowView {
         let id = "IOSStyleTableRowViewID"
-        var rowView = tableView.make(withIdentifier: id, owner: self) as? IOSStyleTableRowView
+		var rowView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? IOSStyleTableRowView
         
         if rowView == nil {
             rowView = IOSStyleTableRowView()
-            rowView!.identifier = id
+			rowView!.identifier = NSUserInterfaceItemIdentifier(rawValue: id)
             rowView!.separatorSpacing = 21
             
             if let nextItem = itemAfterRow(row) {
@@ -125,7 +125,7 @@ class BlogsViewController: DataSourceViewController {
     
     // MARK: Actions
     
-    func searchFieldSubmit(_ sender: NSSearchField) {
+	@objc func searchFieldSubmit(_ sender: NSSearchField) {
         blogDataSource!.searchKeywords = sender.stringValue
     }
     
@@ -134,7 +134,7 @@ class BlogsViewController: DataSourceViewController {
     override func loadView() {
         super.loadView()
         
-        let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)!
+		let searchHeaderController = SearchHeaderViewController(nibName: nil, bundle: nil)
         view.addSubview(searchHeaderController.view)
         searchHeaderController.view.snp.makeConstraints { make in
             make.height.equalTo(52)

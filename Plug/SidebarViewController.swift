@@ -50,10 +50,10 @@ class SidebarViewController: NSViewController {
             make.bottom.lessThanOrEqualTo(superview).offset(-30)
         }
         
-        buttons[0].state = NSOnState
+        buttons[0].state = .on
     }
     
-    func navigationSectionButtonClicked(_ sender: NavigationSectionButton) {
+	@objc func navigationSectionButtonClicked(_ sender: NavigationSectionButton) {
         delegate.changeNavigationSection(sender.navigationSection)
         toggleAllButtonsOffExcept(sender)
     }
@@ -61,9 +61,9 @@ class SidebarViewController: NSViewController {
     func toggleAllButtonsOffExcept(_ sender: AnyObject) {
         for button in buttons {
             if button === sender {
-                button.state = NSOnState
+                button.state = .on
             } else {
-                button.state = NSOffState
+                button.state = .off
             }
         }
     }
@@ -74,7 +74,7 @@ class SidebarViewController: NSViewController {
         view = NSView(frame: NSZeroRect)
         
         let backgroundView = DraggableVisualEffectsView()
-        backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)

@@ -209,7 +209,7 @@ class UserViewController: BaseContentViewController {
     
     func loadPlaylist() {
         tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "User/Tracks")
-        addChildViewController(tracksViewController)
+		addChild(tracksViewController)
         playlistContainer.addSubview(tracksViewController.view)
         tracksViewController.view.snp.makeConstraints { make in
             make.edges.equalTo(playlistContainer)
@@ -219,26 +219,26 @@ class UserViewController: BaseContentViewController {
     
     func updateActionButton() {
         if user!.friend! == true {
-            navigationItem!.rightButton!.state = NSOnState
+			navigationItem!.rightButton!.state = .on
         } else {
-            navigationItem!.rightButton!.state = NSOffState
+			navigationItem!.rightButton!.state = .off
         }
     }
     
-    func followButtonClicked(_ sender: ActionButton) {
+	@objc func followButtonClicked(_ sender: ActionButton) {
         HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username) { response in
-            let favoritedState = sender.state == NSOnState
+			let favoritedState = sender.state == .on
             
             switch response.result {
             case .success(let favorited):
                 if favorited != favoritedState {
-                    sender.state = favorited ? NSOnState : NSOffState
+					sender.state = favorited ? .on : .off
                 }
             case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 
-                sender.state = sender.state == NSOffState ? NSOnState : NSOffState
+				sender.state = sender.state == .off ? .on : .off
             }
         }
     }

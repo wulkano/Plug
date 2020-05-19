@@ -19,7 +19,7 @@ class LoginButtonCell: SwissArmyButtonCell {
         let range = NSMakeRange(0, mutableTitle.length)
         let color = getTextColor()
         
-        mutableTitle.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+		mutableTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         
         return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
     }

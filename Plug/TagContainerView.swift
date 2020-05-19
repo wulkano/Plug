@@ -69,7 +69,7 @@ class TagContainerView: NSView {
     }
     
     func gradientLocationForTag(_ tag: HypeMachineAPI.Tag) -> CGFloat {
-        let index = tags.index(of: tag)!
+		let index = tags.firstIndex(of: tag)!
         return CGFloat(index) / CGFloat((tags.count - 1))
     }
     
@@ -81,13 +81,13 @@ class TagContainerView: NSView {
         return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))!
     }
     
-    func tagButtonClick(_ sender: TagButton) {
+	@objc func tagButtonClick(_ sender: TagButton) {
         let tag = tagForButton(sender)
         delegate.tagButtonClicked(tag)
     }
 
     func tagForButton(_ button: TagButton) -> HypeMachineAPI.Tag {
-        let index = buttons.index(of: button)!
+		let index = buttons.firstIndex(of: button)!
         return tags[index]
     }
 }

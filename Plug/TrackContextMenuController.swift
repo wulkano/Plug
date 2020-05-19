@@ -47,35 +47,35 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
     
     // MARK: Actions
     
-    func copyHypeMachineLinkClicked(_ sender: AnyObject) {
+	@objc func copyHypeMachineLinkClicked(_ sender: AnyObject) {
         let hypeMachineURL = track.hypeMachineURL().absoluteString
-        NSPasteboard.general().clearContents()
-        NSPasteboard.general().setString(hypeMachineURL, forType: NSStringPboardType)
+		NSPasteboard.general.clearContents()
+		NSPasteboard.general.setString(hypeMachineURL, forType: .string)
     }
     
-    func openHypeMachineLinkInBrowserClicked(_ sender: AnyObject) {
-        NSWorkspace.shared().open(track.hypeMachineURL())
+	@objc func openHypeMachineLinkInBrowserClicked(_ sender: AnyObject) {
+		NSWorkspace.shared.open(track.hypeMachineURL())
     }
     
-    func copySoundCloudLinkClicked(_ sender: AnyObject) {
+	@objc func copySoundCloudLinkClicked(_ sender: AnyObject) {
         let url = track.mediaURL()
         
         _ = SoundCloudPermalinkFinder(mediaURL: url,
             success: { (trackURL: URL) in
-                NSPasteboard.general().clearContents()
-                NSPasteboard.general().setString(trackURL.absoluteString, forType: NSStringPboardType)
+				NSPasteboard.general.clearContents()
+				NSPasteboard.general.setString(trackURL.absoluteString, forType: .string)
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
                 print(error)
         })
     }
     
-    func openSoundCloudLinkInBrowser(_ sender: AnyObject) {
+	@objc func openSoundCloudLinkInBrowser(_ sender: AnyObject) {
         let url = track.mediaURL()
         
         _ = SoundCloudPermalinkFinder(mediaURL: url,
             success: { (trackURL: URL) in
-                NSWorkspace.shared().open(trackURL)
+				NSWorkspace.shared.open(trackURL)
                 return
             }, failure: { error in
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
@@ -83,23 +83,23 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
         })
     }
     
-    func shareToFacebookClicked(_ sender: AnyObject) {
-        shareTrackWithServiceNamed(NSSharingServiceNamePostOnFacebook)
+	@objc func shareToFacebookClicked(_ sender: AnyObject) {
+		shareTrackWithServiceNamed(NSSharingService.Name.postOnFacebook.rawValue)
     }
     
-    func shareToTwitterClicked(_ sender: AnyObject) {
-        shareTrackWithServiceNamed(NSSharingServiceNamePostOnTwitter)
+	@objc func shareToTwitterClicked(_ sender: AnyObject) {
+		shareTrackWithServiceNamed(NSSharingService.Name.postOnTwitter.rawValue)
     }
     
-    func shareToMessagesClicked(_ sender: AnyObject) {
-        shareTrackWithServiceNamed(NSSharingServiceNameComposeMessage)
+	@objc func shareToMessagesClicked(_ sender: AnyObject) {
+		shareTrackWithServiceNamed(NSSharingService.Name.composeMessage.rawValue)
     }
     
     // MARK: Private
     
     fileprivate func shareTrackWithServiceNamed(_ name: String) {
         let shareContents = [shareMessage()]
-        let sharingService = NSSharingService(named: name)!
+		let sharingService = NSSharingService(named: NSSharingService.Name(rawValue: name))!
         sharingService.delegate = self
         sharingService.perform(withItems: shareContents)
     }

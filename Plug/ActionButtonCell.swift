@@ -29,12 +29,12 @@ class ActionButtonCell: SwissArmyButtonCell {
         didSet { updateTitle() }
     }
     
-    override var state: Int {
+    override var state: NSControl.StateValue {
         didSet { updateTitle() }
     }
     
     func updateTitle() {
-        if state == NSOffState {
+		if state == .off {
             title = offStateTitle
         } else {
             title = onStateTitle
@@ -42,15 +42,15 @@ class ActionButtonCell: SwissArmyButtonCell {
     }
     
     var formattedTitle: NSAttributedString {
-        var attributes = [String: AnyObject]()
+        var attributes = [NSAttributedString.Key: Any]()
         
-        if state == NSOffState {
-            attributes[NSForegroundColorAttributeName] = offStateColor
+		if state == .off {
+			attributes[.foregroundColor] = offStateColor
         } else {
-            attributes[NSForegroundColorAttributeName] = onStateColor
+			attributes[.foregroundColor] = onStateColor
         }
         
-        attributes[NSFontAttributeName] = appFont(size: 13, weight: .medium)
+		attributes[.font] = appFont(size: 13, weight: .medium)
         
         return NSAttributedString(string: title, attributes: attributes)
     }

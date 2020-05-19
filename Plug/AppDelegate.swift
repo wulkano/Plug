@@ -49,11 +49,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             /* If there isn't an autosave name set for the main window, place the
              * frame at a default position, and then set the autosave name.
              */
-            if mainWindowController!.windowFrameAutosaveName!.isEmpty {
+			if mainWindowController!.windowFrameAutosaveName.isEmpty {
                 let width: CGFloat = 472
                 let height: CGFloat = 778
                 let x: CGFloat = 100
-                let y: CGFloat = (NSScreen.main()!.frame.size.height - 778) / 2
+				let y: CGFloat = (NSScreen.main!.frame.size.height - 778) / 2
 
                 let defaultFrame = NSMakeRect(x, y, width, height)
                 mainWindowController!.window!.setFrame(defaultFrame, display: false)
@@ -163,7 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Notifications
     
-    func catchTokenErrors(_ notification: Notification) {
+	@objc func catchTokenErrors(_ notification: Notification) {
         if let error = (notification as NSNotification).userInfo!["error"] as? HypeMachineAPI.APIError {
             switch error {
             case .invalidHMToken:
@@ -201,7 +201,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func reportABugItemClicked(_ sender: AnyObject) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
+		NSWorkspace.shared.open(URL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
     }
     
     // MARK: NSApplicationDelegate

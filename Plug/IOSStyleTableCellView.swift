@@ -9,8 +9,8 @@
 import Cocoa
 
 class IOSStyleTableCellView: NSTableCellView {
-    override var backgroundStyle: NSBackgroundStyle {
-        get { return NSBackgroundStyle.light }
+	override var backgroundStyle: NSView.BackgroundStyle {
+		get { return NSView.BackgroundStyle.light }
         set {}
     }
 }

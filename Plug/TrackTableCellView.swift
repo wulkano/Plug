@@ -199,9 +199,10 @@ class TrackTableCellView: IOSStyleTableCellView {
         
         if mouseInside || (track.loved && showLoveButton) {
             loveContainerWidthConstraint.updateOffset(amount: openWidth)
+
 //            loveContainerWidthConstraint.constant = openWidth
         } else {
-            loveContainerWidthConstraint.updateOffset(amount: closedWidth)
+			loveContainerWidthConstraint.updateOffset(amount: closedWidth)
 //            loveContainerWidthConstraint.constant = closedWidth
         }
     }
@@ -214,7 +215,7 @@ class TrackTableCellView: IOSStyleTableCellView {
             infoContainerWidthConstraint.updateOffset(amount: openWidth)
 //            infoContainerWidthConstraint.constant = openWidth
         } else {
-            infoContainerWidthConstraint.updateOffset(amount: closedWidth)
+           infoContainerWidthConstraint.updateOffset(amount: closedWidth)
 //            infoContainerWidthConstraint.constant = closedWidth
         }
     }
@@ -231,7 +232,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         trackingProgress = false
     }
     
-    func trackPlaying(_ notification: Notification) {
+	@objc func trackPlaying(_ notification: Notification) {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
@@ -242,7 +243,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         }
     }
     
-    func trackPaused(_ notification: Notification) {
+	@objc func trackPaused(_ notification: Notification) {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
@@ -251,7 +252,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         }
     }
     
-    func trackLoved(_ notification: Notification) {
+	@objc func trackLoved(_ notification: Notification) {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
@@ -262,7 +263,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         updateLoveContainerSpacing()
     }
     
-    func trackUnLoved(_ notification: Notification) {
+	@objc func trackUnLoved(_ notification: Notification) {
         if objectValue == nil { return }
         
         let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
@@ -337,7 +338,7 @@ class TrackTableCellView: IOSStyleTableCellView {
         }
     }
     
-    func progressUpdated(_ notification: Notification) {
+	@objc func progressUpdated(_ notification: Notification) {
         let progress = ((notification as NSNotification).userInfo!["progress"] as! NSNumber).doubleValue
         let duration = ((notification as NSNotification).userInfo!["duration"] as! NSNumber).doubleValue
         progressSlider.doubleValue = progress / duration

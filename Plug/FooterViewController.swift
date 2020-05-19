@@ -19,17 +19,17 @@ class FooterViewController: NSViewController {
     
     // MARK: Actions
     
-    func skipForwardButtonClicked(_ sender: AnyObject) {
+	@objc func skipForwardButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Forward")
         AudioPlayer.sharedInstance.skipForward()
     }
     
-    func skipBackwardButtonClicked(_ sender: AnyObject) {
+	@objc func skipBackwardButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Skip Backward")
         AudioPlayer.sharedInstance.skipBackward()
     }
 
-    func shuffleButtonClicked(_ sender: AnyObject) {
+	@objc func shuffleButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Footer Shuffle")
         toggleShuffle()
     }
@@ -40,7 +40,7 @@ class FooterViewController: NSViewController {
         view = NSView(frame: NSZeroRect)
         
         let backgroundView = DraggableVisualEffectsView()
-        backgroundView.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
         backgroundView.blendingMode = .withinWindow
         view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
@@ -137,9 +137,10 @@ class FooterViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        volumeSlider.bind("value", to: NSUserDefaultsController.shared(), withKeyPath: "values.volume", options: nil)
-        volumeIcon.bind("volume", to: NSUserDefaultsController.shared(), withKeyPath: "values.volume", options: nil)
-        shuffleButton.bind("state", to: NSUserDefaultsController.shared(), withKeyPath: "values.shuffle", options: nil)
+
+		// FIXME: These currently crashes the app.
+		//volumeSlider.bind(NSBindingName(rawValue: "value"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
+		//volumeIcon.bind(NSBindingName(rawValue: "volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
+		//shuffleButton.bind(NSBindingName(rawValue: "state"), to: NSUserDefaultsController.shared, withKeyPath: "values.shuffle", options: nil)
     }
 }

@@ -28,13 +28,13 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         Notifications.unsubscribeAll(observer: self)
     }
     
-    func displayError(_ notification: Notification) {
+	@objc func displayError(_ notification: Notification) {
         let error = (notification as NSNotification).userInfo!["error"] as! NSError
         NSAlert(error: error).runModal()
     }
     
     func signedInSuccessfully() {
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+		let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.finishedSigningIn()
     }
     
@@ -96,12 +96,12 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func forgotPasswordButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Forgot Password")
-        NSWorkspace.shared().open(URL(string: "https://hypem.com/inc/lb_forgot.php")!)
+		NSWorkspace.shared.open(URL(string: "https://hypem.com/inc/lb_forgot.php")!)
     }
     
     @IBAction func signUpButtonClicked(_ sender: AnyObject) {
         Analytics.trackButtonClick("Sign Up")
-        NSWorkspace.shared().open(URL(string: "http://hypem.com/?signup=1")!)
+		NSWorkspace.shared.open(URL(string: "http://hypem.com/?signup=1")!)
     }
     
     // MARK: NSViewController
@@ -129,10 +129,10 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
         
         view.window!.initialFirstResponder = usernameOrEmailTextField
     }
-    
-    // MARK: NSTextFieldDelegate
-    
-    override func controlTextDidChange(_ notification: Notification) {
-        formFieldsChanged()
-    }
+}
+
+extension LoginViewController: NSControlTextEditingDelegate {
+	func controlTextDidChange(_ notification: Notification) {
+		formFieldsChanged()
+	}
 }

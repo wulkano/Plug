@@ -129,13 +129,13 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
         if shouldReloadTableView {
             viewController.tableView.reloadData()
         } else {
-            viewController.tableView.insertRows(at: rowIndexSet, withAnimation: NSTableViewAnimationOptions())
+			viewController.tableView.insertRows(at: rowIndexSet, withAnimation: NSTableView.AnimationOptions())
         }
     }
     
     func rowIndexSetForNewObjects(_ objects: [Any]) -> IndexSet {
         let rowRange = NSMakeRange(tableContents!.count, objects.count)
-        return IndexSet(integersIn: rowRange.toRange() ?? 0..<0)
+		return IndexSet(integersIn: Range(rowRange) ?? 0..<0)
     }
     
     func filterTableContents(_ objects: [Any]) -> [Any] {

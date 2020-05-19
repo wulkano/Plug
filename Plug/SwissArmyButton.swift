@@ -15,9 +15,11 @@ class SwissArmyButton: NSButton {
     override var allowsVibrancy: Bool {
         return vibrant
     }
-    override var state: Int {
+
+    override var state: NSControl.StateValue {
         didSet { needsDisplay = true }
     }
+
     var trackingArea: NSTrackingArea?
     var swissArmyButtonCell: SwissArmyButtonCell {
         return cell as! SwissArmyButtonCell
@@ -46,7 +48,7 @@ class SwissArmyButton: NSButton {
                 trackingArea = nil
             }
             
-            let options: NSTrackingAreaOptions = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
+			let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
             trackingArea = NSTrackingArea(rect: NSZeroRect, options: options, owner: self, userInfo: nil)
             addTrackingArea(trackingArea!)
         }

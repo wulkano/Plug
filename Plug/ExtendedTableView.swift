@@ -69,13 +69,13 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
             trackingArea = nil
         }
         
-        let options: NSTrackingAreaOptions = [.activeAlways, .mouseEnteredAndExited, .mouseMoved, .assumeInside]
+		let options: NSTrackingArea.Options = [.activeAlways, .mouseEnteredAndExited, .mouseMoved, .assumeInside]
         let trackingRect = insetRect(clipView.documentVisibleRect, insets: scrollerInsets)
         trackingArea = NSTrackingArea(rect: trackingRect, options: options, owner: self, userInfo: nil)
         addTrackingArea(trackingArea!)
     }
     
-    func insetRect(_ rect: NSRect, insets: EdgeInsets) -> NSRect {
+	func insetRect(_ rect: NSRect, insets: NSEdgeInsets) -> NSRect {
         if rect == NSZeroRect { return rect }
         
         var newRect = rect
@@ -387,10 +387,10 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
     
     // MARK: insets
     
-    var contentInsets: EdgeInsets = NSEdgeInsetsZero {
+	var contentInsets: NSEdgeInsets = NSEdgeInsetsZero {
         didSet { updateContentInsets() }
     }
-    var scrollerInsets: EdgeInsets = NSEdgeInsetsZero {
+	var scrollerInsets: NSEdgeInsets = NSEdgeInsetsZero {
         didSet { updateScrollerInsets() }
     }
     

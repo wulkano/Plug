@@ -72,7 +72,7 @@ class BlogViewController: BaseContentViewController {
         titleButton.hoverUnderline = true
         titleButton.isBordered = false
         titleButton.font = appFont(size: 20)
-        titleButton.setContentCompressionResistancePriority(490, for: .horizontal)
+		titleButton.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
         titleButton.lineBreakMode = .byTruncatingMiddle
         titleButton.target = self
         titleButton.action = #selector(BlogViewController.titleButtonClicked(_:))
@@ -175,13 +175,13 @@ class BlogViewController: BaseContentViewController {
         })
     }
     
-    func titleButtonClicked(_ sender: AnyObject) {
-        NSWorkspace.shared().open(blog.url)
+	@objc func titleButtonClicked(_ sender: AnyObject) {
+		NSWorkspace.shared.open(blog.url)
     }
     
     func loadPlaylist() {
         tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Blog/Tracks")!
-        addChildViewController(tracksViewController)
+		addChild(tracksViewController)
         
         playlistContainer.addSubview(tracksViewController.view)
         tracksViewController.view.snp.makeConstraints { make in
@@ -193,25 +193,25 @@ class BlogViewController: BaseContentViewController {
     
     func updateActionButton() {
         if blog.following {
-            navigationItem.rightButton!.state = NSOnState
+			navigationItem.rightButton!.state = .on
         } else {
-            navigationItem.rightButton!.state = NSOffState
+			navigationItem.rightButton!.state = .off
         }
     }
     
-    func followButtonClicked(_ sender: ActionButton) {
+	@objc func followButtonClicked(_ sender: ActionButton) {
         HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id) { response in
-            let favoritedState = sender.state == NSOnState
+			let favoritedState = sender.state == .on
             
             switch response.result {
             case .success(let favorited):
                 guard favorited != favoritedState else { return }
-                sender.state = favorited ? NSOnState : NSOffState
+				sender.state = favorited ? .on : .off
             case .failure(let error):
                 Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
                 print(error)
                 
-                sender.state = sender.state == NSOffState ? NSOnState : NSOffState
+				sender.state = sender.state == .off ? .on : .off
             }
         }
     }

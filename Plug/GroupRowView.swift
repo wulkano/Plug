@@ -19,7 +19,7 @@ class GroupRowView: NSTableRowView {
     
     func drawBackground(_ dirtyRect: NSRect) {
         backgroundFill.set()
-        NSRectFill(dirtyRect)
+		dirtyRect.fill()
     }
     
     func drawSeparators(_ dirtyRect: NSRect) {
@@ -28,6 +28,6 @@ class GroupRowView: NSTableRowView {
         bottomSeparatorRect.size.height = 1
         
         lineFill.set()
-        NSRectFill(NSIntersectionRect(bottomSeparatorRect, dirtyRect))
+		NSIntersectionRect(bottomSeparatorRect, dirtyRect).fill()
     }
 }
