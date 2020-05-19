@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */; };
-		E34A8F6A2473D52A00233A68 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = E34A8F482473D52900233A68 /* LICENSE.md */; };
 		E34A8F732473D52A00233A68 /* Swignal3Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5A2473D52900233A68 /* Swignal3Args.swift */; };
 		E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */; };
 		E34A8F752473D52A00233A68 /* Swignal5Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5C2473D52900233A68 /* Swignal5Args.swift */; };
@@ -16,8 +15,6 @@
 		E34A8F772473D52A00233A68 /* Swignal4Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5E2473D52900233A68 /* Swignal4Args.swift */; };
 		E34A8F782473D52A00233A68 /* Swignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5F2473D52900233A68 /* Swignal.swift */; };
 		E34A8F792473D52A00233A68 /* Swignal0Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F602473D52900233A68 /* Swignal0Args.swift */; };
-		E34A8F7B2473D52A00233A68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E34A8F622473D52A00233A68 /* README.md */; };
-		E34A8F7C2473D52A00233A68 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E34A8F632473D52A00233A68 /* .gitignore */; };
 		E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8FAD2473D66B00233A68 /* PreventSleep.swift */; };
 		F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
@@ -63,7 +60,6 @@
 		FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4C44F819A6C9B70052D506 /* LoginViewController.swift */; };
 		FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA4C44FA19A6D17A0052D506 /* MainMenu.storyboard */; };
 		FA50280319C02EE800E3C84E /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA50280219C02EE800E3C84E /* Analytics.swift */; };
-		FA50F43F1DC13CE00062D70E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA50F43E1DC13CE00062D70E /* Podfile */; };
 		FA51263119760B2B004D0776 /* DraggableVisualEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263019760B2B004D0776 /* DraggableVisualEffectsView.swift */; };
 		FA51263619761436004D0776 /* NSColor+256ColorValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51263519761436004D0776 /* NSColor+256ColorValues.swift */; };
 		FA5394F019AF6B0F006A95A5 /* SwissArmyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5394EF19AF6B0F006A95A5 /* SwissArmyButton.swift */; };
@@ -92,8 +88,6 @@
 		FA6ADD0319BAB0E300CCD371 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADD0219BAB0E300CCD371 /* UserViewController.swift */; };
 		FA6E0CF719AB15DE00A077F0 /* UnderlinedTabButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */; };
 		FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */; };
-		FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EB1B348E8A00684ADA /* Fabric.framework */; };
-		FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7404EC1B348E8A00684ADA /* Crashlytics.framework */; };
 		FA75E81E1B560F930070FB1D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E81D1B560F930070FB1D /* AboutViewController.swift */; };
 		FA75E8211B5615480070FB1D /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8201B5615480070FB1D /* AboutWindowController.swift */; };
 		FA75E8291B56E6B10070FB1D /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8281B56E6B10070FB1D /* NavigationItem.swift */; };
@@ -267,8 +261,6 @@
 		FA6ADD0219BAB0E300CCD371 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		FA6E0CF619AB15DE00A077F0 /* UnderlinedTabButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedTabButtonCell.swift; sourceTree = "<group>"; };
 		FA70FC6919AAE6740048C866 /* ColoredTitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredTitleButton.swift; sourceTree = "<group>"; };
-		FA7404EB1B348E8A00684ADA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		FA7404EC1B348E8A00684ADA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FA75E81D1B560F930070FB1D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		FA75E8201B5615480070FB1D /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		FA75E8281B56E6B10070FB1D /* NavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
@@ -341,8 +333,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7404ED1B348E8A00684ADA /* Fabric.framework in Frameworks */,
-				FA7404EE1B348E8A00684ADA /* Crashlytics.framework in Frameworks */,
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,8 +343,6 @@
 		8649AE136FF74B02AB61EE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA7404EB1B348E8A00684ADA /* Fabric.framework */,
-				FA7404EC1B348E8A00684ADA /* Crashlytics.framework */,
 				F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */,
 			);
 			name = Frameworks;
@@ -868,7 +856,6 @@
 				FA24ED991974A9A500A781C8 /* Frameworks */,
 				FA24ED9A1974A9A500A781C8 /* Resources */,
 				FA562EF319E8810E00B760A2 /* CopyFiles */,
-				FA7404EA1B348E6E00684ADA /* ShellScript */,
 				BFE161847B3FC2D578E585A8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -921,11 +908,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA24EDA81974A9A500A781C8 /* Images.xcassets in Resources */,
-				E34A8F6A2473D52A00233A68 /* LICENSE.md in Resources */,
-				E34A8F7C2473D52A00233A68 /* .gitignore in Resources */,
 				FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */,
-				FA50F43F1DC13CE00062D70E /* Podfile in Resources */,
-				E34A8F7B2473D52A00233A68 /* README.md in Resources */,
 				FACEEBE819ABB9440093A81B /* Preferences.storyboard in Resources */,
 				FA4C44FB19A6D17A0052D506 /* MainMenu.storyboard in Resources */,
 				FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */,
@@ -989,19 +972,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed\"\nfi\n";
-		};
-		FA7404EA1B348E6E00684ADA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 8ef496111659c38e8a61e76814c17be6bb14bfca d1050dcac544ac3ebcd95826011f71f5fb44a7e0f345109a2efbfb2c6d976387\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1281,6 +1251,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2067;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2KEEHXF6R6;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1300,6 +1271,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
+				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wulkano.Plug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1320,6 +1292,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2067;
 				DEVELOPMENT_TEAM = 2KEEHXF6R6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1338,6 +1311,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
+				MARKETING_VERSION = 2.0.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wulkano.Plug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

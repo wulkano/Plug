@@ -7,8 +7,6 @@
 //
 
 import Cocoa
-import Fabric
-import Crashlytics
 import HypeMachineAPI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -27,9 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		setupUserDefaults()
-		// Load Crashlytics after setting up user defaults because we initialize
-		// the exception handling settings there
-		Fabric.with([Crashlytics()])
 		setupUserNotifications()
 		setupNotifications()
 		setupHypeMachineAPI()
