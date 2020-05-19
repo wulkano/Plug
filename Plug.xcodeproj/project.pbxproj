@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */; };
+		E334A834247474B20006DAC6 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = E334A833247474B20006DAC6 /* Sentry */; };
 		E34A8F732473D52A00233A68 /* Swignal3Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5A2473D52900233A68 /* Swignal3Args.swift */; };
 		E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */; };
 		E34A8F752473D52A00233A68 /* Swignal5Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5C2473D52900233A68 /* Swignal5Args.swift */; };
@@ -334,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
+				E334A834247474B20006DAC6 /* Sentry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +865,9 @@
 			dependencies = (
 			);
 			name = Plug;
+			packageProductDependencies = (
+				E334A833247474B20006DAC6 /* Sentry */,
+			);
 			productName = Plug;
 			productReference = FA24ED9C1974A9A500A781C8 /* Plug.app */;
 			productType = "com.apple.product-type.application";
@@ -893,6 +898,9 @@
 				Base,
 			);
 			mainGroup = FA24ED931974A9A500A781C8;
+			packageReferences = (
+				E334A832247474B20006DAC6 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+			);
 			productRefGroup = FA24ED9D1974A9A500A781C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1344,6 +1352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E334A832247474B20006DAC6 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E334A833247474B20006DAC6 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E334A832247474B20006DAC6 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA24ED941974A9A500A781C8 /* Project object */;
 }

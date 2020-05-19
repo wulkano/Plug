@@ -8,6 +8,7 @@
 
 import Cocoa
 import HypeMachineAPI
+import Sentry
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 	var mainWindowController: NSWindowController?
@@ -25,6 +26,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		setupUserDefaults()
+
+		SentrySDK.start(
+			options: [
+				"dsn": "https://de9821b005af4222a9fc4315040749f4@o116098.ingest.sentry.io/5245093",
+				"debug": true
+			]
+		)
+
 		setupUserNotifications()
 		setupNotifications()
 		setupHypeMachineAPI()
