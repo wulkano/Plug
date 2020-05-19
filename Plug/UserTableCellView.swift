@@ -1,9 +1,9 @@
 //
-//  FriendTableCellView.swift
-//  Plug
+//	FriendTableCellView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 9/5/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 9/5/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
@@ -11,49 +11,50 @@ import HypeMachineAPI
 import Alamofire
 
 class UserTableCellView: IOSStyleTableCellView {
-    var avatarView: NSImageView!
-    var fullNameTextField: NSTextField!
-    var usernameTextField: NSTextField!
+	var avatarView: NSImageView!
+	var fullNameTextField: NSTextField!
+	var usernameTextField: NSTextField!
 
-    override var objectValue: Any! {
-        didSet {
-            objectValueChanged()
-        }
-    }
-    var user: HypeMachineAPI.User {
-        objectValue as! HypeMachineAPI.User
-    }
+	override var objectValue: Any! {
+		didSet {
+			objectValueChanged()
+		}
+	}
 
-    func objectValueChanged() {
-        if objectValue == nil { return }
+	var user: HypeMachineAPI.User {
+		objectValue as! HypeMachineAPI.User
+	}
 
-        updateFullName()
-        updateUsername()
-        updateImage()
-    }
+	func objectValueChanged() {
+		if objectValue == nil { return }
 
-    func updateFullName() {
-        fullNameTextField.stringValue = user.fullName ?? user.username
-    }
+		updateFullName()
+		updateUsername()
+		updateImage()
+	}
 
-    func updateUsername() {
-        usernameTextField.stringValue = user.username
-    }
+	func updateFullName() {
+		fullNameTextField.stringValue = user.fullName ?? user.username
+	}
 
-    func updateImage() {
-        avatarView.image = NSImage(named: "Avatar-Placeholder")
-        if user.avatarURL == nil { return }
+	func updateUsername() {
+		usernameTextField.stringValue = user.username
+	}
 
-        Alamofire
-            .request(user.avatarURL!, method: .get).validate()
-            .responseImage { response in
-            switch response.result {
-            case .success(let image):
-                self.avatarView.image = image
-            case .failure(let error):
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-                Swift.print(error as NSError)
-            }
-            }
-    }
+	func updateImage() {
+		avatarView.image = NSImage(named: "Avatar-Placeholder")
+		if user.avatarURL == nil { return }
+
+		Alamofire
+			.request(user.avatarURL!, method: .get).validate()
+			.responseImage { response in
+				switch response.result {
+				case let .success(image):
+					self.avatarView.image = image
+				case let .failure(error):
+					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+					Swift.print(error as NSError)
+				}
+			}
+	}
 }

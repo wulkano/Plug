@@ -1,38 +1,38 @@
 //
-//  LoveCountTrackTableCellView.swift
-//  Plug
+//	LoveCountTrackTableCellView.swift
+//	Plug
 //
-//  Created by Alexander Marchant on 7/14/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alexander Marchant on 7/14/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class LoveCountTrackTableCellView: TrackTableCellView {
-    var loveCount: ColorChangingTextField!
+	var loveCount: ColorChangingTextField!
 
-    override func objectValueChanged() {
-        super.objectValueChanged()
-        if objectValue == nil { return }
+	override func objectValueChanged() {
+		super.objectValueChanged()
+		if objectValue == nil { return }
 
-        updateLoveCount()
-    }
+		updateLoveCount()
+	}
 
-    override func mouseInsideChanged() {
-        super.mouseInsideChanged()
-        updateLoveCountVisibility()
-    }
+	override func mouseInsideChanged() {
+		super.mouseInsideChanged()
+		updateLoveCountVisibility()
+	}
 
-    override func playStateChanged() {
-        super.playStateChanged()
-        updateLoveCountVisibility()
-    }
+	override func playStateChanged() {
+		super.playStateChanged()
+		updateLoveCountVisibility()
+	}
 
-    func updateLoveCount() {
-        loveCount.objectValue = track.lovedCountNum
-    }
+	func updateLoveCount() {
+		loveCount.objectValue = track.lovedCountNum
+	}
 
-    func updateLoveCountVisibility() {
-        loveCount.isHidden = !playPauseButton.isHidden
-    }
+	func updateLoveCountVisibility() {
+		loveCount.isHidden = !playPauseButton.isHidden
+	}
 }

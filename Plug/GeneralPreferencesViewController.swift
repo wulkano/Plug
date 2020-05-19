@@ -1,9 +1,9 @@
 //
-//  GeneralPreferencesViewController.swift
-//  Plug
+//	GeneralPreferencesViewController.swift
+//	Plug
 //
-//  Created by Alex Marchant on 8/25/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 8/25/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
@@ -14,61 +14,61 @@ let HideUnavailableTracks = "HideUnavailableTracks"
 let PreventIdleSleepWhenPlaying = "PreventIdleSleepWhenPlaying"
 
 class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
-    @IBOutlet weak var scrollViewHeightContraint: NSLayoutConstraint!
-    @IBOutlet weak var tableView: NSTableView!
+	@IBOutlet var scrollViewHeightContraint: NSLayoutConstraint!
+	@IBOutlet var tableView: NSTableView!
 
-    var preferences: [GeneralPreference] = [
-        GeneralPreference(title: "Show notifications when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
-        GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
-        GeneralPreference(title: "Prevent sleep when playing music", settingsKey: PreventIdleSleepWhenPlaying)
-    ]
+	var preferences: [GeneralPreference] = [
+		GeneralPreference(title: "Show notifications when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
+		GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
+		GeneralPreference(title: "Prevent sleep when playing music", settingsKey: PreventIdleSleepWhenPlaying)
+	]
 
-    func setHeightForPreferences() {
-        let desiredHeight = CGFloat(preferences.count) * 70
-        scrollViewHeightContraint.constant = desiredHeight
-    }
+	func setHeightForPreferences() {
+		let desiredHeight = CGFloat(preferences.count) * 70
+		scrollViewHeightContraint.constant = desiredHeight
+	}
 
-    // MARK: NSViewController
+	// MARK: NSViewController
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		// Do view setup here.
 
-        setHeightForPreferences()
-    }
+		setHeightForPreferences()
+	}
 
-    // MARK: NSTableViewDelegate
+	// MARK: NSTableViewDelegate
 
-    func selectionShouldChange(in tableView: NSTableView) -> Bool {
-        false // Disallows row selection
-    }
+	func selectionShouldChange(in tableView: NSTableView) -> Bool {
+		false // Disallows row selection
+	}
 
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        preferences.count
-    }
+	func numberOfRows(in tableView: NSTableView) -> Int {
+		preferences.count
+	}
 
-    // MARK: NSTableViewDataSource
+	// MARK: NSTableViewDataSource
 
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        preferences[row]
-    }
+	func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+		preferences[row]
+	}
 }
 
 // Only supports Bools for now
 class GeneralPreference {
-    var title: String
-    var settingsKey: String
+	var title: String
+	var settingsKey: String
 
-    init(title: String, settingsKey: String) {
-        self.title = title
-        self.settingsKey = settingsKey
-    }
+	init(title: String, settingsKey: String) {
+		self.title = title
+		self.settingsKey = settingsKey
+	}
 
-    func getUserDefaultsValue() -> Bool {
-        UserDefaults.standard.value(forKey: settingsKey) as! Bool
-    }
+	func getUserDefaultsValue() -> Bool {
+		UserDefaults.standard.value(forKey: settingsKey) as! Bool
+	}
 
-    func setUserDefaultsValue(_ value: Bool) {
-        UserDefaults.standard.setValue(value, forKey: settingsKey)
-    }
+	func setUserDefaultsValue(_ value: Bool) {
+		UserDefaults.standard.setValue(value, forKey: settingsKey)
+	}
 }

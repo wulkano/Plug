@@ -1,32 +1,33 @@
 //
-//  SectionHeaderTableCellView.swift
-//  Plug
+//	SectionHeaderTableCellView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 10/20/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 10/20/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class SectionHeaderTableCellView: NSTableCellView {
-    var titleTextField: NSTextField!
+	var titleTextField: NSTextField!
 
-    override var objectValue: Any! {
-        didSet {
-            objectValueChanged()
-        }
-    }
-    var sectionHeader: SectionHeader {
-        objectValue as! SectionHeader
-    }
+	override var objectValue: Any! {
+		didSet {
+			objectValueChanged()
+		}
+	}
 
-    func objectValueChanged() {
-        if objectValue == nil { return }
+	var sectionHeader: SectionHeader {
+		objectValue as! SectionHeader
+	}
 
-        updateTitle()
-    }
+	func objectValueChanged() {
+		if objectValue == nil { return }
 
-    func updateTitle() {
-        titleTextField!.stringValue = sectionHeader.title
-    }
+		updateTitle()
+	}
+
+	func updateTitle() {
+		titleTextField!.stringValue = sectionHeader.title
+	}
 }

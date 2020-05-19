@@ -1,59 +1,60 @@
 //
-//  BlogTableCellView.swift
-//  Plug
+//	BlogTableCellView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 10/20/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 10/20/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 import HypeMachineAPI
 
 class BlogTableCellView: IOSStyleTableCellView {
-    var nameTextField: NSTextField!
-    var recentArtistsTextField: NSTextField!
+	var nameTextField: NSTextField!
+	var recentArtistsTextField: NSTextField!
 
-    override var objectValue: Any! {
-        didSet { objectValueChanged() }
-    }
-    var blog: HypeMachineAPI.Blog {
-        objectValue as! HypeMachineAPI.Blog
-    }
+	override var objectValue: Any! {
+		didSet { objectValueChanged() }
+	}
 
-    func objectValueChanged() {
-        if objectValue == nil { return }
+	var blog: HypeMachineAPI.Blog {
+		objectValue as! HypeMachineAPI.Blog
+	}
 
-        updateName()
-        updateArtists()
-    }
+	func objectValueChanged() {
+		if objectValue == nil { return }
 
-    func updateName() {
-        nameTextField.stringValue = blog.name
-    }
+		updateName()
+		updateArtists()
+	}
 
-    func updateArtists() {
-        let originalBlogID = self.blog.id
-        recentArtistsTextField.stringValue = "Loading..."
+	func updateName() {
+		nameTextField.stringValue = blog.name
+	}
 
-        let params = ["page": 1, "count": 3]
-        HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, params: params) { response in
-            guard self.objectValue != nil && self.blog.id == originalBlogID
-                else { return }
+	func updateArtists() {
+		let originalBlogID = blog.id
+		recentArtistsTextField.stringValue = "Loading..."
 
-            switch response.result {
-            case .success(let tracks):
-                var recentTracks = ""
-                for (index, track) in tracks.enumerated() {
-                    recentTracks += "\(track.artist)"
-                    if index < tracks.count - 1 {
-                        recentTracks += ", "
-                    }
-                }
-                self.recentArtistsTextField.stringValue = recentTracks
-            case .failure(let error):
-                Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-                Swift.print(error as NSError)
-            }
-        }
-    }
+		let params = ["page": 1, "count": 3]
+		HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, params: params) { response in
+			guard self.objectValue != nil && self.blog.id == originalBlogID
+			else { return }
+
+			switch response.result {
+			case let .success(tracks):
+				var recentTracks = ""
+				for (index, track) in tracks.enumerated() {
+					recentTracks += "\(track.artist)"
+					if index < tracks.count - 1 {
+						recentTracks += ", "
+					}
+				}
+				self.recentArtistsTextField.stringValue = recentTracks
+			case let .failure(error):
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+				Swift.print(error as NSError)
+			}
+		}
+	}
 }

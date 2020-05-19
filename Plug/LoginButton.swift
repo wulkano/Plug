@@ -1,103 +1,105 @@
 //
-//  LoginButton.swift
-//  Plug
+//	LoginButton.swift
+//	Plug
 //
-//  Created by Alex Marchant on 8/28/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 8/28/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class LoginButton: SwissArmyButton {
-    var loginButtonCell: LoginButtonCell {
-        cell as! LoginButtonCell
-    }
-    var buttonState: LoginButtonState = .disabled {
-        didSet { buttonStateChanged() }
-    }
-    var loadingImageView: NSImageView?
+	var loginButtonCell: LoginButtonCell {
+		cell as! LoginButtonCell
+	}
 
-    func buttonStateChanged() {
-        updateTitle()
-        updateEnabled()
-        updateImage()
-        updateLoadingImageView()
-    }
+	var buttonState: LoginButtonState = .disabled {
+		didSet { buttonStateChanged() }
+	}
 
-    func updateTitle() {
-        title = buttonState.title()
-    }
+	var loadingImageView: NSImageView?
 
-    func updateEnabled() {
-        switch buttonState {
-        case .disabled, .sending:
-            isEnabled = false
-        case .enabled, .error:
-            isEnabled = true
-        }
-    }
+	func buttonStateChanged() {
+		updateTitle()
+		updateEnabled()
+		updateImage()
+		updateLoadingImageView()
+	}
 
-    func updateImage() {
-        image = buttonState.image()
-    }
+	func updateTitle() {
+		title = buttonState.title()
+	}
 
-    func updateLoadingImageView() {
-        switch buttonState {
-        case .sending:
-            setupLoadingImageView()
-        default:
-            destroyLoadingImageView()
-        }
-    }
+	func updateEnabled() {
+		switch buttonState {
+		case .disabled, .sending:
+			isEnabled = false
+		case .enabled, .error:
+			isEnabled = true
+		}
+	}
 
-    func setupLoadingImageView() {
-        if loadingImageView == nil {
-            let loaderImage = buttonState.image()
-            let imageFrame = NSRect(x: 244.0, y: 8.0, width: 20.0, height: 20.0)
-            loadingImageView = NSImageView(frame: imageFrame)
-            loadingImageView!.image = loaderImage
-            addSubview(loadingImageView!)
-            Animations.rotateCounterClockwise(loadingImageView!)
-        }
-    }
+	func updateImage() {
+		image = buttonState.image()
+	}
 
-    func destroyLoadingImageView() {
-        if loadingImageView != nil {
-            loadingImageView!.removeFromSuperview()
-            loadingImageView = nil
-        }
-    }
+	func updateLoadingImageView() {
+		switch buttonState {
+		case .sending:
+			setupLoadingImageView()
+		default:
+			destroyLoadingImageView()
+		}
+	}
 
-    enum LoginButtonState {
-        case disabled
-        case enabled
-        case sending
-        case error(String)
+	func setupLoadingImageView() {
+		if loadingImageView == nil {
+			let loaderImage = buttonState.image()
+			let imageFrame = NSRect(x: 244.0, y: 8.0, width: 20.0, height: 20.0)
+			loadingImageView = NSImageView(frame: imageFrame)
+			loadingImageView!.image = loaderImage
+			addSubview(loadingImageView!)
+			Animations.rotateCounterClockwise(loadingImageView!)
+		}
+	}
 
-        func title() -> String {
-            var titleString: String
+	func destroyLoadingImageView() {
+		if loadingImageView != nil {
+			loadingImageView!.removeFromSuperview()
+			loadingImageView = nil
+		}
+	}
 
-            switch self {
-            case .disabled, .enabled:
-                titleString = "Log in"
-            case .sending:
-                titleString = "Logging in..."
-            case .error(let message):
-                titleString = message
-            }
+	enum LoginButtonState {
+		case disabled
+		case enabled
+		case sending
+		case error(String)
 
-            return titleString
-        }
+		func title() -> String {
+			var titleString: String
 
-        func image() -> NSImage? {
-            switch self {
-            case .disabled, .enabled:
-                return NSImage(named: "Login-Next")
-            case .sending:
-                return NSImage(named: "Loader-Login")
-            case .error:
-                return NSImage(named: "Login-Error")
-            }
-        }
-    }
+			switch self {
+			case .disabled, .enabled:
+				titleString = "Log in"
+			case .sending:
+				titleString = "Logging in..."
+			case let .error(message):
+				titleString = message
+			}
+
+			return titleString
+		}
+
+		func image() -> NSImage? {
+			switch self {
+			case .disabled, .enabled:
+				return NSImage(named: "Login-Next")
+			case .sending:
+				return NSImage(named: "Loader-Login")
+			case .error:
+				return NSImage(named: "Login-Error")
+			}
+		}
+	}
 }

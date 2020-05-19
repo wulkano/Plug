@@ -1,9 +1,9 @@
 //
-//  RefreshScrollView.swift
-//  Plug
+//	RefreshScrollView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 7/13/15.
-//  Copyright (c) 2015 Plug. All rights reserved.
+//	Created by Alex Marchant on 7/13/15.
+//	Copyright (c) 2015 Plug. All rights reserved.
 //
 
 import Cocoa
@@ -12,107 +12,107 @@ class RefreshScrollView: NSScrollView {
 	let delegate: RefreshScrollViewDelegate
 	var boundsChangedDelegate: RefreshScrollViewBoundsChangedDelegate?
 
-    var scrolling = false
+	var scrolling = false
 
-    var refreshHeaderController: RefreshHeaderViewController!
-    var refreshClipView: RefreshClipView {
-        contentView as! RefreshClipView
-    }
+	var refreshHeaderController: RefreshHeaderViewController!
+	var refreshClipView: RefreshClipView {
+		contentView as! RefreshClipView
+	}
 
-    override var contentView: NSClipView {
-        willSet { contentViewWillChange() }
-        didSet { contentViewChanged() }
-    }
+	override var contentView: NSClipView {
+		willSet { contentViewWillChange() }
+		didSet { contentViewChanged() }
+	}
 
-    var scrollEnabled = true
+	var scrollEnabled = true
 
-    init(delegate: RefreshScrollViewDelegate) {
-        self.delegate = delegate
-        super.init(frame: NSRect.zero)
-        setup()
-    }
+	init(delegate: RefreshScrollViewDelegate) {
+		self.delegate = delegate
+		super.init(frame: NSRect.zero)
+		setup()
+	}
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
-    func setup() {
-        contentView = RefreshClipView()
-    }
+	func setup() {
+		contentView = RefreshClipView()
+	}
 
-    override func viewDidMoveToSuperview() {
-        loadRefreshView()
-    }
+	override func viewDidMoveToSuperview() {
+		loadRefreshView()
+	}
 
-    func loadRefreshView() {
+	func loadRefreshView() {
 		refreshHeaderController = RefreshHeaderViewController(nibName: nil, bundle: nil)
-        refreshClipView.addSubview(refreshHeaderController.view)
-        refreshHeaderController.view.snp.makeConstraints { make in
-            make.height.equalTo(refreshHeaderController.viewHeight)
-            make.left.right.equalTo(refreshClipView)
-            make.bottom.equalTo(refreshClipView.snp.top)
-        }
-    }
+		refreshClipView.addSubview(refreshHeaderController.view)
+		refreshHeaderController.view.snp.makeConstraints { make in
+			make.height.equalTo(refreshHeaderController.viewHeight)
+			make.left.right.equalTo(refreshClipView)
+			make.bottom.equalTo(refreshClipView.snp.top)
+		}
+	}
 
-    override func scrollWheel(with theEvent: NSEvent) {
-        if !scrollEnabled { return }
+	override func scrollWheel(with theEvent: NSEvent) {
+		if !scrollEnabled { return }
 
-        switch theEvent.phase {
+		switch theEvent.phase {
 		case NSEvent.Phase.changed:
-            if scrolledPastTopOfRefreshHeader() {
-                refreshHeaderController.state = .releaseToRefresh
-            } else {
-                refreshHeaderController.state = .pullToRefresh
-            }
+			if scrolledPastTopOfRefreshHeader() {
+				refreshHeaderController.state = .releaseToRefresh
+			} else {
+				refreshHeaderController.state = .pullToRefresh
+			}
 		case NSEvent.Phase.ended:
-            if refreshHeaderController.state == .releaseToRefresh {
-                startRefresh()
-            }
-        default:
-            break
-        }
+			if refreshHeaderController.state == .releaseToRefresh {
+				startRefresh()
+			}
+		default:
+			break
+		}
 
-        super.scrollWheel(with: theEvent)
-    }
+		super.scrollWheel(with: theEvent)
+	}
 
-    func scrolledPastTopOfRefreshHeader() -> Bool {
-        refreshClipView.bounds.origin.y <= -refreshHeaderController.viewHeight
-    }
+	func scrolledPastTopOfRefreshHeader() -> Bool {
+		refreshClipView.bounds.origin.y <= -refreshHeaderController.viewHeight
+	}
 
-    func scrolledPastTopOfContentView() -> Bool {
-        contentView.bounds.origin.y < 0
-    }
+	func scrolledPastTopOfContentView() -> Bool {
+		contentView.bounds.origin.y < 0
+	}
 
-    func startRefresh() {
-        refreshHeaderController.state = .updating
-        delegate.didPullToRefresh()
-    }
+	func startRefresh() {
+		refreshHeaderController.state = .updating
+		delegate.didPullToRefresh()
+	}
 
-    func finishedRefresh() {
-        documentView!.scroll(NSPoint.zero)
+	func finishedRefresh() {
+		documentView!.scroll(NSPoint.zero)
 
-        refreshHeaderController.state = .pullToRefresh
-        refreshHeaderController.lastUpdated = Date()
-    }
+		refreshHeaderController.state = .pullToRefresh
+		refreshHeaderController.lastUpdated = Date()
+	}
 
-    func contentViewWillChange() {
+	func contentViewWillChange() {
 		Notifications.unsubscribe(observer: self, name: NSView.boundsDidChangeNotification, object: contentView)
-    }
+	}
 
-    func contentViewChanged() {
-        contentView.postsFrameChangedNotifications = true
+	func contentViewChanged() {
+		contentView.postsFrameChangedNotifications = true
 		Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSView.boundsDidChangeNotification, object: contentView)
-    }
+	}
 
 	@objc func contentViewBoundsDidChange(_ notification: Notification) {
-        boundsChangedDelegate?.scrollViewBoundsDidChange(notification)
-    }
+		boundsChangedDelegate?.scrollViewBoundsDidChange(notification)
+	}
 }
 
 protocol RefreshScrollViewDelegate {
-    func didPullToRefresh()
+	func didPullToRefresh()
 }
 
 protocol RefreshScrollViewBoundsChangedDelegate {
-    func scrollViewBoundsDidChange(_ notification: Notification)
+	func scrollViewBoundsDidChange(_ notification: Notification)
 }

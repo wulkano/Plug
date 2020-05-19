@@ -54,61 +54,61 @@
 
 - (id)initWithImage:(NSImage*)image scaledSize:(NSSize)size
 {
-    self = [super init];
+	self = [super init];
 
-    if (self)
-    {
-        self.scaledSize = size;
-		
+	if (self)
+	{
+		self.scaledSize = size;
+
 		NSImage *finalImage = [self scaleImage:image size:size];
 		self.scaledImage = finalImage;
-		
-		[self analyzeImage:image];
-    }
 
-    return self;
+		[self analyzeImage:image];
+	}
+
+	return self;
 }
 
 
 - (NSImage*)scaleImage:(NSImage*)image size:(NSSize)scaledSize
 {
-    NSSize imageSize = [image size];
-    NSImage *squareImage = [[NSImage alloc] initWithSize:NSMakeSize(imageSize.width, imageSize.width)];
-    NSImage *scaledImage = [[NSImage alloc] initWithSize:scaledSize];
-    NSRect drawRect;
+	NSSize imageSize = [image size];
+	NSImage *squareImage = [[NSImage alloc] initWithSize:NSMakeSize(imageSize.width, imageSize.width)];
+	NSImage *scaledImage = [[NSImage alloc] initWithSize:scaledSize];
+	NSRect drawRect;
 
-    // make the image square
-    if ( imageSize.height > imageSize.width )
-    {
-        drawRect = NSMakeRect(0, imageSize.height - imageSize.width, imageSize.width, imageSize.width);
-    }
-    else
-    {
-        drawRect = NSMakeRect(0, 0, imageSize.height, imageSize.height);
-    }
+	// make the image square
+	if ( imageSize.height > imageSize.width )
+	{
+		drawRect = NSMakeRect(0, imageSize.height - imageSize.width, imageSize.width, imageSize.width);
+	}
+	else
+	{
+		drawRect = NSMakeRect(0, 0, imageSize.height, imageSize.height);
+	}
 
-    [squareImage lockFocus];
-    [image drawInRect:NSMakeRect(0, 0, imageSize.width, imageSize.width) fromRect:drawRect operation:NSCompositeSourceOver fraction:1.0];
-    [squareImage unlockFocus];
+	[squareImage lockFocus];
+	[image drawInRect:NSMakeRect(0, 0, imageSize.width, imageSize.width) fromRect:drawRect operation:NSCompositeSourceOver fraction:1.0];
+	[squareImage unlockFocus];
 
-    // scale the image to the desired size
+	// scale the image to the desired size
 
-    [scaledImage lockFocus];
-    [squareImage drawInRect:NSMakeRect(0, 0, scaledSize.width, scaledSize.height) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-    [scaledImage unlockFocus];
+	[scaledImage lockFocus];
+	[squareImage drawInRect:NSMakeRect(0, 0, scaledSize.width, scaledSize.height) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	[scaledImage unlockFocus];
 
-    // convert back to readable bitmap data
+	// convert back to readable bitmap data
 
-    CGImageRef cgImage = [scaledImage CGImageForProposedRect:NULL context:nil hints:nil];
-    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:cgImage];
-    NSImage *finalImage = [[NSImage alloc] initWithSize:scaledImage.size];
-    [finalImage addRepresentation:bitmapRep];
-    return finalImage;
+	CGImageRef cgImage = [scaledImage CGImageForProposedRect:NULL context:nil hints:nil];
+	NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:cgImage];
+	NSImage *finalImage = [[NSImage alloc] initWithSize:scaledImage.size];
+	[finalImage addRepresentation:bitmapRep];
+	return finalImage;
 }
 
 - (void)analyzeImage:(NSImage*)anImage
 {
-    NSCountedSet *imageColors = nil;
+	NSCountedSet *imageColors = nil;
 	NSColor *backgroundColor = [self findEdgeColor:anImage imageColors:&imageColors];
 	NSColor *primaryColor = nil;
 	NSColor *secondaryColor = nil;
@@ -144,10 +144,10 @@
 			detailColor = [NSColor blackColor];
 	}
 
-    self.backgroundColor = backgroundColor;
-    self.primaryColor = primaryColor;
+	self.backgroundColor = backgroundColor;
+	self.primaryColor = primaryColor;
 	self.secondaryColor = secondaryColor;
-    self.detailColor = detailColor;
+	self.detailColor = detailColor;
 }
 
 - (NSColor*)findEdgeColor:(NSImage*)image imageColors:(NSCountedSet**)colors
@@ -189,8 +189,8 @@
 	{
 		NSUInteger colorCount = [leftEdgeColors countForObject:curColor];
 
-        NSInteger randomColorsThreshold = (NSInteger)(pixelsHigh * kColorThresholdMinimumPercentage);
-        
+		NSInteger randomColorsThreshold = (NSInteger)(pixelsHigh * kColorThresholdMinimumPercentage);
+
 		if ( colorCount <= randomColorsThreshold ) // prevent using random colors, threshold based on input image height
 			continue;
 
@@ -281,7 +281,7 @@
 		{
 			if ( ![*secondaryColor pc_isDistinct:curColor] || ![*primaryColor pc_isDistinct:curColor] || ![curColor pc_isContrastingColor:backgroundColor] )
 				continue;
-            
+
 			*detailColor = curColor;
 			break;
 		}
@@ -327,17 +327,17 @@
 		fabs(g - g1) > threshold ||
 		fabs(b - b1) > threshold ||
 		fabs(a - a1) > threshold )
-    {
-        // check for grays, prevent multiple gray colors
+	{
+		// check for grays, prevent multiple gray colors
 
-        if ( fabs(r - g) < .03 && fabs(r - b) < .03 )
-        {
-            if ( fabs(r1 - g1) < .03 && fabs(r1 - b1) < .03 )
-                return NO;
-        }
+		if ( fabs(r - g) < .03 && fabs(r - b) < .03 )
+		{
+			if ( fabs(r1 - g1) < .03 && fabs(r1 - b1) < .03 )
+				return NO;
+		}
 
-        return YES;
-    }
+		return YES;
+	}
 
 	return NO;
 }
@@ -449,7 +449,7 @@
 			return NSOrderedSame;
 		}
 	}
-    
+
 	return NSOrderedAscending;
 }
 

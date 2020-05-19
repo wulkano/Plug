@@ -1,28 +1,29 @@
 //
-//  ColoredTitleButton.swift
-//  Plug
+//	ColoredTitleButton.swift
+//	Plug
 //
-//  Created by Alex Marchant on 8/24/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 8/24/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class ColoredTitleButton: NSButton {
-    @IBInspectable var textColor: NSColor = NSColor.white {
-        didSet {
-            applyTextColor()
-        }
-    }
-    override var attributedTitle: NSAttributedString {
-        didSet {
-            applyTextColor()
-        }
-    }
+	@IBInspectable var textColor: NSColor = NSColor.white {
+		didSet {
+			applyTextColor()
+		}
+	}
 
-    func applyTextColor() {
-        let textToStyle = NSMutableAttributedString(attributedString: attributedTitle)
-        let range = NSRange(location: 0, length: textToStyle.length)
+	override var attributedTitle: NSAttributedString {
+		didSet {
+			applyTextColor()
+		}
+	}
+
+	func applyTextColor() {
+		let textToStyle = NSMutableAttributedString(attributedString: attributedTitle)
+		let range = NSRange(location: 0, length: textToStyle.length)
 		textToStyle.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: range)
-    }
+	}
 }

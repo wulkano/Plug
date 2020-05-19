@@ -1,33 +1,34 @@
 //
-//  GenresTableCellView.swift
-//  Plug
+//	GenresTableCellView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 10/20/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 10/20/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 import HypeMachineAPI
 
 class TagTableCellView: IOSStyleTableCellView {
-    var nameTextField: NSTextField!
+	var nameTextField: NSTextField!
 
-    override var objectValue: Any! {
-        didSet {
-            objectValueChanged()
-        }
-    }
-    var tagValue: HypeMachineAPI.Tag {
-        objectValue as! HypeMachineAPI.Tag
-    }
+	override var objectValue: Any! {
+		didSet {
+			objectValueChanged()
+		}
+	}
 
-    func objectValueChanged() {
-        if objectValue == nil { return }
+	var tagValue: HypeMachineAPI.Tag {
+		objectValue as! HypeMachineAPI.Tag
+	}
 
-        updateName()
-    }
+	func objectValueChanged() {
+		if objectValue == nil { return }
 
-    func updateName() {
-        nameTextField.stringValue = tagValue.name
-    }
+		updateName()
+	}
+
+	func updateName() {
+		nameTextField.stringValue = tagValue.name
+	}
 }

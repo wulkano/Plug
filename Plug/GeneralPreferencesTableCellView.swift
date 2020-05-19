@@ -1,42 +1,43 @@
 //
-//  GeneralPreferencesTableCellView.swift
-//  Plug
+//	GeneralPreferencesTableCellView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 8/31/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 8/31/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class GeneralPreferencesTableCellView: NSTableCellView {
-    @IBOutlet var preferenceTitle: NSTextField!
-    @IBOutlet var switchButton: IOSSwitch!
+	@IBOutlet var preferenceTitle: NSTextField!
+	@IBOutlet var switchButton: IOSSwitch!
 
-    override var objectValue: Any! {
-        didSet { objectValueChanged() }
-    }
-    var generalPreferenceValue: GeneralPreference {
-        objectValue as! GeneralPreference
-    }
+	override var objectValue: Any! {
+		didSet { objectValueChanged() }
+	}
 
-    func objectValueChanged() {
-        if objectValue == nil { return }
+	var generalPreferenceValue: GeneralPreference {
+		objectValue as! GeneralPreference
+	}
 
-        updatePreferenceTitle()
-        updateSwitchButton()
-    }
+	func objectValueChanged() {
+		if objectValue == nil { return }
 
-    func updatePreferenceTitle() {
-        preferenceTitle.stringValue = generalPreferenceValue.title
-    }
+		updatePreferenceTitle()
+		updateSwitchButton()
+	}
 
-    func updateSwitchButton() {
-        switchButton.on = generalPreferenceValue.getUserDefaultsValue()
-    }
+	func updatePreferenceTitle() {
+		preferenceTitle.stringValue = generalPreferenceValue.title
+	}
 
-    @IBAction func switchButtonClicked(_ sender: IOSSwitch) {
-        let oldValue = generalPreferenceValue.getUserDefaultsValue()
-        let newValue = !oldValue
-        generalPreferenceValue.setUserDefaultsValue(newValue)
-    }
+	func updateSwitchButton() {
+		switchButton.on = generalPreferenceValue.getUserDefaultsValue()
+	}
+
+	@IBAction func switchButtonClicked(_ sender: IOSSwitch) {
+		let oldValue = generalPreferenceValue.getUserDefaultsValue()
+		let newValue = !oldValue
+		generalPreferenceValue.setUserDefaultsValue(newValue)
+	}
 }

@@ -1,24 +1,24 @@
 //
-//  SwissArmyButtonCell.swift
-//  Plug
+//	SwissArmyButtonCell.swift
+//	Plug
 //
-//  Created by Alex Marchant on 8/28/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 8/28/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class SwissArmyButtonCell: NSButtonCell {
-    var mouseInside: Bool = false
-    var mouseDown: Bool = false
+	var mouseInside: Bool = false
+	var mouseDown: Bool = false
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+	required init(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
 		highlightsBy = NSCell.StyleMask()
-    }
+	}
 
-    override init(textCell aString: String) {
-        super.init(textCell: aString)
+	override init(textCell aString: String) {
+		super.init(textCell: aString)
 		highlightsBy = NSCell.StyleMask()
-    }
+	}
 }

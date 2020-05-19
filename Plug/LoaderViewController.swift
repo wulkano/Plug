@@ -1,66 +1,66 @@
 //
-//  LoaderViewController.swift
-//  Plug
+//	LoaderViewController.swift
+//	Plug
 //
-//  Created by Alex Marchant on 9/5/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 9/5/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class LoaderViewController: NSViewController {
-    let size: LoaderViewSize
-    var loaderView: NSImageView!
+	let size: LoaderViewSize
+	var loaderView: NSImageView!
 
-    init?(size: LoaderViewSize) {
-        self.size = size
-        super.init(nibName: nil, bundle: nil)
-    }
+	init?(size: LoaderViewSize) {
+		self.size = size
+		super.init(nibName: nil, bundle: nil)
+	}
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
-    func startAnimation() {
-        Animations.rotateClockwise(loaderView)
-    }
+	func startAnimation() {
+		Animations.rotateClockwise(loaderView)
+	}
 
-    func stopAnimation() {
-        Animations.removeAllAnimations(loaderView)
-    }
+	func stopAnimation() {
+		Animations.removeAllAnimations(loaderView)
+	}
 
-    // MARK: NSViewController
+	// MARK: NSViewController
 
-    override func loadView() {
-        view = NSView(frame: NSRect.zero)
+	override func loadView() {
+		view = NSView(frame: NSRect.zero)
 
-        let background = BackgroundBorderView()
-        background.background = true
-        background.backgroundColor = NSColor.controlBackgroundColor
-        view.addSubview(background)
-        background.snp.makeConstraints { make in
-            make.edges.equalTo(view)
-        }
+		let background = BackgroundBorderView()
+		background.background = true
+		background.backgroundColor = NSColor.controlBackgroundColor
+		view.addSubview(background)
+		background.snp.makeConstraints { make in
+			make.edges.equalTo(view)
+		}
 
-        loaderView = NSImageView()
-        switch size {
-        case .small:
-            loaderView.image = NSImage(named: "Loader-Small")
-        case .large:
-            loaderView.image = NSImage(named: "Loader-Large")
-        }
-        view.addSubview(loaderView)
-        loaderView.snp.makeConstraints { make in
-            make.center.equalTo(view)
-        }
-    }
+		loaderView = NSImageView()
+		switch size {
+		case .small:
+			loaderView.image = NSImage(named: "Loader-Small")
+		case .large:
+			loaderView.image = NSImage(named: "Loader-Large")
+		}
+		view.addSubview(loaderView)
+		loaderView.snp.makeConstraints { make in
+			make.center.equalTo(view)
+		}
+	}
 
-    override func viewDidAppear() {
-        startAnimation()
-    }
+	override func viewDidAppear() {
+		startAnimation()
+	}
 }
 
 enum LoaderViewSize {
-    case small
-    case large
+	case small
+	case large
 }

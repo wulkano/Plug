@@ -1,57 +1,58 @@
 //
-//  BlogImageView.swift
-//  Plug
+//	BlogImageView.swift
+//	Plug
 //
-//  Created by Alex Marchant on 9/5/14.
-//  Copyright (c) 2014 Plug. All rights reserved.
+//	Created by Alex Marchant on 9/5/14.
+//	Copyright (c) 2014 Plug. All rights reserved.
 //
 
 import Cocoa
 
 class BlogImageView: NSImageView {
-    var sideLength: CGFloat {
-        image!.size.width
-    }
-    var halfSideLength: CGFloat {
-        sideLength / 2
-    }
+	var sideLength: CGFloat {
+		image!.size.width
+	}
 
-    override func draw(_ dirtyRect: NSRect) {
-        if image != nil {
-            NSGraphicsContext.saveGraphicsState()
+	var halfSideLength: CGFloat {
+		sideLength / 2
+	}
 
-            let imageRect = calulateImageRect()
-            let clippingRect = calculateClippingRect()
-            let path = NSBezierPath(roundedRect: clippingRect, xRadius: halfSideLength, yRadius: halfSideLength)
-            path.addClip()
+	override func draw(_ dirtyRect: NSRect) {
+		if image != nil {
+			NSGraphicsContext.saveGraphicsState()
 
-            image!.draw(in: bounds, from: imageRect, operation: .sourceOver, fraction: 1)
+			let imageRect = calulateImageRect()
+			let clippingRect = calculateClippingRect()
+			let path = NSBezierPath(roundedRect: clippingRect, xRadius: halfSideLength, yRadius: halfSideLength)
+			path.addClip()
 
-            NSGraphicsContext.restoreGraphicsState()
-        }
-    }
+			image!.draw(in: bounds, from: imageRect, operation: .sourceOver, fraction: 1)
 
-    func calulateImageRect() -> NSRect {
-        var rect = NSRect.zero
-        let croppedHeight = image!.size.height / 1.333_33
+			NSGraphicsContext.restoreGraphicsState()
+		}
+	}
 
-        rect.origin.x = 0
-        rect.origin.y = image!.size.height - croppedHeight
-        rect.size.width = image!.size.width
-        rect.size.height = croppedHeight
+	func calulateImageRect() -> NSRect {
+		var rect = NSRect.zero
+		let croppedHeight = image!.size.height / 1.333_33
 
-        return rect
-    }
+		rect.origin.x = 0
+		rect.origin.y = image!.size.height - croppedHeight
+		rect.size.width = image!.size.width
+		rect.size.height = croppedHeight
 
-    func calculateClippingRect() -> NSRect {
-        var rect = NSRect.zero
-        let veritcalOffset = -(frame.size.width - frame.size.height) / 2
+		return rect
+	}
 
-        rect.origin.x = 0
-        rect.origin.y = veritcalOffset
-        rect.size.width = sideLength
-        rect.size.height = sideLength
+	func calculateClippingRect() -> NSRect {
+		var rect = NSRect.zero
+		let veritcalOffset = -(frame.size.width - frame.size.height) / 2
 
-        return rect
-    }
+		rect.origin.x = 0
+		rect.origin.y = veritcalOffset
+		rect.size.width = sideLength
+		rect.size.height = sideLength
+
+		return rect
+	}
 }

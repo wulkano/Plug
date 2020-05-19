@@ -515,6 +515,8 @@
 				910B3EDDAFADE5E60CE1BB80 /* Pods */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 1;
 		};
 		FA24ED9D1974A9A500A781C8 /* Products */ = {
 			isa = PBXGroup;
@@ -870,8 +872,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA24EDBA1974A9A500A781C8 /* Build configuration list for PBXNativeTarget "Plug" */;
 			buildPhases = (
-				E334A83124746B2E0006DAC6 /* SwiftLint */,
 				56E3DDB3D2109542B2F3441F /* [CP] Check Pods Manifest.lock */,
+				E334A83124746B2E0006DAC6 /* SwiftLint */,
 				FA24ED981974A9A500A781C8 /* Sources */,
 				FA24ED991974A9A500A781C8 /* Frameworks */,
 				FA24ED9A1974A9A500A781C8 /* Resources */,
@@ -897,7 +899,7 @@
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 1140;
-				ORGANIZATIONNAME = Plug;
+				ORGANIZATIONNAME = Wulkano;
 				TargetAttributes = {
 					FA24ED9B1974A9A500A781C8 = {
 						CreatedOnToolsVersion = 6.0;
@@ -1225,6 +1227,7 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -1273,6 +1276,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
