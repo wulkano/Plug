@@ -1,46 +1,24 @@
 PODS:
-  - Alamofire (4.9.1)
-  - CryptoSwift (0.10.0)
-  - HypeMachineAPI (1.1.0):
-    - Alamofire (~> 4.5)
-    - CryptoSwift (~> 0.10.0)
   - INAppStoreWindow (1.4)
-  - SimpleGoogleAnalytics (1.0.0):
-    - Alamofire (~> 4.5)
   - SnapKit (5.0.1)
   - SSKeychain (1.4.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
-  - HypeMachineAPI (from `../HypeMachineAPI`)
   - INAppStoreWindow (~> 1.4)
-  - SimpleGoogleAnalytics (from `../SimpleGoogleAnalytics`)
   - SnapKit (~> 5.0.1)
   - SSKeychain (~> 1.4.1)
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - CryptoSwift
     - INAppStoreWindow
     - SnapKit
     - SSKeychain
 
-EXTERNAL SOURCES:
-  HypeMachineAPI:
-    :path: "../HypeMachineAPI"
-  SimpleGoogleAnalytics:
-    :path: "../SimpleGoogleAnalytics"
-
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
-  HypeMachineAPI: 92d5708614c0575bcf6b6f1043e16d69eb1014f5
   INAppStoreWindow: 4fd569f7435557239e78316de139e886ccbaec4d
-  SimpleGoogleAnalytics: 3bd51cb0daf257fdfdb3f5e0f5f7b9cd3a13dd17
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
 
-PODFILE CHECKSUM: b0dde35bb643cb525afd23049289f5a6fd20e653
+PODFILE CHECKSUM: 67e570db0d19462573b86cfd750271d5529532b2
 
 COCOAPODS: 1.9.1
