@@ -52,6 +52,7 @@
 		E34A8F782473D52A00233A68 /* Swignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5F2473D52900233A68 /* Swignal.swift */; };
 		E34A8F792473D52A00233A68 /* Swignal0Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F602473D52900233A68 /* Swignal0Args.swift */; };
 		E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8FAD2473D66B00233A68 /* PreventSleep.swift */; };
+		E35F1C312474FF9C004CC5C1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E35F1C302474FF9C004CC5C1 /* SnapKit */; };
 		F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7777E5FD4EA5F4A6033418F /* Pods_Plug.framework */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
 		FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */; };
@@ -437,6 +438,7 @@
 				F8BC5A223CC0431E9536B66A /* Pods_Plug.framework in Frameworks */,
 				E334A834247474B20006DAC6 /* Sentry in Frameworks */,
 				7F0DA04CD5F14E5A5F4E36E5 /* Pods_Plug.framework in Frameworks */,
+				E35F1C312474FF9C004CC5C1 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,6 +1054,7 @@
 			name = Plug;
 			packageProductDependencies = (
 				E334A833247474B20006DAC6 /* Sentry */,
+				E35F1C302474FF9C004CC5C1 /* SnapKit */,
 			);
 			productName = Plug;
 			productReference = FA24ED9C1974A9A500A781C8 /* Plug.app */;
@@ -1091,6 +1094,7 @@
 				E334A832247474B20006DAC6 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				E334A8CC2474FAF30006DAC6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				E334A8D32474FC7A0006DAC6 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				E35F1C2F2474FF9C004CC5C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = FA24ED9D1974A9A500A781C8 /* Products */;
 			projectDirPath = "";
@@ -1716,6 +1720,14 @@
 				minimumVersion = 1.3.1;
 			};
 		};
+		E35F1C2F2474FF9C004CC5C1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1733,6 +1745,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E334A8D32474FC7A0006DAC6 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		E35F1C302474FF9C004CC5C1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E35F1C2F2474FF9C004CC5C1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
