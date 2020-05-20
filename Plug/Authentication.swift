@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SSKeychain
 
 struct Authentication {
 	fileprivate static let usernameHashKey = "WGmV6YEF9VFZBjcx"

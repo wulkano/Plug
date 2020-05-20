@@ -1,4 +1,4 @@
-# Plug 2
+# Plug
 
 ## Hype Machine API Codes
 
@@ -10,12 +10,9 @@ Our Hype Machine API codes are embedded in the source. If those codes get out it
 # Get the code
 git clone git@github.com:wulkano/plug.git
 cd plug
-
-# Install CocoaPods (make sure you have CocoaPods installed on you machine https://cocoapods.org/)
-pod install
 ```
 
-You should be set up. Open Plug.xcworkspace to get started.
+You should be set up. Open Plug.xcodeproj to get started.
 
 ## Contributing
 
