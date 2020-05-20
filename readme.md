@@ -1,13 +1,8 @@
-<div align="center">
-	<img src="Plug/Images.xcassets/AppIcon.appiconset/512.png" width="200" height="200">
-	<h1>Plug</h1>
-	<p>
-		<b>Discover and listen to music from <a href="https://hypem.com">Hype Machine</a></b>
-	</p>
-	<br>
-	<br>
-	<br>
-</div>
+<p align="center">
+	<img src="Plug/Images.xcassets/AppIcon.appiconset/512.png" height="64">
+	<h3 align="center">Plug</h3>
+	<p align="center">Discover and listen to music from <a href="https://hypem.com">Hype Machine</a><p>
+</p>
 
 ## Download
 
@@ -25,4 +20,4 @@ Our Hype Machine API codes are embedded in the source. If those codes get out it
 
 #### Can I contribute localizations?
 
-We don't haveany immediate plans to localize the app.
+We do not have any immediate plans to localize the app.
