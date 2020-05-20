@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift",
-        "state": {
-          "branch": null,
-          "revision": "39f08ac5269361a50c08ce1e2f41989bfc4b1ec8",
-          "version": "1.3.1"
-        }
-      },
-      {
         "package": "Sentry",
         "repositoryURL": "https://github.com/getsentry/sentry-cocoa",
         "state": {

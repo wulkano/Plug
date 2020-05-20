@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import CommonCrypto.CommonHMAC
 
+// TODO: Replace this with CryptoKit when targeting macOS 10.15.
 
 enum HMACAlgorithm {
 	case md5, sha1, sha224, sha256, sha384, sha512

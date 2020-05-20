@@ -41,7 +41,6 @@
 		E334A8C224747D9F0006DAC6 /* MiscRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E334A8A724747D9E0006DAC6 /* MiscRequests.swift */; };
 		E334A8C424747DE50006DAC6 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E334A8D22474FB7B0006DAC6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E334A8D12474FB7B0006DAC6 /* Alamofire */; };
-		E334A8D52474FC7A0006DAC6 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E334A8D42474FC7A0006DAC6 /* CryptoSwift */; };
 		E334A8D82474FD6E0006DAC6 /* SimpleGoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E334A8D72474FD6E0006DAC6 /* SimpleGoogleAnalytics.swift */; };
 		E34A8F732473D52A00233A68 /* Swignal3Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5A2473D52900233A68 /* Swignal3Args.swift */; };
 		E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */; };
@@ -441,7 +440,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E334A8D22474FB7B0006DAC6 /* Alamofire in Frameworks */,
-				E334A8D52474FC7A0006DAC6 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,7 +1066,6 @@
 			name = HypeMachineAPI;
 			packageProductDependencies = (
 				E334A8D12474FB7B0006DAC6 /* Alamofire */,
-				E334A8D42474FC7A0006DAC6 /* CryptoSwift */,
 			);
 			productName = HypeMachineAPI;
 			productReference = E334A88124747D670006DAC6 /* HypeMachineAPI.framework */;
@@ -1131,7 +1128,6 @@
 			packageReferences = (
 				E334A832247474B20006DAC6 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				E334A8CC2474FAF30006DAC6 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				E334A8D32474FC7A0006DAC6 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				E35F1C2F2474FF9C004CC5C1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = FA24ED9D1974A9A500A781C8 /* Products */;
@@ -1719,14 +1715,6 @@
 				minimumVersion = 4.5.0;
 			};
 		};
-		E334A8D32474FC7A0006DAC6 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.1;
-			};
-		};
 		E35F1C2F2474FF9C004CC5C1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1747,11 +1735,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E334A8CC2474FAF30006DAC6 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		E334A8D42474FC7A0006DAC6 /* CryptoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E334A8D32474FC7A0006DAC6 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
-			productName = CryptoSwift;
 		};
 		E35F1C302474FF9C004CC5C1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
