@@ -1,7 +1,10 @@
 <p align="center">
-	<img src="Plug/Images.xcassets/AppIcon.appiconset/512.png" height="64">
-	<h3 align="center">Plug</h3>
+	<img src="Plug/Images.xcassets/AppIcon.appiconset/256.png" height="128">
+	<h1 align="center">Plug</h1>
 	<p align="center">Discover and listen to music from <a href="https://hypem.com">Hype Machine</a><p>
+	<br>
+	<br>
+	<br>
 </p>
 
 ## Download
