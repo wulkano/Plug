@@ -1,19 +1,28 @@
-# Plug
+<div align="center">
+	<img src="Plug/Images.xcassets/AppIcon.appiconset/512.png" width="200" height="200">
+	<h1>Plug</h1>
+	<p>
+		<b>Discover and listen to music from <a href="https://hypem.com">Hype Machine</a></b>
+	</p>
+	<br>
+	<br>
+	<br>
+</div>
+
+Requires macOS 10.12 or later.
+
+## Download
+
+[![](https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/macappstore-lrg.svg)]()
+
+**SOON**
 
 ## Hype Machine API Codes
 
 Our Hype Machine API codes are embedded in the source. If those codes get out it will very much jeopardize our relationship with Hype Machine. Please be careful with this source. Please do not publish it openly or attempt to create you own forks of Plug.
 
-## Dev Setup
+## FAQ
 
-```sh
-# Get the code
-git clone git@github.com:wulkano/plug.git
-cd plug
-```
+#### Can I contribute localizations?
 
-You should be set up. Open Plug.xcodeproj to get started.
-
-## Contributing
-
-Please create a pull request for any code you'd like merged into the master branch. If its a large change or a change to the UI please discuss first with the group.
+We don't haveany immediate plans to localize the app.
