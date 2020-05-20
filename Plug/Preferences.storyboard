@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +10,7 @@
         <scene sceneID="OaO-hp-jyj">
             <objects>
                 <windowController id="W2t-17-F3D" customClass="PreferencesWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="PreferenceWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
+                    <window key="window" identifier="PreferenceWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="400" height="444"/>
@@ -34,157 +34,52 @@
         <!--Preferences View Controller-->
         <scene sceneID="Vnz-Ee-iFP">
             <objects>
-                <viewController id="5IL-x6-7lA" customClass="PreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="5IL-x6-7lA" customClass="PreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="YyQ-Gb-QOF">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="444"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nz2-n0-mWO" customClass="DraggableVisualEffectsView" customModule="Plug" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="352" width="400" height="92"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="ba4-BZ-Gks" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="92"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.76078431372549016" green="0.76470588235294112" blue="0.7686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="QYj-8M-NyU">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="62"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="62" id="Btw-uV-Fn1"/>
-                                            <constraint firstAttribute="width" constant="60" id="Mgy-a6-gfV"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="square" title="General" bezelStyle="shadowlessSquare" image="Preferences-General-Off" imagePosition="above" alignment="center" alternateImage="Preferences-General-On" state="on" borderStyle="border" inset="2" id="IMw-7A-qOm" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
-                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="generalTabClicked:" target="5IL-x6-7lA" id="Lzo-Pd-mwt"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GrM-zG-xU0">
-                                        <rect key="frame" x="60" y="0.0" width="60" height="62"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="HA2-8n-jzy"/>
-                                            <constraint firstAttribute="height" constant="62" id="NkX-Sg-uSd"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="square" title="Hotkeys" bezelStyle="shadowlessSquare" image="Preferences-Hotkeys-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Hotkeys-On" state="on" borderStyle="border" inset="2" id="q3g-72-SgQ" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
-                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                            <font key="font" size="11" name="HelveticaNeue"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="hotkeysTabClicked:" target="5IL-x6-7lA" id="ZTO-x8-K3m"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFB-I6-T8t">
-                                        <rect key="frame" x="120" y="0.0" width="60" height="62"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="UMZ-cV-zqN"/>
-                                            <constraint firstAttribute="height" constant="62" id="f0d-ZX-WAe"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="square" title="Muted" bezelStyle="shadowlessSquare" image="Preferences-Muted-Off" imagePosition="above" alignment="center" alternateImage="Preferences-Muted-On" borderStyle="border" inset="2" id="kLp-v2-rvI" customClass="UnderlinedTabButtonCell" customModule="Plug" customModuleProvider="target">
-                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                            <font key="font" size="11" name="HelveticaNeue"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="mutedTabClicked:" target="5IL-x6-7lA" id="a96-Nz-SzN"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ba4-BZ-Gks" secondAttribute="trailing" id="5ai-hv-eiL"/>
-                                    <constraint firstAttribute="bottom" secondItem="GrM-zG-xU0" secondAttribute="bottom" id="Dbs-wx-L9i"/>
-                                    <constraint firstItem="GrM-zG-xU0" firstAttribute="leading" secondItem="QYj-8M-NyU" secondAttribute="trailing" id="FnL-kc-9kf"/>
-                                    <constraint firstAttribute="height" constant="92" id="R4i-ji-GGN"/>
-                                    <constraint firstItem="ba4-BZ-Gks" firstAttribute="leading" secondItem="nz2-n0-mWO" secondAttribute="leading" id="VR1-zi-RbL"/>
-                                    <constraint firstAttribute="bottom" secondItem="QYj-8M-NyU" secondAttribute="bottom" id="Wez-Ni-wWn"/>
-                                    <constraint firstAttribute="bottom" secondItem="ba4-BZ-Gks" secondAttribute="bottom" id="dG5-Fj-bZV"/>
-                                    <constraint firstItem="fFB-I6-T8t" firstAttribute="leading" secondItem="GrM-zG-xU0" secondAttribute="trailing" id="gpf-3M-BCS"/>
-                                    <constraint firstItem="ba4-BZ-Gks" firstAttribute="top" secondItem="nz2-n0-mWO" secondAttribute="top" id="m7f-50-eY1"/>
-                                    <constraint firstItem="QYj-8M-NyU" firstAttribute="leading" secondItem="nz2-n0-mWO" secondAttribute="leading" id="ofE-Kh-mOl"/>
-                                    <constraint firstAttribute="bottom" secondItem="fFB-I6-T8t" secondAttribute="bottom" id="zhu-5j-5D4"/>
-                                </constraints>
-                            </visualEffectView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="fjZ-IR-ILH">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="352"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="418"/>
                                 <connections>
-                                    <segue destination="Vh4-yZ-5HB" kind="embed" id="3JR-re-rJI"/>
+                                    <segue destination="seI-KD-IWG" kind="embed" id="jp7-Fq-1Kc"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="nz2-n0-mWO" firstAttribute="top" secondItem="YyQ-Gb-QOF" secondAttribute="top" id="8db-FJ-mpQ"/>
+                            <constraint firstItem="fjZ-IR-ILH" firstAttribute="top" secondItem="YyQ-Gb-QOF" secondAttribute="top" constant="26" id="2Wr-xf-bXS"/>
                             <constraint firstAttribute="bottom" secondItem="fjZ-IR-ILH" secondAttribute="bottom" id="8sZ-nc-n2W"/>
-                            <constraint firstItem="nz2-n0-mWO" firstAttribute="leading" secondItem="YyQ-Gb-QOF" secondAttribute="leading" id="Jy4-Qa-7oQ"/>
-                            <constraint firstAttribute="trailing" secondItem="nz2-n0-mWO" secondAttribute="trailing" id="Mdf-ya-5wX"/>
-                            <constraint firstItem="fjZ-IR-ILH" firstAttribute="top" secondItem="nz2-n0-mWO" secondAttribute="bottom" id="Ukh-kl-8NE"/>
                             <constraint firstAttribute="trailing" secondItem="fjZ-IR-ILH" secondAttribute="trailing" id="deG-yO-Xcc"/>
                             <constraint firstItem="fjZ-IR-ILH" firstAttribute="leading" secondItem="YyQ-Gb-QOF" secondAttribute="leading" id="lMt-Nv-ddu"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="generalTab" destination="QYj-8M-NyU" id="mr6-oe-BHZ"/>
-                        <outlet property="hotkeysTab" destination="GrM-zG-xU0" id="g7n-gw-ro0"/>
-                        <outlet property="mutedTab" destination="fFB-I6-T8t" id="oi9-k5-PHW"/>
-                    </connections>
                 </viewController>
                 <customObject id="0xs-Ss-o3E" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="634" y="416"/>
         </scene>
-        <!--Tab View Controller-->
-        <scene sceneID="uxt-4h-tHh">
-            <objects>
-                <tabViewController id="Vh4-yZ-5HB" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem id="rCn-8o-RbM"/>
-                    </tabViewItems>
-                    <tabView key="tabView" type="noTabsNoBorder" id="dzb-82-yJx">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
-                        <connections>
-                            <outlet property="delegate" destination="Vh4-yZ-5HB" id="ImU-cp-K1s"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <outlet property="tabView" destination="dzb-82-yJx" id="deC-FY-d0A"/>
-                        <segue destination="seI-KD-IWG" kind="relationship" relationship="tabItems" id="uhT-wY-Zpb"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="aHl-GV-hLc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1189" y="416"/>
-        </scene>
         <!--General Preferences View Controller-->
         <scene sceneID="GM3-tk-veL">
             <objects>
-                <viewController id="seI-KD-IWG" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="seI-KD-IWG" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="TeD-Sw-Ebk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="hR5-44-L2h">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
                                 <clipView key="contentView" id="Lfl-6Y-N7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" viewBased="YES" id="eJY-Z3-ivM">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="225"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="" width="400" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
+                                                <tableColumn width="400" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -255,7 +150,7 @@
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="8AI-hZ-DtJ"/>
-                                    <constraint firstAttribute="height" constant="225" id="zBT-9D-E7s"/>
+                                    <constraint firstAttribute="height" constant="210" id="zBT-9D-E7s"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="LxI-aR-Fje">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
@@ -282,15 +177,7 @@
                 <customObject id="oqK-qV-mZv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="194-IG-p90"/>
             </objects>
-            <point key="canvasLocation" x="1189" y="811.5"/>
+            <point key="canvasLocation" x="1158" y="385"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Preferences-General-Off" width="36" height="36"/>
-        <image name="Preferences-General-On" width="36" height="36"/>
-        <image name="Preferences-Hotkeys-Off" width="40" height="32"/>
-        <image name="Preferences-Hotkeys-On" width="40" height="32"/>
-        <image name="Preferences-Muted-Off" width="36" height="36"/>
-        <image name="Preferences-Muted-On" width="36" height="36"/>
-    </resources>
 </document>
