@@ -123,19 +123,9 @@ class AboutViewController: NSViewController {
 
 		let copyright = label(view)
 		copyright.font = appFont(size: 11)
-		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy"
-		let year = formatter.string(from: Date())
-		copyright.stringValue = "Copyright © \(year) Alex Marchant & Glenn Hitchcock."
+		copyright.stringValue = App.copyright
 		copyright.snp.makeConstraints { make in
 			make.top.equalTo(alexSection.snp.bottom).offset(10)
-		}
-
-		let allRights = label(view)
-		allRights.font = appFont(size: 11)
-		allRights.stringValue = "All rights reserved."
-		allRights.snp.makeConstraints { make in
-			make.top.equalTo(copyright.snp.bottom)
 			make.bottom.equalTo(view).offset(-17)
 		}
 	}

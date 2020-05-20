@@ -13,3 +13,7 @@ let ApiKey = "***REMOVED***"
 let PlugErrorDomain = "Plug.ErrorDomain"
 let RickRoll = false
 let JSONResponseSerializerWithDataKey = "JSONResponseSerializerWithDataKey"
+
+struct App {
+	static let copyright = Bundle.main.object(forInfoDictionaryKey: "NSHumanReadableCopyright") as! String
+}
