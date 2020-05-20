@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>MIT License © Wulkano</string>
+	<string>Copyright © Wulkano</string>
 	<key>NSMainStoryboardFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

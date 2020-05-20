@@ -59,7 +59,7 @@ extension Router {
 
 		func deviceID() -> String {
 			let serialNumber = getSerialNumber()!
-			return MD5(string: serialNumber).base64EncodedString()
+			return MD5(string: serialNumber).map { String(format: "%02hhx", $0) }.joined()
 		}
 
 		func getSerialNumber() -> String? {
