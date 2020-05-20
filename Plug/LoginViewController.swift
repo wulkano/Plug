@@ -28,7 +28,8 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
 		Notifications.unsubscribeAll(observer: self)
 	}
 
-	@objc func displayError(_ notification: Notification) {
+	@objc
+	func displayError(_ notification: Notification) {
 		let error = (notification as NSNotification).userInfo!["error"] as! NSError
 		NSAlert(error: error).runModal()
 	}
@@ -74,18 +75,21 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
 	}
 
 	func formFieldsValid() -> Bool {
-		if formFieldsEmpty() { return false }
+		guard !formFieldsEmpty() else {
+			return false
+		}
 
 		return true
 	}
 
 	func formFieldsEmpty() -> Bool {
-		usernameOrEmailTextField.stringValue == "" || passwordTextField.stringValue == ""
+		usernameOrEmailTextField.stringValue.isEmpty
+			|| passwordTextField.stringValue.isEmpty
 	}
 
 	// MARK: Actions
 
-	@IBAction func loginButtonClicked(_ sender: AnyObject) {
+	@IBAction private func loginButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Log In")
 		let usernameOrEmail = usernameOrEmailTextField.stringValue
 		let password = passwordTextField.stringValue
@@ -94,12 +98,12 @@ class LoginViewController: NSViewController, NSTextFieldDelegate {
 		loginWithUsernameOrEmail(usernameOrEmail, andPassword: password)
 	}
 
-	@IBAction func forgotPasswordButtonClicked(_ sender: AnyObject) {
+	@IBAction private func forgotPasswordButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Forgot Password")
 		NSWorkspace.shared.open(URL(string: "https://hypem.com/inc/lb_forgot.php")!)
 	}
 
-	@IBAction func signUpButtonClicked(_ sender: AnyObject) {
+	@IBAction private func signUpButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Sign Up")
 		NSWorkspace.shared.open(URL(string: "http://hypem.com/?signup=1")!)
 	}

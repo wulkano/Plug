@@ -25,7 +25,7 @@ class TracksViewController: DataSourceViewController {
 		self.type = type
 		super.init(title: title, analyticsViewName: analyticsViewName)
 
-		AudioPlayer.sharedInstance.onShuffleChanged.addObserver(self) { weakSelf, shuffle in
+		AudioPlayer.shared.onShuffleChanged.addObserver(self) { weakSelf, shuffle in
 			if let favoriteTracksDataSource = weakSelf.tracksDataSource as? FavoriteTracksDataSource {
 				weakSelf.addLoaderView()
 				favoriteTracksDataSource.shuffle = shuffle
@@ -300,7 +300,7 @@ class TracksViewController: DataSourceViewController {
 		case 36: // Enter
 			let row = tableView.selectedRow
 			let track = tracksDataSource!.objectForRow(row)! as! HypeMachineAPI.Track
-			AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
+			AudioPlayer.shared.playNewTrack(track, dataSource: tracksDataSource!)
 		default:
 			super.keyDown(with: theEvent)
 		}
@@ -457,7 +457,7 @@ class TracksViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: ExtendedTableView, rowDidStartToHide row: Int, direction: RowShowHideDirection) {
 		if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
-			if track == AudioPlayer.sharedInstance.currentTrack {
+			if track == AudioPlayer.shared.currentTrack {
 				let position = (direction == .above ? StickyTrackPosition.top : StickyTrackPosition.bottom)
 				addStickyTrackAtPosition(position)
 			}
@@ -466,7 +466,7 @@ class TracksViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: ExtendedTableView, rowDidShow row: Int, direction: RowShowHideDirection) {
 		if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
-			if track == AudioPlayer.sharedInstance.currentTrack {
+			if track == AudioPlayer.shared.currentTrack {
 				removeStickyTrack()
 			}
 
@@ -478,8 +478,8 @@ class TracksViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: ExtendedTableView, wasDoubleClicked theEvent: NSEvent, atRow row: Int) {
 		if let track = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track {
-			if track != AudioPlayer.sharedInstance.currentTrack {
-				AudioPlayer.sharedInstance.playNewTrack(track, dataSource: tracksDataSource!)
+			if track != AudioPlayer.shared.currentTrack {
+				AudioPlayer.shared.playNewTrack(track, dataSource: tracksDataSource!)
 			}
 		}
 	}
@@ -497,7 +497,10 @@ class TracksViewController: DataSourceViewController {
 	// MARK: NSKeyValueObserving
 
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-		guard let keyPath = keyPath else { return }
+		guard let keyPath = keyPath else {
+			return
+		}
+
 		if keyPath == HideUnavailableTracks {
 			showHideUnavailableTracks()
 		}

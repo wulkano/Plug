@@ -15,7 +15,7 @@ class LoginWindowController: NSWindowController {
 		super.windowDidLoad()
 
 		trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "LoginWindow")
-		trafficButtons.addButtonsToWindow(window!, origin: NSPoint(x: 20, y: 20))
+		trafficButtons.addButtonsToWindow(window!, origin: CGPoint(x: 20, y: 20))
 		trafficButtons.zoomButton.isEnabled = false
 	}
 }

@@ -20,7 +20,7 @@ class IOSStyleTableRowView: NSTableRowView {
 	var separatorWidth: CGFloat = 1
 	var nextRowIsGroupRow: Bool = false
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 		if shouldDrawSeparator() {
 			let separatorRect = makeSeparatorRect(dirtyRect)
@@ -32,35 +32,46 @@ class IOSStyleTableRowView: NSTableRowView {
 	// MARK: Separator
 	// Had to disable default separator behavior, otherwise empty
 	// row views drew the incorrect default separator
-//	  override func drawSeparatorInRect(dirtyRect: NSRect) {
+//	  override func drawSeparatorInRect(dirtyRect: CGRect) {
 //		  if shouldDrawSeparator() {
 //			  let separatorRect = makeSeparatorRect(dirtyRect)
 //			  customSeparatorColor.set()
-//			  NSRectFill(separatorRect)
+//			  CGRectFill(separatorRect)
 //		  }
 //	  }
 
 	func shouldDrawSeparator() -> Bool {
-		if nextRowIsGroupRow { return true }
-		if isSelected { return false }
-		if isNextRowSelected { return false }
+		if nextRowIsGroupRow {
+			return true
+		}
+
+		if isSelected {
+			return false
+		}
+
+		if isNextRowSelected {
+			return false
+		}
+
 		return true
 	}
 
-	func makeSeparatorRect(_ dirtyRect: NSRect) -> NSRect {
+	func makeSeparatorRect(_ dirtyRect: CGRect) -> CGRect {
 		var separatorRect = bounds
 		separatorRect.size.height = separatorWidth
+
 		if !nextRowIsGroupRow {
 			separatorRect.size.width = bounds.size.width - separatorSpacing
 			separatorRect.origin.x = separatorSpacing
 		}
+
 		separatorRect.origin.y = bounds.size.height - separatorWidth
 		return separatorRect.intersection(dirtyRect)
 	}
 
 	// MARK: Selection
 
-	override func drawSelection(in dirtyRect: NSRect) {
+	override func drawSelection(in dirtyRect: CGRect) {
 		let selectionRect = bounds
 		selectionColor.set()
 		selectionRect.fill()

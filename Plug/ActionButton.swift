@@ -27,7 +27,7 @@ class ActionButton: SwissArmyButton {
 		get { actionButtonCell.onStateTitle }
 	}
 
-	override var intrinsicContentSize: NSSize {
+	override var intrinsicContentSize: CGSize {
 		var newSize = super.intrinsicContentSize
 		newSize.width += horizontalPadding
 		return newSize

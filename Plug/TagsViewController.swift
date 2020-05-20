@@ -125,7 +125,8 @@ class TagsViewController: DataSourceViewController {
 
 	// MARK: Actions
 
-	@objc func searchFieldSubmit(_ sender: NSSearchField) {
+	@objc
+	func searchFieldSubmit(_ sender: NSSearchField) {
 		tagsDataSource!.searchKeywords = sender.stringValue
 	}
 

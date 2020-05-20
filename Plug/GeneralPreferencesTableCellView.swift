@@ -21,7 +21,9 @@ class GeneralPreferencesTableCellView: NSTableCellView {
 	}
 
 	func objectValueChanged() {
-		if objectValue == nil { return }
+		guard objectValue != nil else {
+			return
+		}
 
 		updatePreferenceTitle()
 		updateSwitchButton()
@@ -35,7 +37,7 @@ class GeneralPreferencesTableCellView: NSTableCellView {
 		switchButton.on = generalPreferenceValue.getUserDefaultsValue()
 	}
 
-	@IBAction func switchButtonClicked(_ sender: IOSSwitch) {
+	@IBAction private func switchButtonClicked(_ sender: IOSSwitch) {
 		let oldValue = generalPreferenceValue.getUserDefaultsValue()
 		let newValue = !oldValue
 		generalPreferenceValue.setUserDefaultsValue(newValue)

@@ -47,7 +47,7 @@ class NavigationController: NSViewController {
 	}
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
 		navigationBarController = NavigationBarController(navigationController: self)
 		view.addSubview(navigationBarController.view)
@@ -58,7 +58,7 @@ class NavigationController: NSViewController {
 			make.right.equalTo(self.view)
 		}
 
-		contentView = NSView(frame: NSRect.zero)
+		contentView = NSView(frame: CGRect.zero)
 		view.addSubview(contentView)
 		contentView.snp.makeConstraints { make in
 			make.top.equalTo(self.navigationBarController.view.snp.bottom)
@@ -125,14 +125,15 @@ class NavigationController: NSViewController {
 		contentView.addSubview(newVisibleViewController.view)
 
 		if animated {
-			let isPushing = _viewControllers.firstIndex(of: oldVisibleViewController) != nil
+			let isPushing = viewControllers.firstIndex(of: oldVisibleViewController) != nil
 			constrainViewControllerToSideOfContentView(newVisibleViewController, side: isPushing ? .right : .left)
 			contentView.layoutSubtreeIfNeeded()
 			constrainViewControllerToContentView(newVisibleViewController)
 			constrainViewControllerToSideOfContentView(oldVisibleViewController, side: isPushing ? .left : .right)
-			startAnimation(completionHandler: {
+
+			startAnimation {
 				oldVisibleViewController.view.removeFromSuperview()
-			})
+			}
 		} else {
 			constrainViewControllerToContentView(newVisibleViewController)
 			oldVisibleViewController.view.removeFromSuperview()

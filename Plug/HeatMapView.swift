@@ -13,7 +13,7 @@ class HeatMapView: NSView {
 		didSet { needsDisplay = true }
 	}
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
 		if heatMap != nil {
@@ -21,11 +21,11 @@ class HeatMapView: NSView {
 		}
 	}
 
-	func drawHeatMap(_ dirtyRect: NSRect) {
-		let bottomLeftPoint = NSPoint.zero
-		let topLeftPoint = NSPoint(x: 0, y: frame.height * CGFloat(heatMap!.start))
-		let topRightPoint = NSPoint(x: frame.width, y: frame.height * CGFloat(heatMap!.end))
-		let bottomRightPoint = NSPoint(x: frame.width, y: 0)
+	func drawHeatMap(_ dirtyRect: CGRect) {
+		let bottomLeftPoint = CGPoint.zero
+		let topLeftPoint = CGPoint(x: 0, y: frame.height * CGFloat(heatMap!.start))
+		let topRightPoint = CGPoint(x: frame.width, y: frame.height * CGFloat(heatMap!.end))
+		let bottomRightPoint = CGPoint(x: frame.width, y: 0)
 
 		let path = NSBezierPath()
 		path.move(to: bottomLeftPoint)

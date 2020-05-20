@@ -1,11 +1,3 @@
-//
-//	AudioPlayer.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/23/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import AVFoundation
 import CoreMedia
@@ -17,22 +9,21 @@ typealias OnTrackPaused = Swignal1Arg<Bool>
 typealias OnSkipForward = Swignal1Arg<Bool>
 typealias OnSkipBackward = Swignal1Arg<Bool>
 
-class AudioPlayer: NSObject {
-	class var sharedInstance: AudioPlayer {
-		struct Singleton {
-			static let instance = AudioPlayer()
-		}
-		return Singleton.instance
-	}
+final class AudioPlayer: NSObject {
+	static var shared = AudioPlayer()
 
 	var player: AVPlayer!
 	var playerItem: AVPlayerItem!
 	var currentDataSource: TracksDataSource! {
-		didSet { recentlyPlayedTrackIndexes = [] }
+		didSet {
+			recentlyPlayedTrackIndexes = []
+		}
 	}
 
 	var currentTrack: HypeMachineAPI.Track? {
-		didSet { currentTrackChanged() }
+		didSet {
+			currentTrackChanged()
+		}
 	}
 
 	var currentTrackListenLogged = false
@@ -51,12 +42,14 @@ class AudioPlayer: NSObject {
 	let onSkipForward = OnSkipForward()
 	let onSkipBackward = OnSkipBackward()
 	var volume: Float = 1 {
-		didSet { volumeChanged() }
+		didSet {
+			volumeChanged()
+		}
 	}
 
 	var progressObserver: AnyObject?
 	var seeking = false
-	var recentlyPlayedTrackIndexes: [Int] = []
+	var recentlyPlayedTrackIndexes = [Int]()
 	var timeoutTimer: Timer?
 	let timeoutSeconds: Double = 10
 
@@ -78,6 +71,7 @@ class AudioPlayer: NSObject {
 		if progressObserver != nil {
 			player.removeTimeObserver(progressObserver!)
 		}
+
 		player = nil
 		playerItem = nil
 		currentDataSource = nil
@@ -93,6 +87,7 @@ class AudioPlayer: NSObject {
 			UserNotifications.deliverNotification(title: track.title, informativeText: track.artist)
 			Notifications.post(name: Notifications.NewCurrentTrack, object: self, userInfo: ["track": track, "tracksDataSource": dataSource])
 		}
+
 		play()
 	}
 
@@ -101,10 +96,12 @@ class AudioPlayer: NSObject {
 			currentDataSource != nil,
 			currentTrack != nil,
 			let foundTracks = findTracksWithTrackId(currentTrack!.id)
-		else { return }
+		else {
+			return
+		}
 
 		if foundTracks.firstIndex(of: currentTrack!) != NSNotFound {
-			// current track is already accurate
+			// Current track is already accurate.
 			return
 		} else if let foundTrack = foundTracks.first {
 			if currentTrack != foundTrack {
@@ -132,7 +129,9 @@ class AudioPlayer: NSObject {
 	}
 
 	func playPauseToggle() {
-		guard currentTrack != nil else { return }
+		guard currentTrack != nil else {
+			return
+		}
 
 		if playing {
 			pause()
@@ -142,7 +141,9 @@ class AudioPlayer: NSObject {
 	}
 
 	func skipForward() {
-		guard currentDataSource != nil else { return }
+		guard currentDataSource != nil else {
+			return
+		}
 
 		onSkipForward.fire(true)
 
@@ -155,7 +156,9 @@ class AudioPlayer: NSObject {
 		guard
 			currentDataSource != nil,
 			currentTrack != nil
-		else { return }
+		else {
+			return
+		}
 
 		onSkipBackward.fire(true)
 
@@ -177,38 +180,44 @@ class AudioPlayer: NSObject {
 		seeking = true
 		let seconds = percent * currentItemDuration()!
 		let time = CMTimeMakeWithSeconds(seconds, preferredTimescale: 1000)
-		player.seek(to: time, completionHandler: { success in
+
+		player.seek(to: time) { success in
 			self.seeking = false
 
 			if !success {
 				// Minor error
 				print("Error seeking")
 			}
-		})
+		}
 	}
 
 	// MARK: Notification listeners
 
-	@objc func currentTrackFinishedPlayingNotification(_ notification: Notification) {
+	@objc
+	func currentTrackFinishedPlayingNotification(_ notification: Notification) {
 		print("currentTrackFinishedPlayingNotification")
 		skipForward()
 	}
 
-	@objc func currentTrackCouldNotFinishPlayingNotification(_ notification: Notification) {
+	@objc
+	func currentTrackCouldNotFinishPlayingNotification(_ notification: Notification) {
 		let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
 		currentTrackPlaybackError(error)
 	}
 
-	@objc func currentTrackPlaybackStalledNotification(_ notification: Notification) {
+	@objc
+	func currentTrackPlaybackStalledNotification(_ notification: Notification) {
 		let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
 		currentTrackPlaybackError(error)
 	}
 
-	@objc func currentTrackNewAccessLogEntry(_ notification: Notification) {
+	@objc
+	func currentTrackNewAccessLogEntry(_ notification: Notification) {
 //		  print((notification.object as! AVPlayerItem).accessLog())
 	}
 
-	@objc func currentTrackNewErrorLogEntry(_ notification: Notification) {
+	@objc
+	func currentTrackNewErrorLogEntry(_ notification: Notification) {
 		print((notification.object as! AVPlayerItem).errorLog())
 	}
 
@@ -218,12 +227,15 @@ class AudioPlayer: NSObject {
 		skipForward()
 	}
 
-	@objc func didAVPlayerTimeout() {
-		guard player != nil else { return }
+	@objc
+	func didAVPlayerTimeout() {
+		guard player != nil else {
+			return
+		}
 
-		if let val = player.currentItem?.loadedTimeRanges.optionalAtIndex(0) {
+		if let value = player.currentItem?.loadedTimeRanges.optionalAtIndex(0) {
 			var timeRange = CMTimeRange()
-			val.getValue(&timeRange)
+			value.getValue(&timeRange)
 			let duration = timeRange.duration
 			let timeLoaded = Float(duration.value) / Float(duration.timescale)
 
@@ -243,9 +255,11 @@ class AudioPlayer: NSObject {
 	// MARK: Private methods
 
 	fileprivate func currentItemDuration() -> Double? {
-		guard playerItem != nil else { return nil }
+		guard let seconds = playerItem?.duration.seconds else {
+			return nil
+		}
 
-		return Double(CMTimeGetSeconds(playerItem.duration))
+		return seconds
 	}
 
 	fileprivate func setupForNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
@@ -299,8 +313,8 @@ class AudioPlayer: NSObject {
 			currentTrack != nil
 		else { return }
 
-		let progress = Double(CMTimeGetSeconds(time))
-		let duration = Double(CMTimeGetSeconds(playerItem.duration))
+		let progress = time.seconds
+		let duration = playerItem.duration.seconds
 		let userInfo: [String: Any] = [
 			"progress": progress,
 			"duration": duration,
@@ -309,10 +323,10 @@ class AudioPlayer: NSObject {
 		Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
 
 		if progress > 30 && !currentTrackListenLogged {
-			HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: 30, completionHandler: { _ in })
+			HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: 30) { _ in }
 			currentTrackListenLogged = true
 		} else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
-			HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: Int(progress), completionHandler: { _ in })
+			HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: Int(progress)) { _ in }
 			currentTrackListenScrobbled = true
 		}
 	}

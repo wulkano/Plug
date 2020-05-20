@@ -23,7 +23,9 @@ class TagTableCellView: IOSStyleTableCellView {
 	}
 
 	func objectValueChanged() {
-		if objectValue == nil { return }
+		guard objectValue != nil else {
+			return
+		}
 
 		updateName()
 	}

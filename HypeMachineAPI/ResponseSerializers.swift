@@ -14,7 +14,9 @@ extension DataRequest {
 	)
 		-> Self {
 		let responseSerializer = DataResponseSerializer<T> { request, response, data, error in
-			guard error == nil else { return .failure(APIError.network(error: error!)) }
+			if let error = error {
+				return .failure(APIError.network(error: error))
+			}
 
 			let jsonResponseSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonResponseSerializer.serializeResponse(request, response, data, nil)
@@ -63,7 +65,9 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<[T]>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<[T]> { request, response, data, error in
-			guard error == nil else { return .failure(APIError.network(error: error!)) }
+			if let error = error {
+				return .failure(APIError.network(error: error))
+			}
 
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)
@@ -93,7 +97,9 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<Bool>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<Bool> { request, response, data, error in
-			guard error == nil else { return .failure(APIError.network(error: error!)) }
+			if let error = error {
+				return .failure(APIError.network(error: error))
+			}
 
 			let stringSerializer = DataRequest.stringResponseSerializer()
 			let result = stringSerializer.serializeResponse(request, response, data, nil)
@@ -125,7 +131,9 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<[String]>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<[String]> { request, response, data, error in
-			guard error == nil else { return .failure(APIError.network(error: error!)) }
+			if let error = error {
+				return .failure(APIError.network(error: error))
+			}
 
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)
@@ -155,7 +163,9 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<UsernameAndToken>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<UsernameAndToken> { request, response, data, error in
-			guard error == nil else { return .failure(APIError.network(error: error!)) }
+			if let error = error {
+				return .failure(APIError.network(error: error))
+			}
 
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)

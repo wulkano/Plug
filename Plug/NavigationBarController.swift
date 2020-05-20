@@ -39,7 +39,9 @@ class NavigationBarController: NSViewController {
 	}
 
 	var backItem: NavigationItem? {
-		if items == nil || items!.count < 2 { return nil }
+		if items == nil || items!.count < 2 {
+			return nil
+		}
 
 		return items![items!.count - 2]
 	}
@@ -66,7 +68,9 @@ class NavigationBarController: NSViewController {
 	}
 
 	func popNavigationItemAnimated(_ animated: Bool) -> NavigationItem? {
-		if items == nil || items!.count <= 1 { return nil }
+		if items == nil || items!.count <= 1 {
+			return nil
+		}
 
 		let poppedItem = items!.remove(at: items!.count - 1)
 		updateNavigationBarViews(animated: animated, direction: .rightToLeft)
@@ -74,7 +78,9 @@ class NavigationBarController: NSViewController {
 	}
 
 	func popToNavigationItem(_ item: NavigationItem, animated: Bool) -> [NavigationItem]? {
-		if items == nil || items!.count <= 1 { return nil }
+		if items == nil || items!.count <= 1 {
+			return nil
+		}
 
 		var poppedItems: [NavigationItem] = []
 		let topItemIndex = items!.firstIndex(of: item)
@@ -184,9 +190,9 @@ class NavigationBarController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
-		backgroundView = NSVisualEffectView(frame: NSRect.zero)
+		backgroundView = NSVisualEffectView(frame: CGRect.zero)
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
 			make.edges.equalTo(self.view)
@@ -203,7 +209,8 @@ class NavigationBarController: NSViewController {
 
 	// MARK: Actions
 
-	@objc func backButtonClicked(_ sender: NSButton) {
+	@objc
+	func backButtonClicked(_ sender: NSButton) {
 		navigationController.popViewControllerAnimated(true)
 	}
 }

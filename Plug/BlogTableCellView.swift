@@ -22,7 +22,9 @@ class BlogTableCellView: IOSStyleTableCellView {
 	}
 
 	func objectValueChanged() {
-		if objectValue == nil { return }
+		guard objectValue != nil else {
+			return
+		}
 
 		updateName()
 		updateArtists()

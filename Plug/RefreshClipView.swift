@@ -17,7 +17,7 @@ class RefreshClipView: NSClipView {
 		refreshScrollView.refreshHeaderController
 	}
 
-	override var documentRect: NSRect {
+	override var documentRect: CGRect {
 		var newRect = super.documentRect
 
 		// If refreshing expand the rect to fit the refresh header
@@ -30,7 +30,7 @@ class RefreshClipView: NSClipView {
 		return newRect
 	}
 
-//	  override func constrainBoundsRect(proposedBounds: NSRect) -> NSRect {
+//	  override func constrainBoundsRect(proposedBounds: CGRect) -> CGRect {
 //		  var constrainedBounds = super.constrainBoundsRect(proposedBounds)
 //		  println("proposed	   \(proposedBounds)")
 	////		if constrainedBounds.origin.y < 0 {

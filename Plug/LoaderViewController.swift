@@ -32,7 +32,7 @@ class LoaderViewController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
 		let background = BackgroundBorderView()
 		background.background = true

@@ -13,7 +13,10 @@ class LoveCountTrackTableCellView: TrackTableCellView {
 
 	override func objectValueChanged() {
 		super.objectValueChanged()
-		if objectValue == nil { return }
+
+		guard objectValue != nil else {
+			return
+		}
 
 		updateLoveCount()
 	}

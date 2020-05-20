@@ -16,7 +16,7 @@ class SidebarOverlayView: NSView {
 		initialSetup()
 	}
 
-	override init(frame frameRect: NSRect) {
+	override init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
 		initialSetup()
 	}
@@ -30,7 +30,7 @@ class SidebarOverlayView: NSView {
 		Notifications.subscribe(observer: self, selector: #selector(SidebarOverlayView.windowStatusChanged), name: NSWindow.didResignMainNotification, object: nil)
 	}
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
 		if window != nil && !window!.isMainWindow {
@@ -39,7 +39,8 @@ class SidebarOverlayView: NSView {
 		}
 	}
 
-	@objc func windowStatusChanged() {
+	@objc
+	func windowStatusChanged() {
 		needsDisplay = true
 	}
 }

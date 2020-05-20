@@ -23,7 +23,7 @@ class HoverToggleButton: NSButton {
 		didSet { needsDisplay = true }
 	}
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		let drawImage = getDrawImage()
 
 		var drawPosition = bounds
@@ -62,7 +62,7 @@ class HoverToggleButton: NSButton {
 		}
 
 		let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-		trackingArea = NSTrackingArea(rect: NSRect.zero, options: options, owner: self, userInfo: nil)
+		trackingArea = NSTrackingArea(rect: CGRect.zero, options: options, owner: self, userInfo: nil)
 		addTrackingArea(trackingArea!)
 	}
 

@@ -29,7 +29,7 @@ class TitleBarPopUpButton: NSPopUpButton {
 		titleBarPopUpButtonCell.trimPaddingBetweenArrowAndTitle
 	}
 
-	override var intrinsicContentSize: NSSize {
+	override var intrinsicContentSize: CGSize {
 		var newSize = super.intrinsicContentSize
 		newSize.width += extraWidthForFormattedTitle - trimPaddingBetweenArrowAndTitle
 		newSize.height += extraHeightForFormattedTitle

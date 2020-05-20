@@ -51,12 +51,12 @@ class SwissArmyButton: NSButton {
 			}
 
 			let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-			trackingArea = NSTrackingArea(rect: NSRect.zero, options: options, owner: self, userInfo: nil)
+			trackingArea = NSTrackingArea(rect: CGRect.zero, options: options, owner: self, userInfo: nil)
 			addTrackingArea(trackingArea!)
 		}
 	}
 
-	override init(frame frameRect: NSRect) {
+	override init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
 		setup()
 	}

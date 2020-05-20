@@ -46,7 +46,7 @@ class BlogViewController: BaseContentViewController {
 	override func loadView() {
 		super.loadView()
 
-		header = BackgroundBorderView(frame: NSRect.zero)
+		header = BackgroundBorderView(frame: CGRect.zero)
 		header.bottomBorder = true
 		header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
 		header.background = true
@@ -158,14 +158,14 @@ class BlogViewController: BaseContentViewController {
 	}
 
 	func extractColorAndResizeImage(_ image: NSImage) {
-		Async.defaultPriority {
-			let imageSize = NSSize(width: 224, height: 224)
+		DispatchQueue.global().async {
+			let imageSize = CGSize(width: 224, height: 224)
 			let colorArt = SLColorArt(image: image, scaledSize: imageSize)!
 			let attributedBlogDetails = SingleBlogViewFormatter().attributedBlogDetails(self.blog, colorArt: colorArt)
 
-			Async.mainQueue {
+			DispatchQueue.main.async {
 				let image = colorArt.scaledImage!
-				image.size = NSSize(width: 112, height: 112)
+				image.size = CGSize(width: 112, height: 112)
 				self.imageView.image = image
 				self.header.backgroundColor = colorArt.backgroundColor
 				self.titleButton.textColor = colorArt.primaryColor
@@ -175,7 +175,8 @@ class BlogViewController: BaseContentViewController {
 		}
 	}
 
-	@objc func titleButtonClicked(_ sender: AnyObject) {
+	@objc
+	func titleButtonClicked(_ sender: AnyObject) {
 		NSWorkspace.shared.open(blog.url)
 	}
 
@@ -199,13 +200,17 @@ class BlogViewController: BaseContentViewController {
 		}
 	}
 
-	@objc func followButtonClicked(_ sender: ActionButton) {
+	@objc
+	func followButtonClicked(_ sender: ActionButton) {
 		HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id) { response in
 			let favoritedState = sender.state == .on
 
 			switch response.result {
 			case let .success(favorited):
-				guard favorited != favoritedState else { return }
+				guard favorited != favoritedState else {
+					return
+				}
+
 				sender.state = favorited ? .on : .off
 			case let .failure(error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])

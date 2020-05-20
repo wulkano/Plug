@@ -56,7 +56,7 @@ class ActionButtonCell: SwissArmyButtonCell {
 		return NSAttributedString(string: title, attributes: attributes)
 	}
 
-	override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
+	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
 		if mouseDown {
 			NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.sourceOver, 1, true)
 		} else {
@@ -64,7 +64,7 @@ class ActionButtonCell: SwissArmyButtonCell {
 		}
 	}
 
-	override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
+	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		var newFrame = frame
 		newFrame.origin.y += 1
 		newFrame.origin.x += horizontalPadding

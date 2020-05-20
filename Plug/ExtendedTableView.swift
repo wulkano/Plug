@@ -26,7 +26,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 		superview as! NSClipView
 	}
 
-	var previousVisibleRect = NSRect.zero
+	var previousVisibleRect = CGRect.zero
 	var scrollView: NSScrollView? {
 		clipView.superview as? NSScrollView
 	}
@@ -78,8 +78,10 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 		addTrackingArea(trackingArea!)
 	}
 
-	func insetRect(_ rect: NSRect, insets: NSEdgeInsets) -> NSRect {
-		if rect == NSRect.zero { return rect }
+	func insetRect(_ rect: CGRect, insets: NSEdgeInsets) -> CGRect {
+		guard rect != .zero else {
+			return rect
+		}
 
 		var newRect = rect
 
@@ -103,7 +105,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 			return
 		}
 
-		if clickedRow == -1 { return }
+		guard clickedRow != -1 else {
+			return
+		}
 
 		extendedDelegate?.tableView(self, wasClicked: theEvent, atRow: clickedRow)
 	}
@@ -111,7 +115,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	override func rightMouseDown(with theEvent: NSEvent) {
 		let clickedRow = rowForEvent(theEvent)
 
-		if clickedRow == -1 { return }
+		guard clickedRow != -1 else {
+			return
+		}
 
 		extendedDelegate?.tableView(self, wasRightClicked: theEvent, atRow: clickedRow)
 	}
@@ -125,9 +131,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 			if newMouseInsideRow != -1 {
 				extendedDelegate?.tableView(self, mouseEnteredRow: newMouseInsideRow)
 			}
+
 			if mouseInsideRow != -1 {
 				extendedDelegate?.tableView(self, mouseExitedRow: mouseInsideRow)
 			}
+
 			mouseInsideRow = newMouseInsideRow
 		}
 	}
@@ -219,7 +227,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	// to know, that's something right?
 
 	func updateRowDidStartToShow(_ scrollDirection: ScrollDirection) {
-		let point: NSPoint
+		let point: CGPoint
 		let shownDirection: RowShowHideDirection
 
 		switch scrollDirection {
@@ -252,7 +260,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	}
 
 	func updateRowDidStartToHide(_ scrollDirection: ScrollDirection) {
-		let point: NSPoint
+		let point: CGPoint
 		let hiddenDirection: RowShowHideDirection
 
 		switch scrollDirection {
@@ -287,7 +295,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	}
 
 	func updateRowDidShow(_ scrollDirection: ScrollDirection) {
-		let point: NSPoint
+		let point: CGPoint
 		let shownDirection: RowShowHideDirection
 
 		let rowHeight: CGFloat = delegate!.tableView!(self, heightOfRow: 0)
@@ -326,7 +334,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	}
 
 	func updateRowDidHide(_ scrollDirection: ScrollDirection) {
-		let point: NSPoint
+		let point: CGPoint
 		let hiddenDirection: RowShowHideDirection
 
 		let rowHeight: CGFloat = delegate!.tableView!(self, heightOfRow: 0)

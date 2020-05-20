@@ -13,7 +13,7 @@ class LoginButtonCell: SwissArmyButtonCell {
 		controlView as! LoginButton
 	}
 
-	override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
+	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		let mutableTitle = NSMutableAttributedString(attributedString: title)
 		let range = NSRange(location: 0, length: mutableTitle.length)
 		let color = getTextColor()
@@ -23,13 +23,13 @@ class LoginButtonCell: SwissArmyButtonCell {
 		return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
 	}
 
-	override func drawImage(_ image: NSImage, withFrame frame: NSRect, in controlView: NSView) {
+	override func drawImage(_ image: NSImage, withFrame frame: CGRect, in controlView: NSView) {
 		let alpha = getImageAlpha()
 
 		var newFrame = frame
 		newFrame.origin.y += 3
 
-		image.draw(in: newFrame, from: NSRect.zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
+		image.draw(in: newFrame, from: CGRect.zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
 	}
 
 	func getTextColor() -> NSColor {

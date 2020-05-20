@@ -13,7 +13,7 @@ class NavigationSectionButton: SwissArmyButton {
 
 	init(navigationSection: NavigationSection) {
 		self.navigationSection = navigationSection
-		super.init(frame: NSRect.zero)
+		super.init(frame: CGRect.zero)
 	}
 
 	required init?(coder: NSCoder) {

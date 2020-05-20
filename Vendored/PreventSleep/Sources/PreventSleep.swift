@@ -37,7 +37,8 @@ open class PreventSleep {
 
 	// Prevent the computer going to sleep
 	// Returns whether the power assertion was successful or not.
-	@objc open func preventSleep() -> Bool {
+	@objc
+	open func preventSleep() -> Bool {
 		if !canSleep() {
 			return true
 		}
@@ -58,7 +59,9 @@ open class PreventSleep {
 
 	// Allow the computer to go to sleep
 	// Returns whether the power assertion was successful or not.
-	@objc @discardableResult open func allowSleep() -> Bool {
+	@objc
+	@discardableResult
+	open func allowSleep() -> Bool {
 		if canSleep() {
 			return true
 		}
@@ -79,7 +82,8 @@ open class PreventSleep {
 	}
 
 	// Can the computer go to sleep, or is it being prevented?
-	@objc open func canSleep() -> Bool {
+	@objc
+	open func canSleep() -> Bool {
 		// Check if the assertion already exists
 		if sleepAssertion == kIOReturnSuccess {
 			return false

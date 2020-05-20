@@ -9,9 +9,9 @@
 import Cocoa
 
 class PreferencesViewController: NSViewController {
-	@IBOutlet var generalTab: NSButton!
-	@IBOutlet var hotkeysTab: NSButton!
-	@IBOutlet var mutedTab: NSButton!
+	@IBOutlet private var generalTab: NSButton!
+	@IBOutlet private var hotkeysTab: NSButton!
+	@IBOutlet private var mutedTab: NSButton!
 	var tabViewController: NSTabViewController!
 
 	override func viewDidLoad() {
@@ -41,12 +41,12 @@ class PreferencesViewController: NSViewController {
 	}
 
 	func ensureTabViewController() {
-		if tabViewController != nil { return }
+		guard tabViewController == nil else {
+			return
+		}
 
-		for controller in children {
-			if controller is NSTabViewController {
-				tabViewController = controller as? NSTabViewController
-			}
+		for controller in children where controller is NSTabViewController {
+			tabViewController = controller as? NSTabViewController
 		}
 	}
 

@@ -23,11 +23,11 @@ class VolumeIconView: NSView {
 
 	var opacity: CGFloat = 0.3
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
 		let drawImage = getDrawImage()
-		var drawPoint = NSPoint.zero
+		var drawPoint = CGPoint.zero
 		if drawImage != nil {
 			drawPoint.y = floor((bounds.size.height - drawImage!.size.height) / 2)
 		}

@@ -26,7 +26,9 @@ class UserTableCellView: IOSStyleTableCellView {
 	}
 
 	func objectValueChanged() {
-		if objectValue == nil { return }
+		guard objectValue != nil else {
+			return
+		}
 
 		updateFullName()
 		updateUsername()
@@ -43,10 +45,14 @@ class UserTableCellView: IOSStyleTableCellView {
 
 	func updateImage() {
 		avatarView.image = NSImage(named: "Avatar-Placeholder")
-		if user.avatarURL == nil { return }
+
+		guard user.avatarURL != nil else {
+			return
+		}
 
 		Alamofire
-			.request(user.avatarURL!, method: .get).validate()
+			.request(user.avatarURL!, method: .get)
+			.validate()
 			.responseImage { response in
 				switch response.result {
 				case let .success(image):

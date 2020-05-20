@@ -28,7 +28,7 @@ class DisplayErrorViewController: NSViewController {
 	}
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
 		let background = BackgroundBorderView()
 		background.background = true
@@ -38,7 +38,7 @@ class DisplayErrorViewController: NSViewController {
 			make.edges.equalTo(view)
 		}
 
-		errorTitleTextField = NSTextField(frame: NSRect.zero)
+		errorTitleTextField = NSTextField(frame: CGRect.zero)
 		errorTitleTextField.stringValue = "Error"
 		errorTitleTextField.isEditable = false
 		errorTitleTextField.isSelectable = false
@@ -55,7 +55,7 @@ class DisplayErrorViewController: NSViewController {
 			make.right.equalTo(view).offset(-14)
 		}
 
-		errorDescriptionTextField = NSTextField(frame: NSRect.zero)
+		errorDescriptionTextField = NSTextField(frame: CGRect.zero)
 		errorDescriptionTextField.stringValue = error.localizedDescription
 		errorDescriptionTextField.isEditable = false
 		errorDescriptionTextField.isSelectable = false

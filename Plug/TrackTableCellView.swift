@@ -50,7 +50,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	var trackingProgress: Bool = false
 
 	init() {
-		super.init(frame: NSRect.zero)
+		super.init(frame: CGRect.zero)
 		setup()
 	}
 
@@ -72,7 +72,9 @@ class TrackTableCellView: IOSStyleTableCellView {
 	// Careful, since these cells are reused any async calls
 	// may return when the cell represents a different track
 	func objectValueChanged() {
-		if objectValue == nil { return }
+		guard objectValue != nil else {
+			return
+		}
 
 		playState = currentPlayState()
 		updateTrackAvailability()
@@ -84,8 +86,8 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func currentPlayState() -> PlayState {
-		if AudioPlayer.sharedInstance.currentTrack == objectValue as? HypeMachineAPI.Track {
-			if AudioPlayer.sharedInstance.playing {
+		if AudioPlayer.shared.currentTrack == objectValue as? HypeMachineAPI.Track {
+			if AudioPlayer.shared.playing {
 				return PlayState.playing
 			} else {
 				return PlayState.paused
@@ -237,8 +239,11 @@ class TrackTableCellView: IOSStyleTableCellView {
 		trackingProgress = false
 	}
 
-	@objc func trackPlaying(_ notification: Notification) {
-		if objectValue == nil { return }
+	@objc
+	func trackPlaying(_ notification: Notification) {
+		guard objectValue != nil else {
+			return
+		}
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
@@ -248,8 +253,11 @@ class TrackTableCellView: IOSStyleTableCellView {
 		}
 	}
 
-	@objc func trackPaused(_ notification: Notification) {
-		if objectValue == nil { return }
+	@objc
+	func trackPaused(_ notification: Notification) {
+		guard objectValue != nil else {
+			return
+		}
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
@@ -257,8 +265,11 @@ class TrackTableCellView: IOSStyleTableCellView {
 		}
 	}
 
-	@objc func trackLoved(_ notification: Notification) {
-		if objectValue == nil { return }
+	@objc
+	func trackLoved(_ notification: Notification) {
+		guard objectValue != nil else {
+			return
+		}
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
@@ -268,8 +279,11 @@ class TrackTableCellView: IOSStyleTableCellView {
 		updateLoveContainerSpacing()
 	}
 
-	@objc func trackUnLoved(_ notification: Notification) {
-		if objectValue == nil { return }
+	@objc
+	func trackUnLoved(_ notification: Notification) {
+		guard objectValue != nil else {
+			return
+		}
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
@@ -279,16 +293,18 @@ class TrackTableCellView: IOSStyleTableCellView {
 		updateLoveContainerSpacing()
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func playPauseButtonClicked(_ sender: HoverToggleButton) {
 		Analytics.trackButtonClick("Playlist Play/Pause")
 		switch playState {
 		case .playing:
-			AudioPlayer.sharedInstance.pause()
+			AudioPlayer.shared.pause()
 		case .paused, .notPlaying:
-			AudioPlayer.sharedInstance.playNewTrack(track, dataSource: dataSource)
+			AudioPlayer.shared.playNewTrack(track, dataSource: dataSource)
 		}
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func infoButtonClicked(_ sender: TransparentButton) {
 		Analytics.trackButtonClick("Playlist Info")
 		if trackInfoWindowController == nil {
@@ -322,7 +338,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	@IBAction func progressSliderDragged(_ sender: NSSlider) {
-		AudioPlayer.sharedInstance.seekToPercent(sender.doubleValue)
+		AudioPlayer.shared.seekToPercent(sender.doubleValue)
 	}
 
 	@IBAction func artistButtonClicked(_ sender: NSButton) {
@@ -343,7 +359,8 @@ class TrackTableCellView: IOSStyleTableCellView {
 		}
 	}
 
-	@objc func progressUpdated(_ notification: Notification) {
+	@objc
+	func progressUpdated(_ notification: Notification) {
 		let progress = ((notification as NSNotification).userInfo!["progress"] as! NSNumber).doubleValue
 		let duration = ((notification as NSNotification).userInfo!["duration"] as! NSNumber).doubleValue
 		progressSlider.doubleValue = progress / duration

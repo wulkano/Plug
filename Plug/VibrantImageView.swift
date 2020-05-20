@@ -9,7 +9,7 @@
 import Cocoa
 
 class VibrantImageView: NSImageView {
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
 		// Drawing code here.

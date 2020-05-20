@@ -65,7 +65,7 @@ class BlogsDataSource: SearchableDataSource {
 		let uniqueBlogs = filterUniqueBlogs(blogs)
 		let sortedBlogs = sortBlogs(uniqueBlogs)
 
-		if searchKeywords == "" || searchKeywords == nil {
+		if searchKeywords?.isEmpty == true || searchKeywords == nil {
 			print("Filtering, but no keywords present")
 			return sortedBlogs
 		} else {

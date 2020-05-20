@@ -28,7 +28,7 @@ class RefreshScrollView: NSScrollView {
 
 	init(delegate: RefreshScrollViewDelegate) {
 		self.delegate = delegate
-		super.init(frame: NSRect.zero)
+		super.init(frame: CGRect.zero)
 		setup()
 	}
 
@@ -55,16 +55,18 @@ class RefreshScrollView: NSScrollView {
 	}
 
 	override func scrollWheel(with theEvent: NSEvent) {
-		if !scrollEnabled { return }
+		guard scrollEnabled else {
+			return
+		}
 
 		switch theEvent.phase {
-		case NSEvent.Phase.changed:
+		case .changed:
 			if scrolledPastTopOfRefreshHeader() {
 				refreshHeaderController.state = .releaseToRefresh
 			} else {
 				refreshHeaderController.state = .pullToRefresh
 			}
-		case NSEvent.Phase.ended:
+		case .ended:
 			if refreshHeaderController.state == .releaseToRefresh {
 				startRefresh()
 			}
@@ -89,7 +91,7 @@ class RefreshScrollView: NSScrollView {
 	}
 
 	func finishedRefresh() {
-		documentView!.scroll(NSPoint.zero)
+		documentView!.scroll(CGPoint.zero)
 
 		refreshHeaderController.state = .pullToRefresh
 		refreshHeaderController.lastUpdated = Date()
@@ -104,7 +106,8 @@ class RefreshScrollView: NSScrollView {
 		Notifications.subscribe(observer: self, selector: #selector(contentViewBoundsDidChange), name: NSView.boundsDidChangeNotification, object: contentView)
 	}
 
-	@objc func contentViewBoundsDidChange(_ notification: Notification) {
+	@objc
+	func contentViewBoundsDidChange(_ notification: Notification) {
 		boundsChangedDelegate?.scrollViewBoundsDidChange(notification)
 	}
 }

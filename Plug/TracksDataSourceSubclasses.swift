@@ -39,7 +39,7 @@ class FavoriteTracksDataSource: TracksDataSource {
 
 	init(viewController: DataSourceViewController, playlist: FavoritesSectionPlaylist) {
 		self.playlist = playlist
-		self.shuffle = AudioPlayer.sharedInstance.shuffle
+		self.shuffle = AudioPlayer.shared.shuffle
 		super.init(viewController: viewController)
 	}
 
@@ -73,16 +73,16 @@ class FavoriteTracksDataSource: TracksDataSource {
 
 			if response.result.isSuccess &&
 				currentPage == 1 {
-				if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
+				if let currentTrack = AudioPlayer.shared.currentTrack {
 					if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).firstIndex(of: currentTrack) {
 						standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
 					}
-					standardTableContents?.insert(AudioPlayer.sharedInstance.currentTrack, at: 0)
+					standardTableContents?.insert(AudioPlayer.shared.currentTrack, at: 0)
 					viewController.tableView.insertRows(at: IndexSet(integersIn: NSRange(location: 0, length: 1).toRange()!), withAnimation: NSTableView.AnimationOptions())
 				}
 			}
 		}
-		AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
+		AudioPlayer.shared.findAndSetCurrentlyPlayingTrack()
 	}
 }
 

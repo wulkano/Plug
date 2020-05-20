@@ -35,7 +35,7 @@ extension Tag: Equatable {
 }
 
 extension Tag: Hashable {
-	public var hashValue: Int {
-		name.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(name)
 	}
 }

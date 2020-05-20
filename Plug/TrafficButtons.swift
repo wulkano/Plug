@@ -13,7 +13,7 @@ class TrafficButtons {
 	var minimizeButton: INWindowButton!
 	var zoomButton: INWindowButton!
 
-	let buttonSize = NSSize(width: 14, height: 16)
+	let buttonSize = CGSize(width: 14, height: 16)
 
 	init(style: TrafficButtonStyle, groupIdentifier: String) {
 		self.closeButton = INWindowButton(size: buttonSize, groupIdentifier: groupIdentifier)
@@ -26,7 +26,7 @@ class TrafficButtons {
 		setupImagesForButton(&zoomButton, buttonName: "zoom", style: style)
 	}
 
-	func addButtonsToWindow(_ window: NSWindow, origin: NSPoint) {
+	func addButtonsToWindow(_ window: NSWindow, origin: CGPoint) {
 		hideDefaultButtons(window)
 		placeButtonsInWindow(window, origin: origin)
 		setupButtonActionsForWindow(window)
@@ -46,20 +46,20 @@ class TrafficButtons {
 		window.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
 	}
 
-	private func placeButtonsInWindow(_ window: NSWindow, origin: NSPoint) {
+	private func placeButtonsInWindow(_ window: NSWindow, origin: CGPoint) {
 		let contentView = window.contentView!
 
 		var buttonOrigin = origin
 		addButton(closeButton, toView: contentView, origin: buttonOrigin)
 
-		buttonOrigin = NSPoint(x: buttonOrigin.x + 20, y: buttonOrigin.y)
+		buttonOrigin = CGPoint(x: buttonOrigin.x + 20, y: buttonOrigin.y)
 		addButton(minimizeButton, toView: contentView, origin: buttonOrigin)
 
-		buttonOrigin = NSPoint(x: buttonOrigin.x + 20, y: buttonOrigin.y)
+		buttonOrigin = CGPoint(x: buttonOrigin.x + 20, y: buttonOrigin.y)
 		addButton(zoomButton, toView: contentView, origin: buttonOrigin)
 	}
 
-	private func addButton(_ button: INWindowButton, toView superview: NSView, origin: NSPoint) {
+	private func addButton(_ button: INWindowButton, toView superview: NSView, origin: CGPoint) {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		superview.addSubview(button)
 

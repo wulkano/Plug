@@ -21,10 +21,8 @@ open class SwignalBase {
 
 	open func removeObserver(_ observer: AnyObject) {
 		synced(self) {
-			for swignalObserver in self.swignalObservers {
-				if swignalObserver.genericObserver === observer {
-					self.swignalObservers.removeObject(swignalObserver)
-				}
+			for swignalObserver in self.swignalObservers where swignalObserver.genericObserver === observer {
+				self.swignalObservers.removeObject(swignalObserver)
 			}
 		}
 	}
@@ -37,10 +35,8 @@ open class SwignalBase {
 
 	private func purgeDeallocatedListeners() {
 		synced(self) {
-			for swignalObserver in self.swignalObservers {
-				if swignalObserver.genericObserver == nil {
-					self.removeObserver(swignalObserver)
-				}
+			for swignalObserver in self.swignalObservers where swignalObserver.genericObserver == nil {
+				self.removeObserver(swignalObserver)
 			}
 		}
 	}
@@ -75,8 +71,10 @@ internal class ObserverGenericBase<L: AnyObject>: ObserverBase {
 	}
 }
 
-func == (lhs: ObserverBase, rhs: ObserverBase) -> Bool {
-	lhs === rhs
+extension ObserverBase {
+	static func == (lhs: ObserverBase, rhs: ObserverBase) -> Bool {
+		lhs === rhs
+	}
 }
 
 

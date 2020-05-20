@@ -47,17 +47,20 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
 
 	// MARK: Actions
 
-	@objc func copyHypeMachineLinkClicked(_ sender: AnyObject) {
+	@objc
+	func copyHypeMachineLinkClicked(_ sender: AnyObject) {
 		let hypeMachineURL = track.hypeMachineURL().absoluteString
 		NSPasteboard.general.clearContents()
 		NSPasteboard.general.setString(hypeMachineURL, forType: .string)
 	}
 
-	@objc func openHypeMachineLinkInBrowserClicked(_ sender: AnyObject) {
+	@objc
+	func openHypeMachineLinkInBrowserClicked(_ sender: AnyObject) {
 		NSWorkspace.shared.open(track.hypeMachineURL())
 	}
 
-	@objc func copySoundCloudLinkClicked(_ sender: AnyObject) {
+	@objc
+	func copySoundCloudLinkClicked(_ sender: AnyObject) {
 		let url = track.mediaURL()
 
 		_ = SoundCloudPermalinkFinder(
@@ -73,7 +76,8 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
 		)
 	}
 
-	@objc func openSoundCloudLinkInBrowser(_ sender: AnyObject) {
+	@objc
+	func openSoundCloudLinkInBrowser(_ sender: AnyObject) {
 		let url = track.mediaURL()
 
 		_ = SoundCloudPermalinkFinder(
@@ -89,15 +93,18 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
 		)
 	}
 
-	@objc func shareToFacebookClicked(_ sender: AnyObject) {
+	@objc
+	func shareToFacebookClicked(_ sender: AnyObject) {
 		shareTrackWithServiceNamed(NSSharingService.Name.postOnFacebook.rawValue)
 	}
 
-	@objc func shareToTwitterClicked(_ sender: AnyObject) {
+	@objc
+	func shareToTwitterClicked(_ sender: AnyObject) {
 		shareTrackWithServiceNamed(NSSharingService.Name.postOnTwitter.rawValue)
 	}
 
-	@objc func shareToMessagesClicked(_ sender: AnyObject) {
+	@objc
+	func shareToMessagesClicked(_ sender: AnyObject) {
 		shareTrackWithServiceNamed(NSSharingService.Name.composeMessage.rawValue)
 	}
 

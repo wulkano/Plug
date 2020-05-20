@@ -31,7 +31,7 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 		formattedTitle.size().height - attributedTitle.size().height
 	}
 
-	override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
+	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		var newFrame = frame
 		newFrame.size.width += trimPaddingBetweenArrowAndTitle
 		newFrame.size.height += 4
@@ -39,19 +39,19 @@ class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 		return super.drawTitle(formattedTitle, withFrame: newFrame, in: controlView)
 	}
 
-	override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {
+	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
 		drawArrow(frame, inView: controlView)
 	}
 
-	fileprivate func drawArrow(_ frame: NSRect, inView controlView: NSView) {
+	fileprivate func drawArrow(_ frame: CGRect, inView controlView: NSView) {
 		let arrowColor = NSColor(white: 0, alpha: 0.4)
 
 		let path = NSBezierPath()
 		let bounds = controlView.bounds
 
-		let leftPoint = NSPoint(x: bounds.size.width - 14, y: (bounds.size.height / 2) - 2)
-		let bottomPoint = NSPoint(x: bounds.size.width - 10, y: (bounds.size.height / 2) + 2.5)
-		let rightPoint = NSPoint(x: bounds.size.width - 6, y: (bounds.size.height / 2) - 2)
+		let leftPoint = CGPoint(x: bounds.size.width - 14, y: (bounds.size.height / 2) - 2)
+		let bottomPoint = CGPoint(x: bounds.size.width - 10, y: (bounds.size.height / 2) + 2.5)
+		let rightPoint = CGPoint(x: bounds.size.width - 6, y: (bounds.size.height / 2) - 2)
 
 		path.move(to: leftPoint)
 		path.line(to: bottomPoint)

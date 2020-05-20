@@ -153,8 +153,8 @@ extension Track: ResponseObjectSerializable, ResponseCollectionSerializable {
 		}
 
 		self.id = id
-		self.artist = artist == "" ? "Unknown artist" : artist
-		self.title = title == "" ? "Unknown track" : title
+		self.artist = artist.isEmpty ? "Unknown artist" : artist
+		self.title = title.isEmpty ? "Unknown track" : title
 		self.loved = representation["ts_loved_me"] is Int
 		self.lovedCount = lovedCount
 		self.thumbURLSmall = urlForJSONKey("thumb_url")
@@ -183,7 +183,7 @@ extension Track: Equatable {
 }
 
 extension Track: Hashable {
-	public var hashValue: Int {
-		id.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
 	}
 }

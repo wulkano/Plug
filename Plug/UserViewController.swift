@@ -47,7 +47,7 @@ class UserViewController: BaseContentViewController {
 	override func loadView() {
 		super.loadView()
 
-		header = BackgroundBorderView(frame: NSRect.zero)
+		header = BackgroundBorderView(frame: CGRect.zero)
 		header.bottomBorder = true
 		header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
 		header.background = true
@@ -179,7 +179,9 @@ class UserViewController: BaseContentViewController {
 	}
 
 	func updateImage() {
-		if user!.avatarURL == nil { return }
+		guard user!.avatarURL != nil else {
+			return
+		}
 
 		Alamofire.request(user!.avatarURL!, method: .get)
 			.validate()

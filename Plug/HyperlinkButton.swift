@@ -34,7 +34,7 @@ class HyperlinkButton: NSButton {
 	}
 
 	init() {
-		super.init(frame: NSRect.zero)
+		super.init(frame: CGRect.zero)
 		setup()
 	}
 
@@ -83,7 +83,7 @@ class HyperlinkButton: NSButton {
 			}
 
 			let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-			trackingArea = NSTrackingArea(rect: NSRect.zero, options: options, owner: self, userInfo: nil)
+			trackingArea = NSTrackingArea(rect: CGRect.zero, options: options, owner: self, userInfo: nil)
 			addTrackingArea(trackingArea!)
 		}
 	}

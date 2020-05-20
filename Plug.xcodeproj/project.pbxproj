@@ -151,7 +151,6 @@
 		FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */; };
 		FA9EA042199B08E100D9AB8A /* TagsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */; };
 		FA9EA045199B0F4200D9AB8A /* UsersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9EA044199B0F4200D9AB8A /* UsersDataSource.swift */; };
-		FAA34A9519B2F0450038868A /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA34A9419B2F0450038868A /* Async.swift */; };
 		FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A4E198023470057EC34 /* AudioPlayer.swift */; };
 		FAA51A59198084E50057EC34 /* NavigationSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA51A58198084E50057EC34 /* NavigationSections.swift */; };
 		FAAC8DAE19E4A1A300B1231B /* TagContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC8DAD19E4A1A300B1231B /* TagContainerView.swift */; };
@@ -390,7 +389,6 @@
 		FA9EA03D199AF00900D9AB8A /* BlogsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsDataSource.swift; sourceTree = "<group>"; };
 		FA9EA041199B08E100D9AB8A /* TagsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsDataSource.swift; sourceTree = "<group>"; };
 		FA9EA044199B0F4200D9AB8A /* UsersDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersDataSource.swift; sourceTree = "<group>"; };
-		FAA34A9419B2F0450038868A /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		FAA51A4E198023470057EC34 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioPlayer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FAA51A58198084E50057EC34 /* NavigationSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSections.swift; sourceTree = "<group>"; };
 		FAAC8DAD19E4A1A300B1231B /* TagContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagContainerView.swift; sourceTree = "<group>"; };
@@ -808,7 +806,6 @@
 			isa = PBXGroup;
 			children = (
 				FA50280219C02EE800E3C84E /* Analytics.swift */,
-				FAA34A9419B2F0450038868A /* Async.swift */,
 				FAA51A4E198023470057EC34 /* AudioPlayer.swift */,
 				FAD1F54819A7C793002322D6 /* Authentication.swift */,
 				FAD3B0DD1981DF5200BC5109 /* Interval.swift */,
@@ -1274,7 +1271,6 @@
 				E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */,
 				FA5394FE19AFB24C006A95A5 /* LoginButton.swift in Sources */,
 				FA5394F419AF7339006A95A5 /* SwissArmyButtonCell.swift in Sources */,
-				FAA34A9519B2F0450038868A /* Async.swift in Sources */,
 				FA933F9719ACE69A00085E75 /* HyperlinkButton.swift in Sources */,
 				FA3986E619AB140D001B216E /* MutedPreferencesViewController.swift in Sources */,
 				FA53950419AFFE31006A95A5 /* HeatMapTrackTableCellView.swift in Sources */,

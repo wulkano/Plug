@@ -12,17 +12,17 @@ class GroupRowView: NSTableRowView {
 	let backgroundFill = NSColor(red256: 244, green256: 244, blue256: 245)
 	let lineFill = NSColor(red256: 225, green256: 230, blue256: 233)
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		drawBackground(dirtyRect)
 		drawSeparators(dirtyRect)
 	}
 
-	func drawBackground(_ dirtyRect: NSRect) {
+	func drawBackground(_ dirtyRect: CGRect) {
 		backgroundFill.set()
 		dirtyRect.fill()
 	}
 
-	func drawSeparators(_ dirtyRect: NSRect) {
+	func drawSeparators(_ dirtyRect: CGRect) {
 		var bottomSeparatorRect = bounds
 		bottomSeparatorRect.origin.y = bounds.size.height - 1
 		bottomSeparatorRect.size.height = 1

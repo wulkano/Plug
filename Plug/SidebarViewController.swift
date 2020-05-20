@@ -53,7 +53,8 @@ class SidebarViewController: NSViewController {
 		buttons[0].state = .on
 	}
 
-	@objc func navigationSectionButtonClicked(_ sender: NavigationSectionButton) {
+	@objc
+	func navigationSectionButtonClicked(_ sender: NavigationSectionButton) {
 		delegate.changeNavigationSection(sender.navigationSection)
 		toggleAllButtonsOffExcept(sender)
 	}
@@ -71,7 +72,7 @@ class SidebarViewController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
 		let backgroundView = DraggableVisualEffectsView()
 		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)

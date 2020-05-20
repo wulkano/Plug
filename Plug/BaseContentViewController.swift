@@ -66,7 +66,8 @@ class BaseContentViewController: NSViewController {
 		}
 	}
 
-	@objc func refresh() {
+	@objc
+	func refresh() {
 		fatalError("refresh() not implemented")
 	}
 
@@ -97,7 +98,7 @@ class BaseContentViewController: NSViewController {
 	var stickyTrackBelongsToUs = false
 
 	func setupStickyTrack() {
-		if let currentTrack = AudioPlayer.sharedInstance.currentTrack {
+		if let currentTrack = AudioPlayer.shared.currentTrack {
 			addStickyTrackAtPosition(.bottom)
 			updateStickyTrack(currentTrack)
 		}
@@ -145,7 +146,8 @@ class BaseContentViewController: NSViewController {
 
 	// MARK: Notifications
 
-	@objc func newCurrentTrack(_ notification: Notification) {
+	@objc
+	func newCurrentTrack(_ notification: Notification) {
 		let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		updateStickyTrack(track)
 

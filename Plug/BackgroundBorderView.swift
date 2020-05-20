@@ -21,20 +21,20 @@ class BackgroundBorderView: NSView {
 		didSet { needsDisplay = true }
 	}
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 		drawBackground(dirtyRect)
 		drawBorder(dirtyRect)
 	}
 
-	func drawBackground(_ dirtyRect: NSRect) {
+	func drawBackground(_ dirtyRect: CGRect) {
 		if background {
 			backgroundColor.set()
 			dirtyRect.fill(using: .sourceOver)
 		}
 	}
 
-	func drawBorder(_ dirtyRect: NSRect) {
+	func drawBorder(_ dirtyRect: CGRect) {
 		borderColor.set()
 
 		if topBorder {

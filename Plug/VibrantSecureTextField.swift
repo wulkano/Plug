@@ -19,7 +19,10 @@ class VibrantSecureTextField: NSSecureTextField {
 	}
 
 	func setupStyledPlaceholderString() {
-		if placeholderString == nil { return }
+		guard placeholderString != nil else {
+			return
+		}
+
 		let newAttributedPlaceholderString = NSMutableAttributedString(string: placeholderString!, attributes: placeholderAttributes())
 		placeholderAttributedString = newAttributedPlaceholderString
 	}

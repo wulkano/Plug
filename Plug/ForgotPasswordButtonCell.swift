@@ -9,9 +9,9 @@
 import Cocoa
 
 class ForgotPasswordButtonCell: SwissArmyButtonCell {
-	override func drawBezel(withFrame frame: NSRect, in controlView: NSView) {}
+	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {}
 
-	override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
+	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		var alpha: CGFloat
 
 		if mouseDown {

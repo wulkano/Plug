@@ -40,7 +40,9 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<NSImage>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<NSImage> { _, _, data, error in
-			guard error == nil else { return .failure(NSError()) }
+			guard error == nil else {
+				return .failure(NSError())
+			}
 
 			guard
 				let validData = data,

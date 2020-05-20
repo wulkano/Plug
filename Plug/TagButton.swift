@@ -34,7 +34,7 @@ class TagButton: SwissArmyButton {
 		super.init(coder: coder)
 	}
 
-	override init(frame frameRect: NSRect) {
+	override init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
 		setupCell()
 		setButtonType(NSButton.ButtonType.momentaryPushIn)

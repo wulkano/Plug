@@ -30,7 +30,7 @@ class TransparentButton: NSButton {
 		didSet { needsDisplay = true }
 	}
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		var drawPosition = bounds
 		let drawImage = getDrawImage()
 		let drawOpacity = getDrawOpacity()

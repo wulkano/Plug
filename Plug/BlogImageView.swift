@@ -17,7 +17,7 @@ class BlogImageView: NSImageView {
 		sideLength / 2
 	}
 
-	override func draw(_ dirtyRect: NSRect) {
+	override func draw(_ dirtyRect: CGRect) {
 		if image != nil {
 			NSGraphicsContext.saveGraphicsState()
 
@@ -32,8 +32,8 @@ class BlogImageView: NSImageView {
 		}
 	}
 
-	func calulateImageRect() -> NSRect {
-		var rect = NSRect.zero
+	func calulateImageRect() -> CGRect {
+		var rect = CGRect.zero
 		let croppedHeight = image!.size.height / 1.333_33
 
 		rect.origin.x = 0
@@ -44,8 +44,8 @@ class BlogImageView: NSImageView {
 		return rect
 	}
 
-	func calculateClippingRect() -> NSRect {
-		var rect = NSRect.zero
+	func calculateClippingRect() -> CGRect {
+		var rect = CGRect.zero
 		let veritcalOffset = -(frame.size.width - frame.size.height) / 2
 
 		rect.origin.x = 0

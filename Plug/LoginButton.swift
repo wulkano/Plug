@@ -55,7 +55,7 @@ class LoginButton: SwissArmyButton {
 	func setupLoadingImageView() {
 		if loadingImageView == nil {
 			let loaderImage = buttonState.image()
-			let imageFrame = NSRect(x: 244.0, y: 8.0, width: 20.0, height: 20.0)
+			let imageFrame = CGRect(x: 244.0, y: 8.0, width: 20.0, height: 20.0)
 			loadingImageView = NSImageView(frame: imageFrame)
 			loadingImageView!.image = loaderImage
 			addSubview(loadingImageView!)

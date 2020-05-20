@@ -24,10 +24,13 @@ struct Authentication {
 	}
 
 	static func getToken() -> String? {
-		let username = UserDefaults.standard.value(forKey: "username") as? String
-		if username == nil { return nil }
+		guard
+			let username = UserDefaults.standard.value(forKey: "username") as? String
+		else {
+			return nil
+		}
 
-		return SSKeychain.password(forService: tokenServiceName(), account: username!)
+		return SSKeychain.password(forService: tokenServiceName(), account: username)
 	}
 
 	static func saveUsername(_ username: String, withToken token: String) {
@@ -42,11 +45,11 @@ struct Authentication {
 	}
 
 	static func getUsernameHash() -> String? {
-		if let username = getUsername() {
-			return username.digest(.sha1, key: usernameHashKey)
-		} else {
+		guard let username = getUsername() else {
 			return nil
 		}
+
+		return username.digest(.sha1, key: usernameHashKey)
 	}
 
 	fileprivate static func tokenServiceName() -> String {

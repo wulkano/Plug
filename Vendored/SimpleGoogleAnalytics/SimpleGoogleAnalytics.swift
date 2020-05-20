@@ -201,7 +201,10 @@ public struct ExceptionHit: Hit {
 	let fatal: Bool?
 
 	var fatalString: String? {
-		if fatal == nil { return nil }
+		if fatal == nil {
+			return nil
+		}
+
 		if fatal! {
 			return "1"
 		} else {

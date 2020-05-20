@@ -22,7 +22,9 @@ class SectionHeaderTableCellView: NSTableCellView {
 	}
 
 	func objectValueChanged() {
-		if objectValue == nil { return }
+		guard objectValue != nil else {
+			return
+		}
 
 		updateTitle()
 	}

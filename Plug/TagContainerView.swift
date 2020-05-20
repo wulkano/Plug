@@ -1,11 +1,3 @@
-//
-//	TagContainerView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
@@ -43,7 +35,7 @@ class TagContainerView: NSView {
 	}
 
 	func generateTagButtonForTag(_ tag: HypeMachineAPI.Tag) -> TagButton {
-		let tagButton = TagButton(frame: NSRect(x: 0, y: 0, width: 0, height: buttonHeight))
+		let tagButton = TagButton(frame: CGRect(x: 0, y: 0, width: 0, height: buttonHeight))
 		tagButton.title = tag.name.uppercased()
 		tagButton.fillColor = getFillColorForTag(tag)
 		var tagSize = tagButton.attributedTitle.size()
@@ -52,15 +44,15 @@ class TagContainerView: NSView {
 		return tagButton
 	}
 
-	func generateOriginForNewButton(_ button: TagButton) -> NSPoint {
+	func generateOriginForNewButton(_ button: TagButton) -> CGPoint {
 		if let lastButton = buttons.last {
 			if lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing + button.frame.size.width > frame.size.width {
-				return NSPoint(x: 0, y: lastButton.frame.origin.y + buttonSpacing + buttonHeight)
+				return CGPoint(x: 0, y: lastButton.frame.origin.y + buttonSpacing + buttonHeight)
 			} else {
-				return NSPoint(x: lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing, y: lastButton.frame.origin.y)
+				return CGPoint(x: lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing, y: lastButton.frame.origin.y)
 			}
 		} else {
-			return NSPoint(x: 0, y: 0)
+			return CGPoint(x: 0, y: 0)
 		}
 	}
 
@@ -83,7 +75,8 @@ class TagContainerView: NSView {
 		return NSGradient(colorsAndLocations: (redColor, 0), (purpleColor, 0.333), (darkBlueColor, 0.666), (lightBlueColor, 1))!
 	}
 
-	@objc func tagButtonClick(_ sender: TagButton) {
+	@objc
+	func tagButtonClick(_ sender: TagButton) {
 		let tag = tagForButton(sender)
 		delegate.tagButtonClicked(tag)
 	}

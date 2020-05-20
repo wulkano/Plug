@@ -18,9 +18,13 @@ class SearchViewController: BaseContentViewController {
 	var tracksViewController: TracksViewController?
 	var dataSource: TracksDataSource?
 
-	@objc func searchFieldSubmit(_ sender: NSSearchField) {
+	@objc
+	func searchFieldSubmit(_ sender: NSSearchField) {
 		let keywords = sender.stringValue
-		if keywords == "" { return }
+
+		guard !keywords.isEmpty else {
+			return
+		}
 
 		ensurePlaylistViewController()
 		tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: keywords)
@@ -38,7 +42,12 @@ class SearchViewController: BaseContentViewController {
 	}
 
 	func sortChanged() {
-		if tracksViewController == nil || tracksViewController!.dataSource == nil { return }
+		guard
+			tracksViewController != nil,
+			tracksViewController!.dataSource != nil
+		else {
+			return
+		}
 
 		let searchDataSource = tracksViewController!.dataSource! as! SearchTracksDataSource
 		tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: searchDataSource.searchQuery)

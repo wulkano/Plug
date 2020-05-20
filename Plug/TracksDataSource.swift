@@ -1,11 +1,3 @@
-//
-//	TracksDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/13/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 import Alamofire
 import HypeMachineAPI
@@ -15,7 +7,7 @@ class TracksDataSource: HypeMachineDataSource {
 
 	func nextPageTracksReceived(response: DataResponse<[HypeMachineAPI.Track]>) {
 		nextPageResponseReceived(response)
-		AudioPlayer.sharedInstance.findAndSetCurrentlyPlayingTrack()
+		AudioPlayer.shared.findAndSetCurrentlyPlayingTrack()
 	}
 
 	func trackAfter(_ track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
@@ -28,6 +20,7 @@ class TracksDataSource: HypeMachineDataSource {
 			if track != nil && track!.audioUnavailable {
 				return trackAfter(track!)
 			}
+
 			return track
 		} else {
 			return nil
@@ -40,6 +33,7 @@ class TracksDataSource: HypeMachineDataSource {
 			if track != nil && track!.audioUnavailable {
 				return trackBefore(track!)
 			}
+
 			return track
 		} else {
 			return nil
@@ -47,14 +41,18 @@ class TracksDataSource: HypeMachineDataSource {
 	}
 
 	func indexOfTrack(_ track: HypeMachineAPI.Track) -> Int? {
-		if tableContents == nil { return nil }
+		guard tableContents != nil else {
+			return nil
+		}
 
 		let tracks = tableContents as! [HypeMachineAPI.Track]
-		return tracks.index(of: track)
+		return tracks.firstIndex(of: track)
 	}
 
 	func trackAtIndex(_ index: Int) -> HypeMachineAPI.Track? {
-		if tableContents == nil { return nil }
+		guard tableContents != nil else {
+			return nil
+		}
 
 		if index >= 0 && index <= tableContents!.count - 1 {
 			return tableContents![index] as? HypeMachineAPI.Track
@@ -67,6 +65,6 @@ class TracksDataSource: HypeMachineDataSource {
 
 	override func filterTableContents(_ contents: [Any]) -> [Any] {
 		let tracks = contents as! [HypeMachineAPI.Track]
-		return tracks.filter { $0.audioUnavailable == false }
+		return tracks.filter { !$0.audioUnavailable }
 	}
 }

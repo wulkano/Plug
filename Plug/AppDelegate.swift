@@ -1,16 +1,8 @@
-//
-//	AppDelegate.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/14/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
-import HypeMachineAPI
 import Sentry
+import HypeMachineAPI
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate {
 	var mainWindowController: NSWindowController?
 	var loginWindowController: NSWindowController?
 	var preferencesWindowController: NSWindowController?
@@ -50,16 +42,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if mainWindowController == nil {
 			mainWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as! NSWindowController)
 
-			/* If there isn't an autosave name set for the main window, place the
-			 * frame at a default position, and then set the autosave name.
-			 */
+			// If there isn't an autosave name set for the main window, place the frame at a default position, and then set the autosave name.
 			if mainWindowController!.windowFrameAutosaveName.isEmpty {
 				let width: CGFloat = 472
 				let height: CGFloat = 778
 				let x: CGFloat = 100
 				let y: CGFloat = (NSScreen.main!.frame.size.height - 778) / 2
 
-				let defaultFrame = NSRect(x: x, y: y, width: width, height: height)
+				let defaultFrame = CGRect(x: x, y: y, width: width, height: height)
 				mainWindowController!.window!.setFrame(defaultFrame, display: false)
 
 				mainWindowController!.window!.setFrameAutosaveName("MainWindow")
@@ -103,6 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			let preferencesStoryboard = NSStoryboard(name: "Preferences", bundle: Bundle.main)
 			preferencesWindowController = (preferencesStoryboard.instantiateInitialController() as! NSWindowController)
 		}
+
 		preferencesWindowController!.showWindow(self)
 	}
 
@@ -143,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func setupUserNotifications() {
-		UserNotificationHandler.sharedInstance
+		_ = UserNotificationHandler.sharedInstance
 	}
 
 	func setupNotifications() {
@@ -162,12 +153,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func setupKeepAwake() {
-		KeepAwake.sharedInstance
+		_ = KeepAwake.sharedInstance
 	}
 
 	// MARK: Notifications
 
-	@objc func catchTokenErrors(_ notification: Notification) {
+	@objc
+	func catchTokenErrors(_ notification: Notification) {
 		if let error = (notification as NSNotification).userInfo!["error"] as? HypeMachineAPI.APIError {
 			switch error {
 			case .invalidHMToken:
@@ -180,31 +172,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	// MARK: Actions
 
-	@IBAction func aboutItemClicked(_ sender: AnyObject) {
+	@IBAction private func aboutItemClicked(_ sender: AnyObject) {
 		openAboutWindow()
 	}
 
-	@IBAction func signOut(_ sender: AnyObject?) {
+	@IBAction private func signOut(_ sender: AnyObject?) {
 		Analytics.trackButtonClick("Sign Out")
 		closeMainWindow()
 		if preferencesWindowController != nil {
 			closePreferencesWindow()
 		}
-		AudioPlayer.sharedInstance.reset()
+		AudioPlayer.shared.reset()
 		Authentication.deleteUsernameAndToken()
 		HypeMachineAPI.hmToken = nil
 		openLoginWindow()
 	}
 
-	@IBAction func preferencesItemClicked(_ sender: AnyObject) {
+	@IBAction private func preferencesItemClicked(_ sender: AnyObject) {
 		openPreferencesWindow()
 	}
 
-	@IBAction func refreshItemClicked(_ sender: AnyObject) {
+	@IBAction private func refreshItemClicked(_ sender: AnyObject) {
 		Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
 	}
 
-	@IBAction func reportABugItemClicked(_ sender: AnyObject) {
+	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
 		NSWorkspace.shared.open(URL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
 	}
 
@@ -222,6 +214,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if flag == false {
 			openMainWindow()
 		}
+
 		return true
 	}
 }

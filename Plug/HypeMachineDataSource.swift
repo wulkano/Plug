@@ -17,8 +17,11 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 
 	var standardTableContents: [Any]?
 	var filteredTableContents: [Any]?
+
 	var tableContents: [Any]? {
-		if standardTableContents == nil { return nil }
+		guard standardTableContents != nil else {
+			return nil
+		}
 
 		if filtering {
 			return filteredTableContents!
@@ -48,9 +51,17 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	}
 
 	func loadNextPageObjects() {
-		if singlePage && currentPage >= 1 { return }
-		if requestInProgress { return }
-		if allObjectsLoaded { return }
+		if singlePage && currentPage >= 1 {
+			return
+		}
+
+		if requestInProgress {
+			return
+		}
+
+		if allObjectsLoaded {
+			return
+		}
 
 		requestInProgress = true
 		requestNextPageObjects()

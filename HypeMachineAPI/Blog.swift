@@ -97,7 +97,7 @@ extension Blog: Equatable {
 }
 
 extension Blog: Hashable {
-	public var hashValue: Int {
-		name.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(name)
 	}
 }

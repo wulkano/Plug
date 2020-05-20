@@ -14,22 +14,25 @@ class FooterViewController: NSViewController {
 	var shuffleButton: SwissArmyButton!
 
 	func toggleShuffle() {
-		AudioPlayer.sharedInstance.toggleShuffle()
+		AudioPlayer.shared.toggleShuffle()
 	}
 
 	// MARK: Actions
 
-	@objc func skipForwardButtonClicked(_ sender: AnyObject) {
+	@objc
+	func skipForwardButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Footer Skip Forward")
-		AudioPlayer.sharedInstance.skipForward()
+		AudioPlayer.shared.skipForward()
 	}
 
-	@objc func skipBackwardButtonClicked(_ sender: AnyObject) {
+	@objc
+	func skipBackwardButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Footer Skip Backward")
-		AudioPlayer.sharedInstance.skipBackward()
+		AudioPlayer.shared.skipBackward()
 	}
 
-	@objc func shuffleButtonClicked(_ sender: AnyObject) {
+	@objc
+	func shuffleButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Footer Shuffle")
 		toggleShuffle()
 	}
@@ -37,7 +40,7 @@ class FooterViewController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
 		let backgroundView = DraggableVisualEffectsView()
 		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
@@ -56,7 +59,7 @@ class FooterViewController: NSViewController {
 			make.edges.equalTo(backgroundView)
 		}
 
-		volumeIcon = VolumeIconView(frame: NSRect.zero)
+		volumeIcon = VolumeIconView(frame: CGRect.zero)
 		volumeIcon.offImage = NSImage(named: "Footer-Volume-Off")
 		volumeIcon.oneImage = NSImage(named: "Footer-Volume-1")
 		volumeIcon.twoImage = NSImage(named: "Footer-Volume-2")
@@ -69,7 +72,7 @@ class FooterViewController: NSViewController {
 			make.left.equalTo(backgroundView).offset(20)
 		}
 
-		volumeSlider = NSSlider(frame: NSRect.zero)
+		volumeSlider = NSSlider(frame: CGRect.zero)
 		let cell = FlatSliderCell()
 		cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
 		cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
@@ -83,7 +86,7 @@ class FooterViewController: NSViewController {
 			make.left.equalTo(backgroundView).offset(40)
 		}
 
-		shuffleButton = SwissArmyButton(frame: NSRect.zero)
+		shuffleButton = SwissArmyButton(frame: CGRect.zero)
 		let shuffleCell = TransparentButtonCell(textCell: "")
 		shuffleCell.allowsSelectedState = true
 		shuffleButton.cell = shuffleCell
@@ -101,7 +104,7 @@ class FooterViewController: NSViewController {
 			make.right.equalTo(backgroundView).offset(-8)
 		}
 
-		let forwardButton = SwissArmyButton(frame: NSRect.zero)
+		let forwardButton = SwissArmyButton(frame: CGRect.zero)
 		let forwardCell = TransparentButtonCell(textCell: "")
 		forwardButton.cell = forwardCell
 		forwardButton.isBordered = false
@@ -117,7 +120,7 @@ class FooterViewController: NSViewController {
 			make.right.equalTo(shuffleButton.snp.left)
 		}
 
-		let backButton = SwissArmyButton(frame: NSRect.zero)
+		let backButton = SwissArmyButton(frame: CGRect.zero)
 		let backCell = TransparentButtonCell(textCell: "")
 		backButton.cell = backCell
 		backButton.isBordered = false

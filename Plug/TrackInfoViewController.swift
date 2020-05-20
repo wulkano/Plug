@@ -39,11 +39,11 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 		Analytics.trackView("TrackInfoWindow")
 	}
 
-	@IBAction func closeButtonClicked(_ sender: NSButton) {
+	@IBAction private func closeButtonClicked(_ sender: NSButton) {
 		view.window!.close()
 	}
 
-	@IBAction func loveButtonClicked(_ sender: NSButton) {
+	@IBAction private func loveButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Heart")
 
 		let oldLovedValue = representedTrack.loved
@@ -82,19 +82,20 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 		viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
 	}
 
-	@IBAction func downloadITunesButtonClicked(_ sender: NSButton) {
+	@IBAction private func downloadITunesButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Download iTunes")
 
 		NSWorkspace.shared.open(representedTrack.iTunesURL)
 	}
 
-	@IBAction func seeMoreButtonClicked(_ sender: NSButton) {
+	@IBAction private func seeMoreButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info See More")
 
 		NSWorkspace.shared.open(representedTrack.hypeMachineURL())
 	}
 
-	@objc func trackLoved(_ notification: Notification) {
+	@objc
+	func trackLoved(_ notification: Notification) {
 		let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if track == representedObject as? HypeMachineAPI.Track {
 			representedObject = track
@@ -102,7 +103,8 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 		}
 	}
 
-	@objc func trackUnLoved(_ notification: Notification) {
+	@objc
+	func trackUnLoved(_ notification: Notification) {
 		let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if track == representedTrack {
 			representedObject = track

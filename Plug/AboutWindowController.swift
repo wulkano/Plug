@@ -11,7 +11,7 @@ import Cocoa
 class AboutWindowController: NSWindowController {
 	convenience init() {
 		let aboutWindow = NSWindow(
-			contentRect: NSRect.zero,
+			contentRect: CGRect.zero,
 			styleMask: [NSWindow.StyleMask.titled, NSWindow.StyleMask.miniaturizable, NSWindow.StyleMask.closable],
 			backing: NSWindow.BackingStoreType.buffered,
 			defer: false

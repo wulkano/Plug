@@ -22,7 +22,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
 
 		tableView = ExtendedTableView()
 		tableView.headerView = nil
-		tableView.intercellSpacing = NSSize(width: 0, height: 0)
+		tableView.intercellSpacing = CGSize(width: 0, height: 0)
 		let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "Col0"))
 		tableView.addTableColumn(column)
 

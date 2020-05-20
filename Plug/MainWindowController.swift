@@ -21,7 +21,7 @@ class MainWindowController: NSWindowController {
 		super.windowDidLoad()
 
 		trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "MainWindow")
-		trafficButtons.addButtonsToWindow(window!, origin: NSPoint(x: 8, y: 10))
+		trafficButtons.addButtonsToWindow(window!, origin: CGPoint(x: 8, y: 10))
 
 		if #available(OSX 10.12.2, *) {
 			setupRemoteCommandCenter()
@@ -37,7 +37,7 @@ class MainWindowController: NSWindowController {
 	override func keyDown(with theEvent: NSEvent) {
 		// 49 is the key for the space bar
 		if theEvent.keyCode == 49 {
-			AudioPlayer.sharedInstance.playPauseToggle()
+			AudioPlayer.shared.playPauseToggle()
 		}
 	}
 }
@@ -94,39 +94,46 @@ extension MainWindowController {
 
 	// MARK: TouchBar playback controls
 
-	@objc func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		AudioPlayer.sharedInstance.playPauseToggle()
-		nowPlayingInfoCenter.playbackState = AudioPlayer.sharedInstance.playing ? .playing : .paused
+	@objc
+	func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+		AudioPlayer.shared.playPauseToggle()
+		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.playing ? .playing : .paused
 
 		return .success
 	}
 
-	@objc func changePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
+	@objc
+	func changePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
 		guard
 			let duration = self.nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] as? Double
-		else { return .noActionableNowPlayingItem }
+		else {
+			return .noActionableNowPlayingItem
+		}
 
 		let position = event.positionTime.rounded() / duration
-		AudioPlayer.sharedInstance.seekToPercent(position)
+		AudioPlayer.shared.seekToPercent(position)
 
 		return .success
 	}
 
-	@objc func previousTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		AudioPlayer.sharedInstance.skipBackward()
+	@objc
+	func previousTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+		AudioPlayer.shared.skipBackward()
 
 		return .success
 	}
 
-	@objc func nextTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-		AudioPlayer.sharedInstance.skipForward()
+	@objc
+	func nextTrack(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+		AudioPlayer.shared.skipForward()
 
 		return .success
 	}
 
 	// MARK: TouchBar info refresh
 
-	@objc func updateNowPlayingInfo(_ notification: Notification) {
+	@objc
+	func updateNowPlayingInfo(_ notification: Notification) {
 		let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
 
 		// First reset the playback state
@@ -142,18 +149,21 @@ extension MainWindowController {
 		]
 
 		nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-		nowPlayingInfoCenter.playbackState = AudioPlayer.sharedInstance.playing ? .playing : .paused
+		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.playing ? .playing : .paused
 	}
 
-	@objc func updateNowPlayingInfoCenterPlaybackStatePlaying(_ notification: Notification) {
+	@objc
+	func updateNowPlayingInfoCenterPlaybackStatePlaying(_ notification: Notification) {
 		nowPlayingInfoCenter.playbackState = .playing
 	}
 
-	@objc func updateNowPlayingInfoCenterPlaybackStatePaused(_ notification: Notification) {
+	@objc
+	func updateNowPlayingInfoCenterPlaybackStatePaused(_ notification: Notification) {
 		nowPlayingInfoCenter.playbackState = .paused
 	}
 
-	@objc func updateNowPlayingInfoElapsedPlaybackTime(_ notification: Notification) {
+	@objc
+	func updateNowPlayingInfoElapsedPlaybackTime(_ notification: Notification) {
 		let progress = ((notification as NSNotification).userInfo!["progress"] as! NSNumber).doubleValue
 		let duration = ((notification as NSNotification).userInfo!["duration"] as! NSNumber).doubleValue
 		nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progress

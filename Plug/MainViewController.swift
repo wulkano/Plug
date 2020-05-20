@@ -37,7 +37,7 @@ class MainViewController: NSViewController,
 	}
 
 	override func loadView() {
-		view = NSView(frame: NSRect.zero)
+		view = NSView(frame: CGRect.zero)
 
 		let sidebarViewController = SidebarViewController(delegate: self)!
 		addChild(sidebarViewController)
@@ -83,7 +83,8 @@ class MainViewController: NSViewController,
 		updateUIForSection(section)
 	}
 
-	@objc func displayError(_ notification: Notification) {
+	@objc
+	func displayError(_ notification: Notification) {
 		let error = (notification as NSNotification).userInfo!["error"] as! NSError
 		let displayErrorViewController = DisplayErrorViewController(error: error)
 
@@ -92,10 +93,11 @@ class MainViewController: NSViewController,
 
 		displayErrorViewController?.setupLayoutInSuperview()
 		displayErrorViewController?.animateIn()
-		displayErrorViewController?.animateOutWithDelay(4, completionHandler: {
+
+		displayErrorViewController?.animateOutWithDelay(4) {
 			displayErrorViewController?.view.removeFromSuperview()
 			displayErrorViewController?.removeFromParent()
-		})
+		}
 	}
 
 	func updateUIForSection(_ section: NavigationSection) {
@@ -104,31 +106,36 @@ class MainViewController: NSViewController,
 		navigationController.setViewControllers([newViewController], animated: false)
 	}
 
-	@objc func popularSectionModeChanged(_ sender: NSMenuItem) {
+	@objc
+	func popularSectionModeChanged(_ sender: NSMenuItem) {
 		let mode = PopularSectionMode(rawValue: sender.title)!
 		let viewController = currentViewController as! TracksViewController
 		viewController.dataSource = PopularTracksDataSource(viewController: viewController, mode: mode)
 	}
 
-	@objc func feedSectionModeChanged(_ sender: NSMenuItem) {
+	@objc
+	func feedSectionModeChanged(_ sender: NSMenuItem) {
 		let mode = FeedSectionMode(rawValue: sender.title)!
 		let viewController = currentViewController as! TracksViewController
 		viewController.dataSource = FeedTracksDataSource(viewController: viewController, mode: mode)
 	}
 
-	@objc func searchSectionSortChanged(_ sender: NSMenuItem) {
+	@objc
+	func searchSectionSortChanged(_ sender: NSMenuItem) {
 		let sort = SearchSectionSort(rawValue: sender.title)!
 		let viewController = currentViewController as! SearchViewController
 		viewController.sort = sort
 	}
 
-	@objc func favoritesSectionPlaylistChanged(_ sender: NSMenuItem) {
+	@objc
+	func favoritesSectionPlaylistChanged(_ sender: NSMenuItem) {
 		let playlist = FavoritesSectionPlaylist(rawValue: sender.title)!
 		let viewController = currentViewController as! TracksViewController
 		viewController.dataSource = FavoriteTracksDataSource(viewController: viewController, playlist: playlist)
 	}
 
-	@objc func latestSectionModeChanged(_ sender: NSMenuItem) {
+	@objc
+	func latestSectionModeChanged(_ sender: NSMenuItem) {
 		let mode = LatestSectionMode(rawValue: sender.title)!
 		let viewController = currentViewController as! TracksViewController
 		viewController.dataSource = LatestTracksDataSource(viewController: viewController, mode: mode)

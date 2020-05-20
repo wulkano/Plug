@@ -1,14 +1,6 @@
-//
-//	Analytics.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/10/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-struct Analytics {
+enum Analytics {
 	static let sharedTracker = Manager(trackingID: "UA-42119014-6", appBundle: Bundle.main, userID: Authentication.getUsernameHash())
 
 	static func trackView(_ viewName: String) {

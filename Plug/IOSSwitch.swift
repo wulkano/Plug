@@ -62,7 +62,7 @@ class IOSSwitch: NSControl {
 		setup()
 	}
 
-	override init(frame frameRect: NSRect) {
+	override init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
 
 		setup()
@@ -119,7 +119,7 @@ class IOSSwitch: NSControl {
 		true
 	}
 
-	override var frame: NSRect {
+	override var frame: CGRect {
 		didSet {
 			reloadLayerSize()
 		}
@@ -190,11 +190,11 @@ class IOSSwitch: NSControl {
 	}
 
 
-	func knobHeightForSize(_ size: NSSize) -> CGFloat {
+	func knobHeightForSize(_ size: CGSize) -> CGFloat {
 		size.height - (borderLineWidth * 2)
 	}
 
-	func knobWidthForSize(_ size: NSSize) -> CGFloat {
+	func knobWidthForSize(_ size: CGSize) -> CGFloat {
 		if isActive {
 			return (size.width - (2 * borderLineWidth)) * (1 / decreasedGoldenRatio)
 		} else {
@@ -202,7 +202,7 @@ class IOSSwitch: NSControl {
 		}
 	}
 
-	func knobXForSize(_ size: NSSize, knobWidth: CGFloat) -> CGFloat {
+	func knobXForSize(_ size: CGSize, knobWidth: CGFloat) -> CGFloat {
 		if (!hasDragged && !on) || (hasDragged && !isDraggingTowardsOn) {
 			return borderLineWidth
 		} else {
@@ -217,7 +217,9 @@ class IOSSwitch: NSControl {
 	}
 
 	override func mouseDown(with theEvent: NSEvent) {
-		if !isEnabled { return }
+		guard isEnabled else {
+			return
+		}
 
 		isActive = true
 
@@ -225,7 +227,9 @@ class IOSSwitch: NSControl {
 	}
 
 	override func mouseDragged(with theEvent: NSEvent) {
-		if !isEnabled { return }
+		guard isEnabled else {
+			return
+		}
 
 		hasDragged = true
 
@@ -236,7 +240,9 @@ class IOSSwitch: NSControl {
 	}
 
 	override func mouseUp(with theEvent: NSEvent) {
-		if !isEnabled { return }
+		guard isEnabled else {
+			return
+		}
 
 		isActive = false
 

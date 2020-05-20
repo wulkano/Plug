@@ -45,7 +45,7 @@ public struct User {
 
 extension User: CustomStringConvertible {
 	public var description: String {
-		"User: { username: \(username), fullName: \(fullName) }"
+		"User: { username: \(username), fullName: \(fullName ?? "") }"
 	}
 }
 
@@ -55,19 +55,23 @@ extension User: ResponseObjectSerializable, ResponseCollectionSerializable {
 			let representation = representation as? [String: Any],
 			let username = representation["username"] as? String,
 			let favoritesCountInfo = representation["favorites_count"] as? NSDictionary
-		else { return nil }
+		else {
+			return nil
+		}
 
 		func nonEmptyStringForJSONKey(_ key: String) -> String? {
 			guard let string = representation["key"] as? String else {
 				return nil
 			}
-			return string == "" ? nil : string
+
+			return string.isEmpty ? nil : string
 		}
 
 		func urlForJSONKey(_ key: String) -> URL? {
 			guard let urlString = representation[key] as? String else {
 				return nil
 			}
+
 			return URL(string: urlString)
 		}
 
@@ -90,7 +94,7 @@ extension User: Equatable {
 }
 
 extension User: Hashable {
-	public var hashValue: Int {
-		username.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(username)
 	}
 }

@@ -57,7 +57,7 @@ class TagsDataSource: SearchableDataSource {
 		let uniqueTags = filterUniqueTags(tags)
 		let sortedTags = sortTags(uniqueTags)
 
-		if searchKeywords == "" || searchKeywords == nil {
+		if searchKeywords?.isEmpty == true || searchKeywords == nil {
 			print("Filtering, but no keywords present")
 			return sortedTags
 		} else {

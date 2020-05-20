@@ -24,7 +24,10 @@ public struct Router {
 	}
 
 	static func addApiKeyParam(_ params: Parameters) -> Parameters {
-		if apiKey == nil { return params }
-		return ["key": apiKey!].merge(params)
+		guard let apiKey = apiKey else {
+			return params
+		}
+
+		return ["key": apiKey].merge(params)
 	}
 }

@@ -18,7 +18,9 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<URL>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<URL> { request, response, data, error in
-			guard error == nil else { return .failure(SoundCloudAPI.Errors.cantParseResponse) }
+			guard error == nil else {
+				return .failure(SoundCloudAPI.Errors.cantParseResponse)
+			}
 
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)

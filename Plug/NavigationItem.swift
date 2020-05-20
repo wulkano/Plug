@@ -19,7 +19,7 @@ class NavigationItem: NSObject {
 	}
 
 	class func standardBackButtonWithTitle(_ title: String) -> SwissArmyButton {
-		let button = SwissArmyButton(frame: NSRect.zero)
+		let button = SwissArmyButton(frame: CGRect.zero)
 		let cell = BackButtonCell(textCell: "")
 		button.cell = cell
 		button.bezelStyle = .regularSquare
@@ -31,7 +31,7 @@ class NavigationItem: NSObject {
 	}
 
 	class func standardRightButtonWithOnStateTitle(_ onStateTitle: String, offStateTitle: String, target: AnyObject, action: Selector) -> ActionButton {
-		let button = ActionButton(frame: NSRect.zero)
+		let button = ActionButton(frame: CGRect.zero)
 		let cell = ActionButtonCell(textCell: "")
 
 		button.cell = cell
@@ -48,7 +48,7 @@ class NavigationItem: NSObject {
 	}
 
 	class func standardTitleDropdownButtonForMenu(_ menu: NSMenu) -> TitleBarPopUpButton {
-		let button = TitleBarPopUpButton(frame: NSRect.zero, pullsDown: true)
+		let button = TitleBarPopUpButton(frame: CGRect.zero, pullsDown: true)
 		let buttonCell = TitleBarPopUpButtonCell(textCell: "", pullsDown: true)
 
 		buttonCell.altersStateOfSelectedItem = true
@@ -57,7 +57,7 @@ class NavigationItem: NSObject {
 
 		button.cell = buttonCell
 		button.autoenablesItems = true
-		button.preferredEdge = NSRectEdge.maxY
+		button.preferredEdge = .maxY
 		button.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
 		button.lineBreakMode = .byTruncatingMiddle
 		button.menu = menu
