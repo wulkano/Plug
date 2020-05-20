@@ -185,7 +185,7 @@ class TagsViewController: DataSourceViewController {
 
 	// MARK: NSTableViewDelegate
 
-	func tableView(_ tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return sectionHeaderCellView(tableView)
@@ -194,7 +194,7 @@ class TagsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
+	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return groupRowView(tableView)
@@ -203,7 +203,7 @@ class TagsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, isGroupRow row: Int) -> Bool {
+	func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return true
@@ -212,7 +212,7 @@ class TagsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
+	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return 32
@@ -221,7 +221,7 @@ class TagsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
+	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return false

@@ -68,7 +68,7 @@ class UsersViewController: DataSourceViewController {
 
 	// MARK: NSTableViewDelegate
 
-	func tableView(_ tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let id = "UserTableCellViewID"
 		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? UserTableCellView
 

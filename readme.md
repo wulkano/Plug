@@ -9,13 +9,13 @@
 	<br>
 </div>
 
-Requires macOS 10.12 or later.
-
 ## Download
 
 [![](https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/macappstore-lrg.svg)]()
 
-**SOON**
+**COMING SOON**
+
+Requires macOS 10.12 or later.
 
 ## Hype Machine API Codes
 

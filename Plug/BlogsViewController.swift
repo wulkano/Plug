@@ -172,7 +172,7 @@ class BlogsViewController: DataSourceViewController {
 
 	// MARK: NSTableViewDelegate
 
-	func tableView(_ tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return sectionHeaderCellView(tableView)
@@ -181,7 +181,7 @@ class BlogsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, rowViewForRow row: Int) -> NSTableRowView! {
+	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return groupRowView(tableView)
@@ -190,7 +190,7 @@ class BlogsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, isGroupRow row: Int) -> Bool {
+	func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return true
@@ -199,7 +199,7 @@ class BlogsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, heightOfRow row: Int) -> CGFloat {
+	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return 32
@@ -208,7 +208,7 @@ class BlogsViewController: DataSourceViewController {
 		}
 	}
 
-	func tableView(_ tableView: NSTableView!, shouldSelectRow row: Int) -> Bool {
+	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
 			return false
