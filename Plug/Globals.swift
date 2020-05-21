@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-let ApiKey = "***REMOVED***"
+let ApiKey = Secrets.apiKey
 let PlugErrorDomain = "Plug.ErrorDomain"
 let RickRoll = false
 let JSONResponseSerializerWithDataKey = "JSONResponseSerializerWithDataKey"

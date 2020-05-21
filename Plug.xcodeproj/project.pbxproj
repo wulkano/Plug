@@ -57,6 +57,7 @@
 		E35F1C4724750255004CC5C1 /* INAppStoreWindowSwizzling.c in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C3F24750255004CC5C1 /* INAppStoreWindowSwizzling.c */; };
 		E35F1C4824750255004CC5C1 /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4024750255004CC5C1 /* INWindowButton.m */; };
 		E35F1C50247519DB004CC5C1 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4D247519DB004CC5C1 /* SSKeychain.m */; };
+		E3B4C5BD2476C9E000D4776F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C5BC2476C9E000D4776F /* Secrets.swift */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
 		FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */; };
 		FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B1CF41976D8A70030C873 /* SidebarViewController.swift */; };
@@ -290,6 +291,7 @@
 		E35F1C4B247519DB004CC5C1 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		E35F1C4C247519DB004CC5C1 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.markdown; sourceTree = "<group>"; };
 		E35F1C4D247519DB004CC5C1 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		E3B4C5BC2476C9E000D4776F /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		E3C1BDA324742F8100F5E403 /* Plug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plug.entitlements; sourceTree = "<group>"; };
 		FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderViewController.swift; sourceTree = "<group>"; };
 		FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSectionButton.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 			children = (
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
 				FA64C6A619764FE9003933E3 /* Globals.swift */,
+				E3B4C5BC2476C9E000D4776F /* Secrets.swift */,
 				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
 				FA64C6A119764DAE003933E3 /* Models */,
 				FA2519451C039E850075FBC6 /* Helpers */,
@@ -1222,6 +1225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E35F1C4524750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.m in Sources */,
+				E3B4C5BD2476C9E000D4776F /* Secrets.swift in Sources */,
 				FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */,
 				FA33F43419E67FB200FF7649 /* PostInfoTextField.swift in Sources */,
 				FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */,
