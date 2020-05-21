@@ -141,9 +141,8 @@ class FooterViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		// FIXME: These currently crashes the app.
-		// volumeSlider.bind(NSBindingName(rawValue: "value"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
-		// volumeIcon.bind(NSBindingName(rawValue: "volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
-		// shuffleButton.bind(NSBindingName(rawValue: "state"), to: NSUserDefaultsController.shared, withKeyPath: "values.shuffle", options: nil)
+		volumeSlider.bind(NSBindingName("value"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
+		volumeIcon.bind(NSBindingName("volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
+		shuffleButton.bind(NSBindingName("state"), to: NSUserDefaultsController.shared, withKeyPath: "values.shuffle", options: nil)
 	}
 }

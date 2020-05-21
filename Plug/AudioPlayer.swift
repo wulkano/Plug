@@ -41,7 +41,8 @@ final class AudioPlayer: NSObject {
 	let onTrackPaused = OnTrackPaused()
 	let onSkipForward = OnSkipForward()
 	let onSkipBackward = OnSkipBackward()
-	var volume: Float = 1 {
+
+	@objc dynamic var volume: Float = 1 {
 		didSet {
 			volumeChanged()
 		}
@@ -57,8 +58,7 @@ final class AudioPlayer: NSObject {
 		self.shuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
 		super.init()
 
-		// FIXME: This crashes the app
-		// bind(NSBindingName(rawValue: "volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
+		bind(NSBindingName("volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
 	}
 
 	deinit {

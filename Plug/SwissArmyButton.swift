@@ -16,8 +16,10 @@ class SwissArmyButton: NSButton {
 		vibrant
 	}
 
-	override var state: NSControl.StateValue {
-		didSet { needsDisplay = true }
+	@objc override dynamic var state: NSControl.StateValue {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
 	var trackingArea: NSTrackingArea?

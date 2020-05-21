@@ -17,8 +17,10 @@ class VolumeIconView: NSView {
 		didSet { needsDisplay = true }
 	}
 
-	var volume: Double = 1 {
-		didSet { setStateForVolume(volume) }
+	@objc dynamic var volume: Double = 1 {
+		didSet {
+			setStateForVolume(volume)
+		}
 	}
 
 	var opacity: CGFloat = 0.3
