@@ -1695,8 +1695,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa";
 			requirement = {
-				kind = exactVersion;
-				version = 5.0.2;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.5;
 			};
 		};
 		E334A8CC2474FAF30006DAC6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
