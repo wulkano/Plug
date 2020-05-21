@@ -106,7 +106,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	}
 
 	func objectForRow(_ row: Int) -> Any? {
-		tableContents!.optionalAtIndex(row)
+		tableContents?.optionalAtIndex(row)
 	}
 
 	func objectAfterRow(_ row: Int) -> Any? {
