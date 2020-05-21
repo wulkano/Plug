@@ -1,15 +1,7 @@
-//
-//	DisplayErrorViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/22/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import SnapKit
 
-class DisplayErrorViewController: NSViewController {
+final class DisplayErrorViewController: NSViewController {
 	let error: NSError
 
 	var errorTitleTextField: NSTextField!

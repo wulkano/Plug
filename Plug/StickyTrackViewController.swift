@@ -1,15 +1,7 @@
-//
-//	StickyTrackViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/9/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class StickyTrackViewController: TracksViewController {
+final class StickyTrackViewController: TracksViewController {
 	var trackViewHeight: CGFloat {
 		tableView(tableView, heightOfRow: 0)
 	}

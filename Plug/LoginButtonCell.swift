@@ -1,14 +1,6 @@
-//
-//	LoginButtonCell.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class LoginButtonCell: SwissArmyButtonCell {
+final class LoginButtonCell: SwissArmyButtonCell {
 	var loginButton: LoginButton {
 		controlView as! LoginButton
 	}
@@ -44,9 +36,9 @@ class LoginButtonCell: SwissArmyButtonCell {
 	func getAlpha() -> CGFloat {
 		switch loginButton.buttonState {
 		case .enabled, .error:
-			if mouseDown {
+			if isMouseDown {
 				return 0.3
-			} else if mouseInside {
+			} else if isMouseInside {
 				return 0.6
 			} else {
 				return 1

@@ -1,15 +1,7 @@
-//
-//	BlogsDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/12/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class BlogsDataSource: SearchableDataSource {
+final class BlogsDataSource: SearchableDataSource {
 	func filterBlogs(_ contents: [Any]) -> [HypeMachineAPI.Blog] {
 		contents.filter { $0 is HypeMachineAPI.Blog } as! [HypeMachineAPI.Blog]
 	}

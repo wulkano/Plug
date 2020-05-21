@@ -1,14 +1,6 @@
-//
-//	VolumeIconView.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/20/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class VolumeIconView: NSView {
+final class VolumeIconView: NSView {
 	@IBInspectable var offImage: NSImage?
 	@IBInspectable var oneImage: NSImage?
 	@IBInspectable var twoImage: NSImage?

@@ -1,20 +1,10 @@
-//
-//	SwissArmyButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/28/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 class SwissArmyButton: NSButton {
 	@IBInspectable var vibrant: Bool = false
 	@IBInspectable var tracksHover: Bool = false
 
-	override var allowsVibrancy: Bool {
-		vibrant
-	}
+	override var allowsVibrancy: Bool { vibrant }
 
 	@objc override dynamic var state: NSControl.StateValue {
 		didSet {
@@ -28,13 +18,13 @@ class SwissArmyButton: NSButton {
 	}
 
 	var mouseInside: Bool {
-		get { swissArmyButtonCell.mouseInside }
-		set { swissArmyButtonCell.mouseInside = newValue }
+		get { swissArmyButtonCell.isMouseInside }
+		set { swissArmyButtonCell.isMouseInside = newValue }
 	}
 
 	var mouseDown: Bool {
-		get { swissArmyButtonCell.mouseDown }
-		set { swissArmyButtonCell.mouseDown = newValue }
+		get { swissArmyButtonCell.isMouseDown }
+		set { swissArmyButtonCell.isMouseDown = newValue }
 	}
 
 	override func viewDidMoveToWindow() {

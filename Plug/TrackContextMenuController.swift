@@ -1,15 +1,7 @@
-//
-//	TrackContextMenuController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
+final class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
 	let track: HypeMachineAPI.Track
 	var contextMenu: NSMenu!
 
@@ -122,7 +114,7 @@ class TrackContextMenuController: NSViewController, NSSharingServiceDelegate {
 	}
 }
 
-class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
+final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 	var success: (_ trackURL: URL) -> Void
 	var failure: (_ error: NSError) -> Void
 

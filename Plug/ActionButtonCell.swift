@@ -1,14 +1,6 @@
-//
-//	ActionButtonCell.swift
-//	Plug
-//
-//	Created by Alex Marchant on 6/16/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class ActionButtonCell: SwissArmyButtonCell {
+final class ActionButtonCell: SwissArmyButtonCell {
 	let horizontalPadding: CGFloat = 0
 
 	let onStateColor = NSColor(red256: 255, green256: 95, blue256: 82)
@@ -57,7 +49,7 @@ class ActionButtonCell: SwissArmyButtonCell {
 	}
 
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
-		if mouseDown {
+		if isMouseDown {
 			NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.sourceOver, 1, true)
 		} else {
 			NSDrawThreePartImage(frame, normalLeftImage, normalMiddleImage, normalRightImage, false, NSCompositingOperation.sourceOver, 1, true)

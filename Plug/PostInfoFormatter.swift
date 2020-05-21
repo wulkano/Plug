@@ -1,15 +1,7 @@
-//
-//	PostedByInfoFormatter.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/29/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class PostInfoFormatter: Formatter {
+final class PostInfoFormatter: Formatter {
 	func attributedStringForPostInfo(_ track: HypeMachineAPI.Track) -> NSAttributedString {
 		let postInfoAttributedString = NSMutableAttributedString()
 		let formattedBlogName = attributedBlogName(track.postedBy)

@@ -1,14 +1,6 @@
-//
-//	TrafficButtons.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/11/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Foundation
 
-class TrafficButtons {
+final class TrafficButtons {
 	var closeButton: INWindowButton!
 	var minimizeButton: INWindowButton!
 	var zoomButton: INWindowButton!

@@ -1,15 +1,9 @@
-//
-//	iOSSwitch.swift
-//	Plug
-//
-//	Created by Alex Marchant on 6/16/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 import QuartzCore
 
-class IOSSwitch: NSControl {
+// TODO: Replace this with `NSSwitch` when targeting macOS 10.15.
+
+final class IOSSwitch: NSControl {
 	let animationDuration: CFTimeInterval = 0.4
 
 	let borderLineWidth: CGFloat = 2

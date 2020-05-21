@@ -38,7 +38,7 @@ class FlatSliderCell: NSSliderCell {
 
 	override func drawKnob(_ knobRect: CGRect) {
 //		  TODO: fix this drawing so it's not overlapping on the bar
-//		  if mouseInside {
+//		  if isMouseInside {
 //			  var vInset = (knobRect.size.height - knobSize) / 2
 //			  var hInset = (knobRect.size.width - knobSize) / 2
 //			  knobFillColor.set()

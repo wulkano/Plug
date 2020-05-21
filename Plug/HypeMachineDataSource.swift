@@ -1,18 +1,13 @@
-//
-//	PlugDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/22/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import Alamofire
 
 class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	var viewController: DataSourceViewController
+
 	var filtering: Bool = false {
-		didSet { viewController.tableView.reloadData() }
+		didSet {
+			viewController.tableView.reloadData()
+		}
 	}
 
 	var standardTableContents: [Any]?
@@ -30,20 +25,19 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 		}
 	}
 
-	var requestInProgress: Bool = false
-	var allObjectsLoaded: Bool = false
-	var currentPage: Int = 0
-	var objectsPerPage: Int {
-		100
-	}
+	var requestInProgress = false
+	var allObjectsLoaded = false
+	var currentPage = 0
+	var objectsPerPage: Int { 100 }
 
 	var nextPageParams: [String: Any] {
-		["page": currentPage + 1, "count": objectsPerPage]
+		[
+			"page": currentPage + 1,
+			"count": objectsPerPage
+		]
 	}
 
-	var singlePage: Bool {
-		false
-	}
+	var singlePage: Bool { false }
 
 	init(viewController: DataSourceViewController) {
 		self.viewController = viewController

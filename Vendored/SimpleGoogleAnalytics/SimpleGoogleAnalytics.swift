@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-open class Manager: NSObject {
+public final class Manager: NSObject {
 	let trackingID: String
 	let appBundle: Bundle
 	let userID: String?
@@ -40,17 +40,17 @@ open class Manager: NSObject {
 		return "GoogleAnalytics/2.0 (Macintosh; Intel \(productName) \(productVersion); \(language)-\(country))"
 	}
 
-	open func trackPageview(_ viewName: String) {
+	public func trackPageview(_ viewName: String) {
 		let hit = ScreenviewHit(viewName: viewName)
 		sendHit(hit)
 	}
 
-	open func trackEvent(category: String, action: String, label: String?, value: String?) {
+	public func trackEvent(category: String, action: String, label: String?, value: String?) {
 		let hit = EventHit(category: category, action: action, label: label, value: value)
 		sendHit(hit)
 	}
 
-	open func trackException(description: String, fatal: Bool?) {
+	public func trackException(description: String, fatal: Bool?) {
 		let hit = ExceptionHit(description: description, fatal: fatal)
 		sendHit(hit)
 	}

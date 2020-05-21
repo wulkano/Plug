@@ -1,11 +1,3 @@
-//
-//	PopularTracksDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 6/3/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Foundation
 import Alamofire
 import HypeMachineAPI
@@ -20,20 +12,16 @@ class PopularTracksDataSource: TracksDataSource {
 
 	// MARK: HypeMachineDataSource
 
-	override var objectsPerPage: Int {
-		50
-	}
+	override var objectsPerPage: Int { 50 }
 
-	override var singlePage: Bool {
-		true
-	}
+	override var singlePage: Bool { true }
 
 	override func requestNextPageObjects() {
 		HypeMachineAPI.Requests.Tracks.popular(params: mode.params.merge(nextPageParams), completionHandler: nextPageTracksReceived)
 	}
 }
 
-class FavoriteTracksDataSource: TracksDataSource {
+final class FavoriteTracksDataSource: TracksDataSource {
 	let playlist: FavoritesSectionPlaylist
 	var shuffle: Bool = false
 
@@ -86,7 +74,7 @@ class FavoriteTracksDataSource: TracksDataSource {
 	}
 }
 
-class LatestTracksDataSource: TracksDataSource {
+final class LatestTracksDataSource: TracksDataSource {
 	let mode: LatestSectionMode
 
 	init(viewController: DataSourceViewController, mode: LatestSectionMode) {
@@ -101,7 +89,7 @@ class LatestTracksDataSource: TracksDataSource {
 	}
 }
 
-class FeedTracksDataSource: TracksDataSource {
+final class FeedTracksDataSource: TracksDataSource {
 	let mode: FeedSectionMode
 
 	init(viewController: DataSourceViewController, mode: FeedSectionMode) {
@@ -116,7 +104,7 @@ class FeedTracksDataSource: TracksDataSource {
 	}
 }
 
-class BlogTracksDataSource: TracksDataSource {
+final class BlogTracksDataSource: TracksDataSource {
 	let blogID: Int
 
 	init(viewController: DataSourceViewController, blogID: Int) {
@@ -131,7 +119,7 @@ class BlogTracksDataSource: TracksDataSource {
 	}
 }
 
-class UserTracksDataSource: TracksDataSource {
+final class UserTracksDataSource: TracksDataSource {
 	let username: String
 
 	init(viewController: DataSourceViewController, username: String) {
@@ -146,7 +134,7 @@ class UserTracksDataSource: TracksDataSource {
 	}
 }
 
-class ArtistTracksDataSource: TracksDataSource {
+final class ArtistTracksDataSource: TracksDataSource {
 	let artistName: String
 
 	init(viewController: DataSourceViewController, artistName: String) {
@@ -161,7 +149,7 @@ class ArtistTracksDataSource: TracksDataSource {
 	}
 }
 
-class TagTracksDataSource: TracksDataSource {
+final class TagTracksDataSource: TracksDataSource {
 	let tagName: String
 
 	init(viewController: DataSourceViewController, tagName: String) {
@@ -176,7 +164,7 @@ class TagTracksDataSource: TracksDataSource {
 	}
 }
 
-class SearchTracksDataSource: TracksDataSource {
+final class SearchTracksDataSource: TracksDataSource {
 	let searchQuery: String
 	let sort: SearchSectionSort
 
@@ -193,7 +181,7 @@ class SearchTracksDataSource: TracksDataSource {
 	}
 }
 
-class SingleTrackDataSource: TracksDataSource {
+final class SingleTrackDataSource: TracksDataSource {
 	let track: HypeMachineAPI.Track
 
 	init(viewController: DataSourceViewController, track: HypeMachineAPI.Track) {
@@ -203,9 +191,7 @@ class SingleTrackDataSource: TracksDataSource {
 
 	// MARK: HypeMachineDataSource
 
-	override var singlePage: Bool {
-		true
-	}
+	override var singlePage: Bool { true }
 
 	override func requestNextPageObjects() {
 		let response = DataResponse(request: nil, response: nil, data: nil, result: Alamofire.Result.success([track]))

@@ -1,15 +1,7 @@
-//
-//	GenresViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/1/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class TagsViewController: DataSourceViewController {
+final class TagsViewController: DataSourceViewController {
 	var tagsDataSource: TagsDataSource? {
 		dataSource as? TagsDataSource
 	}

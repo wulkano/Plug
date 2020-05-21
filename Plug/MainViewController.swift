@@ -1,16 +1,8 @@
-//
-//	MainViewController.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/16/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import SnapKit
 import HypeMachineAPI
 
-class MainViewController: NSViewController,
+final class MainViewController: NSViewController,
 	SidebarViewControllerDelegate,
 	PopularSectionModeMenuTarget,
 	FeedSectionModeMenuTarget,

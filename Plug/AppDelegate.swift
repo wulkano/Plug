@@ -134,7 +134,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func setupUserNotifications() {
-		_ = UserNotificationHandler.sharedInstance
+		_ = UserNotificationHandler.shared
 	}
 
 	func setupNotifications() {
@@ -153,7 +153,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func setupKeepAwake() {
-		_ = KeepAwake.sharedInstance
+		_ = KeepAwake.shared
 	}
 
 	// MARK: Notifications

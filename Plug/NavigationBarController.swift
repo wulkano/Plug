@@ -1,11 +1,3 @@
-//
-//	NavigationBar.swift
-//	navigationControllers
-//
-//	Created by Alex Marchant on 9/2/14.
-//	Copyright (c) 2014 alexmarchant. All rights reserved.
-//
-
 import Cocoa
 import SnapKit
 
@@ -30,13 +22,11 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class NavigationBarController: NSViewController {
+final class NavigationBarController: NSViewController {
 	let navigationController: NavigationController
 
 	var items: [NavigationItem]?
-	var topItem: NavigationItem? {
-		items?.last
-	}
+	var topItem: NavigationItem? { items?.last}
 
 	var backItem: NavigationItem? {
 		if items == nil || items!.count < 2 {

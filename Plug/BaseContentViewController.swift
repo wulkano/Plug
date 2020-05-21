@@ -1,11 +1,3 @@
-//
-//	MainContentViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 import SnapKit

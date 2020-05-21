@@ -1,24 +1,8 @@
-//
-//	KeepAwake.swift
-//	Plug
-//
-//	Created by Jesse Claven on 1/07/2016.
-//	Copyright © 2016 Plug. All rights reserved.
-//
-// Thanks to https://gist.github.com/mikeabdullah/3200382 and
-// https://developer.apple.com/library/mac/qa/qa1340/_index.html
-//
-
 import Foundation
 import IOKit.pwr_mgt
 
-class KeepAwake: NSObject {
-	class var sharedInstance: KeepAwake {
-		struct Singleton {
-			static let instance = KeepAwake()
-		}
-		return Singleton.instance
-	}
+final class KeepAwake: NSObject {
+	static let shared = KeepAwake()
 
 	let preventSleep = PreventSleep(
 		sleepAssertionMsg: "Prevent idle sleep when playing audio.",
@@ -45,16 +29,16 @@ class KeepAwake: NSObject {
 		]
 
 		for aSignal in whenToAllowSleep {
-			aSignal.addObserver(self, callback: { _, _ in
+			aSignal.addObserver(self) { _, _ in
 				self.preventSleep.allowSleep()
-			})
+			}
 		}
 
 		UserDefaults.standard.addObserver(self, forKeyPath: PreventIdleSleepWhenPlaying, options: NSKeyValueObservingOptions.new, context: nil)
 	}
 
 	deinit {
-		self.preventSleep.allowSleep()
+		preventSleep.allowSleep()
 	}
 
 	// MARK: NSKeyValueObserving

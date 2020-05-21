@@ -1,11 +1,3 @@
-//
-//	GeneralPreferencesViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 let ShowTrackChangeNotificationsKey = "ShowTrackChangeNotifications"
@@ -13,7 +5,7 @@ let EnableMediaKeysKey = "EnableMediaKeysKey"
 let HideUnavailableTracks = "HideUnavailableTracks"
 let PreventIdleSleepWhenPlaying = "PreventIdleSleepWhenPlaying"
 
-class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+final class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet var scrollViewHeightContraint: NSLayoutConstraint!
 	@IBOutlet var tableView: NSTableView!
 
@@ -32,7 +24,6 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do view setup here.
 
 		setHeightForPreferences()
 	}
@@ -55,7 +46,7 @@ class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, N
 }
 
 // Only supports Bools for now
-class GeneralPreference {
+final class GeneralPreference {
 	var title: String
 	var settingsKey: String
 

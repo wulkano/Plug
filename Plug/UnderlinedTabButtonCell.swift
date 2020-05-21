@@ -1,14 +1,6 @@
-//
-//	UnderlinedTabViewItem.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class UnderlinedTabButtonCell: NSButtonCell {
+final class UnderlinedTabButtonCell: NSButtonCell {
 	var highlightColor = NSColor(red256: 69, green256: 159, blue256: 255)
 	var hightlightWidth: CGFloat = 4
 	var fixedTextFrame = CGRect(x: 5, y: 40, width: 50, height: 15)

@@ -1,14 +1,6 @@
-//
-//	SidebarOverlayView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/13/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class SidebarOverlayView: NSView {
+final class SidebarOverlayView: NSView {
 	let overlayColor = NSColor(red256: 91, green256: 91, blue256: 91)
 
 	required init?(coder: NSCoder) {

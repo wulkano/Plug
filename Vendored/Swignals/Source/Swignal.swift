@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class SwignalBase {
+public class SwignalBase {
 	internal var swignalObservers: [ObserverBase] = []
 
 	internal func addSwignalObserver(_ swignalObserver: ObserverBase) {
@@ -19,7 +19,7 @@ open class SwignalBase {
 		}
 	}
 
-	open func removeObserver(_ observer: AnyObject) {
+	public func removeObserver(_ observer: AnyObject) {
 		synced(self) {
 			for swignalObserver in self.swignalObservers where swignalObserver.genericObserver === observer {
 				self.swignalObservers.removeObject(swignalObserver)
@@ -27,7 +27,7 @@ open class SwignalBase {
 		}
 	}
 
-	open func removeAllObservers() {
+	public func removeAllObservers() {
 		synced(self) {
 			self.swignalObservers.removeAll()
 		}

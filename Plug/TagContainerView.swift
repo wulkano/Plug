@@ -1,7 +1,7 @@
 import Cocoa
 import HypeMachineAPI
 
-class TagContainerView: NSView {
+final class TagContainerView: NSView {
 	override var isFlipped: Bool {
 		true
 	}

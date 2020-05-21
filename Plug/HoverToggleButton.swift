@@ -1,14 +1,6 @@
-//
-//	ToggleButton.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/18/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class HoverToggleButton: NSButton {
+final class HoverToggleButton: NSButton {
 	@IBInspectable var onImage: NSImage?
 	@IBInspectable var onHoverImage: NSImage?
 	@IBInspectable var offImage: NSImage?

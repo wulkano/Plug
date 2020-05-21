@@ -1,14 +1,6 @@
-//
-//	MainWindow.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/14/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class HiddenTitlebarWindow: NSWindow {
+final class HiddenTitlebarWindow: NSWindow {
 	override init(contentRect: CGRect, styleMask aStyle: NSWindow.StyleMask, backing bufferingType: NSWindow.BackingStoreType, defer flag: Bool) {
 		super.init(contentRect: contentRect, styleMask: aStyle, backing: bufferingType, defer: flag)
 

@@ -1,14 +1,6 @@
-//
-//	BackButtonCell.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/3/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class BackButtonCell: SwissArmyButtonCell {
+final class BackButtonCell: SwissArmyButtonCell {
 	let normalLeftImage = NSImage(named: "Header-Back-Normal-Left")
 	let normalMiddleImage = NSImage(named: "Header-Button-Normal-Middle")
 	let normalRightImage = NSImage(named: "Header-Button-Normal-Right")
@@ -18,7 +10,7 @@ class BackButtonCell: SwissArmyButtonCell {
 	let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
 
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
-		if mouseDown {
+		if isMouseDown {
 			NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.sourceOver, 1, true)
 		} else {
 			NSDrawThreePartImage(frame, normalLeftImage, normalMiddleImage, normalRightImage, false, NSCompositingOperation.sourceOver, 1, true)

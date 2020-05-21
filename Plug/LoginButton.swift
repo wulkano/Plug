@@ -1,14 +1,6 @@
-//
-//	LoginButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/28/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class LoginButton: SwissArmyButton {
+final class LoginButton: SwissArmyButton {
 	var loginButtonCell: LoginButtonCell {
 		cell as! LoginButtonCell
 	}

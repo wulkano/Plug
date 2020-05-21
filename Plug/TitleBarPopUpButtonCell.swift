@@ -1,14 +1,6 @@
-//
-//	TitleBarPopUpButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 6/10/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class TitleBarPopUpButtonCell: NSPopUpButtonCell {
+final class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 	var originalMenu: NSMenu?
 
 	override var menu: NSMenu? {

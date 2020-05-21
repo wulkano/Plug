@@ -90,7 +90,7 @@ class FeedTrackTableCellView: LoveCountTrackTableCellView {
 //		  var mouseOutSpacing: CGFloat = 32
 //		  var mouseInSpacing: CGFloat = 20
 //
-//		  if mouseInside {
+//		  if isMouseInside {
 //			  sourceButtonTrailingConstraint.constant = mouseInSpacing
 //		  } else {
 //			  sourceButtonTrailingConstraint.constant = mouseOutSpacing

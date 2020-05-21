@@ -1,16 +1,8 @@
-//
-//	TrackInfoViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/14/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 import Alamofire
 
-class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
+final class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
 	@IBOutlet var titleTextField: VibrantTextField!
 	@IBOutlet var artistTextField: VibrantTextField!
 	@IBOutlet var loveCountTextField: VibrantTextField!
@@ -18,7 +10,6 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 	@IBOutlet var postedCountTextField: NSTextField!
 	@IBOutlet var postInfoTextField: PostInfoTextField!
 	@IBOutlet var loveButton: TransparentButton!
-//	  @IBOutlet weak var tagContainer: TagContainerView!
 
 	override var representedObject: Any! {
 		didSet { representedObjectChanged() }
@@ -33,7 +24,6 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 
 		Notifications.subscribe(observer: self, selector: #selector(TrackInfoViewController.trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
 		Notifications.subscribe(observer: self, selector: #selector(TrackInfoViewController.trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
-//		  tagContainer.delegate = self
 		postInfoTextField.postInfoDelegate = self
 
 		Analytics.trackView("TrackInfoWindow")
@@ -170,11 +160,6 @@ class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostI
 	}
 
 	func updateLoveButton() {
-		loveButton.selected = representedTrack.loved
+		loveButton.isSelected = representedTrack.loved
 	}
-
-//
-//	  func updateTags() {
-//		  tagContainer.tags = representedTrack.tags
-//	  }
 }

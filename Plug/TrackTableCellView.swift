@@ -81,7 +81,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		updateTrackTitle()
 		updateTrackArtist()
 		mouseInside = false
-		loveButton.selected = track.loved
+		loveButton.isSelected = track.loved
 		progressSlider.doubleValue = 0
 	}
 
@@ -191,7 +191,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 //		  var mouseOutSpacing: CGFloat = 32
 //		  var mouseInSpacing: CGFloat = 20
 //
-//		  if mouseInside {
+//		  if isMouseInside {
 //			  artistTrailingConstraint.constant = mouseInSpacing
 //			  titleTrailingConstraint.constant = mouseInSpacing
 //		  } else {
@@ -274,7 +274,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
 			track.loved = true
-			loveButton.selected = true
+			loveButton.isSelected = true
 		}
 		updateLoveContainerSpacing()
 	}
@@ -288,7 +288,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
 			track.loved = false
-			loveButton.selected = false
+			loveButton.isSelected = false
 		}
 		updateLoveContainerSpacing()
 	}

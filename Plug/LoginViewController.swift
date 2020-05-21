@@ -1,15 +1,7 @@
-//
-//	LoginViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/21/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class LoginViewController: NSViewController, NSTextFieldDelegate {
+final class LoginViewController: NSViewController, NSTextFieldDelegate {
 	@IBOutlet var usernameOrEmailLabel: VibrantTextField!
 	@IBOutlet var usernameOrEmailTextField: NSTextField!
 	@IBOutlet var passwordLabel: VibrantTextField!

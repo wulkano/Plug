@@ -1,15 +1,7 @@
-//
-//	UsersDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/12/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class UsersDataSource: SearchableDataSource {
+final class UsersDataSource: SearchableDataSource {
 	func filterUsersMatchingSearchKeywords(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
 		users.filter { user in
 			if user.fullName != nil {

@@ -1,14 +1,6 @@
-//
-//	AboutViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/14/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class AboutViewController: NSViewController {
+final class AboutViewController: NSViewController {
 	func label(_ container: NSView) -> NSTextField {
 		let textField = NSTextField()
 		textField.isEditable = false

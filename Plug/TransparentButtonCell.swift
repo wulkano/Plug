@@ -1,14 +1,6 @@
-//
-//	NavigationButtonCell.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/10/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class TransparentButtonCell: SwissArmyButtonCell {
+final class TransparentButtonCell: SwissArmyButtonCell {
 	@IBInspectable var allowsSelectedState: Bool = false
 
 	let selectedOpacity: CGFloat = 1
@@ -26,9 +18,9 @@ class TransparentButtonCell: SwissArmyButtonCell {
 	func getImageAlpha() -> CGFloat {
 		if allowsSelectedState && state == .on {
 			return selectedOpacity
-		} else if mouseDown {
+		} else if isMouseDown {
 			return mouseDownOpacity
-		} else if mouseInside {
+		} else if isMouseInside {
 			return mouseInsideOpacity
 		} else {
 			return inactiveOpacity
@@ -38,9 +30,9 @@ class TransparentButtonCell: SwissArmyButtonCell {
 	func getDrawImage() -> NSImage? {
 		if allowsSelectedState && state == .on {
 			return alternateImage ?? image
-		} else if mouseDown {
+		} else if isMouseDown {
 			return image
-		} else if mouseInside {
+		} else if isMouseInside {
 			return image
 		} else {
 			return image

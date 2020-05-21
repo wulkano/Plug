@@ -1,14 +1,6 @@
-//
-//	TagButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class TagButton: SwissArmyButton {
+final class TagButton: SwissArmyButton {
 	var fillColor: NSColor {
 		get { tagButtonCell.fillColor }
 		set { tagButtonCell.fillColor = newValue }
@@ -38,7 +30,6 @@ class TagButton: SwissArmyButton {
 		super.init(frame: frameRect)
 		setupCell()
 		setButtonType(NSButton.ButtonType.momentaryPushIn)
-//		  buttonType =
 		bezelStyle = NSButton.BezelStyle.regularSquare
 	}
 

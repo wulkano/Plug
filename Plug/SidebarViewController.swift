@@ -1,14 +1,6 @@
-//
-//	SidebarViewController.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/16/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class SidebarViewController: NSViewController {
+final class SidebarViewController: NSViewController {
 	let delegate: SidebarViewControllerDelegate
 	var buttons: [NavigationSectionButton] = []
 

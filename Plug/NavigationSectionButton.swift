@@ -1,14 +1,6 @@
-//
-//	NavigationSectionButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/5/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class NavigationSectionButton: SwissArmyButton {
+final class NavigationSectionButton: SwissArmyButton {
 	let navigationSection: NavigationSection
 
 	init(navigationSection: NavigationSection) {

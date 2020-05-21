@@ -8,16 +8,16 @@
 
 import Foundation
 
-open class Swignal0Args: SwignalBase {
+public final class Swignal0Args: SwignalBase {
 	override public init() {}
 
-	open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L) -> Void) {
+	public func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L) -> Void) {
 		let observer = Observer0Args(swignal: self, observer: observer, callback: callback)
 		addSwignalObserver(observer
 		)
 	}
 
-	open func fire() {
+	public func fire() {
 		synced(self) {
 			for watcher in self.swignalObservers {
 				watcher.fire()
@@ -26,7 +26,7 @@ open class Swignal0Args: SwignalBase {
 	}
 }
 
-private class Observer0Args<L: AnyObject>: ObserverGenericBase<L> {
+private final class Observer0Args<L: AnyObject>: ObserverGenericBase<L> {
 	let callback: ((_ observer: L) -> Void)?
 
 	init(swignal: SwignalBase, observer: L, callback: @escaping (_ observer: L) -> Void) {

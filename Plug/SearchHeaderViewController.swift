@@ -1,14 +1,6 @@
-//
-//	SearchHeaderViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/10/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class SearchHeaderViewController: NSViewController {
+final class SearchHeaderViewController: NSViewController {
 	var searchField: NSSearchField!
 
 	override func loadView() {

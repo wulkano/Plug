@@ -1,16 +1,8 @@
-//
-//	BlogViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/5/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 import Alamofire
 
-class BlogViewController: BaseContentViewController {
+final class BlogViewController: BaseContentViewController {
 	var blog: HypeMachineAPI.Blog! {
 		didSet { blogChanged() }
 	}

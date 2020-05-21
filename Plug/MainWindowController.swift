@@ -1,16 +1,8 @@
-//
-//	MainWindowController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/11/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import MediaPlayer
 import HypeMachineAPI
 
-class MainWindowController: NSWindowController {
+final class MainWindowController: NSWindowController {
 	var trafficButtons: TrafficButtons!
 	// Kinda janky, but no way AFAIK to set @available on properties
 	var _nowPlayingInfoCenter: NSObject?

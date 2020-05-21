@@ -1,15 +1,7 @@
-//
-//	PreventSleep.swift
-//	PreventSleep
-//
-//	Created by Jesse Claven on 12/07/2016.
-//	Copyright © 2016 Jesse Claven. All rights reserved.
-//
-
 import Foundation
 import IOKit.pwr_mgt
 
-open class PreventSleep {
+public final class PreventSleep {
 	var sleepAssertionID: IOPMAssertionID? = IOPMAssertionID(0)
 	var sleepAssertionType: String?
 	var sleepAssertion: IOReturn?
@@ -38,7 +30,7 @@ open class PreventSleep {
 	// Prevent the computer going to sleep
 	// Returns whether the power assertion was successful or not.
 	@objc
-	open func preventSleep() -> Bool {
+	public func preventSleep() -> Bool {
 		if !canSleep() {
 			return true
 		}
@@ -61,7 +53,7 @@ open class PreventSleep {
 	// Returns whether the power assertion was successful or not.
 	@objc
 	@discardableResult
-	open func allowSleep() -> Bool {
+	public func allowSleep() -> Bool {
 		if canSleep() {
 			return true
 		}
@@ -83,7 +75,7 @@ open class PreventSleep {
 
 	// Can the computer go to sleep, or is it being prevented?
 	@objc
-	open func canSleep() -> Bool {
+	public func canSleep() -> Bool {
 		// Check if the assertion already exists
 		if sleepAssertion == kIOReturnSuccess {
 			return false

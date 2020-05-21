@@ -8,15 +8,15 @@
 
 import Foundation
 
-class Interval: NSObject {
+final class Interval: NSObject {
 	var closure: () -> Void
 	var timer: Timer!
 
-	class func single(_ interval: Double, closure: @escaping () -> Void) -> Interval {
+	static func single(_ interval: Double, closure: @escaping () -> Void) -> Interval {
 		Interval(interval: interval, closure: closure, repeats: false)
 	}
 
-	class func repeating(_ interval: Double, closure: @escaping () -> Void) -> Interval {
+	static func repeating(_ interval: Double, closure: @escaping () -> Void) -> Interval {
 		Interval(interval: interval, closure: closure, repeats: true)
 	}
 

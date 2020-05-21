@@ -1,16 +1,10 @@
-//
-//	SearchableDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/13/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
 class SearchableDataSource: HypeMachineDataSource {
 	var searchKeywords: String? {
-		didSet { searchKeywordsChanged() }
+		didSet {
+			searchKeywordsChanged()
+		}
 	}
 
 	func searchKeywordsChanged() {

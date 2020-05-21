@@ -1,14 +1,6 @@
-//
-//	HyperlinkButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/26/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class HyperlinkButton: NSButton {
+final class HyperlinkButton: NSButton {
 	@IBInspectable var textColor: NSColor = NSColor.black {
 		didSet { applyAttributes() }
 	}

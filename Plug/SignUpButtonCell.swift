@@ -1,20 +1,12 @@
-//
-//	SignUpButtonCell.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class SignUpButtonCell: SwissArmyButtonCell {
+final class SignUpButtonCell: SwissArmyButtonCell {
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
 		var alpha: CGFloat
 
-		if mouseDown {
+		if isMouseDown {
 			alpha = 1
-		} else if mouseInside {
+		} else if isMouseInside {
 			alpha = 0.5
 		} else {
 			alpha = 0.15
@@ -34,9 +26,9 @@ class SignUpButtonCell: SwissArmyButtonCell {
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		var alpha: CGFloat
 
-		if mouseDown {
+		if isMouseDown {
 			alpha = 1
-		} else if mouseInside {
+		} else if isMouseInside {
 			alpha = 0.8
 		} else {
 			alpha = 0.5

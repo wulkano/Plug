@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class NavigationItem: NSObject {
+final class NavigationItem: NSObject {
 	var title: String
 	var rightButton: ActionButton?
 	var titleView: NSView?
@@ -18,7 +18,7 @@ class NavigationItem: NSObject {
 		super.init()
 	}
 
-	class func standardBackButtonWithTitle(_ title: String) -> SwissArmyButton {
+	static func standardBackButtonWithTitle(_ title: String) -> SwissArmyButton {
 		let button = SwissArmyButton(frame: CGRect.zero)
 		let cell = BackButtonCell(textCell: "")
 		button.cell = cell
@@ -30,7 +30,7 @@ class NavigationItem: NSObject {
 		return button
 	}
 
-	class func standardRightButtonWithOnStateTitle(_ onStateTitle: String, offStateTitle: String, target: AnyObject, action: Selector) -> ActionButton {
+	static func standardRightButtonWithOnStateTitle(_ onStateTitle: String, offStateTitle: String, target: AnyObject, action: Selector) -> ActionButton {
 		let button = ActionButton(frame: CGRect.zero)
 		let cell = ActionButtonCell(textCell: "")
 
@@ -47,7 +47,7 @@ class NavigationItem: NSObject {
 		return button
 	}
 
-	class func standardTitleDropdownButtonForMenu(_ menu: NSMenu) -> TitleBarPopUpButton {
+	static func standardTitleDropdownButtonForMenu(_ menu: NSMenu) -> TitleBarPopUpButton {
 		let button = TitleBarPopUpButton(frame: CGRect.zero, pullsDown: true)
 		let buttonCell = TitleBarPopUpButtonCell(textCell: "", pullsDown: true)
 

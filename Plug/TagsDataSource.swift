@@ -1,15 +1,7 @@
-//
-//	TagsDataSource.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/12/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class TagsDataSource: SearchableDataSource {
+final class TagsDataSource: SearchableDataSource {
 	func filterTags(_ contents: [Any]) -> [HypeMachineAPI.Tag] {
 		contents.filter { $0 is HypeMachineAPI.Tag } as! [HypeMachineAPI.Tag]
 	}

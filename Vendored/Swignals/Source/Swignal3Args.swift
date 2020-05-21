@@ -8,15 +8,15 @@
 
 import Foundation
 
-open class Swignal3Args<A, B, C>: SwignalBase {
+public final class Swignal3Args<A, B, C>: SwignalBase {
 	override public init() {}
 
-	open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C) -> Void) {
+	public func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C) -> Void) {
 		let observer = Observer3Args(swignal: self, observer: observer, callback: callback)
 		addSwignalObserver(observer)
 	}
 
-	open func fire(_ arg1: A, arg2: B, arg3: C) {
+	public func fire(_ arg1: A, arg2: B, arg3: C) {
 		synced(self) {
 			for watcher in self.swignalObservers {
 				watcher.fire(arg1, arg2, arg3)

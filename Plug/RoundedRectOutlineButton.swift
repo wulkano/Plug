@@ -1,14 +1,6 @@
-//
-//	RoundedRectOutlineButton.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class RoundedRectOutlineButton: NSButton {
+final class RoundedRectOutlineButton: NSButton {
 	@IBInspectable var radius: CGFloat = 3
 	@IBInspectable var strokeWidth: CGFloat = 1
 	@IBInspectable var strokeColor: NSColor = NSColor.white

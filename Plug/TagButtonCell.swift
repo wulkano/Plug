@@ -1,14 +1,6 @@
-//
-//	TagButtonCell.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class TagButtonCell: SwissArmyButtonCell {
+final class TagButtonCell: SwissArmyButtonCell {
 	var fillColor = NSColor.clear
 
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {

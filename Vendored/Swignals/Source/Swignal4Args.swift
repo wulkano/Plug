@@ -1,22 +1,14 @@
-//
-//	Swignal4Args.swift
-//	Plug
-//
-//	Created by Joseph Neuman on 7/6/16.
-//	Copyright © 2016 Plug. All rights reserved.
-//
-
 import Foundation
 
-open class Swignal4Args<A, B, C, D>: SwignalBase {
+public final class Swignal4Args<A, B, C, D>: SwignalBase {
 	override public init() {}
 
-	open func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> Void) {
+	public func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L, _ arg1: A, _ arg2: B, _ arg3: C, _ arg4: D) -> Void) {
 		let observer = Observer4Args(swignal: self, observer: observer, callback: callback)
 		addSwignalObserver(observer)
 	}
 
-	open func fire(_ arg1: A, arg2: B, arg3: C, arg4: D) {
+	public func fire(_ arg1: A, arg2: B, arg3: C, arg4: D) {
 		synced(self) {
 			for watcher in self.swignalObservers {
 				watcher.fire(arg1, arg2, arg3, arg4)

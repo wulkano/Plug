@@ -1,14 +1,6 @@
-//
-//	LoveCountFormatter.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/28/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class LovedCountFormatter: Formatter {
+final class LovedCountFormatter: Formatter {
 	@IBInspectable var capitalize: Bool = false
 
 	override func string(for obj: Any?) -> String? {

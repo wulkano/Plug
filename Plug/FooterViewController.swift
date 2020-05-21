@@ -1,14 +1,6 @@
-//
-//	FooterViewController.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/20/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class FooterViewController: NSViewController {
+final class FooterViewController: NSViewController {
 	var volumeIcon: VolumeIconView!
 	var volumeSlider: NSSlider!
 	var shuffleButton: SwissArmyButton!

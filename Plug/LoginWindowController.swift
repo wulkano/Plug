@@ -1,14 +1,6 @@
-//
-//	LoginWindowController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/11/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class LoginWindowController: NSWindowController {
+final class LoginWindowController: NSWindowController {
 	var trafficButtons: TrafficButtons!
 
 	override func windowDidLoad() {

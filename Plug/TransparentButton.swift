@@ -1,14 +1,6 @@
-//
-//	TransparentPushButton.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/20/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class TransparentButton: NSButton {
+final class TransparentButton: NSButton {
 	@IBInspectable var selectable: Bool = false
 	@IBInspectable var selectedImage: NSImage?
 	@IBInspectable var unselectedImage: NSImage?
@@ -18,16 +10,22 @@ class TransparentButton: NSButton {
 	@IBInspectable var mouseInsideOpacity: CGFloat = 0.7
 	@IBInspectable var inactiveOpacity: CGFloat = 0.3
 
-	var mouseInside: Bool = false {
-		didSet { needsDisplay = true }
+	var isMouseInside: Bool = false {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
-	var mouseDown: Bool = false {
-		didSet { needsDisplay = true }
+	var isMouseDown: Bool = false {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
-	var selected: Bool = false {
-		didSet { needsDisplay = true }
+	var isSelected: Bool = false {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
 	override func draw(_ dirtyRect: CGRect) {
@@ -48,7 +46,7 @@ class TransparentButton: NSButton {
 	}
 
 	func getDrawImage() -> NSImage? {
-		if selectable && selected {
+		if selectable && isSelected {
 			return selectedImage
 		} else {
 			return unselectedImage
@@ -56,11 +54,11 @@ class TransparentButton: NSButton {
 	}
 
 	func getDrawOpacity() -> CGFloat {
-		if selectable && selected {
+		if selectable && isSelected {
 			return selectedOpacity
-		} else if mouseDown {
+		} else if isMouseDown {
 			return mouseDownOpacity
-		} else if mouseInside {
+		} else if isMouseInside {
 			return mouseInsideOpacity
 		} else {
 			return inactiveOpacity
@@ -68,29 +66,29 @@ class TransparentButton: NSButton {
 	}
 
 	func toggleSelected() {
-		if selected {
-			selected = false
+		if isSelected {
+			isSelected = false
 		} else {
-			selected = true
+			isSelected = true
 		}
 	}
 
 	override func mouseDown(with theEvent: NSEvent) {
-		mouseDown = true
+		isMouseDown = true
 		super.mouseDown(with: theEvent)
 		mouseUp(with: theEvent)
 	}
 
 	override func mouseUp(with theEvent: NSEvent) {
-		mouseDown = false
+		isMouseDown = false
 		super.mouseUp(with: theEvent)
 	}
 
 	override func mouseEntered(with theEvent: NSEvent) {
-		mouseInside = true
+		isMouseInside = true
 	}
 
 	override func mouseExited(with theEvent: NSEvent) {
-		mouseInside = false
+		isMouseInside = false
 	}
 }

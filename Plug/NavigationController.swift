@@ -1,17 +1,9 @@
-//
-//	NavigationController.swift
-//	navigationControllers
-//
-//	Created by Alex Marchant on 9/2/14.
-//	Copyright (c) 2014 alexmarchant. All rights reserved.
-//
-
 import Cocoa
 import SnapKit
 
-// TODO: View controller should only remove parent after view is removed
+// TODO: View controller should only remove parent after view is removed.
 
-class NavigationController: NSViewController {
+final class NavigationController: NSViewController {
 	static var sharedInstance: NavigationController?
 
 	fileprivate var _viewControllers: [BaseContentViewController]

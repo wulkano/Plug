@@ -1,14 +1,6 @@
-//
-//	DropdownTitleFormatter.swift
-//	Plug
-//
-//	Created by Alex Marchant on 6/15/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class DropdownTitleFormatter: Formatter {
+final class DropdownTitleFormatter: Formatter {
 	override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]?) -> NSAttributedString? {
 		attributedDropdownTitle("Popular", optionTitle: "Now")
 	}

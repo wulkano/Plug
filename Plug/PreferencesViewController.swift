@@ -1,17 +1,7 @@
-//
-//	PreferencesViewController.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class PreferencesViewController: NSViewController {
+final class PreferencesViewController: NSViewController {
 	@IBOutlet private var generalTab: NSButton!
-	@IBOutlet private var hotkeysTab: NSButton!
-	@IBOutlet private var mutedTab: NSButton!
 	var tabViewController: NSTabViewController!
 
 	override func viewDidLoad() {
@@ -22,10 +12,9 @@ class PreferencesViewController: NSViewController {
 
 	func toggleAllTabsExcept(_ sender: NSButton) {
 		let allTabs = [
-			generalTab,
-			hotkeysTab,
-			mutedTab
+			generalTab
 		]
+
 		for tab in allTabs {
 			if tab === sender {
 				tab?.state = .on
@@ -52,21 +41,9 @@ class PreferencesViewController: NSViewController {
 
 	// MARK: Actions
 
-	@IBAction func generalTabClicked(_ sender: NSButton) {
+	@IBAction private func generalTabClicked(_ sender: NSButton) {
 		Analytics.trackView("PreferencesWindow/General")
 		toggleAllTabsExcept(sender)
 		switchToTabAtIndex(0)
-	}
-
-	@IBAction func hotkeysTabClicked(_ sender: NSButton) {
-		Analytics.trackView("PreferencesWindow/HotKeys")
-		toggleAllTabsExcept(sender)
-		switchToTabAtIndex(1)
-	}
-
-	@IBAction func mutedTabClicked(_ sender: NSButton) {
-		Analytics.trackView("PreferencesWindow/Muted")
-		toggleAllTabsExcept(sender)
-		switchToTabAtIndex(2)
 	}
 }
