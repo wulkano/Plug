@@ -4,10 +4,10 @@ import HypeMachineAPI
 
 final class MainWindowController: NSWindowController {
 	var trafficButtons: TrafficButtons!
-	// Kinda janky, but no way AFAIK to set @available on properties
-	var _nowPlayingInfoCenter: NSObject?
-	var _nowPlayingInfo: Any?
-	var _remoteCommandCenter: NSObject?
+
+	let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+	let remoteCommandCenter = MPRemoteCommandCenter.shared()
+	var nowPlayingInfo = [String: Any]()
 
 	override func windowDidLoad() {
 		super.windowDidLoad()
@@ -15,15 +15,11 @@ final class MainWindowController: NSWindowController {
 		trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "MainWindow")
 		trafficButtons.addButtonsToWindow(window!, origin: CGPoint(x: 8, y: 10))
 
-		if #available(OSX 10.12.2, *) {
-			setupRemoteCommandCenter()
-		}
+		setupRemoteCommandCenter()
 	}
 
 	deinit {
-		if #available(OSX 10.12.2, *) {
-			tearDownRemoteCommandCenter()
-		}
+		tearDownRemoteCommandCenter()
 	}
 
 	override func keyDown(with theEvent: NSEvent) {
@@ -36,34 +32,12 @@ final class MainWindowController: NSWindowController {
 
 // MARK: RemoteCommandCenter
 
-@available(OSX 10.12.2, *)
 extension MainWindowController {
 	func tearDownRemoteCommandCenter() {
 		Notifications.unsubscribeAll(observer: self)
 	}
 
-	// Hacking in some @available properties
-
-	var nowPlayingInfoCenter: MPNowPlayingInfoCenter {
-		get { _nowPlayingInfoCenter as! MPNowPlayingInfoCenter }
-		set { _nowPlayingInfoCenter = newValue }
-	}
-
-	var nowPlayingInfo: [String: Any] {
-		get { _nowPlayingInfo as! [String: Any] }
-		set { _nowPlayingInfo = newValue }
-	}
-
-	var remoteCommandCenter: MPRemoteCommandCenter {
-		get { _remoteCommandCenter as! MPRemoteCommandCenter }
-		set { _remoteCommandCenter = newValue }
-	}
-
 	func setupRemoteCommandCenter() {
-		// Setup properties
-		nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-		remoteCommandCenter = MPRemoteCommandCenter.shared()
-
 		// Notifications
 		Notifications.subscribe(observer: self, selector: #selector(MainWindowController.updateNowPlayingInfo), name: Notifications.NewCurrentTrack, object: nil)
 		Notifications.subscribe(observer: self, selector: #selector(MainWindowController.updateNowPlayingInfoCenterPlaybackStatePlaying), name: Notifications.TrackPlaying, object: nil)

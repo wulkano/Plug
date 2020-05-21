@@ -173,7 +173,7 @@ identifier_name:
     - 'y1'
     - 'y2'
 deployment_target:
-  macOS_deployment_target: '10.12'
+  macOS_deployment_target: '10.14.4'
 custom_rules:
   no_nsrect:
     regex: '\bNSRect\b'

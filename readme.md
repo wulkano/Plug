@@ -13,11 +13,7 @@
 
 **COMING SOON**
 
-Requires macOS 10.12 or later.
-
-## Hype Machine API Codes
-
-Our Hype Machine API codes are embedded in the source. If those codes get out it will very much jeopardize our relationship with Hype Machine. Please be careful with this source. Please do not publish it openly or attempt to create you own forks of Plug.
+Requires macOS 10.14 or later.
 
 ## FAQ
 
