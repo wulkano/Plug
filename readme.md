@@ -15,6 +15,10 @@
 
 Requires macOS 10.14 or later.
 
+## Screenshot
+
+![](Media/screenshot.jpg)
+
 ## FAQ
 
 #### Can I contribute localizations?

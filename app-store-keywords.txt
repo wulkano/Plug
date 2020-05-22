@@ -1,1 +1,1 @@
-hype,machine,music,player,web,songs
+hype,machine,music,player,web,songs,discover

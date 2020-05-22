@@ -1,7 +1,11 @@
-Discover and listen to music from Hype Machine.
+Discover and listen to music from Hype Machine. Hype Machine is a popular music blog aggregator.
+
+Note that the app requires signing up for a Hype Machine account.
 
 
 ■ Features
 
-- Music player
--
+- Listen to songs
+- Favorite songs
+- Search songs
+- Follow artists
