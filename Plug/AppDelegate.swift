@@ -11,6 +11,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet var preferencesMenuSeparator: NSMenuItem!
 	@IBOutlet var signOutMenuItem: NSMenuItem!
 	@IBOutlet var signOutMenuSeparator: NSMenuItem!
+	@IBOutlet var mainWindowMenuItem: NSMenuItem!
+
+	var mainWindowObservation: NSObjectProtocol?
 
 	deinit {
 		Notifications.unsubscribeAll(observer: self)
@@ -38,9 +41,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
+	@IBAction
+	func mainWindowMenuItemClicked(_ sender: NSMenuItem) {
+		if mainWindowController == nil || mainWindowController?.window?.isVisible == false {
+			openMainWindow()
+		} else {
+			mainWindowController?.window?.orderOut(self)
+		}
+	}
+
 	func openMainWindow() {
 		if mainWindowController == nil {
 			mainWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as! NSWindowController)
+
+			mainWindowObservation = mainWindowController?.window?.observe(\.isVisible) { window, _ in
+				self.mainWindowMenuItem.state = window.isVisible ? .on : .off
+			}
 
 			// If there isn't an autosave name set for the main window, place the frame at a default position, and then set the autosave name.
 			if mainWindowController!.windowFrameAutosaveName.isEmpty {

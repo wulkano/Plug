@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -26,6 +26,11 @@
                                             <connections>
                                                 <action selector="preferencesItemClicked:" target="0zE-Eq-Avq" id="EIk-cU-cBN"/>
                                             </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="V3y-PI-GqI"/>
+                                        <menuItem title="Services" id="eHO-J6-c04">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="4r6-hH-EXF"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="H7n-ly-K8H"/>
                                         <menuItem title="Hide Plug" keyEquivalent="h" id="LZm-i8-zhe">
@@ -61,13 +66,13 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Playlist" id="uaI-z3-KOq">
+                            <menuItem title="File" id="hVk-9h-7Nu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Playlist" id="uOf-ib-ac8">
+                                <menu key="submenu" title="File" id="VEP-ot-nuT">
                                     <items>
-                                        <menuItem title="Refresh" keyEquivalent="r" id="pvB-Fo-xj6">
+                                        <menuItem title="Close" keyEquivalent="w" id="Xly-6U-giU">
                                             <connections>
-                                                <action selector="refreshItemClicked:" target="0zE-Eq-Avq" id="g4b-a3-ZjB"/>
+                                                <action selector="performClose:" target="geA-u8-YPg" id="8yd-y3-mn9"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -106,31 +111,44 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Window" id="mrY-4H-BnX">
+                            <menuItem title="Playlist" id="uaI-z3-KOq">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Window" systemMenu="window" id="cQs-bY-8hy">
+                                <menu key="submenu" title="Playlist" id="uOf-ib-ac8">
                                     <items>
-                                        <menuItem title="Close" keyEquivalent="w" id="hXu-nh-bTl">
+                                        <menuItem title="Refresh" keyEquivalent="r" id="pvB-Fo-xj6">
                                             <connections>
-                                                <action selector="performClose:" target="geA-u8-YPg" id="1ko-5z-Xb0"/>
+                                                <action selector="refreshItemClicked:" target="0zE-Eq-Avq" id="g4b-a3-ZjB"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Minimize" keyEquivalent="m" id="z2x-XE-rbU">
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="Zm7-r6-4sV">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="gWH-9P-ot8">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="2vW-f2-Jmm">
                                             <connections>
-                                                <action selector="performMiniaturize:" target="geA-u8-YPg" id="CQf-Yy-eIL"/>
+                                                <action selector="performMiniaturize:" target="geA-u8-YPg" id="cQI-h5-AHN"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Zoom" id="Cga-8J-cgu">
+                                        <menuItem title="Zoom" id="l2q-Mn-vfY">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="performZoom:" target="geA-u8-YPg" id="wOp-ba-Ho3"/>
+                                                <action selector="performZoom:" target="geA-u8-YPg" id="Rcz-9q-VZf"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="buJ-B2-YAn"/>
-                                        <menuItem title="Bring All to Front" id="htt-wT-ba5">
+                                        <menuItem isSeparatorItem="YES" id="qXQ-PS-RXg"/>
+                                        <menuItem title="Bring All to Front" id="9Zw-X8-OlY">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="arrangeInFront:" target="geA-u8-YPg" id="0Ps-dY-6yM"/>
+                                                <action selector="arrangeInFront:" target="geA-u8-YPg" id="7OT-cH-BgT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="tjW-m5-1Ie"/>
+                                        <menuItem title="Main Window" keyEquivalent="0" id="WcE-hv-UdI">
+                                            <connections>
+                                                <action selector="mainWindowMenuItemClicked:" target="0zE-Eq-Avq" id="zQZ-y6-Eld"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -140,7 +158,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="0GL-rA-XLh">
                                     <items>
-                                        <menuItem title="Need to Report a Bug?" id="0LU-xf-ROu">
+                                        <menuItem title="Send Feedback…" id="0LU-xf-ROu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="reportABugItemClicked:" target="0zE-Eq-Avq" id="MfY-mz-gZY"/>
@@ -158,12 +176,14 @@
                 <customObject id="geA-u8-YPg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="0zE-Eq-Avq" customClass="AppDelegate" customModule="Plug" customModuleProvider="target">
                     <connections>
+                        <outlet property="mainWindowMenuItem" destination="WcE-hv-UdI" id="s0d-rd-DHb"/>
                         <outlet property="preferencesMenuItem" destination="6gh-ly-NSv" id="xrg-pF-JrR"/>
                         <outlet property="preferencesMenuSeparator" destination="H7n-ly-K8H" id="H6J-f2-4vU"/>
                         <outlet property="signOutMenuItem" destination="Zo0-Xs-iwP" id="Tsm-fn-YQ7"/>
                         <outlet property="signOutMenuSeparator" destination="fnM-qT-VnK" id="Ddk-dg-v0x"/>
                     </connections>
                 </customObject>
+                <userDefaultsController representsSharedInstance="YES" id="uW5-nz-hkz"/>
             </objects>
             <point key="canvasLocation" x="-254.5" y="-64"/>
         </scene>

@@ -12,6 +12,8 @@ final class MainWindowController: NSWindowController {
 	override func windowDidLoad() {
 		super.windowDidLoad()
 
+		window?.isExcludedFromWindowsMenu = true
+
 		trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "MainWindow")
 		trafficButtons.addButtonsToWindow(window!, origin: CGPoint(x: 8, y: 10))
 
