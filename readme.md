@@ -9,9 +9,7 @@
 
 ## Download
 
-[![](https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/macappstore-lrg.svg)]()
-
-**COMING SOON**
+[![](https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/macappstore-lrg.svg)](https://apps.apple.com/app/id1514182074)
 
 Requires macOS 10.14 or later.
 
