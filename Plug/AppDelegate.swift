@@ -213,7 +213,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
-		NSWorkspace.shared.open(URL(string: "https://github.com/PlugForMac/Plug2Issues/issues")!)
+		NSWorkspace.shared.open(URL(string: "https://github.com/wulkano/Plug/issues")!)
 	}
 
 	// MARK: NSApplicationDelegate
