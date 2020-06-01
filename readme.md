@@ -22,3 +22,7 @@ Requires macOS 10.14 or later.
 #### Can I contribute localizations?
 
 We do not have any immediate plans to localize the app.
+
+## Thank you
+
+- A very special thank you to @sindresorhus, @fascinated, @alexmarchant, @glennui, and all of our [contributors](https://github.com/wulkano/plug/contributors).
