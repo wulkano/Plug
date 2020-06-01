@@ -25,4 +25,4 @@ We do not have any immediate plans to localize the app.
 
 ## Thank you
 
-- A very special thank you to @sindresorhus, @fascinated, @alexmarchant, @glennui, and all of our [contributors](https://github.com/wulkano/plug/contributors).
+A very special thank you to [@sindresorhus](http://github.com/sindresorhus), [@fascinated](http://github.com/fascinated),[ @alexmarchant](http://github.com/alexmarchant), [@glennui](http://github.com/glennui), and all of our [contributors](https://github.com/wulkano/plug/contributors).
