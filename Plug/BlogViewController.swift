@@ -4,7 +4,9 @@ import Alamofire
 
 final class BlogViewController: BaseContentViewController {
 	var blog: HypeMachineAPI.Blog! {
-		didSet { blogChanged() }
+		didSet {
+			blogChanged()
+		}
 	}
 
 	var header: BackgroundBorderView!
@@ -38,10 +40,10 @@ final class BlogViewController: BaseContentViewController {
 	override func loadView() {
 		super.loadView()
 
-		header = BackgroundBorderView(frame: CGRect.zero)
+		header = BackgroundBorderView(frame: .zero)
 		header.bottomBorder = true
 		header.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
-		header.background = true
+		header.hasBackground = true
 		header.backgroundColor = NSColor.white
 		view.addSubview(header)
 		header.snp.makeConstraints { make in
@@ -61,7 +63,7 @@ final class BlogViewController: BaseContentViewController {
 		}
 
 		titleButton = HyperlinkButton()
-		titleButton.hoverUnderline = true
+		titleButton.hasHoverUnderline = true
 		titleButton.isBordered = false
 		titleButton.font = appFont(size: 20)
 		titleButton.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
@@ -103,7 +105,9 @@ final class BlogViewController: BaseContentViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		if blog != nil { blogChanged() }
+		if blog != nil {
+			blogChanged()
+		}
 	}
 
 	func loadBlog(_ blogID: Int) {
@@ -131,7 +135,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateDetails() {
-		// TODO: formatting n stuff
+		// TODO: Formatting and stuff
 	}
 
 	func updateImage() {
@@ -185,11 +189,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateActionButton() {
-		if blog.following {
-			navigationItem.rightButton!.state = .on
-		} else {
-			navigationItem.rightButton!.state = .off
-		}
+		navigationItem.rightButton!.state = blog.following ? .on : .off
 	}
 
 	@objc
@@ -228,7 +228,5 @@ final class BlogViewController: BaseContentViewController {
 		tracksViewController.refresh()
 	}
 
-	override var shouldShowStickyTrack: Bool {
-		false
-	}
+	override var shouldShowStickyTrack: Bool { false }
 }

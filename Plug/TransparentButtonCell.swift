@@ -1,7 +1,7 @@
 import Cocoa
 
 final class TransparentButtonCell: SwissArmyButtonCell {
-	@IBInspectable var allowsSelectedState: Bool = false
+	@IBInspectable var allowsSelectedState = false
 
 	let selectedOpacity: CGFloat = 1
 	let mouseDownOpacity: CGFloat = 1
@@ -11,7 +11,7 @@ final class TransparentButtonCell: SwissArmyButtonCell {
 	override func drawImage(_ image: NSImage, withFrame frame: CGRect, in controlView: NSView) {
 		let alpha = getImageAlpha()
 		if let drawImage = getDrawImage() {
-			drawImage.draw(in: frame, from: CGRect.zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
+			drawImage.draw(in: frame, from: .zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
 		}
 	}
 

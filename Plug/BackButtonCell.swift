@@ -1,19 +1,19 @@
 import Cocoa
 
 final class BackButtonCell: SwissArmyButtonCell {
-	let normalLeftImage = NSImage(named: "Header-Back-Normal-Left")
-	let normalMiddleImage = NSImage(named: "Header-Button-Normal-Middle")
-	let normalRightImage = NSImage(named: "Header-Button-Normal-Right")
+	private let normalLeftImage = NSImage(named: "Header-Back-Normal-Left")
+	private let normalMiddleImage = NSImage(named: "Header-Button-Normal-Middle")
+	private let normalRightImage = NSImage(named: "Header-Button-Normal-Right")
 
-	let mouseDownLeftImage = NSImage(named: "Header-Back-Tap-Left")
-	let mouseDownMiddleImage = NSImage(named: "Header-Button-Tap-Middle")
-	let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
+	private let mouseDownLeftImage = NSImage(named: "Header-Back-Tap-Left")
+	private let mouseDownMiddleImage = NSImage(named: "Header-Button-Tap-Middle")
+	private let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
 
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
 		if isMouseDown {
-			NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, NSCompositingOperation.sourceOver, 1, true)
+			NSDrawThreePartImage(frame, mouseDownLeftImage, mouseDownMiddleImage, mouseDownRightImage, false, .sourceOver, 1, true)
 		} else {
-			NSDrawThreePartImage(frame, normalLeftImage, normalMiddleImage, normalRightImage, false, NSCompositingOperation.sourceOver, 1, true)
+			NSDrawThreePartImage(frame, normalLeftImage, normalMiddleImage, normalRightImage, false, .sourceOver, 1, true)
 		}
 	}
 

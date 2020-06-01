@@ -2,13 +2,11 @@ import Cocoa
 import HypeMachineAPI
 
 final class UsersViewController: DataSourceViewController {
-	var usersDataSource: UsersDataSource? {
-		dataSource! as? UsersDataSource
-	}
+	var usersDataSource: UsersDataSource? { dataSource! as? UsersDataSource }
 
 	func loadSingleFriendView(_ friend: HypeMachineAPI.User) {
 		let viewController = UserViewController(user: friend)!
-		NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
+		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 
 	// MARK: Actions
@@ -131,9 +129,7 @@ final class UsersViewController: DataSourceViewController {
 		return rowView
 	}
 
-	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-		64
-	}
+	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat { 64 }
 
 	// MARK: ExtendedTableViewDelegate
 

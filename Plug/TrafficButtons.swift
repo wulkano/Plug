@@ -33,9 +33,9 @@ final class TrafficButtons {
 	}
 
 	private func hideDefaultButtons(_ window: NSWindow) {
-		window.standardWindowButton(NSWindow.ButtonType.closeButton)!.isHidden = true
-		window.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)!.isHidden = true
-		window.standardWindowButton(NSWindow.ButtonType.zoomButton)!.isHidden = true
+		window.standardWindowButton(.closeButton)?.isHidden = true
+		window.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		window.standardWindowButton(.zoomButton)?.isHidden = true
 	}
 
 	private func placeButtonsInWindow(_ window: NSWindow, origin: CGPoint) {

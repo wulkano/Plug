@@ -1,6 +1,11 @@
 import Cocoa
 
 final class LoaderViewController: NSViewController {
+	enum LoaderViewSize {
+		case small
+		case large
+	}
+
 	let size: LoaderViewSize
 	var loaderView: NSImageView!
 
@@ -24,10 +29,10 @@ final class LoaderViewController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
 		let background = BackgroundBorderView()
-		background.background = true
+		background.hasBackground = true
 		background.backgroundColor = NSColor.controlBackgroundColor
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
@@ -50,9 +55,4 @@ final class LoaderViewController: NSViewController {
 	override func viewDidAppear() {
 		startAnimation()
 	}
-}
-
-enum LoaderViewSize {
-	case small
-	case large
 }

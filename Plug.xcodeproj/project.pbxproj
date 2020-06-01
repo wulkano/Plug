@@ -173,7 +173,6 @@
 		FADC96F21974CA0D009458FA /* LoveCountTrackTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */; };
 		FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */; };
 		FADC96F61974D10C009458FA /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F51974D10C009458FA /* DraggableView.swift */; };
-		FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3919E9E521005FD94B /* Rand.swift */; };
 		FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */; };
 		FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */; };
 		FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */; };
@@ -410,7 +409,6 @@
 		FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveCountTrackTableCellView.swift; sourceTree = "<group>"; };
 		FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenTitlebarWindow.swift; sourceTree = "<group>"; };
 		FADC96F51974D10C009458FA /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
-		FAE38D3919E9E521005FD94B /* Rand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rand.swift; sourceTree = "<group>"; };
 		FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficButtons.swift; sourceTree = "<group>"; };
 		FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
@@ -522,11 +520,11 @@
 		E34A8F592473D52900233A68 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E34A8F5A2473D52900233A68 /* Swignal3Args.swift */,
 				E34A8F5B2473D52900233A68 /* Swignal1Arg.swift */,
-				E34A8F5C2473D52900233A68 /* Swignal5Args.swift */,
 				E34A8F5D2473D52900233A68 /* Swignal2Args.swift */,
+				E34A8F5A2473D52900233A68 /* Swignal3Args.swift */,
 				E34A8F5E2473D52900233A68 /* Swignal4Args.swift */,
+				E34A8F5C2473D52900233A68 /* Swignal5Args.swift */,
 				E34A8F5F2473D52900233A68 /* Swignal.swift */,
 				E34A8F602473D52900233A68 /* Swignal0Args.swift */,
 			);
@@ -811,7 +809,6 @@
 				FAA51A58198084E50057EC34 /* NavigationSections.swift */,
 				FA75E8281B56E6B10070FB1D /* NavigationItem.swift */,
 				FAF13B27199D22D5009D9F66 /* Notifications.swift */,
-				FAE38D3919E9E521005FD94B /* Rand.swift */,
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
@@ -1319,7 +1316,6 @@
 				FAACE4C219AC0A0900F8E9E8 /* VibrantTextField.swift in Sources */,
 				FABAA8931B2F59530090D773 /* DropdownTitleFormatter.swift in Sources */,
 				FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */,
-				FAE38D3A19E9E521005FD94B /* Rand.swift in Sources */,
 				E34A8F752473D52A00233A68 /* Swignal5Args.swift in Sources */,
 				FAF0372F197B8A3500F716CE /* FooterViewController.swift in Sources */,
 				FA0B1CF51976D8A70030C873 /* SidebarViewController.swift in Sources */,

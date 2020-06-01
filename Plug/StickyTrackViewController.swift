@@ -2,28 +2,22 @@ import Cocoa
 import HypeMachineAPI
 
 final class StickyTrackViewController: TracksViewController {
-	var trackViewHeight: CGFloat {
-		tableView(tableView, heightOfRow: 0)
-	}
+	var trackViewHeight: CGFloat { tableView(tableView, heightOfRow: 0) }
 
 	let shadowHeight: CGFloat = 7
 	let shadowOverlap: CGFloat = 1
-	var viewHeight: CGFloat {
-		trackViewHeight + shadowHeight - shadowOverlap
-	}
+	var viewHeight: CGFloat { trackViewHeight + shadowHeight - shadowOverlap }
 
 	var shadowView: NSImageView?
 	var position: StickyTrackPosition = .bottom {
-		didSet { positionChanged() }
+		didSet {
+			positionChanged()
+		}
 	}
 
-	var isShown: Bool {
-		self.view.superview != nil
-	}
+	var isShown: Bool { view.superview != nil }
 
-	override var tableViewInsets: NSEdgeInsets {
-		NSEdgeInsetsZero
-	}
+	override var tableViewInsets: NSEdgeInsets { NSEdgeInsetsZero }
 
 	func positionChanged() {
 		switch position {
@@ -84,16 +78,14 @@ final class StickyTrackViewController: TracksViewController {
 	override func loadScrollViewAndTableView() {
 		super.loadScrollViewAndTableView()
 
-		scrollView.scrollEnabled = false
+		scrollView.isScrollEnabled = false
 	}
 
 	// MARK: BaseContentViewController
 
 	override func addLoaderView() {}
 
-	override var shouldShowStickyTrack: Bool {
-		false
-	}
+	override var shouldShowStickyTrack: Bool { false }
 
 	override var stickyTrackController: StickyTrackViewController {
 		fatalError("Should not be loading this from here")

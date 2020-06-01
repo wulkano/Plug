@@ -1,17 +1,9 @@
-//
-//	SelectableTextField.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/3/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class SelectableTextField: NSTextField {
-	@IBInspectable var selected: Bool = false {
+final class SelectableTextField: NSTextField {
+	@IBInspectable var isSelected = false {
 		didSet {
-			if selected {
+			if isSelected {
 				defaultTextColor = textColor
 				textColor = selectedTextColor
 			} else {

@@ -41,7 +41,7 @@ final class AboutViewController: NSViewController {
 		}
 
 		let link = HyperlinkButton()
-		link.hoverUnderline = true
+		link.hasHoverUnderline = true
 		link.isBordered = false
 		link.font = appFont(size: 12)
 		link.textColor = NSColor(red256: 138, green256: 146, blue256: 150)

@@ -1,12 +1,12 @@
 import Cocoa
 
 final class LoginButton: SwissArmyButton {
-	var loginButtonCell: LoginButtonCell {
-		cell as! LoginButtonCell
-	}
+	var loginButtonCell: LoginButtonCell { cell as! LoginButtonCell }
 
 	var buttonState: LoginButtonState = .disabled {
-		didSet { buttonStateChanged() }
+		didSet {
+			buttonStateChanged()
+		}
 	}
 
 	var loadingImageView: NSImageView?

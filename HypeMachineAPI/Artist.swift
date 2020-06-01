@@ -25,12 +25,15 @@ extension Artist: ResponseObjectSerializable, ResponseCollectionSerializable {
 		guard
 			let representation = representation as? [String: Any],
 			let name = representation["artist"] as? String
-		else { return nil }
+		else {
+			return nil
+		}
 
 		func urlForJSONKey(_ key: String) -> URL? {
 			guard let urlString = representation[key] as? String else {
 				return nil
 			}
+
 			return URL(string: urlString)
 		}
 

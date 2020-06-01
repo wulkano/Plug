@@ -22,7 +22,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 	@objc
 	func displayError(_ notification: Notification) {
-		let error = (notification as NSNotification).userInfo!["error"] as! NSError
+		let error = notification.userInfo!["error"] as! NSError
 		NSAlert(error: error).runModal()
 	}
 
@@ -59,11 +59,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 	}
 
 	func formFieldsChanged() {
-		if formFieldsValid() {
-			loginButton.buttonState = .enabled
-		} else {
-			loginButton.buttonState = .disabled
-		}
+		loginButton.buttonState = formFieldsValid() ? .enabled : .disabled
 	}
 
 	func formFieldsValid() -> Bool {

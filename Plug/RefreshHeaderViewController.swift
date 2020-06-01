@@ -1,17 +1,39 @@
 import Cocoa
 
 final class RefreshHeaderViewController: NSViewController {
+	enum PullToRefreshState {
+		case pullToRefresh
+		case releaseToRefresh
+		case updating
+
+		fileprivate var label: String {
+			switch self {
+			case .pullToRefresh:
+				return "Pull To Refresh"
+			case .releaseToRefresh:
+				return "Release To Refresh"
+			case .updating:
+				return "Updating Playlist"
+			}
+		}
+	}
+
 	let viewHeight: CGFloat = 30
-	var state: PullToRefreshState = .pullToRefresh {
-		didSet { stateChanged() }
+
+	var state = PullToRefreshState.pullToRefresh {
+		didSet {
+			stateChanged()
+		}
 	}
 
 	var lastUpdated: Date? {
-		didSet { lastUpdatedChanged() }
+		didSet {
+			lastUpdatedChanged()
+		}
 	}
 
-	var loader: NSImageView!
-	var messageLabel: NSTextField!
+	private var loader: NSImageView!
+	private var messageLabel: NSTextField!
 
 	override func loadView() {
 		view = NSView()
@@ -58,16 +80,16 @@ final class RefreshHeaderViewController: NSViewController {
 		updateMessageLabel()
 	}
 
-	func stateChanged() {
+	private func stateChanged() {
 		updateLoader()
 		updateMessageLabel()
 	}
 
-	func lastUpdatedChanged() {
+	private func lastUpdatedChanged() {
 		updateMessageLabel()
 	}
 
-	func updateLoader() {
+	private func updateLoader() {
 		if state == .updating {
 			Animations.rotateClockwise(loader)
 		} else {
@@ -75,10 +97,10 @@ final class RefreshHeaderViewController: NSViewController {
 		}
 	}
 
-	func updateMessageLabel() {
+	private func updateMessageLabel() {
 		switch state {
 		case .pullToRefresh:
-			messageLabel.stringValue = formattedTimestamp()
+			messageLabel.stringValue = formattedTimestamp
 		case .releaseToRefresh:
 			messageLabel.stringValue = state.label
 		case .updating:
@@ -86,7 +108,7 @@ final class RefreshHeaderViewController: NSViewController {
 		}
 	}
 
-	func formattedTimestamp() -> String {
+	private var formattedTimestamp: String {
 		var formattedTimestamp = "Last Updated "
 
 		if lastUpdated == nil {
@@ -98,22 +120,5 @@ final class RefreshHeaderViewController: NSViewController {
 		}
 
 		return formattedTimestamp
-	}
-}
-
-enum PullToRefreshState {
-	case pullToRefresh
-	case releaseToRefresh
-	case updating
-
-	var label: String {
-		switch self {
-		case .pullToRefresh:
-			return "Pull To Refresh"
-		case .releaseToRefresh:
-			return "Release To Refresh"
-		case .updating:
-			return "Updating Playlist"
-		}
 	}
 }

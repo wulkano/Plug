@@ -2,29 +2,27 @@ import Cocoa
 import HypeMachineAPI
 
 final class BlogsViewController: DataSourceViewController {
-	var blogDataSource: BlogsDataSource? {
-		dataSource as? BlogsDataSource
-	}
+	var blogDataSource: BlogsDataSource? { dataSource as? BlogsDataSource }
 
 	func itemForRow(_ row: Int) -> BlogDirectoryItem? {
-		if let item: Any = dataSource!.objectForRow(row) {
-			return BlogDirectoryItem.fromObject(item)
-		} else {
+		guard let item = dataSource?.objectForRow(row) else {
 			return nil
 		}
+
+		return BlogDirectoryItem.fromObject(item)
 	}
 
 	func itemAfterRow(_ row: Int) -> BlogDirectoryItem? {
-		if let item: Any = dataSource!.objectAfterRow(row) {
-			return BlogDirectoryItem.fromObject(item)
-		} else {
+		guard let item = dataSource?.objectAfterRow(row) else {
 			return nil
 		}
+
+		return BlogDirectoryItem.fromObject(item)
 	}
 
 	func loadBlogViewController(_ blog: HypeMachineAPI.Blog) {
 		let viewController = BlogViewController(blog: blog)!
-		NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
+		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 
 	func blogCellView(_ tableView: NSTableView) -> BlogTableCellView {
@@ -103,12 +101,12 @@ final class BlogsViewController: DataSourceViewController {
 			if let nextItem = itemAfterRow(row) {
 				switch nextItem {
 				case .sectionHeaderItem:
-					rowView!.nextRowIsGroupRow = true
+					rowView!.isNextRowGroupRow = true
 				case .blogItem:
-					rowView!.nextRowIsGroupRow = false
+					rowView!.isNextRowGroupRow = false
 				}
 			} else {
-				rowView!.nextRowIsGroupRow = false
+				rowView!.isNextRowGroupRow = false
 			}
 		}
 
@@ -131,19 +129,19 @@ final class BlogsViewController: DataSourceViewController {
 		view.addSubview(searchHeaderController.view)
 		searchHeaderController.view.snp.makeConstraints { make in
 			make.height.equalTo(52)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.right.equalTo(view)
 		}
 		searchHeaderController.searchField.target = self
-		searchHeaderController.searchField.action = #selector(BlogsViewController.searchFieldSubmit(_:))
+		searchHeaderController.searchField.action = #selector(searchFieldSubmit(_:))
 
 		loadScrollViewAndTableView()
 		scrollView.snp.makeConstraints { make in
 			make.top.equalTo(searchHeaderController.view.snp.bottom)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 

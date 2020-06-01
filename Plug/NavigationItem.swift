@@ -1,25 +1,8 @@
-//
-//	NavigationItem.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/15/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
 final class NavigationItem: NSObject {
-	var title: String
-	var rightButton: ActionButton?
-	var titleView: NSView?
-
-	init(title: String) {
-		self.title = title
-		super.init()
-	}
-
 	static func standardBackButtonWithTitle(_ title: String) -> SwissArmyButton {
-		let button = SwissArmyButton(frame: CGRect.zero)
+		let button = SwissArmyButton(frame: .zero)
 		let cell = BackButtonCell(textCell: "")
 		button.cell = cell
 		button.bezelStyle = .regularSquare
@@ -30,8 +13,13 @@ final class NavigationItem: NSObject {
 		return button
 	}
 
-	static func standardRightButtonWithOnStateTitle(_ onStateTitle: String, offStateTitle: String, target: AnyObject, action: Selector) -> ActionButton {
-		let button = ActionButton(frame: CGRect.zero)
+	static func standardRightButtonWithOnStateTitle(
+		_ onStateTitle: String,
+		offStateTitle: String,
+		target: AnyObject,
+		action: Selector
+	) -> ActionButton {
+		let button = ActionButton(frame: .zero)
 		let cell = ActionButtonCell(textCell: "")
 
 		button.cell = cell
@@ -48,7 +36,7 @@ final class NavigationItem: NSObject {
 	}
 
 	static func standardTitleDropdownButtonForMenu(_ menu: NSMenu) -> TitleBarPopUpButton {
-		let button = TitleBarPopUpButton(frame: CGRect.zero, pullsDown: true)
+		let button = TitleBarPopUpButton(frame: .zero, pullsDown: true)
 		let buttonCell = TitleBarPopUpButtonCell(textCell: "", pullsDown: true)
 
 		buttonCell.altersStateOfSelectedItem = true
@@ -63,5 +51,14 @@ final class NavigationItem: NSObject {
 		button.menu = menu
 
 		return button
+	}
+
+	var title: String
+	var rightButton: ActionButton?
+	var titleView: NSView?
+
+	init(title: String) {
+		self.title = title
+		super.init()
 	}
 }

@@ -4,7 +4,7 @@ enum Animations {
 	static func rotateClockwise(_ view: NSView) {
 		view.wantsLayer = true
 
-		let duration: Double = 0.8
+		let duration = 0.8
 		let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
 		rotate.isRemovedOnCompletion = false
 		rotate.fillMode = CAMediaTimingFillMode.forwards
@@ -28,7 +28,7 @@ enum Animations {
 	static func rotateCounterClockwise(_ view: NSView) {
 		view.wantsLayer = true
 
-		let duration: Double = 0.8
+		let duration = 0.8
 		let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
 		rotate.isRemovedOnCompletion = false
 		rotate.fillMode = CAMediaTimingFillMode.forwards

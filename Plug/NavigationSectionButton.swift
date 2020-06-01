@@ -5,7 +5,7 @@ final class NavigationSectionButton: SwissArmyButton {
 
 	init(navigationSection: NavigationSection) {
 		self.navigationSection = navigationSection
-		super.init(frame: CGRect.zero)
+		super.init(frame: .zero)
 	}
 
 	required init?(coder: NSCoder) {
@@ -15,7 +15,7 @@ final class NavigationSectionButton: SwissArmyButton {
 	override func setup() {
 		super.setup()
 
-		tracksHover = true
+		isTrackingHover = true
 		image = NSImage(named: "Nav-\(navigationSection.title)-Off")
 		alternateImage = NSImage(named: "Nav-\(navigationSection.title)-On")
 	}

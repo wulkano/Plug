@@ -1,8 +1,8 @@
 import Foundation
 
 final class Regex {
-	let internalExpression: NSRegularExpression
-	let pattern: String
+	private let internalExpression: NSRegularExpression
+	private let pattern: String
 
 	init(pattern: String) {
 		self.pattern = pattern

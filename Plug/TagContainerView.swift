@@ -2,13 +2,12 @@ import Cocoa
 import HypeMachineAPI
 
 final class TagContainerView: NSView {
-	override var isFlipped: Bool {
-		true
-	}
+	override var isFlipped: Bool { true }
 
 	let buttonSpacing: CGFloat = 4
 	let buttonHeight: CGFloat = 24
-	var tags: [HypeMachineAPI.Tag] = [] {
+
+	var tags = [HypeMachineAPI.Tag]() {
 		didSet {
 			updateTags()
 		}
@@ -26,6 +25,7 @@ final class TagContainerView: NSView {
 			button.action = #selector(TagContainerView.tagButtonClick(_:))
 			button.target = self
 		}
+
 		let heightConstraint = constraints.last!
 		if let lastButton = buttons.last {
 			heightConstraint.constant = lastButton.frame.origin.y + lastButton.frame.size.height

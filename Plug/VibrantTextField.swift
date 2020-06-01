@@ -1,17 +1,7 @@
-//
-//	VibrantTextField.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/25/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 class VibrantTextField: NSTextField {
-	override var allowsVibrancy: Bool {
-		true
-	}
+	override var allowsVibrancy: Bool { true }
 
 	override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
@@ -19,11 +9,11 @@ class VibrantTextField: NSTextField {
 	}
 
 	func setupStyledPlaceholderString() {
-		guard placeholderString != nil else {
+		guard let placeholderString = self.placeholderString else {
 			return
 		}
 
-		let newAttributedPlaceholderString = NSMutableAttributedString(string: placeholderString!, attributes: placeholderAttributes())
+		let newAttributedPlaceholderString = NSMutableAttributedString(string: placeholderString, attributes: placeholderAttributes())
 		placeholderAttributedString = newAttributedPlaceholderString
 	}
 

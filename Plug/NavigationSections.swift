@@ -1,11 +1,3 @@
-//
-//	NavigationSection.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/23/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Foundation
 
 enum NavigationSection: Int {
@@ -39,134 +31,129 @@ enum NavigationSection: Int {
 		}
 	}
 
-	var analyticsViewName: String {
-		"MainWindow/\(title)"
-	}
+	var analyticsViewName: String { "MainWindow/\(title)" }
 }
 
 enum PopularSectionMode: String {
-	case Now
-	case NoRemixes = "No Remixes"
-	case OnlyRemixes = "Only Remixes"
-	case LastWeek = "Last Week"
+	case now = "Now"
+	case noRemixes = "No Remixes"
+	case onlyRemixes = "Only Remixes"
+	case lastWeek = "Last Week"
 
 	static let navigationSection = NavigationSection.popular
 
-	var title: String {
-		rawValue
-	}
+	var title: String { rawValue }
 
 	var params: [String: Any] {
-		["mode": self.slug]
+		[
+			"mode": slug
+		]
 	}
 
 	var slug: String {
 		switch self {
-		case .Now:
+		case .now:
 			return "now"
-		case .NoRemixes:
+		case .noRemixes:
 			return "noremix"
-		case .OnlyRemixes:
+		case .onlyRemixes:
 			return "remix"
-		case .LastWeek:
+		case .lastWeek:
 			return "lastweek"
 		}
 	}
 }
 
-
 enum FavoritesSectionPlaylist: String {
-	case All
-	case One = "Up"
-	case Two = "Down"
-	case Three = "Weird"
+	case all = "All"
+	case one = "Up"
+	case two = "Down"
+	case three = "Weird"
 
 	static let navigationSection = NavigationSection.favorites
 
-	var title: String {
-		rawValue
-	}
+	var title: String { rawValue }
 }
 
 enum LatestSectionMode: String {
-	case All
-	case Freshest
-	case NoRemixes = "No Remixes"
-	case OnlyRemixes = "Only Remixes"
+	case all = "All"
+	case freshest = "Freshest"
+	case noRemixes = "No Remixes"
+	case onlyRemixes = "Only Remixes"
 
 	static let navigationSection = NavigationSection.latest
 
-	var title: String {
-		rawValue
-	}
+	var title: String { rawValue }
 
 	var params: [String: Any] {
-		["mode": self.slug]
+		[
+			"mode": slug
+		]
 	}
 
 	var slug: String {
 		switch self {
-		case .All:
+		case .all:
 			return "all"
-		case .Freshest:
+		case .freshest:
 			return "fresh"
-		case .NoRemixes:
+		case .noRemixes:
 			return "noremix"
-		case .OnlyRemixes:
+		case .onlyRemixes:
 			return "remix"
 		}
 	}
 }
 
 enum FeedSectionMode: String {
-	case All
-	case Friends
-	case Blogs
+	case all = "All"
+	case friends = "Friends"
+	case blogs = "Blogs"
 
 	static let navigationSection = NavigationSection.feed
 
-	var title: String {
-		rawValue
-	}
+	var title: String { rawValue }
 
 	var params: [String: Any] {
-		["mode": self.slug]
+		[
+			"mode": slug
+		]
 	}
 
 	var slug: String {
 		switch self {
-		case .All:
+		case .all:
 			return "all"
-		case .Friends:
+		case .friends:
 			return "friends"
-		case .Blogs:
+		case .blogs:
 			return "blogs"
 		}
 	}
 }
 
 enum SearchSectionSort: String {
-	case Newest
-	case MostFavorites = "Most Favorites"
-	case MostReblogged = "Most Reblogged"
+	case newest = "Newest"
+	case mostFavorites = "Most Favorites"
+	case mostReblogged = "Most Reblogged"
 
 	static let navigationSection = NavigationSection.search
 
-	var title: String {
-		rawValue
-	}
+	var title: String { rawValue }
 
 	var params: [String: Any] {
-		["sort": self.slug]
+		[
+			"sort": slug
+		]
 	}
 
 	var slug: String {
 		switch self {
-		case .Newest:
+		case .newest:
 			return "latest"
-		case .MostFavorites:
+		case .mostFavorites:
 			return "loved"
-		case .MostReblogged:
+		case .mostReblogged:
 			return "posted"
 		}
 	}

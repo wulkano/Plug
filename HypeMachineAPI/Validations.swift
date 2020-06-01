@@ -8,7 +8,9 @@ public struct Validations {
 			let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
 			let representation = object as? [String: Any],
 			let errorMessage = representation["error_msg"] as? String
-		else { return .success }
+		else {
+			return .success
+		}
 
 		switch errorMessage {
 		case "Must provide valid hm_token":

@@ -2,7 +2,8 @@ import Cocoa
 import HypeMachineAPI
 
 final class SingleBlogViewFormatter: Formatter {
-	var colorArt: SLColorArt!
+	private let font = appFont(size: 13, weight: .medium)
+	private var colorArt: SLColorArt!
 
 	func attributedBlogDetails(_ blog: HypeMachineAPI.Blog, colorArt: SLColorArt) -> NSAttributedString {
 		self.colorArt = colorArt
@@ -21,42 +22,42 @@ final class SingleBlogViewFormatter: Formatter {
 		return blogDetails
 	}
 
-	func formattedCount(_ count: NSNumber) -> NSAttributedString {
+	private func formattedCount(_ count: NSNumber) -> NSAttributedString {
 		let countString = LovedCountFormatter().string(for: count)!
-		return NSAttributedString(string: countString, attributes: countAttributes())
+		return NSAttributedString(string: countString, attributes: countAttributes)
 	}
 
-	func formattedLabel(_ text: String) -> NSAttributedString {
-		NSAttributedString(string: text, attributes: labelAttributes())
+	private func formattedLabel(_ text: String) -> NSAttributedString {
+		NSAttributedString(string: text, attributes: labelAttributes)
 	}
 
-	func countAttributes() -> [NSAttributedString.Key: Any] {
+	private var countAttributes: [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		attributes[.foregroundColor] = getCountColor()
-		attributes[.font] = getFont()
+		attributes[.foregroundColor] = countColor
+		attributes[.font] = font
 		return attributes
 	}
 
-	func labelAttributes() -> [NSAttributedString.Key: Any] {
+	private var labelAttributes: [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		attributes[.foregroundColor] = getLabelColor()
-		attributes[.font] = getFont()
+		attributes[.foregroundColor] = labelColor
+		attributes[.font] = font
 		return attributes
 	}
 
-	func getCountColor() -> NSColor {
-		if colorArt.primaryColor != nil {
-			return colorArt.primaryColor
-		} else if colorArt.secondaryColor != nil {
-			return colorArt.secondaryColor
-		} else if colorArt.detailColor != nil {
-			return colorArt.detailColor
+	private var countColor: NSColor {
+		if let primaryColor = colorArt.primaryColor {
+			return primaryColor
+		} else if let secondaryColor = colorArt.secondaryColor {
+			return secondaryColor
+		} else if let detailColor = colorArt.detailColor {
+			return detailColor
 		} else {
-			return NSColor.black
+			return .black
 		}
 	}
 
-	func getLabelColor() -> NSColor {
+	private var labelColor: NSColor {
 		if colorArt.secondaryColor != nil {
 			return colorArt.secondaryColor
 		} else if colorArt.detailColor != nil {
@@ -64,11 +65,7 @@ final class SingleBlogViewFormatter: Formatter {
 		} else if colorArt.primaryColor != nil {
 			return colorArt.primaryColor
 		} else {
-			return NSColor.black
+			return .black
 		}
-	}
-
-	func getFont() -> NSFont {
-		appFont(size: 13, weight: .medium)
 	}
 }

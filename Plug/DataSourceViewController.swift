@@ -2,7 +2,9 @@ import Cocoa
 
 class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate, RefreshScrollViewDelegate {
 	var dataSource: HypeMachineDataSource? {
-		didSet { dataSourceChanged() }
+		didSet {
+			dataSourceChanged()
+		}
 	}
 
 	var scrollView: RefreshScrollView!
@@ -78,14 +80,10 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
 
 	override func viewDidAppear() {
 		super.viewDidAppear()
-
-//		  tableView.updateVisibleRows()
 	}
 
 	override func viewDidDisappear() {
 		super.viewDidDisappear()
-
-//		  tableView.previousVisibleRows = []
 	}
 
 	// MARK: BaseContentViewController

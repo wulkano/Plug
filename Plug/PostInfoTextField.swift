@@ -1,17 +1,10 @@
-//
-//	PostInfoTextField.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/9/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class PostInfoTextField: NSTextField {
+final class PostInfoTextField: NSTextField {
 	var postInfoDelegate: PostInfoTextFieldDelegate?
-	var trackingArea: NSTrackingArea?
-	var mouseInside = false
+
+	private var trackingArea: NSTrackingArea?
+	private var mouseInside = false
 
 	override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
@@ -22,13 +15,17 @@ class PostInfoTextField: NSTextField {
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if trackingArea != nil {
-			removeTrackingArea(trackingArea!)
-			trackingArea = nil
+		if let trackingArea = self.trackingArea {
+			removeTrackingArea(trackingArea)
+			self.trackingArea = nil
 		}
 
-		let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-		trackingArea = NSTrackingArea(rect: CGRect.zero, options: options, owner: self, userInfo: nil)
+		let options: NSTrackingArea.Options = [
+			.inVisibleRect,
+			.activeAlways,
+			.mouseEnteredAndExited
+		]
+		trackingArea = NSTrackingArea(rect: .zero, options: options, owner: self, userInfo: nil)
 		addTrackingArea(trackingArea!)
 	}
 
@@ -46,12 +43,12 @@ class PostInfoTextField: NSTextField {
 		updateText()
 	}
 
-	func updateText() {
+	private func updateText() {
 		if mouseInside {
 			let contents = NSMutableAttributedString(attributedString: attributedStringValue)
 			contents.enumerateAttribute(.link, in: NSRange(location: 0, length: contents.length), options: .longestEffectiveRangeNotRequired) { value, range, _ in
 				if value != nil {
-					contents.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+					contents.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
 				}
 			}
 
@@ -60,7 +57,7 @@ class PostInfoTextField: NSTextField {
 			let contents = NSMutableAttributedString(attributedString: attributedStringValue)
 			contents.enumerateAttribute(.link, in: NSRange(location: 0, length: contents.length), options: .longestEffectiveRangeNotRequired) { value, range, _ in
 				if value != nil {
-					contents.addAttribute(NSAttributedString.Key.underlineStyle, value: 0, range: range)
+					contents.addAttribute(.underlineStyle, value: 0, range: range)
 				}
 			}
 

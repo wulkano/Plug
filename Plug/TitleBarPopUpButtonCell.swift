@@ -62,11 +62,9 @@ final class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 
 	fileprivate func sortMenuForSelectedItem(_ item: NSMenuItem?) {
 		let originalMenuItems = originalMenu!.items
-		let sortedItemArray = originalMenuItems.map { self.menu!.item(withTitle: $0.title)! }
+		let sortedItemArray = originalMenuItems.map { menu!.item(withTitle: $0.title)! }
 
-		for sortItem in Array(sortedItemArray.reversed()) {
-			if sortItem === item! { continue }
-
+		for sortItem in Array(sortedItemArray.reversed()) where sortItem === item! {
 			menu!.removeItem(sortItem)
 			menu!.insertItem(sortItem, at: 0)
 		}

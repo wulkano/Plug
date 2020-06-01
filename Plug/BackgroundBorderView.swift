@@ -1,24 +1,18 @@
-//
-//	BorderedView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/31/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class BackgroundBorderView: NSView {
+final class BackgroundBorderView: NSView {
 	@IBInspectable var borderWidth: CGFloat = 1
-	@IBInspectable var topBorder: Bool = false
-	@IBInspectable var rightBorder: Bool = false
-	@IBInspectable var bottomBorder: Bool = false
-	@IBInspectable var leftBorder: Bool = false
-	@IBInspectable var borderColor: NSColor = NSColor.black
+	@IBInspectable var topBorder = false
+	@IBInspectable var rightBorder = false
+	@IBInspectable var bottomBorder = false
+	@IBInspectable var leftBorder = false
+	@IBInspectable var borderColor: NSColor = .black
 
-	@IBInspectable var background: Bool = false
-	@IBInspectable var backgroundColor: NSColor = NSColor.white {
-		didSet { needsDisplay = true }
+	@IBInspectable var hasBackground: Bool = false
+	@IBInspectable var backgroundColor: NSColor = .white {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
 	override func draw(_ dirtyRect: CGRect) {
@@ -28,7 +22,7 @@ class BackgroundBorderView: NSView {
 	}
 
 	func drawBackground(_ dirtyRect: CGRect) {
-		if background {
+		if hasBackground {
 			backgroundColor.set()
 			dirtyRect.fill(using: .sourceOver)
 		}

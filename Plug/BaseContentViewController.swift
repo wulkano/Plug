@@ -6,6 +6,7 @@ class BaseContentViewController: NSViewController {
 	let analyticsViewName: String
 	var loaderViewController: LoaderViewController?
 	var navigationItem: NavigationItem!
+
 	var tableViewInsets: NSEdgeInsets {
 		NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0) // Play controls
 	}
@@ -34,9 +35,11 @@ class BaseContentViewController: NSViewController {
 		super.viewDidLoad()
 
 		addLoaderView()
+
 		if shouldShowStickyTrack {
 			setupStickyTrack()
 		}
+
 		subscribeToNotifications()
 	}
 
@@ -71,21 +74,18 @@ class BaseContentViewController: NSViewController {
 
 	// MARK: Sticky Track
 
-	var shouldShowStickyTrack: Bool {
-		true
-	}
+	var shouldShowStickyTrack: Bool { true }
 
 	var stickyTrackControllerStore: StickyTrackViewController?
 	var stickyTrackController: StickyTrackViewController {
 		if stickyTrackControllerStore == nil {
 			stickyTrackControllerStore = StickyTrackViewController(type: stickyTrackControllerType, title: "", analyticsViewName: "Sticky")
 		}
+
 		return stickyTrackControllerStore!
 	}
 
-	var stickyTrackControllerType: TracksViewControllerType {
-		.loveCount
-	}
+	var stickyTrackControllerType: TracksViewControllerType { .loveCount }
 
 	var stickyTrackBelongsToUs = false
 
@@ -132,9 +132,7 @@ class BaseContentViewController: NSViewController {
 		stickyTrackController.dataSource = SingleTrackDataSource(viewController: stickyTrackController, track: track)
 	}
 
-	func isTrackVisible(_ track: HypeMachineAPI.Track) -> Bool {
-		false
-	}
+	func isTrackVisible(_ track: HypeMachineAPI.Track) -> Bool { false }
 
 	// MARK: Notifications
 

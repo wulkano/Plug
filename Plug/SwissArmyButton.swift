@@ -1,10 +1,10 @@
 import Cocoa
 
 class SwissArmyButton: NSButton {
-	@IBInspectable var vibrant: Bool = false
-	@IBInspectable var tracksHover: Bool = false
+	@IBInspectable var isVibrant = false
+	@IBInspectable var isTrackingHover = false
 
-	override var allowsVibrancy: Bool { vibrant }
+	override var allowsVibrancy: Bool { isVibrant }
 
 	@objc override dynamic var state: NSControl.StateValue {
 		didSet {
@@ -13,18 +13,20 @@ class SwissArmyButton: NSButton {
 	}
 
 	var trackingArea: NSTrackingArea?
-	var swissArmyButtonCell: SwissArmyButtonCell {
-		cell as! SwissArmyButtonCell
-	}
+	var swissArmyButtonCell: SwissArmyButtonCell { cell as! SwissArmyButtonCell }
 
-	var mouseInside: Bool {
+	var isMouseInside: Bool {
 		get { swissArmyButtonCell.isMouseInside }
-		set { swissArmyButtonCell.isMouseInside = newValue }
+		set {
+			swissArmyButtonCell.isMouseInside = newValue
+		}
 	}
 
-	var mouseDown: Bool {
+	var isMouseDown: Bool {
 		get { swissArmyButtonCell.isMouseDown }
-		set { swissArmyButtonCell.isMouseDown = newValue }
+		set {
+			swissArmyButtonCell.isMouseDown = newValue
+		}
 	}
 
 	override func viewDidMoveToWindow() {
@@ -36,14 +38,18 @@ class SwissArmyButton: NSButton {
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if tracksHover {
+		if isTrackingHover {
 			if trackingArea != nil {
 				removeTrackingArea(trackingArea!)
 				trackingArea = nil
 			}
 
-			let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-			trackingArea = NSTrackingArea(rect: CGRect.zero, options: options, owner: self, userInfo: nil)
+			let options: NSTrackingArea.Options = [
+				.inVisibleRect,
+				.activeAlways,
+				.mouseEnteredAndExited
+			]
+			trackingArea = NSTrackingArea(rect: .zero, options: options, owner: self, userInfo: nil)
 			addTrackingArea(trackingArea!)
 		}
 	}
@@ -69,24 +75,24 @@ class SwissArmyButton: NSButton {
 	}
 
 	override func mouseEntered(with theEvent: NSEvent) {
-		mouseInside = true
+		isMouseInside = true
 		needsDisplay = true
 	}
 
 	override func mouseExited(with theEvent: NSEvent) {
-		mouseInside = false
+		isMouseInside = false
 		needsDisplay = true
 	}
 
 	override func mouseDown(with theEvent: NSEvent) {
-		mouseDown = true
+		isMouseDown = true
 		needsDisplay = true
 		super.mouseDown(with: theEvent)
 		mouseUp(with: theEvent)
 	}
 
 	override func mouseUp(with theEvent: NSEvent) {
-		mouseDown = false
+		isMouseDown = false
 		needsDisplay = true
 		super.mouseUp(with: theEvent)
 	}

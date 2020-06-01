@@ -1,16 +1,10 @@
-//
-//	IOSStyleTableRowView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/1/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 class IOSStyleTableRowView: NSTableRowView {
 	override var isNextRowSelected: Bool {
-		didSet { needsDisplay = true }
+		didSet {
+			needsDisplay = true
+		}
 	}
 
 	@IBInspectable var separatorSpacing: CGFloat = 0
@@ -18,11 +12,12 @@ class IOSStyleTableRowView: NSTableRowView {
 	@IBInspectable var selectionColor: NSColor = NSColor(red256: 246, green256: 247, blue256: 249)
 
 	var separatorWidth: CGFloat = 1
-	var nextRowIsGroupRow: Bool = false
+	var isNextRowGroupRow = false
 
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
-		if shouldDrawSeparator() {
+
+		if shouldDrawSeparator {
 			let separatorRect = makeSeparatorRect(dirtyRect)
 			customSeparatorColor.set()
 			separatorRect.fill()
@@ -40,8 +35,8 @@ class IOSStyleTableRowView: NSTableRowView {
 //		  }
 //	  }
 
-	func shouldDrawSeparator() -> Bool {
-		if nextRowIsGroupRow {
+	private var shouldDrawSeparator: Bool {
+		if isNextRowGroupRow {
 			return true
 		}
 
@@ -60,7 +55,7 @@ class IOSStyleTableRowView: NSTableRowView {
 		var separatorRect = bounds
 		separatorRect.size.height = separatorWidth
 
-		if !nextRowIsGroupRow {
+		if !isNextRowGroupRow {
 			separatorRect.size.width = bounds.size.width - separatorSpacing
 			separatorRect.origin.x = separatorSpacing
 		}

@@ -1,16 +1,10 @@
-//
-//	PopularHeatMapView.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/16/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 class HeatMapView: NSView {
 	var heatMap: HeatMap? {
-		didSet { needsDisplay = true }
+		didSet {
+			needsDisplay = true
+		}
 	}
 
 	override func draw(_ dirtyRect: CGRect) {

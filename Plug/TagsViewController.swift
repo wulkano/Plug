@@ -2,9 +2,7 @@ import Cocoa
 import HypeMachineAPI
 
 final class TagsViewController: DataSourceViewController {
-	var tagsDataSource: TagsDataSource? {
-		dataSource as? TagsDataSource
-	}
+	var tagsDataSource: TagsDataSource? { dataSource as? TagsDataSource }
 
 	func itemForRow(_ row: Int) -> TagsListItem? {
 		if let item: Any = dataSource!.objectForRow(row) {
@@ -54,7 +52,7 @@ final class TagsViewController: DataSourceViewController {
 
 	func loadSingleTagView(_ tag: HypeMachineAPI.Tag) {
 		let viewController = TracksViewController(type: .loveCount, title: tag.name, analyticsViewName: "Tag/Tracks")!
-		NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
+		NavigationController.shared!.pushViewController(viewController, animated: true)
 		viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
 	}
 
@@ -103,12 +101,12 @@ final class TagsViewController: DataSourceViewController {
 			if let nextItem = itemAfterRow(row) {
 				switch nextItem {
 				case .sectionHeaderItem:
-					rowView!.nextRowIsGroupRow = true
+					rowView!.isNextRowGroupRow = true
 				case .tagItem:
-					rowView!.nextRowIsGroupRow = false
+					rowView!.isNextRowGroupRow = false
 				}
 			} else {
-				rowView!.nextRowIsGroupRow = false
+				rowView!.isNextRowGroupRow = false
 			}
 		}
 

@@ -1,15 +1,7 @@
-//
-//	GenresTableCellView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 10/20/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 
-class TagTableCellView: IOSStyleTableCellView {
+final class TagTableCellView: IOSStyleTableCellView {
 	var nameTextField: NSTextField!
 
 	override var objectValue: Any! {
@@ -18,9 +10,7 @@ class TagTableCellView: IOSStyleTableCellView {
 		}
 	}
 
-	var tagValue: HypeMachineAPI.Tag {
-		objectValue as! HypeMachineAPI.Tag
-	}
+	var tagValue: HypeMachineAPI.Tag { objectValue as! HypeMachineAPI.Tag }
 
 	func objectValueChanged() {
 		guard objectValue != nil else {

@@ -10,10 +10,11 @@ typealias OnSkipForward = Swignal1Arg<Bool>
 typealias OnSkipBackward = Swignal1Arg<Bool>
 
 final class AudioPlayer: NSObject {
-	static var shared = AudioPlayer()
+	static let shared = AudioPlayer()
 
 	var player: AVPlayer!
 	var playerItem: AVPlayerItem!
+
 	var currentDataSource: TracksDataSource! {
 		didSet {
 			recentlyPlayedTrackIndexes = []
@@ -28,11 +29,12 @@ final class AudioPlayer: NSObject {
 
 	var currentTrackListenLogged = false
 	var currentTrackListenScrobbled = false
-	var playing: Bool = false
-	var shuffle: Bool = false {
+	var isPlaying = false
+
+	var isShuffle = false {
 		didSet {
-			onShuffleChanged.fire(shuffle)
-			UserDefaults.standard.setValue(shuffle, forKey: "shuffle")
+			onShuffleChanged.fire(isShuffle)
+			UserDefaults.standard.setValue(isShuffle, forKey: "shuffle")
 		}
 	}
 
@@ -52,10 +54,10 @@ final class AudioPlayer: NSObject {
 	var seeking = false
 	var recentlyPlayedTrackIndexes = [Int]()
 	var timeoutTimer: Timer?
-	let timeoutSeconds: Double = 10
+	let timeoutSeconds = 10.0
 
 	override init() {
-		self.shuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
+		self.isShuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
 		super.init()
 
 		bind(NSBindingName("volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
@@ -76,7 +78,7 @@ final class AudioPlayer: NSObject {
 		playerItem = nil
 		currentDataSource = nil
 		currentTrack = nil
-		playing = false
+		isPlaying = false
 		progressObserver = nil
 		seeking = false
 	}
@@ -116,14 +118,14 @@ final class AudioPlayer: NSObject {
 
 	func play() {
 		player.play()
-		playing = true
+		isPlaying = true
 		Notifications.post(name: Notifications.TrackPlaying, object: self, userInfo: ["track" as NSObject: currentTrack!])
 		onTrackPlaying.fire(true)
 	}
 
 	func pause() {
 		player.pause()
-		playing = false
+		isPlaying = false
 		Notifications.post(name: Notifications.TrackPaused, object: self, userInfo: ["track" as NSObject: currentTrack!])
 		onTrackPaused.fire(true)
 	}
@@ -133,7 +135,7 @@ final class AudioPlayer: NSObject {
 			return
 		}
 
-		if playing {
+		if isPlaying {
 			pause()
 		} else {
 			play()
@@ -170,16 +172,20 @@ final class AudioPlayer: NSObject {
 	}
 
 	func toggleShuffle() {
-		shuffle.toggle()
+		isShuffle.toggle()
 	}
 
 	func seekToPercent(_ percent: Double) {
-		guard playerItem != nil && playerItem.status == AVPlayerItem.Status.readyToPlay
-		else { return }
+		guard
+			playerItem != nil,
+			playerItem.status == .readyToPlay
+		else {
+			return
+		}
 
 		seeking = true
 		let seconds = percent * currentItemDuration()!
-		let time = CMTimeMakeWithSeconds(seconds, preferredTimescale: 1000)
+		let time = CMTime(seconds: seconds, preferredTimescale: 1000)
 
 		player.seek(to: time) { success in
 			self.seeking = false
@@ -333,35 +339,36 @@ final class AudioPlayer: NSObject {
 
 	fileprivate func playerItemNotificationNamesAndSelectors() -> [String: Selector] {
 		[
-			NSNotification.Name.AVPlayerItemDidPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackFinishedPlayingNotification(_:)),
-			NSNotification.Name.AVPlayerItemFailedToPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackCouldNotFinishPlayingNotification(_:)),
-			NSNotification.Name.AVPlayerItemPlaybackStalled.rawValue: #selector(AudioPlayer.currentTrackPlaybackStalledNotification(_:)),
-			NSNotification.Name.AVPlayerItemNewAccessLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewAccessLogEntry(_:)),
-			NSNotification.Name.AVPlayerItemNewErrorLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewErrorLogEntry(_:))
+			Notification.Name.AVPlayerItemDidPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackFinishedPlayingNotification(_:)),
+			Notification.Name.AVPlayerItemFailedToPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackCouldNotFinishPlayingNotification(_:)),
+			Notification.Name.AVPlayerItemPlaybackStalled.rawValue: #selector(AudioPlayer.currentTrackPlaybackStalledNotification(_:)),
+			Notification.Name.AVPlayerItemNewAccessLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewAccessLogEntry(_:)),
+			Notification.Name.AVPlayerItemNewErrorLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewErrorLogEntry(_:))
 		]
 	}
 
 	fileprivate func subscribeToPlayerItem(_ playerItem: AVPlayerItem) {
 		for (name, selector) in playerItemNotificationNamesAndSelectors() {
-			NotificationCenter.default.addObserver(self, selector: selector, name: NSNotification.Name(rawValue: name), object: playerItem)
+			NotificationCenter.default.addObserver(self, selector: selector, name: Notification.Name(name), object: playerItem)
 		}
 	}
 
 	fileprivate func unsubscribeFromPlayerItem(_ playerItem: AVPlayerItem) {
 		for (name, _) in playerItemNotificationNamesAndSelectors() {
-			NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: name), object: playerItem)
+			NotificationCenter.default.removeObserver(self, name: Notification.Name(name), object: playerItem)
 		}
 	}
 
 	fileprivate func findNextTrack() -> HypeMachineAPI.Track? {
-		guard currentTrack != nil
-		else { return nil }
+		guard let currentTrack = self.currentTrack else {
+			return nil
+		}
 
-		if shuffle &&
+		if isShuffle &&
 			!(currentDataSource is FavoriteTracksDataSource) {
 			return nextShuffleTrack()
 		} else {
-			return currentDataSource.trackAfter(currentTrack!)
+			return currentDataSource.trackAfter(currentTrack)
 		}
 	}
 
@@ -370,10 +377,10 @@ final class AudioPlayer: NSObject {
 			recentlyPlayedTrackIndexes = []
 		}
 
-		var nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
+		var nextShuffleTrackIndex = Int.random(in: 0..<currentDataSource.tableContents!.count)
 
 		while recentlyPlayedTrackIndexes.firstIndex(of: nextShuffleTrackIndex) != nil {
-			nextShuffleTrackIndex = Rand.inRange(0..<currentDataSource.tableContents!.count)
+			nextShuffleTrackIndex = Int.random(in: 0..<currentDataSource.tableContents!.count)
 		}
 
 		return currentDataSource.trackAtIndex(nextShuffleTrackIndex)

@@ -30,9 +30,7 @@ final class GeneralPreferencesViewController: NSViewController, NSTableViewDeleg
 
 	// MARK: NSTableViewDelegate
 
-	func selectionShouldChange(in tableView: NSTableView) -> Bool {
-		false // Disallows row selection
-	}
+	func selectionShouldChange(in tableView: NSTableView) -> Bool { false }
 
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		preferences.count
@@ -56,7 +54,7 @@ final class GeneralPreference {
 	}
 
 	func getUserDefaultsValue() -> Bool {
-		UserDefaults.standard.value(forKey: settingsKey) as! Bool
+		UserDefaults.standard.bool(forKey: settingsKey)
 	}
 
 	func setUserDefaultsValue(_ value: Bool) {

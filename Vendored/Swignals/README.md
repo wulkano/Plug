@@ -47,7 +47,8 @@ class AudioPlayer {
     static let sharedInstance = AudioPlayer()
 
     let onShuffleChanged = OnShuffleChangedSwignal()
-    var shuffle: Bool = false {
+
+    var shuffle = false {
         didSet {
             onShuffleChanged.fire(shuffle)
         }

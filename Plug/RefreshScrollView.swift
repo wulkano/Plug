@@ -1,34 +1,28 @@
-//
-//	RefreshScrollView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/13/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class RefreshScrollView: NSScrollView {
+final class RefreshScrollView: NSScrollView {
 	let delegate: RefreshScrollViewDelegate
 	var boundsChangedDelegate: RefreshScrollViewBoundsChangedDelegate?
 
-	var scrolling = false
+	var isScrolling = false
 
 	var refreshHeaderController: RefreshHeaderViewController!
-	var refreshClipView: RefreshClipView {
-		contentView as! RefreshClipView
-	}
+	var refreshClipView: RefreshClipView { contentView as! RefreshClipView }
 
 	override var contentView: NSClipView {
-		willSet { contentViewWillChange() }
-		didSet { contentViewChanged() }
+		willSet {
+			contentViewWillChange()
+		}
+		didSet {
+			contentViewChanged()
+		}
 	}
 
-	var scrollEnabled = true
+	var isScrollEnabled = true
 
 	init(delegate: RefreshScrollViewDelegate) {
 		self.delegate = delegate
-		super.init(frame: CGRect.zero)
+		super.init(frame: .zero)
 		setup()
 	}
 
@@ -55,7 +49,7 @@ class RefreshScrollView: NSScrollView {
 	}
 
 	override func scrollWheel(with theEvent: NSEvent) {
-		guard scrollEnabled else {
+		guard isScrollEnabled else {
 			return
 		}
 
@@ -91,7 +85,7 @@ class RefreshScrollView: NSScrollView {
 	}
 
 	func finishedRefresh() {
-		documentView!.scroll(CGPoint.zero)
+		documentView!.scroll(.zero)
 
 		refreshHeaderController.state = .pullToRefresh
 		refreshHeaderController.lastUpdated = Date()

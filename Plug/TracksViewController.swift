@@ -3,14 +3,10 @@ import HypeMachineAPI
 
 class TracksViewController: DataSourceViewController {
 	let type: TracksViewControllerType
-	var tracksDataSource: TracksDataSource? {
-		dataSource! as? TracksDataSource
-	}
-
-	var previousMouseInsideRow: Int = -1
+	var tracksDataSource: TracksDataSource? { dataSource! as? TracksDataSource }
+	var previousMouseInsideRow = -1
 	var anchoredRow: Int?
 	var anchoredCellViewViewController: TracksViewController?
-
 	var showLoveButton: Bool = true
 
 	init?(type: TracksViewControllerType, title: String, analyticsViewName: String) {
@@ -41,7 +37,10 @@ class TracksViewController: DataSourceViewController {
 	}
 
 	override func nextPageDidLoad(_ pageNumber: Int) {
-		if let favoriteTracksDataSource = tracksDataSource as? FavoriteTracksDataSource, favoriteTracksDataSource.shuffle {
+		if
+			let favoriteTracksDataSource = tracksDataSource as? FavoriteTracksDataSource,
+			favoriteTracksDataSource.shuffle
+		{
 			removeLoaderView()
 		} else {
 			super.nextPageDidLoad(pageNumber)
@@ -110,7 +109,7 @@ class TracksViewController: DataSourceViewController {
 	}
 
 	func setupTrackCellView(_ cellView: TrackTableCellView) {
-		cellView.showLoveButton = showLoveButton
+		cellView.showsLoveButton = showLoveButton
 
 		cellView.playPauseButton = HoverToggleButton()
 		cellView.playPauseButton.isHidden = true
@@ -137,7 +136,7 @@ class TracksViewController: DataSourceViewController {
 		}
 
 		cellView.loveButton = TransparentButton()
-		cellView.loveButton.selectable = true
+		cellView.loveButton.isSelectable = true
 		cellView.loveButton.selectedImage = NSImage(named: "Track-Loved-On")!
 		cellView.loveButton.unselectedImage = NSImage(named: "Track-Loved-Off")!
 		cellView.loveButton.target = cellView
@@ -184,7 +183,7 @@ class TracksViewController: DataSourceViewController {
 		}
 
 		cellView.artistButton = HyperlinkButton()
-		cellView.artistButton.hoverUnderline = true
+		cellView.artistButton.hasHoverUnderline = true
 		cellView.artistButton.isBordered = false
 		cellView.artistButton.lineBreakMode = .byTruncatingTail
 		cellView.artistButton.font = appFont(size: 13, weight: .medium)
@@ -262,7 +261,7 @@ class TracksViewController: DataSourceViewController {
 		}
 
 		cellView.sourceButton = HyperlinkButton()
-		cellView.sourceButton.hoverUnderline = true
+		cellView.sourceButton.hasHoverUnderline = true
 		cellView.sourceButton.isBordered = false
 		cellView.sourceButton.lineBreakMode = .byTruncatingTail
 		cellView.sourceButton.font = appFont(size: 12, weight: .medium)
@@ -281,8 +280,8 @@ class TracksViewController: DataSourceViewController {
 	// MARK: Unavailable tracks
 
 	func showHideUnavailableTracks() {
-		let hideUnavailableTracks = UserDefaults.standard.value(forKey: HideUnavailableTracks) as! Bool
-		dataSource?.filtering = hideUnavailableTracks
+		let hideUnavailableTracks = UserDefaults.standard.bool(forKey: HideUnavailableTracks)
+		dataSource?.isFiltering = hideUnavailableTracks
 	}
 
 	// MARK: NSResponder
@@ -373,15 +372,14 @@ class TracksViewController: DataSourceViewController {
 	override func newCurrentTrack(_ notification: Notification) {
 		super.newCurrentTrack(notification)
 
-		let tracksDataSource = (notification as NSNotification).userInfo!["tracksDataSource"] as! TracksDataSource
+		let tracksDataSource = notification.userInfo!["tracksDataSource"] as! TracksDataSource
 		if tracksDataSource == self.tracksDataSource {
 			stickyTrackBelongsToUs = true
 		} else {
 			stickyTrackBelongsToUs = false
 		}
 
-		if !stickyTrackBelongsToUs ||
-			stickyTrackController.isShown {
+		if !stickyTrackBelongsToUs || stickyTrackController.isShown {
 			let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
 			addStickyTrackAtPosition(trackAboveOrBelow(track, tracksDataSource: tracksDataSource))
 		}
@@ -434,14 +432,15 @@ class TracksViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: NSTableView, mouseEnteredRow row: Int) {
 		if let cellView = cellViewForRow(row) {
-			cellView.mouseInside = true
+			cellView.isMouseInside = true
 		}
+
 		previousMouseInsideRow = row
 	}
 
 	override func tableView(_ tableView: NSTableView, mouseExitedRow row: Int) {
 		if let cellView = cellViewForRow(row) {
-			cellView.mouseInside = false
+			cellView.isMouseInside = false
 		}
 	}
 

@@ -25,9 +25,7 @@ final class UsersDataSource: SearchableDataSource {
 
 	// MARK: HypeMachineDataSource
 
-	override var singlePage: Bool {
-		true
-	}
+	override var singlePage: Bool { true }
 
 	override func requestNextPageObjects() {
 		HypeMachineAPI.Requests.Me.friends { response in

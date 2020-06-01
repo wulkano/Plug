@@ -1,9 +1,7 @@
 import Cocoa
 
 final class TitleBarPopUpButton: NSPopUpButton {
-	var titleBarPopUpButtonCell: TitleBarPopUpButtonCell {
-		cell as! TitleBarPopUpButtonCell
-	}
+	var titleBarPopUpButtonCell: TitleBarPopUpButtonCell { cell as! TitleBarPopUpButtonCell }
 
 	var formattedTitle: NSAttributedString {
 		titleBarPopUpButtonCell.formattedTitle

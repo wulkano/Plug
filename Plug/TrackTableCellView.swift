@@ -1,11 +1,3 @@
-//
-//	TrackTableCellView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/28/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 import SnapKit
@@ -25,32 +17,40 @@ class TrackTableCellView: IOSStyleTableCellView {
 	var artistButton: HyperlinkButton!
 	var infoContainer: NSView!
 
-	var showLoveButton: Bool = true
+	var showsLoveButton = true
 
 	var dataSource: TracksDataSource!
 	var trackInfoWindowController: NSWindowController?
 
 	override var objectValue: Any! {
-		didSet { objectValueChanged() }
+		didSet {
+			objectValueChanged()
+		}
 	}
 
 	var track: HypeMachineAPI.Track {
 		get { objectValue as! HypeMachineAPI.Track }
-		set(newTrack) { objectValue = newTrack }
+		set {
+			objectValue = newValue
+		}
 	}
 
-	var mouseInside: Bool = false {
-		didSet { mouseInsideChanged() }
+	var isMouseInside = false {
+		didSet {
+			mouseInsideChanged()
+		}
 	}
 
 	var playState = PlayState.notPlaying {
-		didSet { playStateChanged() }
+		didSet {
+			playStateChanged()
+		}
 	}
 
-	var trackingProgress: Bool = false
+	var isTrackingProgress = false
 
 	init() {
-		super.init(frame: CGRect.zero)
+		super.init(frame: .zero)
 		setup()
 	}
 
@@ -69,38 +69,32 @@ class TrackTableCellView: IOSStyleTableCellView {
 		Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
 	}
 
-	// Careful, since these cells are reused any async calls
-	// may return when the cell represents a different track
+	// Careful, since these cells are reused, any async calls
+	// may return when the cell represents a different track.
 	func objectValueChanged() {
 		guard objectValue != nil else {
 			return
 		}
 
-		playState = currentPlayState()
+		playState = currentPlayState
 		updateTrackAvailability()
 		updateTrackTitle()
 		updateTrackArtist()
-		mouseInside = false
+		isMouseInside = false
 		loveButton.isSelected = track.loved
 		progressSlider.doubleValue = 0
 	}
 
-	func currentPlayState() -> PlayState {
-		if AudioPlayer.shared.currentTrack == objectValue as? HypeMachineAPI.Track {
-			if AudioPlayer.shared.playing {
-				return PlayState.playing
-			} else {
-				return PlayState.paused
-			}
-		} else {
-			return PlayState.notPlaying
+	var currentPlayState: PlayState {
+		guard AudioPlayer.shared.currentTrack == objectValue as? HypeMachineAPI.Track else {
+			return .notPlaying
 		}
-	}
 
+		return AudioPlayer.shared.isPlaying ? .playing : .paused
+	}
 
 	func mouseInsideChanged() {
 		updatePlayPauseButtonVisibility()
-//		  updateTextFieldsSpacing()
 		updateLoveContainerSpacing()
 		updateInfoContainerSpacing()
 	}
@@ -128,9 +122,9 @@ class TrackTableCellView: IOSStyleTableCellView {
 		titleButton.title = track.title
 		switch playState {
 		case .playing, .paused:
-			titleButton.selected = true
+			titleButton.isSelected = true
 		case .notPlaying:
-			titleButton.selected = false
+			titleButton.isSelected = false
 		}
 	}
 
@@ -138,16 +132,16 @@ class TrackTableCellView: IOSStyleTableCellView {
 		artistButton.title = track.artist
 		switch playState {
 		case .playing, .paused:
-			artistButton.selected = true
+			artistButton.isSelected = true
 		case .notPlaying:
-			artistButton.selected = false
+			artistButton.isSelected = false
 		}
 	}
 
 	func updatePlayPauseButtonVisibility() {
 		if track.audioUnavailable {
 			playPauseButton.isHidden = true
-		} else if mouseInside {
+		} else if isMouseInside {
 			playPauseButton.isHidden = false
 		} else {
 			switch playState {
@@ -162,9 +156,9 @@ class TrackTableCellView: IOSStyleTableCellView {
 	func updatePlayPauseButtonSelected() {
 		switch playState {
 		case .playing:
-			playPauseButton.selected = true
+			playPauseButton.isSelected = true
 		case .paused, .notPlaying:
-			playPauseButton.selected = false
+			playPauseButton.isSelected = false
 		}
 	}
 
@@ -186,31 +180,14 @@ class TrackTableCellView: IOSStyleTableCellView {
 		}
 	}
 
-//
-//	  func updateTextFieldsSpacing() {
-//		  var mouseOutSpacing: CGFloat = 32
-//		  var mouseInSpacing: CGFloat = 20
-//
-//		  if isMouseInside {
-//			  artistTrailingConstraint.constant = mouseInSpacing
-//			  titleTrailingConstraint.constant = mouseInSpacing
-//		  } else {
-//			  artistTrailingConstraint.constant = mouseOutSpacing
-//			  titleTrailingConstraint.constant = mouseOutSpacing
-//		  }
-//	  }
-
 	func updateLoveContainerSpacing() {
 		let openWidth: CGFloat = 38
 		let closedWidth: CGFloat = 0
 
-		if mouseInside || (track.loved && showLoveButton) {
+		if isMouseInside || (track.loved && showsLoveButton) {
 			loveContainerWidthConstraint.updateOffset(amount: openWidth)
-
-//			  loveContainerWidthConstraint.constant = openWidth
 		} else {
 			loveContainerWidthConstraint.updateOffset(amount: closedWidth)
-//			  loveContainerWidthConstraint.constant = closedWidth
 		}
 	}
 
@@ -218,25 +195,24 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let openWidth: CGFloat = 30
 		let closedWidth: CGFloat = 0
 
-		if mouseInside {
+		if isMouseInside {
 			infoContainerWidthConstraint.updateOffset(amount: openWidth)
-//			  infoContainerWidthConstraint.constant = openWidth
 		} else {
 			infoContainerWidthConstraint.updateOffset(amount: closedWidth)
-//			  infoContainerWidthConstraint.constant = closedWidth
 		}
 	}
 
 	func trackProgress() {
-		if trackingProgress == false {
+		if isTrackingProgress == false {
 			Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.progressUpdated(_:)), name: Notifications.TrackProgressUpdated, object: nil)
 		}
-		trackingProgress = true
+
+		isTrackingProgress = true
 	}
 
 	func untrackProgress() {
 		Notifications.unsubscribe(observer: self, name: Notifications.TrackProgressUpdated, object: self)
-		trackingProgress = false
+		isTrackingProgress = false
 	}
 
 	@objc
@@ -307,12 +283,14 @@ class TrackTableCellView: IOSStyleTableCellView {
 	// swiftlint:disable:next private_action
 	@IBAction func infoButtonClicked(_ sender: TransparentButton) {
 		Analytics.trackButtonClick("Playlist Info")
+
 		if trackInfoWindowController == nil {
 			let trackInfoStoryboard = NSStoryboard(name: "TrackInfo", bundle: nil)
 			trackInfoWindowController = trackInfoStoryboard.instantiateInitialController() as? NSWindowController
 			let trackInfoViewController = trackInfoWindowController!.window!.contentViewController!
 			trackInfoViewController.representedObject = objectValue
 		}
+
 		trackInfoWindowController!.showWindow(self)
 	}
 
@@ -331,7 +309,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 				}
 			case let .failure(error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-				Swift.print(error as NSError)
+				print(error as NSError)
 				self.changeTrackLovedValueTo(oldLovedValue)
 			}
 		}
@@ -344,15 +322,15 @@ class TrackTableCellView: IOSStyleTableCellView {
 	@IBAction func artistButtonClicked(_ sender: NSButton) {
 		let viewController = TracksViewController(type: .loveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
 		viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
-		NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
+		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 
 	@IBAction func titleButtonClicked(_ sender: NSButton) {
-		Swift.print("Track title clicked: \(track.title)")
+		print("Track title clicked: \(track.title)")
 	}
 
-	func changeTrackLovedValueTo(_ loved: Bool) {
-		if loved {
+	func changeTrackLovedValueTo(_ isLoved: Bool) {
+		if isLoved {
 			Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: track])
 		} else {
 			Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track" as NSObject: track])
@@ -361,8 +339,8 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	@objc
 	func progressUpdated(_ notification: Notification) {
-		let progress = ((notification as NSNotification).userInfo!["progress"] as! NSNumber).doubleValue
-		let duration = ((notification as NSNotification).userInfo!["duration"] as! NSNumber).doubleValue
+		let progress = (notification.userInfo!["progress"] as! NSNumber).doubleValue
+		let duration = (notification.userInfo!["duration"] as! NSNumber).doubleValue
 		progressSlider.doubleValue = progress / duration
 	}
 

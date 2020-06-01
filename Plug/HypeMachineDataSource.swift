@@ -4,7 +4,7 @@ import Alamofire
 class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	var viewController: DataSourceViewController
 
-	var filtering: Bool = false {
+	var isFiltering = false {
 		didSet {
 			viewController.tableView.reloadData()
 		}
@@ -18,7 +18,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 			return nil
 		}
 
-		if filtering {
+		if isFiltering {
 			return filteredTableContents!
 		} else {
 			return standardTableContents!
@@ -123,7 +123,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 		}
 
 		let objectsToAdd: [Any]
-		if filtering {
+		if isFiltering {
 			objectsToAdd = filteredObjects
 		} else {
 			objectsToAdd = objects

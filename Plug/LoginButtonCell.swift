@@ -1,16 +1,14 @@
 import Cocoa
 
 final class LoginButtonCell: SwissArmyButtonCell {
-	var loginButton: LoginButton {
-		controlView as! LoginButton
-	}
+	var loginButton: LoginButton { controlView as! LoginButton }
 
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		let mutableTitle = NSMutableAttributedString(attributedString: title)
 		let range = NSRange(location: 0, length: mutableTitle.length)
 		let color = getTextColor()
 
-		mutableTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+		mutableTitle.addAttribute(.foregroundColor, value: color, range: range)
 
 		return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
 	}
@@ -21,7 +19,7 @@ final class LoginButtonCell: SwissArmyButtonCell {
 		var newFrame = frame
 		newFrame.origin.y += 3
 
-		image.draw(in: newFrame, from: CGRect.zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
+		image.draw(in: newFrame, from: .zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
 	}
 
 	func getTextColor() -> NSColor {

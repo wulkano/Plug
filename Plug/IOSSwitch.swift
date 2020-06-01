@@ -21,32 +21,39 @@ final class IOSSwitch: NSControl {
 	let defaultTintColor = NSColor(calibratedRed: 0.27, green: 0.62, blue: 1, alpha: 1)
 	let inactiveBackgroundColor = NSColor(calibratedWhite: 0, alpha: 0.3)
 
-	var isActive: Bool = false
-	var hasDragged: Bool = false
-	var isDraggingTowardsOn: Bool = false
+	var isActive = false
+	var hasDragged = false
+	var isDraggingTowardsOn = false
 
 	let rootLayer = CALayer()
 	let backgroundLayer = CALayer()
 	let knobLayer = CALayer()
 	let knobInsideLayer = CALayer()
 
-	var on: Bool = false {
-		didSet { reloadLayer() }
+	var on = false {
+		didSet {
+			reloadLayer()
+		}
 	}
 
 	var tintColor: NSColor {
-		set { tintColorStore = newValue }
 		get { tintColorStore ?? defaultTintColor }
+		set {
+			tintColorStore = newValue
+		}
 	}
 
 	var tintColorStore: NSColor? {
-		didSet { reloadLayer() }
+		didSet {
+			reloadLayer()
+		}
 	}
 
 	override var isEnabled: Bool {
-		didSet { reloadLayer() }
+		didSet {
+			reloadLayer()
+		}
 	}
-
 
 	// MARK: Init
 
@@ -109,9 +116,7 @@ final class IOSSwitch: NSControl {
 
 	// MARK: NSView
 
-	override func acceptsFirstMouse(for theEvent: NSEvent?) -> Bool {
-		true
-	}
+	override func acceptsFirstMouse(for theEvent: NSEvent?) -> Bool { true }
 
 	override var frame: CGRect {
 		didSet {
@@ -120,7 +125,6 @@ final class IOSSwitch: NSControl {
 	}
 
 	// MARK: Update Layer
-
 
 	func reloadLayer() {
 		CATransaction.begin()
@@ -156,7 +160,6 @@ final class IOSSwitch: NSControl {
 
 		knobLayer.frame = rectForKnob()
 		knobInsideLayer.frame = knobLayer.bounds
-
 
 		CATransaction.commit()
 	}
@@ -206,9 +209,7 @@ final class IOSSwitch: NSControl {
 
 	// MARK: NSResponder
 
-	override var acceptsFirstResponder: Bool {
-		true
-	}
+	override var acceptsFirstResponder: Bool { true }
 
 	override func mouseDown(with theEvent: NSEvent) {
 		guard isEnabled else {

@@ -2,7 +2,7 @@ import Cocoa
 
 final class PreferencesViewController: NSViewController {
 	@IBOutlet private var generalTab: NSButton!
-	var tabViewController: NSTabViewController!
+	private var tabViewController: NSTabViewController!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -10,26 +10,22 @@ final class PreferencesViewController: NSViewController {
 		Analytics.trackView("PreferencesWindow/General")
 	}
 
-	func toggleAllTabsExcept(_ sender: NSButton) {
+	private func toggleAllTabsExcept(_ sender: NSButton) {
 		let allTabs = [
 			generalTab
 		]
 
 		for tab in allTabs {
-			if tab === sender {
-				tab?.state = .on
-			} else {
-				tab?.state = .off
-			}
+			tab?.state = tab === sender ? .on : .off
 		}
 	}
 
-	func switchToTabAtIndex(_ index: Int) {
+	private func switchToTabAtIndex(_ index: Int) {
 		ensureTabViewController()
 		tabViewController.selectedTabViewItemIndex = index
 	}
 
-	func ensureTabViewController() {
+	private func ensureTabViewController() {
 		guard tabViewController == nil else {
 			return
 		}

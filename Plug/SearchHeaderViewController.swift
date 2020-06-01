@@ -7,22 +7,22 @@ final class SearchHeaderViewController: NSViewController {
 		view = NSView()
 
 		let background = BackgroundBorderView()
-		background.background = true
-		background.backgroundColor = NSColor.white
+		background.hasBackground = true
+		background.backgroundColor = .white
 		background.bottomBorder = true
 		background.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
-			make.edges.equalTo(self.view)
+			make.edges.equalTo(view)
 		}
 
 		searchField = NSSearchField()
 		searchField.sendsWholeSearchString = true
 		background.addSubview(searchField)
 		searchField.snp.makeConstraints { make in
-			make.centerY.equalTo(self.view)
-			make.left.equalTo(self.view).offset(10)
-			make.right.equalTo(self.view).offset(-10)
+			make.centerY.equalTo(view)
+			make.left.equalTo(view).offset(10)
+			make.right.equalTo(view).offset(-10)
 		}
 	}
 }

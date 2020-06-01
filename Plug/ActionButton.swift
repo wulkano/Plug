@@ -1,22 +1,22 @@
 import Cocoa
 
 final class ActionButton: SwissArmyButton {
-	var actionButtonCell: ActionButtonCell {
-		cell as! ActionButtonCell
-	}
+	private var actionButtonCell: ActionButtonCell { cell as! ActionButtonCell }
 
-	var horizontalPadding: CGFloat {
-		actionButtonCell.horizontalPadding
-	}
+	var horizontalPadding: CGFloat { actionButtonCell.horizontalPadding }
 
 	var offStateTitle: String {
-		set { actionButtonCell.offStateTitle = newValue }
 		get { actionButtonCell.offStateTitle }
+		set {
+			actionButtonCell.offStateTitle = newValue
+		}
 	}
 
 	var onStateTitle: String {
-		set { actionButtonCell.onStateTitle = newValue }
 		get { actionButtonCell.onStateTitle }
+		set {
+			actionButtonCell.onStateTitle = newValue
+		}
 	}
 
 	override var intrinsicContentSize: CGSize {

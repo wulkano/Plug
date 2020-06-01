@@ -5,11 +5,14 @@ final class VolumeIconView: NSView {
 	@IBInspectable var oneImage: NSImage?
 	@IBInspectable var twoImage: NSImage?
 	@IBInspectable var threeImage: NSImage?
+
 	var volumeState = VolumeState.three {
-		didSet { needsDisplay = true }
+		didSet {
+			needsDisplay = true
+		}
 	}
 
-	@objc dynamic var volume: Double = 1 {
+	@objc dynamic var volume = 1.0 {
 		didSet {
 			setStateForVolume(volume)
 		}
@@ -20,25 +23,31 @@ final class VolumeIconView: NSView {
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
-		let drawImage = getDrawImage()
-		var drawPoint = CGPoint.zero
-		if drawImage != nil {
-			drawPoint.y = floor((bounds.size.height - drawImage!.size.height) / 2)
+		guard let drawImage = getDrawImage() else {
+			return
 		}
-		drawImage?.draw(at: drawPoint, from: dirtyRect, operation: NSCompositingOperation.destinationOver, fraction: opacity)
+
+		var drawPoint = CGPoint.zero
+		drawPoint.y = floor((bounds.size.height - drawImage.size.height) / 2)
+
+		drawImage.draw(
+			at: drawPoint,
+			from: dirtyRect,
+			operation: .destinationOver,
+			fraction: opacity
+		)
 	}
 
 	func setStateForVolume(_ volume: Double) {
 		var newVolumeState: VolumeState
-
 		if volume <= 0 {
-			newVolumeState = VolumeState.off
+			newVolumeState = .off
 		} else if volume <= (1 / 3) {
-			newVolumeState = VolumeState.one
+			newVolumeState = .one
 		} else if volume <= (2 / 3) {
-			newVolumeState = VolumeState.two
+			newVolumeState = .two
 		} else {
-			newVolumeState = VolumeState.three
+			newVolumeState = .three
 		}
 
 		// Avoid redraws if no change

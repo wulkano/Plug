@@ -1,37 +1,31 @@
-//
-//	FlatSlider.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/18/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class FlatSlider: NSSlider {
+final class FlatSlider: NSSlider {
 	override var doubleValue: Double {
 		get {
 			super.doubleValue
 		}
 		set {
-			if !mouseDown {
+			if !isMouseDown {
 				super.doubleValue = newValue
 			}
 		}
 	}
 
-	var flatSliderCell: FlatSliderCell {
-		cell as! FlatSliderCell
+	private var flatSliderCell: FlatSliderCell { cell as! FlatSliderCell }
+
+	private var isMouseDown: Bool {
+		get { flatSliderCell.isMouseDown }
+		set {
+			flatSliderCell.isMouseDown = newValue
+		}
 	}
 
-	var mouseDown: Bool {
-		get { flatSliderCell.mouseDown }
-		set { flatSliderCell.mouseDown = newValue }
-	}
-
-	var mouseInside: Bool {
-		get { flatSliderCell.mouseInside }
-		set { flatSliderCell.mouseInside = newValue }
+	private var isMouseInside: Bool {
+		get { flatSliderCell.isMouseInside }
+		set {
+			flatSliderCell.isMouseInside = newValue
+		}
 	}
 
 	override func viewDidMoveToWindow() {
@@ -39,23 +33,23 @@ class FlatSlider: NSSlider {
 	}
 
 	override func mouseDown(with theEvent: NSEvent) {
-		mouseDown = true
+		isMouseDown = true
 		super.mouseDown(with: theEvent)
 		mouseUp(with: theEvent)
 	}
 
 	override func mouseUp(with theEvent: NSEvent) {
-		mouseDown = false
+		isMouseDown = false
 		super.mouseUp(with: theEvent)
 	}
 
 	override func mouseEntered(with theEvent: NSEvent) {
-		mouseInside = true
+		isMouseInside = true
 		needsDisplay = true
 	}
 
 	override func mouseExited(with theEvent: NSEvent) {
-		mouseInside = false
+		isMouseInside = false
 		needsDisplay = true
 	}
 }

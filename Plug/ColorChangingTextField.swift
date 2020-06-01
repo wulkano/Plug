@@ -1,16 +1,10 @@
-//
-//	ColorChangingTextView.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/16/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class ColorChangingTextField: NSTextField {
+final class ColorChangingTextField: NSTextField {
 	override var objectValue: Any! {
-		didSet { objectValueChanged() }
+		didSet {
+			objectValueChanged()
+		}
 	}
 
 	func objectValueChanged() {
@@ -28,9 +22,11 @@ class ColorChangingTextField: NSTextField {
 	func gradientLocationForNumberValue(_ numberValue: Int) -> CGFloat {
 		let highEnd: CGFloat = 8000
 		var location = CGFloat(numberValue) / highEnd
+
 		if location > 1 {
 			location = 1.0
 		}
+
 		return 1.0 - location
 	}
 

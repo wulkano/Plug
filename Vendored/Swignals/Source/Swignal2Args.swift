@@ -1,11 +1,3 @@
-//
-//	Swignal2Args.swift
-//	Plug
-//
-//	Created by Joseph Neuman on 7/3/16.
-//	Copyright © 2016 Plug. All rights reserved.
-//
-
 import Foundation
 
 public final class Swignal2Args<A, B>: SwignalBase {

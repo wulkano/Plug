@@ -3,7 +3,7 @@ import Alamofire
 import HypeMachineAPI
 
 class TracksDataSource: HypeMachineDataSource {
-	let infiniteLoadTrackCountFromEnd: Int = 7
+	let infiniteLoadTrackCountFromEnd = 7
 
 	func nextPageTracksReceived(response: DataResponse<[HypeMachineAPI.Track]>) {
 		nextPageResponseReceived(response)
@@ -41,21 +41,20 @@ class TracksDataSource: HypeMachineDataSource {
 	}
 
 	func indexOfTrack(_ track: HypeMachineAPI.Track) -> Int? {
-		guard tableContents != nil else {
+		guard let tracks = tableContents as? [HypeMachineAPI.Track] else {
 			return nil
 		}
 
-		let tracks = tableContents as! [HypeMachineAPI.Track]
 		return tracks.firstIndex(of: track)
 	}
 
 	func trackAtIndex(_ index: Int) -> HypeMachineAPI.Track? {
-		guard tableContents != nil else {
+		guard let tracks = tableContents as? [HypeMachineAPI.Track] else {
 			return nil
 		}
 
-		if index >= 0 && index <= tableContents!.count - 1 {
-			return tableContents![index] as? HypeMachineAPI.Track
+		if index >= 0 && index <= tracks.count - 1 {
+			return tracks[index]
 		} else {
 			return nil
 		}
@@ -64,7 +63,7 @@ class TracksDataSource: HypeMachineDataSource {
 	// MARK: HypeMachineDataSource
 
 	override func filterTableContents(_ contents: [Any]) -> [Any] {
-		let tracks = contents as! [HypeMachineAPI.Track]
-		return tracks.filter { !$0.audioUnavailable }
+		let tracks = contents as? [HypeMachineAPI.Track]
+		return tracks?.filter { !$0.audioUnavailable } ?? []
 	}
 }

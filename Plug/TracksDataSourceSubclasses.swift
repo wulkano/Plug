@@ -23,11 +23,11 @@ class PopularTracksDataSource: TracksDataSource {
 
 final class FavoriteTracksDataSource: TracksDataSource {
 	let playlist: FavoritesSectionPlaylist
-	var shuffle: Bool = false
+	var shuffle = false
 
 	init(viewController: DataSourceViewController, playlist: FavoritesSectionPlaylist) {
 		self.playlist = playlist
-		self.shuffle = AudioPlayer.shared.shuffle
+		self.shuffle = AudioPlayer.shared.isShuffle
 		super.init(viewController: viewController)
 	}
 
@@ -35,7 +35,11 @@ final class FavoriteTracksDataSource: TracksDataSource {
 
 	override var nextPageParams: [String: Any] {
 		if shuffle {
-			return ["page": 1 as AnyObject, "count": objectsPerPage as AnyObject, "shuffle": "1" as AnyObject]
+			return [
+				"page": 1,
+				"count": objectsPerPage,
+				"shuffle": "1"
+			]
 		} else {
 			return super.nextPageParams
 		}
@@ -43,13 +47,13 @@ final class FavoriteTracksDataSource: TracksDataSource {
 
 	override func requestNextPageObjects() {
 		switch playlist {
-		case .All:
+		case .all:
 			HypeMachineAPI.Requests.Me.favorites(params: nextPageParams, completionHandler: nextPageTracksReceived)
-		case .One:
+		case .one:
 			HypeMachineAPI.Requests.Me.showPlaylist(id: 1, params: nextPageParams, completionHandler: nextPageTracksReceived)
-		case .Two:
+		case .two:
 			HypeMachineAPI.Requests.Me.showPlaylist(id: 2, params: nextPageParams, completionHandler: nextPageTracksReceived)
-		case .Three:
+		case .three:
 			HypeMachineAPI.Requests.Me.showPlaylist(id: 3, params: nextPageParams, completionHandler: nextPageTracksReceived)
 		}
 	}
@@ -59,17 +63,21 @@ final class FavoriteTracksDataSource: TracksDataSource {
 		if shuffle {
 			allObjectsLoaded = false
 
-			if response.result.isSuccess &&
-				currentPage == 1 {
+			if
+				response.result.isSuccess &&
+				currentPage == 1
+			{
 				if let currentTrack = AudioPlayer.shared.currentTrack {
-					if let indexOfCurrentlyPlayingTrack: Int = (standardTableContents as! [HypeMachineAPI.Track]).firstIndex(of: currentTrack) {
+					if let indexOfCurrentlyPlayingTrack = (standardTableContents as! [HypeMachineAPI.Track]).firstIndex(of: currentTrack) {
 						standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
 					}
+
 					standardTableContents?.insert(AudioPlayer.shared.currentTrack, at: 0)
 					viewController.tableView.insertRows(at: IndexSet(integersIn: NSRange(location: 0, length: 1).toRange()!), withAnimation: NSTableView.AnimationOptions())
 				}
 			}
 		}
+
 		AudioPlayer.shared.findAndSetCurrentlyPlayingTrack()
 	}
 }

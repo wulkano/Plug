@@ -1,21 +1,13 @@
-//
-//	FlatSliderCell.swift
-//	Plug
-//
-//	Created by Alexander Marchant on 7/18/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class FlatSliderCell: NSSliderCell {
+final class FlatSliderCell: NSSliderCell {
 	@IBInspectable var barColor: NSColor = NSColor(red256: 0, green256: 0, blue256: 0, alpha: 0.1)
 	@IBInspectable var barFillColor: NSColor = NSColor(red256: 0, green256: 0, blue256: 0, alpha: 0.3)
 	@IBInspectable var knobSize: CGFloat = 12
 	@IBInspectable var knobFillColor: NSColor = NSColor(red256: 0, green256: 0, blue256: 0, alpha: 0.3)
 
-	var mouseDown: Bool = false
-	var mouseInside: Bool = false
+	var isMouseDown = false
+	var isMouseInside = false
 
 	override func drawBar(inside aRect: CGRect, flipped: Bool) {
 		let knobRect = self.knobRect(flipped: flipped)

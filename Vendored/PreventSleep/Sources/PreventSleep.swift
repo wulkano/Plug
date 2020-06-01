@@ -20,8 +20,8 @@ public final class PreventSleep {
 	}
 
 	deinit {
-		if !self.canSleep() {
-			self.allowSleep()
+		if !canSleep() {
+			allowSleep()
 		}
 	}
 
@@ -31,7 +31,7 @@ public final class PreventSleep {
 	// Returns whether the power assertion was successful or not.
 	@objc
 	public func preventSleep() -> Bool {
-		if !canSleep() {
+		guard canSleep() else {
 			return true
 		}
 
@@ -42,11 +42,7 @@ public final class PreventSleep {
 			&sleepAssertionID!
 		)
 
-		if sleepAssertion == kIOReturnSuccess {
-			return true
-		} else {
-			return false
-		}
+		return sleepAssertion == kIOReturnSuccess
 	}
 
 	// Allow the computer to go to sleep
@@ -54,14 +50,14 @@ public final class PreventSleep {
 	@objc
 	@discardableResult
 	public func allowSleep() -> Bool {
-		if canSleep() {
+		guard !canSleep() else {
 			return true
 		}
 
 		let sleepAssertionRelease = IOPMAssertionRelease(sleepAssertionID!)
 
 		if sleepAssertionRelease == kIOReturnSuccess {
-			/* Updat the sleepAssertion to no longer return as a success
+			/* Update the sleepAssertion to no longer return as a success
 			 * Preferably don't use nil but no other IOReturns' seemed fitting
 			 * https://opensource.apple.com/source/xnu/xnu-792.13.8/iokit/IOKit/IOReturn.h
 			 */
@@ -77,10 +73,6 @@ public final class PreventSleep {
 	@objc
 	public func canSleep() -> Bool {
 		// Check if the assertion already exists
-		if sleepAssertion == kIOReturnSuccess {
-			return false
-		} else {
-			return true
-		}
+		return sleepAssertion == kIOReturnSuccess
 	}
 }

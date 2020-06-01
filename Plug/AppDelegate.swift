@@ -176,13 +176,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@objc
 	func catchTokenErrors(_ notification: Notification) {
-		if let error = (notification as NSNotification).userInfo!["error"] as? HypeMachineAPI.APIError {
-			switch error {
-			case .invalidHMToken:
-				signOut(nil)
-			default:
-				break
-			}
+		guard let error = notification.userInfo?["error"] as? HypeMachineAPI.APIError else {
+			return
+		}
+
+		switch error {
+		case .invalidHMToken:
+			signOut(nil)
+		default:
+			break
 		}
 	}
 
@@ -219,15 +221,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	// MARK: NSApplicationDelegate
 
 	func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-		if Authentication.userSignedIn() {
-			return false
-		} else {
-			return true
-		}
+		!Authentication.userSignedIn()
 	}
 
 	func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-		if flag == false {
+		if !flag {
 			openMainWindow()
 		}
 

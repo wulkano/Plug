@@ -1,22 +1,10 @@
-//
-//	Authentication.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/22/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Foundation
 
 struct Authentication {
 	fileprivate static let usernameHashKey = "WGmV6YEF9VFZBjcx"
 
 	static func userSignedIn() -> Bool {
-		if getUsername() == nil || getToken() == nil {
-			return false
-		} else {
-			return true
-		}
+		!(getUsername() == nil || getToken() == nil)
 	}
 
 	static func getUsername() -> String? {

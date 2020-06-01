@@ -29,7 +29,7 @@ final class MainViewController: NSViewController,
 	}
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
 		let sidebarViewController = SidebarViewController(delegate: self)!
 		addChild(sidebarViewController)
@@ -42,14 +42,14 @@ final class MainViewController: NSViewController,
 		}
 
 		navigationController = NavigationController(rootViewController: nil)
-		NavigationController.sharedInstance = navigationController
+		NavigationController.shared = navigationController
 		addChild(navigationController)
 		view.addSubview(navigationController.view)
 		navigationController.view.snp.makeConstraints { make in
-			make.top.equalTo(self.view)
+			make.top.equalTo(view)
 			make.left.equalTo(sidebarViewController.view.snp.right)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 
 		let footerViewController = FooterViewController()
@@ -58,8 +58,8 @@ final class MainViewController: NSViewController,
 		footerViewController.view.snp.makeConstraints { make in
 			make.height.equalTo(47)
 			make.left.equalTo(sidebarViewController.view.snp.right)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 
@@ -77,7 +77,7 @@ final class MainViewController: NSViewController,
 
 	@objc
 	func displayError(_ notification: Notification) {
-		let error = (notification as NSNotification).userInfo!["error"] as! NSError
+		let error = notification.userInfo!["error"] as! NSError
 		let displayErrorViewController = DisplayErrorViewController(error: error)
 
 		addChild(displayErrorViewController!)
@@ -192,13 +192,13 @@ extension NavigationSection {
 		if let tracksViewController = targetViewController as? TracksViewController {
 			switch self {
 			case .popular:
-				tracksViewController.dataSource = PopularTracksDataSource(viewController: tracksViewController, mode: .Now)
+				tracksViewController.dataSource = PopularTracksDataSource(viewController: tracksViewController, mode: .now)
 			case .favorites:
-				tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController, playlist: .All)
+				tracksViewController.dataSource = FavoriteTracksDataSource(viewController: tracksViewController, playlist: .all)
 			case .latest:
-				tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController, mode: .All)
+				tracksViewController.dataSource = LatestTracksDataSource(viewController: tracksViewController, mode: .all)
 			case .feed:
-				tracksViewController.dataSource = FeedTracksDataSource(viewController: tracksViewController, mode: .All)
+				tracksViewController.dataSource = FeedTracksDataSource(viewController: tracksViewController, mode: .all)
 			default:
 				break
 			}
@@ -215,10 +215,10 @@ extension PopularSectionMode {
 		let menu = NSMenu()
 		menu.title = navigationSection.title
 
-		menu.addItem(withTitle: Now.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: NoRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: OnlyRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: LastWeek.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: now.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: noRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: onlyRemixes.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: lastWeek.title, action: #selector(MainViewController.popularSectionModeChanged(_:)), keyEquivalent: "")
 
 		for item in menu.items {
 			item.target = target
@@ -237,10 +237,10 @@ extension FavoritesSectionPlaylist {
 		let menu = NSMenu()
 		menu.title = navigationSection.title
 
-		menu.addItem(withTitle: All.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: One.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: Two.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: Three.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: all.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: one.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: two.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: three.title, action: #selector(MainViewController.favoritesSectionPlaylistChanged(_:)), keyEquivalent: "")
 
 		for item in menu.items {
 			item.target = target
@@ -259,10 +259,10 @@ extension LatestSectionMode {
 		let menu = NSMenu()
 		menu.title = navigationSection.title
 
-		menu.addItem(withTitle: All.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: Freshest.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: NoRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: OnlyRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: all.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: freshest.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: noRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: onlyRemixes.title, action: #selector(MainViewController.latestSectionModeChanged(_:)), keyEquivalent: "")
 
 		for item in menu.items {
 			item.target = target
@@ -281,9 +281,9 @@ extension FeedSectionMode {
 		let menu = NSMenu()
 		menu.title = navigationSection.title
 
-		menu.addItem(withTitle: All.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: Friends.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: Blogs.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: all.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: friends.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: blogs.title, action: #selector(MainViewController.feedSectionModeChanged(_:)), keyEquivalent: "")
 
 		for item in menu.items {
 			item.target = target
@@ -302,9 +302,9 @@ extension SearchSectionSort {
 		let menu = NSMenu()
 		menu.title = navigationSection.title
 
-		menu.addItem(withTitle: Newest.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: MostFavorites.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
-		menu.addItem(withTitle: MostReblogged.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: newest.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: mostFavorites.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
+		menu.addItem(withTitle: mostReblogged.title, action: #selector(MainViewController.searchSectionSortChanged(_:)), keyEquivalent: "")
 
 		for item in menu.items {
 			item.target = target

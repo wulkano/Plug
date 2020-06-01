@@ -3,11 +3,10 @@ import MediaPlayer
 import HypeMachineAPI
 
 final class MainWindowController: NSWindowController {
-	var trafficButtons: TrafficButtons!
-
-	let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-	let remoteCommandCenter = MPRemoteCommandCenter.shared()
-	var nowPlayingInfo = [String: Any]()
+	private var trafficButtons: TrafficButtons!
+	private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+	private let remoteCommandCenter = MPRemoteCommandCenter.shared()
+	private var nowPlayingInfo = [String: Any]()
 
 	override func windowDidLoad() {
 		super.windowDidLoad()
@@ -25,7 +24,7 @@ final class MainWindowController: NSWindowController {
 	}
 
 	override func keyDown(with theEvent: NSEvent) {
-		// 49 is the key for the space bar
+		// `49` is the key for the space bar.
 		if theEvent.keyCode == 49 {
 			AudioPlayer.shared.playPauseToggle()
 		}
@@ -65,7 +64,7 @@ extension MainWindowController {
 	@objc
 	func togglePlayPause(event: MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
 		AudioPlayer.shared.playPauseToggle()
-		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.playing ? .playing : .paused
+		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.isPlaying ? .playing : .paused
 
 		return .success
 	}
@@ -117,7 +116,7 @@ extension MainWindowController {
 		]
 
 		nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
-		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.playing ? .playing : .paused
+		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.isPlaying ? .playing : .paused
 	}
 
 	@objc
@@ -132,8 +131,8 @@ extension MainWindowController {
 
 	@objc
 	func updateNowPlayingInfoElapsedPlaybackTime(_ notification: Notification) {
-		let progress = ((notification as NSNotification).userInfo!["progress"] as! NSNumber).doubleValue
-		let duration = ((notification as NSNotification).userInfo!["duration"] as! NSNumber).doubleValue
+		let progress = (notification.userInfo!["progress"] as! NSNumber).doubleValue
+		let duration = (notification.userInfo!["duration"] as! NSNumber).doubleValue
 		nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = progress
 		nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = duration
 

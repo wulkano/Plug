@@ -1,24 +1,16 @@
-//
-//	GeneralPreferencesTableCellView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/31/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class GeneralPreferencesTableCellView: NSTableCellView {
+final class GeneralPreferencesTableCellView: NSTableCellView {
 	@IBOutlet var preferenceTitle: NSTextField!
 	@IBOutlet var switchButton: IOSSwitch!
 
 	override var objectValue: Any! {
-		didSet { objectValueChanged() }
+		didSet {
+			objectValueChanged()
+		}
 	}
 
-	var generalPreferenceValue: GeneralPreference {
-		objectValue as! GeneralPreference
-	}
+	var generalPreferenceValue: GeneralPreference { objectValue as! GeneralPreference }
 
 	func objectValueChanged() {
 		guard objectValue != nil else {

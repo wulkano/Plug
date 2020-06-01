@@ -1,11 +1,3 @@
-//
-//	Notifications.swift
-//	Plug
-//
-//	Created by Alex Marchant on 8/14/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 struct Notifications {
@@ -24,19 +16,19 @@ struct Notifications {
 
 
 extension Notifications {
-	static func post(name: Notification.Name, object: AnyObject!, userInfo: [AnyHashable: Any]!) {
+	static func post(name: Notification.Name, object: Any?, userInfo: [AnyHashable: Any]? = nil) {
 		NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
 	}
 
-	static func subscribe(observer: AnyObject!, selector: Selector, name: Notification.Name, object: AnyObject!) {
+	static func subscribe(observer: Any, selector: Selector, name: Notification.Name, object: Any?) {
 		NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: object)
 	}
 
-	static func unsubscribe(observer: AnyObject!, name: Notification.Name, object: AnyObject!) {
+	static func unsubscribe(observer: Any, name: Notification.Name, object: Any?) {
 		NotificationCenter.default.removeObserver(observer, name: name, object: object)
 	}
 
-	static func unsubscribeAll(observer: AnyObject!) {
+	static func unsubscribeAll(observer: Any) {
 		NotificationCenter.default.removeObserver(observer)
 	}
 }

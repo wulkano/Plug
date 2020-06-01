@@ -3,8 +3,10 @@ import Cocoa
 final class SearchViewController: BaseContentViewController {
 	var searchResultsView: NSView!
 
-	var sort: SearchSectionSort = .Newest {
-		didSet { sortChanged() }
+	var sort: SearchSectionSort = .newest {
+		didSet {
+			sortChanged()
+		}
 	}
 
 	var tracksViewController: TracksViewController?
@@ -35,14 +37,17 @@ final class SearchViewController: BaseContentViewController {
 
 	func sortChanged() {
 		guard
-			tracksViewController != nil,
-			tracksViewController!.dataSource != nil
+			let tracksViewController = self.tracksViewController,
+			let searchDataSource = tracksViewController.dataSource as? SearchTracksDataSource
 		else {
 			return
 		}
 
-		let searchDataSource = tracksViewController!.dataSource! as! SearchTracksDataSource
-		tracksViewController!.dataSource = SearchTracksDataSource(viewController: tracksViewController!, sort: sort, searchQuery: searchDataSource.searchQuery)
+		tracksViewController.dataSource = SearchTracksDataSource(
+			viewController: tracksViewController,
+			sort: sort,
+			searchQuery: searchDataSource.searchQuery
+		)
 	}
 
 	// MARK: NSView
@@ -54,9 +59,9 @@ final class SearchViewController: BaseContentViewController {
 		view.addSubview(searchHeaderController.view)
 		searchHeaderController.view.snp.makeConstraints { make in
 			make.height.equalTo(52)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.right.equalTo(view)
 		}
 		searchHeaderController.searchField.target = self
 		searchHeaderController.searchField.action = #selector(SearchViewController.searchFieldSubmit(_:))
@@ -65,9 +70,9 @@ final class SearchViewController: BaseContentViewController {
 		view.addSubview(searchResultsView)
 		searchResultsView.snp.makeConstraints { make in
 			make.top.equalTo(searchHeaderController.view.snp.bottom)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 
@@ -78,7 +83,5 @@ final class SearchViewController: BaseContentViewController {
 		tracksViewController?.refresh()
 	}
 
-	override var shouldShowStickyTrack: Bool {
-		false
-	}
+	override var shouldShowStickyTrack: Bool { false }
 }

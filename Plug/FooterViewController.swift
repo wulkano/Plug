@@ -32,7 +32,7 @@ final class FooterViewController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
 		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
@@ -51,7 +51,7 @@ final class FooterViewController: NSViewController {
 			make.edges.equalTo(backgroundView)
 		}
 
-		volumeIcon = VolumeIconView(frame: CGRect.zero)
+		volumeIcon = VolumeIconView(frame: .zero)
 		volumeIcon.offImage = NSImage(named: "Footer-Volume-Off")
 		volumeIcon.oneImage = NSImage(named: "Footer-Volume-1")
 		volumeIcon.twoImage = NSImage(named: "Footer-Volume-2")
@@ -64,7 +64,7 @@ final class FooterViewController: NSViewController {
 			make.left.equalTo(backgroundView).offset(20)
 		}
 
-		volumeSlider = NSSlider(frame: CGRect.zero)
+		volumeSlider = NSSlider(frame: .zero)
 		let cell = FlatSliderCell()
 		cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
 		cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
@@ -78,12 +78,12 @@ final class FooterViewController: NSViewController {
 			make.left.equalTo(backgroundView).offset(40)
 		}
 
-		shuffleButton = SwissArmyButton(frame: CGRect.zero)
+		shuffleButton = SwissArmyButton(frame: .zero)
 		let shuffleCell = TransparentButtonCell(textCell: "")
 		shuffleCell.allowsSelectedState = true
 		shuffleButton.cell = shuffleCell
 		shuffleButton.isBordered = false
-		shuffleButton.tracksHover = true
+		shuffleButton.isTrackingHover = true
 		shuffleButton.image = NSImage(named: "Footer-Shuffle-Normal")
 		shuffleButton.alternateImage = NSImage(named: "Footer-Shuffle-Active")
 		shuffleButton.target = self
@@ -96,11 +96,11 @@ final class FooterViewController: NSViewController {
 			make.right.equalTo(backgroundView).offset(-8)
 		}
 
-		let forwardButton = SwissArmyButton(frame: CGRect.zero)
+		let forwardButton = SwissArmyButton(frame: .zero)
 		let forwardCell = TransparentButtonCell(textCell: "")
 		forwardButton.cell = forwardCell
 		forwardButton.isBordered = false
-		forwardButton.tracksHover = true
+		forwardButton.isTrackingHover = true
 		forwardButton.image = NSImage(named: "Footer-Forward")
 		forwardButton.target = self
 		forwardButton.action = #selector(FooterViewController.skipForwardButtonClicked(_:))
@@ -112,11 +112,11 @@ final class FooterViewController: NSViewController {
 			make.right.equalTo(shuffleButton.snp.left)
 		}
 
-		let backButton = SwissArmyButton(frame: CGRect.zero)
+		let backButton = SwissArmyButton(frame: .zero)
 		let backCell = TransparentButtonCell(textCell: "")
 		backButton.cell = backCell
 		backButton.isBordered = false
-		backButton.tracksHover = true
+		backButton.isTrackingHover = true
 		backButton.image = NSImage(named: "Footer-Previous")
 		backButton.target = self
 		backButton.action = #selector(FooterViewController.skipBackwardButtonClicked(_:))

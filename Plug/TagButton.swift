@@ -3,12 +3,16 @@ import Cocoa
 final class TagButton: SwissArmyButton {
 	var fillColor: NSColor {
 		get { tagButtonCell.fillColor }
-		set { tagButtonCell.fillColor = newValue }
+		set {
+			tagButtonCell.fillColor = newValue
+		}
 	}
 
 	override var title: String {
 		get { attributedTitle.string }
-		set { attributedTitle = NSAttributedString(string: newValue) }
+		set {
+			attributedTitle = NSAttributedString(string: newValue)
+		}
 	}
 
 	override var attributedTitle: NSAttributedString {
@@ -18,9 +22,7 @@ final class TagButton: SwissArmyButton {
 		}
 	}
 
-	var tagButtonCell: TagButtonCell {
-		cell as! TagButtonCell
-	}
+	var tagButtonCell: TagButtonCell { cell as! TagButtonCell }
 
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)

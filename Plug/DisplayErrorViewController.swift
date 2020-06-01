@@ -20,17 +20,17 @@ final class DisplayErrorViewController: NSViewController {
 	}
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
 		let background = BackgroundBorderView()
-		background.background = true
+		background.hasBackground = true
 		background.backgroundColor = NSColor(red256: 255, green256: 95, blue256: 82)
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
 			make.edges.equalTo(view)
 		}
 
-		errorTitleTextField = NSTextField(frame: CGRect.zero)
+		errorTitleTextField = NSTextField(frame: .zero)
 		errorTitleTextField.stringValue = "Error"
 		errorTitleTextField.isEditable = false
 		errorTitleTextField.isSelectable = false
@@ -47,7 +47,7 @@ final class DisplayErrorViewController: NSViewController {
 			make.right.equalTo(view).offset(-14)
 		}
 
-		errorDescriptionTextField = NSTextField(frame: CGRect.zero)
+		errorDescriptionTextField = NSTextField(frame: .zero)
 		errorDescriptionTextField.stringValue = error.localizedDescription
 		errorDescriptionTextField.isEditable = false
 		errorDescriptionTextField.isSelectable = false

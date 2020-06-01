@@ -27,11 +27,13 @@ final class UnderlinedTabButtonCell: NSButtonCell {
 	override func drawImage(_ image: NSImage, withFrame frame: CGRect, in controlView: NSView) {
 		// Center image vertically
 		var newFrame = frame
+
 		if maxImageHeight > image.size.height {
 			let spacer = (maxImageHeight - image.size.height) / 2
 			newFrame.origin.y += spacer
 			newFrame.size.height += spacer
 		}
+
 		image.draw(in: newFrame)
 	}
 }

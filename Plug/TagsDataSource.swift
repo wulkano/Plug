@@ -3,7 +3,7 @@ import HypeMachineAPI
 
 final class TagsDataSource: SearchableDataSource {
 	func filterTags(_ contents: [Any]) -> [HypeMachineAPI.Tag] {
-		contents.filter { $0 is HypeMachineAPI.Tag } as! [HypeMachineAPI.Tag]
+		contents.filter { $0 is HypeMachineAPI.Tag } as? [HypeMachineAPI.Tag] ?? []
 	}
 
 	func filterUniqueTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
@@ -80,7 +80,6 @@ final class TagsDataSource: SearchableDataSource {
 		super.appendTableContents(groupedTags)
 	}
 }
-
 
 enum TagsListItem {
 	case sectionHeaderItem(SectionHeader)

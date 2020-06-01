@@ -54,7 +54,7 @@ final class KeepAwake: NSObject {
 
 		if keyPath == PreventIdleSleepWhenPlaying {
 			// As the signal observers have already been set up, all we need to do here is to prevent sleep if a track is currently being played.
-			if getUserPreference() && AudioPlayer.shared.playing {
+			if getUserPreference() && AudioPlayer.shared.isPlaying {
 				preventSleep.preventSleep()
 			} else if !getUserPreference() {
 				preventSleep.allowSleep()

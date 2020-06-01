@@ -1,12 +1,3 @@
-//
-//	NSColor+255ColorValues.swift
-//	Plug
-//
-//	Created by Alex Marchant on 6/12/14.
-//	Copyright (c) 2014 Alex Marchant. All rights reserved.
-//
-
-import Foundation
 import Cocoa
 
 extension NSColor {

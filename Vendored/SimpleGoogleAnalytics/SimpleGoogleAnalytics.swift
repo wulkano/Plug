@@ -58,10 +58,11 @@ public final class Manager: NSObject {
 	func sendHit(_ hit: Hit) {
 		let hitParams = hit.params
 		let params = defaultParams().merge(hitParams)
+
 		sessionManager.request(apiBase, method: .post, parameters: params)
 			.response { response in
-				if response.error != nil {
-					print(response.error!)
+				if let error = response.error {
+					print(response.error)
 				}
 			}
 	}
@@ -78,15 +79,15 @@ public final class Manager: NSObject {
 			"sd": screenColors(),
 			"ul": userLanguage()
 		]
+
 		if let uid = userID {
 			params["uid"] = uid
 		}
+
 		return params
 	}
 
-	fileprivate func version() -> String {
-		"1"
-	}
+	fileprivate func version() -> String { "1" }
 
 	fileprivate func clientID() -> String {
 		if let UUID = UserDefaults.standard.string(forKey: GAClientIDKey) {
@@ -144,17 +145,13 @@ protocol Hit {
 
 public struct ScreenviewHit: Hit {
 	let viewName: String
-	var contentDescription: String {
-		viewName
-	}
+	var contentDescription: String { viewName }
 
 	init(viewName: String) {
 		self.viewName = viewName
 	}
 
-	var description: String {
-		"<ScreenviewHit viewName: \(viewName)>"
-	}
+	var description: String { "<ScreenviewHit viewName: \(viewName)>" }
 
 	var params: [String: String] {
 		[
@@ -182,17 +179,20 @@ public struct EventHit: Hit {
 	}
 
 	var params: [String: String] {
-		var params = [String: String]()
-		params["t"] = "event"
-		params["ec"] = category
-		params["ea"] = action
-		if label != nil {
-			params["el"] = label!
+		var parameters = [String: String]()
+		parameters["t"] = "event"
+		parameters["ec"] = category
+		parameters["ea"] = action
+
+		if let label = label {
+			parameters["el"] = label
 		}
-		if value != nil {
-			params["ev"] = value!
+
+		if let value = value {
+			parameters["ev"] = value
 		}
-		return params
+
+		return parameters
 	}
 }
 
@@ -201,15 +201,11 @@ public struct ExceptionHit: Hit {
 	let fatal: Bool?
 
 	var fatalString: String? {
-		if fatal == nil {
+		guard let fatal = self.fatal else {
 			return nil
 		}
 
-		if fatal! {
-			return "1"
-		} else {
-			return "0"
-		}
+		return fatal ? "1" : "0"
 	}
 
 	init(description: String, fatal: Bool?) {
@@ -218,12 +214,15 @@ public struct ExceptionHit: Hit {
 	}
 
 	var params: [String: String] {
-		var params = [String: String]()
-		params["t"] = "exception"
-		params["exd"] = description
+		var parameters = [String: String]()
+
+		parameters["t"] = "exception"
+		parameters["exd"] = description
+
 		if fatal != nil {
-			params["exf"] = fatalString!
+			parameters["exf"] = fatalString!
 		}
-		return params
+
+		return parameters
 	}
 }

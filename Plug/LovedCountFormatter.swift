@@ -1,10 +1,10 @@
 import Cocoa
 
 final class LovedCountFormatter: Formatter {
-	@IBInspectable var capitalize: Bool = false
+	@IBInspectable var shouldCapitalize = false
 
-	override func string(for obj: Any?) -> String? {
-		let count = (obj as! NSNumber).intValue
+	override func string(for object: Any?) -> String? {
+		let count = (object as! NSNumber).intValue
 		var returnString: String?
 
 		if count >= 1000 {
@@ -16,7 +16,7 @@ final class LovedCountFormatter: Formatter {
 			returnString = "\(count)"
 		}
 
-		if capitalize {
+		if shouldCapitalize {
 			returnString = returnString!.uppercased()
 		}
 

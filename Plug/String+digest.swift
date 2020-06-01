@@ -1,21 +1,18 @@
-//
-//	String+.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/10/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Foundation
 import CommonCrypto.CommonHMAC
 
 // TODO: Replace this with CryptoKit when targeting macOS 10.15.
 
 enum HMACAlgorithm {
-	case md5, sha1, sha224, sha256, sha384, sha512
+	case md5
+	case sha1
+	case sha224
+	case sha256
+	case sha384
+	case sha512
 
 	func toCCEnum() -> CCHmacAlgorithm {
-		var result: Int = 0
+		var result = 0
 		switch self {
 		case .md5:
 			result = kCCHmacAlgMD5
@@ -30,6 +27,7 @@ enum HMACAlgorithm {
 		case .sha512:
 			result = kCCHmacAlgSHA512
 		}
+
 		return CCHmacAlgorithm(result)
 	}
 
@@ -49,23 +47,24 @@ enum HMACAlgorithm {
 		case .sha512:
 			result = CC_SHA512_DIGEST_LENGTH
 		}
+
 		return Int(result)
 	}
 }
 
 extension String {
 	func digest(_ algorithm: HMACAlgorithm, key: String) -> String! {
-		let str = cString(using: String.Encoding.utf8)
-		let strLen = Int(lengthOfBytes(using: String.Encoding.utf8))
-		let digestLen = algorithm.digestLength()
-		let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
-		let keyStr = key.cString(using: String.Encoding.utf8)
-		let keyLen = Int(key.lengthOfBytes(using: String.Encoding.utf8))
+		let string = cString(using: .utf8)
+		let stringLength = Int(lengthOfBytes(using: .utf8))
+		let digestLength = algorithm.digestLength()
+		let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLength)
+		let keyString = key.cString(using: .utf8)
+		let keyLength = Int(key.lengthOfBytes(using: .utf8))
 
-		CCHmac(algorithm.toCCEnum(), keyStr!, keyLen, str!, strLen, result)
+		CCHmac(algorithm.toCCEnum(), keyString!, keyLength, string!, stringLength, result)
 
 		let hash = NSMutableString()
-		for index in 0..<digestLen {
+		for index in 0..<digestLength {
 			hash.appendFormat("%02x", result[index])
 		}
 

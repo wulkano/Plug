@@ -18,7 +18,7 @@ final class ForgotPasswordButtonCell: SwissArmyButtonCell {
 		let color = NSColor.white.withAlphaComponent(alpha)
 		let range = NSRange(location: 0, length: mutableTitle.length)
 
-		mutableTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+		mutableTitle.addAttribute(.foregroundColor, value: color, range: range)
 
 		return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
 	}

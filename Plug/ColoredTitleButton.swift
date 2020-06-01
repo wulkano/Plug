@@ -1,7 +1,7 @@
 import Cocoa
 
 final class ColoredTitleButton: NSButton {
-	@IBInspectable var textColor: NSColor = NSColor.white {
+	@IBInspectable var textColor: NSColor = .white {
 		didSet {
 			applyTextColor()
 		}
@@ -16,6 +16,6 @@ final class ColoredTitleButton: NSButton {
 	func applyTextColor() {
 		let textToStyle = NSMutableAttributedString(attributedString: attributedTitle)
 		let range = NSRange(location: 0, length: textToStyle.length)
-		textToStyle.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: range)
+		textToStyle.addAttribute(.foregroundColor, value: textColor, range: range)
 	}
 }

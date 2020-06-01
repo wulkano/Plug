@@ -1,11 +1,3 @@
-//
-//	Swignal5Args.swift
-//	Plug
-//
-//	Created by Joseph Neuman on 7/6/16.
-//	Copyright © 2016 Plug. All rights reserved.
-//
-
 import Foundation
 
 public final class Swignal5Args<A, B, C, D, E>: SwignalBase {

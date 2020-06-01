@@ -25,7 +25,10 @@ final class SidebarOverlayView: NSView {
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
-		if window != nil && !window!.isMainWindow {
+		if
+			let window = self.window,
+			!window.isMainWindow
+		{
 			overlayColor.set()
 			dirtyRect.fill()
 		}

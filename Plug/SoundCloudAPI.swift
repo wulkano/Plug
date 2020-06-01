@@ -1,19 +1,11 @@
-//
-//	SoundCloudAPI.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Foundation
 import Alamofire
 
-let ClientID = "2c3c67194673f9968b7c8b5f2b50d486"
+let clientID = "2c3c67194673f9968b7c8b5f2b50d486"
 
 extension DataRequest {
 	@discardableResult
-	func responseSoundcloudURL(
+	fileprivate func responseSoundcloudURL(
 		queue: DispatchQueue? = nil,
 		completionHandler: @escaping (DataResponse<URL>) -> Void
 	) -> Self {
@@ -49,7 +41,7 @@ struct SoundCloudAPI {
 		static func permalink(_ trackId: String, completionHandler: @escaping (DataResponse<URL>) -> Void) -> DataRequest {
 			let url = "https://api.soundcloud.com/tracks/\(trackId).json"
 
-			return Alamofire.request(url, method: .get, parameters: ["client_id": ClientID])
+			return Alamofire.request(url, method: .get, parameters: ["client_id": clientID])
 				.validate()
 				.responseSoundcloudURL(completionHandler: completionHandler)
 		}

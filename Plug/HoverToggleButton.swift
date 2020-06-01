@@ -7,12 +7,17 @@ final class HoverToggleButton: NSButton {
 	@IBInspectable var offHoverImage: NSImage?
 
 	var trackingArea: NSTrackingArea?
-	var mouseInside: Bool = false {
-		didSet { needsDisplay = true }
+
+	var isMouseInside = false {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
-	var selected: Bool = false {
-		didSet { needsDisplay = true }
+	var isSelected = false {
+		didSet {
+			needsDisplay = true
+		}
 	}
 
 	override func draw(_ dirtyRect: CGRect) {
@@ -24,15 +29,22 @@ final class HoverToggleButton: NSButton {
 			drawPosition.origin.y = -(bounds.size.height - drawImage!.size.height) / 2
 		}
 
-		drawImage?.draw(in: drawPosition, from: dirtyRect, operation: NSCompositingOperation.sourceOver, fraction: 1, respectFlipped: true, hints: nil)
+		drawImage?.draw(
+			in: drawPosition,
+			from: dirtyRect,
+			operation: .sourceOver,
+			fraction: 1,
+			respectFlipped: true,
+			hints: nil
+		)
 	}
 
 	func getDrawImage() -> NSImage? {
-		if selected && mouseInside {
+		if isSelected && isMouseInside {
 			return onHoverImage
-		} else if selected {
+		} else if isSelected {
 			return onImage
-		} else if mouseInside {
+		} else if isMouseInside {
 			return offHoverImage
 		} else {
 			return offImage
@@ -53,16 +65,20 @@ final class HoverToggleButton: NSButton {
 			trackingArea = nil
 		}
 
-		let options: NSTrackingArea.Options = [.inVisibleRect, .activeAlways, .mouseEnteredAndExited]
-		trackingArea = NSTrackingArea(rect: CGRect.zero, options: options, owner: self, userInfo: nil)
+		let options: NSTrackingArea.Options = [
+			.inVisibleRect,
+			.activeAlways,
+			.mouseEnteredAndExited
+		]
+		trackingArea = NSTrackingArea(rect: .zero, options: options, owner: self, userInfo: nil)
 		addTrackingArea(trackingArea!)
 	}
 
 	override func mouseEntered(with theEvent: NSEvent) {
-		mouseInside = true
+		isMouseInside = true
 	}
 
 	override func mouseExited(with theEvent: NSEvent) {
-		mouseInside = false
+		isMouseInside = false
 	}
 }

@@ -21,7 +21,9 @@ extension Tag: ResponseObjectSerializable, ResponseCollectionSerializable {
 		guard
 			let representation = representation as? [String: Any],
 			let name = representation["tag_name"] as? String
-		else { return nil }
+		else {
+			return nil
+		}
 
 		self.name = name
 		self.priority = representation["priority"] as? Bool ?? false

@@ -4,12 +4,14 @@ import SnapKit
 // TODO: View controller should only remove parent after view is removed.
 
 final class NavigationController: NSViewController {
-	static var sharedInstance: NavigationController?
+	static var shared: NavigationController?
 
-	fileprivate var _viewControllers: [BaseContentViewController]
+	private var _viewControllers: [BaseContentViewController]
 	var viewControllers: [BaseContentViewController] {
 		get { _viewControllers }
-		set { setViewControllers(newValue, animated: false) }
+		set {
+			setViewControllers(newValue, animated: false)
+		}
 	}
 
 	var visibleViewController: BaseContentViewController
@@ -17,6 +19,7 @@ final class NavigationController: NSViewController {
 		guard let topViewController = viewControllers.last else {
 			fatalError("No top view controller")
 		}
+
 		return topViewController
 	}
 
@@ -29,6 +32,7 @@ final class NavigationController: NSViewController {
 		} else {
 			self._viewControllers = [BaseContentViewController(title: "Dummy controller", analyticsViewName: "Dummy controller")!]
 		}
+
 		self.visibleViewController = _viewControllers.first!
 
 		super.init(nibName: nil, bundle: nil)
@@ -39,24 +43,24 @@ final class NavigationController: NSViewController {
 	}
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
 		navigationBarController = NavigationBarController(navigationController: self)
 		view.addSubview(navigationBarController.view)
 		navigationBarController.view.snp.makeConstraints { make in
 			make.height.equalTo(36)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.right.equalTo(view)
 		}
 
-		contentView = NSView(frame: CGRect.zero)
+		contentView = NSView(frame: .zero)
 		view.addSubview(contentView)
 		contentView.snp.makeConstraints { make in
-			make.top.equalTo(self.navigationBarController.view.snp.bottom)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(navigationBarController.view.snp.bottom)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 
@@ -94,9 +98,15 @@ final class NavigationController: NSViewController {
 			fatalError("Can't set viewControllers to empty array")
 		}
 
-		_viewControllers.forEach { $0.removeFromParent() }
+		_viewControllers.forEach {
+			$0.removeFromParent()
+		}
+
 		_viewControllers = newViewControllers
-		_viewControllers.forEach { self.addChild($0) }
+
+		_viewControllers.forEach {
+			addChild($0)
+		}
 
 		updateVisibleViewControllerAnimated(animated)
 
@@ -105,7 +115,7 @@ final class NavigationController: NSViewController {
 
 	// MARK: Private
 
-	fileprivate func updateVisibleViewControllerAnimated(_ animated: Bool) {
+	private func updateVisibleViewControllerAnimated(_ animated: Bool) {
 		let newVisibleViewController = topViewController
 		let oldVisibleViewController = visibleViewController
 
@@ -136,14 +146,15 @@ final class NavigationController: NSViewController {
 		visibleViewController = newVisibleViewController
 	}
 
-	fileprivate func constrainViewControllerToContentView(_ viewController: BaseContentViewController) {
+	private func constrainViewControllerToContentView(_ viewController: BaseContentViewController) {
 		let closure = { (make: ConstraintMaker) -> Void in
 			make.edges.equalTo(self.contentView)
 		}
+
 		makeOrRemakeConstraints(viewController, closure: closure)
 	}
 
-	fileprivate func constrainViewControllerToSideOfContentView(_ viewController: BaseContentViewController, side: ContentViewSide) {
+	private func constrainViewControllerToSideOfContentView(_ viewController: BaseContentViewController, side: ContentViewSide) {
 		let closure = { (make: ConstraintMaker) -> Void in
 			make.top.bottom.width.equalTo(self.contentView)
 			switch side {
@@ -153,10 +164,11 @@ final class NavigationController: NSViewController {
 				make.left.equalTo(self.contentView.snp.right)
 			}
 		}
+
 		makeOrRemakeConstraints(viewController, closure: closure)
 	}
 
-	fileprivate func startAnimation(completionHandler: @escaping () -> Void) {
+	private func startAnimation(completionHandler: @escaping () -> Void) {
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = 0.25
 			context.allowsImplicitAnimation = true
@@ -167,7 +179,7 @@ final class NavigationController: NSViewController {
 		})
 	}
 
-	fileprivate func makeOrRemakeConstraints(_ viewController: BaseContentViewController, closure: (_ make: ConstraintMaker) -> Void) {
+	private func makeOrRemakeConstraints(_ viewController: BaseContentViewController, closure: (_ make: ConstraintMaker) -> Void) {
 		if !viewController.view.constraints.isEmpty {
 			viewController.view.snp.remakeConstraints(closure)
 		} else {
@@ -175,7 +187,8 @@ final class NavigationController: NSViewController {
 		}
 	}
 
-	fileprivate enum ContentViewSide {
-		case left, right
+	private enum ContentViewSide {
+		case left
+		case right
 	}
 }

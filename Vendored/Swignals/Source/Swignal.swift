@@ -1,11 +1,3 @@
-//
-//	Swignal.swift
-//	Plug
-//
-//	Created by Joseph Neuman on 7/2/16.
-//	Copyright © 2016 Plug. All rights reserved.
-//
-
 import Foundation
 
 public class SwignalBase {

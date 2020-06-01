@@ -1,7 +1,7 @@
 import Cocoa
 
 final class PreferencesWindowController: NSWindowController {
-	var trafficButtons: TrafficButtons!
+	private var trafficButtons: TrafficButtons!
 
 	override func windowDidLoad() {
 		super.windowDidLoad()

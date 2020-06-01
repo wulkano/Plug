@@ -3,7 +3,6 @@ import Cocoa
 final class SignUpButtonCell: SwissArmyButtonCell {
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
 		var alpha: CGFloat
-
 		if isMouseDown {
 			alpha = 1
 		} else if isMouseInside {
@@ -38,7 +37,7 @@ final class SignUpButtonCell: SwissArmyButtonCell {
 		let color = NSColor.white.withAlphaComponent(alpha)
 		let range = NSRange(location: 0, length: mutableTitle.length)
 
-		mutableTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+		mutableTitle.addAttribute(.foregroundColor, value: color, range: range)
 
 		return super.drawTitle(mutableTitle, withFrame: frame, in: controlView)
 	}

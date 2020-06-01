@@ -2,7 +2,7 @@ import Cocoa
 
 final class SidebarViewController: NSViewController {
 	let delegate: SidebarViewControllerDelegate
-	var buttons: [NavigationSectionButton] = []
+	var buttons = [NavigationSectionButton]()
 
 	init?(delegate: SidebarViewControllerDelegate) {
 		self.delegate = delegate
@@ -18,7 +18,7 @@ final class SidebarViewController: NSViewController {
 		while let navigationSection = NavigationSection(rawValue: number) {
 			let button = NavigationSectionButton(navigationSection: navigationSection)
 			button.target = self
-			button.action = #selector(SidebarViewController.navigationSectionButtonClicked(_:))
+			button.action = #selector(navigationSectionButtonClicked(_:))
 			superview.addSubview(button)
 
 			button.snp.makeConstraints { make in
@@ -53,24 +53,20 @@ final class SidebarViewController: NSViewController {
 
 	func toggleAllButtonsOffExcept(_ sender: AnyObject) {
 		for button in buttons {
-			if button === sender {
-				button.state = .on
-			} else {
-				button.state = .off
-			}
+			button.state = button === sender ? .on : .off
 		}
 	}
 
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
-		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantDark)
+		backgroundView.appearance = NSAppearance(named: .vibrantDark)
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
-			make.edges.equalTo(self.view)
+			make.edges.equalTo(view)
 		}
 
 		loadButtons(superview: backgroundView)

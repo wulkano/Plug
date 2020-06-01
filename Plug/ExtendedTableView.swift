@@ -1,18 +1,10 @@
-//
-//	ExtendedTableView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/5/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
-	@IBInspectable var tracksMouseEnterExit: Bool = false
-	@IBInspectable var pullToRefresh: Bool = false
+	@IBInspectable var isTrackingMouseEnterExit = false
+	@IBInspectable var hasPullToRefresh = false
 
-	var scrollEnabled = true
+	var isScrollEnabled = true
 
 	var isScrolling = false
 	var isScrollingTimer: Interval?
@@ -20,16 +12,12 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	var trackingArea: NSTrackingArea?
 
 	var extendedDelegate: ExtendedTableViewDelegate?
-	var mouseInsideRow: Int = -1
+	var mouseInsideRow = -1
 
-	var clipView: NSClipView {
-		superview as! NSClipView
-	}
+	var clipView: NSClipView { superview as! NSClipView }
 
 	var previousVisibleRect = CGRect.zero
-	var scrollView: NSScrollView? {
-		clipView.superview as? NSScrollView
-	}
+	var scrollView: NSScrollView? { clipView.superview as? NSScrollView }
 
 	var visibleRows: [Int] {
 		let trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
@@ -67,9 +55,9 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if trackingArea != nil {
-			removeTrackingArea(trackingArea!)
-			trackingArea = nil
+		if let trackingArea = self.trackingArea {
+			removeTrackingArea(trackingArea)
+			self.trackingArea = nil
 		}
 
 		let options: NSTrackingArea.Options = [.activeAlways, .mouseEnteredAndExited, .mouseMoved, .assumeInside]
@@ -255,6 +243,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 			} else {
 				extendedDelegate?.tableView(self, rowDidStartToShow: row, direction: shownDirection)
 			}
+
 			previousRowDidStartToShow = row
 		}
 	}
@@ -290,6 +279,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 			} else {
 				extendedDelegate?.tableView(self, rowDidStartToHide: row, direction: hiddenDirection)
 			}
+
 			previousRowDidStartToHide = row
 		}
 	}
@@ -329,6 +319,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 			} else {
 				extendedDelegate?.tableView(self, rowDidShow: row, direction: shownDirection)
 			}
+
 			previousRowDidShow = row
 		}
 	}
@@ -368,6 +359,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 			} else {
 				extendedDelegate?.tableView(self, rowDidHide: row, direction: hiddenDirection)
 			}
+
 			previousRowDidHide = row
 		}
 	}
@@ -399,11 +391,15 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	// MARK: insets
 
 	var contentInsets: NSEdgeInsets = NSEdgeInsetsZero {
-		didSet { updateContentInsets() }
+		didSet {
+			updateContentInsets()
+		}
 	}
 
 	var scrollerInsets: NSEdgeInsets = NSEdgeInsetsZero {
-		didSet { updateScrollerInsets() }
+		didSet {
+			updateScrollerInsets()
+		}
 	}
 
 	func updateContentInsets() {

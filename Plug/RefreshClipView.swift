@@ -1,27 +1,17 @@
-//
-//	RefreshClipVIew.swift
-//	Plug
-//
-//	Created by Alex Marchant on 7/13/15.
-//	Copyright (c) 2015 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class RefreshClipView: NSClipView {
-	var refreshScrollView: RefreshScrollView {
-		superview! as! RefreshScrollView
-	}
+final class RefreshClipView: NSClipView {
+	private var refreshScrollView: RefreshScrollView { superview as! RefreshScrollView }
 
-	var refreshHeaderController: RefreshHeaderViewController {
+	private var refreshHeaderController: RefreshHeaderViewController {
 		refreshScrollView.refreshHeaderController
 	}
 
 	override var documentRect: CGRect {
 		var newRect = super.documentRect
 
-		// If refreshing expand the rect to fit the refresh header
-		// in the frame (without scroll elaticity)
+		// If refreshing, expand the rect to fit the refresh header
+		// in the frame (without scroll elaticity).
 		if refreshHeaderController.state == .updating {
 			newRect.size.height += refreshHeaderController.viewHeight
 			newRect.origin.y -= refreshHeaderController.viewHeight
@@ -29,14 +19,4 @@ class RefreshClipView: NSClipView {
 
 		return newRect
 	}
-
-//	  override func constrainBoundsRect(proposedBounds: CGRect) -> CGRect {
-//		  var constrainedBounds = super.constrainBoundsRect(proposedBounds)
-//		  println("proposed	   \(proposedBounds)")
-	////		if constrainedBounds.origin.y < 0 {
-//		  constrainedBounds.origin.y += refreshScrollView.refreshHeaderHeight
-	////		}
-//		  println("constrained \(constrainedBounds)")
-//		  return constrainedBounds
-//	  }
 }

@@ -1,11 +1,3 @@
-//
-//	FriendTableCellView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/5/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 import HypeMachineAPI
 import Alamofire
@@ -21,9 +13,7 @@ class UserTableCellView: IOSStyleTableCellView {
 		}
 	}
 
-	var user: HypeMachineAPI.User {
-		objectValue as! HypeMachineAPI.User
-	}
+	var user: HypeMachineAPI.User { objectValue as! HypeMachineAPI.User }
 
 	func objectValueChanged() {
 		guard objectValue != nil else {
@@ -46,12 +36,12 @@ class UserTableCellView: IOSStyleTableCellView {
 	func updateImage() {
 		avatarView.image = NSImage(named: "Avatar-Placeholder")
 
-		guard user.avatarURL != nil else {
+		guard let avatarURL = user.avatarURL else {
 			return
 		}
 
 		Alamofire
-			.request(user.avatarURL!, method: .get)
+			.request(avatarURL, method: .get)
 			.validate()
 			.responseImage { response in
 				switch response.result {
@@ -59,7 +49,7 @@ class UserTableCellView: IOSStyleTableCellView {
 					self.avatarView.image = image
 				case let .failure(error):
 					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-					Swift.print(error as NSError)
+					print(error as NSError)
 				}
 			}
 	}

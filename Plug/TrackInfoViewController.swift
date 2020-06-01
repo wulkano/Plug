@@ -12,12 +12,12 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBOutlet var loveButton: TransparentButton!
 
 	override var representedObject: Any! {
-		didSet { representedObjectChanged() }
+		didSet {
+			representedObjectChanged()
+		}
 	}
 
-	var representedTrack: HypeMachineAPI.Track {
-		representedObject as! HypeMachineAPI.Track
-	}
+	var representedTrack: HypeMachineAPI.Track { representedObject as! HypeMachineAPI.Track }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -68,7 +68,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	func loadSingleTagView(_ tag: HypeMachineAPI.Tag) {
 		let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "TracksViewController") as! TracksViewController
 		viewController.title = tag.name
-		NavigationController.sharedInstance!.pushViewController(viewController, animated: true)
+		NavigationController.shared!.pushViewController(viewController, animated: true)
 		viewController.dataSource = TagTracksDataSource(viewController: viewController, tagName: tag.name)
 	}
 
@@ -106,6 +106,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 		var newTrack = representedTrack
 		newTrack.loved = loved
 		representedObject = newTrack
+
 		if loved {
 			Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
 		} else {
@@ -121,7 +122,6 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 		updatePostedCount()
 		updatePostInfo()
 		updateLoveButton()
-//		  updateTags()
 	}
 
 	func updateTitle() {

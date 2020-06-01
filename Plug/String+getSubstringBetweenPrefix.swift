@@ -1,11 +1,3 @@
-//
-//	String.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/7/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
 extension String {
@@ -30,8 +22,8 @@ extension String {
 
 		if let substringWithoutPrefix = getSubstringAfterPrefix() {
 			return getSubstringBeforeSuffix(substringWithoutPrefix)
-		} else {
-			return nil
 		}
+
+		return nil
 	}
 }

@@ -1,7 +1,7 @@
 import Cocoa
 
 final class TransparentButton: NSButton {
-	@IBInspectable var selectable: Bool = false
+	@IBInspectable var isSelectable = false
 	@IBInspectable var selectedImage: NSImage?
 	@IBInspectable var unselectedImage: NSImage?
 
@@ -10,19 +10,19 @@ final class TransparentButton: NSButton {
 	@IBInspectable var mouseInsideOpacity: CGFloat = 0.7
 	@IBInspectable var inactiveOpacity: CGFloat = 0.3
 
-	var isMouseInside: Bool = false {
+	var isMouseInside = false {
 		didSet {
 			needsDisplay = true
 		}
 	}
 
-	var isMouseDown: Bool = false {
+	var isMouseDown = false {
 		didSet {
 			needsDisplay = true
 		}
 	}
 
-	var isSelected: Bool = false {
+	var isSelected = false {
 		didSet {
 			needsDisplay = true
 		}
@@ -38,7 +38,14 @@ final class TransparentButton: NSButton {
 			drawPosition.origin.y = -(bounds.size.height - drawImage!.size.height) / 2
 		}
 
-		drawImage?.draw(in: drawPosition, from: dirtyRect, operation: NSCompositingOperation.sourceOver, fraction: drawOpacity, respectFlipped: true, hints: nil)
+		drawImage?.draw(
+			in: drawPosition,
+			from: dirtyRect,
+			operation: .sourceOver,
+			fraction: drawOpacity,
+			respectFlipped: true,
+			hints: nil
+		)
 	}
 
 	override func viewDidMoveToWindow() {
@@ -46,7 +53,7 @@ final class TransparentButton: NSButton {
 	}
 
 	func getDrawImage() -> NSImage? {
-		if selectable && isSelected {
+		if isSelectable && isSelected {
 			return selectedImage
 		} else {
 			return unselectedImage
@@ -54,7 +61,7 @@ final class TransparentButton: NSButton {
 	}
 
 	func getDrawOpacity() -> CGFloat {
-		if selectable && isSelected {
+		if isSelectable && isSelected {
 			return selectedOpacity
 		} else if isMouseDown {
 			return mouseDownOpacity
@@ -66,11 +73,7 @@ final class TransparentButton: NSButton {
 	}
 
 	func toggleSelected() {
-		if isSelected {
-			isSelected = false
-		} else {
-			isSelected = true
-		}
+		isSelected.toggle()
 	}
 
 	override func mouseDown(with theEvent: NSEvent) {

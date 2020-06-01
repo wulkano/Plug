@@ -1,38 +1,27 @@
-//
-//	BlogImageView.swift
-//	Plug
-//
-//	Created by Alex Marchant on 9/5/14.
-//	Copyright (c) 2014 Plug. All rights reserved.
-//
-
 import Cocoa
 
-class BlogImageView: NSImageView {
-	var sideLength: CGFloat {
-		image!.size.width
-	}
-
-	var halfSideLength: CGFloat {
-		sideLength / 2
-	}
+final class BlogImageView: NSImageView {
+	private var sideLength: CGFloat { image!.size.width }
+	private var halfSideLength: CGFloat { sideLength / 2 }
 
 	override func draw(_ dirtyRect: CGRect) {
-		if image != nil {
-			NSGraphicsContext.saveGraphicsState()
-
-			let imageRect = calulateImageRect()
-			let clippingRect = calculateClippingRect()
-			let path = NSBezierPath(roundedRect: clippingRect, xRadius: halfSideLength, yRadius: halfSideLength)
-			path.addClip()
-
-			image!.draw(in: bounds, from: imageRect, operation: .sourceOver, fraction: 1)
-
-			NSGraphicsContext.restoreGraphicsState()
+		guard let image = self.image else {
+			return
 		}
+
+		NSGraphicsContext.saveGraphicsState()
+
+		let imageRect = calulateImageRect()
+		let clippingRect = calculateClippingRect()
+		let path = NSBezierPath(roundedRect: clippingRect, xRadius: halfSideLength, yRadius: halfSideLength)
+		path.addClip()
+
+		image.draw(in: bounds, from: imageRect, operation: .sourceOver, fraction: 1)
+
+		NSGraphicsContext.restoreGraphicsState()
 	}
 
-	func calulateImageRect() -> CGRect {
+	private func calulateImageRect() -> CGRect {
 		var rect = CGRect.zero
 		let croppedHeight = image!.size.height / 1.333_33
 
@@ -44,7 +33,7 @@ class BlogImageView: NSImageView {
 		return rect
 	}
 
-	func calculateClippingRect() -> CGRect {
+	private func calculateClippingRect() -> CGRect {
 		var rect = CGRect.zero
 		let veritcalOffset = -(frame.size.width - frame.size.height) / 2
 

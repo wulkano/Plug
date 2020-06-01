@@ -23,10 +23,15 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 
 final class NavigationBarController: NSViewController {
+	enum TransitionDirection {
+		case leftToRight
+		case rightToLeft
+	}
+
 	let navigationController: NavigationController
 
 	var items: [NavigationItem]?
-	var topItem: NavigationItem? { items?.last}
+	var topItem: NavigationItem? { items?.last }
 
 	var backItem: NavigationItem? {
 		if items == nil || items!.count < 2 {
@@ -180,9 +185,9 @@ final class NavigationBarController: NSViewController {
 	// MARK: NSViewController
 
 	override func loadView() {
-		view = NSView(frame: CGRect.zero)
+		view = NSView(frame: .zero)
 
-		backgroundView = NSVisualEffectView(frame: CGRect.zero)
+		backgroundView = NSVisualEffectView(frame: .zero)
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
 			make.edges.equalTo(self.view)
@@ -203,9 +208,4 @@ final class NavigationBarController: NSViewController {
 	func backButtonClicked(_ sender: NSButton) {
 		navigationController.popViewControllerAnimated(true)
 	}
-}
-
-enum TransitionDirection {
-	case leftToRight
-	case rightToLeft
 }

@@ -1,9 +1,24 @@
 import Cocoa
 import HypeMachineAPI
 
+enum BlogDirectoryItem {
+	case sectionHeaderItem(SectionHeader)
+	case blogItem(HypeMachineAPI.Blog)
+
+	static func fromObject(_ object: Any) -> BlogDirectoryItem? {
+		if let blogItem = object as? HypeMachineAPI.Blog {
+			return BlogDirectoryItem.blogItem(blogItem)
+		} else if let sectionHeader = object as? SectionHeader {
+			return BlogDirectoryItem.sectionHeaderItem(sectionHeader)
+		}
+
+		return nil
+	}
+}
+
 final class BlogsDataSource: SearchableDataSource {
 	func filterBlogs(_ contents: [Any]) -> [HypeMachineAPI.Blog] {
-		contents.filter { $0 is HypeMachineAPI.Blog } as! [HypeMachineAPI.Blog]
+		contents.filter { $0 is HypeMachineAPI.Blog } as? [HypeMachineAPI.Blog] ?? []
 	}
 
 	func filterUniqueBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
@@ -67,9 +82,7 @@ final class BlogsDataSource: SearchableDataSource {
 
 	// MARK: HypeMachineDataSource
 
-	override var singlePage: Bool {
-		true
-	}
+	override var singlePage: Bool { true }
 
 	override func requestNextPageObjects() {
 		HypeMachineAPI.Requests.Blogs.index { response in
@@ -81,20 +94,5 @@ final class BlogsDataSource: SearchableDataSource {
 		let blogs = contents as! [HypeMachineAPI.Blog]
 		let groupedBlogs = groupBlogs(blogs)
 		super.appendTableContents(groupedBlogs)
-	}
-}
-
-enum BlogDirectoryItem {
-	case sectionHeaderItem(SectionHeader)
-	case blogItem(HypeMachineAPI.Blog)
-
-	static func fromObject(_ object: Any) -> BlogDirectoryItem? {
-		if object is HypeMachineAPI.Blog {
-			return BlogDirectoryItem.blogItem(object as! HypeMachineAPI.Blog)
-		} else if object is SectionHeader {
-			return BlogDirectoryItem.sectionHeaderItem(object as! SectionHeader)
-		} else {
-			return nil
-		}
 	}
 }
