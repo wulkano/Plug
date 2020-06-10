@@ -109,7 +109,7 @@ public struct Track {
 	}
 
 	public func hypeMachineURL() -> URL {
-		URL(string: "http://hypem.com/track/\(id)")!
+		URL(string: "https://hypem.com/track/\(id)")!
 	}
 
 	public enum ImageSize {

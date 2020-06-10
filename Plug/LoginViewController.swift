@@ -93,7 +93,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 	@IBAction private func signUpButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Sign Up")
-		NSWorkspace.shared.open(URL(string: "http://hypem.com/?signup=1")!)
+		NSWorkspace.shared.open(URL(string: "https://hypem.com/?signup=1")!)
 	}
 
 	// MARK: NSViewController
