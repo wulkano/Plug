@@ -29,10 +29,6 @@ final class BlogViewController: BaseContentViewController {
 		loadBlog(blogID)
 	}
 
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-
 	func setup() {
 		navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(BlogViewController.followButtonClicked(_:)))
 	}

@@ -54,6 +54,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		setup()
 	}
 
+	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -185,9 +186,9 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let closedWidth: CGFloat = 0
 
 		if isMouseInside || (track.loved && showsLoveButton) {
-			loveContainerWidthConstraint.updateOffset(amount: openWidth)
+			loveContainerWidthConstraint.update(offset: openWidth)
 		} else {
-			loveContainerWidthConstraint.updateOffset(amount: closedWidth)
+			loveContainerWidthConstraint.update(offset: closedWidth)
 		}
 	}
 
@@ -196,9 +197,9 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let closedWidth: CGFloat = 0
 
 		if isMouseInside {
-			infoContainerWidthConstraint.updateOffset(amount: openWidth)
+			infoContainerWidthConstraint.update(offset: openWidth)
 		} else {
-			infoContainerWidthConstraint.updateOffset(amount: closedWidth)
+			infoContainerWidthConstraint.update(offset: closedWidth)
 		}
 	}
 
@@ -294,6 +295,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		trackInfoWindowController!.showWindow(self)
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func loveButtonClicked(_ sender: TransparentButton) {
 		Analytics.trackButtonClick("Playlist Heart")
 		let oldLovedValue = track.loved
@@ -315,16 +317,19 @@ class TrackTableCellView: IOSStyleTableCellView {
 		}
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func progressSliderDragged(_ sender: NSSlider) {
 		AudioPlayer.shared.seekToPercent(sender.doubleValue)
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func artistButtonClicked(_ sender: NSButton) {
 		let viewController = TracksViewController(type: .loveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
 		viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func titleButtonClicked(_ sender: NSButton) {
 		print("Track title clicked: \(track.title)")
 	}

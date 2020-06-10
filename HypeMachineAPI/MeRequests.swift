@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Me {
+		@discardableResult
 		public static func favorites(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[Track]>) -> Void
@@ -12,6 +13,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func toggleTrackFavorite(
 			id: String,
 			params: Parameters? = nil,
@@ -22,6 +24,7 @@ extension Requests {
 				.responseBool(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func toggleBlogFavorite(
 			id: Int,
 			params: Parameters? = nil,
@@ -32,6 +35,7 @@ extension Requests {
 				.responseBool(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func toggleUserFavorite(
 			id: String,
 			params: Parameters? = nil,
@@ -42,6 +46,7 @@ extension Requests {
 				.responseBool(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func playlistNames(
 			_ completionHandler: @escaping (DataResponse<[String]>) -> Void
 		) -> DataRequest {
@@ -50,7 +55,8 @@ extension Requests {
 				.responseStringArray(completionHandler: completionHandler)
 		}
 
-		// Playlist id's are 1...3
+		// Playlist ID's are `1...3`.
+		@discardableResult
 		public static func showPlaylist(
 			id: Int,
 			params: Parameters? = nil,
@@ -61,6 +67,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func postHistory(
 			id: String,
 			position: Int,
@@ -72,6 +79,7 @@ extension Requests {
 				.responseString(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func friends(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[User]>) -> Void
@@ -81,6 +89,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func feed(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[Track]>) -> Void

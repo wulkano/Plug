@@ -1,6 +1,7 @@
 import Foundation
 
 extension Dictionary {
+	// swiftlint:disable:next discouraged_optional_collection
 	func merge(_ dictionary: [Key: Value]?) -> Dictionary {
 		guard let dictionary = dictionary else {
 			return self

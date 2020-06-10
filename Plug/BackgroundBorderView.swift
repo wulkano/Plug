@@ -2,10 +2,10 @@ import Cocoa
 
 final class BackgroundBorderView: NSView {
 	@IBInspectable var borderWidth: CGFloat = 1
-	@IBInspectable var topBorder = false
-	@IBInspectable var rightBorder = false
-	@IBInspectable var bottomBorder = false
-	@IBInspectable var leftBorder = false
+	@IBInspectable var topBorder: Bool = false
+	@IBInspectable var rightBorder: Bool = false
+	@IBInspectable var bottomBorder: Bool = false
+	@IBInspectable var leftBorder: Bool = false
 	@IBInspectable var borderColor: NSColor = .black
 
 	@IBInspectable var hasBackground: Bool = false

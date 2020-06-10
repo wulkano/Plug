@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Users {
+		@discardableResult
 		public static func show(
 			username: String,
 			completionHandler: @escaping (DataResponse<User>) -> Void
@@ -12,6 +13,7 @@ extension Requests {
 				.responseObject(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func showFavorites(
 			username: String,
 			params: Parameters? = nil,
@@ -22,6 +24,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func showFriends(
 			username: String,
 			params: Parameters? = nil,

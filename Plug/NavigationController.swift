@@ -38,6 +38,7 @@ final class NavigationController: NSViewController {
 		super.init(nibName: nil, bundle: nil)
 	}
 
+	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -88,7 +89,7 @@ final class NavigationController: NSViewController {
 		poppedViewController.removeFromParent()
 		updateVisibleViewControllerAnimated(animated)
 
-		navigationBarController.popNavigationItemAnimated(animated)
+		_ = navigationBarController.popNavigationItemAnimated(animated)
 
 		return poppedViewController
 	}
@@ -127,7 +128,7 @@ final class NavigationController: NSViewController {
 		contentView.addSubview(newVisibleViewController.view)
 
 		if animated {
-			let isPushing = viewControllers.firstIndex(of: oldVisibleViewController) != nil
+			let isPushing = viewControllers.contains(oldVisibleViewController)
 			constrainViewControllerToSideOfContentView(newVisibleViewController, side: isPushing ? .right : .left)
 			contentView.layoutSubtreeIfNeeded()
 			constrainViewControllerToContentView(newVisibleViewController)

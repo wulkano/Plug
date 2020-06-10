@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Tags {
+		@discardableResult
 		public static func index(
 			_ completionHandler: @escaping (DataResponse<[Tag]>) -> Void
 		) -> DataRequest {
@@ -11,6 +12,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func showTracks(
 			name: String,
 			params: Parameters? = nil,

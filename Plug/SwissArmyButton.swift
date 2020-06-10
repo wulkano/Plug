@@ -1,8 +1,8 @@
 import Cocoa
 
 class SwissArmyButton: NSButton {
-	@IBInspectable var isVibrant = false
-	@IBInspectable var isTrackingHover = false
+	@IBInspectable var isVibrant: Bool = false
+	@IBInspectable var isTrackingHover: Bool = false
 
 	override var allowsVibrancy: Bool { isVibrant }
 

@@ -2,13 +2,13 @@ import Cocoa
 import HypeMachineAPI
 
 final class LoginViewController: NSViewController, NSTextFieldDelegate {
-	@IBOutlet var usernameOrEmailLabel: VibrantTextField!
-	@IBOutlet var usernameOrEmailTextField: NSTextField!
-	@IBOutlet var passwordLabel: VibrantTextField!
-	@IBOutlet var passwordTextField: NSSecureTextField!
-	@IBOutlet var loginButton: LoginButton!
-	@IBOutlet var fogotPasswordButton: SwissArmyButton!
-	@IBOutlet var signUpButton: SwissArmyButton!
+	@IBOutlet private var usernameOrEmailLabel: VibrantTextField!
+	@IBOutlet private var usernameOrEmailTextField: NSTextField!
+	@IBOutlet private var passwordLabel: VibrantTextField!
+	@IBOutlet private var passwordTextField: NSSecureTextField!
+	@IBOutlet private var loginButton: LoginButton!
+	@IBOutlet private var fogotPasswordButton: SwissArmyButton!
+	@IBOutlet private var signUpButton: SwissArmyButton!
 
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)

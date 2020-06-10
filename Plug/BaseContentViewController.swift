@@ -19,6 +19,7 @@ class BaseContentViewController: NSViewController {
 		self.navigationItem = NavigationItem(title: self.title!)
 	}
 
+	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -62,7 +63,7 @@ class BaseContentViewController: NSViewController {
 	}
 
 	@objc
-	func refresh() {
+	func refresh() { // swiftlint:disable:this unavailable_function
 		fatalError("refresh() not implemented")
 	}
 

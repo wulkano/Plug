@@ -4,10 +4,12 @@ final class Interval: NSObject {
 	var closure: () -> Void
 	var timer: Timer!
 
+	@discardableResult
 	static func single(_ interval: Double, closure: @escaping () -> Void) -> Interval {
 		Interval(interval: interval, closure: closure, repeats: false)
 	}
 
+	@discardableResult
 	static func repeating(_ interval: Double, closure: @escaping () -> Void) -> Interval {
 		Interval(interval: interval, closure: closure, repeats: true)
 	}

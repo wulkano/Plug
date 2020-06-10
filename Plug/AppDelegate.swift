@@ -7,11 +7,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	var loginWindowController: NSWindowController?
 	var preferencesWindowController: NSWindowController?
 	var aboutWindowController: AboutWindowController?
-	@IBOutlet var preferencesMenuItem: NSMenuItem!
-	@IBOutlet var preferencesMenuSeparator: NSMenuItem!
-	@IBOutlet var signOutMenuItem: NSMenuItem!
-	@IBOutlet var signOutMenuSeparator: NSMenuItem!
-	@IBOutlet var mainWindowMenuItem: NSMenuItem!
+	@IBOutlet private var preferencesMenuItem: NSMenuItem!
+	@IBOutlet private var preferencesMenuSeparator: NSMenuItem!
+	@IBOutlet private var signOutMenuItem: NSMenuItem!
+	@IBOutlet private var signOutMenuSeparator: NSMenuItem!
+	@IBOutlet private var mainWindowMenuItem: NSMenuItem!
 
 	var mainWindowObservation: NSObjectProtocol?
 
@@ -41,8 +41,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-	@IBAction
-	func mainWindowMenuItemClicked(_ sender: NSMenuItem) {
+	// swiftlint:disable:next private_action
+	@IBAction func mainWindowMenuItemClicked(_ sender: NSMenuItem) {
 		if mainWindowController == nil || mainWindowController?.window?.isVisible == false {
 			openMainWindow()
 		} else {

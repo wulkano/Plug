@@ -3,13 +3,13 @@ import HypeMachineAPI
 import Alamofire
 
 final class TrackInfoViewController: NSViewController, TagContainerViewDelegate, PostInfoTextFieldDelegate {
-	@IBOutlet var titleTextField: VibrantTextField!
-	@IBOutlet var artistTextField: VibrantTextField!
-	@IBOutlet var loveCountTextField: VibrantTextField!
-	@IBOutlet var albumArt: NSImageView!
-	@IBOutlet var postedCountTextField: NSTextField!
-	@IBOutlet var postInfoTextField: PostInfoTextField!
-	@IBOutlet var loveButton: TransparentButton!
+	@IBOutlet private var titleTextField: VibrantTextField!
+	@IBOutlet private var artistTextField: VibrantTextField!
+	@IBOutlet private var loveCountTextField: VibrantTextField!
+	@IBOutlet private var albumArt: NSImageView!
+	@IBOutlet private var postedCountTextField: NSTextField!
+	@IBOutlet private var postInfoTextField: PostInfoTextField!
+	@IBOutlet private var loveButton: TransparentButton!
 
 	override var representedObject: Any! {
 		didSet {

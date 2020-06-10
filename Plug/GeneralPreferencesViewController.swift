@@ -6,8 +6,8 @@ let HideUnavailableTracks = "HideUnavailableTracks"
 let PreventIdleSleepWhenPlaying = "PreventIdleSleepWhenPlaying"
 
 final class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
-	@IBOutlet var scrollViewHeightContraint: NSLayoutConstraint!
-	@IBOutlet var tableView: NSTableView!
+	@IBOutlet private var scrollViewHeightContraint: NSLayoutConstraint!
+	@IBOutlet private var tableView: NSTableView!
 
 	var preferences: [GeneralPreference] = [
 		GeneralPreference(title: "Show notifications when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),

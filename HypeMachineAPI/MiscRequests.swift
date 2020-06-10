@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Misc {
+		@discardableResult
 		public static func getToken(
 			usernameOrEmail: String,
 			password: String,

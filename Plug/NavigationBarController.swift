@@ -1,6 +1,7 @@
 import Cocoa
 import SnapKit
 
+// swiftlint:disable:next static_operator
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	switch (lhs, rhs) {
 	case let (left?, right?):
@@ -12,6 +13,7 @@ private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	}
 }
 
+// swiftlint:disable:next static_operator
 private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	switch (lhs, rhs) {
 	case let (left?, right?):
@@ -49,6 +51,7 @@ final class NavigationBarController: NSViewController {
 		super.init(nibName: nil, bundle: nil)
 	}
 
+	@available(*, unavailable)
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -206,6 +209,6 @@ final class NavigationBarController: NSViewController {
 
 	@objc
 	func backButtonClicked(_ sender: NSButton) {
-		navigationController.popViewControllerAnimated(true)
+		_ = navigationController.popViewControllerAnimated(true)
 	}
 }

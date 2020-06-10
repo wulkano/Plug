@@ -1,8 +1,8 @@
 import Cocoa
 
 final class GeneralPreferencesTableCellView: NSTableCellView {
-	@IBOutlet var preferenceTitle: NSTextField!
-	@IBOutlet var switchButton: IOSSwitch!
+	@IBOutlet private var preferenceTitle: NSTextField!
+	@IBOutlet private var switchButton: IOSSwitch!
 
 	override var objectValue: Any! {
 		didSet {

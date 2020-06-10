@@ -73,6 +73,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 		}
 	}
 
+	// swiftlint:disable:next private_action
 	@IBAction func sourceButtonClicked(_ sender: NSButton) {
 		if track.viaUser != nil {
 			loadSingleFriendPage()

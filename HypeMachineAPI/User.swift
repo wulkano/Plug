@@ -1,5 +1,7 @@
 import Cocoa
 
+// swiftlint:disable discouraged_optional_boolean
+
 public struct User {
 	public let username: String
 	public let fullName: String?
@@ -98,3 +100,5 @@ extension User: Hashable {
 		hasher.combine(username)
 	}
 }
+
+// swiftlint:enable discouraged_optional_boolean

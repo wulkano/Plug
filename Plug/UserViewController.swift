@@ -30,10 +30,6 @@ final class UserViewController: BaseContentViewController {
 		setup()
 	}
 
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-
 	func setup() {
 		navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(UserViewController.followButtonClicked(_:)))
 	}
@@ -222,7 +218,8 @@ final class UserViewController: BaseContentViewController {
 		}
 	}
 
-	@objc func followButtonClicked(_ sender: ActionButton) {
+	@objc
+	func followButtonClicked(_ sender: ActionButton) {
 		HypeMachineAPI.Requests.Me.toggleUserFavorite(id: user!.username) { response in
 			let favoritedState = sender.state == .on
 

@@ -88,13 +88,13 @@
 	}
 
 	[squareImage lockFocus];
-	[image drawInRect:NSMakeRect(0, 0, imageSize.width, imageSize.width) fromRect:drawRect operation:NSCompositeSourceOver fraction:1.0];
+	[image drawInRect:NSMakeRect(0, 0, imageSize.width, imageSize.width) fromRect:drawRect operation:NSCompositingOperationSourceOver fraction:1.0];
 	[squareImage unlockFocus];
 
 	// scale the image to the desired size
 
 	[scaledImage lockFocus];
-	[squareImage drawInRect:NSMakeRect(0, 0, scaledSize.width, scaledSize.height) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	[squareImage drawInRect:NSMakeRect(0, 0, scaledSize.width, scaledSize.height) fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
 	[scaledImage unlockFocus];
 
 	// convert back to readable bitmap data
@@ -152,7 +152,10 @@
 
 - (NSColor*)findEdgeColor:(NSImage*)image imageColors:(NSCountedSet**)colors
 {
+	#pragma clang diagnostic push
+	#pragma clang diagnostic ignored "-Wincompatible-pointer-types"
 	NSBitmapImageRep *imageRep = [[image representations] lastObject];
+	#pragma clang diagnostic pop
 
 	if ( ![imageRep isKindOfClass:[NSBitmapImageRep class]] ) // sanity check
 		return nil;
@@ -295,7 +298,7 @@
 
 - (BOOL)pc_isDarkColor
 {
-	NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	NSColor *convertedColor = [self colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
 	CGFloat r, g, b, a;
 
 	[convertedColor getRed:&r green:&g blue:&b alpha:&a];
@@ -313,8 +316,8 @@
 
 - (BOOL)pc_isDistinct:(NSColor*)compareColor
 {
-	NSColor *convertedColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-	NSColor *convertedCompareColor = [compareColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	NSColor *convertedColor = [self colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
+	NSColor *convertedCompareColor = [compareColor colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
 	CGFloat r, g, b, a;
 	CGFloat r1, g1, b1, a1;
 
@@ -345,7 +348,7 @@
 
 - (NSColor*)pc_colorWithMinimumSaturation:(CGFloat)minSaturation
 {
-	NSColor *tempColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	NSColor *tempColor = [self colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
 
 	if ( tempColor != nil )
 	{
@@ -368,7 +371,7 @@
 
 - (BOOL)pc_isBlackOrWhite
 {
-	NSColor *tempColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	NSColor *tempColor = [self colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
 
 	if ( tempColor != nil )
 	{
@@ -389,8 +392,8 @@
 
 - (BOOL)pc_isContrastingColor:(NSColor*)color
 {
-	NSColor *backgroundColor = [self colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
-	NSColor *foregroundColor = [color colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	NSColor *backgroundColor = [self colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
+	NSColor *foregroundColor = [color colorUsingColorSpace:NSColorSpace.deviceRGBColorSpace];
 
 	if ( backgroundColor != nil && foregroundColor != nil )
 	{

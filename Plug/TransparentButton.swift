@@ -1,7 +1,7 @@
 import Cocoa
 
 final class TransparentButton: NSButton {
-	@IBInspectable var isSelectable = false
+	@IBInspectable var isSelectable: Bool = false
 	@IBInspectable var selectedImage: NSImage?
 	@IBInspectable var unselectedImage: NSImage?
 

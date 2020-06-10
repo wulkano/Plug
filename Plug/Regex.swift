@@ -17,6 +17,7 @@ final class Regex {
 
 infix operator =~
 
+// swiftlint:disable:next static_operator
 func =~ (input: String, pattern: String) -> Bool {
 	Regex(pattern: pattern).test(input)
 }

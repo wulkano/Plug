@@ -265,8 +265,11 @@ final class IOSSwitch: NSControl {
 	// MARK: Helpers
 
 	func invokeTargetAction() {
-		if target != nil && action != "" {
-			sendAction(action, to: target!)
+		if
+			let target = self.target,
+			let action = self.action
+		{
+			sendAction(action, to: target)
 		}
 	}
 }

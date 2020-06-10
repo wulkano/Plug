@@ -1,8 +1,8 @@
 import Cocoa
 
 class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
-	@IBInspectable var isTrackingMouseEnterExit = false
-	@IBInspectable var hasPullToRefresh = false
+	@IBInspectable var isTrackingMouseEnterExit: Bool = false
+	@IBInspectable var hasPullToRefresh: Bool = false
 
 	var isScrollEnabled = true
 
@@ -21,8 +21,12 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 
 	var visibleRows: [Int] {
 		let trueVisibleRect = insetRect(visibleRect, insets: contentInsets)
-		let rowRange = rows(in: trueVisibleRect).toRange()!
-		return Array(rowRange.lowerBound..<rowRange.upperBound)
+
+		guard let rowRange = Range(rows(in: trueVisibleRect)) else {
+			return []
+		}
+
+		return Array(rowRange)
 	}
 
 	var previousVisibleRows: [Int] = []

@@ -117,7 +117,7 @@ NSString *const kINWindowButtonGroupDefault = @"com.indragie.inappstorewindow.de
 	self = [super initWithFrame:NSMakeRect(0, 0, size.width, size.height)];
 	if (self) {
 		_groupIdentifier = [groupIdentifier copy];
-		[self setButtonType:NSMomentaryChangeButton];
+		[self setButtonType:NSButtonTypeMomentaryChange];
 		[self setBordered:NO];
 		[self setTitle:@""];
 		[self.cell setHighlightsBy:NSContentsCellMask];

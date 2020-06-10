@@ -16,11 +16,11 @@ final class KeepAwake: NSObject {
 	}
 
 	fileprivate func initialSetup() {
-		AudioPlayer.shared.onTrackPlaying.addObserver(self, callback: { _, _ in
+		AudioPlayer.shared.onTrackPlaying.addObserver(self) { _, _ in
 			if self.getUserPreference() {
-				self.preventSleep.preventSleep()
+				_ = self.preventSleep.preventSleep()
 			}
-		})
+		}
 
 		let whenToAllowSleep: [Swignal1Arg<Bool>] = [
 			AudioPlayer.shared.onTrackPaused,
@@ -55,7 +55,7 @@ final class KeepAwake: NSObject {
 		if keyPath == PreventIdleSleepWhenPlaying {
 			// As the signal observers have already been set up, all we need to do here is to prevent sleep if a track is currently being played.
 			if getUserPreference() && AudioPlayer.shared.isPlaying {
-				preventSleep.preventSleep()
+				_ = preventSleep.preventSleep()
 			} else if !getUserPreference() {
 				preventSleep.allowSleep()
 			}

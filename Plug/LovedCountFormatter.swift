@@ -1,7 +1,7 @@
 import Cocoa
 
 final class LovedCountFormatter: Formatter {
-	@IBInspectable var shouldCapitalize = false
+	@IBInspectable var shouldCapitalize: Bool = false
 
 	override func string(for object: Any?) -> String? {
 		let count = (object as! NSNumber).intValue

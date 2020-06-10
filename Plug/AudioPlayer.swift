@@ -96,24 +96,28 @@ final class AudioPlayer: NSObject {
 	func findAndSetCurrentlyPlayingTrack() {
 		guard
 			currentDataSource != nil,
-			currentTrack != nil,
-			let foundTracks = findTracksWithTrackId(currentTrack!.id)
+			let currentTrack = self.currentTrack
 		else {
 			return
 		}
 
-		if foundTracks.firstIndex(of: currentTrack!) != NSNotFound {
+		let foundTracks = findTracksWithTrackId(currentTrack.id)
+		guard !foundTracks.isEmpty else {
+			return
+		}
+
+		if foundTracks.firstIndex(of: currentTrack) != NSNotFound {
 			// Current track is already accurate.
 			return
 		} else if let foundTrack = foundTracks.first {
 			if currentTrack != foundTrack {
-				currentTrack = foundTrack
+				self.currentTrack = foundTrack
 			}
 		}
 	}
 
-	fileprivate func findTracksWithTrackId(_ trackId: String) -> [Track]? {
-		currentDataSource.tableContents?.filter { ($0 as! HypeMachineAPI.Track).id == trackId } as? [Track]
+	fileprivate func findTracksWithTrackId(_ trackId: String) -> [Track] {
+		currentDataSource.tableContents?.filter { ($0 as? HypeMachineAPI.Track)?.id == trackId } as? [Track] ?? []
 	}
 
 	func play() {
@@ -224,7 +228,7 @@ final class AudioPlayer: NSObject {
 
 	@objc
 	func currentTrackNewErrorLogEntry(_ notification: Notification) {
-		print((notification.object as! AVPlayerItem).errorLog())
+		print((notification.object as? AVPlayerItem)?.errorLog() ?? "")
 	}
 
 	func currentTrackPlaybackError(_ error: NSError) {
@@ -379,7 +383,7 @@ final class AudioPlayer: NSObject {
 
 		var nextShuffleTrackIndex = Int.random(in: 0..<currentDataSource.tableContents!.count)
 
-		while recentlyPlayedTrackIndexes.firstIndex(of: nextShuffleTrackIndex) != nil {
+		while recentlyPlayedTrackIndexes.contains(nextShuffleTrackIndex) {
 			nextShuffleTrackIndex = Int.random(in: 0..<currentDataSource.tableContents!.count)
 		}
 

@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Tracks {
+		@discardableResult
 		public static func index(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[Track]>) -> Void
@@ -12,6 +13,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func show(
 			id: String,
 			completionHandler: @escaping (DataResponse<Track>) -> Void
@@ -21,6 +23,7 @@ extension Requests {
 				.responseObject(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func popular(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[Track]>) -> Void

@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Blogs {
+		@discardableResult
 		public static func index(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[Blog]>) -> Void
@@ -12,6 +13,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func show(
 			id: Int,
 			completionHandler: @escaping (DataResponse<Blog>) -> Void
@@ -21,6 +23,7 @@ extension Requests {
 				.responseObject(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func showTracks(
 			id: Int,
 			params: Parameters? = nil,

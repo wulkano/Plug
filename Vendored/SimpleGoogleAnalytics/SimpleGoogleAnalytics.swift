@@ -1,6 +1,8 @@
 import Foundation
 import Alamofire
 
+// swiftlint:disable discouraged_optional_boolean
+
 public final class Manager: NSObject {
 	let trackingID: String
 	let appBundle: Bundle
@@ -62,7 +64,7 @@ public final class Manager: NSObject {
 		sessionManager.request(apiBase, method: .post, parameters: params)
 			.response { response in
 				if let error = response.error {
-					print(response.error)
+					print(error)
 				}
 			}
 	}
@@ -226,3 +228,5 @@ public struct ExceptionHit: Hit {
 		return parameters
 	}
 }
+
+// swiftlint:enable discouraged_optional_boolean

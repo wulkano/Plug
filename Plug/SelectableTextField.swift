@@ -1,7 +1,7 @@
 import Cocoa
 
 final class SelectableTextField: NSTextField {
-	@IBInspectable var isSelected = false {
+	@IBInspectable var isSelected: Bool = false {
 		didSet {
 			if isSelected {
 				defaultTextColor = textColor

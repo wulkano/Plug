@@ -72,8 +72,8 @@ final class FavoriteTracksDataSource: TracksDataSource {
 						standardTableContents?.remove(at: indexOfCurrentlyPlayingTrack)
 					}
 
-					standardTableContents?.insert(AudioPlayer.shared.currentTrack, at: 0)
-					viewController.tableView.insertRows(at: IndexSet(integersIn: NSRange(location: 0, length: 1).toRange()!), withAnimation: NSTableView.AnimationOptions())
+					standardTableContents?.insert(currentTrack, at: 0)
+					viewController.tableView.insertRows(at: IndexSet(integersIn: 0...1), withAnimation: NSTableView.AnimationOptions())
 				}
 			}
 		}

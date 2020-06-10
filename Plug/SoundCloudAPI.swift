@@ -38,6 +38,7 @@ extension DataRequest {
 
 struct SoundCloudAPI {
 	struct Tracks {
+		@discardableResult
 		static func permalink(_ trackId: String, completionHandler: @escaping (DataResponse<URL>) -> Void) -> DataRequest {
 			let url = "https://api.soundcloud.com/tracks/\(trackId).json"
 

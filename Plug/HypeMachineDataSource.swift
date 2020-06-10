@@ -14,14 +14,14 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	var filteredTableContents: [Any]?
 
 	var tableContents: [Any]? {
-		guard standardTableContents != nil else {
+		guard let standardTableContents = self.standardTableContents else {
 			return nil
 		}
 
 		if isFiltering {
 			return filteredTableContents!
 		} else {
-			return standardTableContents!
+			return standardTableContents
 		}
 	}
 
@@ -61,6 +61,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 		requestNextPageObjects()
 	}
 
+	// swiftlint:disable:next unavailable_function
 	func requestNextPageObjects() {
 		fatalError("requestNextPage() not implemented")
 	}

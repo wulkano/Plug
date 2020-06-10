@@ -3,6 +3,7 @@ import Alamofire
 
 extension Requests {
 	public struct Artists {
+		@discardableResult
 		public static func index(
 			params: Parameters? = nil,
 			completionHandler: @escaping (DataResponse<[Artist]>) -> Void
@@ -12,6 +13,7 @@ extension Requests {
 				.responseCollection(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func show(
 			name: String,
 			completionHandler: @escaping (DataResponse<Artist>) -> Void
@@ -21,6 +23,7 @@ extension Requests {
 				.responseObject(completionHandler: completionHandler)
 		}
 
+		@discardableResult
 		public static func showTracks(
 			name: String,
 			params: Parameters? = nil,

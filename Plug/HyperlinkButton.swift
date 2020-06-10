@@ -13,14 +13,14 @@ final class HyperlinkButton: NSButton {
 		}
 	}
 
-	@IBInspectable var isSelected = false {
+	@IBInspectable var isSelected: Bool = false {
 		didSet {
 			applyAttributes()
 		}
 	}
 
-	@IBInspectable var hasHoverUnderline = false
-	@IBInspectable var isAlwaysUnderlined = false
+	@IBInspectable var hasHoverUnderline: Bool = false
+	@IBInspectable var isAlwaysUnderlined: Bool = false
 
 	override var title: String {
 		didSet {

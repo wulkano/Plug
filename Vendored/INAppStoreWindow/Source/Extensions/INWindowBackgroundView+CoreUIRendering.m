@@ -134,9 +134,9 @@ static NSString * const kCUIWindowTypeKey = @"windowtype";
 	}
 
 	if ([appearance respondsToSelector:@selector(_drawInRect:context:options:)]) {
-		[appearance _drawInRect:drawingRect context:[[NSGraphicsContext currentContext] graphicsPort] options:(__bridge CFDictionaryRef)options];
+		[appearance _drawInRect:drawingRect context:[[NSGraphicsContext currentContext] CGContext] options:(__bridge CFDictionaryRef)options];
 	} else {
-		CUIDraw([NSWindow coreUIRenderer], drawingRect, [[NSGraphicsContext currentContext] graphicsPort], (__bridge CFDictionaryRef) options, nil);
+		CUIDraw([NSWindow coreUIRenderer], drawingRect, [[NSGraphicsContext currentContext] CGContext], (__bridge CFDictionaryRef) options, nil);
 	}
 }
 

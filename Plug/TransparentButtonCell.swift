@@ -1,7 +1,7 @@
 import Cocoa
 
 final class TransparentButtonCell: SwissArmyButtonCell {
-	@IBInspectable var allowsSelectedState = false
+	@IBInspectable var allowsSelectedState: Bool = false
 
 	let selectedOpacity: CGFloat = 1
 	let mouseDownOpacity: CGFloat = 1

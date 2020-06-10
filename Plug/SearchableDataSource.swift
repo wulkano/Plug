@@ -12,6 +12,7 @@ class SearchableDataSource: HypeMachineDataSource {
 		isFiltering = !(searchKeywords?.isEmpty == true || searchKeywords == nil)
 	}
 
+	// swiftlint:disable:next unavailable_function
 	func filterObjectsMatchingSearchKeywords(_ objects: [Any]) -> [Any] {
 		fatalError("filterObjectsMatchingKeywords: not implemented")
 	}
