@@ -109,9 +109,9 @@ final class BlogViewController: BaseContentViewController {
 	func loadBlog(_ blogID: Int) {
 		HypeMachineAPI.Requests.Blogs.show(id: blogID) { response in
 			switch response.result {
-			case let .success(blog):
+			case .success(let blog):
 				self.blog = blog
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error)
 			}
@@ -140,9 +140,9 @@ final class BlogViewController: BaseContentViewController {
 			.validate()
 			.responseImage { response in
 				switch response.result {
-				case let .success(image):
+				case .success(let image):
 					self.extractColorAndResizeImage(image)
-				case let .failure(error):
+				case .failure(let error):
 					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 					print(error as NSError)
 				}
@@ -169,7 +169,7 @@ final class BlogViewController: BaseContentViewController {
 
 	@objc
 	func titleButtonClicked(_ sender: AnyObject) {
-		NSWorkspace.shared.open(blog.url)
+		blog.url.open()
 	}
 
 	func loadPlaylist() {
@@ -194,13 +194,13 @@ final class BlogViewController: BaseContentViewController {
 			let favoritedState = sender.state == .on
 
 			switch response.result {
-			case let .success(favorited):
+			case .success(let favorited):
 				guard favorited != favoritedState else {
 					return
 				}
 
 				sender.state = favorited ? .on : .off
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error)
 

@@ -1,10 +1,9 @@
 import Cocoa
 
-final class SectionHeader: NSObject {
-	var title: String
+final class SectionHeader {
+	let title: String
 
 	init(title: String) {
 		self.title = title
-		super.init()
 	}
 }

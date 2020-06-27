@@ -32,7 +32,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		setupUserNotifications()
 		setupNotifications()
 		setupHypeMachineAPI()
-		setupKeepAwake()
+		_ = KeepAwake.shared
 
 		if Authentication.userSignedIn() {
 			openMainWindow()
@@ -84,9 +84,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 	func openLoginWindow() {
 		Analytics.trackView("LoginWindow")
+
 		if loginWindowController == nil {
 			loginWindowController = (NSStoryboard(name: "Login", bundle: nil).instantiateInitialController() as! NSWindowController)
 		}
+
 		loginWindowController!.showWindow(self)
 		hideSignOutFromMenu()
 		hidePreferencesFromMenu()
@@ -158,18 +160,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func setupHypeMachineAPI() {
-		HypeMachineAPI.apiKey = ApiKey
+		HypeMachineAPI.apiKey = Secrets.apiKey
 		if let hmToken = Authentication.getToken() {
 			HypeMachineAPI.hmToken = hmToken
 		}
 
-		let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-		let userAgent = "Plug for OSX/\(version)"
-		HypeMachineAPI.userAgent = userAgent
-	}
-
-	func setupKeepAwake() {
-		_ = KeepAwake.shared
+		HypeMachineAPI.userAgent = "Plug for OSX/\(App.version)"
 	}
 
 	// MARK: Notifications
@@ -215,7 +211,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
-		NSWorkspace.shared.open(URL(string: "https://github.com/wulkano/Plug/issues")!)
+		"https://github.com/wulkano/Plug/issues".openUrl()
 	}
 
 	// MARK: NSApplicationDelegate

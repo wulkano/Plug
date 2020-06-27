@@ -41,7 +41,6 @@ struct Authentication {
 	}
 
 	fileprivate static func tokenServiceName() -> String {
-		let bundleID = Bundle.main.bundleIdentifier!
-		return "\(bundleID).AccountToken"
+		"\(App.id).AccountToken"
 	}
 }

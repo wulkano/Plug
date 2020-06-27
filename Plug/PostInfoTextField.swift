@@ -4,7 +4,7 @@ final class PostInfoTextField: NSTextField {
 	var postInfoDelegate: PostInfoTextFieldDelegate?
 
 	private var trackingArea: NSTrackingArea?
-	private var mouseInside = false
+	private var isMouseInside = false
 
 	override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
@@ -34,17 +34,17 @@ final class PostInfoTextField: NSTextField {
 	}
 
 	override func mouseEntered(with theEvent: NSEvent) {
-		mouseInside = true
+		isMouseInside = true
 		updateText()
 	}
 
 	override func mouseExited(with theEvent: NSEvent) {
-		mouseInside = false
+		isMouseInside = false
 		updateText()
 	}
 
 	private func updateText() {
-		if mouseInside {
+		if isMouseInside {
 			let contents = NSMutableAttributedString(attributedString: attributedStringValue)
 			contents.enumerateAttribute(.link, in: NSRange(location: 0, length: contents.length), options: .longestEffectiveRangeNotRequired) { value, range, _ in
 				if value != nil {

@@ -4,7 +4,7 @@ import SnapKit
 // swiftlint:disable:next static_operator
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	switch (lhs, rhs) {
-	case let (left?, right?):
+	case (let left?, let right?):
 		return left < right
 	case (nil, _?):
 		return true
@@ -16,7 +16,7 @@ private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 // swiftlint:disable:next static_operator
 private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	switch (lhs, rhs) {
-	case let (left?, right?):
+	case (let left?, let right?):
 		return left > right
 	default:
 		return rhs < lhs
@@ -80,7 +80,7 @@ final class NavigationBarController: NSViewController {
 			return nil
 		}
 
-		var poppedItems: [NavigationItem] = []
+		var poppedItems = [NavigationItem]()
 		let topItemIndex = items!.firstIndex(of: item)
 
 		if topItemIndex == nil {
@@ -145,7 +145,7 @@ final class NavigationBarController: NSViewController {
 		}
 
 		// Title section
-		var titleView: NSView
+		let titleView: NSView
 
 		if topItem!.titleView != nil {
 			titleView = topItem!.titleView!

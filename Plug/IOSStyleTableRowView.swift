@@ -11,7 +11,7 @@ class IOSStyleTableRowView: NSTableRowView {
 	@IBInspectable var customSeparatorColor: NSColor = NSColor(red256: 225, green256: 230, blue256: 233)
 	@IBInspectable var selectionColor: NSColor = NSColor(red256: 246, green256: 247, blue256: 249)
 
-	var separatorWidth: CGFloat = 1
+	let separatorWidth: CGFloat = 1
 	var isNextRowGroupRow = false
 
 	override func draw(_ dirtyRect: CGRect) {

@@ -40,7 +40,7 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 				}
 
 				switch response.result {
-				case let .success(JSON):
+				case .success(let JSON):
 					if
 						let representation = JSON as? [String: Any],
 						let trackJSON = representation[self.track.id] as? [String: Any]
@@ -52,7 +52,7 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 					} else {
 						// print("Heatmap missed for track: \(self.trackValue)")
 					}
-				case let .failure(error):
+				case .failure(let error):
 					// TODO: Show error to the user.
 					print(error as NSError)
 				}

@@ -69,14 +69,14 @@ final class LoginButton: SwissArmyButton {
 		case error(String)
 
 		func title() -> String {
-			var titleString: String
+			let titleString: String
 
 			switch self {
 			case .disabled, .enabled:
 				titleString = "Log in"
 			case .sending:
 				titleString = "Logging in..."
-			case let .error(message):
+			case .error(let message):
 				titleString = message
 			}
 

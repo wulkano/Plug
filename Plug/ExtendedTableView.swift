@@ -29,7 +29,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 		return Array(rowRange)
 	}
 
-	var previousVisibleRows: [Int] = []
+	var previousVisibleRows = [Int]()
 	var previousRowDidStartToHide = -1
 	var previousRowDidStartToShow = -1
 	var previousRowDidHide = -1
@@ -238,9 +238,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 
 		let row = self.row(at: point)
 		if row != previousRowDidStartToShow {
-			if scrollDirection == previousScrollDirection &&
-				row != -1 &&
-				previousRowDidStartToHide != -1 {
+			if
+				scrollDirection == previousScrollDirection,
+				row != -1,
+				previousRowDidStartToHide != -1
+			{
 				for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidStartToShow) {
 					extendedDelegate?.tableView(self, rowDidStartToShow: eachRow, direction: shownDirection)
 				}
@@ -274,9 +276,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 
 		let row = self.row(at: point)
 		if row != previousRowDidStartToHide {
-			if scrollDirection == previousScrollDirection &&
-				row != -1 &&
-				previousRowDidStartToHide != -1 {
+			if
+				scrollDirection == previousScrollDirection,
+				row != -1,
+				previousRowDidStartToHide != -1
+			{
 				for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidStartToHide) {
 					extendedDelegate?.tableView(self, rowDidStartToHide: eachRow, direction: hiddenDirection)
 				}
@@ -314,9 +318,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 
 		let row = self.row(at: point)
 		if row != previousRowDidShow {
-			if scrollDirection == previousScrollDirection &&
-				row != -1 &&
-				previousRowDidShow != -1 {
+			if
+				scrollDirection == previousScrollDirection,
+				row != -1,
+				previousRowDidShow != -1
+			{
 				for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidShow) {
 					extendedDelegate?.tableView(self, rowDidShow: eachRow, direction: shownDirection)
 				}
@@ -354,9 +360,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 
 		let row = self.row(at: point)
 		if row != previousRowDidHide {
-			if scrollDirection == previousScrollDirection &&
-				row != -1 &&
-				previousRowDidHide != -1 {
+			if
+				scrollDirection == previousScrollDirection,
+				row != -1,
+				previousRowDidHide != -1
+			{
 				for eachRow in rangeBetweenCurrentRow(row, andPreviousRow: previousRowDidHide) {
 					extendedDelegate?.tableView(self, rowDidHide: eachRow, direction: hiddenDirection)
 				}

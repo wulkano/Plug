@@ -64,7 +64,7 @@ final class FavoriteTracksDataSource: TracksDataSource {
 			allObjectsLoaded = false
 
 			if
-				response.result.isSuccess &&
+				response.result.isSuccess,
 				currentPage == 1
 			{
 				if let currentTrack = AudioPlayer.shared.currentTrack {

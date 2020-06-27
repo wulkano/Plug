@@ -17,7 +17,7 @@ class TracksDataSource: HypeMachineDataSource {
 			}
 
 			let track = trackAtIndex(currentIndex + 1)
-			if track != nil && track!.audioUnavailable {
+			if track != nil, track!.audioUnavailable {
 				return trackAfter(track!)
 			}
 
@@ -30,7 +30,7 @@ class TracksDataSource: HypeMachineDataSource {
 	func trackBefore(_ track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
 		if let currentIndex = indexOfTrack(track) {
 			let track = trackAtIndex(currentIndex - 1)
-			if track != nil && track!.audioUnavailable {
+			if track != nil, track!.audioUnavailable {
 				return trackBefore(track!)
 			}
 
@@ -53,7 +53,7 @@ class TracksDataSource: HypeMachineDataSource {
 			return nil
 		}
 
-		if index >= 0 && index <= tracks.count - 1 {
+		if index >= 0, index <= tracks.count - 1 {
 			return tracks[index]
 		} else {
 			return nil

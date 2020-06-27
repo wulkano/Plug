@@ -53,7 +53,7 @@ final class NavigationItem: NSObject {
 		return button
 	}
 
-	var title: String
+	let title: String
 	var rightButton: ActionButton?
 	var titleView: NSView?
 

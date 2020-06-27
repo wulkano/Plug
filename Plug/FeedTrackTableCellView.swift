@@ -90,8 +90,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func loadQuery() {
-		let url = URL(string: "https://hypem.com/search/\(track.viaQuery!)")!
-		NSWorkspace.shared.open(url)
+		"https://hypem.com/search/\(track.viaQuery!)".openUrl()
 	}
 
 	func loadSingleBlogPage() {

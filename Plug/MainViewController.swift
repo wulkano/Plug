@@ -159,11 +159,11 @@ extension NavigationSection {
 	}
 
 	var savedViewController: BaseContentViewController? {
-		NavigationSection.viewControllers[self.title]
+		NavigationSection.viewControllers[title]
 	}
 
 	func createViewControllerForTarget(_ target: AnyObject?) -> BaseContentViewController {
-		var targetViewController: BaseContentViewController
+		let targetViewController: BaseContentViewController
 
 		switch self {
 		case .popular:
@@ -185,7 +185,7 @@ extension NavigationSection {
 			targetViewController = SearchViewController(title: title, analyticsViewName: analyticsViewName)!
 		}
 
-		if let dropdownMenu = self.menu(target) {
+		if let dropdownMenu = menu(target) {
 			targetViewController.navigationItem.titleView = NavigationItem.standardTitleDropdownButtonForMenu(dropdownMenu)
 		}
 
@@ -204,7 +204,7 @@ extension NavigationSection {
 			}
 		}
 
-		NavigationSection.viewControllers[self.title] = targetViewController
+		NavigationSection.viewControllers[title] = targetViewController
 
 		return targetViewController
 	}

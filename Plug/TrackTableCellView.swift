@@ -82,7 +82,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		updateTrackTitle()
 		updateTrackArtist()
 		isMouseInside = false
-		loveButton.isSelected = track.loved
+		loveButton.isSelected = track.isLoved
 		progressSlider.doubleValue = 0
 	}
 
@@ -185,7 +185,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let openWidth: CGFloat = 38
 		let closedWidth: CGFloat = 0
 
-		if isMouseInside || (track.loved && showsLoveButton) {
+		if isMouseInside || (track.isLoved && showsLoveButton) {
 			loveContainerWidthConstraint.update(offset: openWidth)
 		} else {
 			loveContainerWidthConstraint.update(offset: closedWidth)
@@ -250,7 +250,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
-			track.loved = true
+			track.isLoved = true
 			loveButton.isSelected = true
 		}
 		updateLoveContainerSpacing()
@@ -264,7 +264,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
-			track.loved = false
+			track.isLoved = false
 			loveButton.isSelected = false
 		}
 		updateLoveContainerSpacing()
@@ -298,18 +298,18 @@ class TrackTableCellView: IOSStyleTableCellView {
 	// swiftlint:disable:next private_action
 	@IBAction func loveButtonClicked(_ sender: TransparentButton) {
 		Analytics.trackButtonClick("Playlist Heart")
-		let oldLovedValue = track.loved
+		let oldLovedValue = track.isLoved
 		let newLovedValue = !oldLovedValue
 
 		changeTrackLovedValueTo(newLovedValue)
 
 		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id) { response in
 			switch response.result {
-			case let .success(favorited):
+			case .success(let favorited):
 				if favorited != newLovedValue {
 					self.changeTrackLovedValueTo(favorited)
 				}
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error as NSError)
 				self.changeTrackLovedValueTo(oldLovedValue)

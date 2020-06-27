@@ -36,18 +36,18 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBAction private func loveButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Heart")
 
-		let oldLovedValue = representedTrack.loved
+		let oldLovedValue = representedTrack.isLoved
 		let newLovedValue = !oldLovedValue
 
 		changeTrackLovedValueTo(newLovedValue)
 
 		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { response in
 			switch response.result {
-			case let .success(favorited):
+			case .success(let favorited):
 				if favorited != newLovedValue {
 					self.changeTrackLovedValueTo(favorited)
 				}
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error)
 				self.changeTrackLovedValueTo(oldLovedValue)
@@ -58,7 +58,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	func postInfoTextFieldClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Track Info Blog Description")
 
-		NSWorkspace.shared.open(representedTrack.postURL)
+		representedTrack.postURL.open()
 	}
 
 	func tagButtonClicked(_ tag: HypeMachineAPI.Tag) {
@@ -75,13 +75,13 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBAction private func downloadITunesButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Download iTunes")
 
-		NSWorkspace.shared.open(representedTrack.iTunesURL)
+		representedTrack.iTunesURL.open()
 	}
 
 	@IBAction private func seeMoreButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info See More")
 
-		NSWorkspace.shared.open(representedTrack.hypeMachineURL())
+		representedTrack.hypeMachineURL().open()
 	}
 
 	@objc
@@ -102,12 +102,12 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 		}
 	}
 
-	func changeTrackLovedValueTo(_ loved: Bool) {
+	func changeTrackLovedValueTo(_ isLoved: Bool) {
 		var newTrack = representedTrack
-		newTrack.loved = loved
+		newTrack.isLoved = isLoved
 		representedObject = newTrack
 
-		if loved {
+		if isLoved {
 			Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
 		} else {
 			Notifications.post(name: Notifications.TrackUnLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
@@ -141,9 +141,9 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 
 		Alamofire.request(url).validate().responseImage { response in
 			switch response.result {
-			case let .success(image):
+			case .success(let image):
 				self.albumArt.image = image
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error as NSError)
 			}
@@ -160,6 +160,6 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updateLoveButton() {
-		loveButton.isSelected = representedTrack.loved
+		loveButton.isSelected = representedTrack.isLoved
 	}
 }

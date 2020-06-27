@@ -16,7 +16,7 @@ final class TransparentButtonCell: SwissArmyButtonCell {
 	}
 
 	func getImageAlpha() -> CGFloat {
-		if allowsSelectedState && state == .on {
+		if allowsSelectedState, state == .on {
 			return selectedOpacity
 		} else if isMouseDown {
 			return mouseDownOpacity
@@ -28,7 +28,7 @@ final class TransparentButtonCell: SwissArmyButtonCell {
 	}
 
 	func getDrawImage() -> NSImage? {
-		if allowsSelectedState && state == .on {
+		if allowsSelectedState, state == .on {
 			return alternateImage ?? image
 		} else if isMouseDown {
 			return image

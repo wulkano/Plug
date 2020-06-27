@@ -40,7 +40,7 @@ final class HoverToggleButton: NSButton {
 	}
 
 	func getDrawImage() -> NSImage? {
-		if isSelected && isMouseInside {
+		if isSelected, isMouseInside {
 			return onHoverImage
 		} else if isSelected {
 			return onImage

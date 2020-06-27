@@ -1,7 +1,7 @@
 import Foundation
 
-final class Interval: NSObject {
-	var closure: () -> Void
+final class Interval {
+	let closure: () -> Void
 	var timer: Timer!
 
 	@discardableResult
@@ -16,7 +16,6 @@ final class Interval: NSObject {
 
 	init(interval: Double, closure: @escaping () -> Void, repeats: Bool) {
 		self.closure = closure
-		super.init()
 		self.timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(runClosure), userInfo: nil, repeats: repeats)
 	}
 

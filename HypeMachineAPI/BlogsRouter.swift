@@ -22,20 +22,20 @@ extension Router {
 			switch self {
 			case .index:
 				return "/blogs"
-			case let .show(id):
+			case .show(let id):
 				return "/blogs/\(id)"
-			case let .showTracks(id, _):
+			case .showTracks(let id, _):
 				return "/blogs/\(id)/tracks"
 			}
 		}
 
 		var params: Parameters? {
 			switch self {
-			case let .index(optionalParams):
+			case .index(let optionalParams):
 				return optionalParams
 			case .show:
 				return nil
-			case let .showTracks(_, optionalParams):
+			case .showTracks(_, let optionalParams):
 				return optionalParams
 			}
 		}

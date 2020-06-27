@@ -335,8 +335,11 @@ class TracksViewController: DataSourceViewController {
 	override func isTrackVisible(_ track: HypeMachineAPI.Track) -> Bool {
 		for row in tableView.visibleRows {
 			let rowTrack = tracksDataSource!.objectForRow(row) as? HypeMachineAPI.Track
-			if rowTrack == track &&
-				isTableViewRowFullyVisible(row) {
+
+			if
+				rowTrack == track,
+				isTableViewRowFullyVisible(row)
+			{
 				return true
 			}
 		}

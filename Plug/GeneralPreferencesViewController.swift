@@ -45,8 +45,8 @@ final class GeneralPreferencesViewController: NSViewController, NSTableViewDeleg
 
 // Only supports Bools for now
 final class GeneralPreference {
-	var title: String
-	var settingsKey: String
+	let title: String
+	let settingsKey: String
 
 	init(title: String, settingsKey: String) {
 		self.title = title

@@ -34,12 +34,12 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 	func loginWithUsernameOrEmail(_ usernameOrEmail: String, andPassword password: String) {
 		HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) { response in
 			switch response.result {
-			case let .success(usernameAndToken):
+			case .success(let usernameAndToken):
 				Authentication.saveUsername(usernameAndToken.username, withToken: usernameAndToken.token)
 				HypeMachineAPI.hmToken = usernameAndToken.token
 				self.signedInSuccessfully()
-			case let .failure(error):
-				var errorMessage: String
+			case .failure(let error):
+				let errorMessage: String
 
 				if let apiError = error as? HypeMachineAPI.APIError {
 					switch apiError {
@@ -88,12 +88,12 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 	@IBAction private func forgotPasswordButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Forgot Password")
-		NSWorkspace.shared.open(URL(string: "https://hypem.com/inc/lb_forgot.php")!)
+		"https://hypem.com/inc/lb_forgot.php".openUrl()
 	}
 
 	@IBAction private func signUpButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Sign Up")
-		NSWorkspace.shared.open(URL(string: "https://hypem.com/?signup=1")!)
+		"https://hypem.com/?signup=1".openUrl()
 	}
 
 	// MARK: NSViewController

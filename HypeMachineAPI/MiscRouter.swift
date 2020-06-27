@@ -44,7 +44,7 @@ extension Router {
 
 		var params: Parameters? {
 			switch self {
-			case let .getToken(usernameOrEmail, password):
+			case .getToken(let usernameOrEmail, let password):
 				return [
 					"username": usernameOrEmail as AnyObject,
 					"password": password as AnyObject,

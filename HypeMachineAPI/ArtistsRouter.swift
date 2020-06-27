@@ -22,10 +22,10 @@ extension Router {
 			switch self {
 			case .index:
 				return "/artists"
-			case let .show(name):
+			case .show(let name):
 				let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
 				return "/artists/\(escapedName)"
-			case let .showTracks(name, _):
+			case .showTracks(let name, _):
 				let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
 				return "/artists/\(escapedName)/tracks"
 			}
@@ -33,11 +33,11 @@ extension Router {
 
 		var params: Parameters? {
 			switch self {
-			case let .index(optionalParams):
+			case .index(let optionalParams):
 				return optionalParams
 			case .show:
 				return nil
-			case let .showTracks(_, optionalParams):
+			case .showTracks(_, let optionalParams):
 				return optionalParams
 			}
 		}

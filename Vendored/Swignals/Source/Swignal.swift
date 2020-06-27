@@ -1,7 +1,7 @@
 import Foundation
 
 public class SwignalBase {
-	internal var swignalObservers: [ObserverBase] = []
+	internal var swignalObservers = [ObserverBase]()
 
 	internal func addSwignalObserver(_ swignalObserver: ObserverBase) {
 		purgeDeallocatedListeners()

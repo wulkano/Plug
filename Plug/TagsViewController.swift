@@ -24,7 +24,7 @@ final class TagsViewController: DataSourceViewController {
 		let row = tableView.selectedRow
 		if let item = itemForRow(row) {
 			switch item {
-			case let .tagItem(tag):
+			case .tagItem(let tag):
 				return tag
 			default:
 				return nil
@@ -225,7 +225,7 @@ final class TagsViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
 		switch itemForRow(row)! {
-		case let .tagItem(tag):
+		case .tagItem(let tag):
 			loadSingleTagView(tag)
 		case .sectionHeaderItem:
 			return

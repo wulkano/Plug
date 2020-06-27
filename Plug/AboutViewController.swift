@@ -64,12 +64,12 @@ final class AboutViewController: NSViewController {
 
 	@objc
 	func glennLinkClicked(_ sender: NSButton) {
-		NSWorkspace.shared.open(URL(string: "https://twitter.com/glennui")!)
+		"https://twitter.com/glennui".openUrl()
 	}
 
 	@objc
 	func alexLinkClicked(_ sender: NSButton) {
-		NSWorkspace.shared.open(URL(string: "https://twitter.com/alex_marchant")!)
+		"https://twitter.com/alex_marchant".openUrl()
 	}
 
 	// MARK: NSViewController
@@ -98,9 +98,7 @@ final class AboutViewController: NSViewController {
 
 		let versionLabel = label(view)
 		versionLabel.font = appFont(size: 11)
-		let bundleVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-		let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-		versionLabel.stringValue = "Version \(bundleVersionString) (\(bundleVersion))"
+		versionLabel.stringValue = "Version \(App.version) (\(App.build))"
 		versionLabel.snp.makeConstraints { make in
 			make.top.equalTo(nameLabel.snp.bottom).offset(3)
 		}

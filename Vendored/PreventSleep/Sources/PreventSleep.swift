@@ -9,9 +9,11 @@ public final class PreventSleep {
 	let sleepAssertionMsg: String?
 
 	public init?(sleepAssertionMsg: String, sleepAssertionType: String) {
-		// Check if the assertion type is valid
-		if sleepAssertionType != kIOPMAssertionTypeNoIdleSleep &&
-			sleepAssertionType != kIOPMAssertionTypeNoDisplaySleep {
+		// Check if the assertion type is valid.
+		if
+			sleepAssertionType != kIOPMAssertionTypeNoIdleSleep,
+			sleepAssertionType != kIOPMAssertionTypeNoDisplaySleep
+		{
 			return nil
 		}
 
@@ -73,6 +75,6 @@ public final class PreventSleep {
 	@objc
 	public func canSleep() -> Bool {
 		// Check if the assertion already exists
-		return sleepAssertion == kIOReturnSuccess
+		sleepAssertion == kIOReturnSuccess
 	}
 }

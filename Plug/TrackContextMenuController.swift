@@ -49,7 +49,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 
 	@objc
 	func openHypeMachineLinkInBrowserClicked(_ sender: AnyObject) {
-		NSWorkspace.shared.open(track.hypeMachineURL())
+		track.hypeMachineURL().open()
 	}
 
 	@objc
@@ -75,8 +75,8 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 
 		_ = SoundCloudPermalinkFinder(
 			mediaURL: url,
-			success: { (trackURL: URL) in
-				NSWorkspace.shared.open(trackURL)
+			success: { trackURL in
+				trackURL.open()
 				return
 			},
 			failure: { error in
@@ -116,10 +116,14 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 }
 
 final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
-	var success: (_ trackURL: URL) -> Void
-	var failure: (_ error: NSError) -> Void
+	let success: (_ trackURL: URL) -> Void
+	let failure: (_ error: NSError) -> Void
 
-	init(mediaURL: URL, success: @escaping (_ trackURL: URL) -> Void, failure: @escaping (_ error: NSError) -> Void) {
+	init(
+		mediaURL: URL,
+		success: @escaping (_ trackURL: URL) -> Void,
+		failure: @escaping (_ error: NSError) -> Void
+	) {
 		self.success = success
 		self.failure = failure
 		super.init()
@@ -137,8 +141,7 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 			if let trackID = parseTrackIDFromURL(request.url!) {
 				requestPermalinkForTrackID(trackID)
 			} else {
-				let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])
-				failure(error)
+				failure(NSError.appError("Can't find SoundCloud link for this track."))
 			}
 		}
 
@@ -147,8 +150,7 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 
 	func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
 		connection.cancel()
-		let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Can't find SoundCloud link for this track."])
-		failure(error)
+		failure(NSError.appError("Can't find SoundCloud link for this track."))
 	}
 
 	func parseTrackIDFromURL(_ url: URL) -> String? {
@@ -168,9 +170,9 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 	func requestPermalinkForTrackID(_ trackID: String) {
 		SoundCloudAPI.Tracks.permalink(trackID) { response in
 			switch response.result {
-			case let .success(permalink):
+			case .success(let permalink):
 				self.success(permalink)
-			case let .failure(error):
+			case .failure(let error):
 				self.failure(error as NSError)
 			}
 		}

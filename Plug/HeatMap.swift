@@ -1,7 +1,7 @@
 import Cocoa
 import HypeMachineAPI
 
-final class HeatMap: NSObject {
+final class HeatMap {
 	var track: HypeMachineAPI.Track
 	var start: Double
 	var end: Double
@@ -10,7 +10,5 @@ final class HeatMap: NSObject {
 		self.track = track
 		self.start = start
 		self.end = end
-
-		super.init()
 	}
 }

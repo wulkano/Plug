@@ -151,9 +151,9 @@ final class UserViewController: BaseContentViewController {
 	func loadUser(_ username: String) {
 		HypeMachineAPI.Requests.Users.show(username: username) { response in
 			switch response.result {
-			case let .success(user):
+			case .success(let user):
 				self.user = user
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error)
 			}
@@ -179,9 +179,9 @@ final class UserViewController: BaseContentViewController {
 			.validate()
 			.responseImage { response in
 				switch response.result {
-				case let .success(image):
+				case .success(let image):
 					self.avatarView.image = image
-				case let .failure(error):
+				case .failure(let error):
 					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 					print(error as NSError)
 				}
@@ -224,11 +224,11 @@ final class UserViewController: BaseContentViewController {
 			let favoritedState = sender.state == .on
 
 			switch response.result {
-			case let .success(favorited):
+			case .success(let favorited):
 				if favorited != favoritedState {
 					sender.state = favorited ? .on : .off
 				}
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error)
 

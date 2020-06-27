@@ -5,8 +5,7 @@ public final class Swignal0Args: SwignalBase {
 
 	public func addObserver<L: AnyObject>(_ observer: L, callback: @escaping (_ observer: L) -> Void) {
 		let observer = Observer0Args(swignal: self, observer: observer, callback: callback)
-		addSwignalObserver(observer
-		)
+		addSwignalObserver(observer)
 	}
 
 	public func fire() {

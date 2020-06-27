@@ -3,7 +3,7 @@ import Cocoa
 extension String {
 	func getSubstringBetweenPrefix(_ prefix: String, andSuffix suffix: String) -> String? {
 		func getSubstringAfterPrefix() -> String? {
-			if let prefixRange = self.range(of: prefix) {
+			if let prefixRange = range(of: prefix) {
 				return String(self[prefixRange.upperBound..<endIndex])
 			} else {
 				return nil

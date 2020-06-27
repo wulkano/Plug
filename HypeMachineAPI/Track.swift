@@ -21,7 +21,7 @@ public struct Track {
 	public let iTunesURL: URL
 	public let mediaType: String?
 
-	public var loved: Bool
+	public var isLoved: Bool
 
 	public init(
 		id: String,
@@ -43,7 +43,7 @@ public struct Track {
 		postURL: URL,
 		iTunesURL: URL,
 		mediaType: String?,
-		loved: Bool
+		isLoved: Bool
 	) {
 		self.id = id
 		self.artist = artist
@@ -64,7 +64,7 @@ public struct Track {
 		self.postURL = postURL
 		self.iTunesURL = iTunesURL
 		self.mediaType = mediaType
-		self.loved = loved
+		self.isLoved = isLoved
 	}
 
 	public var lovedCountNum: NSNumber {
@@ -155,7 +155,7 @@ extension Track: ResponseObjectSerializable, ResponseCollectionSerializable {
 		self.id = id
 		self.artist = artist.isEmpty ? "Unknown artist" : artist
 		self.title = title.isEmpty ? "Unknown track" : title
-		self.loved = representation["ts_loved_me"] is Int
+		self.isLoved = representation["ts_loved_me"] is Int
 		self.lovedCount = lovedCount
 		self.thumbURLSmall = urlForJSONKey("thumb_url")
 		self.thumbURLMedium = urlForJSONKey("thumb_url_medium")

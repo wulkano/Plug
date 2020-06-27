@@ -20,13 +20,13 @@ extension Router {
 
 		var path: String {
 			switch self {
-			case let .show(username):
+			case .show(let username):
 				let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
 				return "/users/\(escapedUsername)"
-			case let .showFavorites(username, _):
+			case .showFavorites(let username, _):
 				let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
 				return "/users/\(escapedUsername)/favorites"
-			case let .showFriends(username, _):
+			case .showFriends(let username, _):
 				let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
 				return "/users/\(escapedUsername)/friends"
 			}
@@ -36,9 +36,9 @@ extension Router {
 			switch self {
 			case .show:
 				return nil
-			case let .showFavorites(_, optionalParams):
+			case .showFavorites(_, let optionalParams):
 				return optionalParams
-			case let .showFriends(_, optionalParams):
+			case .showFriends(_, let optionalParams):
 				return optionalParams
 			}
 		}

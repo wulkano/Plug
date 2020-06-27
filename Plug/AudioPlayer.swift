@@ -51,7 +51,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	var progressObserver: AnyObject?
-	var seeking = false
+	var isSeeking = false
 	var recentlyPlayedTrackIndexes = [Int]()
 	var timeoutTimer: Timer?
 	let timeoutSeconds = 10.0
@@ -80,7 +80,7 @@ final class AudioPlayer: NSObject {
 		currentTrack = nil
 		isPlaying = false
 		progressObserver = nil
-		seeking = false
+		isSeeking = false
 	}
 
 	func playNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
@@ -187,12 +187,12 @@ final class AudioPlayer: NSObject {
 			return
 		}
 
-		seeking = true
+		isSeeking = true
 		let seconds = percent * currentItemDuration()!
 		let time = CMTime(seconds: seconds, preferredTimescale: 1000)
 
 		player.seek(to: time) { success in
-			self.seeking = false
+			self.isSeeking = false
 
 			if !success {
 				// Minor error
@@ -211,13 +211,13 @@ final class AudioPlayer: NSObject {
 
 	@objc
 	func currentTrackCouldNotFinishPlayingNotification(_ notification: Notification) {
-		let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
+		let error = NSError.appError("Streaming error. Skipping to next track.")
 		currentTrackPlaybackError(error)
 	}
 
 	@objc
 	func currentTrackPlaybackStalledNotification(_ notification: Notification) {
-		let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Streaming error. Skipping to next track."])
+		let error = NSError.appError("Streaming error. Skipping to next track.")
 		currentTrackPlaybackError(error)
 	}
 
@@ -258,7 +258,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	func avPlayerTimedOut() {
-		let error = NSError(domain: PlugErrorDomain, code: 1, userInfo: [NSLocalizedDescriptionKey: "Network error. Track took too long to load, skipping to next track."])
+		let error = NSError.appError("Network error. Track took too long to load, skipping to next track.")
 		currentTrackPlaybackError(error)
 	}
 
@@ -283,7 +283,7 @@ final class AudioPlayer: NSObject {
 
 		subscribeToPlayerItem(playerItem)
 
-		if player != nil && progressObserver != nil {
+		if player != nil, progressObserver != nil {
 			player.removeTimeObserver(progressObserver!)
 		}
 
@@ -319,7 +319,7 @@ final class AudioPlayer: NSObject {
 
 	fileprivate func progressUpdated(_ time: CMTime) {
 		guard
-			!seeking,
+			!isSeeking,
 			currentTrack != nil
 		else { return }
 
@@ -368,8 +368,10 @@ final class AudioPlayer: NSObject {
 			return nil
 		}
 
-		if isShuffle &&
-			!(currentDataSource is FavoriteTracksDataSource) {
+		if
+			isShuffle,
+			!(currentDataSource is FavoriteTracksDataSource)
+		{
 			return nextShuffleTrack()
 		} else {
 			return currentDataSource.trackAfter(currentTrack)

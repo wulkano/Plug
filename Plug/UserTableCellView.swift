@@ -45,9 +45,9 @@ class UserTableCellView: IOSStyleTableCellView {
 			.validate()
 			.responseImage { response in
 				switch response.result {
-				case let .success(image):
+				case .success(let image):
 					self.avatarView.image = image
-				case let .failure(error):
+				case .failure(let error):
 					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 					print(error as NSError)
 				}

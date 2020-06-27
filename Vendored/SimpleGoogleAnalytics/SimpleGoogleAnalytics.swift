@@ -3,7 +3,7 @@ import Alamofire
 
 // swiftlint:disable discouraged_optional_boolean
 
-public final class Manager: NSObject {
+public final class Manager {
 	let trackingID: String
 	let appBundle: Bundle
 	let userID: String?
@@ -16,8 +16,6 @@ public final class Manager: NSObject {
 		self.trackingID = trackingID
 		self.appBundle = appBundle
 		self.userID = userID
-
-		super.init()
 
 		setupSessionManager()
 	}
@@ -89,9 +87,9 @@ public final class Manager: NSObject {
 		return params
 	}
 
-	fileprivate func version() -> String { "1" }
+	private func version() -> String { "1" }
 
-	fileprivate func clientID() -> String {
+	private func clientID() -> String {
 		if let UUID = UserDefaults.standard.string(forKey: GAClientIDKey) {
 			return UUID
 		} else {
@@ -101,25 +99,25 @@ public final class Manager: NSObject {
 		}
 	}
 
-	fileprivate func generateClientID() -> String {
+	private func generateClientID() -> String {
 		let newUUID = CFUUIDCreate(nil)
 		let string = CFUUIDCreateString(nil, newUUID) as String
 		return string
 	}
 
-	fileprivate func appName() -> String {
+	private func appName() -> String {
 		appBundle.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
 	}
 
-	fileprivate func appVersion() -> String {
+	private func appVersion() -> String {
 		appBundle.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
 	}
 
-	fileprivate func appID() -> String {
+	private func appID() -> String {
 		appBundle.bundleIdentifier!
 	}
 
-	fileprivate func screenResolution() -> String {
+	private func screenResolution() -> String {
 		let size = (NSScreen.main!.deviceDescription[NSDeviceDescriptionKey.size]! as AnyObject).sizeValue
 
 		let width = Int((size?.width)!)
@@ -127,12 +125,12 @@ public final class Manager: NSObject {
 		return "\(width)x\(height)"
 	}
 
-	fileprivate func screenColors() -> String {
+	private func screenColors() -> String {
 		let bits = NSScreen.main!.depth.bitsPerPixel
 		return "\(bits)-bit"
 	}
 
-	fileprivate func userLanguage() -> String {
+	private func userLanguage() -> String {
 		let locale = Locale.current
 		return "\((locale as NSLocale).object(forKey: NSLocale.Key.languageCode)!)-\((locale as NSLocale).object(forKey: NSLocale.Key.countryCode)!)"
 	}

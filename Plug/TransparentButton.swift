@@ -53,7 +53,7 @@ final class TransparentButton: NSButton {
 	}
 
 	func getDrawImage() -> NSImage? {
-		if isSelectable && isSelected {
+		if isSelectable, isSelected {
 			return selectedImage
 		} else {
 			return unselectedImage
@@ -61,7 +61,7 @@ final class TransparentButton: NSButton {
 	}
 
 	func getDrawOpacity() -> CGFloat {
-		if isSelectable && isSelected {
+		if isSelectable, isSelected {
 			return selectedOpacity
 		} else if isMouseDown {
 			return mouseDownOpacity

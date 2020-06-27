@@ -18,7 +18,7 @@ final class VolumeIconView: NSView {
 		}
 	}
 
-	var opacity: CGFloat = 0.3
+	let opacity: CGFloat = 0.3
 
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
@@ -39,7 +39,7 @@ final class VolumeIconView: NSView {
 	}
 
 	func setStateForVolume(_ volume: Double) {
-		var newVolumeState: VolumeState
+		let newVolumeState: VolumeState
 		if volume <= 0 {
 			newVolumeState = .off
 		} else if volume <= (1 / 3) {

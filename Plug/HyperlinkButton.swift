@@ -78,7 +78,7 @@ final class HyperlinkButton: NSButton {
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if hasHoverUnderline && !isAlwaysUnderlined {
+		if hasHoverUnderline, !isAlwaysUnderlined {
 			if trackingArea != nil {
 				removeTrackingArea(trackingArea!)
 				trackingArea = nil

@@ -72,7 +72,7 @@ extension MainWindowController {
 	@objc
 	func changePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
 		guard
-			let duration = self.nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] as? Double
+			let duration = nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] as? Double
 		else {
 			return .noActionableNowPlayingItem
 		}

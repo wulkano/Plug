@@ -25,11 +25,11 @@ final class TrafficButtons {
 	}
 
 	private func setupImagesForButton(_ button: inout INWindowButton!, buttonName: String, style: TrafficButtonStyle) {
-		button.activeImage = NSImage(named: "traffic-\(buttonName)-\(style.stringValue())")
-		button.activeNotKeyWindowImage = NSImage(named: "traffic-disabled-\(style.stringValue())")
-		button.inactiveImage = NSImage(named: "traffic-disabled-\(style.stringValue())")
-		button.rolloverImage = NSImage(named: "traffic-\(buttonName)-hover-\(style.stringValue())")
-		button.pressedImage = NSImage(named: "traffic-\(buttonName)-down-\(style.stringValue())")
+		button.activeImage = NSImage(named: "traffic-\(buttonName)-\(style.rawValue)")
+		button.activeNotKeyWindowImage = NSImage(named: "traffic-disabled-\(style.rawValue)")
+		button.inactiveImage = NSImage(named: "traffic-disabled-\(style.rawValue)")
+		button.rolloverImage = NSImage(named: "traffic-\(buttonName)-hover-\(style.rawValue)")
+		button.pressedImage = NSImage(named: "traffic-\(buttonName)-down-\(style.rawValue)")
 	}
 
 	private func hideDefaultButtons(_ window: NSWindow) {
@@ -77,16 +77,7 @@ final class TrafficButtons {
 	}
 }
 
-enum TrafficButtonStyle {
+enum TrafficButtonStyle: String {
 	case dark
 	case light
-
-	func stringValue() -> String {
-		switch self {
-		case .dark:
-			return "dark"
-		case .light:
-			return "light"
-		}
-	}
 }

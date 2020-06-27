@@ -44,7 +44,7 @@ final class BlogTableCellView: IOSStyleTableCellView {
 			}
 
 			switch response.result {
-			case let .success(tracks):
+			case .success(let tracks):
 				var recentTracks = ""
 				for (index, track) in tracks.enumerated() {
 					recentTracks += "\(track.artist)"
@@ -55,7 +55,7 @@ final class BlogTableCellView: IOSStyleTableCellView {
 				}
 
 				self.recentArtistsTextField.stringValue = recentTracks
-			case let .failure(error):
+			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 				print(error as NSError)
 			}

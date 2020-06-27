@@ -21,7 +21,7 @@ final class UnderlinedTabButtonCell: NSButtonCell {
 
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
 		// Consistent vertical placement
-		return super.drawTitle(title, withFrame: fixedTextFrame, in: controlView)
+		super.drawTitle(title, withFrame: fixedTextFrame, in: controlView)
 	}
 
 	override func drawImage(_ image: NSImage, withFrame frame: CGRect, in controlView: NSView) {

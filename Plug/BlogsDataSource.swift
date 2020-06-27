@@ -42,7 +42,7 @@ final class BlogsDataSource: SearchableDataSource {
 	}
 
 	func groupBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [Any] {
-		var groupedBlogs: [Any] = []
+		var groupedBlogs = [Any]()
 
 		let followingBlogs = filterFollowingBlogs(blogs)
 		if !followingBlogs.isEmpty {

@@ -212,7 +212,7 @@ final class BlogsViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
 		switch itemForRow(row)! {
-		case let .blogItem(blog):
+		case .blogItem(let blog):
 			loadBlogViewController(blog)
 		case .sectionHeaderItem:
 			return

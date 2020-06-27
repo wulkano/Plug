@@ -45,7 +45,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	}
 
 	func loadNextPageObjects() {
-		if singlePage && currentPage >= 1 {
+		if singlePage, currentPage >= 1 {
 			return
 		}
 
@@ -70,7 +70,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 		viewController.nextPageDidLoad(currentPage)
 
 		switch response.result {
-		case let .success(value):
+		case .success(let value):
 			guard let objects = value as Any as? [Any] else {
 				fatalError("Must be of type [Any]")
 			}
@@ -84,7 +84,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 
 			appendTableContents(objects)
 			requestInProgress = false
-		case let .failure(error):
+		case .failure(let error):
 			Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
 			print(error)
 		}

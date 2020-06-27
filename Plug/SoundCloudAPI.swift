@@ -17,7 +17,7 @@ extension DataRequest {
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)
 
-			guard case let .success(jsonObject) = result else {
+			guard case .success(let jsonObject) = result else {
 				return .failure(SoundCloudAPI.Errors.cantParseResponse)
 			}
 

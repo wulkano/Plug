@@ -22,7 +22,7 @@ extension Router {
 			switch self {
 			case .index:
 				return "/tracks"
-			case let .show(id):
+			case .show(let id):
 				return "/tracks/\(id)"
 			case .popular:
 				return "/popular"
@@ -31,11 +31,11 @@ extension Router {
 
 		var params: Parameters? {
 			switch self {
-			case let .index(optionalParams):
+			case .index(let optionalParams):
 				return optionalParams
 			case .show:
 				return nil
-			case let .popular(optionalParams):
+			case .popular(let optionalParams):
 				return optionalParams
 			}
 		}

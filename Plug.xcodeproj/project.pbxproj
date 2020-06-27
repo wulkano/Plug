@@ -57,6 +57,7 @@
 		E35F1C4724750255004CC5C1 /* INAppStoreWindowSwizzling.c in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C3F24750255004CC5C1 /* INAppStoreWindowSwizzling.c */; };
 		E35F1C4824750255004CC5C1 /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4024750255004CC5C1 /* INWindowButton.m */; };
 		E35F1C50247519DB004CC5C1 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4D247519DB004CC5C1 /* SSKeychain.m */; };
+		E39B5B0424A7CAA100EC6BAC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B5B0324A7CAA100EC6BAC /* Utilities.swift */; };
 		E3B4C5BD2476C9E000D4776F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C5BC2476C9E000D4776F /* Secrets.swift */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
 		FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0742411B49EAD800AA49D7 /* NavigationSectionButton.swift */; };
@@ -114,7 +115,7 @@
 		FA5927F91B28ED1E00D07176 /* RefreshHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */; };
 		FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */; };
 		FA6127141B051F9700E9F2C9 /* Alamofire+responseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */; };
-		FA64C6A719764FE9003933E3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Globals.swift */; };
+		FA64C6A719764FE9003933E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Constants.swift */; };
 		FA64C6A919765323003933E3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array.swift */; };
 		FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */; };
 		FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */; };
@@ -288,6 +289,7 @@
 		E35F1C4B247519DB004CC5C1 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		E35F1C4C247519DB004CC5C1 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.markdown; sourceTree = "<group>"; };
 		E35F1C4D247519DB004CC5C1 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		E39B5B0324A7CAA100EC6BAC /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E3B4C5BC2476C9E000D4776F /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		E3C1BDA324742F8100F5E403 /* Plug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plug.entitlements; sourceTree = "<group>"; };
 		FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderViewController.swift; sourceTree = "<group>"; };
@@ -349,7 +351,7 @@
 		FA5927F81B28ED1E00D07176 /* RefreshHeaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderViewController.swift; sourceTree = "<group>"; };
 		FA5ACB2E1B77CA8E0075D44F /* StickyTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyTrackViewController.swift; sourceTree = "<group>"; };
 		FA6127131B051F9700E9F2C9 /* Alamofire+responseImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+responseImage.swift"; sourceTree = "<group>"; };
-		FA64C6A619764FE9003933E3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		FA64C6A619764FE9003933E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesTableCellView.swift; sourceTree = "<group>"; };
 		FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
@@ -694,9 +696,9 @@
 			isa = PBXGroup;
 			children = (
 				FA24EDA51974A9A500A781C8 /* AppDelegate.swift */,
-				FA64C6A619764FE9003933E3 /* Globals.swift */,
+				FA64C6A619764FE9003933E3 /* Constants.swift */,
 				E3B4C5BC2476C9E000D4776F /* Secrets.swift */,
-				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
+				E39B5B0324A7CAA100EC6BAC /* Utilities.swift */,
 				FA64C6A119764DAE003933E3 /* Models */,
 				FA2519451C039E850075FBC6 /* Helpers */,
 				FA9EA043199B0D1500D9AB8A /* Data Sources */,
@@ -717,6 +719,7 @@
 				FA24EDA01974A9A500A781C8 /* Info.plist */,
 				E3C1BDA324742F8100F5E403 /* Plug.entitlements */,
 				FA24EDA11974A9A500A781C8 /* main.swift */,
+				FAF507191975DA4B0097D392 /* Plug-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1251,6 +1254,7 @@
 				FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */,
 				FA5394FA19AFA065006A95A5 /* Animations.swift in Sources */,
 				FA21F9AD1B1EC1FF00EBAA09 /* TracksDataSourceSubclasses.swift in Sources */,
+				E39B5B0424A7CAA100EC6BAC /* Utilities.swift in Sources */,
 				FAD1F54919A7C793002322D6 /* Authentication.swift in Sources */,
 				FA7C5CCD19BD4E9A002239AB /* SoundCloudAPI.swift in Sources */,
 				FA9EA042199B08E100D9AB8A /* TagsDataSource.swift in Sources */,
@@ -1354,7 +1358,7 @@
 				FA7B3CB9199B626B008E8B01 /* SidebarOverlayView.swift in Sources */,
 				FA6ADCFB19BA8B9600CCD371 /* SingleBlogViewFormatter.swift in Sources */,
 				FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */,
-				FA64C6A719764FE9003933E3 /* Globals.swift in Sources */,
+				FA64C6A719764FE9003933E3 /* Constants.swift in Sources */,
 				FAF13B28199D22D5009D9F66 /* Notifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

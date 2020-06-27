@@ -23,7 +23,7 @@ final class TagsDataSource: SearchableDataSource {
 	}
 
 	func groupTags(_ tags: [HypeMachineAPI.Tag]) -> [Any] {
-		var groupedTags: [AnyObject] = []
+		var groupedTags = [AnyObject]()
 
 		groupedTags.append(SectionHeader(title: "The Basics"))
 		var priorityTags = tags.filter { $0.priority == true }

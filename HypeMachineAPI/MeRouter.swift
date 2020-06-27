@@ -48,7 +48,7 @@ extension Router {
 				return "/me/favorites"
 			case .playlistNames:
 				return "/me/playlist_names"
-			case let .showPlaylist(id, _):
+			case .showPlaylist(let id, _):
 				return "/me/playlists/\(id)"
 			case .postHistory:
 				return "/me/history"
@@ -61,23 +61,23 @@ extension Router {
 
 		var params: Parameters? {
 			switch self {
-			case let .favorites(optionalParams):
+			case .favorites(let optionalParams):
 				return optionalParams
-			case let .toggleTrackFavorite(id, optionalParams):
+			case .toggleTrackFavorite(let id, let optionalParams):
 				return ["val": id, "type": "item"].merge(optionalParams)
-			case let .toggleBlogFavorite(id, optionalParams):
+			case .toggleBlogFavorite(let id, let optionalParams):
 				return ["val": id, "type": "site"].merge(optionalParams)
-			case let .toggleUserFavorite(id, optionalParams):
+			case .toggleUserFavorite(let id, let optionalParams):
 				return ["val": id, "type": "user"].merge(optionalParams)
 			case .playlistNames:
 				return nil
-			case let .showPlaylist(_, optionalParams):
+			case .showPlaylist(_, let optionalParams):
 				return optionalParams
-			case let .postHistory(id, position, optionalParams):
+			case .postHistory(let id, let position, let optionalParams):
 				return ["type": "listen", "itemid": id, "pos": position].merge(optionalParams)
-			case let .friends(optionalParams):
+			case .friends(let optionalParams):
 				return optionalParams
-			case let .feed(optionalParams):
+			case .feed(let optionalParams):
 				return optionalParams
 			}
 		}

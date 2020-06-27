@@ -21,7 +21,7 @@ extension DataRequest {
 			let jsonResponseSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonResponseSerializer.serializeResponse(request, response, data, nil)
 
-			guard case let .success(jsonObject) = result else {
+			guard case .success(let jsonObject) = result else {
 				return .failure(APIError.jsonSerialization(error: result.error!))
 			}
 
@@ -44,14 +44,18 @@ protocol ResponseCollectionSerializable {
 
 extension ResponseCollectionSerializable where Self: ResponseObjectSerializable {
 	static func collection(from response: HTTPURLResponse, withRepresentation representation: Any) -> [Self] {
-		var collection: [Self] = []
+		var collection = [Self]()
 
-		if let representation = representation as? [[String: Any]] {
-			for itemRepresentation in representation {
-				if let item = Self(response: response, representation: itemRepresentation) {
-					collection.append(item)
-				}
+		guard let representation = representation as? [[String: Any]] else {
+			return collection
+		}
+
+		for itemRepresentation in representation {
+			guard let item = Self(response: response, representation: itemRepresentation) else {
+				continue
 			}
+
+			collection.append(item)
 		}
 
 		return collection
@@ -72,7 +76,7 @@ extension DataRequest {
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)
 
-			guard case let .success(jsonObject) = result else {
+			guard case .success(let jsonObject) = result else {
 				return .failure(APIError.jsonSerialization(error: result.error!))
 			}
 
@@ -104,7 +108,7 @@ extension DataRequest {
 			let stringSerializer = DataRequest.stringResponseSerializer()
 			let result = stringSerializer.serializeResponse(request, response, data, nil)
 
-			guard case let .success(string) = result else {
+			guard case .success(let string) = result else {
 				return .failure(APIError.stringSerialization(error: result.error!))
 			}
 
@@ -138,7 +142,7 @@ extension DataRequest {
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)
 
-			guard case let .success(jsonObject) = result else {
+			guard case .success(let jsonObject) = result else {
 				return .failure(APIError.jsonSerialization(error: result.error!))
 			}
 
@@ -170,7 +174,7 @@ extension DataRequest {
 			let jsonSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
 			let result = jsonSerializer.serializeResponse(request, response, data, nil)
 
-			guard case let .success(jsonObject) = result else {
+			guard case .success(let jsonObject) = result else {
 				return .failure(APIError.jsonSerialization(error: result.error!))
 			}
 

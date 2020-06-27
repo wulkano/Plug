@@ -19,7 +19,7 @@ extension Router {
 			switch self {
 			case .index:
 				return "/tags"
-			case let .showTracks(name, _):
+			case .showTracks(let name, _):
 				let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
 				return "/tags/\(escapedName)/tracks"
 			}
@@ -29,7 +29,7 @@ extension Router {
 			switch self {
 			case .index:
 				return nil
-			case let .showTracks(_, optionalParams):
+			case .showTracks(_, let optionalParams):
 				return optionalParams
 			}
 		}
