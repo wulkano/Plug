@@ -40,7 +40,7 @@ final class DisplayErrorViewController: NSViewController {
 		errorTitleTextField.lineBreakMode = .byWordWrapping
 		errorTitleTextField.font = appFont(size: 14, weight: .medium)
 		errorTitleTextField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
-		errorTitleTextField.textColor = NSColor.white
+		errorTitleTextField.textColor = .white
 		view.addSubview(errorTitleTextField)
 		errorTitleTextField.snp.makeConstraints { make in
 			make.top.equalTo(view).offset(6)
@@ -57,7 +57,7 @@ final class DisplayErrorViewController: NSViewController {
 		errorDescriptionTextField.lineBreakMode = .byWordWrapping
 		errorDescriptionTextField.font = appFont(size: 13)
 		errorDescriptionTextField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
-		errorDescriptionTextField.textColor = NSColor.white
+		errorDescriptionTextField.textColor = .white
 		view.addSubview(errorDescriptionTextField)
 		errorDescriptionTextField.snp.makeConstraints { make in
 			make.top.equalTo(errorTitleTextField.snp.bottom)
