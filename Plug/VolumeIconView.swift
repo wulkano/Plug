@@ -18,12 +18,12 @@ final class VolumeIconView: NSView {
 		}
 	}
 
-	let opacity: CGFloat = 0.3
+	let opacity: CGFloat = 0.4
 
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
-		guard let drawImage = getDrawImage() else {
+		guard let drawImage = getDrawImage()?.tinted(color: .labelColor) else {
 			return
 		}
 

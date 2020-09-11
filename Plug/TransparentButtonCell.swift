@@ -5,12 +5,20 @@ final class TransparentButtonCell: SwissArmyButtonCell {
 
 	let selectedOpacity: CGFloat = 1
 	let mouseDownOpacity: CGFloat = 1
-	let mouseInsideOpacity: CGFloat = 0.7
-	let inactiveOpacity: CGFloat = 0.3
+	let mouseInsideOpacity: CGFloat = 0.8
+	let inactiveOpacity: CGFloat = 0.4
+
+	var isTemplated = false
 
 	override func drawImage(_ image: NSImage, withFrame frame: CGRect, in controlView: NSView) {
 		let alpha = getImageAlpha()
-		if let drawImage = getDrawImage() {
+
+		// TODO: Handle shuffle which should be red. Use tinting instead of separate image.
+		if var drawImage = getDrawImage() {
+			if isTemplated {
+				drawImage = drawImage.tinted(color: .labelColor)
+			}
+
 			drawImage.draw(in: frame, from: .zero, operation: .sourceOver, fraction: alpha, respectFlipped: true, hints: nil)
 		}
 	}

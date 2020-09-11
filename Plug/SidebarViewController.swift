@@ -64,7 +64,12 @@ final class SidebarViewController: NSViewController {
 		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
-		backgroundView.appearance = NSAppearance(named: .vibrantDark)
+		backgroundView.material = .sidebar
+
+		if !NSApp.effectiveAppearance.isDarkMode {
+			backgroundView.appearance = NSAppearance(named: .vibrantDark)
+		}
+
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
 			make.edges.equalTo(view)

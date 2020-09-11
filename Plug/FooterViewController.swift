@@ -35,7 +35,6 @@ final class FooterViewController: NSViewController {
 		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
-		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
 		backgroundView.blendingMode = .withinWindow
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
@@ -44,7 +43,7 @@ final class FooterViewController: NSViewController {
 
 		let borderBox = BackgroundBorderView()
 		borderBox.borderWidth = 1
-		borderBox.borderColor = NSColor(red256: 225, green256: 226, blue256: 226)
+		borderBox.borderColor = .borderColor
 		borderBox.topBorder = true
 		backgroundView.addSubview(borderBox)
 		borderBox.snp.makeConstraints { make in
@@ -98,6 +97,7 @@ final class FooterViewController: NSViewController {
 
 		let forwardButton = SwissArmyButton(frame: .zero)
 		let forwardCell = TransparentButtonCell(textCell: "")
+		forwardCell.isTemplated = true
 		forwardButton.cell = forwardCell
 		forwardButton.isBordered = false
 		forwardButton.isTrackingHover = true
@@ -114,6 +114,7 @@ final class FooterViewController: NSViewController {
 
 		let backButton = SwissArmyButton(frame: .zero)
 		let backCell = TransparentButtonCell(textCell: "")
+		backCell.isTemplated = true
 		backButton.cell = backCell
 		backButton.isBordered = false
 		backButton.isTrackingHover = true
