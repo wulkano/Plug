@@ -26,10 +26,12 @@ private class Observer4Args<L: AnyObject, A, B, C, D>: ObserverGenericBase<L> {
 	}
 
 	override func fire(_ args: Any...) {
-		if let arg1 = args[0] as? A,
+		if
+			let arg1 = args[0] as? A,
 			let arg2 = args[1] as? B,
 			let arg3 = args[2] as? C,
-			let arg4 = args[3] as? D {
+			let arg4 = args[3] as? D
+		{
 			fire(arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4)
 		} else {
 			assert(false, "Types incorrect")

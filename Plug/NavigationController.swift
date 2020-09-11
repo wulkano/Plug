@@ -111,7 +111,7 @@ final class NavigationController: NSViewController {
 
 		updateVisibleViewControllerAnimated(animated)
 
-		navigationBarController.setNavigationItems(newViewControllers.map { $0.navigationItem })
+		navigationBarController.setNavigationItems(newViewControllers.map(\.navigationItem))
 	}
 
 	// MARK: Private

@@ -11,8 +11,7 @@ extension DataRequest {
 	func responseObject<T: ResponseObjectSerializable>(
 		queue: DispatchQueue? = nil,
 		completionHandler: @escaping (DataResponse<T>) -> Void
-	)
-		-> Self {
+	) -> Self {
 		let responseSerializer = DataResponseSerializer<T> { request, response, data, error in
 			if let error = error {
 				return .failure(APIError.network(error: error))
