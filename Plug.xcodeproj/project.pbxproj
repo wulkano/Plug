@@ -1521,7 +1521,6 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -1570,7 +1569,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
