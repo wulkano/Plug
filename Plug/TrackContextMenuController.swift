@@ -29,9 +29,26 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 		}
 
 		contextMenu.addItem(NSMenuItem.separator())
-		contextMenu.addItem(NSMenuItem(title: "Share to Facebook", action: #selector(TrackContextMenuController.shareToFacebookClicked(_:)), keyEquivalent: ""))
-		contextMenu.addItem(NSMenuItem(title: "Share to Twitter", action: #selector(TrackContextMenuController.shareToTwitterClicked(_:)), keyEquivalent: ""))
-		contextMenu.addItem(NSMenuItem(title: "Share to Messages", action: #selector(TrackContextMenuController.shareToMessagesClicked(_:)), keyEquivalent: ""))
+
+		let shareMenu = NSMenuItem(title: "Share", action: nil, keyEquivalent: "")
+			.withSubmenu { menu in
+				let shareItems = [shareMessage()]
+
+				for service in NSSharingService.sharingServices(forItems: shareItems) {
+					let menuItem = NSMenuItem(title: service.title, action: nil, keyEquivalent: "")
+					menuItem.target = self
+					menuItem.image = service.image
+
+					menuItem.onAction { _ in
+						service.perform(withItems: shareItems)
+					}
+
+					menu.addItem(menuItem)
+				}
+
+				return menu
+			}
+		contextMenu.addItem(shareMenu)
 
 		for item in contextMenu.items {
 			item.target = self
@@ -86,29 +103,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 		)
 	}
 
-	@objc
-	func shareToFacebookClicked(_ sender: AnyObject) {
-		shareTrackWithServiceNamed(NSSharingService.Name.postOnFacebook.rawValue)
-	}
-
-	@objc
-	func shareToTwitterClicked(_ sender: AnyObject) {
-		shareTrackWithServiceNamed(NSSharingService.Name.postOnTwitter.rawValue)
-	}
-
-	@objc
-	func shareToMessagesClicked(_ sender: AnyObject) {
-		shareTrackWithServiceNamed(NSSharingService.Name.composeMessage.rawValue)
-	}
-
 	// MARK: Private
-
-	fileprivate func shareTrackWithServiceNamed(_ name: String) {
-		let shareContents = [shareMessage()]
-		let sharingService = NSSharingService(named: NSSharingService.Name(rawValue: name))!
-		sharingService.delegate = self
-		sharingService.perform(withItems: shareContents)
-	}
 
 	fileprivate func shareMessage() -> String {
 		"\(track.title) - \(track.artist) \(track.hypeMachineURL())\nvia @plugformac"
