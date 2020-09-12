@@ -24,8 +24,6 @@ final class DisplayErrorViewController: NSViewController {
 		view = NSView(frame: .zero)
 
 		let background = BackgroundBorderView()
-		background.hasBackground = true
-		background.backgroundColor = NSColor(red256: 255, green256: 95, blue256: 82)
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
 			make.edges.equalTo(view)

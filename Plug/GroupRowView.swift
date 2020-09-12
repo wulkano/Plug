@@ -1,8 +1,8 @@
 import Cocoa
 
-class GroupRowView: NSTableRowView {
-	let backgroundFill = NSColor(red256: 244, green256: 244, blue256: 245)
-	let lineFill = NSColor(red256: 225, green256: 230, blue256: 233)
+final class GroupRowView: NSTableRowView {
+	let backgroundFill = NSColor.controlBackgroundColor
+	let lineFill = NSColor.borderColor
 
 	override func draw(_ dirtyRect: CGRect) {
 		drawBackground(dirtyRect)
