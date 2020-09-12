@@ -157,7 +157,6 @@ final class BlogViewController: BaseContentViewController {
 				image.size = CGSize(width: 112, height: 112)
 				self.imageView.image = image
 				self.header.backgroundColor = colorArt.backgroundColor
-				self.titleButton.textColor = colorArt.primaryColor
 				self.detailsTextField.attributedStringValue = attributedBlogDetails
 				self.removeLoaderView()
 			}

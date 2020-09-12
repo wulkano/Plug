@@ -4,7 +4,7 @@ final class FlatSliderCell: NSSliderCell {
 	@IBInspectable var barColor: NSColor = .tertiaryLabelColor
 	@IBInspectable var barFillColor: NSColor = .labelColor
 	@IBInspectable var knobSize: CGFloat = 12
-	@IBInspectable var knobFillColor: NSColor = .labelColor // TODO: Fix this for dark mode.
+	@IBInspectable var knobFillColor: NSColor = .labelColor
 
 	var isMouseDown = false
 	var isMouseInside = false

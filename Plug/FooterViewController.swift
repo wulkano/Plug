@@ -64,8 +64,8 @@ final class FooterViewController: NSViewController {
 
 		volumeSlider = NSSlider(frame: .zero)
 		let cell = FlatSliderCell()
-		cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
-		cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
+		cell.barColor = .quaternaryLabelColor
+		cell.barFillColor = .secondaryLabelColor
 		cell.knobSize = 10
 		volumeSlider.cell = cell
 		volumeSlider.controlSize = .mini
@@ -96,7 +96,6 @@ final class FooterViewController: NSViewController {
 
 		let forwardButton = SwissArmyButton(frame: .zero)
 		let forwardCell = TransparentButtonCell(textCell: "")
-		forwardCell.isTemplated = true
 		forwardButton.cell = forwardCell
 		forwardButton.isBordered = false
 		forwardButton.isTrackingHover = true
@@ -113,7 +112,6 @@ final class FooterViewController: NSViewController {
 
 		let backButton = SwissArmyButton(frame: .zero)
 		let backCell = TransparentButtonCell(textCell: "")
-		backCell.isTemplated = true
 		backButton.cell = backCell
 		backButton.isBordered = false
 		backButton.isTrackingHover = true
