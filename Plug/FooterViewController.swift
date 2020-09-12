@@ -35,7 +35,6 @@ final class FooterViewController: NSViewController {
 		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
-		backgroundView.appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
 		backgroundView.blendingMode = .withinWindow
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
@@ -44,7 +43,6 @@ final class FooterViewController: NSViewController {
 
 		let borderBox = BackgroundBorderView()
 		borderBox.borderWidth = 1
-		borderBox.borderColor = NSColor(red256: 225, green256: 226, blue256: 226)
 		borderBox.topBorder = true
 		backgroundView.addSubview(borderBox)
 		borderBox.snp.makeConstraints { make in
@@ -66,8 +64,8 @@ final class FooterViewController: NSViewController {
 
 		volumeSlider = NSSlider(frame: .zero)
 		let cell = FlatSliderCell()
-		cell.barColor = NSColor(red256: 225, green256: 226, blue256: 226)
-		cell.barFillColor = NSColor(red256: 175, green256: 175, blue256: 176)
+		cell.barColor = .quaternaryLabelColor
+		cell.barFillColor = .tertiaryLabelColor
 		cell.knobSize = 10
 		volumeSlider.cell = cell
 		volumeSlider.controlSize = .mini

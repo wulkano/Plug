@@ -30,14 +30,14 @@ final class DropdownTitleFormatter: Formatter {
 
 	private func viewTitleAttributes() -> [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		attributes[.foregroundColor] = NSColor(red256: 0, green256: 0, blue256: 0)
+		attributes[.foregroundColor] = NSColor.labelColor
 		attributes[.font] = getFont()
 		return attributes
 	}
 
 	private func optionTitleAttributes() -> [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		attributes[.foregroundColor] = NSColor(white: 0, alpha: 0.4)
+		attributes[.foregroundColor] = NSColor.secondaryLabelColor
 		attributes[.font] = getFont()
 		return attributes
 	}

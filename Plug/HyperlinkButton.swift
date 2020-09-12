@@ -1,7 +1,7 @@
 import Cocoa
 
 final class HyperlinkButton: NSButton {
-	@IBInspectable var textColor: NSColor = .black {
+	@IBInspectable var textColor: NSColor = .labelColor {
 		didSet {
 			applyAttributes()
 		}
@@ -46,8 +46,8 @@ final class HyperlinkButton: NSButton {
 	}
 
 	func setup() {
-		setButtonType(NSButton.ButtonType.momentaryPushIn)
-		bezelStyle = NSButton.BezelStyle.rounded
+		setButtonType(.momentaryPushIn)
+		bezelStyle = .rounded
 	}
 
 	func applyAttributes() {

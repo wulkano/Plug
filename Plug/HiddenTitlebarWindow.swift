@@ -8,7 +8,6 @@ final class HiddenTitlebarWindow: NSWindow {
 	}
 
 	func setup() {
-		appearance = NSAppearance(named: NSAppearance.Name.vibrantLight)
 		styleMask = [styleMask, NSWindow.StyleMask.fullSizeContentView]
 		titleVisibility = NSWindow.TitleVisibility.hidden
 		titlebarAppearsTransparent = true

@@ -36,7 +36,7 @@ final class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 	}
 
 	fileprivate func drawArrow(_ frame: CGRect, inView controlView: NSView) {
-		let arrowColor = NSColor(white: 0, alpha: 0.4)
+		let arrowColor = NSColor.secondaryLabelColor
 
 		let path = NSBezierPath()
 		let bounds = controlView.bounds

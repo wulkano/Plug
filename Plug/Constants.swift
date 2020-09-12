@@ -1,3 +1,5 @@
 import Foundation
 
-// This will be used soon.
+extension NSColor {
+	static let borderColor = NSColor(named: "BorderColor")!
+}

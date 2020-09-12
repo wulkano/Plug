@@ -7,10 +7,7 @@ final class SearchHeaderViewController: NSViewController {
 		view = NSView()
 
 		let background = BackgroundBorderView()
-		background.hasBackground = true
-		background.backgroundColor = .white
 		background.bottomBorder = true
-		background.borderColor = NSColor(red256: 225, green256: 230, blue256: 233)
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
 			make.edges.equalTo(view)

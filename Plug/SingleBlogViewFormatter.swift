@@ -33,39 +33,15 @@ final class SingleBlogViewFormatter: Formatter {
 
 	private var countAttributes: [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		attributes[.foregroundColor] = countColor
+		attributes[.foregroundColor] = NSColor.labelColor
 		attributes[.font] = font
 		return attributes
 	}
 
 	private var labelAttributes: [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		attributes[.foregroundColor] = labelColor
+		attributes[.foregroundColor] = NSColor.secondaryLabelColor
 		attributes[.font] = font
 		return attributes
-	}
-
-	private var countColor: NSColor {
-		if let primaryColor = colorArt.primaryColor {
-			return primaryColor
-		} else if let secondaryColor = colorArt.secondaryColor {
-			return secondaryColor
-		} else if let detailColor = colorArt.detailColor {
-			return detailColor
-		} else {
-			return .black
-		}
-	}
-
-	private var labelColor: NSColor {
-		if colorArt.secondaryColor != nil {
-			return colorArt.secondaryColor
-		} else if colorArt.detailColor != nil {
-			return colorArt.detailColor
-		} else if colorArt.primaryColor != nil {
-			return colorArt.primaryColor
-		} else {
-			return .black
-		}
 	}
 }

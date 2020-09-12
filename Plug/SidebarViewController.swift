@@ -60,17 +60,33 @@ final class SidebarViewController: NSViewController {
 
 	// MARK: NSViewController
 
+	private var appearanceObservationToken: NSObjectProtocol?
+
 	override func loadView() {
 		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
-		backgroundView.appearance = NSAppearance(named: .vibrantDark)
+
+		func setMaterial() {
+			backgroundView.material = .sidebar
+
+			if !NSApp.effectiveAppearance.isDarkMode {
+				backgroundView.appearance = NSAppearance(named: .vibrantDark)
+			}
+		}
+
+		setMaterial()
+
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
 			make.edges.equalTo(view)
 		}
 
 		loadButtons(superview: backgroundView)
+
+		appearanceObservationToken = view.observe(\.effectiveAppearance) { _, _ in
+			setMaterial()
+		}
 	}
 }
 

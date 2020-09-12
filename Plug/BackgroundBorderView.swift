@@ -6,10 +6,10 @@ final class BackgroundBorderView: NSView {
 	@IBInspectable var rightBorder: Bool = false
 	@IBInspectable var bottomBorder: Bool = false
 	@IBInspectable var leftBorder: Bool = false
-	@IBInspectable var borderColor: NSColor = .black
+	@IBInspectable var borderColor: NSColor = .borderColor
 
 	@IBInspectable var hasBackground: Bool = false
-	@IBInspectable var backgroundColor: NSColor = .white {
+	@IBInspectable var backgroundColor: NSColor = .clear {
 		didSet {
 			needsDisplay = true
 		}

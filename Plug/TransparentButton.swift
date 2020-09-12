@@ -28,9 +28,16 @@ final class TransparentButton: NSButton {
 		}
 	}
 
+	var isTemplated = false
+
 	override func draw(_ dirtyRect: CGRect) {
 		var drawPosition = bounds
-		let drawImage = getDrawImage()
+		var drawImage = getDrawImage()
+
+		if drawImage?.isTemplate == true {
+			drawImage = drawImage?.tinted(color: .labelColor)
+		}
+
 		let drawOpacity = getDrawOpacity()
 
 		if drawImage != nil {
