@@ -199,12 +199,13 @@ class TracksViewController: DataSourceViewController {
 			make.right.lessThanOrEqualTo(cellView.infoContainer.snp.left).offset(-20)
 		}
 
+		let trackProgressColor = NSColor(red256: 255, green256: 95, blue256: 82)
 		cellView.progressSlider = FlatSlider()
 		let sliderCell = FlatSliderCell()
-		sliderCell.barColor = NSColor(red256: 225, green256: 230, blue256: 233)
-		sliderCell.barFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
+		sliderCell.barColor = .quaternaryLabelColor
+		sliderCell.barFillColor = trackProgressColor
 		sliderCell.knobSize = 12
-		sliderCell.knobFillColor = NSColor(red256: 255, green256: 95, blue256: 82)
+		sliderCell.knobFillColor = trackProgressColor
 		cellView.progressSlider.cell = sliderCell
 		cellView.progressSlider.target = cellView
 		cellView.progressSlider.action = #selector(cellView.progressSliderDragged)
