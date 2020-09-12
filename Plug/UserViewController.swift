@@ -39,7 +39,6 @@ final class UserViewController: BaseContentViewController {
 
 		header = BackgroundBorderView(frame: .zero)
 		header.bottomBorder = true
-		header.borderColor = .borderColor
 		view.addSubview(header)
 		header.snp.makeConstraints { make in
 			make.height.equalTo(86)

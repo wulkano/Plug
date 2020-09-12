@@ -43,7 +43,6 @@ final class FooterViewController: NSViewController {
 
 		let borderBox = BackgroundBorderView()
 		borderBox.borderWidth = 1
-		borderBox.borderColor = .borderColor
 		borderBox.topBorder = true
 		backgroundView.addSubview(borderBox)
 		borderBox.snp.makeConstraints { make in

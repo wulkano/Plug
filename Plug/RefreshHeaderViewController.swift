@@ -40,7 +40,6 @@ final class RefreshHeaderViewController: NSViewController {
 
 		let background = BackgroundBorderView()
 		background.bottomBorder = true
-		background.borderColor = .borderColor
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
 			make.edges.equalTo(view)

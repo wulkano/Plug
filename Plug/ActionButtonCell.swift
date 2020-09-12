@@ -3,8 +3,8 @@ import Cocoa
 final class ActionButtonCell: SwissArmyButtonCell {
 	let horizontalPadding: CGFloat = 0
 
-	private let onStateColor = NSColor(red256: 255, green256: 95, blue256: 82)
-	private let offStateColor = NSColor(red256: 44, green256: 144, blue256: 251)
+	private let onStateColor = NSColor.labelColor
+	private let offStateColor = NSColor.labelColor
 
 	private let normalLeftImage = NSImage(named: "Header-Button-Normal-Left")
 	private let normalMiddleImage = NSImage(named: "Header-Button-Normal-Middle")

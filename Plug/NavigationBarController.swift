@@ -198,7 +198,6 @@ final class NavigationBarController: NSViewController {
 
 		let borderView = BackgroundBorderView()
 		borderView.bottomBorder = true
-		borderView.borderColor = .borderColor
 		backgroundView.addSubview(borderView)
 		borderView.snp.makeConstraints { make in
 			make.edges.equalTo(backgroundView)
