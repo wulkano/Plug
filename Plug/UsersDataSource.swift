@@ -5,9 +5,9 @@ final class UsersDataSource: SearchableDataSource {
 	func filterUsersMatchingSearchKeywords(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
 		users.filter { user in
 			if user.fullName != nil {
-				return (user.username =~ self.searchKeywords!) || (user.fullName! =~ self.searchKeywords!)
+				return (user.username =~ searchKeywords!) || (user.fullName! =~ searchKeywords!)
 			} else {
-				return user.username =~ self.searchKeywords!
+				return user.username =~ searchKeywords!
 			}
 		}
 	}
@@ -28,7 +28,11 @@ final class UsersDataSource: SearchableDataSource {
 	override var singlePage: Bool { true }
 
 	override func requestNextPageObjects() {
-		HypeMachineAPI.Requests.Me.friends { response in
+		HypeMachineAPI.Requests.Me.friends { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			self.nextPageResponseReceived(response)
 		}
 	}

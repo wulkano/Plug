@@ -42,19 +42,19 @@ final class UserViewController: BaseContentViewController {
 		view.addSubview(header)
 		header.snp.makeConstraints { make in
 			make.height.equalTo(86)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.right.equalTo(view)
 		}
 
 		avatarView = CircleMaskImageView()
 		avatarView.image = NSImage(named: "Avatar-Placeholder")!
 		header.addSubview(avatarView)
 		avatarView.snp.makeConstraints { make in
-			make.centerY.equalTo(self.header)
+			make.centerY.equalTo(header)
 			make.width.equalTo(36)
 			make.height.equalTo(36)
-			make.left.equalTo(self.header).offset(17)
+			make.left.equalTo(header).offset(17)
 		}
 
 		usernameTextField = NSTextField()
@@ -66,9 +66,9 @@ final class UserViewController: BaseContentViewController {
 		header.addSubview(usernameTextField)
 		usernameTextField.snp.makeConstraints { make in
 			make.height.equalTo(24)
-			make.top.equalTo(self.header).offset(17)
-			make.left.equalTo(self.avatarView.snp.right).offset(22)
-			make.right.equalTo(self.header).offset(-20)
+			make.top.equalTo(header).offset(17)
+			make.left.equalTo(avatarView.snp.right).offset(22)
+			make.right.equalTo(header).offset(-20)
 		}
 
 		favoritesCountTextField = NSTextField()
@@ -80,8 +80,8 @@ final class UserViewController: BaseContentViewController {
 		header.addSubview(favoritesCountTextField)
 		favoritesCountTextField.snp.makeConstraints { make in
 			make.height.equalTo(20)
-			make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
-			make.left.equalTo(self.avatarView.snp.right).offset(22)
+			make.top.equalTo(usernameTextField.snp.bottom).offset(8)
+			make.left.equalTo(avatarView.snp.right).offset(22)
 		}
 
 		let favoritesLabel = NSTextField()
@@ -95,8 +95,8 @@ final class UserViewController: BaseContentViewController {
 		header.addSubview(favoritesLabel)
 		favoritesLabel.snp.makeConstraints { make in
 			make.height.equalTo(20)
-			make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
-			make.left.equalTo(self.favoritesCountTextField.snp.right).offset(3)
+			make.top.equalTo(usernameTextField.snp.bottom).offset(8)
+			make.left.equalTo(favoritesCountTextField.snp.right).offset(3)
 		}
 
 		friendsCountTextField = NSTextField()
@@ -108,7 +108,7 @@ final class UserViewController: BaseContentViewController {
 		header.addSubview(friendsCountTextField)
 		friendsCountTextField.snp.makeConstraints { make in
 			make.height.equalTo(20)
-			make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
+			make.top.equalTo(usernameTextField.snp.bottom).offset(8)
 			make.left.equalTo(favoritesLabel.snp.right).offset(13)
 		}
 
@@ -123,17 +123,17 @@ final class UserViewController: BaseContentViewController {
 		header.addSubview(friendsLabel)
 		friendsLabel.snp.makeConstraints { make in
 			make.height.equalTo(20)
-			make.top.equalTo(self.usernameTextField.snp.bottom).offset(8)
-			make.left.equalTo(self.friendsCountTextField.snp.right).offset(3)
+			make.top.equalTo(usernameTextField.snp.bottom).offset(8)
+			make.left.equalTo(friendsCountTextField.snp.right).offset(3)
 		}
 
 		playlistContainer = NSView()
 		view.addSubview(playlistContainer)
 		playlistContainer.snp.makeConstraints { make in
-			make.top.equalTo(self.header.snp.bottom)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(header.snp.bottom)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 
@@ -146,12 +146,16 @@ final class UserViewController: BaseContentViewController {
 	}
 
 	func loadUser(_ username: String) {
-		HypeMachineAPI.Requests.Users.show(username: username) { response in
+		HypeMachineAPI.Requests.Users.show(username: username) { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			switch response.result {
 			case .success(let user):
 				self.user = user
 			case .failure(let error):
-				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)
 			}
 		}
@@ -174,13 +178,17 @@ final class UserViewController: BaseContentViewController {
 
 		Alamofire.request(avatarURL, method: .get)
 			.validate()
-			.responseImage { response in
+			.responseImage { [weak self] response in
+				guard let self = self else {
+					return
+				}
+
 				switch response.result {
 				case .success(let image):
 					self.avatarView.image = image
 				case .failure(let error):
-					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-					print(error as NSError)
+					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+					print(error)
 				}
 			}
 	}
@@ -226,7 +234,7 @@ final class UserViewController: BaseContentViewController {
 					sender.state = favorited ? .on : .off
 				}
 			case .failure(let error):
-				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)
 
 				sender.state = sender.state == .off ? .on : .off
@@ -241,7 +249,7 @@ final class UserViewController: BaseContentViewController {
 		let insets = NSEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
 		header.addSubview(loaderViewController!.view)
 		loaderViewController!.view.snp.makeConstraints { make in
-			make.edges.equalTo(self.header).inset(insets)
+			make.edges.equalTo(header).inset(insets)
 		}
 	}
 

@@ -38,7 +38,7 @@ final class StickyTrackViewController: TracksViewController {
 
 		scrollView.snp.remakeConstraints { make in
 			let insets = NSEdgeInsets(top: 0, left: 0, bottom: shadowHeight - shadowOverlap, right: 0)
-			make.edges.equalTo(self.view).inset(insets)
+			make.edges.equalTo(view).inset(insets)
 		}
 
 		shadowView = NSImageView()
@@ -47,9 +47,9 @@ final class StickyTrackViewController: TracksViewController {
 		view.addSubview(shadowView!)
 		shadowView!.snp.makeConstraints { make in
 			make.height.equalTo(shadowHeight)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 
@@ -58,7 +58,7 @@ final class StickyTrackViewController: TracksViewController {
 
 		scrollView.snp.remakeConstraints { make in
 			let insets = NSEdgeInsets(top: shadowHeight - shadowOverlap, left: 0, bottom: 0, right: 0)
-			make.edges.equalTo(self.view).inset(insets)
+			make.edges.equalTo(view).inset(insets)
 		}
 
 		shadowView = NSImageView()
@@ -67,9 +67,9 @@ final class StickyTrackViewController: TracksViewController {
 		view.addSubview(shadowView!)
 		shadowView!.snp.makeConstraints { make in
 			make.height.equalTo(shadowHeight)
-			make.left.equalTo(self.view)
-			make.top.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.left.equalTo(view)
+			make.top.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 

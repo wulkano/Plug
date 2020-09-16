@@ -16,7 +16,11 @@ final class KeepAwake: NSObject {
 	}
 
 	fileprivate func initialSetup() {
-		AudioPlayer.shared.onTrackPlaying.addObserver(self) { _, _ in
+		AudioPlayer.shared.onTrackPlaying.addObserver(self) { [weak self] _, _ in
+			guard let self = self else {
+				return
+			}
+
 			if self.getUserPreference() {
 				_ = self.preventSleep.preventSleep()
 			}
@@ -28,8 +32,12 @@ final class KeepAwake: NSObject {
 			AudioPlayer.shared.onSkipBackward
 		]
 
-		for aSignal in whenToAllowSleep {
-			aSignal.addObserver(self) { _, _ in
+		for signal in whenToAllowSleep {
+			signal.addObserver(self) { [weak self] _, _ in
+				guard let self = self else {
+					return
+				}
+
 				self.preventSleep.allowSleep()
 			}
 		}

@@ -31,8 +31,9 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 		Alamofire
 			.request("https://www.plugformac.com/data/heatmaps.json", method: .get)
 			.validate()
-			.responseJSON { response in
+			.responseJSON { [weak self] response in
 				guard
+					let self = self,
 					self.objectValue != nil,
 					self.track.id == originalTrackID
 				else {
@@ -54,7 +55,7 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 					}
 				case .failure(let error):
 					// TODO: Show error to the user.
-					print(error as NSError)
+					print(error)
 				}
 			}
 	}

@@ -11,7 +11,7 @@ final class TagsDataSource: SearchableDataSource {
 	}
 
 	func filterTagsMatchingSearchKeywords(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
-		tags.filter { $0.name =~ self.searchKeywords! }
+		tags.filter { $0.name =~ searchKeywords! }
 	}
 
 	func sortTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
@@ -69,7 +69,11 @@ final class TagsDataSource: SearchableDataSource {
 	// MARK: HypeMachineDataSource
 
 	override func requestNextPageObjects() {
-		HypeMachineAPI.Requests.Tags.index { response in
+		HypeMachineAPI.Requests.Tags.index { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			self.nextPageResponseReceived(response)
 		}
 	}

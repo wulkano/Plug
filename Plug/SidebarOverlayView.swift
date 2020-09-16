@@ -26,7 +26,7 @@ final class SidebarOverlayView: NSView {
 		super.draw(dirtyRect)
 
 		if
-			let window = self.window,
+			let window = window,
 			!window.isMainWindow
 		{
 			overlayColor.set()

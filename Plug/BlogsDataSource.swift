@@ -26,7 +26,7 @@ final class BlogsDataSource: SearchableDataSource {
 	}
 
 	func filterBlogsMatchingSearchKeywords(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
-		blogs.filter { $0.name =~ self.searchKeywords! }
+		blogs.filter { $0.name =~ searchKeywords! }
 	}
 
 	func filterFollowingBlogs(_ blogs: [HypeMachineAPI.Blog]) -> [HypeMachineAPI.Blog] {
@@ -85,7 +85,11 @@ final class BlogsDataSource: SearchableDataSource {
 	override var singlePage: Bool { true }
 
 	override func requestNextPageObjects() {
-		HypeMachineAPI.Requests.Blogs.index { response in
+		HypeMachineAPI.Requests.Blogs.index { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			self.nextPageResponseReceived(response)
 		}
 	}

@@ -25,9 +25,9 @@ final class UsersViewController: DataSourceViewController {
 		view.addSubview(searchHeaderController.view)
 		searchHeaderController.view.snp.makeConstraints { make in
 			make.height.equalTo(52)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.right.equalTo(view)
 		}
 		searchHeaderController.searchField.target = self
 		searchHeaderController.searchField.action = #selector(UsersViewController.searchFieldSubmit(_:))
@@ -35,9 +35,9 @@ final class UsersViewController: DataSourceViewController {
 		loadScrollViewAndTableView()
 		scrollView.snp.makeConstraints { make in
 			make.top.equalTo(searchHeaderController.view.snp.bottom)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 

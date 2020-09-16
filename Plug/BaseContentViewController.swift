@@ -16,7 +16,7 @@ class BaseContentViewController: NSViewController {
 		super.init(nibName: nil, bundle: nil)
 
 		self.title = title
-		self.navigationItem = NavigationItem(title: self.title!)
+		self.navigationItem = NavigationItem(title: title)
 	}
 
 	@available(*, unavailable)
@@ -50,7 +50,7 @@ class BaseContentViewController: NSViewController {
 			let insets = NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0)
 			view.addSubview(loaderViewController!.view)
 			loaderViewController!.view.snp.makeConstraints { make in
-				make.edges.equalTo(self.view).inset(insets)
+				make.edges.equalTo(view).inset(insets)
 			}
 		}
 	}
@@ -111,14 +111,14 @@ class BaseContentViewController: NSViewController {
 		case .top:
 			stickyTrackController.view.snp.makeConstraints { make in
 				make.height.equalTo(stickyTrackController.viewHeight)
-				make.left.right.equalTo(self.view)
-				make.top.equalTo(self.view).offset(tableViewInsets.top)
+				make.left.right.equalTo(view)
+				make.top.equalTo(view).offset(tableViewInsets.top)
 			}
 		case .bottom:
 			stickyTrackController.view.snp.makeConstraints { make in
 				make.height.equalTo(stickyTrackController.viewHeight)
-				make.left.right.equalTo(self.view)
-				make.bottom.equalTo(self.view).offset(-tableViewInsets.bottom)
+				make.left.right.equalTo(view)
+				make.bottom.equalTo(view).offset(-tableViewInsets.bottom)
 			}
 		}
 

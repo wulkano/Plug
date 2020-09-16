@@ -148,25 +148,21 @@ final class NavigationController: NSViewController {
 	}
 
 	private func constrainViewControllerToContentView(_ viewController: BaseContentViewController) {
-		let closure = { (make: ConstraintMaker) -> Void in
-			make.edges.equalTo(self.contentView)
+		makeOrRemakeConstraints(viewController) { [self] in
+			$0.edges.equalTo(contentView)
 		}
-
-		makeOrRemakeConstraints(viewController, closure: closure)
 	}
 
 	private func constrainViewControllerToSideOfContentView(_ viewController: BaseContentViewController, side: ContentViewSide) {
-		let closure = { (make: ConstraintMaker) -> Void in
-			make.top.bottom.width.equalTo(self.contentView)
+		makeOrRemakeConstraints(viewController) { [self] in
+			$0.top.bottom.width.equalTo(contentView)
 			switch side {
 			case .left:
-				make.right.equalTo(self.contentView.snp.left)
+				$0.right.equalTo(contentView.snp.left)
 			case .right:
-				make.left.equalTo(self.contentView.snp.right)
+				$0.left.equalTo(contentView.snp.right)
 			}
 		}
-
-		makeOrRemakeConstraints(viewController, closure: closure)
 	}
 
 	private func startAnimation(completionHandler: @escaping () -> Void) {
@@ -174,7 +170,7 @@ final class NavigationController: NSViewController {
 			context.duration = 0.25
 			context.allowsImplicitAnimation = true
 			context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-			self.contentView.layoutSubtreeIfNeeded()
+			contentView.layoutSubtreeIfNeeded()
 		}, completionHandler: {
 			completionHandler()
 		})

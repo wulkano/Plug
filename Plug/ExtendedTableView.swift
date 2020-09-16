@@ -59,7 +59,7 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if let trackingArea = self.trackingArea {
+		if let trackingArea = trackingArea {
 			removeTrackingArea(trackingArea)
 			self.trackingArea = nil
 		}
@@ -170,7 +170,12 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 
 	func startTimerForEndScrolling() {
 		isScrollingTimer?.invalidate()
-		isScrollingTimer = Interval.single(0.1) {
+
+		isScrollingTimer = Interval.single(0.1) { [weak self] in
+			guard let self = self else {
+				return
+			}
+
 			self.isScrolling = false
 			self.scrollViewDidEndScrolling(Notification(name: Notification.Name("nil"), object: self))
 		}
@@ -387,13 +392,11 @@ class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	}
 
 	func newVisibleRows() -> [Int] {
-		let rows = visibleRows.filter { !self.previousVisibleRows.contains($0) }
-		return rows
+		visibleRows.filter { !previousVisibleRows.contains($0) }
 	}
 
 	func newHiddenRows() -> [Int] {
-		let rows = previousVisibleRows.filter { !self.visibleRows.contains($0) }
-		return rows
+		previousVisibleRows.filter { !visibleRows.contains($0) }
 	}
 
 	func average(_ array: [Int]) -> Double {

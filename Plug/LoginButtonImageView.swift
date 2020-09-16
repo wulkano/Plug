@@ -6,7 +6,7 @@ final class LoginButtonImageView: NSImageView {
 	private var alpha: CGFloat = 1
 
 	override func draw(_ dirtyRect: CGRect) {
-		guard let image = self.image else {
+		guard let image = image else {
 			return
 		}
 

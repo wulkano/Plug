@@ -14,15 +14,11 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	var filteredTableContents: [Any]?
 
 	var tableContents: [Any]? {
-		guard let standardTableContents = self.standardTableContents else {
+		guard let standardTableContents = standardTableContents else {
 			return nil
 		}
 
-		if isFiltering {
-			return filteredTableContents!
-		} else {
-			return standardTableContents
-		}
+		return isFiltering ? filteredTableContents! : standardTableContents
 	}
 
 	var requestInProgress = false
@@ -85,7 +81,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 			appendTableContents(objects)
 			requestInProgress = false
 		case .failure(let error):
-			Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+			Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 			print(error)
 		}
 	}

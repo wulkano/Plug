@@ -112,12 +112,12 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 
 final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 	let success: (_ trackURL: URL) -> Void
-	let failure: (_ error: NSError) -> Void
+	let failure: (_ error: Error) -> Void
 
 	init(
 		mediaURL: URL,
 		success: @escaping (_ trackURL: URL) -> Void,
-		failure: @escaping (_ error: NSError) -> Void
+		failure: @escaping (_ error: Error) -> Void
 	) {
 		self.success = success
 		self.failure = failure
@@ -163,12 +163,16 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 	}
 
 	func requestPermalinkForTrackID(_ trackID: String) {
-		SoundCloudAPI.Tracks.permalink(trackID) { response in
+		SoundCloudAPI.Tracks.permalink(trackID) { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			switch response.result {
 			case .success(let permalink):
 				self.success(permalink)
 			case .failure(let error):
-				self.failure(error as NSError)
+				self.failure(error)
 			}
 		}
 	}

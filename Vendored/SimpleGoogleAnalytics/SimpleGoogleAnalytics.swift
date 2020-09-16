@@ -201,7 +201,7 @@ public struct ExceptionHit: Hit {
 	let fatal: Bool?
 
 	var fatalString: String? {
-		guard let fatal = self.fatal else {
+		guard let fatal = fatal else {
 			return nil
 		}
 

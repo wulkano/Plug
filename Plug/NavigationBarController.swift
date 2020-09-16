@@ -193,7 +193,7 @@ final class NavigationBarController: NSViewController {
 		backgroundView = NSVisualEffectView(frame: .zero)
 		view.addSubview(backgroundView)
 		backgroundView.snp.makeConstraints { make in
-			make.edges.equalTo(self.view)
+			make.edges.equalTo(view)
 		}
 
 		let borderView = BackgroundBorderView()

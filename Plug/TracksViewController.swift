@@ -14,11 +14,15 @@ class TracksViewController: DataSourceViewController {
 		super.init(title: title, analyticsViewName: analyticsViewName)
 
 		AudioPlayer.shared.onShuffleChanged.addObserver(self) { weakSelf, shuffle in
-			if let favoriteTracksDataSource = weakSelf.tracksDataSource as? FavoriteTracksDataSource {
-				weakSelf.addLoaderView()
-				favoriteTracksDataSource.shuffle = shuffle
-				favoriteTracksDataSource.refresh()
+			guard
+				let favoriteTracksDataSource = weakSelf.tracksDataSource as? FavoriteTracksDataSource
+			else {
+				return
 			}
+
+			weakSelf.addLoaderView()
+			favoriteTracksDataSource.shuffle = shuffle
+			favoriteTracksDataSource.refresh()
 		}
 	}
 
@@ -306,7 +310,7 @@ class TracksViewController: DataSourceViewController {
 
 		loadScrollViewAndTableView()
 		scrollView.snp.makeConstraints { make in
-			make.edges.equalTo(self.view)
+			make.edges.equalTo(view)
 		}
 	}
 
@@ -349,7 +353,7 @@ class TracksViewController: DataSourceViewController {
 	}
 
 	func trackAboveOrBelow(_ track: HypeMachineAPI.Track, tracksDataSource: TracksDataSource) -> StickyTrackPosition {
-		if tracksDataSource != self.tracksDataSource {
+		guard tracksDataSource == self.tracksDataSource else {
 			return .bottom
 		}
 
@@ -364,7 +368,7 @@ class TracksViewController: DataSourceViewController {
 	}
 
 	override var stickyTrackControllerType: TracksViewControllerType {
-		switch self.type {
+		switch type {
 		case .heatMap, .loveCount:
 			return .loveCount
 		case .feed:
@@ -377,16 +381,12 @@ class TracksViewController: DataSourceViewController {
 	override func newCurrentTrack(_ notification: Notification) {
 		super.newCurrentTrack(notification)
 
-		let tracksDataSource = notification.userInfo!["tracksDataSource"] as! TracksDataSource
-		if tracksDataSource == self.tracksDataSource {
-			stickyTrackBelongsToUs = true
-		} else {
-			stickyTrackBelongsToUs = false
-		}
+		let newTracksDataSource = notification.userInfo!["tracksDataSource"] as! TracksDataSource
+		stickyTrackBelongsToUs = newTracksDataSource == tracksDataSource
 
 		if !stickyTrackBelongsToUs || stickyTrackController.isShown {
 			let track = notification.userInfo!["track"] as! HypeMachineAPI.Track
-			addStickyTrackAtPosition(trackAboveOrBelow(track, tracksDataSource: tracksDataSource))
+			addStickyTrackAtPosition(trackAboveOrBelow(track, tracksDataSource: newTracksDataSource))
 		}
 	}
 

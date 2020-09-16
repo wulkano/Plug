@@ -37,7 +37,7 @@ final class SearchViewController: BaseContentViewController {
 
 	func sortChanged() {
 		guard
-			let tracksViewController = self.tracksViewController,
+			let tracksViewController = tracksViewController,
 			let searchDataSource = tracksViewController.dataSource as? SearchTracksDataSource
 		else {
 			return

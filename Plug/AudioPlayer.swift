@@ -96,7 +96,7 @@ final class AudioPlayer: NSObject {
 	func findAndSetCurrentlyPlayingTrack() {
 		guard
 			currentDataSource != nil,
-			let currentTrack = self.currentTrack
+			let currentTrack = currentTrack
 		else {
 			return
 		}
@@ -191,10 +191,15 @@ final class AudioPlayer: NSObject {
 		let seconds = percent * currentItemDuration()!
 		let time = CMTime(seconds: seconds, preferredTimescale: 1000)
 
-		player.seek(to: time) { success in
+		player.seek(to: time) { [weak self] isSuccess in
+			guard let self = self else {
+				return
+			}
+
 			self.isSeeking = false
 
-			if !success {
+			if !isSuccess {
+				// TODO: Report error to the user here.
 				// Minor error
 				print("Error seeking")
 			}
@@ -231,8 +236,8 @@ final class AudioPlayer: NSObject {
 		print((notification.object as? AVPlayerItem)?.errorLog() ?? "")
 	}
 
-	func currentTrackPlaybackError(_ error: NSError) {
-		Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error" as NSObject: error])
+	func currentTrackPlaybackError(_ error: Error) {
+		Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 		print(error)
 		skipForward()
 	}
@@ -364,7 +369,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func findNextTrack() -> HypeMachineAPI.Track? {
-		guard let currentTrack = self.currentTrack else {
+		guard let currentTrack = currentTrack else {
 			return nil
 		}
 

@@ -2,7 +2,7 @@ import Cocoa
 import SnapKit
 
 final class DisplayErrorViewController: NSViewController {
-	let error: NSError
+	let error: Error
 
 	var errorTitleTextField: NSTextField!
 	var errorDescriptionTextField: NSTextField!
@@ -10,7 +10,7 @@ final class DisplayErrorViewController: NSViewController {
 	var bottomConstraint: Constraint?
 	var topConstraint: Constraint?
 
-	init!(error: NSError) {
+	init(error: Error) {
 		self.error = error
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -93,12 +93,16 @@ final class DisplayErrorViewController: NSViewController {
 			context.duration = 0.25
 			context.allowsImplicitAnimation = true
 			context.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-			self.view.superview!.layoutSubtreeIfNeeded()
+			view.superview!.layoutSubtreeIfNeeded()
 		}, completionHandler: nil)
 	}
 
 	func animateOutWithDelay(_ delay: Double, completionHandler: @escaping () -> Void) {
-		Interval.single(delay) {
+		Interval.single(delay) { [weak self] in
+			guard let self = self else {
+				return
+			}
+
 			self.view.superview!.layoutSubtreeIfNeeded()
 
 			self.topConstraint!.deactivate()

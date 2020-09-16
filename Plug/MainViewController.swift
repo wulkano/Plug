@@ -36,9 +36,9 @@ final class MainViewController: NSViewController,
 		view.addSubview(sidebarViewController.view)
 		sidebarViewController.view.snp.makeConstraints { make in
 			make.width.equalTo(69)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
 		}
 
 		navigationController = NavigationController(rootViewController: nil)
@@ -77,18 +77,18 @@ final class MainViewController: NSViewController,
 
 	@objc
 	func displayError(_ notification: Notification) {
-		let error = notification.userInfo!["error"] as! NSError
+		let error = notification.userInfo!["error"] as! Error
 		let displayErrorViewController = DisplayErrorViewController(error: error)
 
-		addChild(displayErrorViewController!)
-		navigationController.contentView.addSubview((displayErrorViewController?.view)!)
+		addChild(displayErrorViewController)
+		navigationController.contentView.addSubview((displayErrorViewController.view))
 
-		displayErrorViewController?.setupLayoutInSuperview()
-		displayErrorViewController?.animateIn()
+		displayErrorViewController.setupLayoutInSuperview()
+		displayErrorViewController.animateIn()
 
-		displayErrorViewController?.animateOutWithDelay(4) {
-			displayErrorViewController?.view.removeFromSuperview()
-			displayErrorViewController?.removeFromParent()
+		displayErrorViewController.animateOutWithDelay(4) {
+			displayErrorViewController.view.removeFromSuperview()
+			displayErrorViewController.removeFromParent()
 		}
 	}
 

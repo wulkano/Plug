@@ -134,7 +134,7 @@ final class IOSSwitch: NSControl {
 		// ------------------------------- Animate Border
 		// The green part also animates, which looks kinda weird
 		// We'll use the background-color for now
-		//		  _backgroundLayer.borderWidth = (YES || self.isActive || self.isOn) ? NSHeight(_backgroundLayer.bounds) / 2 : kBorderLineWidth;
+		//		  _backgroundLayer.borderWidth = (YES || isActive || isOn) ? NSHeight(_backgroundLayer.bounds) / 2 : kBorderLineWidth;
 
 		// ------------------------------- Animate Colors
 		if (hasDragged && isDraggingTowardsOn) || (!hasDragged && on) {
@@ -266,8 +266,8 @@ final class IOSSwitch: NSControl {
 
 	func invokeTargetAction() {
 		if
-			let target = self.target,
-			let action = self.action
+			let target = target,
+			let action = action
 		{
 			sendAction(action, to: target)
 		}

@@ -10,7 +10,7 @@ public final class Swignal1Arg<A>: SwignalBase {
 
 	public func fire(_ arg1: A) {
 		synced(self) {
-			for watcher in self.swignalObservers {
+			for watcher in swignalObservers {
 				watcher.fire(arg1)
 			}
 		}

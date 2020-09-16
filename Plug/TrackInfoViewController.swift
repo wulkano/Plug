@@ -41,14 +41,18 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 
 		changeTrackLovedValueTo(newLovedValue)
 
-		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { response in
+		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			switch response.result {
 			case .success(let favorited):
 				if favorited != newLovedValue {
 					self.changeTrackLovedValueTo(favorited)
 				}
 			case .failure(let error):
-				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)
 				self.changeTrackLovedValueTo(oldLovedValue)
 			}
@@ -139,13 +143,17 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	func updateAlbumArt() {
 		let url = representedTrack.thumbURL(preferedSize: .medium)
 
-		Alamofire.request(url).validate().responseImage { response in
+		Alamofire.request(url).validate().responseImage { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			switch response.result {
 			case .success(let image):
 				self.albumArt.image = image
 			case .failure(let error):
-				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-				print(error as NSError)
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+				print(error)
 			}
 		}
 	}

@@ -54,8 +54,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		if mainWindowController == nil {
 			mainWindowController = (NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as! NSWindowController)
 
-			mainWindowObservation = mainWindowController?.window?.observe(\.isVisible) { window, _ in
-				self.mainWindowMenuItem.state = window.isVisible ? .on : .off
+			mainWindowObservation = mainWindowController?.window?.observe(\.isVisible) { [self] window, _ in
+				mainWindowMenuItem.state = window.isVisible ? .on : .off
 			}
 
 			// If there isn't an autosave name set for the main window, place the frame at a default position, and then set the autosave name.

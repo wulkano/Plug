@@ -7,28 +7,28 @@ public class SwignalBase {
 		purgeDeallocatedListeners()
 
 		synced(self) {
-			self.swignalObservers.append(swignalObserver)
+			swignalObservers.append(swignalObserver)
 		}
 	}
 
 	public func removeObserver(_ observer: AnyObject) {
 		synced(self) {
-			for swignalObserver in self.swignalObservers where swignalObserver.genericObserver === observer {
-				self.swignalObservers.removeObject(swignalObserver)
+			for swignalObserver in swignalObservers where swignalObserver.genericObserver === observer {
+				swignalObservers.removeObject(swignalObserver)
 			}
 		}
 	}
 
 	public func removeAllObservers() {
 		synced(self) {
-			self.swignalObservers.removeAll()
+			swignalObservers.removeAll()
 		}
 	}
 
 	private func purgeDeallocatedListeners() {
 		synced(self) {
-			for swignalObserver in self.swignalObservers where swignalObserver.genericObserver == nil {
-				self.removeObserver(swignalObserver)
+			for swignalObserver in swignalObservers where swignalObserver.genericObserver == nil {
+				removeObserver(swignalObserver)
 			}
 		}
 	}

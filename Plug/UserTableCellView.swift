@@ -43,13 +43,17 @@ class UserTableCellView: IOSStyleTableCellView {
 		Alamofire
 			.request(avatarURL, method: .get)
 			.validate()
-			.responseImage { response in
+			.responseImage { [weak self] response in
+				guard let self = self else {
+					return
+				}
+
 				switch response.result {
 				case .success(let image):
 					self.avatarView.image = image
 				case .failure(let error):
-					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-					print(error as NSError)
+					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+					print(error)
 				}
 			}
 	}

@@ -22,7 +22,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 	@objc
 	func displayError(_ notification: Notification) {
-		let error = notification.userInfo!["error"] as! NSError
+		let error = notification.userInfo!["error"] as! Error
 		NSAlert(error: error).runModal()
 	}
 
@@ -32,7 +32,14 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 	}
 
 	func loginWithUsernameOrEmail(_ usernameOrEmail: String, andPassword password: String) {
-		HypeMachineAPI.Requests.Misc.getToken(usernameOrEmail: usernameOrEmail, password: password) { response in
+		HypeMachineAPI.Requests.Misc.getToken(
+			usernameOrEmail: usernameOrEmail,
+			password: password
+		) { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			switch response.result {
 			case .success(let usernameAndToken):
 				Authentication.saveUsername(usernameAndToken.username, withToken: usernameAndToken.token)

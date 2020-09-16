@@ -41,18 +41,18 @@ final class BlogViewController: BaseContentViewController {
 		view.addSubview(header)
 		header.snp.makeConstraints { make in
 			make.height.greaterThanOrEqualTo(86)
-			make.top.equalTo(self.view)
-			make.left.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(view)
+			make.left.equalTo(view)
+			make.right.equalTo(view)
 		}
 
 		imageView = BlogImageView()
 		header.addSubview(imageView)
 		imageView.snp.makeConstraints { make in
 			make.width.equalTo(113)
-			make.top.equalTo(self.header)
-			make.bottom.equalTo(self.header).offset(-1)
-			make.right.equalTo(self.header).offset(-3)
+			make.top.equalTo(header)
+			make.bottom.equalTo(header).offset(-1)
+			make.right.equalTo(header).offset(-3)
 		}
 
 		titleButton = HyperlinkButton()
@@ -66,9 +66,9 @@ final class BlogViewController: BaseContentViewController {
 		header.addSubview(titleButton)
 		titleButton.snp.makeConstraints { make in
 			make.height.equalTo(24)
-			make.top.equalTo(self.header).offset(17)
-			make.left.equalTo(self.header).offset(19)
-			make.right.lessThanOrEqualTo(self.imageView.snp.left).offset(-10)
+			make.top.equalTo(header).offset(17)
+			make.left.equalTo(header).offset(19)
+			make.right.lessThanOrEqualTo(imageView.snp.left).offset(-10)
 		}
 
 		detailsTextField = NSTextField()
@@ -79,19 +79,19 @@ final class BlogViewController: BaseContentViewController {
 		header.addSubview(detailsTextField)
 		detailsTextField.snp.makeConstraints { make in
 			make.height.equalTo(24)
-			make.top.equalTo(self.titleButton.snp.bottom).offset(8)
-			make.left.equalTo(self.header).offset(19)
-			make.bottom.equalTo(self.header).offset(-17)
-			make.right.lessThanOrEqualTo(self.imageView.snp.left).offset(-10)
+			make.top.equalTo(titleButton.snp.bottom).offset(8)
+			make.left.equalTo(header).offset(19)
+			make.bottom.equalTo(header).offset(-17)
+			make.right.lessThanOrEqualTo(imageView.snp.left).offset(-10)
 		}
 
 		playlistContainer = NSView()
 		view.addSubview(playlistContainer)
 		playlistContainer.snp.makeConstraints { make in
-			make.top.equalTo(self.header.snp.bottom)
-			make.left.equalTo(self.view)
-			make.bottom.equalTo(self.view)
-			make.right.equalTo(self.view)
+			make.top.equalTo(header.snp.bottom)
+			make.left.equalTo(view)
+			make.bottom.equalTo(view)
+			make.right.equalTo(view)
 		}
 	}
 
@@ -104,12 +104,16 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func loadBlog(_ blogID: Int) {
-		HypeMachineAPI.Requests.Blogs.show(id: blogID) { response in
+		HypeMachineAPI.Requests.Blogs.show(id: blogID) { [weak self] response in
+			guard let self = self else {
+				return
+			}
+
 			switch response.result {
 			case .success(let blog):
 				self.blog = blog
 			case .failure(let error):
-				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)
 			}
 		}
@@ -135,30 +139,34 @@ final class BlogViewController: BaseContentViewController {
 		Alamofire
 			.request(blog.imageURL(size: .normal))
 			.validate()
-			.responseImage { response in
+			.responseImage { [weak self] response in
+				guard let self = self else {
+					return
+				}
+
 				switch response.result {
 				case .success(let image):
 					self.extractColorAndResizeImage(image)
 				case .failure(let error):
-					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
-					print(error as NSError)
+					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
+					print(error)
 				}
 			}
 	}
 
 	func extractColorAndResizeImage(_ image: NSImage) {
-		DispatchQueue.global().async {
+		DispatchQueue.global().async { [self] in
 			let imageSize = CGSize(width: 224, height: 224)
 			let colorArt = SLColorArt(image: image, scaledSize: imageSize)!
-			let attributedBlogDetails = SingleBlogViewFormatter().attributedBlogDetails(self.blog, colorArt: colorArt)
+			let attributedBlogDetails = SingleBlogViewFormatter().attributedBlogDetails(blog, colorArt: colorArt)
 
 			DispatchQueue.main.async {
 				let image = colorArt.scaledImage!
 				image.size = CGSize(width: 112, height: 112)
-				self.imageView.image = image
-				self.header.backgroundColor = colorArt.backgroundColor
-				self.detailsTextField.attributedStringValue = attributedBlogDetails
-				self.removeLoaderView()
+				imageView.image = image
+				header.backgroundColor = colorArt.backgroundColor
+				detailsTextField.attributedStringValue = attributedBlogDetails
+				removeLoaderView()
 			}
 		}
 	}
@@ -197,7 +205,7 @@ final class BlogViewController: BaseContentViewController {
 
 				sender.state = favorited ? .on : .off
 			case .failure(let error):
-				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error as NSError])
+				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)
 
 				sender.state = sender.state == .off ? .on : .off
