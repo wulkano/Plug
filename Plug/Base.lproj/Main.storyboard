@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -9,8 +11,8 @@
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindow" title="Main Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="IQv-IB-iLA" customClass="HiddenTitlebarWindow" customModule="Plug" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
+                    <window key="window" identifier="MainWindow" title="Plug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="226" y="48" width="472" height="778"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -18,8 +20,10 @@
                         <view key="contentView" id="O92-4t-NeX">
                             <rect key="frame" x="0.0" y="0.0" width="472" height="778"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </view>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="JH1-p2-n85"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="ERP-yi-bbR" kind="relationship" relationship="window.shadowedContentViewController" id="k9A-QC-MRL"/>
@@ -35,7 +39,6 @@
                     <view key="view" id="mGG-FI-E6b">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="778"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="Cne-m3-gcb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
