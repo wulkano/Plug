@@ -1,7 +1,7 @@
 import Cocoa
 
 
-enum App {
+enum AppMeta {
 	static let id = Bundle.main.bundleIdentifier!
 	static let name = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
 	static let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String

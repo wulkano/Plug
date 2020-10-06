@@ -10,8 +10,8 @@
         <scene sceneID="OaO-hp-jyj">
             <objects>
                 <windowController id="W2t-17-F3D" customClass="PreferencesWindowController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="PreferenceWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="YLr-xd-wpV">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" identifier="PreferenceWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" toolbarStyle="preference" id="YLr-xd-wpV">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="400" height="444"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>

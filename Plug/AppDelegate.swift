@@ -22,12 +22,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		setupUserDefaults()
 
-		SentrySDK.start(
-			options: [
-				"dsn": "https://de9821b005af4222a9fc4315040749f4@o116098.ingest.sentry.io/5245093",
-				"debug": true // TODO: Remove this when we know it's working well.
-			]
-		)
+		SentrySDK.start {
+			$0.dsn = "https://de9821b005af4222a9fc4315040749f4@o116098.ingest.sentry.io/5245093"
+		}
 
 		setupUserNotifications()
 		setupNotifications()
@@ -165,7 +162,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			HypeMachineAPI.hmToken = hmToken
 		}
 
-		HypeMachineAPI.userAgent = "Plug for OSX/\(App.version)"
+		HypeMachineAPI.userAgent = "Plug for OSX/\(AppMeta.version)"
 	}
 
 	// MARK: Notifications

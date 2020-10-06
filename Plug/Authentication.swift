@@ -41,6 +41,6 @@ struct Authentication {
 	}
 
 	fileprivate static func tokenServiceName() -> String {
-		"\(App.id).AccountToken"
+		"\(AppMeta.id).AccountToken"
 	}
 }

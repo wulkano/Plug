@@ -10,7 +10,7 @@
         <scene sceneID="Q9t-Mx-PrY">
             <objects>
                 <windowController storyboardIdentifier="TrackInfoWindowController" id="kHT-B1-mN4" sceneMemberID="viewController">
-                    <window key="window" identifier="TrackInfoWindow" title="Track Info" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="Zj2-P1-hHs">
+                    <window key="window" identifier="TrackInfoWindow" title="Track Info" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="Zj2-P1-hHs">
                         <windowStyleMask key="styleMask" titled="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="372" height="380"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>

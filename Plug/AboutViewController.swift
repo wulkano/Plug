@@ -98,7 +98,7 @@ final class AboutViewController: NSViewController {
 
 		let versionLabel = label(view)
 		versionLabel.font = appFont(size: 11)
-		versionLabel.stringValue = "Version \(App.version) (\(App.build))"
+		versionLabel.stringValue = "Version \(AppMeta.version) (\(AppMeta.build))"
 		versionLabel.snp.makeConstraints { make in
 			make.top.equalTo(nameLabel.snp.bottom).offset(3)
 		}
@@ -115,7 +115,7 @@ final class AboutViewController: NSViewController {
 
 		let copyright = label(view)
 		copyright.font = appFont(size: 11)
-		copyright.stringValue = App.copyright
+		copyright.stringValue = AppMeta.copyright
 		copyright.snp.makeConstraints { make in
 			make.top.equalTo(alexSection.snp.bottom).offset(10)
 			make.bottom.equalTo(view).offset(-17)
