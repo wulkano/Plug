@@ -13,7 +13,6 @@ final class MainViewController: NSViewController,
 
 	var navigationController: NavigationController!
 	var currentViewController: BaseContentViewController!
-	var trafficButtons: TrafficButtons?
 
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
@@ -36,7 +35,7 @@ final class MainViewController: NSViewController,
 		view.addSubview(sidebarViewController.view)
 		sidebarViewController.view.snp.makeConstraints { make in
 			make.width.equalTo(69)
-			make.top.equalTo(view)
+			make.top.equalTo(view).offset(-30)
 			make.left.equalTo(view)
 			make.bottom.equalTo(view)
 		}

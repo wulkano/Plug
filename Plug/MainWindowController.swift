@@ -3,19 +3,13 @@ import MediaPlayer
 import HypeMachineAPI
 
 final class MainWindowController: NSWindowController {
-	private var trafficButtons: TrafficButtons!
 	private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
 	private let remoteCommandCenter = MPRemoteCommandCenter.shared()
 	private var nowPlayingInfo = [String: Any]()
 
 	override func windowDidLoad() {
 		super.windowDidLoad()
-
 		window?.isExcludedFromWindowsMenu = true
-
-		trafficButtons = TrafficButtons(style: .dark, groupIdentifier: "MainWindow")
-		trafficButtons.addButtonsToWindow(window!, origin: CGPoint(x: 8, y: 10))
-
 		setupRemoteCommandCenter()
 	}
 

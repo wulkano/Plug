@@ -51,11 +51,6 @@
 		E34A8F792473D52A00233A68 /* Swignal0Args.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8F602473D52900233A68 /* Swignal0Args.swift */; };
 		E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8FAD2473D66B00233A68 /* PreventSleep.swift */; };
 		E35F1C312474FF9C004CC5C1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E35F1C302474FF9C004CC5C1 /* SnapKit */; };
-		E35F1C4424750255004CC5C1 /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C3824750255004CC5C1 /* INAppStoreWindow.m */; };
-		E35F1C4524750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C3A24750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.m */; };
-		E35F1C4624750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C3E24750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.m */; };
-		E35F1C4724750255004CC5C1 /* INAppStoreWindowSwizzling.c in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C3F24750255004CC5C1 /* INAppStoreWindowSwizzling.c */; };
-		E35F1C4824750255004CC5C1 /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4024750255004CC5C1 /* INWindowButton.m */; };
 		E35F1C50247519DB004CC5C1 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4D247519DB004CC5C1 /* SSKeychain.m */; };
 		E39B5B0424A7CAA100EC6BAC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B5B0324A7CAA100EC6BAC /* Utilities.swift */; };
 		E3B4C5BD2476C9E000D4776F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C5BC2476C9E000D4776F /* Secrets.swift */; };
@@ -172,11 +167,8 @@
 		FAD3B0DE1981DF5200BC5109 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B0DD1981DF5200BC5109 /* Interval.swift */; };
 		FAD4C212197CA3F2004606B5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAD4C211197CA3F2004606B5 /* UserDefaults.plist */; };
 		FADC96F21974CA0D009458FA /* LoveCountTrackTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */; };
-		FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */; };
 		FADC96F61974D10C009458FA /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC96F51974D10C009458FA /* DraggableView.swift */; };
-		FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */; };
 		FAE38D3E19E9F87B005FD94B /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */; };
-		FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */; };
 		FAE95B7819A2DED7009F9946 /* FlatSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE95B7719A2DED7009F9946 /* FlatSlider.swift */; };
 		FAEB269D19AD17820024CB0C /* TrackInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */; };
 		FAEB269F19AD1F5E0024CB0C /* VibrantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */; };
@@ -272,19 +264,6 @@
 		E34A8FA12473D66B00233A68 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		E34A8FAA2473D66B00233A68 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E34A8FAD2473D66B00233A68 /* PreventSleep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreventSleep.swift; sourceTree = "<group>"; };
-		E35F1C3324750255004CC5C1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		E35F1C3424750255004CC5C1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E35F1C3624750255004CC5C1 /* INAppStoreWindowCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindowCompatibility.h; sourceTree = "<group>"; };
-		E35F1C3724750255004CC5C1 /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
-		E35F1C3824750255004CC5C1 /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
-		E35F1C3A24750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDocument+INAppStoreWindowFixes.m"; sourceTree = "<group>"; };
-		E35F1C3B24750255004CC5C1 /* INAppStoreWindowSwizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindowSwizzling.h; sourceTree = "<group>"; };
-		E35F1C3C24750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "INWindowBackgroundView+CoreUIRendering.h"; sourceTree = "<group>"; };
-		E35F1C3D24750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDocument+INAppStoreWindowFixes.h"; sourceTree = "<group>"; };
-		E35F1C3E24750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "INWindowBackgroundView+CoreUIRendering.m"; sourceTree = "<group>"; };
-		E35F1C3F24750255004CC5C1 /* INAppStoreWindowSwizzling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = INAppStoreWindowSwizzling.c; sourceTree = "<group>"; };
-		E35F1C4024750255004CC5C1 /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
-		E35F1C4124750255004CC5C1 /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
 		E35F1C4A247519DB004CC5C1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E35F1C4B247519DB004CC5C1 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		E35F1C4C247519DB004CC5C1 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.markdown; sourceTree = "<group>"; };
@@ -409,11 +388,8 @@
 		FAD3B0DD1981DF5200BC5109 /* Interval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		FAD4C211197CA3F2004606B5 /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		FADC96F11974CA0D009458FA /* LoveCountTrackTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveCountTrackTableCellView.swift; sourceTree = "<group>"; };
-		FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HiddenTitlebarWindow.swift; sourceTree = "<group>"; };
 		FADC96F51974D10C009458FA /* DraggableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
-		FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficButtons.swift; sourceTree = "<group>"; };
 		FAE38D3D19E9F87B005FD94B /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		FAE95B7719A2DED7009F9946 /* FlatSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatSlider.swift; sourceTree = "<group>"; };
 		FAEB269C19AD17820024CB0C /* TrackInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrackInfo.storyboard; sourceTree = "<group>"; };
 		FAEB269E19AD1F5E0024CB0C /* VibrantImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibrantImageView.swift; sourceTree = "<group>"; };
@@ -500,7 +476,6 @@
 			isa = PBXGroup;
 			children = (
 				E35F1C49247519DB004CC5C1 /* SSKeychain */,
-				E35F1C3224750255004CC5C1 /* INAppStoreWindow */,
 				E334A8D62474FD320006DAC6 /* SimpleGoogleAnalytics */,
 				E34A8F9F2473D66B00233A68 /* PreventSleep */,
 				E34A8F472473D52900233A68 /* Swignals */,
@@ -549,42 +524,6 @@
 				E34A8FAD2473D66B00233A68 /* PreventSleep.swift */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		E35F1C3224750255004CC5C1 /* INAppStoreWindow */ = {
-			isa = PBXGroup;
-			children = (
-				E35F1C3324750255004CC5C1 /* LICENSE */,
-				E35F1C3424750255004CC5C1 /* README.md */,
-				E35F1C3524750255004CC5C1 /* Source */,
-			);
-			path = INAppStoreWindow;
-			sourceTree = "<group>";
-		};
-		E35F1C3524750255004CC5C1 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				E35F1C3624750255004CC5C1 /* INAppStoreWindowCompatibility.h */,
-				E35F1C3724750255004CC5C1 /* INWindowButton.h */,
-				E35F1C3824750255004CC5C1 /* INAppStoreWindow.m */,
-				E35F1C3924750255004CC5C1 /* Extensions */,
-				E35F1C4024750255004CC5C1 /* INWindowButton.m */,
-				E35F1C4124750255004CC5C1 /* INAppStoreWindow.h */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		E35F1C3924750255004CC5C1 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E35F1C3A24750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.m */,
-				E35F1C3B24750255004CC5C1 /* INAppStoreWindowSwizzling.h */,
-				E35F1C3C24750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.h */,
-				E35F1C3D24750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.h */,
-				E35F1C3E24750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.m */,
-				E35F1C3F24750255004CC5C1 /* INAppStoreWindowSwizzling.c */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E35F1C49247519DB004CC5C1 /* SSKeychain */ = {
@@ -644,7 +583,6 @@
 				FA9A2F3D19B68A900057080C /* NSTextFields */,
 				FA33F43019E673DA00FF7649 /* NSTextViews */,
 				FA9A2F3B19B689A70057080C /* NSViews */,
-				FA9A2F4219B68AF60057080C /* NSWindows */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -931,14 +869,6 @@
 			name = NSImageViews;
 			sourceTree = "<group>";
 		};
-		FA9A2F4219B68AF60057080C /* NSWindows */ = {
-			isa = PBXGroup;
-			children = (
-				FADC96F31974CCFA009458FA /* HiddenTitlebarWindow.swift */,
-			);
-			name = NSWindows;
-			sourceTree = "<group>";
-		};
 		FA9A2F4319B68AFE0057080C /* NSTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,7 +908,6 @@
 				FA53950E19B03440006A95A5 /* Formatters */,
 				FA5394F919AFA065006A95A5 /* Animations.swift */,
 				FA21F9AA1B1EBB7400EBAA09 /* HeatMap.swift */,
-				FAE38D3B19E9F49C005FD94B /* TrafficButtons.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -997,7 +926,6 @@
 			isa = PBXGroup;
 			children = (
 				FA4C44F819A6C9B70052D506 /* LoginViewController.swift */,
-				FAE38D3F19EA00A6005FD94B /* LoginWindowController.swift */,
 			);
 			name = "Login Window";
 			sourceTree = "<group>";
@@ -1218,13 +1146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E35F1C4524750255004CC5C1 /* NSDocument+INAppStoreWindowFixes.m in Sources */,
 				E3B4C5BD2476C9E000D4776F /* Secrets.swift in Sources */,
 				FA0B1CF81976ECF60030C873 /* MainViewController.swift in Sources */,
 				FA33F43419E67FB200FF7649 /* PostInfoTextField.swift in Sources */,
 				FA774994198B46770048863F /* BackgroundBorderView.swift in Sources */,
 				FADC96F61974D10C009458FA /* DraggableView.swift in Sources */,
-				FAE38D3C19E9F49C005FD94B /* TrafficButtons.swift in Sources */,
 				FAA51A59198084E50057EC34 /* NavigationSections.swift in Sources */,
 				FA64C6A919765323003933E3 /* Array.swift in Sources */,
 				FACEEBEF19ABDA130093A81B /* PreferencesWindowController.swift in Sources */,
@@ -1249,7 +1175,6 @@
 				FAB4305C19AB001600FFCA63 /* LoginButtonCell.swift in Sources */,
 				FA774996198B4CF00048863F /* IOSStyleTableRowView.swift in Sources */,
 				FAB4305A19AAF89A00FFCA63 /* RoundedRectOutlineButton.swift in Sources */,
-				E35F1C4424750255004CC5C1 /* INAppStoreWindow.m in Sources */,
 				FA58FE0819B269F100C16D89 /* FooterBackgroundView.swift in Sources */,
 				FA70FC6A19AAE6740048C866 /* ColoredTitleButton.swift in Sources */,
 				FA5394FA19AFA065006A95A5 /* Animations.swift in Sources */,
@@ -1263,7 +1188,6 @@
 				FAA51A4F198023470057EC34 /* AudioPlayer.swift in Sources */,
 				E35F1C50247519DB004CC5C1 /* SSKeychain.m in Sources */,
 				FAACE4C819AC3AE300F8E9E8 /* VibrantSecureTextField.swift in Sources */,
-				FAE38D4019EA00A6005FD94B /* LoginWindowController.swift in Sources */,
 				FA6ADCF719BA705300CCD371 /* SLColorArt.m in Sources */,
 				FA9A2F3319B66C760057080C /* NavigationBarController.swift in Sources */,
 				E34A8F742473D52A00233A68 /* Swignal1Arg.swift in Sources */,
@@ -1313,7 +1237,6 @@
 				FA4BF21719F609AE0078AB82 /* SectionHeaderTableCellView.swift in Sources */,
 				FAF6F098197A05D300F2102B /* HoverToggleButton.swift in Sources */,
 				E34A8F782473D52A00233A68 /* Swignal.swift in Sources */,
-				E35F1C4824750255004CC5C1 /* INWindowButton.m in Sources */,
 				FA9A2F3119B66C6F0057080C /* NavigationController.swift in Sources */,
 				FACEEBEA19ABC3160093A81B /* PreferencesViewController.swift in Sources */,
 				FA0742421B49EAD800AA49D7 /* NavigationSectionButton.swift in Sources */,
@@ -1327,13 +1250,11 @@
 				FA5394F019AF6B0F006A95A5 /* SwissArmyButton.swift in Sources */,
 				FA21F9AB1B1EBB7400EBAA09 /* HeatMap.swift in Sources */,
 				FA3241B819F810F4009FCDE3 /* HypeMachineDataSource.swift in Sources */,
-				E35F1C4624750255004CC5C1 /* INWindowBackgroundView+CoreUIRendering.m in Sources */,
 				FA4BF21919F60C4E0078AB82 /* TagTableCellView.swift in Sources */,
 				FA24EDA21974A9A500A781C8 /* main.swift in Sources */,
 				FA53950719AFFF01006A95A5 /* TrackTableCellView.swift in Sources */,
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
-				FADC96F41974CCFA009458FA /* HiddenTitlebarWindow.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
 				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */,
@@ -1346,7 +1267,6 @@
 				FACCD9521E20BD8000CCBEB6 /* MPRemoteCommand+Extensions.swift in Sources */,
 				FA4BA99E1B54C03900A983A5 /* SearchableDataSource.swift in Sources */,
 				FA117DE81B30B458003F4E54 /* IOSSwitch.swift in Sources */,
-				E35F1C4724750255004CC5C1 /* INAppStoreWindowSwizzling.c in Sources */,
 				FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */,
 				FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */,
 				FA7CC30D19F8884E0092B254 /* DisplayErrorViewController.swift in Sources */,

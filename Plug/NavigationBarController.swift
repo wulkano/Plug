@@ -155,7 +155,7 @@ final class NavigationBarController: NSViewController {
 
 		navigationBarView!.addSubview(titleView)
 		titleView.snp.makeConstraints { make in
-			make.centerX.equalTo(backgroundView)
+			make.centerX.equalTo(backgroundView).offset(-36)
 			make.centerY.equalTo(backgroundView).offset(titleYOffset)
 
 			if backButton != nil {
