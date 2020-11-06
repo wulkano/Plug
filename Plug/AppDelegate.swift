@@ -2,6 +2,7 @@ import Cocoa
 import Sentry
 import HypeMachineAPI
 
+@main
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	var mainWindowController: NSWindowController?
 	var loginWindowController: NSWindowController?

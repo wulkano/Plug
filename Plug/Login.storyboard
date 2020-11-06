@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bfm-3S-Tok">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +11,7 @@
             <objects>
                 <windowController id="bfm-3S-Tok" sceneMemberID="viewController">
                     <window key="window" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="raM-qK-t3e">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="196" y="240" width="300" height="430"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <value key="minSize" type="size" width="300" height="430"/>
@@ -54,7 +54,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-Zi-8EU" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
+                                    <textField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" contentType="username" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-Zi-8EU" customClass="VibrantTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="230" width="264" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="GNB-gN-V0h"/>
@@ -88,7 +88,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Z7-dY-C7d" customClass="VibrantSecureTextField" customModule="Plug" customModuleProvider="target">
+                                    <secureTextField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" contentType="password" translatesAutoresizingMaskIntoConstraints="NO" id="8Z7-dY-C7d" customClass="VibrantSecureTextField" customModule="Plug" customModuleProvider="target">
                                         <rect key="frame" x="18" y="160" width="264" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="nVg-gk-V66"/>
@@ -97,9 +97,6 @@
                                             <font key="font" metaFont="system" size="18"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <allowedInputSourceLocales>
-                                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                            </allowedInputSourceLocales>
                                         </secureTextFieldCell>
                                     </secureTextField>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="F54-Ih-1Vd" userLabel="Divider" customClass="BackgroundBorderView" customModule="Plug" customModuleProvider="target">
@@ -114,8 +111,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </customView>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="62" y="65" width="176" height="28"/>
+                                    <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qvS-9M-X3g" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="61" y="64" width="178" height="25"/>
                                         <buttonCell key="cell" type="bevel" title="Forgotten Password?" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7yN-xK-qY9" customClass="ForgotPasswordButtonCell" customModule="Plug" customModuleProvider="target">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="systemMedium" size="13"/>
@@ -128,8 +125,8 @@
                                             <action selector="forgotPasswordButtonClicked:" target="kJE-8h-8hu" id="KHa-tm-ULR"/>
                                         </connections>
                                     </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
-                                        <rect key="frame" x="18" y="17" width="264" height="41"/>
+                                    <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqn-dS-QxW" customClass="SwissArmyButton" customModule="Plug" customModuleProvider="target">
+                                        <rect key="frame" x="17" y="16" width="266" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="KOI-cl-Hk8"/>
                                         </constraints>
@@ -165,7 +162,7 @@ DQ
                                             <action selector="loginButtonClicked:" target="kJE-8h-8hu" id="mkc-Hp-7Cc"/>
                                         </connections>
                                     </button>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rKZ-IW-1UY">
+                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rKZ-IW-1UY">
                                         <rect key="frame" x="118" y="310" width="64" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="0Oe-r5-6sg"/>

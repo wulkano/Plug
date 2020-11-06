@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="W2t-17-F3D">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -62,23 +62,23 @@
         <scene sceneID="GM3-tk-veL">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="seI-KD-IWG" customClass="GeneralPreferencesViewController" customModule="Plug" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="TeD-Sw-Ebk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+                    <view key="view" misplaced="YES" id="TeD-Sw-Ebk">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="hR5-44-L2h">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Lfl-6Y-N7f">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="70" viewBased="YES" id="eJY-Z3-ivM">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="210"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="400" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
+                                                <tableColumn width="368" minWidth="40" maxWidth="1000" id="l5n-9O-cfX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -91,11 +91,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="sSJ-Ca-gwb" customClass="GeneralPreferencesTableCellView" customModule="Plug" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
+                                                            <rect key="frame" x="10" y="0.0" width="380" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-yL-LF8">
-                                                                    <rect key="frame" x="18" y="24" width="292" height="22"/>
+                                                                    <rect key="frame" x="18" y="24" width="272" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="WgU-NV-bLE"/>
                                                                     </constraints>
@@ -106,7 +106,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="aip-oN-OkS" customClass="IOSSwitch" customModule="Plug" customModuleProvider="target">
-                                                                    <rect key="frame" x="328" y="19" width="52" height="32"/>
+                                                                    <rect key="frame" x="308" y="19" width="52" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="52" id="Yss-ke-dQB"/>
                                                                         <constraint firstAttribute="height" constant="32" id="f1K-vT-hFC"/>
@@ -130,7 +130,7 @@
                                                             </connections>
                                                         </tableCellView>
                                                         <customView identifier="NSTableViewRowViewKey" id="40S-sW-9gn" customClass="IOSStyleTableRowView" customModule="Plug" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="70" width="400" height="70"/>
+                                                            <rect key="frame" x="10" y="70" width="380" height="70"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="separatorSpacing">
@@ -150,7 +150,7 @@
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="8AI-hZ-DtJ"/>
-                                    <constraint firstAttribute="height" constant="210" id="zBT-9D-E7s"/>
+                                    <constraint firstAttribute="height" constant="300" id="zBT-9D-E7s"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="LxI-aR-Fje">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
