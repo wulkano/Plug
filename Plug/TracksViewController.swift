@@ -54,12 +54,15 @@ class TracksViewController: DataSourceViewController {
 	}
 
 	func cellViewForRow(_ row: Int) -> TrackTableCellView? {
-		if let cell = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? TrackTableCellView {
-			cell.dataSource = tracksDataSource
-			return cell
-		} else {
+		guard
+			row < tableView.numberOfRows, // Prevent a crash probably related to some kind of race issue: https://sentry.io/organizations/wulkano-l0/issues/2088415546/events/3e3b14b45bde464b96e31ede5f3b291f/
+			let cell = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? TrackTableCellView
+		else {
 			return nil
 		}
+
+		cell.dataSource = tracksDataSource
+		return cell
 	}
 
 	func distanceFromBottomOfScrollView() -> CGFloat {
