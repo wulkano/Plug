@@ -1,6 +1,7 @@
 import Cocoa
 import Alamofire
 
+// swiftlint:disable:next final_class
 class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 	var viewController: DataSourceViewController
 

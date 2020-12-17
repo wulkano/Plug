@@ -1,6 +1,7 @@
 import Cocoa
 import HypeMachineAPI
 
+// swiftlint:disable:next final_class
 class TracksViewController: DataSourceViewController {
 	let type: TracksViewControllerType
 	var tracksDataSource: TracksDataSource? { dataSource! as? TracksDataSource }
@@ -492,6 +493,8 @@ class TracksViewController: DataSourceViewController {
 
 	// MARK: NSKeyValueObserving
 
+	// TODO: Use the modern API.
+	// swiftlint:disable:next block_based_kvo
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 		guard let keyPath = keyPath else {
 			return

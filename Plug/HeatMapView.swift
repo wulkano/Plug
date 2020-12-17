@@ -1,6 +1,6 @@
 import Cocoa
 
-class HeatMapView: NSView {
+final class HeatMapView: NSView {
 	var heatMap: HeatMap? {
 		didSet {
 			needsDisplay = true

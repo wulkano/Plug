@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import HypeMachineAPI
 
-class PopularTracksDataSource: TracksDataSource {
+final class PopularTracksDataSource: TracksDataSource {
 	let mode: PopularSectionMode
 
 	init(viewController: DataSourceViewController, mode: PopularSectionMode) {

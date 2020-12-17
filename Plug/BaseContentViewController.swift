@@ -2,6 +2,7 @@ import Cocoa
 import HypeMachineAPI
 import SnapKit
 
+// swiftlint:disable:next final_class
 class BaseContentViewController: NSViewController {
 	let analyticsViewName: String
 	var loaderViewController: LoaderViewController?

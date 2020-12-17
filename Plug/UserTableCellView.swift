@@ -2,7 +2,7 @@ import Cocoa
 import HypeMachineAPI
 import Alamofire
 
-class UserTableCellView: IOSStyleTableCellView {
+final class UserTableCellView: IOSStyleTableCellView {
 	var avatarView: NSImageView!
 	var fullNameTextField: NSTextField!
 	var usernameTextField: NSTextField!

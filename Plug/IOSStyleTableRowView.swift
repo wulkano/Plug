@@ -1,6 +1,6 @@
 import Cocoa
 
-class IOSStyleTableRowView: NSTableRowView {
+final class IOSStyleTableRowView: NSTableRowView {
 	override var isNextRowSelected: Bool {
 		didSet {
 			needsDisplay = true

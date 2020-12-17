@@ -1,5 +1,6 @@
 import Cocoa
 
+// swiftlint:disable:next final_class
 class SwissArmyButtonCell: NSButtonCell {
 	var isMouseInside = false
 	var isMouseDown = false

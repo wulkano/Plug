@@ -1,6 +1,6 @@
 import Cocoa
 
-class VibrantTextField: NSTextField {
+final class VibrantTextField: NSTextField {
 	override var allowsVibrancy: Bool { true }
 
 	override func viewDidMoveToWindow() {

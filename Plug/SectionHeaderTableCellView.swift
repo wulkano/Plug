@@ -1,6 +1,6 @@
 import Cocoa
 
-class SectionHeaderTableCellView: NSTableCellView {
+final class SectionHeaderTableCellView: NSTableCellView {
 	var titleTextField: NSTextField!
 
 	override var objectValue: Any! {

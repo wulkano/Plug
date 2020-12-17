@@ -1,6 +1,6 @@
 import Cocoa
 
-class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
+final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelegate {
 	@IBInspectable var isTrackingMouseEnterExit: Bool = false
 	@IBInspectable var hasPullToRefresh: Bool = false
 

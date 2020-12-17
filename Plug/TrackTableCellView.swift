@@ -2,6 +2,7 @@ import Cocoa
 import HypeMachineAPI
 import SnapKit
 
+// swiftlint:disable:next final_class
 class TrackTableCellView: IOSStyleTableCellView {
 	let titleColor = NSColor.labelColor
 	let artistColor = NSColor.secondaryLabelColor

@@ -1,5 +1,6 @@
 import Cocoa
 
+// swiftlint:disable:next final_class
 class SearchableDataSource: HypeMachineDataSource {
 	var searchKeywords: String? {
 		didSet {

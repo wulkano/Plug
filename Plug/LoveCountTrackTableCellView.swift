@@ -1,5 +1,6 @@
 import Cocoa
 
+// swiftlint:disable:next final_class
 class LoveCountTrackTableCellView: TrackTableCellView {
 	var loveCount: ColorChangingTextField!
 

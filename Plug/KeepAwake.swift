@@ -55,6 +55,8 @@ final class KeepAwake: NSObject {
 		UserDefaults.standard.value(forKey: PreventIdleSleepWhenPlaying) as! Bool
 	}
 
+	// TODO: Use the modern API.
+	// swiftlint:disable:next block_based_kvo
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
 		guard let keyPath = keyPath else {
 			return

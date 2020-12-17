@@ -86,7 +86,7 @@ final class IOSSwitch: NSControl {
 		// Background layer
 		backgroundLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
 		backgroundLayer.bounds = rootLayer.bounds
-		backgroundLayer.anchorPoint = CGPoint(x: 0, y: 0)
+		backgroundLayer.anchorPoint = .zero
 		backgroundLayer.borderWidth = borderLineWidth
 		rootLayer.addSublayer(backgroundLayer)
 
@@ -103,7 +103,7 @@ final class IOSSwitch: NSControl {
 		knobInsideLayer.frame = knobLayer.bounds
 		knobInsideLayer.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
 		knobInsideLayer.shadowColor = NSColor.black.cgColor
-		knobInsideLayer.shadowOffset = CGSize(width: 0, height: 0)
+		knobInsideLayer.shadowOffset = .zero
 		knobInsideLayer.backgroundColor = NSColor.white.cgColor
 		knobInsideLayer.shadowRadius = 1
 		knobInsideLayer.shadowOpacity = 0.35

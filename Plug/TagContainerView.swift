@@ -52,7 +52,7 @@ final class TagContainerView: NSView {
 				return CGPoint(x: lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing, y: lastButton.frame.origin.y)
 			}
 		} else {
-			return CGPoint(x: 0, y: 0)
+			return .zero
 		}
 	}
 

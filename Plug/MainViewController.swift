@@ -80,7 +80,7 @@ final class MainViewController: NSViewController,
 		let displayErrorViewController = DisplayErrorViewController(error: error)
 
 		addChild(displayErrorViewController)
-		navigationController.contentView.addSubview((displayErrorViewController.view))
+		navigationController.contentView.addSubview(displayErrorViewController.view)
 
 		displayErrorViewController.setupLayoutInSuperview()
 		displayErrorViewController.animateIn()

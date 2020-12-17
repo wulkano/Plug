@@ -2,6 +2,7 @@ import Cocoa
 import Alamofire
 import HypeMachineAPI
 
+// swiftlint:disable:next final_class
 class TracksDataSource: HypeMachineDataSource {
 	let infiniteLoadTrackCountFromEnd = 7
 

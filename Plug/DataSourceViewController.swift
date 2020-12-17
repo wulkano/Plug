@@ -1,5 +1,6 @@
 import Cocoa
 
+// swiftlint:disable:next final_class
 class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, ExtendedTableViewDelegate, RefreshScrollViewDelegate {
 	var dataSource: HypeMachineDataSource? {
 		didSet {
@@ -16,7 +17,7 @@ class DataSourceViewController: BaseContentViewController, NSTableViewDelegate, 
 
 		tableView = ExtendedTableView()
 		tableView.headerView = nil
-		tableView.intercellSpacing = CGSize(width: 0, height: 0)
+		tableView.intercellSpacing = .zero
 		let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "Col0"))
 		tableView.addTableColumn(column)
 

@@ -1,5 +1,5 @@
 import Cocoa
 
-class DraggableView: NSView {
+final class DraggableView: NSView {
 	override var mouseDownCanMoveWindow: Bool { true }
 }

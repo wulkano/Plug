@@ -1,5 +1,6 @@
 import Cocoa
 
+// swiftlint:disable:next final_class
 class SwissArmyButton: NSButton {
 	@IBInspectable var isVibrant: Bool = false
 	@IBInspectable var isTrackingHover: Bool = false

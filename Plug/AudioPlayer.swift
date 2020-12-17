@@ -227,9 +227,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	@objc
-	func currentTrackNewAccessLogEntry(_ notification: Notification) {
-//		  print((notification.object as! AVPlayerItem).accessLog())
-	}
+	func currentTrackNewAccessLogEntry(_ notification: Notification) {}
 
 	@objc
 	func currentTrackNewErrorLogEntry(_ notification: Notification) {

@@ -1,6 +1,6 @@
 import Cocoa
 
-class VibrantSecureTextField: NSSecureTextField {
+final class VibrantSecureTextField: NSSecureTextField {
 	override var allowsVibrancy: Bool { true }
 
 	override func viewDidMoveToWindow() {

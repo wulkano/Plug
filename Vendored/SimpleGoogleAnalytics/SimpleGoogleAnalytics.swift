@@ -120,8 +120,8 @@ public final class Manager {
 	private func screenResolution() -> String {
 		let size = (NSScreen.main!.deviceDescription[NSDeviceDescriptionKey.size]! as AnyObject).sizeValue
 
-		let width = Int((size?.width)!)
-		let height = Int((size?.height)!)
+		let width = Int(size!.width)
+		let height = Int(size!.height)
 		return "\(width)x\(height)"
 	}
 
