@@ -10,6 +10,12 @@ final class MainWindowController: NSWindowController {
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		window?.isExcludedFromWindowsMenu = true
+
+		if #available(macOS 11, *) {
+			window?.titleVisibility = .hidden
+			window?.toolbar = NSToolbar()
+		}
+
 		setupRemoteCommandCenter()
 	}
 

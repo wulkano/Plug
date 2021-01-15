@@ -43,6 +43,10 @@ final class DropdownTitleFormatter: Formatter {
 	}
 
 	private func getFont() -> NSFont {
-		appFont(size: 14, weight: .medium)
+		if #available(macOS 11, *) {
+			return .systemFont(ofSize: 0)
+		} else {
+			return appFont(size: 14, weight: .medium)
+		}
 	}
 }

@@ -1,14 +1,23 @@
 import Cocoa
 
 final class NavigationItem: NSObject {
-	static func standardBackButtonWithTitle(_ title: String) -> SwissArmyButton {
-		let button = SwissArmyButton(frame: .zero)
-		let cell = BackButtonCell(textCell: "")
-		button.cell = cell
-		button.bezelStyle = .regularSquare
-		button.isBordered = true
-		button.font = appFont(size: 13, weight: .medium)
-		button.title = title
+	static func standardBackButtonWithTitle(_ title: String) -> NSButton {
+		let button: NSButton
+		if #available(macOS 11, *) {
+			button = NSButton(
+				image: NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: "Back")!,
+				target: nil,
+				action: nil
+			)
+		} else {
+			button = SwissArmyButton(frame: .zero)
+			let cell = BackButtonCell(textCell: "")
+			button.cell = cell
+			button.bezelStyle = .regularSquare
+			button.isBordered = true
+			button.font = .systemFont(ofSize: 11)
+			button.title = title
+		}
 
 		return button
 	}
@@ -18,19 +27,32 @@ final class NavigationItem: NSObject {
 		offStateTitle: String,
 		target: AnyObject,
 		action: Selector
-	) -> ActionButton {
-		let button = ActionButton(frame: .zero)
-		let cell = ActionButtonCell(textCell: "")
+	) -> NSButton {
+		let button: NSButton
+		if #available(macOS 11, *) {
+			button = NSButton(
+				title: offStateTitle,
+				target: nil,
+				action: nil
+			)
+			button.alternateTitle = onStateTitle
+			button.setButtonType(.toggle)
+		} else {
+			let button2 = ActionButton(frame: .zero)
+			let cell = ActionButtonCell(textCell: "")
 
-		button.cell = cell
-		button.onStateTitle = onStateTitle
-		button.offStateTitle = offStateTitle
-		button.state = .off
-		button.bezelStyle = .regularSquare
-		button.isBordered = true
-		button.font = appFont(size: 13, weight: .medium)
-		button.target = target
-		button.action = action
+			button2.cell = cell
+			button2.onStateTitle = onStateTitle
+			button2.offStateTitle = offStateTitle
+			button2.state = .off
+			button2.bezelStyle = .regularSquare
+			button2.isBordered = true
+			button2.font = appFont(size: 13, weight: .medium)
+			button2.target = target
+			button2.action = action
+
+			button = button2
+		}
 
 		return button
 	}
@@ -54,7 +76,7 @@ final class NavigationItem: NSObject {
 	}
 
 	let title: String
-	var rightButton: ActionButton?
+	var rightButton: NSButton?
 	var titleView: NSView?
 
 	init(title: String) {

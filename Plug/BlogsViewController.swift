@@ -164,57 +164,69 @@ final class BlogsViewController: DataSourceViewController {
 	// MARK: NSTableViewDelegate
 
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		switch itemForRow(row)! {
+		switch itemForRow(row) {
 		case .sectionHeaderItem:
 			return sectionHeaderCellView(tableView)
 		case .blogItem:
 			return blogCellView(tableView)
+		default:
+			return nil
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-		switch itemForRow(row)! {
+		switch itemForRow(row) {
 		case .sectionHeaderItem:
 			return groupRowView(tableView)
 		case .blogItem:
 			return blogRowView(tableView, row: row)
+		default:
+			return nil
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool {
-		switch itemForRow(row)! {
+		switch itemForRow(row) {
 		case .sectionHeaderItem:
 			return true
 		case .blogItem:
+			return false
+		default:
 			return false
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-		switch itemForRow(row)! {
+		switch itemForRow(row) {
 		case .sectionHeaderItem:
 			return 32
 		case .blogItem:
 			return 64
+		default:
+			return 0
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		switch itemForRow(row)! {
+		switch itemForRow(row) {
 		case .sectionHeaderItem:
 			return false
 		case .blogItem:
 			return true
+		default:
+			return false
 		}
 	}
 
 	// MARK: ExtendedTableViewDelegate
 
 	override func tableView(_ tableView: NSTableView, wasClicked theEvent: NSEvent, atRow row: Int) {
-		switch itemForRow(row)! {
+		switch itemForRow(row) {
 		case .blogItem(let blog):
 			loadBlogViewController(blog)
 		case .sectionHeaderItem:
+			return
+		default:
 			return
 		}
 	}
