@@ -23,14 +23,14 @@ class TrackTableCellView: IOSStyleTableCellView {
 	var dataSource: TracksDataSource!
 	var trackInfoWindowController: NSWindowController?
 
-	override var objectValue: Any! {
+	override var objectValue: Any? {
 		didSet {
 			objectValueChanged()
 		}
 	}
 
-	var track: HypeMachineAPI.Track {
-		get { objectValue as! HypeMachineAPI.Track }
+	var track: HypeMachineAPI.Track? {
+		get { objectValue as? HypeMachineAPI.Track }
 		set {
 			objectValue = newValue
 		}
@@ -74,7 +74,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	// Careful, since these cells are reused, any async calls
 	// may return when the cell represents a different track.
 	func objectValueChanged() {
-		guard objectValue != nil else {
+		guard
+			objectValue != nil,
+			let track = track
+		else {
 			return
 		}
 
@@ -111,6 +114,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateTrackAvailability() {
+		guard let track = track else {
+			return
+		}
+
 		if track.audioUnavailable {
 			titleButton.textColor = disabledTitleColor
 			artistButton.textColor = disabledArtistColor
@@ -121,6 +128,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateTrackTitle() {
+		guard let track = track else {
+			return
+		}
+
 		titleButton.title = track.title
 		switch playState {
 		case .playing, .paused:
@@ -131,6 +142,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateTrackArtist() {
+		guard let track = track else {
+			return
+		}
+
 		artistButton.title = track.artist
 		switch playState {
 		case .playing, .paused:
@@ -141,6 +156,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updatePlayPauseButtonVisibility() {
+		guard let track = track else {
+			return
+		}
+
 		if track.audioUnavailable {
 			playPauseButton.isHidden = true
 		} else if isMouseInside {
@@ -186,7 +205,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let openWidth: CGFloat = 38
 		let closedWidth: CGFloat = 0
 
-		if isMouseInside || (track.isLoved && showsLoveButton) {
+		if let track = track, isMouseInside || (track.isLoved && showsLoveButton) {
 			loveContainerWidthConstraint.update(offset: openWidth)
 		} else {
 			loveContainerWidthConstraint.update(offset: closedWidth)
@@ -251,7 +270,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
-			track.isLoved = true
+			track?.isLoved = true
 			loveButton.isSelected = true
 		}
 		updateLoveContainerSpacing()
@@ -265,7 +284,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
-			track.isLoved = false
+			track?.isLoved = false
 			loveButton.isSelected = false
 		}
 		updateLoveContainerSpacing()
@@ -273,6 +292,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func playPauseButtonClicked(_ sender: HoverToggleButton) {
+		guard let track = track else {
+			return
+		}
+
 		Analytics.trackButtonClick("Playlist Play/Pause")
 		switch playState {
 		case .playing:
@@ -298,6 +321,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func loveButtonClicked(_ sender: TransparentButton) {
+		guard let track = track else {
+			return
+		}
+
 		Analytics.trackButtonClick("Playlist Heart")
 		let oldLovedValue = track.isLoved
 		let newLovedValue = !oldLovedValue
@@ -329,6 +356,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func artistButtonClicked(_ sender: NSButton) {
+		guard let track = track else {
+			return
+		}
+
 		let viewController = TracksViewController(type: .loveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
 		viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
@@ -336,6 +367,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func titleButtonClicked(_ sender: NSButton) {
+		guard let track = track else {
+			return
+		}
+
 		print("Track title clicked: \(track.title)")
 	}
 

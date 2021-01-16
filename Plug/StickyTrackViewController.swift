@@ -88,6 +88,7 @@ final class StickyTrackViewController: TracksViewController {
 	override var shouldShowStickyTrack: Bool { false }
 
 	override var stickyTrackController: StickyTrackViewController {
-		fatalError("Should not be loading this from here")
+		assertionFailure("Should not be loading this from here")
+		return StickyTrackViewController(type: .feed, title: "", analyticsViewName: "")!
 	}
 }

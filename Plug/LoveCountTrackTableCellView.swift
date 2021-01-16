@@ -25,6 +25,10 @@ class LoveCountTrackTableCellView: TrackTableCellView {
 	}
 
 	private func updateLoveCount() {
+		guard let track = track else {
+			return
+		}
+
 		loveCount.objectValue = track.lovedCountNum
 	}
 

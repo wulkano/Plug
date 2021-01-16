@@ -30,6 +30,10 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	override func updateTrackAvailability() {
 		super.updateTrackAvailability()
 
+		guard let track = track else {
+			return
+		}
+
 		if track.audioUnavailable {
 			sourceTypeTextField.textColor = disabledArtistColor
 			sourceButton.textColor = disabledArtistColor
@@ -40,6 +44,10 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func updateSourceType() {
+		guard let track = track else {
+			return
+		}
+
 		if track.viaUser != nil {
 			sourceTypeTextField.stringValue = "Loved by"
 		} else if track.viaQuery != nil {
@@ -57,6 +65,10 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func updateSource() {
+		guard let track = track else {
+			return
+		}
+
 		if let viaUser = track.viaUser {
 			sourceButton.title = viaUser
 		} else if let viaQuery = track.viaQuery {
@@ -75,6 +87,10 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func sourceButtonClicked(_ sender: NSButton) {
+		guard let track = track else {
+			return
+		}
+
 		if track.viaUser != nil {
 			loadSingleFriendPage()
 		} else if track.viaQuery != nil {
@@ -85,15 +101,27 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func loadSingleFriendPage() {
+		guard let track = track else {
+			return
+		}
+
 		let viewController = UserViewController(username: track.viaUser!)!
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 
 	func loadQuery() {
+		guard let track = track else {
+			return
+		}
+
 		"https://hypem.com/search/\(track.viaQuery!)".openUrl()
 	}
 
 	func loadSingleBlogPage() {
+		guard let track = track else {
+			return
+		}
+
 		let viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)!
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
