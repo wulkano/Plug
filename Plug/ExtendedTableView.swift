@@ -43,6 +43,10 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 	override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
 
+		if #available(macOS 11, *) {
+			style = .fullWidth
+		}
+
 		updateContentInsets()
 		updateScrollerInsets()
 		updateTrackingAreas()
