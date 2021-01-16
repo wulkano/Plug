@@ -66,6 +66,7 @@ final class SidebarViewController: NSViewController {
 		view = NSView(frame: .zero)
 
 		let backgroundView = DraggableVisualEffectsView()
+		let borderBox = BackgroundBorderView()
 
 		func setMaterial() {
 			backgroundView.material = .sidebar
@@ -73,6 +74,8 @@ final class SidebarViewController: NSViewController {
 			if !NSApp.effectiveAppearance.isDarkMode {
 				backgroundView.appearance = NSAppearance(named: .vibrantDark)
 			}
+
+			borderBox.borderColor = NSApp.effectiveAppearance.isDarkMode ? .black : NSColor.black.withAlphaComponent(0.3)
 		}
 
 		setMaterial()
@@ -86,6 +89,13 @@ final class SidebarViewController: NSViewController {
 
 		appearanceObservationToken = view.observe(\.effectiveAppearance) { _, _ in
 			setMaterial()
+		}
+
+		borderBox.borderWidth = 1
+		borderBox.rightBorder = true
+		backgroundView.addSubview(borderBox)
+		borderBox.snp.makeConstraints { make in
+			make.edges.equalTo(backgroundView)
 		}
 	}
 }
