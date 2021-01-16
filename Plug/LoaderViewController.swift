@@ -7,7 +7,7 @@ final class LoaderViewController: NSViewController {
 	}
 
 	let size: LoaderViewSize
-	var loaderView: NSImageView!
+	private lazy var progressIndicator = NSProgressIndicator()
 
 	init?(size: LoaderViewSize) {
 		self.size = size
@@ -20,11 +20,11 @@ final class LoaderViewController: NSViewController {
 	}
 
 	func startAnimation() {
-		Animations.rotateClockwise(loaderView)
+		progressIndicator.startAnimation(self)
 	}
 
 	func stopAnimation() {
-		Animations.removeAllAnimations(loaderView)
+		progressIndicator.stopAnimation(self)
 	}
 
 	// MARK: NSViewController
@@ -32,23 +32,16 @@ final class LoaderViewController: NSViewController {
 	override func loadView() {
 		view = NSView(frame: .zero)
 
-		let background = BackgroundBorderView()
-		background.hasBackground = true
-		background.backgroundColor = .controlBackgroundColor
-		view.addSubview(background)
-		background.snp.makeConstraints { make in
-			make.edges.equalTo(view)
+		let progressIndicator = NSProgressIndicator()
+		progressIndicator.style = .spinning
+		progressIndicator.isIndeterminate = true
+		if #available(macOS 11, *) {
+			progressIndicator.controlSize = size == .large ? .large : .small
 		}
+		progressIndicator.startAnimation(self)
 
-		loaderView = NSImageView()
-		switch size {
-		case .small:
-			loaderView.image = NSImage(named: "Loader-Small")
-		case .large:
-			loaderView.image = NSImage(named: "Loader-Large")
-		}
-		view.addSubview(loaderView)
-		loaderView.snp.makeConstraints { make in
+		view.addSubview(progressIndicator)
+		progressIndicator.snp.makeConstraints { make in
 			make.center.equalTo(view)
 		}
 	}

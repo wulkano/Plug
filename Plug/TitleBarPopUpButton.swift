@@ -21,7 +21,7 @@ final class TitleBarPopUpButton: NSPopUpButton {
 
 	override var intrinsicContentSize: CGSize {
 		var newSize = super.intrinsicContentSize
-		newSize.width += extraWidthForFormattedTitle - trimPaddingBetweenArrowAndTitle
+		newSize.width += extraWidthForFormattedTitle - trimPaddingBetweenArrowAndTitle + 1
 		newSize.height += extraHeightForFormattedTitle
 		return newSize
 	}

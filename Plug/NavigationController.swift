@@ -49,7 +49,11 @@ final class NavigationController: NSViewController {
 		navigationBarController = NavigationBarController(navigationController: self)
 		view.addSubview(navigationBarController.view)
 		navigationBarController.view.snp.makeConstraints { make in
-			make.height.equalTo(36)
+			if #available(macOS 11, *) {
+				make.height.equalTo(0)
+			} else {
+				make.height.equalTo(36)
+			}
 			make.top.equalTo(view)
 			make.left.equalTo(view)
 			make.right.equalTo(view)

@@ -151,3 +151,203 @@ extension NSMenuItem {
 		withSubmenu(menuBuilder(NSMenu()))
 	}
 }
+
+
+extension Sequence {
+	/**
+	Convert a sequence to a dictionary by mapping over the values and using the returned key as the key and the current sequence element as value.
+
+	```
+	[1, 2, 3].toDictionary { $0 }
+	//=> [1: 1, 2: 2, 3: 3]
+	```
+	*/
+	func toDictionary<Key: Hashable>(with pickKey: (Element) -> Key) -> [Key: Element] {
+		var dictionary = [Key: Element]()
+		for element in self {
+			dictionary[pickKey(element)] = element
+		}
+		return dictionary
+	}
+
+	/**
+	Convert a sequence to a dictionary by mapping over the elements and returning a key/value tuple representing the new dictionary element.
+
+	```
+	[(1, "a"), (2, "b")].toDictionary { ($1, $0) }
+	//=> ["a": 1, "b": 2]
+	```
+	*/
+	func toDictionary<Key: Hashable, Value>(with pickKeyValue: (Element) -> (Key, Value)) -> [Key: Value] {
+		var dictionary = [Key: Value]()
+		for element in self {
+			let newElement = pickKeyValue(element)
+			dictionary[newElement.0] = newElement.1
+		}
+		return dictionary
+	}
+
+	/**
+	Same as the above but supports returning optional values.
+
+	```
+	[(1, "a"), (nil, "b")].toDictionary { ($1, $0) }
+	//=> ["a": 1, "b": nil]
+	```
+	*/
+	func toDictionary<Key: Hashable, Value>(with pickKeyValue: (Element) -> (Key, Value?)) -> [Key: Value?] {
+		var dictionary = [Key: Value?]()
+		for element in self {
+			let newElement = pickKeyValue(element)
+			dictionary[newElement.0] = newElement.1
+		}
+		return dictionary
+	}
+}
+
+
+enum AssociationPolicy {
+	case assign
+	case retainNonatomic
+	case copyNonatomic
+	case retain
+	case copy
+
+	var rawValue: objc_AssociationPolicy {
+		switch self {
+		case .assign:
+			return .OBJC_ASSOCIATION_ASSIGN
+		case .retainNonatomic:
+			return .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+		case .copyNonatomic:
+			return .OBJC_ASSOCIATION_COPY_NONATOMIC
+		case .retain:
+			return .OBJC_ASSOCIATION_RETAIN
+		case .copy:
+			return .OBJC_ASSOCIATION_COPY
+		}
+	}
+}
+
+final class ObjectAssociation<Value: Any> {
+	private let defaultValue: Value
+	private let policy: AssociationPolicy
+
+	init(defaultValue: Value, policy: AssociationPolicy = .retainNonatomic) {
+		self.defaultValue = defaultValue
+		self.policy = policy
+	}
+
+	subscript(index: AnyObject) -> Value {
+		get {
+			objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as? Value ?? defaultValue
+		}
+		set {
+			objc_setAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque(), newValue, policy.rawValue)
+		}
+	}
+}
+
+
+private let bindLifetimeAssociatedObjectKey = ObjectAssociation<[AnyObject]>(defaultValue: [])
+
+/// Binds the lifetime of object A to object B, so when B deallocates, so does A, but not before.
+func bindLifetime(of object: AnyObject, to target: AnyObject) {
+	var retainedObjects = bindLifetimeAssociatedObjectKey[target]
+	retainedObjects.append(object)
+	bindLifetimeAssociatedObjectKey[target] = retainedObjects
+}
+
+
+extension RangeReplaceableCollection {
+	mutating func prepend(_ newElement: Element) {
+		insert(newElement, at: startIndex)
+	}
+}
+
+extension Collection {
+	func appending(_ newElement: Element) -> [Element] {
+		self + [newElement]
+	}
+
+	func prepending(_ newElement: Element) -> [Element] {
+		[newElement] + self
+	}
+}
+
+
+final class StaticToolbar: NSObject {
+	private let toolbarItems: [NSToolbarItem.Identifier: NSToolbarItem]
+	private let toolbarItemIdentifiers: [NSToolbarItem.Identifier]
+	let toolbar = NSToolbar()
+
+	init(_ items: [NSToolbarItem]) {
+		// Handle the centered item.
+		for item in items where item.itemIdentifier == .centeredTitle {
+			toolbar.centeredItemIdentifier = item.itemIdentifier
+		}
+
+		// Prevents showing the toolbar overflow menu.
+		for item in items {
+			item.menuFormRepresentation = nil
+		}
+
+		self.toolbarItems = items.toDictionary(with: \.itemIdentifier)
+		self.toolbarItemIdentifiers = items.map(\.itemIdentifier)
+		super.init()
+		toolbar.delegate = self
+		toolbar.displayMode = .iconOnly
+		bindLifetime(of: self, to: toolbar)
+	}
+}
+
+extension StaticToolbar: NSToolbarDelegate {
+	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+		toolbarItemIdentifiers
+	}
+
+	func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+		toolbarItemIdentifiers
+	}
+
+	func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+		toolbarItems[itemIdentifier]
+	}
+}
+
+extension NSToolbar {
+	static func staticToolbar(_ items: [NSToolbarItem]) -> NSToolbar {
+		StaticToolbar(items).toolbar
+	}
+}
+
+extension NSToolbarItem.Identifier {
+	static let centeredTitle = Self("CenteredTitle")
+}
+
+@available(macOS 11, *)
+extension NSToolbarItem {
+	static let flexibleSpace = NSToolbarItem(itemIdentifier: .flexibleSpace)
+	static let space = NSToolbarItem(itemIdentifier: .space)
+	static let toggleSidebar = NSToolbarItem(itemIdentifier: .toggleSidebar)
+
+	/// Add a centered title to the toolbar.
+	/// - Important: Make sure to put a `.flexibleSpace` before and after it.
+	static func centeredTitle(_ title: String) -> Self {
+		let toolbarItem = self.init(itemIdentifier: .centeredTitle)
+		toolbarItem.title = title
+		return toolbarItem
+	}
+
+	static func centeredView(_ view: NSView) -> Self {
+		let toolbarItem = self.init(itemIdentifier: .centeredTitle)
+		toolbarItem.view = view
+		return toolbarItem
+	}
+
+	static func view(identifier: NSToolbarItem.Identifier, view: NSView) -> Self {
+		let toolbarItem = self.init(itemIdentifier: identifier)
+		toolbarItem.view = view
+		return toolbarItem
+	}
+}

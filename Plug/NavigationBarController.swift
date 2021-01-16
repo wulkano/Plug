@@ -122,52 +122,82 @@ final class NavigationBarController: NSViewController {
 		// Back button section
 		var backButton: NSButton?
 
-		if backItem != nil {
-			backButton = NavigationItem.standardBackButtonWithTitle(backItem!.title)
-			backButton!.target = self
-			backButton!.action = #selector(NavigationBarController.backButtonClicked(_:))
-			navigationBarView!.addSubview(backButton!)
-			backButton!.snp.makeConstraints { make in
-				make.top.equalTo(navigationBarView!).offset(buttonYOffset)
-				make.left.equalTo(navigationBarView!).offset(buttonEdgeSpacing)
-				make.height.equalTo(buttonHeight)
-			}
-		}
-
-		// Right button section
-		if topItem!.rightButton != nil {
-			navigationBarView!.addSubview(topItem!.rightButton!)
-			topItem!.rightButton!.snp.makeConstraints { make in
-				make.top.equalTo(navigationBarView!).offset(buttonYOffset)
-				make.right.equalTo(navigationBarView!).offset(-buttonEdgeSpacing)
-				make.height.equalTo(buttonHeight)
-			}
-		}
-
 		// Title section
-		let titleView: NSView
+		var titleView = NSView()
 
-		if topItem!.titleView != nil {
-			titleView = topItem!.titleView!
-		} else {
-			titleView = textFieldForTitle(topItem!.title)
-		}
-
-		navigationBarView!.addSubview(titleView)
-		titleView.snp.makeConstraints { make in
-			make.centerX.equalTo(backgroundView).offset(-36)
-			make.centerY.equalTo(backgroundView).offset(titleYOffset)
-
-			if backButton != nil {
-				make.left.greaterThanOrEqualTo(backButton!.snp.right).offset(titleSpacing)
+		if #available(macOS 11, *) {
+			var items = [NSToolbarItem]()
+			if let titleView = topItem?.titleView {
+				items = [
+					.flexibleSpace,
+					.centeredView(titleView),
+					.flexibleSpace
+				]
 			} else {
-				make.left.greaterThanOrEqualTo(navigationBarView!).offset(titleSpacing)
+				items = [
+					.flexibleSpace,
+					.centeredTitle(topItem!.title),
+					.flexibleSpace
+				]
 			}
 
+			if let backItem = backItem {
+				let backButton = NavigationItem.standardBackButtonWithTitle(backItem.title)
+				backButton.target = self
+				backButton.action = #selector(NavigationBarController.backButtonClicked(_:))
+				items.prepend(.view(identifier: .init("backButton"), view: backButton))
+			}
+
+			if let rightButton = topItem?.rightButton {
+				items.append(.view(identifier: .init("rightButton"), view: rightButton))
+			}
+
+			view.window?.toolbar = NSToolbar.staticToolbar(items)
+		} else {
+			if backItem != nil {
+				backButton = NavigationItem.standardBackButtonWithTitle(backItem!.title)
+				backButton!.target = self
+				backButton!.action = #selector(NavigationBarController.backButtonClicked(_:))
+				navigationBarView!.addSubview(backButton!)
+				backButton!.snp.makeConstraints { make in
+					make.top.equalTo(navigationBarView!).offset(buttonYOffset)
+					make.left.equalTo(navigationBarView!).offset(buttonEdgeSpacing)
+					make.height.equalTo(buttonHeight)
+				}
+			}
+
+			// Right button section
 			if topItem!.rightButton != nil {
-				make.right.lessThanOrEqualTo(topItem!.rightButton!.snp.left).offset(-titleSpacing)
+				navigationBarView!.addSubview(topItem!.rightButton!)
+				topItem!.rightButton!.snp.makeConstraints { make in
+					make.top.equalTo(navigationBarView!).offset(buttonYOffset)
+					make.right.equalTo(navigationBarView!).offset(-buttonEdgeSpacing)
+					make.height.equalTo(buttonHeight)
+				}
+			}
+
+			if topItem!.titleView != nil {
+				titleView = topItem!.titleView!
 			} else {
-				make.right.lessThanOrEqualTo(navigationBarView!).offset(-titleSpacing)
+				titleView = textFieldForTitle(topItem!.title)
+			}
+
+			navigationBarView!.addSubview(titleView)
+			titleView.snp.makeConstraints { make in
+				make.centerX.equalTo(backgroundView).offset(-36)
+				make.centerY.equalTo(backgroundView).offset(titleYOffset)
+
+				if backButton != nil {
+					make.left.greaterThanOrEqualTo(backButton!.snp.right).offset(titleSpacing)
+				} else {
+					make.left.greaterThanOrEqualTo(navigationBarView!).offset(titleSpacing)
+				}
+
+				if topItem!.rightButton != nil {
+					make.right.lessThanOrEqualTo(topItem!.rightButton!.snp.left).offset(-titleSpacing)
+				} else {
+					make.right.lessThanOrEqualTo(navigationBarView!).offset(-titleSpacing)
+				}
 			}
 		}
 	}

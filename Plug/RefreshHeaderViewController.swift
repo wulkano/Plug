@@ -32,7 +32,14 @@ final class RefreshHeaderViewController: NSViewController {
 		}
 	}
 
-	private var loader: NSImageView!
+	private lazy var progressIndicator: NSProgressIndicator = {
+		let progressIndicator = NSProgressIndicator()
+		progressIndicator.style = .spinning
+		progressIndicator.isIndeterminate = true
+		progressIndicator.controlSize = .small
+		return progressIndicator
+	}()
+
 	private var messageLabel: NSTextField!
 
 	override func loadView() {
@@ -51,11 +58,8 @@ final class RefreshHeaderViewController: NSViewController {
 			make.center.equalTo(background)
 		}
 
-		loader = NSImageView()
-		loader.image = NSImage(named: "Loader-Refresh")
-		messageContainer.addSubview(loader)
-		loader.snp.makeConstraints { make in
-			make.size.equalTo(16)
+		messageContainer.addSubview(progressIndicator)
+		progressIndicator.snp.makeConstraints { make in
 			make.top.equalTo(messageContainer)
 			make.left.equalTo(messageContainer)
 			make.bottom.equalTo(messageContainer)
@@ -67,12 +71,11 @@ final class RefreshHeaderViewController: NSViewController {
 		messageLabel.isBordered = false
 		messageLabel.drawsBackground = false
 		messageLabel.lineBreakMode = .byTruncatingTail
-		messageLabel.font = appFont(size: 13, weight: .medium)
-		messageLabel.textColor = NSColor(red256: 138, green256: 146, blue256: 150)
+		messageLabel.textColor = .secondaryLabelColor
 		messageContainer.addSubview(messageLabel)
 		messageLabel.snp.makeConstraints { make in
-			make.centerY.equalTo(messageContainer).offset(-2)
-			make.left.equalTo(loader.snp.right).offset(5)
+			make.centerY.equalTo(messageContainer)
+			make.left.equalTo(progressIndicator.snp.right).offset(8)
 			make.right.equalTo(messageContainer)
 		}
 
@@ -90,9 +93,9 @@ final class RefreshHeaderViewController: NSViewController {
 
 	private func updateLoader() {
 		if state == .updating {
-			Animations.rotateClockwise(loader)
+			progressIndicator.startAnimation(self)
 		} else {
-			Animations.removeAllAnimations(loader)
+			progressIndicator.stopAnimation(self)
 		}
 	}
 

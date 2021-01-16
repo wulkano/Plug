@@ -111,13 +111,21 @@ class BaseContentViewController: NSViewController {
 		switch position {
 		case .top:
 			stickyTrackController.view.snp.makeConstraints { make in
-				make.height.equalTo(stickyTrackController.viewHeight)
+				if #available(macOS 11, *) {
+					make.height.equalTo(stickyTrackController.viewHeight + 12)
+				} else {
+					make.height.equalTo(stickyTrackController.viewHeight)
+				}
 				make.left.right.equalTo(view)
 				make.top.equalTo(view).offset(tableViewInsets.top)
 			}
 		case .bottom:
 			stickyTrackController.view.snp.makeConstraints { make in
-				make.height.equalTo(stickyTrackController.viewHeight)
+				if #available(macOS 11, *) {
+					make.height.equalTo(stickyTrackController.viewHeight + 12)
+				} else {
+					make.height.equalTo(stickyTrackController.viewHeight)
+				}
 				make.left.right.equalTo(view)
 				make.bottom.equalTo(view).offset(-tableViewInsets.bottom)
 			}
