@@ -112,7 +112,7 @@ class BaseContentViewController: NSViewController {
 		case .top:
 			stickyTrackController.view.snp.makeConstraints { make in
 				if #available(macOS 11, *) {
-					make.height.equalTo(stickyTrackController.viewHeight + 30)
+					make.height.equalTo(stickyTrackController.viewHeight + 12)
 				} else {
 					make.height.equalTo(stickyTrackController.viewHeight)
 				}
@@ -122,7 +122,7 @@ class BaseContentViewController: NSViewController {
 		case .bottom:
 			stickyTrackController.view.snp.makeConstraints { make in
 				if #available(macOS 11, *) {
-					make.height.equalTo(stickyTrackController.viewHeight + 30)
+					make.height.equalTo(stickyTrackController.viewHeight + 12)
 				} else {
 					make.height.equalTo(stickyTrackController.viewHeight)
 				}
