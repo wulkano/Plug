@@ -66,7 +66,6 @@ final class FooterViewController: NSViewController {
 		let cell = FlatSliderCell()
 		cell.barColor = .quaternaryLabelColor
 		cell.barFillColor = .tertiaryLabelColor
-		cell.knobSize = 10
 		volumeSlider.cell = cell
 		volumeSlider.controlSize = .mini
 		backgroundView.addSubview(volumeSlider)

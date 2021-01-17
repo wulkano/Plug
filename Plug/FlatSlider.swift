@@ -13,20 +13,8 @@ final class FlatSlider: NSSlider {
 	}
 
 	private var flatSliderCell: FlatSliderCell { cell as! FlatSliderCell }
-
-	private var isMouseDown: Bool {
-		get { flatSliderCell.isMouseDown }
-		set {
-			flatSliderCell.isMouseDown = newValue
-		}
-	}
-
-	private var isMouseInside: Bool {
-		get { flatSliderCell.isMouseInside }
-		set {
-			flatSliderCell.isMouseInside = newValue
-		}
-	}
+	private var isMouseDown = false
+	private var isMouseInside = false
 
 	override func viewDidMoveToWindow() {
 		addTrackingRect(bounds, owner: self, userData: nil, assumeInside: false)

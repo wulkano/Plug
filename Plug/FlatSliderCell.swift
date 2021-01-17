@@ -3,11 +3,6 @@ import Cocoa
 final class FlatSliderCell: NSSliderCell {
 	@IBInspectable var barColor: NSColor = .tertiaryLabelColor
 	@IBInspectable var barFillColor: NSColor = .labelColor
-	@IBInspectable var knobSize: CGFloat = 12
-	@IBInspectable var knobFillColor: NSColor = .labelColor
-
-	var isMouseDown = false
-	var isMouseInside = false
 
 	override func drawBar(inside aRect: CGRect, flipped: Bool) {
 		let knobRect = self.knobRect(flipped: flipped)
@@ -23,20 +18,10 @@ final class FlatSliderCell: NSSliderCell {
 
 		var barRect = aRect
 		barRect.origin.x = knobCenterX
-		barRect.size.width -= knobCenterX - inset + 2.5
+		barRect.size.width -= knobCenterX - inset + 13
 		barColor.set()
 		barRect.fill(using: .sourceOver)
 	}
 
-	override func drawKnob(_ knobRect: CGRect) {
-//		  TODO: fix this drawing so it's not overlapping on the bar
-//		  if isMouseInside {
-//			  var vInset = (knobRect.size.height - knobSize) / 2
-//			  var hInset = (knobRect.size.width - knobSize) / 2
-//			  knobFillColor.set()
-//			  let insetRect = NSInsetRect(knobRect, hInset, vInset)
-//			  let circlePath = NSBezierPath(ovalInRect: insetRect)
-//			  circlePath.fill()
-//		  }
-	}
+	override func drawKnob(_ knobRect: CGRect) {}
 }

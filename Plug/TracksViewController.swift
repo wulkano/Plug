@@ -212,8 +212,6 @@ class TracksViewController: DataSourceViewController {
 		let sliderCell = FlatSliderCell()
 		sliderCell.barColor = .quaternaryLabelColor
 		sliderCell.barFillColor = trackProgressColor
-		sliderCell.knobSize = 12
-		sliderCell.knobFillColor = trackProgressColor
 		cellView.progressSlider.cell = sliderCell
 		cellView.progressSlider.target = cellView
 		cellView.progressSlider.action = #selector(cellView.progressSliderDragged)
