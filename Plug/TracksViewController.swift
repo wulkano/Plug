@@ -210,16 +210,16 @@ class TracksViewController: DataSourceViewController {
 		let trackProgressColor = NSColor(red256: 255, green256: 95, blue256: 82)
 		cellView.progressSlider = FlatSlider()
 		let sliderCell = FlatSliderCell()
-		sliderCell.barColor = .quaternaryLabelColor
+		sliderCell.barColor = NSColor(named: "FlatSliderBackgroundColor")!
 		sliderCell.barFillColor = trackProgressColor
 		cellView.progressSlider.cell = sliderCell
 		cellView.progressSlider.target = cellView
 		cellView.progressSlider.action = #selector(cellView.progressSliderDragged)
 		cellView.addSubview(cellView.progressSlider)
 		cellView.progressSlider.snp.makeConstraints { make in
-			make.left.equalTo(cellView).offset(-8)
-			make.bottom.equalTo(cellView).offset(6)
-			make.right.equalTo(cellView).offset(14)
+			make.left.equalTo(cellView).offset(-10)
+			make.bottom.equalTo(cellView).offset(8)
+			make.right.equalTo(cellView).offset(10)
 		}
 	}
 

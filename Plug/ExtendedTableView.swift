@@ -44,7 +44,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 		super.viewDidMoveToWindow()
 
 		if #available(macOS 11, *) {
-			style = .fullWidth
+			style = .plain
 		}
 
 		updateContentInsets()

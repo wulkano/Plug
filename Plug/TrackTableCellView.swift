@@ -375,6 +375,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func changeTrackLovedValueTo(_ isLoved: Bool) {
+		guard let track = track else {
+			return
+		}
+
 		if isLoved {
 			Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: track])
 		} else {
