@@ -95,7 +95,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 	@IBAction private func forgotPasswordButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Forgot Password")
-		"https://hypem.com/inc/lb_forgot.php".openUrl()
+		"https://hypem.com/?forgot=1".openUrl()
 	}
 
 	@IBAction private func signUpButtonClicked(_ sender: AnyObject) {
