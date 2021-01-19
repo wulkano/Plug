@@ -29,7 +29,7 @@ final class StickyTrackViewController: TracksViewController {
 	}
 
 	override func rightMouseDown(with theEvent: NSEvent) {
-		let menuController = TrackContextMenuController(track: AudioPlayer.shared.currentTrack!)!
+		let menuController = TrackContextMenuController(track: AudioPlayer.shared.currentTrack!)
 		NSMenu.popUpContextMenu(menuController.contextMenu, with: theEvent, for: view)
 	}
 
@@ -89,6 +89,6 @@ final class StickyTrackViewController: TracksViewController {
 
 	override var stickyTrackController: StickyTrackViewController {
 		assertionFailure("Should not be loading this from here")
-		return StickyTrackViewController(type: .feed, title: "", analyticsViewName: "")!
+		return StickyTrackViewController(type: .feed, title: "", analyticsViewName: "")
 	}
 }

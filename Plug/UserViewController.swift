@@ -18,13 +18,13 @@ final class UserViewController: BaseContentViewController {
 
 	var tracksViewController: TracksViewController!
 
-	init?(user: HypeMachineAPI.User) {
+	init(user: HypeMachineAPI.User) {
 		self.user = user
 		super.init(title: user.username, analyticsViewName: "MainWindow/SingleUser")
 		setup()
 	}
 
-	init?(username: String) {
+	init(username: String) {
 		super.init(title: username, analyticsViewName: "MainWindow/SingleUser")
 		loadUser(username)
 		setup()

@@ -46,7 +46,7 @@ final class NavigationBarController: NSViewController {
 	var backgroundView: NSView!
 	var navigationBarView: NSView?
 
-	init?(navigationController: NavigationController) {
+	init(navigationController: NavigationController) {
 		self.navigationController = navigationController
 		super.init(nibName: nil, bundle: nil)
 	}

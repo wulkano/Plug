@@ -360,7 +360,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 			return
 		}
 
-		let viewController = TracksViewController(type: .loveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")!
+		let viewController = TracksViewController(type: .loveCount, title: track.artist, analyticsViewName: "MainWindow/SingleArtist")
 		viewController.dataSource = ArtistTracksDataSource(viewController: viewController, artistName: track.artist)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}

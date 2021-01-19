@@ -21,7 +21,7 @@ final class BlogsViewController: DataSourceViewController {
 	}
 
 	func loadBlogViewController(_ blog: HypeMachineAPI.Blog) {
-		let viewController = BlogViewController(blog: blog)!
+		let viewController = BlogViewController(blog: blog)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 

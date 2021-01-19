@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-public struct Router {
+public enum Router {
 	static let baseURLString = "https://api.hypem.com/v2"
 
 	static func generateURLRequest(method: HTTPMethod, path: String, params: Parameters?) throws -> URLRequest {

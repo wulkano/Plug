@@ -105,7 +105,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 			return
 		}
 
-		let viewController = UserViewController(username: track.viaUser!)!
+		let viewController = UserViewController(username: track.viaUser!)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 
@@ -122,7 +122,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 			return
 		}
 
-		let viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)!
+		let viewController = BlogViewController(blogID: track.postedById, blogName: track.postedBy)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 }

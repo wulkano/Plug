@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 
 extension Requests {
-	public struct Misc {
+	public enum Misc {
 		@discardableResult
 		public static func getToken(
 			usernameOrEmail: String,

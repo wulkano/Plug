@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 
 extension Requests {
-	public struct Tags {
+	public enum Tags {
 		@discardableResult
 		public static func index(
 			_ completionHandler: @escaping (DataResponse<[Tag]>) -> Void

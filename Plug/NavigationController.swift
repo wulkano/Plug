@@ -26,11 +26,11 @@ final class NavigationController: NSViewController {
 	var contentView: NSView!
 	var navigationBarController: NavigationBarController!
 
-	init!(rootViewController: BaseContentViewController?) {
+	init(rootViewController: BaseContentViewController?) {
 		if let rootViewController = rootViewController {
 			self._viewControllers = [rootViewController]
 		} else {
-			self._viewControllers = [BaseContentViewController(title: "Dummy controller", analyticsViewName: "Dummy controller")!]
+			self._viewControllers = [BaseContentViewController(title: "Dummy controller", analyticsViewName: "Dummy controller")]
 		}
 
 		self.visibleViewController = _viewControllers.first!

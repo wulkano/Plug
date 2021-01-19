@@ -10,7 +10,7 @@ class TracksViewController: DataSourceViewController {
 	var anchoredCellViewViewController: TracksViewController?
 	var showLoveButton: Bool = true
 
-	init?(type: TracksViewControllerType, title: String, analyticsViewName: String) {
+	init(type: TracksViewControllerType, title: String, analyticsViewName: String) {
 		self.type = type
 		super.init(title: title, analyticsViewName: analyticsViewName)
 
@@ -488,7 +488,7 @@ class TracksViewController: DataSourceViewController {
 
 	override func tableView(_ tableView: ExtendedTableView, wasRightClicked theEvent: NSEvent, atRow row: Int) {
 		let track = tracksDataSource!.objectForRow(row) as! HypeMachineAPI.Track
-		let menuController = TrackContextMenuController(track: track)!
+		let menuController = TrackContextMenuController(track: track)
 		NSMenu.popUpContextMenu(menuController.contextMenu, with: theEvent, for: view)
 	}
 

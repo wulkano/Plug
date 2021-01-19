@@ -30,7 +30,7 @@ final class MainViewController: NSViewController,
 	override func loadView() {
 		view = NSView(frame: .zero)
 
-		let sidebarViewController = SidebarViewController(delegate: self)!
+		let sidebarViewController = SidebarViewController(delegate: self)
 		addChild(sidebarViewController)
 		view.addSubview(sidebarViewController.view)
 		sidebarViewController.view.snp.makeConstraints { make in
@@ -166,22 +166,22 @@ extension NavigationSection {
 
 		switch self {
 		case .popular:
-			targetViewController = TracksViewController(type: .heatMap, title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = TracksViewController(type: .heatMap, title: title, analyticsViewName: analyticsViewName)
 		case .favorites:
-			targetViewController = TracksViewController(type: .loveCount, title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = TracksViewController(type: .loveCount, title: title, analyticsViewName: analyticsViewName)
 			(targetViewController as! TracksViewController).showLoveButton = false
 		case .latest:
-			targetViewController = TracksViewController(type: .loveCount, title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = TracksViewController(type: .loveCount, title: title, analyticsViewName: analyticsViewName)
 		case .blogs:
-			targetViewController = BlogsViewController(title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = BlogsViewController(title: title, analyticsViewName: analyticsViewName)
 		case .feed:
-			targetViewController = TracksViewController(type: .feed, title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = TracksViewController(type: .feed, title: title, analyticsViewName: analyticsViewName)
 		case .genres:
-			targetViewController = TagsViewController(title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = TagsViewController(title: title, analyticsViewName: analyticsViewName)
 		case .friends:
-			targetViewController = UsersViewController(title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = UsersViewController(title: title, analyticsViewName: analyticsViewName)
 		case .search:
-			targetViewController = SearchViewController(title: title, analyticsViewName: analyticsViewName)!
+			targetViewController = SearchViewController(title: title, analyticsViewName: analyticsViewName)
 		}
 
 		if let dropdownMenu = menu(target) {

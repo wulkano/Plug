@@ -5,7 +5,7 @@ final class UsersViewController: DataSourceViewController {
 	var usersDataSource: UsersDataSource? { dataSource! as? UsersDataSource }
 
 	func loadSingleFriendView(_ friend: HypeMachineAPI.User) {
-		let viewController = UserViewController(user: friend)!
+		let viewController = UserViewController(user: friend)
 		NavigationController.shared!.pushViewController(viewController, animated: true)
 	}
 

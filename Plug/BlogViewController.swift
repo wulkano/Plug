@@ -17,13 +17,13 @@ final class BlogViewController: BaseContentViewController {
 
 	var tracksViewController: TracksViewController!
 
-	init?(blog: HypeMachineAPI.Blog) {
+	init(blog: HypeMachineAPI.Blog) {
 		self.blog = blog
 		super.init(title: self.blog.name, analyticsViewName: "MainWindow/SingleBlog")
 		setup()
 	}
 
-	init?(blogID: Int, blogName: String) {
+	init(blogID: Int, blogName: String) {
 		super.init(title: blogName, analyticsViewName: "MainWindow/SingleBlog")
 		setup()
 		loadBlog(blogID)
@@ -177,7 +177,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func loadPlaylist() {
-		tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Blog/Tracks")!
+		tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Blog/Tracks")
 		addChild(tracksViewController)
 
 		playlistContainer.addSubview(tracksViewController.view)

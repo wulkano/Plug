@@ -4,7 +4,7 @@ final class SidebarViewController: NSViewController {
 	let delegate: SidebarViewControllerDelegate
 	var buttons = [NavigationSectionButton]()
 
-	init?(delegate: SidebarViewControllerDelegate) {
+	init(delegate: SidebarViewControllerDelegate) {
 		self.delegate = delegate
 		super.init(nibName: nil, bundle: nil)
 	}

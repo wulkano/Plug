@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 
 extension Requests {
-	public struct Users {
+	public enum Users {
 		@discardableResult
 		public static func show(
 			username: String,

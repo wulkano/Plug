@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 
 extension Requests {
-	public struct Me {
+	public enum Me {
 		@discardableResult
 		public static func favorites(
 			params: Parameters? = nil,

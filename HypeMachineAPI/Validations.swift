@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-public struct Validations {
+public enum Validations {
 	public static let apiErrorValidation: Alamofire.DataRequest.Validation = { _, _, data in
 		guard
 			let data = data,

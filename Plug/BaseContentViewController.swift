@@ -12,7 +12,7 @@ class BaseContentViewController: NSViewController {
 		NSEdgeInsets(top: 0, left: 0, bottom: 47, right: 0) // Play controls
 	}
 
-	init?(title: String, analyticsViewName: String) {
+	init(title: String, analyticsViewName: String) {
 		self.analyticsViewName = analyticsViewName
 		super.init(nibName: nil, bundle: nil)
 

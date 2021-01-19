@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 
 extension Requests {
-	public struct Artists {
+	public enum Artists {
 		@discardableResult
 		public static func index(
 			params: Parameters? = nil,

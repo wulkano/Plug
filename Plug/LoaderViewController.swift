@@ -9,7 +9,7 @@ final class LoaderViewController: NSViewController {
 	let size: LoaderViewSize
 	private lazy var progressIndicator = NSProgressIndicator()
 
-	init?(size: LoaderViewSize) {
+	init(size: LoaderViewSize) {
 		self.size = size
 		super.init(nibName: nil, bundle: nil)
 	}

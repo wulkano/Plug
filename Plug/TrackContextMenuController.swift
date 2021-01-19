@@ -5,7 +5,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 	let track: HypeMachineAPI.Track
 	var contextMenu: NSMenu!
 
-	init?(track: HypeMachineAPI.Track) {
+	init(track: HypeMachineAPI.Track) {
 		self.track = track
 		super.init(nibName: nil, bundle: nil)
 		setupViews()
