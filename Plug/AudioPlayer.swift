@@ -12,10 +12,10 @@ typealias OnSkipBackward = Swignal1Arg<Bool>
 final class AudioPlayer: NSObject {
 	static let shared = AudioPlayer()
 
-	var player: AVPlayer!
-	var playerItem: AVPlayerItem!
+	var player: AVPlayer?
+	var playerItem: AVPlayerItem?
 
-	var currentDataSource: TracksDataSource! {
+	var currentDataSource: TracksDataSource? {
 		didSet {
 			recentlyPlayedTrackIndexes = []
 		}
@@ -64,14 +64,20 @@ final class AudioPlayer: NSObject {
 	}
 
 	deinit {
-		if progressObserver != nil {
-			player.removeTimeObserver(progressObserver!)
+		if
+			let player = player,
+			let progressObserver = progressObserver
+		{
+			player.removeTimeObserver(progressObserver)
 		}
 	}
 
 	func reset() {
-		if progressObserver != nil {
-			player.removeTimeObserver(progressObserver!)
+		if
+			let player = player,
+			let progressObserver = progressObserver
+		{
+			player.removeTimeObserver(progressObserver)
 		}
 
 		player = nil
@@ -117,10 +123,14 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func findTracksWithTrackId(_ trackId: String) -> [Track] {
-		currentDataSource.tableContents?.filter { ($0 as? HypeMachineAPI.Track)?.id == trackId } as? [Track] ?? []
+		currentDataSource?.tableContents?.filter { ($0 as? HypeMachineAPI.Track)?.id == trackId } as? [Track] ?? []
 	}
 
 	func play() {
+		guard let player = player else {
+			return
+		}
+
 		player.play()
 		isPlaying = true
 		Notifications.post(name: Notifications.TrackPlaying, object: self, userInfo: ["track" as NSObject: currentTrack!])
@@ -128,6 +138,10 @@ final class AudioPlayer: NSObject {
 	}
 
 	func pause() {
+		guard let player = player else {
+			return
+		}
+
 		player.pause()
 		isPlaying = false
 		Notifications.post(name: Notifications.TrackPaused, object: self, userInfo: ["track" as NSObject: currentTrack!])
@@ -147,7 +161,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	func skipForward() {
-		guard currentDataSource != nil else {
+		guard let currentDataSource = currentDataSource else {
 			return
 		}
 
@@ -160,15 +174,15 @@ final class AudioPlayer: NSObject {
 
 	func skipBackward() {
 		guard
-			currentDataSource != nil,
-			currentTrack != nil
+			let currentDataSource = currentDataSource,
+			let currentTrack = currentTrack
 		else {
 			return
 		}
 
 		onSkipBackward.fire(true)
 
-		if let previousTrack = currentDataSource.trackBefore(currentTrack!) {
+		if let previousTrack = currentDataSource.trackBefore(currentTrack) {
 			playNewTrack(previousTrack, dataSource: currentDataSource)
 		} else {
 			seekToPercent(0)
@@ -181,7 +195,8 @@ final class AudioPlayer: NSObject {
 
 	func seekToPercent(_ percent: Double) {
 		guard
-			playerItem != nil,
+			let player = player,
+			let playerItem = playerItem,
 			playerItem.status == .readyToPlay
 		else {
 			return
@@ -242,7 +257,7 @@ final class AudioPlayer: NSObject {
 
 	@objc
 	func didAVPlayerTimeout() {
-		guard player != nil else {
+		guard let player = player else {
 			return
 		}
 
@@ -278,30 +293,37 @@ final class AudioPlayer: NSObject {
 	fileprivate func setupForNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
 		Analytics.trackAudioPlaybackEvent("Play New Track")
 
-		if playerItem != nil {
+		if let playerItem = playerItem {
 			unsubscribeFromPlayerItem(playerItem)
 		}
 
-		playerItem = AVPlayerItem(url: track.mediaURL())
+		let playerItem = AVPlayerItem(url: track.mediaURL())
+		self.playerItem = playerItem
 
 		subscribeToPlayerItem(playerItem)
 
-		if player != nil, progressObserver != nil {
-			player.removeTimeObserver(progressObserver!)
+		if
+			let player = player,
+			let progressObserver = progressObserver
+		{
+			player.removeTimeObserver(progressObserver)
 		}
 
 		timeoutTimer?.invalidate()
 		timeoutTimer = Timer.scheduledTimer(timeInterval: timeoutSeconds, target: self, selector: #selector(AudioPlayer.didAVPlayerTimeout), userInfo: nil, repeats: false)
 
 		player = AVPlayer(playerItem: playerItem)
-		player.volume = volume
+		player?.volume = volume
 		observeProgressUpdates()
 
 		if currentDataSource != dataSource {
 			currentDataSource = dataSource
 		}
 		currentTrack = track
-		recentlyPlayedTrackIndexes.append(currentDataSource.indexOfTrack(currentTrack!)!)
+
+		if let index = currentDataSource?.indexOfTrack(track) {
+			recentlyPlayedTrackIndexes.append(index)
+		}
 	}
 
 	func currentTrackChanged() {
@@ -310,12 +332,18 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func volumeChanged() {
-		if player != nil {
-			player.volume = volume
+		guard let player = player else {
+			return
 		}
+
+		player.volume = volume
 	}
 
 	fileprivate func observeProgressUpdates() {
+		guard let player = player else {
+			return
+		}
+
 		let thirdOfSecond = CMTimeMake(value: 1, timescale: 3)
 		progressObserver = player.addPeriodicTimeObserver(forInterval: thirdOfSecond, queue: nil, using: progressUpdated) as AnyObject?
 	}
@@ -323,8 +351,11 @@ final class AudioPlayer: NSObject {
 	fileprivate func progressUpdated(_ time: CMTime) {
 		guard
 			!isSeeking,
-			currentTrack != nil
-		else { return }
+			currentTrack != nil,
+			let playerItem = playerItem
+		else {
+			return
+		}
 
 		let progress = time.seconds
 		let duration = playerItem.duration.seconds
@@ -367,7 +398,10 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func findNextTrack() -> HypeMachineAPI.Track? {
-		guard let currentTrack = currentTrack else {
+		guard
+			let currentTrack = currentTrack,
+			let currentDataSource = currentDataSource
+		else {
 			return nil
 		}
 
@@ -382,6 +416,10 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func nextShuffleTrack() -> HypeMachineAPI.Track? {
+		guard let currentDataSource = currentDataSource else {
+			return nil
+		}
+
 		if recentlyPlayedTrackIndexes.count >= currentDataSource.tableContents!.count {
 			recentlyPlayedTrackIndexes = []
 		}
