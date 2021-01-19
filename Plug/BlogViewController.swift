@@ -3,7 +3,7 @@ import HypeMachineAPI
 import Alamofire
 
 final class BlogViewController: BaseContentViewController {
-	var blog: HypeMachineAPI.Blog! {
+	var blog: HypeMachineAPI.Blog? {
 		didSet {
 			blogChanged()
 		}
@@ -19,7 +19,7 @@ final class BlogViewController: BaseContentViewController {
 
 	init(blog: HypeMachineAPI.Blog) {
 		self.blog = blog
-		super.init(title: self.blog.name, analyticsViewName: "MainWindow/SingleBlog")
+		super.init(title: blog.name, analyticsViewName: "MainWindow/SingleBlog")
 		setup()
 	}
 
@@ -128,6 +128,10 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateTitle() {
+		guard let blog = blog else {
+			return
+		}
+
 		titleButton.title = blog.name + " →"
 	}
 
@@ -136,6 +140,10 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateImage() {
+		guard let blog = blog else {
+			return
+		}
+
 		Alamofire
 			.request(blog.imageURL(size: .normal))
 			.validate()
@@ -155,6 +163,10 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func extractColorAndResizeImage(_ image: NSImage) {
+		guard let blog = blog else {
+			return
+		}
+
 		DispatchQueue.global().async { [self] in
 			let imageSize = CGSize(width: 224, height: 224)
 			let colorArt = SLColorArt(image: image, scaledSize: imageSize)!
@@ -173,10 +185,18 @@ final class BlogViewController: BaseContentViewController {
 
 	@objc
 	func titleButtonClicked(_ sender: AnyObject) {
+		guard let blog = blog else {
+			return
+		}
+
 		blog.url.open()
 	}
 
 	func loadPlaylist() {
+		guard let blog = blog else {
+			return
+		}
+
 		tracksViewController = TracksViewController(type: .loveCount, title: "", analyticsViewName: "Blog/Tracks")
 		addChild(tracksViewController)
 
@@ -189,11 +209,15 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateActionButton() {
-		navigationItem.rightButton!.state = blog.following ? .on : .off
+		navigationItem.rightButton?.state = blog?.following == true ? .on : .off
 	}
 
 	@objc
 	func followButtonClicked(_ sender: ActionButton) {
+		guard let blog = blog else {
+			return
+		}
+
 		HypeMachineAPI.Requests.Me.toggleBlogFavorite(id: blog.id) { response in
 			let favoritedState = sender.state == .on
 
