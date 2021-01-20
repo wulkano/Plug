@@ -108,15 +108,31 @@ extension MainWindowController {
 		nowPlayingInfoCenter.playbackState = .interrupted
 
 		nowPlayingInfo = [
+			MPNowPlayingInfoPropertyExternalContentIdentifier: track.id,
 			MPMediaItemPropertyTitle: track.title,
 			MPMediaItemPropertyArtist: track.artist,
 			MPNowPlayingInfoPropertyElapsedPlaybackTime: 0.0,
-			MPMediaItemPropertyPlaybackDuration: 200.0, // Set aribitrary value that looks about until update received
-			MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue
+			MPNowPlayingInfoPropertyMediaType: MPNowPlayingInfoMediaType.audio.rawValue,
+			MPNowPlayingInfoPropertyAssetURL: track.mediaURL()
 		]
 
 		nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
 		nowPlayingInfoCenter.playbackState = AudioPlayer.shared.isPlaying ? .playing : .paused
+
+		if let thumbnailUrl = track.thumbURLLarge {
+			DispatchQueue.global().async { [weak self] in
+				guard
+					let self = self,
+					let image = NSImage(contentsOf: thumbnailUrl)
+				else {
+					return
+				}
+
+				let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+				self.nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+				self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+			}
+		}
 	}
 
 	@objc
