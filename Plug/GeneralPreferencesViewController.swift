@@ -16,7 +16,7 @@ final class GeneralPreferencesViewController: NSViewController, NSTableViewDeleg
 	]
 
 	func setHeightForPreferences() {
-		let desiredHeight = CGFloat(preferences.count) * 70
+		let desiredHeight = CGFloat(preferences.count) * 80
 		scrollViewHeightContraint.constant = desiredHeight
 	}
 
