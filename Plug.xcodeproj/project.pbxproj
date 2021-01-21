@@ -81,7 +81,6 @@
 		FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA32B867198ACFAF00D29817 /* SectionHeader.swift */; };
 		FA330030197CB1EE0063C552 /* TransparentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33002F197CB1EE0063C552 /* TransparentButton.swift */; };
 		FA33F43419E67FB200FF7649 /* PostInfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33F43319E67FB200FF7649 /* PostInfoTextField.swift */; };
-		FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */; };
 		FA3986E219AB13E1001B216E /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */; };
 		FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */; };
 		FA4BA9991B543FA700A983A5 /* RefreshClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */; };
@@ -112,7 +111,6 @@
 		FA64C6A719764FE9003933E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A619764FE9003933E3 /* Constants.swift */; };
 		FA64C6A919765323003933E3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64C6A819765323003933E3 /* Array.swift */; };
 		FA666D5E19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */; };
-		FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */; };
 		FA67371819E44C0D009BF6D2 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67371719E44C0D009BF6D2 /* TagButton.swift */; };
 		FA67371A19E44D1B009BF6D2 /* TagButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */; };
 		FA6ADCF419BA69C300CCD371 /* BlogImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6ADCF319BA69C300CCD371 /* BlogImageView.swift */; };
@@ -300,7 +298,6 @@
 		FA32B867198ACFAF00D29817 /* SectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		FA33002F197CB1EE0063C552 /* TransparentButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransparentButton.swift; sourceTree = "<group>"; };
 		FA33F43319E67FB200FF7649 /* PostInfoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfoTextField.swift; sourceTree = "<group>"; };
-		FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationHandler.swift; sourceTree = "<group>"; };
 		FA3986E119AB13E1001B216E /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		FA4BA9961B5433AA00A983A5 /* RefreshScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshScrollView.swift; sourceTree = "<group>"; };
 		FA4BA9981B543FA700A983A5 /* RefreshClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshClipView.swift; sourceTree = "<group>"; };
@@ -331,7 +328,6 @@
 		FA64C6A619764FE9003933E3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FA64C6A819765323003933E3 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		FA666D5D19B3FCC900AA0AA1 /* GeneralPreferencesTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesTableCellView.swift; sourceTree = "<group>"; };
-		FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
 		FA67371719E44C0D009BF6D2 /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		FA67371919E44D1B009BF6D2 /* TagButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButtonCell.swift; sourceTree = "<group>"; };
 		FA6ADCF319BA69C300CCD371 /* BlogImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogImageView.swift; sourceTree = "<group>"; };
@@ -750,8 +746,6 @@
 				FA18A8E319A303CC00B7CFDC /* Regex.swift */,
 				FA32B867198ACFAF00D29817 /* SectionHeader.swift */,
 				FA7C5CCC19BD4E9A002239AB /* SoundCloudAPI.swift */,
-				FA34171A19D4DE37006F706D /* UserNotificationHandler.swift */,
-				FA666D5F19B408B600AA0AA1 /* UserNotifications.swift */,
 				88B3B6AD1D26BC500046C6C7 /* KeepAwake.swift */,
 			);
 			name = Models;
@@ -1154,7 +1148,6 @@
 				FA7749A1198C1CAA0048863F /* UsersViewController.swift in Sources */,
 				FA21F9BF1B1EE94E00EBAA09 /* Dictionary+merge.swift in Sources */,
 				FA4BA9971B5433AA00A983A5 /* RefreshScrollView.swift in Sources */,
-				FA666D6019B408B600AA0AA1 /* UserNotifications.swift in Sources */,
 				FA24EDA61974A9A500A781C8 /* AppDelegate.swift in Sources */,
 				FA4BF21519F601090078AB82 /* BlogTableCellView.swift in Sources */,
 				FA32B868198ACFAF00D29817 /* SectionHeader.swift in Sources */,
@@ -1252,7 +1245,6 @@
 				FA77499E198C0D180048863F /* SearchViewController.swift in Sources */,
 				FA7C4977198ABD3300A38B27 /* GroupRowView.swift in Sources */,
 				FA4C44F919A6C9B70052D506 /* LoginViewController.swift in Sources */,
-				FA34171B19D4DE37006F706D /* UserNotificationHandler.swift in Sources */,
 				FA5ACB2F1B77CA8E0075D44F /* StickyTrackViewController.swift in Sources */,
 				E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
@@ -1590,7 +1582,7 @@
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.12;
+				minimumVersion = 6.1.3;
 			};
 		};
 		E334A8CC2474FAF30006DAC6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {

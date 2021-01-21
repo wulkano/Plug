@@ -351,3 +351,70 @@ extension NSToolbarItem {
 		return toolbarItem
 	}
 }
+
+
+extension NSBitmapImageRep {
+	func pngData() -> Data? {
+		representation(using: .png, properties: [:])
+	}
+
+	func jpegData(compressionQuality: CGFloat) -> Data? {
+		representation(using: .jpeg, properties: [.compressionFactor: compressionQuality])
+	}
+}
+
+extension Data {
+	var bitmap: NSBitmapImageRep? { NSBitmapImageRep(data: self) }
+}
+
+extension NSImage {
+	/// UIKit polyfill.
+	func pngData() -> Data? {
+		tiffRepresentation?.bitmap?.pngData()
+	}
+
+	/// UIKit polyfill.
+	func jpegData(compressionQuality: CGFloat) -> Data? {
+		tiffRepresentation?.bitmap?.jpegData(compressionQuality: compressionQuality)
+	}
+}
+
+
+extension URL {
+	var filename: String {
+		get {
+			assert(!hasDirectoryPath)
+			return lastPathComponent
+		}
+		set {
+			assert(!hasDirectoryPath)
+			deleteLastPathComponent()
+			appendPathComponent(newValue, isDirectory: false)
+		}
+	}
+}
+
+
+extension URL {
+	static let defaultAppropriateForTemporaryDirectory = FileManager.default.homeDirectoryForCurrentUser
+
+	/**
+	Creates a unique temporary directory and returns the URL.
+
+	The URL is unique for each call.
+
+	The system ensures the directory is not cleaned up until after the app quits.
+
+	- Parameter appropriateFor: By default, it creates the temporary directory on disk of the home directory of the users, but you can pass in a URL to make use the disk of that URL instead. This can be useful for larger files where it might be expensive to copy the file across disk boundaries. Keep in mind that there are also downsides to this. For example, if the passed in URL lives on a USB stick, it might disappear at any time as the drive might be ejected.
+	*/
+	static func uniqueTemporaryDirectory(
+		appropriateFor: Self = defaultAppropriateForTemporaryDirectory
+	) throws -> Self {
+		try FileManager.default.url(
+			for: .itemReplacementDirectory,
+			in: .userDomainMask,
+			appropriateFor: appropriateFor,
+			create: true
+		)
+	}
+}

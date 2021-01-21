@@ -1,4 +1,5 @@
 import Cocoa
+import UserNotifications
 import Sentry
 import HypeMachineAPI
 
@@ -27,7 +28,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			$0.dsn = "https://de9821b005af4222a9fc4315040749f4@o116098.ingest.sentry.io/5245093"
 		}
 
-		setupUserNotifications()
+		UNUserNotificationCenter.current().requestAuthorization { _, _ in }
 		setupNotifications()
 		setupHypeMachineAPI()
 		_ = KeepAwake.shared
@@ -147,10 +148,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		let userDefaultsValuesPath = Bundle.main.path(forResource: "UserDefaults", ofType: "plist")!
 		let userDefaultsValuesDict = NSDictionary(contentsOfFile: userDefaultsValuesPath)!
 		UserDefaults.standard.register(defaults: userDefaultsValuesDict as! [String: AnyObject])
-	}
-
-	func setupUserNotifications() {
-		_ = UserNotificationHandler.shared
 	}
 
 	func setupNotifications() {

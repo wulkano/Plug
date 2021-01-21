@@ -2,6 +2,7 @@ import Cocoa
 import AVFoundation
 import CoreMedia
 import HypeMachineAPI
+import UserNotifications
 
 typealias OnShuffleChangedSwignal = Swignal1Arg<Bool>
 typealias OnTrackPlaying = Swignal1Arg<Bool>
@@ -92,8 +93,56 @@ final class AudioPlayer: NSObject {
 	func playNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
 		if currentTrack != track {
 			setupForNewTrack(track, dataSource: dataSource)
-			UserNotifications.deliverNotification(title: track.title, informativeText: track.artist)
+
 			Notifications.post(name: Notifications.NewCurrentTrack, object: self, userInfo: ["track": track, "tracksDataSource": dataSource])
+
+			func notify(url: URL? = nil) {
+				let notificationContent = UNMutableNotificationContent()
+				notificationContent.title = track.title
+				notificationContent.subtitle = track.artist
+
+				if
+					let url = url,
+					let attachment = try? UNNotificationAttachment(identifier: "albumArt", url: url, options: nil)
+
+				{
+					notificationContent.attachments = [attachment]
+				}
+
+				let request = UNNotificationRequest(identifier: "trackInfo", content: notificationContent, trigger: nil)
+				UNUserNotificationCenter.current().add(request)
+			}
+
+			DispatchQueue.global().async {
+				guard UserDefaults.standard.bool(forKey: ShowTrackChangeNotificationsKey) else {
+					return
+				}
+
+				// TODO: Remove this and enable the below when notifications on macOS shows the attachment. (not working as of macOS 11.1)
+				notify()
+
+//				guard
+//					let url = track.thumbURLLarge,
+//					let image = NSImage(contentsOf: url)
+//				else {
+//					notify()
+//					return
+//				}
+//
+//				let weakFileUrl = try? URL.uniqueTemporaryDirectory()
+//					.appendingPathComponent(track.id, isDirectory: false)
+//					.appendingPathExtension("png")
+//
+//				guard
+//					let fileUrl = weakFileUrl,
+//					(try? image.pngData()?.write(to: fileUrl)) != nil
+//				else {
+//					notify()
+//					return
+//				}
+//
+//				notify(url: fileUrl)
+			}
 		}
 
 		play()
