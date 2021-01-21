@@ -24,6 +24,8 @@ final class DisplayErrorViewController: NSViewController {
 		view = NSView(frame: .zero)
 
 		let background = BackgroundBorderView()
+		background.hasBackground = true
+		background.backgroundColor = NSColor.systemRed.withAlphaComponent(0.9)
 		view.addSubview(background)
 		background.snp.makeConstraints { make in
 			make.edges.equalTo(view)
@@ -41,7 +43,7 @@ final class DisplayErrorViewController: NSViewController {
 		errorTitleTextField.textColor = .white
 		view.addSubview(errorTitleTextField)
 		errorTitleTextField.snp.makeConstraints { make in
-			make.top.equalTo(view).offset(6)
+			make.top.equalTo(view).offset(14)
 			make.left.equalTo(view).offset(14)
 			make.right.equalTo(view).offset(-14)
 		}

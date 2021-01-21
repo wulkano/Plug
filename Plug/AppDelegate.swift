@@ -38,6 +38,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		} else {
 			openLoginWindow()
 		}
+
+//		#if DEBUG
+//		// For testing the error toast.
+//		Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": NSError(domain: "test", code: 0, userInfo: [NSLocalizedDescriptionKey: "Test. Lorem Ipsum."])])
+//		#endif
 	}
 
 	// swiftlint:disable:next private_action
