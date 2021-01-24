@@ -211,7 +211,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
-		"https://github.com/wulkano/Plug/issues".openUrl()
+		"https://sindresorhus.com/feedback/?product=Plug".openUrl()
 	}
 
 	// MARK: NSApplicationDelegate
