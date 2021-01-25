@@ -39,6 +39,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			openLoginWindow()
 		}
 
+		showWelcomeScreenIfNeeded()
+
 //		#if DEBUG
 //		// For testing the error toast.
 //		Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": NSError(domain: "test", code: 0, userInfo: [NSLocalizedDescriptionKey: "Test. Lorem Ipsum."])])
@@ -226,5 +228,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 
 		return true
+	}
+}
+
+extension AppDelegate {
+	func showWelcomeScreenIfNeeded() {
+		guard AppMeta.isFirstLaunch else {
+			return
+		}
+
+		NSAlert.showModal(
+			// TODO: Remove `mainWindowController?.window` at some point. It's only for existing users.
+			for: loginWindowController?.window ?? mainWindowController?.window,
+			message: "Welcome to Plug!",
+			informativeText:
+				"""
+				Plug lets you listen to music from Hype Machine. An internet connection is required.
+
+				If you have any feedback, bug reports, or feature requests, click “Send Feedback” in the “Help” menu. We respond to all submissions.
+				""",
+			buttonTitles: [
+				"Get Started"
+			],
+			defaultButtonIndex: -1
+		)
 	}
 }
