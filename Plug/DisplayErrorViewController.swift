@@ -1,6 +1,5 @@
 import Cocoa
 import SnapKit
-import Sentry
 
 final class DisplayErrorViewController: NSViewController {
 	let error: Error
@@ -15,7 +14,7 @@ final class DisplayErrorViewController: NSViewController {
 		self.error = error
 		super.init(nibName: nil, bundle: nil)
 
-		SentrySDK.capture(error: error)
+		recordNonFatalError(error)
 	}
 
 	@available(*, unavailable)

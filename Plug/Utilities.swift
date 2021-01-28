@@ -512,3 +512,62 @@ extension NSAlert {
 		}
 	}
 }
+
+
+extension Dictionary {
+	/// Adds the elements of the given dictionary to a copy of self and returns that.
+	/// Identical keys in the given dictionary overwrites keys in the copy of self.
+	/// - Note: This exists as an addition to `+` as Swift sometimes struggle to infer the type of `dict + dict`.
+	func appending(_ dictionary: [Key: Value]) -> [Key: Value] {
+		var newDictionary = self
+
+		for (key, value) in dictionary {
+			newDictionary[key] = value
+		}
+
+		return newDictionary
+	}
+}
+
+
+extension Error {
+	var isNsError: Bool { Self.self is NSError.Type }
+}
+
+
+extension NSError {
+	static func from(error: Error, userInfo: [String: Any] = [:]) -> NSError {
+		let nsError = error as NSError
+
+		// Since Error and NSError are often bridged between each other, we check if it was originally an NSError and then return that.
+		guard !error.isNsError else {
+			guard !userInfo.isEmpty else {
+				return nsError
+			}
+
+			return nsError.appending(userInfo: userInfo)
+		}
+
+		var userInfo = userInfo
+		userInfo[NSLocalizedDescriptionKey] = error.localizedDescription
+
+		// Awful, but no better way to get the enum case name.
+		// This gets `Error.generateFrameFailed` from `Error.generateFrameFailed(Error Domain=AVFoundationErrorDomain Code=-11832 […]`.
+		let errorName = "\(error)".split(separator: "(").first ?? ""
+
+		return .init(
+			domain: "\(AppMeta.id) - \(nsError.domain)\(errorName.isEmpty ? "" : ".")\(errorName)",
+			code: nsError.code,
+			userInfo: userInfo
+		)
+	}
+
+	/// Returns a new error with the user info appended.
+	func appending(userInfo newUserInfo: [String: Any]) -> Self {
+		Self(
+			domain: domain,
+			code: code,
+			userInfo: userInfo.appending(newUserInfo)
+		)
+	}
+}

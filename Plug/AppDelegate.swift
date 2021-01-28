@@ -178,6 +178,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			return
 		}
 
+		recordNonFatalError(error)
+
 		switch error {
 		case .invalidHMToken:
 			signOut(nil)
