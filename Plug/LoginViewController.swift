@@ -50,9 +50,11 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 				if let apiError = error as? HypeMachineAPI.APIError {
 					switch apiError {
-					case HypeMachineAPI.APIError.incorrectUsername,
-										HypeMachineAPI.APIError.incorrectPassword:
-						errorMessage = "Incorrect Username/Password"
+					case .incorrectUsername,
+						 .incorrectPassword,
+						 .network(error: HypeMachineAPI.APIError.incorrectUsername),
+						 .network(error: HypeMachineAPI.APIError.incorrectPassword):
+						errorMessage = "Incorrect Username or Password"
 					default:
 						errorMessage = "Network Error"
 					}
