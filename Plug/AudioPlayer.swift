@@ -55,7 +55,7 @@ final class AudioPlayer: NSObject {
 	var isSeeking = false
 	var recentlyPlayedTrackIndexes = [Int]()
 	var timeoutTimer: Timer?
-	let timeoutSeconds = 10.0
+	let timeoutSeconds = 20.0
 
 	override init() {
 		self.isShuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
