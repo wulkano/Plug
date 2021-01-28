@@ -1,6 +1,8 @@
 import Cocoa
 
 final class NavigationSectionButton: SwissArmyButton {
+	override var isFlipped: Bool { false }
+
 	let navigationSection: NavigationSection
 
 	init(navigationSection: NavigationSection) {
