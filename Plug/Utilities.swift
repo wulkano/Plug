@@ -1,4 +1,5 @@
 import Cocoa
+import HypeMachineAPI
 
 
 enum AppMeta {
@@ -569,5 +570,164 @@ extension NSError {
 			code: code,
 			userInfo: userInfo.appending(newUserInfo)
 		)
+	}
+}
+
+
+extension Dictionary {
+	func compactValues<T>() -> [Key: T] where Value == T? {
+		// TODO: Make this `compactMapValues(\.self)` when https://bugs.swift.org/browse/SR-12897 is fixed.
+		compactMapValues { $0 }
+	}
+}
+
+
+typealias QueryDictionary = [String: String]
+
+extension CharacterSet {
+	/// Characters allowed to be unescaped in an URL
+	/// https://tools.ietf.org/html/rfc3986#section-2.3
+	static let urlUnreservedRFC3986 = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+}
+
+/// This should really not be necessary, but it's at least needed for my `formspree.io` form...
+/// Otherwise is results in "Internal Server Error" after submitting the form
+/// Relevant: https://www.djackson.org/why-we-do-not-use-urlcomponents/
+private func escapeQueryComponent(_ query: String) -> String {
+	query.addingPercentEncoding(withAllowedCharacters: .urlUnreservedRFC3986)!
+}
+
+// TODO: This could probably be `extension Dictionary where Key: ExpressibleByStringLiteral {
+extension Dictionary where Key == String {
+	/// This correctly escapes items. See `escapeQueryComponent`.
+	var toQueryItems: [URLQueryItem] {
+		map {
+			URLQueryItem(
+				name: escapeQueryComponent($0),
+				value: escapeQueryComponent("\($1)")
+			)
+		}
+	}
+
+	var toQueryString: String {
+		var components = URLComponents()
+		components.queryItems = toQueryItems
+		return components.query!
+	}
+}
+
+extension URLComponents {
+	/// This correctly escapes items. See `escapeQueryComponent`.
+	init?(string: String, query: QueryDictionary) {
+		self.init(string: string)
+		self.queryDictionary = query
+	}
+
+	/// This correctly escapes items. See `escapeQueryComponent`.
+	var queryDictionary: QueryDictionary {
+		get {
+			queryItems?.toDictionary { ($0.name, $0.value) }.compactValues() ?? [:]
+		}
+		set {
+			/// Using `percentEncodedQueryItems` instead of `queryItems` since the query items are already custom-escaped. See `escapeQueryComponent`.
+			percentEncodedQueryItems = newValue.toQueryItems
+		}
+	}
+}
+
+extension URL {
+	init?(string: String, query: QueryDictionary) {
+		guard let url = URLComponents(string: string, query: query)?.url else {
+			return nil
+		}
+
+		self = url
+	}
+
+	var queryItems: [URLQueryItem] {
+		guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+			return []
+		}
+
+		return components.queryItems ?? []
+	}
+
+	var queryDictionary: QueryDictionary {
+		guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+			return [:]
+		}
+
+		return components.queryDictionary
+	}
+
+	/// Get the value of a query item by the given key name.
+	func queryItemValue(forKey key: String) -> String? {
+		queryItems.first { $0.name == key }?.value
+	}
+
+	/**
+	Returns `self` with the given `URLQueryItem` appended.
+	*/
+	func appendingQueryItem(_ queryItem: URLQueryItem) -> Self {
+		guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+			return self
+		}
+
+		if components.queryItems == nil {
+			components.queryItems = []
+		}
+
+		components.queryItems?.append(queryItem)
+
+		return components.url ?? self
+	}
+
+	/**
+	Returns `self` with the given `name` and `value` appended if the `value` is not `nil`.
+	*/
+	func appendingQueryItem(name: String, value: String?) -> Self {
+		guard let value = value else {
+			return self
+		}
+
+		return appendingQueryItem(URLQueryItem(name: name, value: value))
+	}
+
+	/**
+	Returns `self` with the given query dictionary merged in.
+
+	The keys in the given dictionary overwrites any existing keys.
+	*/
+	func settingQueryItems(_ queryDictionary: QueryDictionary) -> Self {
+		guard var components = URLComponents(url: self, resolvingAgainstBaseURL: false) else {
+			return self
+		}
+
+		components.queryDictionary = components.queryDictionary.appending(queryDictionary)
+
+		return components.url ?? self
+	}
+}
+
+
+extension NSWorkspace {
+	/// UIKit polyfill.
+	/// Returns a boolean value indicating whether an app is available to handle a URL scheme.
+	func canOpenURL(_ url: URL) -> Bool {
+		urlForApplication(toOpen: url) != nil
+	}
+}
+
+
+extension HypeMachineAPI.Track {
+	func openInAppleMusic() {
+		URL(string: "music://music.apple.com/WebObjects/MZStore.woa/wa/search")?.appendingQueryItem(name: "term", value: "\(title) \(artist)")
+			.open()
+	}
+}
+
+extension HypeMachineAPI.Track {
+	func openInSpotify() {
+		URL(string: "spotify://search:track:\(escapeQueryComponent("\(title) \(artist)"))")?.open()
 	}
 }

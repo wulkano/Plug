@@ -18,9 +18,41 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 
 	func setupViews() {
 		contextMenu = NSMenu()
+		contextMenu.autoenablesItems = false
 
 		contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: #selector(TrackContextMenuController.copyHypeMachineLinkClicked(_:)), keyEquivalent: ""))
 		contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(TrackContextMenuController.openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
+
+		contextMenu.addItem(NSMenuItem.separator())
+
+		let appleMusicItem = NSMenuItem(title: "Open in Apple Music", action: nil, keyEquivalent: "")
+		appleMusicItem.onAction { [weak self] _ in
+			guard let self = self else {
+				return
+			}
+
+			self.track.openInAppleMusic()
+		}
+
+		if #available(macOS 10.15, *) {
+			contextMenu.addItem(appleMusicItem)
+		}
+
+		let spotifyItem = NSMenuItem(title: "Open in Spotify", action: nil, keyEquivalent: "")
+		spotifyItem.onAction { [weak self] _ in
+			guard let self = self else {
+				return
+			}
+
+
+			self.track.openInSpotify()
+		}
+
+		if NSWorkspace.shared.canOpenURL(URL(string: "spotify://")!) {
+			contextMenu.addItem(spotifyItem)
+		}
+
+		contextMenu.addItem(NSMenuItem.separator())
 
 		if track.mediaType == "soundcloud" {
 			contextMenu.addItem(NSMenuItem.separator())
@@ -51,6 +83,13 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 		contextMenu.addItem(shareMenu)
 
 		for item in contextMenu.items {
+			guard
+				item != appleMusicItem,
+				item != spotifyItem
+			else {
+				continue
+			}
+
 			item.target = self
 		}
 	}

@@ -91,7 +91,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 			return
 		}
 
-		representedTrack.iTunesURL.open()
+		representedTrack.openInAppleMusic()
 	}
 
 	@IBAction private func seeMoreButtonClicked(_ sender: NSButton) {
