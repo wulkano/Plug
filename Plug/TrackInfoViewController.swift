@@ -11,13 +11,13 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBOutlet private var postInfoTextField: PostInfoTextField!
 	@IBOutlet private var loveButton: TransparentButton!
 
-	override var representedObject: Any! {
+	override var representedObject: Any? {
 		didSet {
 			representedObjectChanged()
 		}
 	}
 
-	var representedTrack: HypeMachineAPI.Track { representedObject as! HypeMachineAPI.Track }
+	var representedTrack: HypeMachineAPI.Track? { representedObject as? HypeMachineAPI.Track }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,10 +36,14 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBAction private func loveButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Heart")
 
-		let oldLovedValue = representedTrack.isLoved
+		let oldLovedValue = representedTrack?.isLoved ?? false
 		let newLovedValue = !oldLovedValue
 
 		changeTrackLovedValueTo(newLovedValue)
+
+		guard let representedTrack = representedTrack else {
+			return
+		}
 
 		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { [weak self] response in
 			guard let self = self else {
@@ -62,6 +66,10 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	func postInfoTextFieldClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Track Info Blog Description")
 
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		representedTrack.postURL.open()
 	}
 
@@ -79,11 +87,19 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBAction private func downloadITunesButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Download iTunes")
 
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		representedTrack.iTunesURL.open()
 	}
 
 	@IBAction private func seeMoreButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info See More")
+
+		guard let representedTrack = representedTrack else {
+			return
+		}
 
 		representedTrack.hypeMachineURL().open()
 	}
@@ -108,8 +124,12 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 
 	func changeTrackLovedValueTo(_ isLoved: Bool) {
 		var newTrack = representedTrack
-		newTrack.isLoved = isLoved
+		newTrack?.isLoved = isLoved
 		representedObject = newTrack
+
+		guard let representedTrack = representedTrack else {
+			return
+		}
 
 		if isLoved {
 			Notifications.post(name: Notifications.TrackLoved, object: self, userInfo: ["track" as NSObject: representedTrack])
@@ -129,18 +149,34 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updateTitle() {
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		titleTextField.stringValue = representedTrack.title
 	}
 
 	func updateArtist() {
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		artistTextField.stringValue = representedTrack.artist
 	}
 
 	func updateLoveCount() {
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		loveCountTextField.objectValue = representedTrack.lovedCountNum
 	}
 
 	func updateAlbumArt() {
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		let url = representedTrack.thumbURL(preferedSize: .medium)
 
 		Alamofire.request(url).validate().responseImage { [weak self] response in
@@ -159,15 +195,23 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updatePostedCount() {
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		postedCountTextField.stringValue = "Posted by \(representedTrack.postedCount) Blogs"
 	}
 
 	func updatePostInfo() {
+		guard let representedTrack = representedTrack else {
+			return
+		}
+
 		let postInfoAttributedString = PostInfoFormatter().attributedStringForPostInfo(representedTrack)
 		postInfoTextField.attributedStringValue = postInfoAttributedString
 	}
 
 	func updateLoveButton() {
-		loveButton.isSelected = representedTrack.isLoved
+		loveButton.isSelected = representedTrack?.isLoved ?? false
 	}
 }
