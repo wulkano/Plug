@@ -721,7 +721,8 @@ extension NSWorkspace {
 
 extension HypeMachineAPI.Track {
 	func openInAppleMusic() {
-		URL(string: "music://music.apple.com/WebObjects/MZStore.woa/wa/search")?.appendingQueryItem(name: "term", value: "\(title) \(artist)")
+		URL(string: "music://music.apple.com/WebObjects/MZStore.woa/wa/search")?
+			.appendingQueryItem(name: "term", value: "\(title) \(artist)")
 			.open()
 	}
 }
