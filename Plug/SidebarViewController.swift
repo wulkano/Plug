@@ -22,6 +22,10 @@ final class SidebarViewController: NSViewController {
 			button.action = #selector(navigationSectionButtonClicked(_:))
 			superview.addSubview(button)
 
+			DispatchQueue.main.async {
+				button.window?.makeFirstResponder(nil)
+			}
+
 			button.snp.makeConstraints { make in
 				make.centerX.equalTo(superview)
 				make.width.equalTo(30)
