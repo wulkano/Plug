@@ -182,7 +182,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		recordNonFatalError(error)
 
 		switch error {
-		case .invalidHMToken:
+		// FIXME: I'm not entirely sure how this happens, but sometimes the actual error is wrapped in a network error.
+		case .invalidHMToken, .network(error: HypeMachineAPI.APIError.invalidHMToken):
 			signOut(nil)
 		default:
 			break
