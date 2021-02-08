@@ -21,7 +21,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		Notifications.unsubscribeAll(observer: self)
 	}
 
-	func applicationDidFinishLaunching(_ aNotification: Notification) {
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		assert(!Secrets.apiKey.isEmpty)
 		setupUserDefaults()
 
 		SentrySDK.start {
