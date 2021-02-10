@@ -57,6 +57,17 @@ final class AudioPlayer: NSObject {
 	var timeoutTimer: Timer?
 	let timeoutSeconds = 20.0
 
+	var previousTrack: HypeMachineAPI.Track? {
+		guard let currentTrack = currentTrack else {
+			return nil
+		}
+
+		return currentDataSource?.trackBefore(currentTrack)
+	}
+
+	var hasNextTrack: Bool { findNextTrack() != nil }
+	var hasPreviousTrack: Bool { previousTrack != nil }
+
 	override init() {
 		self.isShuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
 		super.init()
@@ -222,20 +233,18 @@ final class AudioPlayer: NSObject {
 	}
 
 	func skipBackward() {
-		guard
-			let currentDataSource = currentDataSource,
-			let currentTrack = currentTrack
-		else {
+		guard let currentDataSource = currentDataSource else {
 			return
 		}
 
 		onSkipBackward.fire(true)
 
-		if let previousTrack = currentDataSource.trackBefore(currentTrack) {
-			playNewTrack(previousTrack, dataSource: currentDataSource)
-		} else {
+		guard let previousTrack = previousTrack else {
 			seekToPercent(0)
+			return
 		}
+
+		playNewTrack(previousTrack, dataSource: currentDataSource)
 	}
 
 	func toggleShuffle() {

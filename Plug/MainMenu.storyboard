@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -118,6 +118,23 @@
                                         <menuItem title="Refresh" keyEquivalent="r" id="pvB-Fo-xj6">
                                             <connections>
                                                 <action selector="refreshItemClicked:" target="0zE-Eq-Avq" id="g4b-a3-ZjB"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="vyZ-lU-ZsY"/>
+                                        <menuItem title="Play" keyEquivalent=" " id="2bq-Hy-e0w">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="playPauseItemClicked:" target="0zE-Eq-Avq" id="IIo-Kn-FkQ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Next" keyEquivalent="" id="u8B-to-MNC">
+                                            <connections>
+                                                <action selector="nextTrackItemClicked:" target="0zE-Eq-Avq" id="sMq-tl-NUz"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Previous" keyEquivalent="" id="uW8-XH-rrd">
+                                            <connections>
+                                                <action selector="previousTrackItemClicked:" target="0zE-Eq-Avq" id="Oy8-lX-iCv"/>
                                             </connections>
                                         </menuItem>
                                     </items>

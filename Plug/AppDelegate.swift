@@ -216,6 +216,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		Notifications.post(name: Notifications.RefreshCurrentView, object: self, userInfo: nil)
 	}
 
+	@IBAction private func playPauseItemClicked(_ sender: NSMenuItem) {
+		AudioPlayer.shared.playPauseToggle()
+	}
+
+	@IBAction private func nextTrackItemClicked(_ sender: NSMenuItem) {
+		AudioPlayer.shared.skipForward()
+	}
+
+	@IBAction private func previousTrackItemClicked(_ sender: NSMenuItem) {
+		AudioPlayer.shared.skipBackward()
+	}
+
 	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
 		"https://sindresorhus.com/feedback/?product=Plug".openUrl()
 	}
@@ -232,6 +244,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 
 		return true
+	}
+}
+
+extension AppDelegate: NSMenuItemValidation {
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		switch menuItem.action {
+		case #selector(playPauseItemClicked)?:
+			menuItem.title = AudioPlayer.shared.isPlaying ? "Pause" : "Play"
+			return AudioPlayer.shared.currentTrack != nil
+		case #selector(nextTrackItemClicked)?:
+			return AudioPlayer.shared.hasNextTrack
+		case #selector(previousTrackItemClicked)?:
+			return AudioPlayer.shared.hasPreviousTrack
+		default:
+			return true
+		}
 	}
 }
 
