@@ -437,15 +437,15 @@ extension NSAlert {
 	@discardableResult
 	static func showModal(
 		for window: NSWindow? = nil,
-		message: String,
-		informativeText: String? = nil,
+		title: String,
+		message: String? = nil,
 		style: Style = .warning,
 		buttonTitles: [String] = [],
 		defaultButtonIndex: Int? = nil
 	) -> NSApplication.ModalResponse {
 		NSAlert(
+			title: title,
 			message: message,
-			informativeText: informativeText,
 			style: style,
 			buttonTitles: buttonTitles,
 			defaultButtonIndex: defaultButtonIndex
@@ -471,18 +471,18 @@ extension NSAlert {
 	}
 
 	convenience init(
-		message: String,
-		informativeText: String? = nil,
+		title: String,
+		message: String? = nil,
 		style: Style = .warning,
 		buttonTitles: [String] = [],
 		defaultButtonIndex: Int? = nil
 	) {
 		self.init()
-		self.messageText = message
+		self.messageText = title
 		self.alertStyle = style
 
-		if let informativeText = informativeText {
-			self.informativeText = informativeText
+		if let message = message {
+			self.informativeText = message
 		}
 
 		addButtons(withTitles: buttonTitles)

@@ -8,7 +8,8 @@ final class MainViewController: NSViewController,
 	FeedSectionModeMenuTarget,
 	SearchSectionSortMenuTarget,
 	FavoritesSectionPlaylistMenuTarget,
-	LatestSectionModeMenuTarget {
+	LatestSectionModeMenuTarget
+{
 	@IBOutlet private var mainContentView: NSView!
 
 	var navigationController: NavigationController!

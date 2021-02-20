@@ -272,8 +272,8 @@ extension AppDelegate {
 		NSAlert.showModal(
 			// TODO: Remove `mainWindowController?.window` at some point. It's only for existing users.
 			for: loginWindowController?.window ?? mainWindowController?.window,
-			message: "Welcome to Plug!",
-			informativeText:
+			title: "Welcome to Plug!",
+			message:
 				"""
 				Plug lets you listen to music from Hype Machine. An internet connection is required.
 
