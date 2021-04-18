@@ -1,4 +1,4 @@
-import Cocoa
+import SwiftUI
 import HypeMachineAPI
 
 
@@ -730,5 +730,80 @@ extension HypeMachineAPI.Track {
 extension HypeMachineAPI.Track {
 	func openInSpotify() {
 		URL(string: "spotify://search:track:\(escapeQueryComponent("\(title) \(artist)"))")?.open()
+	}
+}
+
+
+extension URL: ExpressibleByStringLiteral {
+	/**
+	Example:
+
+	```
+	let url: URL = "https://sindresorhus.com"
+	```
+	*/
+	public init(stringLiteral value: StaticString) {
+		self.init(string: "\(value)")!
+	}
+}
+
+extension URL {
+	/**
+	Example:
+
+	```
+	URL("https://sindresorhus.com")
+	```
+	*/
+	init(_ staticString: StaticString) {
+		self.init(string: "\(staticString)")!
+	}
+}
+
+
+extension Double {
+	/// Get a CGFloat from a Double. This makes it easier to work with optionals.
+	var cgFloat: CGFloat { CGFloat(self) }
+}
+
+extension CGFloat {
+	/// Get a Double from a CGFloat. This makes it easier to work with optionals.
+	var double: Double { Double(self) }
+}
+
+extension Int {
+	/// Get a Double from an Int. This makes it easier to work with optionals.
+	var double: Double { Double(self) }
+
+	/// Get a CGFloat from an Int. This makes it easier to work with optionals.
+	var cgFloat: CGFloat { CGFloat(self) }
+}
+
+
+@available(macOS 10.15, *)
+extension Font {
+	/// The default system font size.
+	static let systemFontSize = NSFont.systemFontSize.double
+
+	/// The system font in default size.
+	static func system(
+		weight: Font.Weight = .regular,
+		design: Font.Design = .default
+	) -> Self {
+		system(size: systemFontSize.cgFloat, weight: weight, design: design)
+	}
+}
+
+@available(macOS 10.15, *)
+extension Font {
+	/// The default small system font size.
+	static let smallSystemFontSize = NSFont.smallSystemFontSize.double
+
+	/// The system font in small size.
+	static func smallSystem(
+		weight: Font.Weight = .regular,
+		design: Font.Design = .default
+	) -> Self {
+		system(size: smallSystemFontSize.cgFloat, weight: weight, design: design)
 	}
 }

@@ -1,4 +1,4 @@
-import Cocoa
+import SwiftUI
 
 final class AboutWindowController: NSWindowController {
 	convenience init() {
@@ -11,7 +11,13 @@ final class AboutWindowController: NSWindowController {
 			backing: .buffered,
 			defer: false
 		)
-		aboutWindow.contentViewController = AboutViewController(nibName: nil, bundle: nil)
+
+		if #available(macOS 11, *) {
+			aboutWindow.contentViewController = NSHostingController(rootView: AboutView())
+		} else {
+			aboutWindow.contentViewController = AboutViewController(nibName: nil, bundle: nil)
+		}
+
 		aboutWindow.center()
 
 		self.init(window: aboutWindow)

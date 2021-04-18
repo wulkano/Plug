@@ -8,7 +8,7 @@ class TracksViewController: DataSourceViewController {
 	var previousMouseInsideRow = -1
 	var anchoredRow: Int?
 	var anchoredCellViewViewController: TracksViewController?
-	var showLoveButton: Bool = true
+	var showLoveButton = true
 
 	init(type: TracksViewControllerType, title: String, analyticsViewName: String) {
 		self.type = type

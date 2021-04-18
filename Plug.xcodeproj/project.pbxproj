@@ -52,6 +52,7 @@
 		E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34A8FAD2473D66B00233A68 /* PreventSleep.swift */; };
 		E35F1C312474FF9C004CC5C1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E35F1C302474FF9C004CC5C1 /* SnapKit */; };
 		E35F1C50247519DB004CC5C1 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = E35F1C4D247519DB004CC5C1 /* SSKeychain.m */; };
+		E37B920D262C1700009DFE65 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37B920C262C1700009DFE65 /* AboutView.swift */; };
 		E39B5B0424A7CAA100EC6BAC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B5B0324A7CAA100EC6BAC /* Utilities.swift */; };
 		E3B4C5BD2476C9E000D4776F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B4C5BC2476C9E000D4776F /* Secrets.swift */; };
 		FA0005F31B50653D00187B89 /* SearchHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0005F21B50653D00187B89 /* SearchHeaderViewController.swift */; };
@@ -265,6 +266,7 @@
 		E35F1C4B247519DB004CC5C1 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		E35F1C4C247519DB004CC5C1 /* Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.markdown; sourceTree = "<group>"; };
 		E35F1C4D247519DB004CC5C1 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		E37B920C262C1700009DFE65 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		E39B5B0324A7CAA100EC6BAC /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E3B4C5BC2476C9E000D4776F /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		E3C1BDA324742F8100F5E403 /* Plug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plug.entitlements; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 		FA75E81F1B560F980070FB1D /* About Window */ = {
 			isa = PBXGroup;
 			children = (
+				E37B920C262C1700009DFE65 /* AboutView.swift */,
 				FA75E81D1B560F930070FB1D /* AboutViewController.swift */,
 				FA75E8201B5615480070FB1D /* AboutWindowController.swift */,
 			);
@@ -1249,6 +1252,7 @@
 				E34A8FB72473D7FE00233A68 /* PreventSleep.swift in Sources */,
 				FA9A2F3A19B6893A0057080C /* IOSStyleTableCellView.swift in Sources */,
 				88B3B6AE1D26BC500046C6C7 /* KeepAwake.swift in Sources */,
+				E37B920D262C1700009DFE65 /* AboutView.swift in Sources */,
 				FA2519471C039E980075FBC6 /* FontHelper.swift in Sources */,
 				FA9A2F4A19B783B30057080C /* BackButtonCell.swift in Sources */,
 				FA9EA03E199AF00900D9AB8A /* BlogsDataSource.swift in Sources */,
