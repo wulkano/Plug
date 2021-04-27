@@ -8,7 +8,7 @@ final class UnderlinedTabButtonCell: NSButtonCell {
 
 	required init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		highlightsBy = NSCell.StyleMask.contentsCellMask
+		highlightsBy = .contentsCellMask
 	}
 
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {

@@ -27,7 +27,7 @@ final class LoginButtonCell: SwissArmyButtonCell {
 		case .error:
 			return NSColor(red256: 255, green256: 95, blue256: 82).withAlphaComponent(getAlpha())
 		default:
-			return NSColor.white.withAlphaComponent(getAlpha())
+			return .white.withAlphaComponent(getAlpha())
 		}
 	}
 

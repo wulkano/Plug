@@ -244,9 +244,9 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
-			playState = PlayState.playing
+			playState = .playing
 		} else {
-			playState = PlayState.notPlaying
+			playState = .notPlaying
 		}
 	}
 
@@ -258,7 +258,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 		let notificationTrack = notification.userInfo!["track"] as! HypeMachineAPI.Track
 		if notificationTrack == objectValue as? HypeMachineAPI.Track {
-			playState = PlayState.paused
+			playState = .paused
 		}
 	}
 

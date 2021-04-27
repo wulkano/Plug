@@ -79,7 +79,7 @@ final class SidebarViewController: NSViewController {
 				backgroundView.appearance = NSAppearance(named: .vibrantDark)
 			}
 
-			borderBox.borderColor = NSApp.effectiveAppearance.isDarkMode ? .black : NSColor.black.withAlphaComponent(0.3)
+			borderBox.borderColor = NSApp.effectiveAppearance.isDarkMode ? .black : .black.withAlphaComponent(0.3)
 		}
 
 		setMaterial()

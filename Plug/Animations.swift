@@ -7,7 +7,7 @@ enum Animations {
 		let duration = 0.8
 		let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
 		rotate.isRemovedOnCompletion = false
-		rotate.fillMode = CAMediaTimingFillMode.forwards
+		rotate.fillMode = .forwards
 
 		// Do a series of 5 quarter turns for a total of a 1.25 turns
 		// (2PI is a full turn, so pi/2 is a quarter turn)
@@ -31,7 +31,7 @@ enum Animations {
 		let duration = 0.8
 		let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
 		rotate.isRemovedOnCompletion = false
-		rotate.fillMode = CAMediaTimingFillMode.forwards
+		rotate.fillMode = .forwards
 
 		// Do a series of 5 quarter turns for a total of a 1.25 turns
 		// (2PI is a full turn, so pi/2 is a quarter turn)

@@ -31,8 +31,8 @@ final class TagButton: SwissArmyButton {
 	override init(frame frameRect: CGRect) {
 		super.init(frame: frameRect)
 		setupCell()
-		setButtonType(NSButton.ButtonType.momentaryPushIn)
-		bezelStyle = NSButton.BezelStyle.regularSquare
+		setButtonType(.momentaryPushIn)
+		bezelStyle = .regularSquare
 	}
 
 	override func setupCell() {
@@ -42,10 +42,8 @@ final class TagButton: SwissArmyButton {
 
 	func fontAttributes() -> [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		let color = NSColor.black
-		let font = appFont(size: 12, weight: .bold)
-		attributes[.foregroundColor] = color
-		attributes[.font] = font
+		attributes[.foregroundColor] = NSColor.black
+		attributes[.font] = appFont(size: 12, weight: .bold)
 		return attributes
 	}
 }

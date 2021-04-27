@@ -31,7 +31,7 @@ final class PostInfoFormatter: Formatter {
 
 	private func formattedDatePosted(_ datePosted: Date) -> String {
 		let formatter = DateFormatter()
-		formatter.locale = Locale.current
+		formatter.locale = .current
 
 		if dateFromCurrentYear(datePosted) {
 			formatter.dateFormat = "MMM d"
@@ -50,19 +50,15 @@ final class PostInfoFormatter: Formatter {
 
 	private func normalAttributes() -> [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		let color = NSColor.white.withAlphaComponent(0.5)
-		let font = appFont(size: 13)
-		attributes[.foregroundColor] = color
-		attributes[.font] = font
+		attributes[.foregroundColor] = NSColor.white.withAlphaComponent(0.5)
+		attributes[.font] = appFont(size: 13)
 		return attributes
 	}
 
 	private func boldAttributes() -> [NSAttributedString.Key: Any] {
 		var attributes = [NSAttributedString.Key: Any]()
-		let color = NSColor.white
-		let font = appFont(size: 13, weight: .medium)
-		attributes[.foregroundColor] = color
-		attributes[.font] = font
+		attributes[.foregroundColor] = NSColor.white
+		attributes[.font] = appFont(size: 13, weight: .medium)
 		return attributes
 	}
 }

@@ -9,7 +9,7 @@ final class IOSStyleTableRowView: NSTableRowView {
 
 	@IBInspectable var separatorSpacing: CGFloat = 0
 	@IBInspectable var customSeparatorColor: NSColor = .separatorColor
-	@IBInspectable var selectionColor: NSColor = NSColor.quaternaryLabelColor
+	@IBInspectable var selectionColor: NSColor = .quaternaryLabelColor
 
 	let separatorWidth: CGFloat = 1
 	var isNextRowGroupRow = false

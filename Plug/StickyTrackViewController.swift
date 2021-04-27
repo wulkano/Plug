@@ -42,7 +42,7 @@ final class StickyTrackViewController: TracksViewController {
 		}
 
 		shadowView = NSImageView()
-		shadowView!.imageScaling = NSImageScaling.scaleAxesIndependently
+		shadowView!.imageScaling = .scaleAxesIndependently
 		shadowView!.image = NSImage(named: "Sticky Track Shadow Bottom")
 		view.addSubview(shadowView!)
 		shadowView!.snp.makeConstraints { make in
@@ -62,7 +62,7 @@ final class StickyTrackViewController: TracksViewController {
 		}
 
 		shadowView = NSImageView()
-		shadowView!.imageScaling = NSImageScaling.scaleAxesIndependently
+		shadowView!.imageScaling = .scaleAxesIndependently
 		shadowView!.image = NSImage(named: "Sticky Track Shadow Top")
 		view.addSubview(shadowView!)
 		shadowView!.snp.makeConstraints { make in
