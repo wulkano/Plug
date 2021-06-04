@@ -245,7 +245,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 			shownDirection = .below
 		}
 
-		let row = self.row(at: point)
+		let row = row(at: point)
 		if row != previousRowDidStartToShow {
 			if
 				scrollDirection == previousScrollDirection,
@@ -283,7 +283,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 			hiddenDirection = .above
 		}
 
-		let row = self.row(at: point)
+		let row = row(at: point)
 		if row != previousRowDidStartToHide {
 			if
 				scrollDirection == previousScrollDirection,
@@ -325,7 +325,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 			shownDirection = .below
 		}
 
-		let row = self.row(at: point)
+		let row = row(at: point)
 		if row != previousRowDidShow {
 			if
 				scrollDirection == previousScrollDirection,
@@ -367,7 +367,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 			hiddenDirection = .above
 		}
 
-		let row = self.row(at: point)
+		let row = row(at: point)
 		if row != previousRowDidHide {
 			if
 				scrollDirection == previousScrollDirection,

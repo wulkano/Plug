@@ -23,7 +23,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 		contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: #selector(TrackContextMenuController.copyHypeMachineLinkClicked(_:)), keyEquivalent: ""))
 		contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(TrackContextMenuController.openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
 
-		contextMenu.addItem(NSMenuItem.separator())
+		contextMenu.addItem(.separator())
 
 		let appleMusicItem = NSMenuItem(title: "Open in Apple Music", action: nil, keyEquivalent: "")
 		appleMusicItem.onAction { [weak self] _ in
@@ -52,15 +52,15 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 			contextMenu.addItem(spotifyItem)
 		}
 
-		contextMenu.addItem(NSMenuItem.separator())
+		contextMenu.addItem(.separator())
 
 		if track.mediaType == "soundcloud" {
-			contextMenu.addItem(NSMenuItem.separator())
+			contextMenu.addItem(.separator())
 			contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(TrackContextMenuController.copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
 			contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(TrackContextMenuController.openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
 		}
 
-		contextMenu.addItem(NSMenuItem.separator())
+		contextMenu.addItem(.separator())
 
 		let shareMenu = NSMenuItem(title: "Share", action: nil, keyEquivalent: "")
 			.withSubmenu { menu in
@@ -133,7 +133,6 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 			mediaURL: url,
 			success: { trackURL in
 				trackURL.open()
-				return
 			},
 			failure: { error in
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])

@@ -5,8 +5,7 @@ final class FlatSliderCell: NSSliderCell {
 	@IBInspectable var barFillColor: NSColor = .labelColor
 
 	override func drawBar(inside aRect: CGRect, flipped: Bool) {
-		let knobRect = self.knobRect(flipped: flipped)
-
+		let knobRect = knobRect(flipped: flipped)
 		let inset: CGFloat = floor(knobRect.size.width / 2) // Floor so we don't end up on a 0.5 pixel and draw weird
 		let knobCenterX = knobRect.origin.x + inset
 

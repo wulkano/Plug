@@ -141,8 +141,7 @@ final class AudioPlayer: NSObject {
 //				}
 //
 //				let weakFileUrl = try? URL.uniqueTemporaryDirectory()
-//					.appendingPathComponent(track.id, isDirectory: false)
-//					.appendingPathExtension("png")
+//					.appendingPathComponent(track.id, conformingTo: .png)
 //
 //				guard
 //					let fileUrl = weakFileUrl,
