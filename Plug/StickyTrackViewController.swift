@@ -2,7 +2,13 @@ import Cocoa
 import HypeMachineAPI
 
 final class StickyTrackViewController: TracksViewController {
-	var trackViewHeight: CGFloat { tableView(tableView, heightOfRow: 0) }
+	var trackViewHeight: CGFloat {
+		guard let tableView = tableView else {
+			return 0
+		}
+
+		return self.tableView(tableView, heightOfRow: 0)
+	}
 
 	let shadowHeight: CGFloat = 7
 	let shadowOverlap: CGFloat = 1
