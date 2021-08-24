@@ -1,8 +1,9 @@
 import Cocoa
 import AVFoundation
 import CoreMedia
-import HypeMachineAPI
 import UserNotifications
+import Combine
+import HypeMachineAPI
 
 typealias OnShuffleChangedSwignal = Swignal1Arg<Bool>
 typealias OnTrackPlaying = Swignal1Arg<Bool>
@@ -13,7 +14,18 @@ typealias OnSkipBackward = Swignal1Arg<Bool>
 final class AudioPlayer: NSObject {
 	static let shared = AudioPlayer()
 
-	var player: AVPlayer?
+	private var playerDidChangeSubject = PassthroughSubject<Void, Never>()
+
+	var playerDidChangePublisher: AnyPublisher<Void, Never> {
+		playerDidChangeSubject.eraseToAnyPublisher()
+	}
+
+	var player: AVPlayer? {
+		didSet {
+			playerDidChangeSubject.send()
+		}
+	}
+
 	var playerItem: AVPlayerItem?
 
 	var currentDataSource: TracksDataSource? {

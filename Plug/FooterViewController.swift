@@ -1,9 +1,14 @@
 import Cocoa
+import AVKit
+import Combine
 
 final class FooterViewController: NSViewController {
 	var volumeIcon: VolumeIconView!
 	var volumeSlider: NSSlider!
 	var shuffleButton: SwissArmyButton!
+
+	private var cancellables = Set<AnyCancellable>()
+	private let routeDetector = AVRouteDetector()
 
 	func toggleShuffle() {
 		AudioPlayer.shared.toggleShuffle()
@@ -33,6 +38,8 @@ final class FooterViewController: NSViewController {
 
 	override func loadView() {
 		view = NSView(frame: .zero)
+
+		routeDetector.isRouteDetectionEnabled = true
 
 		let backgroundView = DraggableVisualEffectsView()
 		backgroundView.blendingMode = .withinWindow
@@ -74,6 +81,37 @@ final class FooterViewController: NSViewController {
 			make.width.equalTo(60)
 			make.left.equalTo(backgroundView).offset(40)
 		}
+
+		let airPlayButton = AVRoutePickerView()
+		airPlayButton.isHidden = !routeDetector.multipleRoutesDetected
+		airPlayButton.isRoutePickerButtonBordered = false
+		airPlayButton.setRoutePickerButtonColor(.tertiaryLabelColor, for: .normal)
+		airPlayButton.setRoutePickerButtonColor(.secondaryLabelColor, for: .normalHighlighted)
+		airPlayButton.player = AudioPlayer.shared.player
+		backgroundView.addSubview(airPlayButton)
+
+		airPlayButton.snp.makeConstraints { make in
+			make.centerY.equalTo(backgroundView)
+			make.left.equalTo(volumeSlider).offset(70)
+		}
+
+		NotificationCenter.default.publisher(for: .AVRouteDetectorMultipleRoutesDetectedDidChange)
+			.receive(on: DispatchQueue.main)
+			.sink { [weak self] _ in
+				guard let self = self else {
+					return
+				}
+
+				airPlayButton.isHidden = !self.routeDetector.multipleRoutesDetected
+			}
+			.store(in: &cancellables)
+
+		AudioPlayer.shared.playerDidChangePublisher
+			.receive(on: DispatchQueue.main)
+			.sink {
+				airPlayButton.player = AudioPlayer.shared.player
+			}
+			.store(in: &cancellables)
 
 		shuffleButton = SwissArmyButton(frame: .zero)
 		let shuffleCell = TransparentButtonCell(textCell: "")
