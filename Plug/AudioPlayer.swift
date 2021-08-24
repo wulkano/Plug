@@ -69,7 +69,7 @@ final class AudioPlayer: NSObject {
 	var hasPreviousTrack: Bool { previousTrack != nil }
 
 	override init() {
-		self.isShuffle = UserDefaults.standard.value(forKey: "shuffle") as! Bool
+		self.isShuffle = UserDefaults.standard.value(forKey: "shuffle") as? Bool ?? false
 		super.init()
 
 		bind(NSBindingName("volume"), to: NSUserDefaultsController.shared, withKeyPath: "values.volume", options: nil)
@@ -129,7 +129,7 @@ final class AudioPlayer: NSObject {
 					return
 				}
 
-				// TODO: Remove this and enable the below when notifications on macOS shows the attachment. (not working as of macOS 11.1)
+				// TODO: Remove this and enable the below when notifications on macOS shows the attachment. (not working as of macOS 11.5)
 				notify()
 
 //				guard

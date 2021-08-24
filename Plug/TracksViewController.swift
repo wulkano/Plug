@@ -355,12 +355,14 @@ class TracksViewController: DataSourceViewController {
 	}
 
 	func trackAboveOrBelow(_ track: HypeMachineAPI.Track, tracksDataSource: TracksDataSource) -> StickyTrackPosition {
-		guard tracksDataSource == self.tracksDataSource else {
+		guard
+			tracksDataSource == self.tracksDataSource,
+			let row = tracksDataSource.indexOfTrack(track),
+			let firstVisibleRow = tableView.visibleRows[safe: 0]
+		else {
 			return .bottom
 		}
 
-		let row = tracksDataSource.indexOfTrack(track)!
-		let firstVisibleRow = tableView.visibleRows[0]
 		let firstFullyVisibleRow = isTableViewRowFullyVisible(firstVisibleRow) ? firstVisibleRow : firstVisibleRow + 1
 		return row < firstFullyVisibleRow ? .top : .bottom
 	}

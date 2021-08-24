@@ -780,7 +780,6 @@ extension Int {
 }
 
 
-@available(macOS 10.15, *)
 extension Font {
 	/// The default system font size.
 	static let systemFontSize = NSFont.systemFontSize.double
@@ -794,7 +793,6 @@ extension Font {
 	}
 }
 
-@available(macOS 10.15, *)
 extension Font {
 	/// The default small system font size.
 	static let smallSystemFontSize = NSFont.smallSystemFontSize.double
@@ -805,5 +803,13 @@ extension Font {
 		design: Font.Design = .default
 	) -> Self {
 		system(size: smallSystemFontSize.cgFloat, weight: weight, design: design)
+	}
+}
+
+
+extension Collection {
+	/// Returns the element at the specified index if it is within bounds, otherwise nil.
+	subscript(safe index: Index) -> Element? {
+		indices.contains(index) ? self[index] : nil
 	}
 }
