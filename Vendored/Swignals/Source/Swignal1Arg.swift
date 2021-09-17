@@ -29,7 +29,7 @@ private class Observer1Args<L: AnyObject, A>: ObserverGenericBase<L> {
 		if let arg1 = args[0] as? A {
 			fire(arg1: arg1)
 		} else {
-			assert(false, "Types incorrect")
+			assertionFailure("Types incorrect")
 		}
 	}
 

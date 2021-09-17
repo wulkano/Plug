@@ -32,7 +32,7 @@ private class Observer2Args<L: AnyObject, A, B>: ObserverGenericBase<L> {
 		{
 			fire(arg1: arg1, arg2: arg2)
 		} else {
-			assert(false, "Types incorrect")
+			assertionFailure("Types incorrect")
 		}
 	}
 

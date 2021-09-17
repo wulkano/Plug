@@ -48,7 +48,6 @@ extension NSAppearance {
 }
 
 
-/// Convenience for opening URLs.
 extension URL {
 	func open() {
 		NSWorkspace.shared.open(self)
@@ -263,7 +262,9 @@ final class ObjectAssociation<Value: Any> {
 
 private let bindLifetimeAssociatedObjectKey = ObjectAssociation<[AnyObject]>(defaultValue: [])
 
-/// Binds the lifetime of object A to object B, so when B deallocates, so does A, but not before.
+/**
+Binds the lifetime of object A to object B, so when B deallocates, so does A, but not before.
+*/
 func bindLifetime(of object: AnyObject, to target: AnyObject) {
 	var retainedObjects = bindLifetimeAssociatedObjectKey[target]
 	retainedObjects.append(object)
@@ -343,8 +344,11 @@ extension NSToolbarItem {
 	static let space = NSToolbarItem(itemIdentifier: .space)
 	static let toggleSidebar = NSToolbarItem(itemIdentifier: .toggleSidebar)
 
-	/// Add a centered title to the toolbar.
-	/// - Important: Make sure to put a `.flexibleSpace` before and after it.
+	/**
+	Add a centered title to the toolbar.
+
+	- Important: Make sure to put a `.flexibleSpace` before and after it.
+	*/
 	static func centeredTitle(_ title: String) -> Self {
 		let toolbarItem = self.init(itemIdentifier: .centeredTitle)
 		toolbarItem.title = title
@@ -370,7 +374,7 @@ extension NSBitmapImageRep {
 		representation(using: .png, properties: [:])
 	}
 
-	func jpegData(compressionQuality: CGFloat) -> Data? {
+	func jpegData(compressionQuality: Double) -> Data? {
 		representation(using: .jpeg, properties: [.compressionFactor: compressionQuality])
 	}
 }
@@ -380,13 +384,17 @@ extension Data {
 }
 
 extension NSImage {
-	/// UIKit polyfill.
+	/**
+	UIKit polyfill.
+	*/
 	func pngData() -> Data? {
 		tiffRepresentation?.bitmap?.pngData()
 	}
 
-	/// UIKit polyfill.
-	func jpegData(compressionQuality: CGFloat) -> Data? {
+	/**
+	UIKit polyfill.
+	*/
+	func jpegData(compressionQuality: CGFloat) -> Data? { // swiftlint:disable:this no_cgfloat
 		tiffRepresentation?.bitmap?.jpegData(compressionQuality: compressionQuality)
 	}
 }
@@ -433,7 +441,9 @@ extension URL {
 
 
 extension NSAlert {
-	/// Show an alert as a window-modal sheet, or as an app-modal (window-indepedendent) alert if the window is `nil` or not given.
+	/**
+	Show an alert as a window-modal sheet, or as an app-modal (window-indepedendent) alert if the window is `nil` or not given.
+	*/
 	@discardableResult
 	static func showModal(
 		for window: NSWindow? = nil,
@@ -452,8 +462,11 @@ extension NSAlert {
 		).runModal(for: window)
 	}
 
-	/// The index in the `buttonTitles` array for the button to use as default.
-	/// Set `-1` to not have any default. Useful for really destructive actions.
+	/**
+	The index in the `buttonTitles` array for the button to use as default.
+
+	Set `-1` to not have any default. Useful for really destructive actions.
+	*/
 	var defaultButtonIndex: Int {
 		get {
 			buttons.firstIndex { $0.keyEquivalent == "\r" } ?? -1
@@ -492,7 +505,9 @@ extension NSAlert {
 		}
 	}
 
-	/// Runs the alert as a window-modal sheet, or as an app-modal (window-indepedendent) alert if the window is `nil` or not given.
+	/**
+	Runs the alert as a window-modal sheet, or as an app-modal (window-indepedendent) alert if the window is `nil` or not given.
+	*/
 	@discardableResult
 	func runModal(for window: NSWindow? = nil) -> NSApplication.ModalResponse {
 		guard let window = window else {
@@ -506,7 +521,9 @@ extension NSAlert {
 		return NSApp.runModal(for: window)
 	}
 
-	/// Adds buttons with the given titles to the alert.
+	/**
+	Adds buttons with the given titles to the alert.
+	*/
 	func addButtons(withTitles buttonTitles: [String]) {
 		for buttonTitle in buttonTitles {
 			addButton(withTitle: buttonTitle)
@@ -516,9 +533,13 @@ extension NSAlert {
 
 
 extension Dictionary {
-	/// Adds the elements of the given dictionary to a copy of self and returns that.
-	/// Identical keys in the given dictionary overwrites keys in the copy of self.
-	/// - Note: This exists as an addition to `+` as Swift sometimes struggle to infer the type of `dict + dict`.
+	/**
+	Adds the elements of the given dictionary to a copy of self and returns that.
+
+	Identical keys in the given dictionary overwrites keys in the copy of self.
+
+	- Note: This exists as an addition to `+` as Swift sometimes struggle to infer the type of `dict + dict`.
+	*/
 	func appending(_ dictionary: [Key: Value]) -> [Key: Value] {
 		var newDictionary = self
 
@@ -563,7 +584,9 @@ extension NSError {
 		)
 	}
 
-	/// Returns a new error with the user info appended.
+	/**
+	Returns a new error with the user info appended.
+	*/
 	func appending(userInfo newUserInfo: [String: Any]) -> Self {
 		Self(
 			domain: domain,
@@ -585,21 +608,30 @@ extension Dictionary {
 typealias QueryDictionary = [String: String]
 
 extension CharacterSet {
-	/// Characters allowed to be unescaped in an URL
-	/// https://tools.ietf.org/html/rfc3986#section-2.3
+	/**
+	Characters allowed to be unescaped in an URL.
+
+	https://tools.ietf.org/html/rfc3986#section-2.3
+	*/
 	static let urlUnreservedRFC3986 = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
 }
 
-/// This should really not be necessary, but it's at least needed for my `formspree.io` form...
-/// Otherwise is results in "Internal Server Error" after submitting the form
-/// Relevant: https://www.djackson.org/why-we-do-not-use-urlcomponents/
+/**
+This should really not be necessary, but it's at least needed for my `formspree.io` form...
+
+Otherwise is results in "Internal Server Error" after submitting the form
+
+Relevant: https://www.djackson.org/why-we-do-not-use-urlcomponents/
+*/
 private func escapeQueryComponent(_ query: String) -> String {
 	query.addingPercentEncoding(withAllowedCharacters: .urlUnreservedRFC3986)!
 }
 
 // TODO: This could probably be `extension Dictionary where Key: ExpressibleByStringLiteral {
 extension Dictionary where Key == String {
-	/// This correctly escapes items. See `escapeQueryComponent`.
+	/**
+	This correctly escapes items. See `escapeQueryComponent`.
+	*/
 	var toQueryItems: [URLQueryItem] {
 		map {
 			URLQueryItem(
@@ -617,19 +649,23 @@ extension Dictionary where Key == String {
 }
 
 extension URLComponents {
-	/// This correctly escapes items. See `escapeQueryComponent`.
+	/**
+	This correctly escapes items. See `escapeQueryComponent`.
+	*/
 	init?(string: String, query: QueryDictionary) {
 		self.init(string: string)
 		self.queryDictionary = query
 	}
 
-	/// This correctly escapes items. See `escapeQueryComponent`.
+	/**
+	This correctly escapes items. See `escapeQueryComponent`.
+	*/
 	var queryDictionary: QueryDictionary {
 		get {
 			queryItems?.toDictionary { ($0.name, $0.value) }.compactValues() ?? [:]
 		}
 		set {
-			/// Using `percentEncodedQueryItems` instead of `queryItems` since the query items are already custom-escaped. See `escapeQueryComponent`.
+			// Using `percentEncodedQueryItems` instead of `queryItems` since the query items are already custom-escaped. See `escapeQueryComponent`.
 			percentEncodedQueryItems = newValue.toQueryItems
 		}
 	}
@@ -660,7 +696,9 @@ extension URL {
 		return components.queryDictionary
 	}
 
-	/// Get the value of a query item by the given key name.
+	/**
+	Get the value of a query item by the given key name.
+	*/
 	func queryItemValue(forKey key: String) -> String? {
 		queryItems.first { $0.name == key }?.value
 	}
@@ -711,8 +749,11 @@ extension URL {
 
 
 extension NSWorkspace {
-	/// UIKit polyfill.
-	/// Returns a boolean value indicating whether an app is available to handle a URL scheme.
+	/**
+	UIKit polyfill.
+
+	Returns a boolean value indicating whether an app is available to handle a URL scheme.
+	*/
 	func canOpenURL(_ url: URL) -> Bool {
 		urlForApplication(toOpen: url) != nil
 	}
@@ -760,55 +801,61 @@ extension URL {
 	}
 }
 
-
-extension Double {
-	/// Get a CGFloat from a Double. This makes it easier to work with optionals.
-	var cgFloat: CGFloat { CGFloat(self) }
-}
-
+// swiftlint:disable:next no_cgfloat
 extension CGFloat {
-	/// Get a Double from a CGFloat. This makes it easier to work with optionals.
+	/**
+	Get a Double from a CGFloat. This makes it easier to work with optionals.
+	*/
 	var double: Double { Double(self) }
 }
 
 extension Int {
-	/// Get a Double from an Int. This makes it easier to work with optionals.
+	/**
+	Get a Double from an Int. This makes it easier to work with optionals.
+	*/
 	var double: Double { Double(self) }
-
-	/// Get a CGFloat from an Int. This makes it easier to work with optionals.
-	var cgFloat: CGFloat { CGFloat(self) }
 }
 
 
 extension Font {
-	/// The default system font size.
+	/**
+	The default system font size.
+	*/
 	static let systemFontSize = NSFont.systemFontSize.double
 
-	/// The system font in default size.
+	/**
+	The system font in default size.
+	*/
 	static func system(
 		weight: Font.Weight = .regular,
 		design: Font.Design = .default
 	) -> Self {
-		system(size: systemFontSize.cgFloat, weight: weight, design: design)
+		system(size: systemFontSize, weight: weight, design: design)
 	}
 }
 
 extension Font {
-	/// The default small system font size.
+	/**
+	The default small system font size.
+	*/
 	static let smallSystemFontSize = NSFont.smallSystemFontSize.double
 
-	/// The system font in small size.
+	/**
+	The system font in small size.
+	*/
 	static func smallSystem(
 		weight: Font.Weight = .regular,
 		design: Font.Design = .default
 	) -> Self {
-		system(size: smallSystemFontSize.cgFloat, weight: weight, design: design)
+		system(size: smallSystemFontSize, weight: weight, design: design)
 	}
 }
 
 
 extension Collection {
-	/// Returns the element at the specified index if it is within bounds, otherwise nil.
+	/**
+	Returns the element at the specified index if it is within bounds, otherwise nil.
+	*/
 	subscript(safe index: Index) -> Element? {
 		indices.contains(index) ? self[index] : nil
 	}

@@ -5,10 +5,10 @@ final class TransparentButton: NSButton {
 	@IBInspectable var selectedImage: NSImage?
 	@IBInspectable var unselectedImage: NSImage?
 
-	@IBInspectable var selectedOpacity: CGFloat = 1
-	@IBInspectable var mouseDownOpacity: CGFloat = 1
-	@IBInspectable var mouseInsideOpacity: CGFloat = 0.7
-	@IBInspectable var inactiveOpacity: CGFloat = 0.3
+	@IBInspectable var selectedOpacity: Double = 1
+	@IBInspectable var mouseDownOpacity: Double = 1
+	@IBInspectable var mouseInsideOpacity: Double = 0.7
+	@IBInspectable var inactiveOpacity: Double = 0.3
 
 	var isMouseInside = false {
 		didSet {
@@ -67,7 +67,7 @@ final class TransparentButton: NSButton {
 		}
 	}
 
-	func getDrawOpacity() -> CGFloat {
+	func getDrawOpacity() -> Double {
 		if isSelectable, isSelected {
 			return selectedOpacity
 		} else if isMouseDown {

@@ -46,7 +46,7 @@ final class BlogsViewController: DataSourceViewController {
 				make.right.lessThanOrEqualTo(cellView!).offset(-53)
 			}
 
-			let recentTopOffset: CGFloat = 2
+			let recentTopOffset = 2.0
 
 			let recentTitle = NSTextField()
 			recentTitle.stringValue = "Recent: "
@@ -196,6 +196,7 @@ final class BlogsViewController: DataSourceViewController {
 		}
 	}
 
+	// swiftlint:disable:next no_cgfloat
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch itemForRow(row) {
 		case .sectionHeaderItem:

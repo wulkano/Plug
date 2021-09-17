@@ -34,9 +34,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 			self.track.openInAppleMusic()
 		}
 
-		if #available(macOS 10.15, *) {
-			contextMenu.addItem(appleMusicItem)
-		}
+		contextMenu.addItem(appleMusicItem)
 
 		let spotifyItem = NSMenuItem(title: "Open in Spotify", action: nil, keyEquivalent: "")
 		spotifyItem.onAction { [weak self] _ in

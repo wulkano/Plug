@@ -7,15 +7,15 @@ final class TitleBarPopUpButton: NSPopUpButton {
 		titleBarPopUpButtonCell.formattedTitle
 	}
 
-	var extraWidthForFormattedTitle: CGFloat {
+	var extraWidthForFormattedTitle: Double {
 		titleBarPopUpButtonCell.extraWidthForFormattedTitle
 	}
 
-	var extraHeightForFormattedTitle: CGFloat {
+	var extraHeightForFormattedTitle: Double {
 		titleBarPopUpButtonCell.extraHeightForFormattedTitle
 	}
 
-	var trimPaddingBetweenArrowAndTitle: CGFloat {
+	var trimPaddingBetweenArrowAndTitle: Double {
 		titleBarPopUpButtonCell.trimPaddingBetweenArrowAndTitle
 	}
 

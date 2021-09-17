@@ -1,9 +1,9 @@
 import Foundation
 
-func appFont(size: CGFloat) -> NSFont {
+func appFont(size: Double) -> NSFont {
 	.systemFont(ofSize: size)
 }
 
-func appFont(size: CGFloat, weight: NSFont.Weight) -> NSFont {
+func appFont(size: Double, weight: NSFont.Weight) -> NSFont {
 	.systemFont(ofSize: size, weight: weight)
 }

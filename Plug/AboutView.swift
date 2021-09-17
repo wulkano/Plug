@@ -23,7 +23,7 @@ struct AboutView: View {
 				Link("Alex Marchant", destination: "https://twitter.com/alex_marchant")
 				Link("Glenn Hitchcock", destination: "https://glenn.me")
 			}
-				.buttonStyle(LinkButtonStyle())
+				.buttonStyle(.link)
 		}
 			.font(.smallSystem())
 			.padding()

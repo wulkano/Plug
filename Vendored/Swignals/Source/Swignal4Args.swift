@@ -34,7 +34,7 @@ private class Observer4Args<L: AnyObject, A, B, C, D>: ObserverGenericBase<L> {
 		{
 			fire(arg1: arg1, arg2: arg2, arg3: arg3, arg4: arg4)
 		} else {
-			assert(false, "Types incorrect")
+			assertionFailure("Types incorrect")
 		}
 	}
 

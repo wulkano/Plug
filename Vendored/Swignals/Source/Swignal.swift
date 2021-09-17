@@ -43,7 +43,7 @@ internal class ObserverBase: Equatable {
 	}
 
 	func fire(_ args: Any...) {
-		assert(false, "This method must be overriden by the subclass")
+		assertionFailure("This method must be overriden by the subclass")
 	}
 }
 

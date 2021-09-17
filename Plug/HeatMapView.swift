@@ -17,8 +17,8 @@ final class HeatMapView: NSView {
 
 	func drawHeatMap(_ dirtyRect: CGRect) {
 		let bottomLeftPoint = CGPoint.zero
-		let topLeftPoint = CGPoint(x: 0, y: frame.height * CGFloat(heatMap!.start))
-		let topRightPoint = CGPoint(x: frame.width, y: frame.height * CGFloat(heatMap!.end))
+		let topLeftPoint = CGPoint(x: 0, y: frame.height * heatMap!.start)
+		let topRightPoint = CGPoint(x: frame.width, y: frame.height * heatMap!.end)
 		let bottomRightPoint = CGPoint(x: frame.width, y: 0)
 
 		let path = NSBezierPath()
@@ -38,10 +38,9 @@ final class HeatMapView: NSView {
 		return gradient.interpolatedColor(atLocation: gradientLocation)
 	}
 
-	func gradientLocationForRank() -> CGFloat {
+	func gradientLocationForRank() -> Double {
 		let rank = heatMap!.track.rank!
-		let location = CGFloat(rank) / 50
-		return location
+		return Double(rank) / 50
 	}
 
 	func makeGradient() -> NSGradient {

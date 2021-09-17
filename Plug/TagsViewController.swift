@@ -203,6 +203,7 @@ final class TagsViewController: DataSourceViewController {
 		}
 	}
 
+	// swiftlint:disable:next no_cgfloat
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:

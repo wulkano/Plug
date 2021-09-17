@@ -18,7 +18,7 @@ final class VolumeIconView: NSView {
 		}
 	}
 
-	let opacity: CGFloat = 0.4
+	let opacity = 0.4
 
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)

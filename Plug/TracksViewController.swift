@@ -65,12 +65,6 @@ class TracksViewController: DataSourceViewController {
 		return cell
 	}
 
-	func distanceFromBottomOfScrollView() -> CGFloat {
-		let documentViewHeight = scrollView.documentView!.frame.height
-		let bottomPositionOfDocumentVisibleRect = scrollView.documentVisibleRect.origin.y + scrollView.documentVisibleRect.size.height
-		return documentViewHeight - bottomPositionOfDocumentVisibleRect
-	}
-
 	func heatMapCellView(_ tableView: NSTableView) -> HeatMapTrackTableCellView {
 		let id = "HeatMapTrackTableCellViewID"
 		var cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: id), owner: self) as? HeatMapTrackTableCellView
@@ -428,6 +422,7 @@ class TracksViewController: DataSourceViewController {
 		return rowView!
 	}
 
+	// swiftlint:disable:next no_cgfloat
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch type {
 		case .feed:

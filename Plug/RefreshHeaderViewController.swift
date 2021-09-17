@@ -18,7 +18,7 @@ final class RefreshHeaderViewController: NSViewController {
 		}
 	}
 
-	let viewHeight: CGFloat = 30
+	let viewHeight = 30.0
 
 	var state = PullToRefreshState.pullToRefresh {
 		didSet {

@@ -19,9 +19,9 @@ final class ColorChangingTextField: NSTextField {
 		textColor = newColor
 	}
 
-	func gradientLocationForNumberValue(_ numberValue: Int) -> CGFloat {
-		let highEnd: CGFloat = 8000
-		var location = CGFloat(numberValue) / highEnd
+	func gradientLocationForNumberValue(_ numberValue: Int) -> Double {
+		let highEnd = 8000.0
+		var location = Double(numberValue) / highEnd
 
 		if location > 1 {
 			location = 1.0

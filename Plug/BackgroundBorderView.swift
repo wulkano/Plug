@@ -1,7 +1,7 @@
 import Cocoa
 
 final class BackgroundBorderView: NSView {
-	@IBInspectable var borderWidth: CGFloat = 1
+	@IBInspectable var borderWidth: Double = 1
 	@IBInspectable var topBorder: Bool = false
 	@IBInspectable var rightBorder: Bool = false
 	@IBInspectable var bottomBorder: Bool = false

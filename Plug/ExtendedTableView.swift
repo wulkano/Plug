@@ -305,7 +305,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 		let point: CGPoint
 		let shownDirection: RowShowHideDirection
 
-		let rowHeight: CGFloat = delegate!.tableView!(self, heightOfRow: 0)
+		let rowHeight = delegate!.tableView!(self, heightOfRow: 0)
 
 		switch scrollDirection {
 		case .up:
@@ -347,7 +347,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 		let point: CGPoint
 		let hiddenDirection: RowShowHideDirection
 
-		let rowHeight: CGFloat = delegate!.tableView!(self, heightOfRow: 0)
+		let rowHeight = delegate!.tableView!(self, heightOfRow: 0)
 
 		switch scrollDirection {
 		case .up:

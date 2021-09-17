@@ -3,7 +3,7 @@ import Cocoa
 final class ActionButton: SwissArmyButton {
 	private var actionButtonCell: ActionButtonCell { cell as! ActionButtonCell }
 
-	var horizontalPadding: CGFloat { actionButtonCell.horizontalPadding }
+	var horizontalPadding: Double { actionButtonCell.horizontalPadding }
 
 	var offStateTitle: String {
 		get { actionButtonCell.offStateTitle }

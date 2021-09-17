@@ -1,8 +1,8 @@
 import Cocoa
 
 final class BlogImageView: NSImageView {
-	private var sideLength: CGFloat { image!.size.width }
-	private var halfSideLength: CGFloat { sideLength / 2 }
+	private var sideLength: Double { image!.size.width }
+	private var halfSideLength: Double { sideLength / 2 }
 
 	override func draw(_ dirtyRect: CGRect) {
 		guard let image = image else {

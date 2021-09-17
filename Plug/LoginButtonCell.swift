@@ -31,7 +31,7 @@ final class LoginButtonCell: SwissArmyButtonCell {
 		}
 	}
 
-	func getAlpha() -> CGFloat {
+	func getAlpha() -> Double {
 		switch loginButton.buttonState {
 		case .enabled, .error:
 			if isMouseDown {
@@ -48,7 +48,7 @@ final class LoginButtonCell: SwissArmyButtonCell {
 		}
 	}
 
-	func getImageAlpha() -> CGFloat {
+	func getImageAlpha() -> Double {
 		switch loginButton.buttonState {
 		case .sending, .disabled:
 			return 0

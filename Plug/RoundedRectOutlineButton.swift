@@ -1,8 +1,8 @@
 import Cocoa
 
 final class RoundedRectOutlineButton: NSButton {
-	@IBInspectable var radius: CGFloat = 3
-	@IBInspectable var strokeWidth: CGFloat = 1
+	@IBInspectable var radius: Double = 3
+	@IBInspectable var strokeWidth: Double = 1
 	@IBInspectable var strokeColor: NSColor = .white
 
 	override func draw(_ dirtyRect: CGRect) {

@@ -1,7 +1,7 @@
 import Cocoa
 
 final class ActionButtonCell: SwissArmyButtonCell {
-	let horizontalPadding: CGFloat = 0
+	let horizontalPadding = 0.0
 
 	private let onStateColor = NSColor.labelColor
 	private let offStateColor = NSColor.labelColor

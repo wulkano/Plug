@@ -2,7 +2,7 @@ import Cocoa
 import HypeMachineAPI
 
 final class StickyTrackViewController: TracksViewController {
-	var trackViewHeight: CGFloat {
+	var trackViewHeight: Double {
 		guard let tableView = tableView else {
 			return 0
 		}
@@ -10,9 +10,9 @@ final class StickyTrackViewController: TracksViewController {
 		return self.tableView(tableView, heightOfRow: 0)
 	}
 
-	let shadowHeight: CGFloat = 7
-	let shadowOverlap: CGFloat = 1
-	var viewHeight: CGFloat { trackViewHeight + shadowHeight - shadowOverlap }
+	let shadowHeight = 7.0
+	let shadowOverlap = 1.0
+	var viewHeight: Double { trackViewHeight + shadowHeight - shadowOverlap }
 
 	var shadowView: NSImageView?
 	var position: StickyTrackPosition = .bottom {

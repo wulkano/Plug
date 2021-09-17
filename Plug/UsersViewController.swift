@@ -129,6 +129,7 @@ final class UsersViewController: DataSourceViewController {
 		return rowView
 	}
 
+	// swiftlint:disable:next no_cgfloat
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat { 64 }
 
 	// MARK: ExtendedTableViewDelegate

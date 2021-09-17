@@ -6,10 +6,10 @@ import QuartzCore
 final class IOSSwitch: NSControl {
 	let animationDuration: CFTimeInterval = 0.4
 
-	let borderLineWidth: CGFloat = 2
+	let borderLineWidth = 2.0
 
-	let goldenRatio: CGFloat = 1.618_033_988_75
-	let decreasedGoldenRatio: CGFloat = 1.38
+	let goldenRatio = 1.618_033_988_75
+	let decreasedGoldenRatio = 1.38
 
 	let enabledOpacity: Float = 1
 	let disabledOpacity: Float = 0.5
@@ -187,11 +187,11 @@ final class IOSSwitch: NSControl {
 	}
 
 
-	func knobHeightForSize(_ size: CGSize) -> CGFloat {
+	func knobHeightForSize(_ size: CGSize) -> Double {
 		size.height - (borderLineWidth * 2)
 	}
 
-	func knobWidthForSize(_ size: CGSize) -> CGFloat {
+	func knobWidthForSize(_ size: CGSize) -> Double {
 		if isActive {
 			return (size.width - (2 * borderLineWidth)) * (1 / decreasedGoldenRatio)
 		} else {
@@ -199,7 +199,7 @@ final class IOSSwitch: NSControl {
 		}
 	}
 
-	func knobXForSize(_ size: CGSize, knobWidth: CGFloat) -> CGFloat {
+	func knobXForSize(_ size: CGSize, knobWidth: Double) -> Double {
 		if (!hasDragged && !on) || (hasDragged && !isDraggingTowardsOn) {
 			return borderLineWidth
 		} else {

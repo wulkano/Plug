@@ -66,11 +66,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 
 			// If there isn't an autosave name set for the main window, place the frame at a default position, and then set the autosave name.
-			if mainWindowController!.windowFrameAutosaveName.isEmpty {
-				let width: CGFloat = 472
-				let height: CGFloat = 778
-				let x: CGFloat = 100
-				let y: CGFloat = (NSScreen.main!.frame.size.height - 778) / 2
+			if
+				mainWindowController!.windowFrameAutosaveName.isEmpty,
+				let mainScreen = NSScreen.main
+			{
+				let width = 472.0
+				let height = 778.0
+				let x = 100.0
+				let y = (mainScreen.frame.size.height - 778) / 2
 
 				let defaultFrame = CGRect(x: x, y: y, width: width, height: height)
 				mainWindowController!.window!.setFrame(defaultFrame, display: false)

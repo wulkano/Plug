@@ -4,8 +4,8 @@ import HypeMachineAPI
 final class TagContainerView: NSView {
 	override var isFlipped: Bool { true }
 
-	let buttonSpacing: CGFloat = 4
-	let buttonHeight: CGFloat = 24
+	let buttonSpacing = 4.0
+	let buttonHeight = 24.0
 
 	var tags = [HypeMachineAPI.Tag]() {
 		didSet {
@@ -62,9 +62,9 @@ final class TagContainerView: NSView {
 		return gradient.interpolatedColor(atLocation: gradientLocation)
 	}
 
-	func gradientLocationForTag(_ tag: HypeMachineAPI.Tag) -> CGFloat {
+	func gradientLocationForTag(_ tag: HypeMachineAPI.Tag) -> Double {
 		let index = tags.firstIndex(of: tag)!
-		return CGFloat(index) / CGFloat(tags.count - 1)
+		return Double(index) / Double(tags.count - 1)
 	}
 
 	func makeGradient() -> NSGradient {

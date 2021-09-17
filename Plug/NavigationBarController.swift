@@ -107,11 +107,11 @@ final class NavigationBarController: NSViewController {
 	}
 
 	func addNavigationBarViewForCurrentItems() {
-		let buttonEdgeSpacing: CGFloat = 6
-		let titleSpacing: CGFloat = 10
-		let buttonYOffset: CGFloat = 6
-		let titleYOffset: CGFloat = -1
-		let buttonHeight: CGFloat = 21
+		let buttonEdgeSpacing = 6.0
+		let titleSpacing = 10.0
+		let buttonYOffset = 6.0
+		let titleYOffset = -1.0
+		let buttonHeight = 21.0
 
 		navigationBarView = NSView()
 		backgroundView.addSubview(navigationBarView!)

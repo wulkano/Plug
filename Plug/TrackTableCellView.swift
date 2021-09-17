@@ -202,8 +202,8 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateLoveContainerSpacing() {
-		let openWidth: CGFloat = 38
-		let closedWidth: CGFloat = 0
+		let openWidth = 38.0
+		let closedWidth = 0.0
 
 		if let track = track, isMouseInside || (track.isLoved && showsLoveButton) {
 			loveContainerWidthConstraint.update(offset: openWidth)
@@ -213,8 +213,8 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateInfoContainerSpacing() {
-		let openWidth: CGFloat = 30
-		let closedWidth: CGFloat = 0
+		let openWidth = 30.0
+		let closedWidth = 0.0
 
 		if isMouseInside {
 			infoContainerWidthConstraint.update(offset: openWidth)

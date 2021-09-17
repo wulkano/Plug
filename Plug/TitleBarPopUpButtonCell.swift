@@ -9,17 +9,17 @@ final class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 		}
 	}
 
-	var trimPaddingBetweenArrowAndTitle: CGFloat = 5
+	var trimPaddingBetweenArrowAndTitle = 5.0
 
 	var formattedTitle: NSAttributedString {
 		DropdownTitleFormatter().attributedDropdownTitle(menu!.title, optionTitle: title)
 	}
 
-	var extraWidthForFormattedTitle: CGFloat {
+	var extraWidthForFormattedTitle: Double {
 		formattedTitle.size().width - attributedTitle.size().width
 	}
 
-	var extraHeightForFormattedTitle: CGFloat {
+	var extraHeightForFormattedTitle: Double {
 		formattedTitle.size().height - attributedTitle.size().height
 	}
 

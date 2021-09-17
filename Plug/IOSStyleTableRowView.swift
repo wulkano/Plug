@@ -7,11 +7,11 @@ final class IOSStyleTableRowView: NSTableRowView {
 		}
 	}
 
-	@IBInspectable var separatorSpacing: CGFloat = 0
+	@IBInspectable var separatorSpacing: Double = 0
 	@IBInspectable var customSeparatorColor: NSColor = .separatorColor
 	@IBInspectable var selectionColor: NSColor = .quaternaryLabelColor
 
-	let separatorWidth: CGFloat = 1
+	let separatorWidth = 1.0
 	var isNextRowGroupRow = false
 
 	override func draw(_ dirtyRect: CGRect) {
