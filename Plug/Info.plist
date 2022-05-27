@@ -35,7 +35,5 @@
 	<string>Copyright © Wulkano</string>
 	<key>NSMainStoryboardFile</key>
 	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 </dict>
 </plist>

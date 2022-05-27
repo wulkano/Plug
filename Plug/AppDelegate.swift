@@ -27,6 +27,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 		SentrySDK.start {
 			$0.dsn = "https://de9821b005af4222a9fc4315040749f4@o116098.ingest.sentry.io/5245093"
+			$0.enableSwizzling = false
 		}
 
 		UNUserNotificationCenter.current().requestAuthorization { _, _ in }
@@ -162,7 +163,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func setupNotifications() {
-		Notifications.subscribe(observer: self, selector: #selector(AppDelegate.catchTokenErrors(_:)), name: Notifications.DisplayError, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(catchTokenErrors(_:)), name: Notifications.DisplayError, object: nil)
 	}
 
 	func setupHypeMachineAPI() {
@@ -232,7 +233,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
-		"https://sindresorhus.com/feedback/?product=Plug".openUrl()
+		"https://sindresorhus.com/feedback?product=Plug".openUrl()
 	}
 
 	// MARK: NSApplicationDelegate

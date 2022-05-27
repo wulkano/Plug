@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(macOS 11, *)
 struct AboutView: View {
 	var body: some View {
 		VStack {
@@ -31,7 +30,6 @@ struct AboutView: View {
 	}
 }
 
-@available(macOS 11, *)
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
         AboutView()

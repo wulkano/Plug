@@ -172,7 +172,7 @@ final class BlogViewController: BaseContentViewController {
 			let colorArt = SLColorArt(image: image, scaledSize: imageSize)!
 			let attributedBlogDetails = SingleBlogViewFormatter().attributedBlogDetails(blog, colorArt: colorArt)
 
-			DispatchQueue.main.async {
+			DispatchQueue.main.async { [self] in
 				let image = colorArt.scaledImage!
 				image.size = CGSize(width: 112, height: 112)
 				imageView.image = image

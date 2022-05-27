@@ -12,12 +12,7 @@ final class AboutWindowController: NSWindowController {
 			defer: false
 		)
 
-		if #available(macOS 11, *) {
-			aboutWindow.contentViewController = NSHostingController(rootView: AboutView())
-		} else {
-			aboutWindow.contentViewController = AboutViewController(nibName: nil, bundle: nil)
-		}
-
+		aboutWindow.contentViewController = NSHostingController(rootView: AboutView())
 		aboutWindow.center()
 
 		self.init(window: aboutWindow)

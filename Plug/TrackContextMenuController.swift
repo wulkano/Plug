@@ -97,7 +97,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 	@objc
 	func copyHypeMachineLinkClicked(_ sender: AnyObject) {
 		let hypeMachineURL = track.hypeMachineURL().absoluteString
-		NSPasteboard.general.clearContents()
+		NSPasteboard.general.prepareForNewContents()
 		NSPasteboard.general.setString(hypeMachineURL, forType: .string)
 	}
 
@@ -113,7 +113,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 		_ = SoundCloudPermalinkFinder(
 			mediaURL: url,
 			success: { (trackURL: URL) in
-				NSPasteboard.general.clearContents()
+				NSPasteboard.general.prepareForNewContents()
 				NSPasteboard.general.setString(trackURL.absoluteString, forType: .string)
 			},
 			failure: { error in

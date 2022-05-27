@@ -225,7 +225,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	func trackProgress() {
 		if isTrackingProgress == false {
-			Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.progressUpdated(_:)), name: Notifications.TrackProgressUpdated, object: nil)
+			Notifications.subscribe(observer: self, selector: #selector(progressUpdated(_:)), name: Notifications.TrackProgressUpdated, object: nil)
 		}
 
 		isTrackingProgress = true

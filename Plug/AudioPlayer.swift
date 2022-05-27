@@ -379,7 +379,7 @@ final class AudioPlayer: NSObject {
 		}
 
 		timeoutTimer?.invalidate()
-		timeoutTimer = Timer.scheduledTimer(timeInterval: timeoutSeconds, target: self, selector: #selector(AudioPlayer.didAVPlayerTimeout), userInfo: nil, repeats: false)
+		timeoutTimer = Timer.scheduledTimer(timeInterval: timeoutSeconds, target: self, selector: #selector(didAVPlayerTimeout), userInfo: nil, repeats: false)
 
 		player = AVPlayer(playerItem: playerItem)
 		player?.volume = volume

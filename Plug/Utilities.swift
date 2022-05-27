@@ -88,18 +88,16 @@ protocol ControlActionClosureProtocol: NSObjectProtocol {
 	var action: Selector? { get set }
 }
 
-private final class ActionTrampoline<T>: NSObject {
-	let action: (T) -> Void
+private final class ActionTrampoline: NSObject {
+	let action: (NSEvent) -> Void
 
-	init(action: @escaping (T) -> Void) {
+	init(action: @escaping (NSEvent) -> Void) {
 		self.action = action
 	}
 
 	@objc
 	func action(sender: AnyObject) {
-		// This is safe as it can only be `T`.
-		// swiftlint:disable:next force_cast
-		action(sender as! T)
+		action(NSApp.currentEvent!)
 	}
 }
 
@@ -110,15 +108,15 @@ extension ControlActionClosureProtocol {
 	```
 	let button = NSButton(title: "Unicorn", target: nil, action: nil)
 
-	button.onAction { sender in
-		print("Button action: \(sender)")
+	button.onAction { _ in
+		print("Button action")
 	}
 	```
 	*/
-	func onAction(_ action: @escaping (Self) -> Void) {
+	func onAction(_ action: @escaping (NSEvent) -> Void) {
 		let trampoline = ActionTrampoline(action: action)
 		target = trampoline
-		self.action = #selector(ActionTrampoline<Self>.action(sender:))
+		self.action = #selector(ActionTrampoline.action(sender:))
 		objc_setAssociatedObject(self, &controlActionClosureProtocolAssociatedObjectKey, trampoline, .OBJC_ASSOCIATION_RETAIN)
 	}
 }
@@ -338,7 +336,6 @@ extension NSToolbarItem.Identifier {
 	static let centeredTitle = Self("CenteredTitle")
 }
 
-@available(macOS 11, *)
 extension NSToolbarItem {
 	static let flexibleSpace = NSToolbarItem(itemIdentifier: .flexibleSpace)
 	static let space = NSToolbarItem(itemIdentifier: .space)
@@ -599,7 +596,7 @@ extension NSError {
 
 extension Dictionary {
 	func compactValues<T>() -> [Key: T] where Value == T? {
-		// TODO: Make this `compactMapValues(\.self)` when https://bugs.swift.org/browse/SR-12897 is fixed.
+		// TODO: Make this `compactMapValues(\.self)` when https://github.com/apple/swift/issues/55343 is fixed.
 		compactMapValues { $0 }
 	}
 }
