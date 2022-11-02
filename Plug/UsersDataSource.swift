@@ -29,7 +29,7 @@ final class UsersDataSource: SearchableDataSource {
 
 	override func requestNextPageObjects() {
 		HypeMachineAPI.Requests.Me.friends { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 

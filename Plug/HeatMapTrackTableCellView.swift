@@ -36,7 +36,7 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 			.validate()
 			.responseJSON { [weak self] response in
 				guard
-					let self = self,
+					let self,
 					self.objectValue != nil,
 					let track = self.track,
 					track.id == originalTrackID

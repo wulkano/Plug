@@ -147,7 +147,7 @@ final class UserViewController: BaseContentViewController {
 
 	func loadUser(_ username: String) {
 		HypeMachineAPI.Requests.Users.show(username: username) { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -179,7 +179,7 @@ final class UserViewController: BaseContentViewController {
 		Alamofire.request(avatarURL, method: .get)
 			.validate()
 			.responseImage { [weak self] response in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 

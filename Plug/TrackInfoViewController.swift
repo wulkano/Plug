@@ -22,8 +22,8 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		Notifications.subscribe(observer: self, selector: #selector(TrackInfoViewController.trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
-		Notifications.subscribe(observer: self, selector: #selector(TrackInfoViewController.trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
 		postInfoTextField.postInfoDelegate = self
 
 		Analytics.trackView("TrackInfoWindow")
@@ -41,12 +41,12 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 
 		changeTrackLovedValueTo(newLovedValue)
 
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
 		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: representedTrack.id) { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -66,7 +66,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	func postInfoTextFieldClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Track Info Blog Description")
 
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -87,7 +87,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBAction private func downloadITunesButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info Download iTunes")
 
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -97,7 +97,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	@IBAction private func seeMoreButtonClicked(_ sender: NSButton) {
 		Analytics.trackButtonClick("Track Info See More")
 
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -127,7 +127,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 		newTrack?.isLoved = isLoved
 		representedObject = newTrack
 
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -149,7 +149,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updateTitle() {
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -157,7 +157,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updateArtist() {
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -165,7 +165,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updateLoveCount() {
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -173,14 +173,14 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updateAlbumArt() {
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
 		let url = representedTrack.thumbURL(preferedSize: .medium)
 
 		Alamofire.request(url).validate().responseImage { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -195,7 +195,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updatePostedCount() {
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 
@@ -203,7 +203,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 	}
 
 	func updatePostInfo() {
-		guard let representedTrack = representedTrack else {
+		guard let representedTrack else {
 			return
 		}
 

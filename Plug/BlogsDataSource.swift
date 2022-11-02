@@ -7,9 +7,9 @@ enum BlogDirectoryItem {
 
 	static func fromObject(_ object: Any) -> BlogDirectoryItem? {
 		if let blogItem = object as? HypeMachineAPI.Blog {
-			return BlogDirectoryItem.blogItem(blogItem)
+			return self.blogItem(blogItem)
 		} else if let sectionHeader = object as? SectionHeader {
-			return BlogDirectoryItem.sectionHeaderItem(sectionHeader)
+			return sectionHeaderItem(sectionHeader)
 		}
 
 		return nil
@@ -86,7 +86,7 @@ final class BlogsDataSource: SearchableDataSource {
 
 	override func requestNextPageObjects() {
 		HypeMachineAPI.Requests.Blogs.index { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 

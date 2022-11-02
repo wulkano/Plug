@@ -70,7 +70,7 @@ final class TagsDataSource: SearchableDataSource {
 
 	override func requestNextPageObjects() {
 		HypeMachineAPI.Requests.Tags.index { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -91,9 +91,9 @@ enum TagsListItem {
 
 	static func fromObject(_ object: Any) -> TagsListItem? {
 		if let tag = object as? HypeMachineAPI.Tag {
-			return TagsListItem.tagItem(tag)
+			return tagItem(tag)
 		} else if let sectionHeader = object as? SectionHeader {
-			return TagsListItem.sectionHeaderItem(sectionHeader)
+			return sectionHeaderItem(sectionHeader)
 		} else {
 			return nil
 		}

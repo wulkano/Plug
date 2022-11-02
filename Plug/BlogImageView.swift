@@ -5,7 +5,7 @@ final class BlogImageView: NSImageView {
 	private var halfSideLength: Double { sideLength / 2 }
 
 	override func draw(_ dirtyRect: CGRect) {
-		guard let image = image else {
+		guard let image else {
 			return
 		}
 

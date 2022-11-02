@@ -17,7 +17,7 @@ final class KeepAwake: NSObject {
 
 	fileprivate func initialSetup() {
 		AudioPlayer.shared.onTrackPlaying.addObserver(self) { [weak self] _, _ in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -34,7 +34,7 @@ final class KeepAwake: NSObject {
 
 		for signal in whenToAllowSleep {
 			signal.addObserver(self) { [weak self] _, _ in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 
@@ -56,15 +56,15 @@ final class KeepAwake: NSObject {
 	}
 
 	// TODO: Use the modern API.
-	// swiftlint:disable:next block_based_kvo
+	// swiftlint:disable:next block_based_kvo discouraged_optional_collection
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-		guard let keyPath = keyPath else {
+		guard let keyPath else {
 			return
 		}
 
 		if keyPath == PreventIdleSleepWhenPlaying {
 			// As the signal observers have already been set up, all we need to do here is to prevent sleep if a track is currently being played.
-			if getUserPreference() && AudioPlayer.shared.isPlaying {
+			if getUserPreference(), AudioPlayer.shared.isPlaying {
 				_ = preventSleep.preventSleep()
 			} else if !getUserPreference() {
 				preventSleep.allowSleep()

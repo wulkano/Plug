@@ -16,6 +16,7 @@ struct Notifications {
 
 
 extension Notifications {
+	// swiftlint:disable:next discouraged_optional_collection
 	static func post(name: Notification.Name, object: Any?, userInfo: [AnyHashable: Any]? = nil) {
 		NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
 	}

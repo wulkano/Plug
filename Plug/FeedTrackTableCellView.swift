@@ -30,7 +30,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	override func updateTrackAvailability() {
 		super.updateTrackAvailability()
 
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -44,7 +44,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func updateSourceType() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -65,7 +65,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func updateSource() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -87,7 +87,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func sourceButtonClicked(_ sender: NSButton) {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -101,7 +101,7 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func loadSingleFriendPage() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -110,15 +110,15 @@ final class FeedTrackTableCellView: LoveCountTrackTableCellView {
 	}
 
 	func loadQuery() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
-		"https://hypem.com/search/\(track.viaQuery!)".openUrl()
+		"https://hypem.com/search/\(track.viaQuery!)".openURL()
 	}
 
 	func loadSingleBlogPage() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 

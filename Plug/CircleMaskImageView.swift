@@ -2,7 +2,7 @@ import Cocoa
 
 final class CircleMaskImageView: NSImageView {
 	override func draw(_ dirtyRect: CGRect) {
-		guard let image = image else {
+		guard let image else {
 			return
 		}
 

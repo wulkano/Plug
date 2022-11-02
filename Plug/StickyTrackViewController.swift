@@ -3,7 +3,7 @@ import HypeMachineAPI
 
 final class StickyTrackViewController: TracksViewController {
 	var trackViewHeight: Double {
-		guard let tableView = tableView else {
+		guard let tableView else {
 			return 0
 		}
 

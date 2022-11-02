@@ -26,7 +26,7 @@ private final class Observer0Args<L: AnyObject>: ObserverGenericBase<L> {
 	}
 
 	override func fire(_ args: Any...) {
-		if let observer = observer {
+		if let observer {
 			callback?(observer)
 		}
 	}

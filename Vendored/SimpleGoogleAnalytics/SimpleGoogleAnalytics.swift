@@ -184,11 +184,11 @@ public struct EventHit: Hit {
 		parameters["ec"] = category
 		parameters["ea"] = action
 
-		if let label = label {
+		if let label {
 			parameters["el"] = label
 		}
 
-		if let value = value {
+		if let value {
 			parameters["ev"] = value
 		}
 
@@ -201,7 +201,7 @@ public struct ExceptionHit: Hit {
 	let fatal: Bool?
 
 	var fatalString: String? {
-		guard let fatal = fatal else {
+		guard let fatal else {
 			return nil
 		}
 

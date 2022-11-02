@@ -70,7 +70,7 @@ final class AudioPlayer: NSObject {
 	let timeoutSeconds = 20.0
 
 	var previousTrack: HypeMachineAPI.Track? {
-		guard let currentTrack = currentTrack else {
+		guard let currentTrack else {
 			return nil
 		}
 
@@ -89,8 +89,8 @@ final class AudioPlayer: NSObject {
 
 	deinit {
 		if
-			let player = player,
-			let progressObserver = progressObserver
+			let player,
+			let progressObserver
 		{
 			player.removeTimeObserver(progressObserver)
 		}
@@ -98,8 +98,8 @@ final class AudioPlayer: NSObject {
 
 	func reset() {
 		if
-			let player = player,
-			let progressObserver = progressObserver
+			let player,
+			let progressObserver
 		{
 			player.removeTimeObserver(progressObserver)
 		}
@@ -125,7 +125,7 @@ final class AudioPlayer: NSObject {
 				notificationContent.subtitle = track.artist
 
 				if
-					let url = url,
+					let url,
 					let attachment = try? UNNotificationAttachment(identifier: "albumArt", url: url, options: nil)
 
 				{
@@ -173,7 +173,7 @@ final class AudioPlayer: NSObject {
 	func findAndSetCurrentlyPlayingTrack() {
 		guard
 			currentDataSource != nil,
-			let currentTrack = currentTrack
+			let currentTrack
 		else {
 			return
 		}
@@ -198,7 +198,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	func play() {
-		guard let player = player else {
+		guard let player else {
 			return
 		}
 
@@ -209,7 +209,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	func pause() {
-		guard let player = player else {
+		guard let player else {
 			return
 		}
 
@@ -232,7 +232,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	func skipForward() {
-		guard let currentDataSource = currentDataSource else {
+		guard let currentDataSource else {
 			return
 		}
 
@@ -244,13 +244,13 @@ final class AudioPlayer: NSObject {
 	}
 
 	func skipBackward() {
-		guard let currentDataSource = currentDataSource else {
+		guard let currentDataSource else {
 			return
 		}
 
 		onSkipBackward.fire(true)
 
-		guard let previousTrack = previousTrack else {
+		guard let previousTrack else {
 			seekToPercent(0)
 			return
 		}
@@ -264,8 +264,8 @@ final class AudioPlayer: NSObject {
 
 	func seekToPercent(_ percent: Double) {
 		guard
-			let player = player,
-			let playerItem = playerItem,
+			let player,
+			let playerItem,
 			playerItem.status == .readyToPlay
 		else {
 			return
@@ -276,7 +276,7 @@ final class AudioPlayer: NSObject {
 		let time = CMTime(seconds: seconds, preferredTimescale: 1000)
 
 		player.seek(to: time) { [weak self] isSuccess in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -326,7 +326,7 @@ final class AudioPlayer: NSObject {
 
 	@objc
 	func didAVPlayerTimeout() {
-		guard let player = player else {
+		guard let player else {
 			return
 		}
 
@@ -362,7 +362,7 @@ final class AudioPlayer: NSObject {
 	fileprivate func setupForNewTrack(_ track: HypeMachineAPI.Track, dataSource: TracksDataSource) {
 		Analytics.trackAudioPlaybackEvent("Play New Track")
 
-		if let playerItem = playerItem {
+		if let playerItem {
 			unsubscribeFromPlayerItem(playerItem)
 		}
 
@@ -372,8 +372,8 @@ final class AudioPlayer: NSObject {
 		subscribeToPlayerItem(playerItem)
 
 		if
-			let player = player,
-			let progressObserver = progressObserver
+			let player,
+			let progressObserver
 		{
 			player.removeTimeObserver(progressObserver)
 		}
@@ -401,7 +401,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func volumeChanged() {
-		guard let player = player else {
+		guard let player else {
 			return
 		}
 
@@ -409,7 +409,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func observeProgressUpdates() {
-		guard let player = player else {
+		guard let player else {
 			return
 		}
 
@@ -421,7 +421,7 @@ final class AudioPlayer: NSObject {
 		guard
 			!isSeeking,
 			currentTrack != nil,
-			let playerItem = playerItem
+			let playerItem
 		else {
 			return
 		}
@@ -435,10 +435,10 @@ final class AudioPlayer: NSObject {
 		]
 		Notifications.post(name: Notifications.TrackProgressUpdated, object: self, userInfo: userInfo)
 
-		if progress > 30 && !currentTrackListenLogged {
+		if progress > 30, !currentTrackListenLogged {
 			HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: 30) { _ in }
 			currentTrackListenLogged = true
-		} else if (progress / duration) > (2 / 3) && !currentTrackListenScrobbled {
+		} else if (progress / duration) > (2 / 3), !currentTrackListenScrobbled {
 			HypeMachineAPI.Requests.Me.postHistory(id: currentTrack!.id, position: Int(progress)) { _ in }
 			currentTrackListenScrobbled = true
 		}
@@ -446,11 +446,11 @@ final class AudioPlayer: NSObject {
 
 	fileprivate func playerItemNotificationNamesAndSelectors() -> [String: Selector] {
 		[
-			Notification.Name.AVPlayerItemDidPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackFinishedPlayingNotification(_:)),
-			Notification.Name.AVPlayerItemFailedToPlayToEndTime.rawValue: #selector(AudioPlayer.currentTrackCouldNotFinishPlayingNotification(_:)),
-			Notification.Name.AVPlayerItemPlaybackStalled.rawValue: #selector(AudioPlayer.currentTrackPlaybackStalledNotification(_:)),
-			Notification.Name.AVPlayerItemNewAccessLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewAccessLogEntry(_:)),
-			Notification.Name.AVPlayerItemNewErrorLogEntry.rawValue: #selector(AudioPlayer.currentTrackNewErrorLogEntry(_:))
+			Notification.Name.AVPlayerItemDidPlayToEndTime.rawValue: #selector(currentTrackFinishedPlayingNotification(_:)),
+			Notification.Name.AVPlayerItemFailedToPlayToEndTime.rawValue: #selector(currentTrackCouldNotFinishPlayingNotification(_:)),
+			Notification.Name.AVPlayerItemPlaybackStalled.rawValue: #selector(currentTrackPlaybackStalledNotification(_:)),
+			Notification.Name.AVPlayerItemNewAccessLogEntry.rawValue: #selector(currentTrackNewAccessLogEntry(_:)),
+			Notification.Name.AVPlayerItemNewErrorLogEntry.rawValue: #selector(currentTrackNewErrorLogEntry(_:))
 		]
 	}
 
@@ -468,8 +468,8 @@ final class AudioPlayer: NSObject {
 
 	fileprivate func findNextTrack() -> HypeMachineAPI.Track? {
 		guard
-			let currentTrack = currentTrack,
-			let currentDataSource = currentDataSource
+			let currentTrack,
+			let currentDataSource
 		else {
 			return nil
 		}
@@ -485,7 +485,7 @@ final class AudioPlayer: NSObject {
 	}
 
 	fileprivate func nextShuffleTrack() -> HypeMachineAPI.Track? {
-		guard let currentDataSource = currentDataSource else {
+		guard let currentDataSource else {
 			return nil
 		}
 

@@ -9,7 +9,7 @@ final class VibrantTextField: NSTextField {
 	}
 
 	func setupStyledPlaceholderString() {
-		guard let placeholderString = placeholderString else {
+		guard let placeholderString else {
 			return
 		}
 

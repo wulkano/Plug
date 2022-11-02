@@ -233,7 +233,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction private func reportABugItemClicked(_ sender: AnyObject) {
-		"https://sindresorhus.com/feedback?product=Plug".openUrl()
+		"https://sindresorhus.com/feedback?product=Plug".openURL()
 	}
 
 	// MARK: NSApplicationDelegate

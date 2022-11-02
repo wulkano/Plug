@@ -98,7 +98,7 @@ final class FooterViewController: NSViewController {
 		NotificationCenter.default.publisher(for: .AVRouteDetectorMultipleRoutesDetectedDidChange)
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] _ in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 
@@ -122,7 +122,7 @@ final class FooterViewController: NSViewController {
 		shuffleButton.image = NSImage(named: "Footer-Shuffle-Normal")
 		shuffleButton.alternateImage = NSImage(named: "Footer-Shuffle-Active")
 		shuffleButton.target = self
-		shuffleButton.action = #selector(FooterViewController.shuffleButtonClicked(_:))
+		shuffleButton.action = #selector(shuffleButtonClicked(_:))
 		backgroundView.addSubview(shuffleButton)
 		shuffleButton.snp.makeConstraints { make in
 			make.width.equalTo(42)
@@ -138,7 +138,7 @@ final class FooterViewController: NSViewController {
 		forwardButton.isTrackingHover = true
 		forwardButton.image = NSImage(named: "Footer-Forward")
 		forwardButton.target = self
-		forwardButton.action = #selector(FooterViewController.skipForwardButtonClicked(_:))
+		forwardButton.action = #selector(skipForwardButtonClicked(_:))
 		backgroundView.addSubview(forwardButton)
 		forwardButton.snp.makeConstraints { make in
 			make.width.equalTo(42)
@@ -154,7 +154,7 @@ final class FooterViewController: NSViewController {
 		backButton.isTrackingHover = true
 		backButton.image = NSImage(named: "Footer-Previous")
 		backButton.target = self
-		backButton.action = #selector(FooterViewController.skipBackwardButtonClicked(_:))
+		backButton.action = #selector(skipBackwardButtonClicked(_:))
 		backgroundView.addSubview(backButton)
 		backButton.snp.makeConstraints { make in
 			make.width.equalTo(42)

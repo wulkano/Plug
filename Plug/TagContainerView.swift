@@ -22,7 +22,7 @@ final class TagContainerView: NSView {
 			button.frame.origin = generateOriginForNewButton(button)
 			addSubview(button)
 			buttons.append(button)
-			button.action = #selector(TagContainerView.tagButtonClick(_:))
+			button.action = #selector(tagButtonClick(_:))
 			button.target = self
 		}
 

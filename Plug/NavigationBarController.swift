@@ -32,7 +32,7 @@ final class NavigationBarController: NSViewController {
 
 	let navigationController: NavigationController
 
-	var items: [NavigationItem]?
+	var items: [NavigationItem]? // swiftlint:disable:this discouraged_optional_collection
 	var topItem: NavigationItem? { items?.last }
 
 	var backItem: NavigationItem? {
@@ -75,6 +75,7 @@ final class NavigationBarController: NSViewController {
 		return poppedItem
 	}
 
+	// swiftlint:disable:next discouraged_optional_collection
 	func popToNavigationItem(_ item: NavigationItem, animated: Bool) -> [NavigationItem]? {
 		if items == nil || items!.count <= 1 {
 			return nil
@@ -107,99 +108,39 @@ final class NavigationBarController: NSViewController {
 	}
 
 	func addNavigationBarViewForCurrentItems() {
-		let buttonEdgeSpacing = 6.0
-		let titleSpacing = 10.0
-		let buttonYOffset = 6.0
-		let titleYOffset = -1.0
-		let buttonHeight = 21.0
-
 		navigationBarView = NSView()
 		backgroundView.addSubview(navigationBarView!)
 		navigationBarView!.snp.makeConstraints { make in
 			make.edges.equalTo(backgroundView)
 		}
 
-		// Back button section
-		var backButton: NSButton?
-
-		// Title section
-		var titleView = NSView()
-
-		if #available(macOS 11, *) {
-			var items = [NSToolbarItem]()
-			if let titleView = topItem?.titleView {
-				items = [
-					.flexibleSpace,
-					.centeredView(titleView),
-					.flexibleSpace
-				]
-			} else {
-				items = [
-					.flexibleSpace,
-					.centeredTitle(topItem!.title),
-					.flexibleSpace
-				]
-			}
-
-			if let backItem = backItem {
-				let backButton = NavigationItem.standardBackButtonWithTitle(backItem.title)
-				backButton.target = self
-				backButton.action = #selector(NavigationBarController.backButtonClicked(_:))
-				items.prepend(.view(identifier: .init("backButton"), view: backButton))
-			}
-
-			if let rightButton = topItem?.rightButton {
-				items.append(.view(identifier: .init("rightButton"), view: rightButton))
-			}
-
-			view.window?.toolbar = NSToolbar.staticToolbar(items)
+		var items = [NSToolbarItem]()
+		if let titleView = topItem?.titleView {
+			items = [
+				.flexibleSpace,
+				.centeredView(titleView),
+				.flexibleSpace
+			]
 		} else {
-			if backItem != nil {
-				backButton = NavigationItem.standardBackButtonWithTitle(backItem!.title)
-				backButton!.target = self
-				backButton!.action = #selector(NavigationBarController.backButtonClicked(_:))
-				navigationBarView!.addSubview(backButton!)
-				backButton!.snp.makeConstraints { make in
-					make.top.equalTo(navigationBarView!).offset(buttonYOffset)
-					make.left.equalTo(navigationBarView!).offset(buttonEdgeSpacing)
-					make.height.equalTo(buttonHeight)
-				}
-			}
-
-			// Right button section
-			if topItem!.rightButton != nil {
-				navigationBarView!.addSubview(topItem!.rightButton!)
-				topItem!.rightButton!.snp.makeConstraints { make in
-					make.top.equalTo(navigationBarView!).offset(buttonYOffset)
-					make.right.equalTo(navigationBarView!).offset(-buttonEdgeSpacing)
-					make.height.equalTo(buttonHeight)
-				}
-			}
-
-			if topItem!.titleView != nil {
-				titleView = topItem!.titleView!
-			} else {
-				titleView = textFieldForTitle(topItem!.title)
-			}
-
-			navigationBarView!.addSubview(titleView)
-			titleView.snp.makeConstraints { make in
-				make.centerX.equalTo(backgroundView).offset(-36)
-				make.centerY.equalTo(backgroundView).offset(titleYOffset)
-
-				if backButton != nil {
-					make.left.greaterThanOrEqualTo(backButton!.snp.right).offset(titleSpacing)
-				} else {
-					make.left.greaterThanOrEqualTo(navigationBarView!).offset(titleSpacing)
-				}
-
-				if topItem!.rightButton != nil {
-					make.right.lessThanOrEqualTo(topItem!.rightButton!.snp.left).offset(-titleSpacing)
-				} else {
-					make.right.lessThanOrEqualTo(navigationBarView!).offset(-titleSpacing)
-				}
-			}
+			items = [
+				.flexibleSpace,
+				.centeredTitle(topItem!.title),
+				.flexibleSpace
+			]
 		}
+
+		if let backItem {
+			let backButton = NavigationItem.standardBackButtonWithTitle(backItem.title)
+			backButton.target = self
+			backButton.action = #selector(backButtonClicked(_:))
+			items.prepend(.view(identifier: .init("backButton"), view: backButton))
+		}
+
+		if let rightButton = topItem?.rightButton {
+			items.append(.view(identifier: .init("rightButton"), view: rightButton))
+		}
+
+		view.window?.toolbar = .staticToolbar(items)
 	}
 
 	func textFieldForTitle(_ title: String) -> NSTextField {

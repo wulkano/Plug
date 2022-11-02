@@ -9,7 +9,7 @@ final class VibrantSecureTextField: NSSecureTextField {
 	}
 
 	func setupStyledPlaceholderString() {
-		guard let placeholderString = placeholderString else {
+		guard let placeholderString else {
 			return
 		}
 

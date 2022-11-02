@@ -65,10 +65,10 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func setup() {
-		Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackPlaying(_:)), name: Notifications.TrackPlaying, object: nil)
-		Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackPaused(_:)), name: Notifications.TrackPaused, object: nil)
-		Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
-		Notifications.subscribe(observer: self, selector: #selector(TrackTableCellView.trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(trackPlaying(_:)), name: Notifications.TrackPlaying, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(trackPaused(_:)), name: Notifications.TrackPaused, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(trackLoved(_:)), name: Notifications.TrackLoved, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(trackUnLoved(_:)), name: Notifications.TrackUnLoved, object: nil)
 	}
 
 	// Careful, since these cells are reused, any async calls
@@ -76,7 +76,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	func objectValueChanged() {
 		guard
 			objectValue != nil,
-			let track = track
+			let track
 		else {
 			return
 		}
@@ -114,7 +114,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateTrackAvailability() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -128,7 +128,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateTrackTitle() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -142,7 +142,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updateTrackArtist() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -156,7 +156,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func updatePlayPauseButtonVisibility() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -205,7 +205,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		let openWidth = 38.0
 		let closedWidth = 0.0
 
-		if let track = track, isMouseInside || (track.isLoved && showsLoveButton) {
+		if let track, isMouseInside || (track.isLoved && showsLoveButton) {
 			loveContainerWidthConstraint.update(offset: openWidth)
 		} else {
 			loveContainerWidthConstraint.update(offset: closedWidth)
@@ -292,7 +292,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func playPauseButtonClicked(_ sender: HoverToggleButton) {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -321,7 +321,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func loveButtonClicked(_ sender: TransparentButton) {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -332,7 +332,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 		changeTrackLovedValueTo(newLovedValue)
 
 		HypeMachineAPI.Requests.Me.toggleTrackFavorite(id: track.id) { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -356,7 +356,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func artistButtonClicked(_ sender: NSButton) {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -367,7 +367,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 
 	// swiftlint:disable:next private_action
 	@IBAction func titleButtonClicked(_ sender: NSButton) {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 
@@ -375,7 +375,7 @@ class TrackTableCellView: IOSStyleTableCellView {
 	}
 
 	func changeTrackLovedValueTo(_ isLoved: Bool) {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 

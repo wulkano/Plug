@@ -27,7 +27,7 @@ final class NavigationController: NSViewController {
 	var navigationBarController: NavigationBarController!
 
 	init(rootViewController: BaseContentViewController?) {
-		if let rootViewController = rootViewController {
+		if let rootViewController {
 			self._viewControllers = [rootViewController]
 		} else {
 			self._viewControllers = [BaseContentViewController(title: "Dummy controller", analyticsViewName: "Dummy controller")]
@@ -49,11 +49,7 @@ final class NavigationController: NSViewController {
 		navigationBarController = NavigationBarController(navigationController: self)
 		view.addSubview(navigationBarController.view)
 		navigationBarController.view.snp.makeConstraints { make in
-			if #available(macOS 11, *) {
-				make.height.equalTo(0)
-			} else {
-				make.height.equalTo(36)
-			}
+			make.height.equalTo(0)
 			make.top.equalTo(view)
 			make.left.equalTo(view)
 			make.right.equalTo(view)

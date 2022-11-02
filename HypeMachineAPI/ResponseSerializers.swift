@@ -13,7 +13,7 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<T>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<T> { request, response, data, error in
-			if let error = error {
+			if let error {
 				return .failure(APIError.network(error: error))
 			}
 
@@ -24,7 +24,7 @@ extension DataRequest {
 				return .failure(APIError.jsonSerialization(error: result.error!))
 			}
 
-			guard let response = response, let responseObject = T(response: response, representation: jsonObject) else {
+			guard let response, let responseObject = T(response: response, representation: jsonObject) else {
 				return .failure(APIError.objectSerialization(reason: "JSON could not be serialized: \(jsonObject)"))
 			}
 
@@ -68,7 +68,7 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<[T]>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<[T]> { request, response, data, error in
-			if let error = error {
+			if let error {
 				return .failure(APIError.network(error: error))
 			}
 
@@ -79,7 +79,7 @@ extension DataRequest {
 				return .failure(APIError.jsonSerialization(error: result.error!))
 			}
 
-			guard let response = response else {
+			guard let response else {
 				let reason = "Response collection could not be serialized due to nil response."
 				return .failure(APIError.objectSerialization(reason: reason))
 			}
@@ -100,7 +100,7 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<Bool>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<Bool> { request, response, data, error in
-			if let error = error {
+			if let error {
 				return .failure(APIError.network(error: error))
 			}
 
@@ -134,7 +134,7 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<[String]>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<[String]> { request, response, data, error in
-			if let error = error {
+			if let error {
 				return .failure(APIError.network(error: error))
 			}
 
@@ -166,7 +166,7 @@ extension DataRequest {
 		completionHandler: @escaping (DataResponse<UsernameAndToken>) -> Void
 	) -> Self {
 		let responseSerializer = DataResponseSerializer<UsernameAndToken> { request, response, data, error in
-			if let error = error {
+			if let error {
 				return .failure(APIError.network(error: error))
 			}
 

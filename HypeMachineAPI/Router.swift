@@ -24,7 +24,7 @@ public enum Router {
 	}
 
 	static func addApiKeyParam(_ params: Parameters) -> Parameters {
-		guard let apiKey = apiKey else {
+		guard let apiKey else {
 			return params
 		}
 

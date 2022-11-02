@@ -70,7 +70,7 @@ class BaseContentViewController: NSViewController {
 
 	func subscribeToNotifications() {
 		if shouldShowStickyTrack {
-			Notifications.subscribe(observer: self, selector: #selector(BaseContentViewController.newCurrentTrack(_:)), name: Notifications.NewCurrentTrack, object: nil)
+			Notifications.subscribe(observer: self, selector: #selector(newCurrentTrack(_:)), name: Notifications.NewCurrentTrack, object: nil)
 		}
 	}
 
@@ -111,11 +111,7 @@ class BaseContentViewController: NSViewController {
 		switch position {
 		case .top:
 			stickyTrackController.view.snp.makeConstraints { make in
-				if #available(macOS 11, *) {
-					make.height.equalTo(stickyTrackController.viewHeight + 1)
-				} else {
-					make.height.equalTo(stickyTrackController.viewHeight)
-				}
+				make.height.equalTo(stickyTrackController.viewHeight + 1)
 				make.left.right.equalTo(view)
 				make.top.equalTo(view).offset(tableViewInsets.top)
 			}

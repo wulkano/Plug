@@ -15,7 +15,7 @@ final class PostInfoTextField: NSTextField {
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if let trackingArea = trackingArea {
+		if let trackingArea {
 			removeTrackingArea(trackingArea)
 			self.trackingArea = nil
 		}

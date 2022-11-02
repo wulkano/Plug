@@ -37,7 +37,7 @@ final class SearchViewController: BaseContentViewController {
 
 	func sortChanged() {
 		guard
-			let tracksViewController = tracksViewController,
+			let tracksViewController,
 			let searchDataSource = tracksViewController.dataSource as? SearchTracksDataSource
 		else {
 			return
@@ -64,7 +64,7 @@ final class SearchViewController: BaseContentViewController {
 			make.right.equalTo(view)
 		}
 		searchHeaderController.searchField.target = self
-		searchHeaderController.searchField.action = #selector(SearchViewController.searchFieldSubmit(_:))
+		searchHeaderController.searchField.action = #selector(searchFieldSubmit(_:))
 
 		searchResultsView = NSView()
 		view.addSubview(searchResultsView)

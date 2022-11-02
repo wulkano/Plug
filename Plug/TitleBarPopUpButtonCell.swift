@@ -27,13 +27,7 @@ final class TitleBarPopUpButtonCell: NSPopUpButtonCell {
 		var newFrame = frame
 		newFrame.size.width += trimPaddingBetweenArrowAndTitle
 		newFrame.size.height += 4
-
-		if #available(macOS 11, *) {
-			newFrame.origin.y += 1
-		} else {
-			newFrame.origin.y -= 1
-		}
-
+		newFrame.origin.y += 1
 		return super.drawTitle(formattedTitle, withFrame: newFrame, in: controlView)
 	}
 

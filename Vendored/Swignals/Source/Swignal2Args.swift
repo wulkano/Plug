@@ -37,7 +37,7 @@ private class Observer2Args<L: AnyObject, A, B>: ObserverGenericBase<L> {
 	}
 
 	fileprivate func fire(arg1: A, arg2: B) {
-		if let observer = observer {
+		if let observer {
 			callback(observer, arg1, arg2)
 		}
 	}

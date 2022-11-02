@@ -18,15 +18,15 @@ final class SidebarOverlayView: NSView {
 	}
 
 	func initialSetup() {
-		Notifications.subscribe(observer: self, selector: #selector(SidebarOverlayView.windowStatusChanged), name: NSWindow.didBecomeMainNotification, object: nil)
-		Notifications.subscribe(observer: self, selector: #selector(SidebarOverlayView.windowStatusChanged), name: NSWindow.didResignMainNotification, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(windowStatusChanged), name: NSWindow.didBecomeMainNotification, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(windowStatusChanged), name: NSWindow.didResignMainNotification, object: nil)
 	}
 
 	override func draw(_ dirtyRect: CGRect) {
 		super.draw(dirtyRect)
 
 		if
-			let window = window,
+			let window,
 			!window.isMainWindow
 		{
 			overlayColor.set()

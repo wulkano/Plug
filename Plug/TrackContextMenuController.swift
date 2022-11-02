@@ -20,14 +20,14 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 		contextMenu = NSMenu()
 		contextMenu.autoenablesItems = false
 
-		contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: #selector(TrackContextMenuController.copyHypeMachineLinkClicked(_:)), keyEquivalent: ""))
-		contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(TrackContextMenuController.openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
+		contextMenu.addItem(NSMenuItem(title: "Copy Hype Machine Link", action: #selector(copyHypeMachineLinkClicked(_:)), keyEquivalent: ""))
+		contextMenu.addItem(NSMenuItem(title: "Open Hype Machine Link in Browser", action: #selector(openHypeMachineLinkInBrowserClicked(_:)), keyEquivalent: ""))
 
 		contextMenu.addItem(.separator())
 
 		let appleMusicItem = NSMenuItem(title: "Open in Apple Music", action: nil, keyEquivalent: "")
 		appleMusicItem.onAction { [weak self] _ in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -38,7 +38,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 
 		let spotifyItem = NSMenuItem(title: "Open in Spotify", action: nil, keyEquivalent: "")
 		spotifyItem.onAction { [weak self] _ in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -54,8 +54,8 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 
 		if track.mediaType == "soundcloud" {
 			contextMenu.addItem(.separator())
-			contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(TrackContextMenuController.copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
-			contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(TrackContextMenuController.openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
+			contextMenu.addItem(NSMenuItem(title: "Copy SoundCloud Link", action: #selector(copySoundCloudLinkClicked(_:)), keyEquivalent: ""))
+			contextMenu.addItem(NSMenuItem(title: "Open SoundCloud Link in Browser", action: #selector(openSoundCloudLinkInBrowser(_:)), keyEquivalent: ""))
 		}
 
 		contextMenu.addItem(.separator())
@@ -200,7 +200,7 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 
 	func requestPermalinkForTrackID(_ trackID: String) {
 		SoundCloudAPI.Tracks.permalink(trackID) { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 

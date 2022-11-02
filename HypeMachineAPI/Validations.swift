@@ -4,7 +4,7 @@ import Alamofire
 public enum Validations {
 	public static let apiErrorValidation: Alamofire.DataRequest.Validation = { _, _, data in
 		guard
-			let data = data,
+			let data,
 			let object = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
 			let representation = object as? [String: Any],
 			let errorMessage = representation["error_msg"] as? String

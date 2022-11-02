@@ -76,7 +76,9 @@ extension Blog: ResponseObjectSerializable, ResponseCollectionSerializable {
 			let imageURL = URL(string: imageURLString),
 			let imageURLSmallString = representation["blog_image_small"] as? String,
 			let imageURLSmall = URL(string: imageURLSmallString)
-		else { return nil }
+		else {
+			return nil
+		}
 
 		self.id = id
 		self.name = name

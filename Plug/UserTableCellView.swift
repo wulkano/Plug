@@ -44,7 +44,7 @@ final class UserTableCellView: IOSStyleTableCellView {
 			.request(avatarURL, method: .get)
 			.validate()
 			.responseImage { [weak self] response in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 

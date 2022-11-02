@@ -30,7 +30,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func setup() {
-		navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(BlogViewController.followButtonClicked(_:)))
+		navigationItem.rightButton = NavigationItem.standardRightButtonWithOnStateTitle("Unfollow", offStateTitle: "Follow", target: self, action: #selector(followButtonClicked(_:)))
 	}
 
 	override func loadView() {
@@ -62,7 +62,7 @@ final class BlogViewController: BaseContentViewController {
 		titleButton.setContentCompressionResistancePriority(NSLayoutConstraint.Priority(rawValue: 490), for: .horizontal)
 		titleButton.lineBreakMode = .byTruncatingMiddle
 		titleButton.target = self
-		titleButton.action = #selector(BlogViewController.titleButtonClicked(_:))
+		titleButton.action = #selector(titleButtonClicked(_:))
 		header.addSubview(titleButton)
 		titleButton.snp.makeConstraints { make in
 			make.height.equalTo(24)
@@ -105,7 +105,7 @@ final class BlogViewController: BaseContentViewController {
 
 	func loadBlog(_ blogID: Int) {
 		HypeMachineAPI.Requests.Blogs.show(id: blogID) { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -128,7 +128,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateTitle() {
-		guard let blog = blog else {
+		guard let blog else {
 			return
 		}
 
@@ -140,7 +140,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func updateImage() {
-		guard let blog = blog else {
+		guard let blog else {
 			return
 		}
 
@@ -148,7 +148,7 @@ final class BlogViewController: BaseContentViewController {
 			.request(blog.imageURL(size: .normal))
 			.validate()
 			.responseImage { [weak self] response in
-				guard let self = self else {
+				guard let self else {
 					return
 				}
 
@@ -163,7 +163,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func extractColorAndResizeImage(_ image: NSImage) {
-		guard let blog = blog else {
+		guard let blog else {
 			return
 		}
 
@@ -185,7 +185,7 @@ final class BlogViewController: BaseContentViewController {
 
 	@objc
 	func titleButtonClicked(_ sender: AnyObject) {
-		guard let blog = blog else {
+		guard let blog else {
 			return
 		}
 
@@ -193,7 +193,7 @@ final class BlogViewController: BaseContentViewController {
 	}
 
 	func loadPlaylist() {
-		guard let blog = blog else {
+		guard let blog else {
 			return
 		}
 
@@ -214,7 +214,7 @@ final class BlogViewController: BaseContentViewController {
 
 	@objc
 	func followButtonClicked(_ sender: ActionButton) {
-		guard let blog = blog else {
+		guard let blog else {
 			return
 		}
 

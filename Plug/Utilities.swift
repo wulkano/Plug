@@ -57,10 +57,10 @@ extension URL {
 extension String {
 	/**
 	```
-	"https://sindresorhus.com".openUrl()
+	"https://sindresorhus.com".openURL()
 	```
 	*/
-	func openUrl() {
+	func openURL() {
 		URL(string: self)?.open()
 	}
 }
@@ -491,13 +491,13 @@ extension NSAlert {
 		self.messageText = title
 		self.alertStyle = style
 
-		if let message = message {
+		if let message {
 			self.informativeText = message
 		}
 
 		addButtons(withTitles: buttonTitles)
 
-		if let defaultButtonIndex = defaultButtonIndex {
+		if let defaultButtonIndex {
 			self.defaultButtonIndex = defaultButtonIndex
 		}
 	}
@@ -507,7 +507,7 @@ extension NSAlert {
 	*/
 	@discardableResult
 	func runModal(for window: NSWindow? = nil) -> NSApplication.ModalResponse {
-		guard let window = window else {
+		guard let window else {
 			return runModal()
 		}
 
@@ -721,7 +721,7 @@ extension URL {
 	Returns `self` with the given `name` and `value` appended if the `value` is not `nil`.
 	*/
 	func appendingQueryItem(name: String, value: String?) -> Self {
-		guard let value = value else {
+		guard let value else {
 			return self
 		}
 

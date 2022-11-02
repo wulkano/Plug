@@ -1,7 +1,6 @@
 only_rules:
   - array_init
   - block_based_kvo
-  - class_delegate_protocol
   - closing_brace
   - closure_end_indentation
   - closure_parameter_position

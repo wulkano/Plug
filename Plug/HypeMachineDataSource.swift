@@ -11,11 +11,11 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 		}
 	}
 
-	var standardTableContents: [Any]?
-	var filteredTableContents: [Any]?
+	var standardTableContents: [Any]? // swiftlint:disable:this discouraged_optional_collection
+	var filteredTableContents: [Any]? // swiftlint:disable:this discouraged_optional_collection
 
-	var tableContents: [Any]? {
-		guard let standardTableContents = standardTableContents else {
+	var tableContents: [Any]? { // swiftlint:disable:this discouraged_optional_collection
+		guard let standardTableContents else {
 			return nil
 		}
 
@@ -63,7 +63,7 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 		fatalError("requestNextPage() not implemented")
 	}
 
-	func nextPageResponseReceived<T>(_ response: DataResponse<T>) {
+	func nextPageResponseReceived(_ response: DataResponse<some Any>) {
 		viewController.nextPageDidLoad(currentPage)
 
 		switch response.result {

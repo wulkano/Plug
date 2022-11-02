@@ -103,7 +103,7 @@ final class DisplayErrorViewController: NSViewController {
 
 	func animateOutWithDelay(_ delay: Double, completionHandler: @escaping () -> Void) {
 		Interval.single(delay) { [weak self] in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 

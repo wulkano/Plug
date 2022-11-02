@@ -1,6 +1,7 @@
 import Cocoa
 
 final class DropdownTitleFormatter: Formatter {
+	// swiftlint:disable:next discouraged_optional_collection
 	override func attributedString(for object: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]?) -> NSAttributedString? {
 		attributedDropdownTitle("Popular", optionTitle: "Now")
 	}
@@ -42,11 +43,5 @@ final class DropdownTitleFormatter: Formatter {
 		return attributes
 	}
 
-	private func getFont() -> NSFont {
-		if #available(macOS 11, *) {
-			return .systemFont(ofSize: 0)
-		} else {
-			return appFont(size: 14, weight: .medium)
-		}
-	}
+	private func getFont() -> NSFont { .systemFont(ofSize: 0) }
 }

@@ -43,9 +43,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 	override func viewDidMoveToWindow() {
 		super.viewDidMoveToWindow()
 
-		if #available(macOS 11, *) {
-			style = .plain
-		}
+		style = .plain
 
 		updateContentInsets()
 		updateScrollerInsets()
@@ -63,7 +61,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 	override func updateTrackingAreas() {
 		super.updateTrackingAreas()
 
-		if let trackingArea = trackingArea {
+		if let trackingArea {
 			removeTrackingArea(trackingArea)
 			self.trackingArea = nil
 		}
@@ -176,7 +174,7 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 		isScrollingTimer?.invalidate()
 
 		isScrollingTimer = Interval.single(0.1) { [weak self] in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 

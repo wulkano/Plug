@@ -266,8 +266,8 @@ final class IOSSwitch: NSControl {
 
 	func invokeTargetAction() {
 		if
-			let target = target,
-			let action = action
+			let target,
+			let action
 		{
 			sendAction(action, to: target)
 		}

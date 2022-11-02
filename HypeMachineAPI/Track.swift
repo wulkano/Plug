@@ -143,7 +143,9 @@ extension Track: ResponseObjectSerializable, ResponseCollectionSerializable {
 			let iTunesURLString = representation["itunes_link"] as? String,
 			let iTunesURLStringEscaped = iTunesURLString.stringByAddingPercentEncodingForURLQueryValue(),
 			let iTunesURL = URL(string: iTunesURLStringEscaped)
-		else { return nil }
+		else {
+			return nil
+		}
 
 		func urlForJSONKey(_ key: String) -> URL? {
 			guard let urlString = representation[key] as? String else {

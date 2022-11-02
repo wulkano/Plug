@@ -37,7 +37,7 @@ final class BlogTableCellView: IOSStyleTableCellView {
 
 		HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, params: parameters) { [weak self] response in
 			guard
-				let self = self,
+				let self,
 				self.objectValue != nil,
 				self.blog.id == originalBlogID
 			else {

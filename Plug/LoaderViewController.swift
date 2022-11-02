@@ -35,9 +35,7 @@ final class LoaderViewController: NSViewController {
 		let progressIndicator = NSProgressIndicator()
 		progressIndicator.style = .spinning
 		progressIndicator.isIndeterminate = true
-		if #available(macOS 11, *) {
-			progressIndicator.controlSize = size == .large ? .large : .small
-		}
+		progressIndicator.controlSize = size == .large ? .large : .small
 		progressIndicator.startAnimation(self)
 
 		view.addSubview(progressIndicator)

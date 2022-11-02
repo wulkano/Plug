@@ -492,9 +492,9 @@ class TracksViewController: DataSourceViewController {
 	// MARK: NSKeyValueObserving
 
 	// TODO: Use the modern API.
-	// swiftlint:disable:next block_based_kvo
+	// swiftlint:disable:next block_based_kvo discouraged_optional_collection
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-		guard let keyPath = keyPath else {
+		guard let keyPath else {
 			return
 		}
 

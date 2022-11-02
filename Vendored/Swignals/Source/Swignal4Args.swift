@@ -39,7 +39,7 @@ private class Observer4Args<L: AnyObject, A, B, C, D>: ObserverGenericBase<L> {
 	}
 
 	fileprivate func fire(arg1: A, arg2: B, arg3: C, arg4: D) {
-		if let observer = observer {
+		if let observer {
 			callback(observer, arg1, arg2, arg3, arg4)
 		}
 	}

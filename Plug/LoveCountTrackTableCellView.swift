@@ -25,7 +25,7 @@ class LoveCountTrackTableCellView: TrackTableCellView {
 	}
 
 	private func updateLoveCount() {
-		guard let track = track else {
+		guard let track else {
 			return
 		}
 

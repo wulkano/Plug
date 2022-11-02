@@ -13,7 +13,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 
-		Notifications.subscribe(observer: self, selector: #selector(LoginViewController.displayError(_:)), name: Notifications.DisplayError, object: nil)
+		Notifications.subscribe(observer: self, selector: #selector(displayError(_:)), name: Notifications.DisplayError, object: nil)
 	}
 
 	deinit {
@@ -36,7 +36,7 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 			usernameOrEmail: usernameOrEmail,
 			password: password
 		) { [weak self] response in
-			guard let self = self else {
+			guard let self else {
 				return
 			}
 
@@ -97,12 +97,12 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 
 	@IBAction private func forgotPasswordButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Forgot Password")
-		"https://hypem.com/?forgot=1".openUrl()
+		"https://hypem.com/?forgot=1".openURL()
 	}
 
 	@IBAction private func signUpButtonClicked(_ sender: AnyObject) {
 		Analytics.trackButtonClick("Sign Up")
-		"https://hypem.com/?signup=1".openUrl()
+		"https://hypem.com/?signup=1".openURL()
 	}
 
 	// MARK: NSViewController

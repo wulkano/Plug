@@ -14,13 +14,13 @@ final class ActionButtonCell: SwissArmyButtonCell {
 	private let mouseDownMiddleImage = NSImage(named: "Header-Button-Tap-Middle")
 	private let mouseDownRightImage = NSImage(named: "Header-Button-Tap-Right")
 
-	var offStateTitle: String = "" {
+	var offStateTitle = "" {
 		didSet {
 			updateTitle()
 		}
 	}
 
-	var onStateTitle: String = "" {
+	var onStateTitle = "" {
 		didSet {
 			updateTitle()
 		}

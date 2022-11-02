@@ -9,12 +9,10 @@ final class MainWindowController: NSWindowController {
 
 	override func windowDidLoad() {
 		super.windowDidLoad()
-		window?.isExcludedFromWindowsMenu = true
 
-		if #available(macOS 11, *) {
-			window?.titleVisibility = .hidden
-			window?.toolbar = NSToolbar()
-		}
+		window?.isExcludedFromWindowsMenu = true
+		window?.titleVisibility = .hidden
+		window?.toolbar = NSToolbar()
 
 		setupRemoteCommandCenter()
 	}
@@ -122,7 +120,7 @@ extension MainWindowController {
 		if let thumbnailUrl = track.thumbURLLarge {
 			DispatchQueue.global().async { [weak self] in
 				guard
-					let self = self,
+					let self,
 					let image = NSImage(contentsOf: thumbnailUrl)
 				else {
 					return
