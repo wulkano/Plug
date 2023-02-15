@@ -16,9 +16,9 @@ final class TagsDataSource: SearchableDataSource {
 
 	func sortTags(_ tags: [HypeMachineAPI.Tag]) -> [HypeMachineAPI.Tag] {
 		if tags.count > 1 {
-			return tags.sorted { $0.name.lowercased() < $1.name.lowercased() }
+			tags.sorted { $0.name.lowercased() < $1.name.lowercased() }
 		} else {
-			return tags
+			tags
 		}
 	}
 
@@ -52,18 +52,18 @@ final class TagsDataSource: SearchableDataSource {
 		if searchKeywords?.isEmpty == true || searchKeywords == nil {
 			print("Filtering, but no keywords present")
 			return sortedTags
-		} else {
-			// Has keywords so filter tags using keywords
-			let filteredResults = filterTagsMatchingSearchKeywords(sortedTags)
-
-			// If results of filter are zero then try and make a new object using the keywords
-			if filteredResults.isEmpty {
-				// Make a new tag using the search Keyword
-				return newTag(searchKeywords!)
-			} else {
-				return filteredResults
-			}
 		}
+
+		// Has keywords so filter tags using keywords
+		let filteredResults = filterTagsMatchingSearchKeywords(sortedTags)
+
+		// If results of filter are zero then try and make a new object using the keywords
+		if filteredResults.isEmpty {
+			// Make a new tag using the search Keyword
+			return newTag(searchKeywords!)
+		}
+
+		return filteredResults
 	}
 
 	// MARK: HypeMachineDataSource
@@ -74,7 +74,7 @@ final class TagsDataSource: SearchableDataSource {
 				return
 			}
 
-			self.nextPageResponseReceived(response)
+			nextPageResponseReceived(response)
 		}
 	}
 
@@ -89,13 +89,15 @@ enum TagsListItem {
 	case sectionHeaderItem(SectionHeader)
 	case tagItem(HypeMachineAPI.Tag)
 
-	static func fromObject(_ object: Any) -> TagsListItem? {
+	static func fromObject(_ object: Any) -> Self? {
 		if let tag = object as? HypeMachineAPI.Tag {
 			return tagItem(tag)
-		} else if let sectionHeader = object as? SectionHeader {
-			return sectionHeaderItem(sectionHeader)
-		} else {
-			return nil
 		}
+
+		if let sectionHeader = object as? SectionHeader {
+			return sectionHeaderItem(sectionHeader)
+		}
+
+		return nil
 	}
 }

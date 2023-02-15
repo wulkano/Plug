@@ -23,7 +23,7 @@ final class BlogImageView: NSImageView {
 
 	private func calulateImageRect() -> CGRect {
 		var rect = CGRect.zero
-		let croppedHeight = image!.size.height / 1.333_33
+		let croppedHeight = image!.size.height / 1.33333
 
 		rect.origin.x = 0
 		rect.origin.y = image!.size.height - croppedHeight

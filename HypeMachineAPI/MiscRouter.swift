@@ -22,21 +22,21 @@ extension Router {
 		var method: HTTPMethod {
 			switch self {
 			case .getToken:
-				return .post
+				.post
 			}
 		}
 
 		var path: String {
 			switch self {
 			case .getToken:
-				return "/get_token"
+				"/get_token"
 			}
 		}
 
 		var params: Parameters? {
 			switch self {
 			case .getToken(let usernameOrEmail, let password):
-				return [
+				[
 					"username": usernameOrEmail as AnyObject,
 					"password": password as AnyObject,
 					"device_id": deviceID() as AnyObject

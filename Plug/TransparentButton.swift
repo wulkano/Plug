@@ -47,7 +47,7 @@ final class TransparentButton: NSButton {
 
 		drawImage?.draw(
 			in: drawPosition,
-			from: dirtyRect,
+			from: bounds,
 			operation: .sourceOver,
 			fraction: drawOpacity,
 			respectFlipped: true,
@@ -62,21 +62,25 @@ final class TransparentButton: NSButton {
 	func getDrawImage() -> NSImage? {
 		if isSelectable, isSelected {
 			return selectedImage
-		} else {
-			return unselectedImage
 		}
+
+		return unselectedImage
 	}
 
 	func getDrawOpacity() -> Double {
 		if isSelectable, isSelected {
 			return selectedOpacity
-		} else if isMouseDown {
-			return mouseDownOpacity
-		} else if isMouseInside {
-			return mouseInsideOpacity
-		} else {
-			return inactiveOpacity
 		}
+
+		if isMouseDown {
+			return mouseDownOpacity
+		}
+
+		if isMouseInside {
+			return mouseInsideOpacity
+		}
+
+		return inactiveOpacity
 	}
 
 	func toggleSelected() {

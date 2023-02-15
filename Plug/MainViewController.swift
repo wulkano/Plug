@@ -139,17 +139,17 @@ extension NavigationSection {
 	func menu(_ target: AnyObject?) -> NSMenu? {
 		switch self {
 		case .popular:
-			return PopularSectionMode.menu(target)
+			PopularSectionMode.menu(target)
 		case .favorites:
-			return FavoritesSectionPlaylist.menu(target)
+			FavoritesSectionPlaylist.menu(target)
 		case .latest:
-			return LatestSectionMode.menu(target)
+			LatestSectionMode.menu(target)
 		case .feed:
-			return FeedSectionMode.menu(target)
+			FeedSectionMode.menu(target)
 		case .search:
-			return SearchSectionSort.menu(target)
+			SearchSectionSort.menu(target)
 		default:
-			return nil
+			nil
 		}
 	}
 

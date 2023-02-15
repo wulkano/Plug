@@ -66,9 +66,9 @@ public final class PreventSleep {
 			sleepAssertion = nil
 
 			return true
-		} else {
-			return false
 		}
+
+		return false
 	}
 
 	// Can the computer go to sleep, or is it being prevented?

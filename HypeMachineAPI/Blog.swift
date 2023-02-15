@@ -44,9 +44,9 @@ public struct Blog {
 	public func imageURL(size: ImageSize) -> URL {
 		switch size {
 		case .normal:
-			return imageURL
+			imageURL
 		case .small:
-			return imageURLSmall
+			imageURLSmall
 		}
 	}
 

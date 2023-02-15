@@ -38,8 +38,8 @@ final class BlogTableCellView: IOSStyleTableCellView {
 		HypeMachineAPI.Requests.Blogs.showTracks(id: blog.id, params: parameters) { [weak self] response in
 			guard
 				let self,
-				self.objectValue != nil,
-				self.blog.id == originalBlogID
+				objectValue != nil,
+				blog.id == originalBlogID
 			else {
 				return
 			}
@@ -55,7 +55,7 @@ final class BlogTableCellView: IOSStyleTableCellView {
 					}
 				}
 
-				self.recentArtistsTextField.stringValue = recentTracks
+				recentArtistsTextField.stringValue = recentTracks
 			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)

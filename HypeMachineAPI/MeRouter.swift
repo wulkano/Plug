@@ -16,69 +16,69 @@ extension Router {
 		var method: HTTPMethod {
 			switch self {
 			case .favorites:
-				return .get
+				.get
 			case .toggleTrackFavorite:
-				return .post
+				.post
 			case .toggleBlogFavorite:
-				return .post
+				.post
 			case .toggleUserFavorite:
-				return .post
+				.post
 			case .playlistNames:
-				return .get
+				.get
 			case .showPlaylist:
-				return .get
+				.get
 			case .postHistory:
-				return .post
+				.post
 			case .friends:
-				return .get
+				.get
 			case .feed:
-				return .get
+				.get
 			}
 		}
 
 		var path: String {
 			switch self {
 			case .favorites:
-				return "/me/favorites"
+				"/me/favorites"
 			case .toggleTrackFavorite:
-				return "/me/favorites"
+				"/me/favorites"
 			case .toggleBlogFavorite:
-				return "/me/favorites"
+				"/me/favorites"
 			case .toggleUserFavorite:
-				return "/me/favorites"
+				"/me/favorites"
 			case .playlistNames:
-				return "/me/playlist_names"
+				"/me/playlist_names"
 			case .showPlaylist(let id, _):
-				return "/me/playlists/\(id)"
+				"/me/playlists/\(id)"
 			case .postHistory:
-				return "/me/history"
+				"/me/history"
 			case .friends:
-				return "/me/friends"
+				"/me/friends"
 			case .feed:
-				return "/me/feed"
+				"/me/feed"
 			}
 		}
 
 		var params: Parameters? {
 			switch self {
 			case .favorites(let optionalParams):
-				return optionalParams
+				optionalParams
 			case .toggleTrackFavorite(let id, let optionalParams):
-				return ["val": id, "type": "item"].merge(optionalParams)
+				["val": id, "type": "item"].merge(optionalParams)
 			case .toggleBlogFavorite(let id, let optionalParams):
-				return ["val": id, "type": "site"].merge(optionalParams)
+				["val": id, "type": "site"].merge(optionalParams)
 			case .toggleUserFavorite(let id, let optionalParams):
-				return ["val": id, "type": "user"].merge(optionalParams)
+				["val": id, "type": "user"].merge(optionalParams)
 			case .playlistNames:
-				return nil
+				nil
 			case .showPlaylist(_, let optionalParams):
-				return optionalParams
+				optionalParams
 			case .postHistory(let id, let position, let optionalParams):
-				return ["type": "listen", "itemid": id, "pos": position].merge(optionalParams)
+				["type": "listen", "itemid": id, "pos": position].merge(optionalParams)
 			case .friends(let optionalParams):
-				return optionalParams
+				optionalParams
 			case .feed(let optionalParams):
-				return optionalParams
+				optionalParams
 			}
 		}
 

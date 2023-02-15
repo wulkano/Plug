@@ -5,13 +5,13 @@ final class Interval {
 	var timer: Timer!
 
 	@discardableResult
-	static func single(_ interval: Double, closure: @escaping () -> Void) -> Interval {
-		Interval(interval: interval, closure: closure, repeats: false)
+	static func single(_ interval: Double, closure: @escaping () -> Void) -> Self {
+		Self(interval: interval, closure: closure, repeats: false)
 	}
 
 	@discardableResult
-	static func repeating(_ interval: Double, closure: @escaping () -> Void) -> Interval {
-		Interval(interval: interval, closure: closure, repeats: true)
+	static func repeating(_ interval: Double, closure: @escaping () -> Void) -> Self {
+		Self(interval: interval, closure: closure, repeats: true)
 	}
 
 	init(interval: Double, closure: @escaping () -> Void, repeats: Bool) {

@@ -166,33 +166,33 @@ final class BlogsViewController: DataSourceViewController {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch itemForRow(row) {
 		case .sectionHeaderItem:
-			return sectionHeaderCellView(tableView)
+			sectionHeaderCellView(tableView)
 		case .blogItem:
-			return blogCellView(tableView)
+			blogCellView(tableView)
 		default:
-			return nil
+			nil
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		switch itemForRow(row) {
 		case .sectionHeaderItem:
-			return groupRowView(tableView)
+			groupRowView(tableView)
 		case .blogItem:
-			return blogRowView(tableView, row: row)
+			blogRowView(tableView, row: row)
 		default:
-			return nil
+			nil
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool {
 		switch itemForRow(row) {
 		case .sectionHeaderItem:
-			return true
+			true
 		case .blogItem:
-			return false
+			false
 		default:
-			return false
+			false
 		}
 	}
 
@@ -200,22 +200,22 @@ final class BlogsViewController: DataSourceViewController {
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch itemForRow(row) {
 		case .sectionHeaderItem:
-			return 32
+			32
 		case .blogItem:
-			return 64
+			64
 		default:
-			return 0
+			0
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		switch itemForRow(row) {
 		case .sectionHeaderItem:
-			return false
+			false
 		case .blogItem:
-			return true
+			true
 		default:
-			return false
+			false
 		}
 	}
 

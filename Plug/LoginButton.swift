@@ -69,28 +69,24 @@ final class LoginButton: SwissArmyButton {
 		case error(String)
 
 		func title() -> String {
-			let titleString: String
-
 			switch self {
 			case .disabled, .enabled:
-				titleString = "Log in"
+				"Log in"
 			case .sending:
-				titleString = "Logging in..."
+				"Logging in..."
 			case .error(let message):
-				titleString = message
+				message
 			}
-
-			return titleString
 		}
 
 		func image() -> NSImage? {
 			switch self {
 			case .disabled, .enabled:
-				return NSImage(named: "Login-Next")
+				NSImage(named: "Login-Next")
 			case .sending:
-				return NSImage(named: "Loader-Login")
+				NSImage(named: "Loader-Login")
 			case .error:
-				return NSImage(named: "Login-Error")
+				NSImage(named: "Login-Error")
 			}
 		}
 	}

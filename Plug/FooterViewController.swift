@@ -102,7 +102,7 @@ final class FooterViewController: NSViewController {
 					return
 				}
 
-				airPlayButton.isHidden = !self.routeDetector.multipleRoutesDetected
+				airPlayButton.isHidden = !routeDetector.multipleRoutesDetected
 			}
 			.store(in: &cancellables)
 

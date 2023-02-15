@@ -107,11 +107,11 @@ final class DisplayErrorViewController: NSViewController {
 				return
 			}
 
-			self.view.superview!.layoutSubtreeIfNeeded()
+			view.superview!.layoutSubtreeIfNeeded()
 
-			self.topConstraint!.deactivate()
+			topConstraint!.deactivate()
 
-			self.view.snp.makeConstraints { make in
+			view.snp.makeConstraints { make in
 				make.bottom.equalTo(self.view.superview!.snp.top)
 			}
 

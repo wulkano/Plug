@@ -83,27 +83,27 @@ public struct Track {
 		switch preferedSize {
 		case .large:
 			if thumbURLLarge != nil {
-				return thumbURLLarge!
+				thumbURLLarge!
 			} else if thumbURLMedium != nil {
-				return thumbURLMedium!
+				thumbURLMedium!
 			} else {
-				return thumbURLSmall!
+				thumbURLSmall!
 			}
 		case .medium:
 			if thumbURLMedium != nil {
-				return thumbURLMedium!
+				thumbURLMedium!
 			} else if thumbURLLarge != nil {
-				return thumbURLLarge!
+				thumbURLLarge!
 			} else {
-				return thumbURLSmall!
+				thumbURLSmall!
 			}
 		case .small:
 			if thumbURLSmall != nil {
-				return thumbURLSmall!
+				thumbURLSmall!
 			} else if thumbURLMedium != nil {
-				return thumbURLMedium!
+				thumbURLMedium!
 			} else {
-				return thumbURLLarge!
+				thumbURLLarge!
 			}
 		}
 	}

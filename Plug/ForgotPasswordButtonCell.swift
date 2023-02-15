@@ -4,13 +4,12 @@ final class ForgotPasswordButtonCell: SwissArmyButtonCell {
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {}
 
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
-		let alpha: Double
-		if isMouseDown {
-			alpha = 1
+		let alpha: Double = if isMouseDown {
+			1
 		} else if isMouseInside {
-			alpha = 0.5
+			0.5
 		} else {
-			alpha = 0.2
+			0.2
 		}
 
 		let mutableTitle = NSMutableAttributedString(attributedString: title)

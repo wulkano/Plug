@@ -10,11 +10,11 @@ extension Router {
 		var method: HTTPMethod {
 			switch self {
 			case .show:
-				return .get
+				.get
 			case .showFavorites:
-				return .get
+				.get
 			case .showFriends:
-				return .get
+				.get
 			}
 		}
 
@@ -35,11 +35,11 @@ extension Router {
 		var params: Parameters? {
 			switch self {
 			case .show:
-				return nil
+				nil
 			case .showFavorites(_, let optionalParams):
-				return optionalParams
+				optionalParams
 			case .showFriends(_, let optionalParams):
-				return optionalParams
+				optionalParams
 			}
 		}
 

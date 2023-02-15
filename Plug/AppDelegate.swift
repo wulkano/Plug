@@ -3,6 +3,8 @@ import UserNotifications
 import Sentry
 import HypeMachineAPI
 
+// Look into this: https://twitter.com/ricardobeat/status/1706701566508453947
+
 @main
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	var mainWindowController: NSWindowController?
@@ -28,6 +30,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		SentrySDK.start {
 			$0.dsn = "https://de9821b005af4222a9fc4315040749f4@o116098.ingest.sentry.io/5245093"
 			$0.enableSwizzling = false
+			$0.enableAppHangTracking = false // https://github.com/getsentry/sentry-cocoa/issues/2643
 		}
 
 		UNUserNotificationCenter.current().requestAuthorization { _, _ in }

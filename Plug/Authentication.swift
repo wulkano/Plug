@@ -1,6 +1,6 @@
 import Foundation
 
-struct Authentication {
+enum Authentication {
 	fileprivate static let usernameHashKey = "WGmV6YEF9VFZBjcx"
 
 	static func userSignedIn() -> Bool {

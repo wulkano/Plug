@@ -31,7 +31,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 				return
 			}
 
-			self.track.openInAppleMusic()
+			track.openInAppleMusic()
 		}
 
 		contextMenu.addItem(appleMusicItem)
@@ -43,7 +43,7 @@ final class TrackContextMenuController: NSViewController, NSSharingServiceDelega
 			}
 
 
-			self.track.openInSpotify()
+			track.openInSpotify()
 		}
 
 		if NSWorkspace.shared.canOpenURL(URL(string: "spotify://")!) {
@@ -191,11 +191,13 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 
 		if let trackID = url.absoluteString.getSubstringBetweenPrefix(httpsPrefix, andSuffix: suffix) {
 			return trackID
-		} else if let trackID = url.absoluteString.getSubstringBetweenPrefix(httpPrefix, andSuffix: suffix) {
-			return trackID
-		} else {
-			return nil
 		}
+
+		if let trackID = url.absoluteString.getSubstringBetweenPrefix(httpPrefix, andSuffix: suffix) {
+			return trackID
+		}
+
+		return nil
 	}
 
 	func requestPermalinkForTrackID(_ trackID: String) {
@@ -206,9 +208,9 @@ final class SoundCloudPermalinkFinder: NSObject, NSURLConnectionDataDelegate {
 
 			switch response.result {
 			case .success(let permalink):
-				self.success(permalink)
+				success(permalink)
 			case .failure(let error):
-				self.failure(error)
+				failure(error)
 			}
 		}
 	}

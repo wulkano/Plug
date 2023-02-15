@@ -6,17 +6,17 @@ final class TagsViewController: DataSourceViewController {
 
 	func itemForRow(_ row: Int) -> TagsListItem? {
 		if let item: Any = dataSource!.objectForRow(row) {
-			return TagsListItem.fromObject(item)
+			TagsListItem.fromObject(item)
 		} else {
-			return nil
+			nil
 		}
 	}
 
 	func itemAfterRow(_ row: Int) -> TagsListItem? {
 		if let item: Any = dataSource!.objectForRow(row) {
-			return TagsListItem.fromObject(item)
+			TagsListItem.fromObject(item)
 		} else {
-			return nil
+			nil
 		}
 	}
 
@@ -179,27 +179,27 @@ final class TagsViewController: DataSourceViewController {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
-			return sectionHeaderCellView(tableView)
+			sectionHeaderCellView(tableView)
 		case .tagItem:
-			return tagCellView(tableView)
+			tagCellView(tableView)
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
-			return groupRowView(tableView)
+			groupRowView(tableView)
 		case .tagItem:
-			return tagRowView(tableView, row: row)
+			tagRowView(tableView, row: row)
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, isGroupRow row: Int) -> Bool {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
-			return true
+			true
 		case .tagItem:
-			return false
+			false
 		}
 	}
 
@@ -207,18 +207,18 @@ final class TagsViewController: DataSourceViewController {
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
-			return 32
+			32
 		case .tagItem:
-			return 48
+			48
 		}
 	}
 
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		switch itemForRow(row)! {
 		case .sectionHeaderItem:
-			return false
+			false
 		case .tagItem:
-			return true
+			true
 		}
 	}
 

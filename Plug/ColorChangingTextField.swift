@@ -41,9 +41,9 @@ final class ColorChangingTextField: NSTextField {
 			numberFormatter.format = "####k"
 			let numberValue = numberFormatter.number(from: withoutSingleQuotes)!.intValue
 			return numberValue * 1000
-		} else {
-			return Int(withoutSingleQuotes) ?? 0
 		}
+
+		return Int(withoutSingleQuotes) ?? 0
 	}
 
 	func makeGradient() -> NSGradient {

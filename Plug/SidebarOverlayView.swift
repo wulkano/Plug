@@ -30,7 +30,7 @@ final class SidebarOverlayView: NSView {
 			!window.isMainWindow
 		{
 			overlayColor.set()
-			dirtyRect.fill()
+			bounds.fill()
 		}
 	}
 

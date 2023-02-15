@@ -99,14 +99,14 @@ final class NavigationController: NSViewController {
 			fatalError("Can't set viewControllers to empty array")
 		}
 
-		_viewControllers.forEach {
-			$0.removeFromParent()
+		for _viewController in _viewControllers {
+			_viewController.removeFromParent()
 		}
 
 		_viewControllers = newViewControllers
 
-		_viewControllers.forEach {
-			addChild($0)
+		for _viewController in _viewControllers {
+			addChild(_viewController)
 		}
 
 		updateVisibleViewControllerAnimated(animated)

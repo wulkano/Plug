@@ -23,8 +23,8 @@ class SearchableDataSource: HypeMachineDataSource {
 	override func filterTableContents(_ objects: [Any]) -> [Any] {
 		if searchKeywords?.isEmpty == true || searchKeywords == nil {
 			return objects
-		} else {
-			return filterObjectsMatchingSearchKeywords(objects)
 		}
+
+		return filterObjectsMatchingSearchKeywords(objects)
 	}
 }

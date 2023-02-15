@@ -1,6 +1,6 @@
 import Cocoa
 
-struct Notifications {
+enum Notifications {
 	static let DisplayError = Notification.Name("Plug.DisplayErrorNotification")
 
 	static let NewCurrentTrack = Notification.Name("Plug.NewCurrentTrack")

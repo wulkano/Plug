@@ -120,11 +120,10 @@ class HypeMachineDataSource: NSObject, NSTableViewDataSource {
 			shouldReloadTableView = true
 		}
 
-		let objectsToAdd: [Any]
-		if isFiltering {
-			objectsToAdd = filteredObjects
+		let objectsToAdd: [Any] = if isFiltering {
+			filteredObjects
 		} else {
-			objectsToAdd = objects
+			objects
 		}
 
 		let rowIndexSet = rowIndexSetForNewObjects(objectsToAdd)

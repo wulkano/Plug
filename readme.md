@@ -15,7 +15,7 @@ Requires macOS 12 or later.
 
 **Older versions**
 
-- [Last macOS 10.15 compatible version](https://github.com/wulkano/Plug/releases/download/v3.4.1/Plug.3.4.1.-.macOS.10.15.zip) *(3.4.1)*
+- [3.4.1](https://github.com/wulkano/Plug/releases/download/v3.4.1/Plug.3.4.1.-.macOS.10.15.zip) for macOS 10.15+
 
 ## Screenshot
 
@@ -25,7 +25,7 @@ Requires macOS 12 or later.
 
 #### Can I contribute localizations?
 
-We do not have any immediate plans to localize the app.
+We don't plan to localize the app.
 
 ## Thank you
 

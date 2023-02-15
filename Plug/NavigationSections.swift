@@ -13,21 +13,21 @@ enum NavigationSection: Int {
 	var title: String {
 		switch self {
 		case .popular:
-			return "Popular"
+			"Popular"
 		case .favorites:
-			return "Favorites"
+			"Favorites"
 		case .latest:
-			return "Latest"
+			"Latest"
 		case .blogs:
-			return "Blogs"
+			"Blogs"
 		case .feed:
-			return "Feed"
+			"Feed"
 		case .genres:
-			return "Genres"
+			"Genres"
 		case .friends:
-			return "Friends"
+			"Friends"
 		case .search:
-			return "Search"
+			"Search"
 		}
 	}
 
@@ -53,13 +53,13 @@ enum PopularSectionMode: String {
 	var slug: String {
 		switch self {
 		case .now:
-			return "now"
+			"now"
 		case .noRemixes:
-			return "noremix"
+			"noremix"
 		case .onlyRemixes:
-			return "remix"
+			"remix"
 		case .lastWeek:
-			return "lastweek"
+			"lastweek"
 		}
 	}
 }
@@ -94,13 +94,13 @@ enum LatestSectionMode: String {
 	var slug: String {
 		switch self {
 		case .all:
-			return "all"
+			"all"
 		case .freshest:
-			return "fresh"
+			"fresh"
 		case .noRemixes:
-			return "noremix"
+			"noremix"
 		case .onlyRemixes:
-			return "remix"
+			"remix"
 		}
 	}
 }
@@ -123,11 +123,11 @@ enum FeedSectionMode: String {
 	var slug: String {
 		switch self {
 		case .all:
-			return "all"
+			"all"
 		case .friends:
-			return "friends"
+			"friends"
 		case .blogs:
-			return "blogs"
+			"blogs"
 		}
 	}
 }
@@ -150,11 +150,11 @@ enum SearchSectionSort: String {
 	var slug: String {
 		switch self {
 		case .newest:
-			return "latest"
+			"latest"
 		case .mostFavorites:
-			return "loved"
+			"loved"
 		case .mostReblogged:
-			return "posted"
+			"posted"
 		}
 	}
 }

@@ -32,22 +32,21 @@ final class VolumeIconView: NSView {
 
 		drawImage.draw(
 			at: drawPoint,
-			from: dirtyRect,
+			from: bounds,
 			operation: .destinationOver,
 			fraction: opacity
 		)
 	}
 
 	func setStateForVolume(_ volume: Double) {
-		let newVolumeState: VolumeState
-		if volume <= 0 {
-			newVolumeState = .off
+		let newVolumeState: VolumeState = if volume <= 0 {
+			.off
 		} else if volume <= (1 / 3) {
-			newVolumeState = .one
+			.one
 		} else if volume <= (2 / 3) {
-			newVolumeState = .two
+			.two
 		} else {
-			newVolumeState = .three
+			.three
 		}
 
 		// Avoid redraws if no change
@@ -59,13 +58,13 @@ final class VolumeIconView: NSView {
 	func getDrawImage() -> NSImage? {
 		switch volumeState {
 		case .off:
-			return offImage
+			offImage
 		case .one:
-			return oneImage
+			oneImage
 		case .two:
-			return twoImage
+			twoImage
 		case .three:
-			return threeImage
+			threeImage
 		}
 	}
 

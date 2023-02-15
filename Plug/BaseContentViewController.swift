@@ -102,9 +102,9 @@ class BaseContentViewController: NSViewController {
 		if stickyTrackController.isShown {
 			if position == stickyTrackController.position {
 				return
-			} else {
-				stickyTrackController.view.removeFromSuperview()
 			}
+
+			stickyTrackController.view.removeFromSuperview()
 		}
 
 		view.addSubview(stickyTrackController.view)

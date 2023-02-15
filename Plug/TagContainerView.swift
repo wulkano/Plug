@@ -47,12 +47,12 @@ final class TagContainerView: NSView {
 	func generateOriginForNewButton(_ button: TagButton) -> CGPoint {
 		if let lastButton = buttons.last {
 			if lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing + button.frame.size.width > frame.size.width {
-				return CGPoint(x: 0, y: lastButton.frame.origin.y + buttonSpacing + buttonHeight)
+				CGPoint(x: 0, y: lastButton.frame.origin.y + buttonSpacing + buttonHeight)
 			} else {
-				return CGPoint(x: lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing, y: lastButton.frame.origin.y)
+				CGPoint(x: lastButton.frame.origin.x + lastButton.frame.size.width + buttonSpacing, y: lastButton.frame.origin.y)
 			}
 		} else {
-			return .zero
+			.zero
 		}
 	}
 

@@ -127,8 +127,8 @@ extension MainWindowController {
 				}
 
 				let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
-				self.nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-				self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
+				nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+				nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
 			}
 		}
 	}

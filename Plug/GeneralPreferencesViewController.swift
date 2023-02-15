@@ -1,18 +1,18 @@
 import Cocoa
 
-let ShowTrackChangeNotificationsKey = "ShowTrackChangeNotifications"
-let EnableMediaKeysKey = "EnableMediaKeysKey"
-let HideUnavailableTracks = "HideUnavailableTracks"
-let PreventIdleSleepWhenPlaying = "PreventIdleSleepWhenPlaying"
+let showTrackChangeNotificationsKey = "ShowTrackChangeNotifications"
+let enableMediaKeysKey = "EnableMediaKeysKey"
+let hideUnavailableTracks = "HideUnavailableTracks"
+let preventIdleSleepWhenPlaying = "PreventIdleSleepWhenPlaying"
 
 final class GeneralPreferencesViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet private var scrollViewHeightContraint: NSLayoutConstraint!
 	@IBOutlet private var tableView: NSTableView!
 
 	var preferences: [GeneralPreference] = [
-		GeneralPreference(title: "Show notifications when changing tracks", settingsKey: ShowTrackChangeNotificationsKey),
-		GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: HideUnavailableTracks),
-		GeneralPreference(title: "Prevent sleep when playing music", settingsKey: PreventIdleSleepWhenPlaying)
+		GeneralPreference(title: "Show notifications when changing tracks", settingsKey: showTrackChangeNotificationsKey),
+		GeneralPreference(title: "Hide tracks that are unavailable", settingsKey: hideUnavailableTracks),
+		GeneralPreference(title: "Prevent sleep when playing music", settingsKey: preventIdleSleepWhenPlaying)
 	]
 
 	func setHeightForPreferences() {

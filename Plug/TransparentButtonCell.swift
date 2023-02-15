@@ -24,24 +24,32 @@ final class TransparentButtonCell: SwissArmyButtonCell {
 	func getImageAlpha() -> Double {
 		if allowsSelectedState, state == .on {
 			return selectedOpacity
-		} else if isMouseDown {
-			return mouseDownOpacity
-		} else if isMouseInside {
-			return mouseInsideOpacity
-		} else {
-			return inactiveOpacity
 		}
+
+		if isMouseDown {
+			return mouseDownOpacity
+		}
+
+		if isMouseInside {
+			return mouseInsideOpacity
+		}
+
+		return inactiveOpacity
 	}
 
 	func getDrawImage() -> NSImage? {
 		if allowsSelectedState, state == .on {
 			return alternateImage ?? image
-		} else if isMouseDown {
-			return image
-		} else if isMouseInside {
-			return image
-		} else {
+		}
+
+		if isMouseDown {
 			return image
 		}
+
+		if isMouseInside {
+			return image
+		}
+
+		return image
 	}
 }

@@ -61,7 +61,7 @@ final class IOSStyleTableRowView: NSTableRowView {
 		}
 
 		separatorRect.origin.y = bounds.size.height - separatorWidth
-		return separatorRect.intersection(dirtyRect)
+		return separatorRect.intersection(bounds)
 	}
 
 	// MARK: Selection

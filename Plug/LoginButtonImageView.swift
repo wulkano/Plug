@@ -10,6 +10,6 @@ final class LoginButtonImageView: NSImageView {
 			return
 		}
 
-		image.draw(in: dirtyRect, from: .zero, operation: .sourceOver, fraction: alpha)
+		image.draw(in: bounds, from: .zero, operation: .sourceOver, fraction: alpha)
 	}
 }

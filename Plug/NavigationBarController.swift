@@ -5,11 +5,11 @@ import SnapKit
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	switch (lhs, rhs) {
 	case (let left?, let right?):
-		return left < right
+		left < right
 	case (nil, _?):
-		return true
+		true
 	default:
-		return false
+		false
 	}
 }
 
@@ -17,9 +17,9 @@ private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 	switch (lhs, rhs) {
 	case (let left?, let right?):
-		return left > right
+		left > right
 	default:
-		return rhs < lhs
+		rhs < lhs
 	}
 }
 

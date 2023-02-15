@@ -37,8 +37,8 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 			.responseJSON { [weak self] response in
 				guard
 					let self,
-					self.objectValue != nil,
-					let track = self.track,
+					objectValue != nil,
+					let track,
 					track.id == originalTrackID
 				else {
 					return
@@ -54,7 +54,7 @@ final class HeatMapTrackTableCellView: TrackTableCellView {
 						let startPoint = (trackJSON["beginningValue"]! as! NSNumber).doubleValue
 						let endPoint = (trackJSON["endValue"]! as! NSNumber).doubleValue
 						let heatMap = HeatMap(track: track, start: startPoint, end: endPoint)
-						self.heatMapView.heatMap = heatMap
+						heatMapView.heatMap = heatMap
 					} else {
 						// print("Heatmap missed for track: \(self.trackValue)")
 					}

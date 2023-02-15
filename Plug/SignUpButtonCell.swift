@@ -2,13 +2,12 @@ import Cocoa
 
 final class SignUpButtonCell: SwissArmyButtonCell {
 	override func drawBezel(withFrame frame: CGRect, in controlView: NSView) {
-		let alpha: Double
-		if isMouseDown {
-			alpha = 1
+		let alpha: Double = if isMouseDown {
+			1
 		} else if isMouseInside {
-			alpha = 0.5
+			0.5
 		} else {
-			alpha = 0.15
+			0.15
 		}
 
 		let radius = 3.0
@@ -23,13 +22,12 @@ final class SignUpButtonCell: SwissArmyButtonCell {
 	}
 
 	override func drawTitle(_ title: NSAttributedString, withFrame frame: CGRect, in controlView: NSView) -> CGRect {
-		let alpha: Double
-		if isMouseDown {
-			alpha = 1
+		let alpha: Double = if isMouseDown {
+			1
 		} else if isMouseInside {
-			alpha = 0.8
+			0.8
 		} else {
-			alpha = 0.5
+			0.5
 		}
 
 		let mutableTitle = NSMutableAttributedString(attributedString: title)

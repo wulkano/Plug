@@ -5,10 +5,12 @@ enum BlogDirectoryItem {
 	case sectionHeaderItem(SectionHeader)
 	case blogItem(HypeMachineAPI.Blog)
 
-	static func fromObject(_ object: Any) -> BlogDirectoryItem? {
+	static func fromObject(_ object: Any) -> Self? {
 		if let blogItem = object as? HypeMachineAPI.Blog {
 			return self.blogItem(blogItem)
-		} else if let sectionHeader = object as? SectionHeader {
+		}
+
+		if let sectionHeader = object as? SectionHeader {
 			return sectionHeaderItem(sectionHeader)
 		}
 
@@ -75,9 +77,9 @@ final class BlogsDataSource: SearchableDataSource {
 		if searchKeywords?.isEmpty == true || searchKeywords == nil {
 			print("Filtering, but no keywords present")
 			return sortedBlogs
-		} else {
-			return filterBlogsMatchingSearchKeywords(sortedBlogs)
 		}
+
+		return filterBlogsMatchingSearchKeywords(sortedBlogs)
 	}
 
 	// MARK: HypeMachineDataSource
@@ -90,7 +92,7 @@ final class BlogsDataSource: SearchableDataSource {
 				return
 			}
 
-			self.nextPageResponseReceived(response)
+			nextPageResponseReceived(response)
 		}
 	}
 

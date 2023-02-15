@@ -178,8 +178,8 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 				return
 			}
 
-			self.isScrolling = false
-			self.scrollViewDidEndScrolling(Notification(name: Notification.Name("nil"), object: self))
+			isScrolling = false
+			scrollViewDidEndScrolling(Notification(name: Notification.Name("nil"), object: self))
 		}
 	}
 
@@ -214,9 +214,9 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 	func scrollDirection() -> ScrollDirection {
 		if visibleRect.origin.y >= previousVisibleRect.origin.y {
 			return .down
-		} else {
-			return .up
 		}
+
+		return .up
 	}
 
 	// TODO: NOT DRY, PLZ FIX
@@ -387,9 +387,9 @@ final class ExtendedTableView: NSTableView, RefreshScrollViewBoundsChangedDelega
 	// so this makes sure to catch any skipped rows
 	func rangeBetweenCurrentRow(_ currentRow: Int, andPreviousRow previousRow: Int) -> CountableRange<Int> {
 		if currentRow > previousRow {
-			return CountableRange(uncheckedBounds: (lower: previousRow + 1, upper: currentRow + 1))
+			CountableRange(uncheckedBounds: (lower: previousRow + 1, upper: currentRow + 1))
 		} else {
-			return CountableRange(uncheckedBounds: (lower: currentRow, upper: previousRow))
+			CountableRange(uncheckedBounds: (lower: currentRow, upper: previousRow))
 		}
 	}
 

@@ -53,12 +53,12 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 			switch response.result {
 			case .success(let favorited):
 				if favorited != newLovedValue {
-					self.changeTrackLovedValueTo(favorited)
+					changeTrackLovedValueTo(favorited)
 				}
 			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)
-				self.changeTrackLovedValueTo(oldLovedValue)
+				changeTrackLovedValueTo(oldLovedValue)
 			}
 		}
 	}
@@ -186,7 +186,7 @@ final class TrackInfoViewController: NSViewController, TagContainerViewDelegate,
 
 			switch response.result {
 			case .success(let image):
-				self.albumArt.image = image
+				albumArt.image = image
 			case .failure(let error):
 				Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 				print(error)

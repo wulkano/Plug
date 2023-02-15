@@ -80,7 +80,7 @@ final class AudioPlayer: NSObject {
 	var hasNextTrack: Bool { findNextTrack() != nil }
 	var hasPreviousTrack: Bool { previousTrack != nil }
 
-	override init() {
+	override private init() {
 		self.isShuffle = UserDefaults.standard.value(forKey: "shuffle") as? Bool ?? false
 		super.init()
 
@@ -137,7 +137,7 @@ final class AudioPlayer: NSObject {
 			}
 
 			DispatchQueue.global().async {
-				guard UserDefaults.standard.bool(forKey: ShowTrackChangeNotificationsKey) else {
+				guard UserDefaults.standard.bool(forKey: showTrackChangeNotificationsKey) else {
 					return
 				}
 
@@ -186,7 +186,9 @@ final class AudioPlayer: NSObject {
 		if foundTracks.firstIndex(of: currentTrack) != NSNotFound {
 			// Current track is already accurate.
 			return
-		} else if let foundTrack = foundTracks.first {
+		}
+
+		if let foundTrack = foundTracks.first {
 			if currentTrack != foundTrack {
 				self.currentTrack = foundTrack
 			}
@@ -280,7 +282,7 @@ final class AudioPlayer: NSObject {
 				return
 			}
 
-			self.isSeeking = false
+			isSeeking = false
 
 			if !isSuccess {
 				// TODO: Report error to the user here.
@@ -479,9 +481,9 @@ final class AudioPlayer: NSObject {
 			!(currentDataSource is FavoriteTracksDataSource)
 		{
 			return nextShuffleTrack()
-		} else {
-			return currentDataSource.trackAfter(currentTrack)
 		}
+
+		return currentDataSource.trackAfter(currentTrack)
 	}
 
 	fileprivate func nextShuffleTrack() -> HypeMachineAPI.Track? {

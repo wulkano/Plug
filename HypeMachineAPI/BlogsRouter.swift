@@ -10,33 +10,33 @@ extension Router {
 		var method: HTTPMethod {
 			switch self {
 			case .index:
-				return .get
+				.get
 			case .show:
-				return .get
+				.get
 			case .showTracks:
-				return .get
+				.get
 			}
 		}
 
 		var path: String {
 			switch self {
 			case .index:
-				return "/blogs"
+				"/blogs"
 			case .show(let id):
-				return "/blogs/\(id)"
+				"/blogs/\(id)"
 			case .showTracks(let id, _):
-				return "/blogs/\(id)/tracks"
+				"/blogs/\(id)/tracks"
 			}
 		}
 
 		var params: Parameters? {
 			switch self {
 			case .index(let optionalParams):
-				return optionalParams
+				optionalParams
 			case .show:
-				return nil
+				nil
 			case .showTracks(_, let optionalParams):
-				return optionalParams
+				optionalParams
 			}
 		}
 

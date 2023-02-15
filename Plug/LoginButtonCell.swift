@@ -25,9 +25,9 @@ final class LoginButtonCell: SwissArmyButtonCell {
 	func getTextColor() -> NSColor {
 		switch loginButton.buttonState {
 		case .error:
-			return NSColor(red256: 255, green256: 95, blue256: 82).withAlphaComponent(getAlpha())
+			NSColor(red256: 255, green256: 95, blue256: 82).withAlphaComponent(getAlpha())
 		default:
-			return .white.withAlphaComponent(getAlpha())
+			.white.withAlphaComponent(getAlpha())
 		}
 	}
 
@@ -36,11 +36,13 @@ final class LoginButtonCell: SwissArmyButtonCell {
 		case .enabled, .error:
 			if isMouseDown {
 				return 0.3
-			} else if isMouseInside {
-				return 0.6
-			} else {
-				return 1
 			}
+
+			if isMouseInside {
+				return 0.6
+			}
+
+			return 1
 		case .disabled:
 			return 0.5
 		case .sending:
@@ -51,9 +53,9 @@ final class LoginButtonCell: SwissArmyButtonCell {
 	func getImageAlpha() -> Double {
 		switch loginButton.buttonState {
 		case .sending, .disabled:
-			return 0
+			0
 		default:
-			return getAlpha()
+			getAlpha()
 		}
 	}
 }

@@ -12,33 +12,36 @@ class TracksDataSource: HypeMachineDataSource {
 	}
 
 	func trackAfter(_ track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
-		if let currentIndex = indexOfTrack(track) {
-			if currentIndex + 1 >= max(0, tableContents!.count - infiniteLoadTrackCountFromEnd) {
-				loadNextPageObjects()
-			}
-
-			let track = trackAtIndex(currentIndex + 1)
-			if track != nil, track!.audioUnavailable {
-				return trackAfter(track!)
-			}
-
-			return track
-		} else {
+		guard let currentIndex = indexOfTrack(track) else {
 			return nil
 		}
+
+		if currentIndex + 1 >= max(0, tableContents!.count - infiniteLoadTrackCountFromEnd) {
+			loadNextPageObjects()
+		}
+
+		let track = trackAtIndex(currentIndex + 1)
+		if track != nil, track!.audioUnavailable {
+			return trackAfter(track!)
+		}
+
+		return track
 	}
 
 	func trackBefore(_ track: HypeMachineAPI.Track) -> HypeMachineAPI.Track? {
-		if let currentIndex = indexOfTrack(track) {
-			let track = trackAtIndex(currentIndex - 1)
-			if track != nil, track!.audioUnavailable {
-				return trackBefore(track!)
-			}
-
-			return track
-		} else {
+		guard let currentIndex = indexOfTrack(track) else {
 			return nil
 		}
+
+		let track = trackAtIndex(currentIndex - 1)
+		if
+			track != nil,
+			track!.audioUnavailable
+		{
+			return trackBefore(track!)
+		}
+
+		return track
 	}
 
 	func indexOfTrack(_ track: HypeMachineAPI.Track) -> Int? {
@@ -50,15 +53,15 @@ class TracksDataSource: HypeMachineDataSource {
 	}
 
 	func trackAtIndex(_ index: Int) -> HypeMachineAPI.Track? {
-		guard let tracks = tableContents as? [HypeMachineAPI.Track] else {
+		guard
+			let tracks = tableContents as? [HypeMachineAPI.Track],
+			index >= 0,
+			index <= tracks.count - 1
+		else {
 			return nil
 		}
 
-		if index >= 0, index <= tracks.count - 1 {
-			return tracks[index]
-		} else {
-			return nil
-		}
+		return tracks[index]
 	}
 
 	// MARK: HypeMachineDataSource

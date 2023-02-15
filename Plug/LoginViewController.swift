@@ -44,25 +44,23 @@ final class LoginViewController: NSViewController, NSTextFieldDelegate {
 			case .success(let usernameAndToken):
 				Authentication.saveUsername(usernameAndToken.username, withToken: usernameAndToken.token)
 				HypeMachineAPI.hmToken = usernameAndToken.token
-				self.signedInSuccessfully()
+				signedInSuccessfully()
 			case .failure(let error):
-				let errorMessage: String
-
-				if let apiError = error as? HypeMachineAPI.APIError {
+				let errorMessage = if let apiError = error as? HypeMachineAPI.APIError {
 					switch apiError {
 					case .incorrectUsername,
 						 .incorrectPassword,
 						 .network(error: HypeMachineAPI.APIError.incorrectUsername),
 						 .network(error: HypeMachineAPI.APIError.incorrectPassword):
-						errorMessage = "Incorrect Username or Password"
+						"Incorrect Username or Password"
 					default:
-						errorMessage = "Network Error"
+						"Network Error"
 					}
 				} else {
-					errorMessage = "Network Error"
+					"Network Error"
 				}
 
-				self.loginButton.buttonState = .error(errorMessage)
+				loginButton.buttonState = .error(errorMessage)
 			}
 		}
 	}

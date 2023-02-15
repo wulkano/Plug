@@ -8,7 +8,7 @@ final class IOSSwitch: NSControl {
 
 	let borderLineWidth = 2.0
 
-	let goldenRatio = 1.618_033_988_75
+	let goldenRatio = 1.61803398875
 	let decreasedGoldenRatio = 1.38
 
 	let enabledOpacity: Float = 1
@@ -194,17 +194,17 @@ final class IOSSwitch: NSControl {
 	func knobWidthForSize(_ size: CGSize) -> Double {
 		if isActive {
 			return (size.width - (2 * borderLineWidth)) * (1 / decreasedGoldenRatio)
-		} else {
-			return (size.width - (2 * borderLineWidth)) * (1 / goldenRatio)
 		}
+
+		return (size.width - (2 * borderLineWidth)) * (1 / goldenRatio)
 	}
 
 	func knobXForSize(_ size: CGSize, knobWidth: Double) -> Double {
 		if (!hasDragged && !on) || (hasDragged && !isDraggingTowardsOn) {
 			return borderLineWidth
-		} else {
-			return size.width - knobWidth - borderLineWidth
 		}
+
+		return size.width - knobWidth - borderLineWidth
 	}
 
 	// MARK: NSResponder
@@ -241,11 +241,10 @@ final class IOSSwitch: NSControl {
 
 		isActive = false
 
-		let newOnValue: Bool
-		if !hasDragged {
-			newOnValue = !on
+		let newOnValue: Bool = if !hasDragged {
+			!on
 		} else {
-			newOnValue = isDraggingTowardsOn
+			isDraggingTowardsOn
 		}
 		let shouldInvokeTargetAction = on != newOnValue
 

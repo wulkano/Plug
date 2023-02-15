@@ -9,11 +9,11 @@ final class RefreshHeaderViewController: NSViewController {
 		fileprivate var label: String {
 			switch self {
 			case .pullToRefresh:
-				return "Pull To Refresh"
+				"Pull To Refresh"
 			case .releaseToRefresh:
-				return "Release To Refresh"
+				"Release To Refresh"
 			case .updating:
-				return "Updating Playlist"
+				"Updating Playlist"
 			}
 		}
 	}

@@ -31,7 +31,7 @@ final class HoverToggleButton: NSButton {
 
 		drawImage?.draw(
 			in: drawPosition,
-			from: dirtyRect,
+			from: bounds,
 			operation: .sourceOver,
 			fraction: 1,
 			respectFlipped: true,
@@ -42,13 +42,17 @@ final class HoverToggleButton: NSButton {
 	func getDrawImage() -> NSImage? {
 		if isSelected, isMouseInside {
 			return onHoverImage
-		} else if isSelected {
-			return onImage
-		} else if isMouseInside {
-			return offHoverImage
-		} else {
-			return offImage
 		}
+
+		if isSelected {
+			return onImage
+		}
+
+		if isMouseInside {
+			return offHoverImage
+		}
+
+		return offImage
 	}
 
 	override func viewDidMoveToWindow() {

@@ -185,7 +185,7 @@ final class UserViewController: BaseContentViewController {
 
 				switch response.result {
 				case .success(let image):
-					self.avatarView.image = image
+					avatarView.image = image
 				case .failure(let error):
 					Notifications.post(name: Notifications.DisplayError, object: self, userInfo: ["error": error])
 					print(error)

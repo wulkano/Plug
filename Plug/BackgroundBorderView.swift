@@ -29,7 +29,7 @@ final class BackgroundBorderView: NSView {
 	func drawBackground(_ dirtyRect: CGRect) {
 		if hasBackground {
 			backgroundColor.set()
-			dirtyRect.fill(using: .sourceOver)
+			bounds.fill(using: .sourceOver)
 		}
 	}
 
@@ -40,26 +40,26 @@ final class BackgroundBorderView: NSView {
 			var topRect = bounds
 			topRect.size.height = borderWidth
 			topRect.origin.y = bounds.size.height - borderWidth
-			topRect.intersection(dirtyRect).fill(using: .sourceOver)
+			topRect.intersection(bounds).fill(using: .sourceOver)
 		}
 
 		if rightBorder {
 			var rightRect = bounds
 			rightRect.size.width = borderWidth
 			rightRect.origin.x = bounds.size.width - borderWidth
-			rightRect.intersection(dirtyRect).fill(using: .sourceOver)
+			rightRect.intersection(bounds).fill(using: .sourceOver)
 		}
 
 		if bottomBorder {
 			var bottomRect = bounds
 			bottomRect.size.height = borderWidth
-			bottomRect.intersection(dirtyRect).fill(using: .sourceOver)
+			bottomRect.intersection(bounds).fill(using: .sourceOver)
 		}
 
 		if leftBorder {
 			var leftRect = bounds
 			leftRect.size.width = borderWidth
-			leftRect.intersection(dirtyRect).fill(using: .sourceOver)
+			leftRect.intersection(bounds).fill(using: .sourceOver)
 		}
 	}
 }

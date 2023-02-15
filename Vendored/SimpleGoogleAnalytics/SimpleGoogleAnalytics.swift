@@ -92,17 +92,16 @@ public final class Manager {
 	private func clientID() -> String {
 		if let UUID = UserDefaults.standard.string(forKey: GAClientIDKey) {
 			return UUID
-		} else {
-			let newUUID = generateClientID()
-			UserDefaults.standard.set(newUUID, forKey: GAClientIDKey)
-			return newUUID
 		}
+
+		let newUUID = generateClientID()
+		UserDefaults.standard.set(newUUID, forKey: GAClientIDKey)
+		return newUUID
 	}
 
 	private func generateClientID() -> String {
 		let newUUID = CFUUIDCreate(nil)
-		let string = CFUUIDCreateString(nil, newUUID) as String
-		return string
+		return CFUUIDCreateString(nil, newUUID) as String
 	}
 
 	private func appName() -> String {

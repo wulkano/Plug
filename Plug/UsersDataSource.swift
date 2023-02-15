@@ -5,9 +5,9 @@ final class UsersDataSource: SearchableDataSource {
 	func filterUsersMatchingSearchKeywords(_ users: [HypeMachineAPI.User]) -> [HypeMachineAPI.User] {
 		users.filter { user in
 			if user.fullName != nil {
-				return (user.username =~ searchKeywords!) || (user.fullName! =~ searchKeywords!)
+				(user.username =~ searchKeywords!) || (user.fullName! =~ searchKeywords!)
 			} else {
-				return user.username =~ searchKeywords!
+				user.username =~ searchKeywords!
 			}
 		}
 	}
@@ -33,7 +33,7 @@ final class UsersDataSource: SearchableDataSource {
 				return
 			}
 
-			self.nextPageResponseReceived(response)
+			nextPageResponseReceived(response)
 		}
 	}
 

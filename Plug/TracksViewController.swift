@@ -282,7 +282,7 @@ class TracksViewController: DataSourceViewController {
 	// MARK: Unavailable tracks
 
 	func showHideUnavailableTracks() {
-		let hideUnavailableTracks = UserDefaults.standard.bool(forKey: HideUnavailableTracks)
+		let hideUnavailableTracks = UserDefaults.standard.bool(forKey: hideUnavailableTracks)
 		dataSource?.isFiltering = hideUnavailableTracks
 	}
 
@@ -323,7 +323,7 @@ class TracksViewController: DataSourceViewController {
 		showHideUnavailableTracks()
 
 		Notifications.subscribe(observer: self, selector: #selector(BaseContentViewController.refresh), name: Notifications.RefreshCurrentView, object: nil)
-		UserDefaults.standard.addObserver(self, forKeyPath: HideUnavailableTracks, options: NSKeyValueObservingOptions.new, context: nil)
+		UserDefaults.standard.addObserver(self, forKeyPath: hideUnavailableTracks, options: NSKeyValueObservingOptions.new, context: nil)
 	}
 
 	// MARK: BaseContentViewController
@@ -368,9 +368,9 @@ class TracksViewController: DataSourceViewController {
 	override var stickyTrackControllerType: TracksViewControllerType {
 		switch type {
 		case .heatMap, .loveCount:
-			return .loveCount
+			.loveCount
 		case .feed:
-			return .feed
+			.feed
 		}
 	}
 
@@ -401,11 +401,11 @@ class TracksViewController: DataSourceViewController {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		switch type {
 		case .heatMap:
-			return heatMapCellView(tableView)
+			heatMapCellView(tableView)
 		case .loveCount:
-			return loveCountCellView(tableView)
+			loveCountCellView(tableView)
 		case .feed:
-			return feedCellView(tableView)
+			feedCellView(tableView)
 		}
 	}
 
@@ -426,9 +426,9 @@ class TracksViewController: DataSourceViewController {
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		switch type {
 		case .feed:
-			return 84
+			84
 		default:
-			return 64
+			64
 		}
 	}
 
@@ -498,7 +498,7 @@ class TracksViewController: DataSourceViewController {
 			return
 		}
 
-		if keyPath == HideUnavailableTracks {
+		if keyPath == hideUnavailableTracks {
 			showHideUnavailableTracks()
 		}
 	}

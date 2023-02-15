@@ -1,9 +1,9 @@
 import Foundation
 
 public class SwignalBase {
-	internal var swignalObservers = [ObserverBase]()
+	var swignalObservers = [ObserverBase]()
 
-	internal func addSwignalObserver(_ swignalObserver: ObserverBase) {
+	func addSwignalObserver(_ swignalObserver: ObserverBase) {
 		purgeDeallocatedListeners()
 
 		synced(self) {
@@ -34,7 +34,7 @@ public class SwignalBase {
 	}
 }
 
-internal class ObserverBase: Equatable {
+class ObserverBase: Equatable { // swiftlint:disable:this final_class
 	let swignal: SwignalBase!
 	weak var genericObserver: AnyObject?
 
@@ -47,7 +47,7 @@ internal class ObserverBase: Equatable {
 	}
 }
 
-internal class ObserverGenericBase<L: AnyObject>: ObserverBase {
+class ObserverGenericBase<L: AnyObject>: ObserverBase { // swiftlint:disable:this final_class
 	weak var observer: L? {
 		didSet {
 			genericObserver = observer
@@ -72,7 +72,7 @@ extension ObserverBase {
 
 
 // MARK: Helpers
-internal func synced(_ lock: AnyObject, closure: () -> Void) {
+func synced(_ lock: AnyObject, closure: () -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)

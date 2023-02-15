@@ -9,7 +9,7 @@ final class KeepAwake: NSObject {
 		sleepAssertionType: kIOPMAssertionTypeNoIdleSleep
 	)!
 
-	override fileprivate init() {
+	override private init() {
 		super.init()
 
 		initialSetup()
@@ -21,8 +21,8 @@ final class KeepAwake: NSObject {
 				return
 			}
 
-			if self.getUserPreference() {
-				_ = self.preventSleep.preventSleep()
+			if getUserPreference() {
+				_ = preventSleep.preventSleep()
 			}
 		}
 
@@ -38,11 +38,11 @@ final class KeepAwake: NSObject {
 					return
 				}
 
-				self.preventSleep.allowSleep()
+				preventSleep.allowSleep()
 			}
 		}
 
-		UserDefaults.standard.addObserver(self, forKeyPath: PreventIdleSleepWhenPlaying, options: NSKeyValueObservingOptions.new, context: nil)
+		UserDefaults.standard.addObserver(self, forKeyPath: preventIdleSleepWhenPlaying, options: NSKeyValueObservingOptions.new, context: nil)
 	}
 
 	deinit {
@@ -52,7 +52,7 @@ final class KeepAwake: NSObject {
 	// MARK: NSKeyValueObserving
 
 	fileprivate func getUserPreference() -> Bool {
-		UserDefaults.standard.value(forKey: PreventIdleSleepWhenPlaying) as! Bool
+		UserDefaults.standard.value(forKey: preventIdleSleepWhenPlaying) as! Bool
 	}
 
 	// TODO: Use the modern API.
@@ -62,7 +62,7 @@ final class KeepAwake: NSObject {
 			return
 		}
 
-		if keyPath == PreventIdleSleepWhenPlaying {
+		if keyPath == preventIdleSleepWhenPlaying {
 			// As the signal observers have already been set up, all we need to do here is to prevent sleep if a track is currently being played.
 			if getUserPreference(), AudioPlayer.shared.isPlaying {
 				_ = preventSleep.preventSleep()

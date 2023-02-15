@@ -35,13 +35,13 @@ final class FavoriteTracksDataSource: TracksDataSource {
 
 	override var nextPageParams: [String: Any] {
 		if shuffle {
-			return [
+			[
 				"page": 1,
 				"count": objectsPerPage,
 				"shuffle": "1"
 			]
 		} else {
-			return super.nextPageParams
+			super.nextPageParams
 		}
 	}
 

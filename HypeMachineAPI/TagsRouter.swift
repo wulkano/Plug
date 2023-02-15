@@ -9,9 +9,9 @@ extension Router {
 		var method: HTTPMethod {
 			switch self {
 			case .index:
-				return .get
+				.get
 			case .showTracks:
-				return .get
+				.get
 			}
 		}
 
@@ -28,9 +28,9 @@ extension Router {
 		var params: Parameters? {
 			switch self {
 			case .index:
-				return nil
+				nil
 			case .showTracks(_, let optionalParams):
-				return optionalParams
+				optionalParams
 			}
 		}
 
